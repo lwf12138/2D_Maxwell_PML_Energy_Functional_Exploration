@@ -1,7 +1,7 @@
 {
   "schema_version": "iteris.task_pool.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-06-19T18:21:24.432257Z",
+  "updated_at": "2026-06-19T18:36:00.078910Z",
   "active_frontier": "",
   "tasks": [
     {
@@ -73,7 +73,7 @@
       "task_id": "task-final-energy-report",
       "mode": "proof",
       "objective": "Assemble the verified alpha=1 energy/obstruction results and fractional-case status into results/energy_functional_report.md.",
-      "status": "ready",
+      "status": "done",
       "priority": 80,
       "dependencies": [
         "task-alpha1-pml-cases"
@@ -84,10 +84,14 @@
       ],
       "assigned_agent_run": null,
       "notes": [
-        "Terminal artifact required by .iteris/goal_prompt.txt."
+        "Terminal artifact required by .iteris/goal_prompt.txt.",
+        "Started final assembly verification for results/energy_functional_report.md using verified facts.",
+        "Heartbeat: assembly verification is running for results/energy_functional_report.md.",
+        "Repaired assembly gap: added missing PP_{z,2} mixed term to Gronwall growth-term accounting.",
+        "Assembly and goal_success verifications passed for results/energy_functional_report.md."
       ],
       "created_at": "2026-06-19T18:03:12.624000Z",
-      "updated_at": "2026-06-19T18:03:12.624000Z"
+      "updated_at": "2026-06-19T18:36:00.078903Z"
     }
   ]
 }

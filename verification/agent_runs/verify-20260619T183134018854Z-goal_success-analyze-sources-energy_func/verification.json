@@ -1,0 +1,30 @@
+{
+  "verification_report": {
+    "summary": "Scope adequacy check: the original source goal asks for analysis of the 2D TM Maxwell-PML system, with alpha=1 handled first, nonnegative time-independent absorptions including edge/corner and variable profiles, and arbitrary displayed variables unless extra assumptions are stated. Its preferred outcome is a positive monotone energy, but it explicitly permits fallback Gronwall-type estimates and obstruction results if monotonicity is unavailable. The target report satisfies that scope: it states the exact alpha=1 model, PEC boundary condition, coefficient assumptions, positive augmented energy, Gronwall inequality for bounded nonnegative time-independent sigma_x,sigma_y, the possible-growth terms, and an exact edge-PML linear-growth obstruction that rules out an unconditional coercive monotone or long-time-uniform bounded energy for the full source model as stated. The fractional case is only postponed after the alpha=1 obstruction, and the postponement is scoped correctly because the obstruction occurs with P=0.",
+    "critical_errors": [],
+    "gaps": []
+  },
+  "verdict": "correct",
+  "repair_hints": "No repair needed.",
+  "checked_artifacts": [
+    "verification/agent_runs/verify-20260619T183134018854Z-goal_success-analyze-sources-energy_func/request.json",
+    "sources/energy_functional_problem.tex",
+    "results/energy_functional_report.md",
+    "verification/results/verify-20260619T182724786704Z-assembly-assemble-verified-facts-to-answ.json",
+    "verification/results/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json",
+    "verification/results/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-.json",
+    "verification/results/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e.json",
+    "artifacts/proofs/alpha1_algebra_balance.md",
+    "artifacts/proofs/alpha1_constant_pml_cases.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-run-20260619T173930696222Z-source-problem.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-edge-pml-linear-obstruction.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-augmented-gronwall-energy.md"
+  ],
+  "checked_fact_ids": [
+    "fact:2d_maxwell_pml_energy_functional_exploration:run-20260619T173930696222Z:source-problem",
+    "fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance",
+    "fact:2d_maxwell_pml_energy_functional_exploration:edge-pml-linear-obstruction",
+    "fact:2d_maxwell_pml_energy_functional_exploration:augmented-gronwall-energy"
+  ]
+}

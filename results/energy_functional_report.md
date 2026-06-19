@@ -165,7 +165,7 @@ This is a Gronwall-type estimate.  It is not monotone and not uniform in long ti
 
 The possible-growth terms are exactly
 \[
-EP,\quad EP_{z,1},\quad EP_{z,2},\quad H_xQ_x,\quad H_yQ_y,
+EP,\quad EP_{z,1},\quad EP_{z,2},\quad PP_{z,2},\quad H_xQ_x,\quad H_yQ_y,
 \]
 together with the magnetic sign-indefinite square terms before the shift.  In shifted
 variables the magnetic issue becomes \(H_xM_x+H_yM_y\).  Adding plain

@@ -85,7 +85,7 @@ boundedness theorem.
 The terms responsible for possible growth in this estimate are exactly the
 zeroth-order PML couplings
 \[
-EP,\quad EP_{z,1},\quad EP_{z,2},\quad H_xQ_x,\quad H_yQ_y,
+EP,\quad EP_{z,1},\quad EP_{z,2},\quad PP_{z,2},\quad H_xQ_x,\quad H_yQ_y,
 \]
 and the sign-indefinite magnetic squares before the magnetic shift.  In shifted
 variables the magnetic square terms cancel, but the balance contains

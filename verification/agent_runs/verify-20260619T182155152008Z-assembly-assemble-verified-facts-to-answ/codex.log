@@ -1,0 +1,1751 @@
+started_at: 2026-06-19T18:21:55.152924Z
+command: /Users/wcli/.local/bin/codex exec --json -C '/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration' -m gpt-5.5 --config model_reasoning_effort=xhigh --dangerously-bypass-approvals-and-sandbox -
+prompt_file: verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/prompt.md
+events_log: verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/codex.events.jsonl
+stderr_log: verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/codex.stderr.log
+
+--- rendered codex exec events ---
+
+[1] thread.started
+  thread_id: 019ee11e-3a7a-7170-8b44-67d0fe9be5c2
+
+[2] turn.started
+
+[?] error: null
+
+[?] error: null
+
+[?] error: null
+
+[?] error: null
+
+[7] item.completed:error
+  id: item_0
+  message: Falling back from WebSockets to HTTPS transport. request timed out
+
+[8] item.completed:agent_message
+  I’ll read the verification request first, then trace each cited artifact and fact against the claimed assembly. After that I’ll write the required `verification.json` with a concrete verdict.
+
+[9] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '1,240p' verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/request.json"
+  status: in_progress
+  exit_code: None
+
+[10] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '1,240p' verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/request.json"
+  status: completed
+  exit_code: 0
+  {
+    "schema_version": "iteris.verification_request.v0",
+    "request_id": "verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ",
+    "backend": "agent",
+    "executor": "codex",
+    "mode": "assembly",
+    "claim": "Assemble verified facts to answer the 2D Maxwell-PML energy-functional goal with an alpha=1 obstruction plus Gronwall estimate and fractional case postponed.",
+    "artifacts": [
+      "results/energy_functional_report.md"
+    ],
+    "fact_ids": [],
+    "target_artifact": "results/energy_functional_report.md",
+    "created_at": "2026-06-19T18:21:55.152248Z",
+    "prompt_path": "verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/prompt.md",
+    "codex_log": "verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/codex.log",
+    "codex_events": "verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/codex.events.jsonl",
+    "codex_stderr": "verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/codex.stderr.log",
+    "codex_log_manifest": "verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/log_manifest.json"
+  }
+
+[11] item.completed:agent_message
+  The request is `mode: assembly` and cites only `results/energy_functional_report.md`, with no verified fact IDs. I’m going to inspect that report plus the run prompt/log to see what source goal it was trying to answer and whether the assembled claims are actually backed.
+
+[12] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '1,260p' results/energy_functional_report.md"
+  status: in_progress
+  exit_code: None
+
+[13] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '1,260p' results/energy_functional_report.md"
+  status: completed
+  exit_code: 0
+  # Energy Functional Report
+  
+  Problem id: `2d_maxwell_pml_energy_functional_exploration`
+  
+  Source: `sources/energy_functional_problem.tex`
+  
+  ## Original goal summary
+  
+  Analyze the two-dimensional TM Maxwell-PML system with unknowns
+  \[
+  E,\ H_x,\ H_y,\ P,\ P_{z,1},\ P_{z,2},\ Q_x,\ Q_y
+  \]
+  and PEC boundary condition \(E=0\) on \(\partial\Omega\).  The first target is a
+  positive monotone decreasing energy.  If that is unavailable, the target is the
+  strongest valid bounded-energy, no-abnormal-growth, Gronwall, or obstruction result.
+  
+  The non-fractional case is the alpha \(=1\) case of
+  \[
+  P+\tau^\alpha\partial_t^\alpha P=\chi E,\qquad
+  \chi=\epsilon_0(\epsilon_s-\epsilon_\infty).
+  \]
+  This report analyzes \(\alpha=1\).  The fractional case \(0<\alpha<1\) is postponed
+  because the alpha \(=1\) PML obstruction already occurs with \(P=0\).
+  
+  ## Fact index
+  
+  | fact id | status | verification |
+  |---|---:|---|
+  | `fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance` | verified | `verification/results/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json` |
+  | `fact:2d_maxwell_pml_energy_functional_exploration:edge-pml-linear-obstruction` | verified | `verification/results/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-.json` |
+  | `fact:2d_maxwell_pml_energy_functional_exploration:augmented-gronwall-energy` | verified | `verification/results/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e.json` |
+  
+  ## Model used
+  
+  For \(\alpha=1\), the equations used are exactly
+  \[
+  \begin{aligned}
+  \epsilon_0\epsilon_\infty E_t
+  &= \partial_xH_y-\partial_yH_x
+     -\epsilon_\infty(\sigma_x+\sigma_y)E
+     -P_t-\frac{\sigma_x+\sigma_y}{\epsilon_0}P
+     +P_{z,1}+P_{z,2},\\
+  \mu H_{x,t}
+  &= -\partial_yE-\mu\frac{\sigma_y-\sigma_x}{\epsilon_0}H_x+Q_x,\\
+  \mu H_{y,t}
+  &= \partial_xE-\mu\frac{\sigma_x-\sigma_y}{\epsilon_0}H_y+Q_y,\\
+  P+\tau P_t&=\chi E,\\
+  P_{z,1,t}&=-\frac{\epsilon_\infty}{\epsilon_0}\sigma_x\sigma_y E,\\
+  P_{z,2,t}&=-\frac{\sigma_x\sigma_y}{\epsilon_0^2}P,\\
+  Q_{x,t}&=-\frac{\sigma_x}{\epsilon_0}Q_x
+    +\frac{\mu\sigma_x(\sigma_y-\sigma_x)}{\epsilon_0^2}H_x,\\
+  Q_{y,t}&=-\frac{\sigma_y}{\epsilon_0}Q_y
+    +\frac{\mu\sigma_y(\sigma_x-\sigma_y)}{\epsilon_0^2}H_y .
+  \end{aligned}
+  \]
+  The boundary assumption is PEC:
+  \[
+  E=0\quad\text{on }\partial\Omega .
+  \]
+  The absorption assumptions for the Gronwall estimate are
+  \[
+  \sigma_x,\sigma_y\in L^\infty(\Omega),\qquad \sigma_x,\sigma_y\ge0,
+  \]
+  with time-independent coefficients.  This includes constant, separated-variable, and
+  general spatially variable profiles.
+  
+  ## Verified alpha=1 balance
+  
+  The electromagnetic energy is
+  \[
+  \mathcal E_{\rm em}
+  =\frac12\int_\Omega
+  \left(\epsilon_0\epsilon_\infty E^2+\mu H_x^2+\mu H_y^2\right)\,dxdy .
+  \]
+  PEC makes the Maxwell principal boundary flux
+  \[
+  \int_{\partial\Omega}E(H_y n_x-H_x n_y)\,ds
+  \]
+  vanish.  Using \(P+\tau P_t=\chi E\),
+  \[
+  E P_t=\frac{1}{2\chi}\frac{d}{dt}\|P\|_2^2
+  +\frac{\tau}{\chi}\|P_t\|_2^2 .
+  \]
+  Thus
+  \[
+  \mathcal E_{\rm em+P}
+  =\mathcal E_{\rm em}+\frac1{2\chi}\|P\|_2^2
+  \]
+  is positive and satisfies
+  \[
+  \begin{aligned}
+  \frac{d}{dt}\mathcal E_{\rm em+P}
+  =\int_\Omega\Big[
+  &-\epsilon_\infty(\sigma_x+\sigma_y)E^2
+  -\frac{\tau}{\chi}P_t^2
+  -\frac{\sigma_x+\sigma_y}{\epsilon_0}EP
+  +E(P_{z,1}+P_{z,2})\\
+  &-\frac{\mu}{\epsilon_0}(\sigma_y-\sigma_x)H_x^2
+  -\frac{\mu}{\epsilon_0}(\sigma_x-\sigma_y)H_y^2
+  +H_xQ_x+H_yQ_y
+  \Big]\,dxdy .
+  \end{aligned}
+  \]
+  
+  With
+  \[
+  a_x=\frac{\sigma_y-\sigma_x}{\epsilon_0},\quad
+  a_y=\frac{\sigma_x-\sigma_y}{\epsilon_0},\quad
+  b_x=\frac{\sigma_x}{\epsilon_0},\quad
+  b_y=\frac{\sigma_y}{\epsilon_0},
+  \]
+  and shifted variables
+  \[
+  M_x=Q_x-\mu a_xH_x,\qquad M_y=Q_y-\mu a_yH_y,
+  \]
+  one has
+  \[
+  \mu H_{x,t}=-\partial_yE+M_x,\quad
+  \mu H_{y,t}=\partial_xE+M_y,
+  \]
+  \[
+  M_{x,t}=a_x\partial_yE-b_yM_x,\qquad
+  M_{y,t}=-a_y\partial_xE-b_xM_y .
+  \]
+  Substitution cancels the sign-indefinite magnetic squares and leaves
+  \[
+  \begin{aligned}
+  \frac{d}{dt}\mathcal E_{\rm em+P}
+  =\int_\Omega\Big[
+  &-\epsilon_\infty(\sigma_x+\sigma_y)E^2
+  -\frac{\tau}{\chi}P_t^2
+  -\frac{\sigma_x+\sigma_y}{\epsilon_0}EP
+  +E(P_{z,1}+P_{z,2})\\
+  &+H_xM_x+H_yM_y
+  \Big]\,dxdy .
+  \end{aligned}
+  \]
+  
+  ## Positive Gronwall energy
+  
+  The positive augmented energy proved here is
+  \[
+  \mathcal E_0(t)
+  =\frac12\int_\Omega
+  \left(\epsilon_0\epsilon_\infty E^2+\mu H_x^2+\mu H_y^2
+  +\chi^{-1}P^2+P_{z,1}^2+P_{z,2}^2+Q_x^2+Q_y^2\right)\,dxdy .
+  \]
+  Adding the \(L^2\) derivatives of \(P_{z,1},P_{z,2},Q_x,Q_y\) to the verified
+  balance and applying Young's inequality gives
+  \[
+  \boxed{\frac{d}{dt}\mathcal E_0(t)\le C_G\mathcal E_0(t)}
+  \]
+  with \(C_G<\infty\) depending only on the material constants and the \(L^\infty\)
+  sizes of
+  \[
+  \sigma_x,\ \sigma_y,\ \sigma_x\sigma_y,\ 
+  \sigma_x(\sigma_y-\sigma_x),\ 
+  \sigma_y(\sigma_x-\sigma_y).
+  \]
+  Therefore
+  \[
+  \boxed{\mathcal E_0(t)\le e^{C_Gt}\mathcal E_0(0).}
+  \]
+  This is a Gronwall-type estimate.  It is not monotone and not uniform in long time.
+  
+  The possible-growth terms are exactly
+  \[
+  EP,\quad EP_{z,1},\quad EP_{z,2},\quad H_xQ_x,\quad H_yQ_y,
+  \]
+  together with the magnetic sign-indefinite square terms before the shift.  In shifted
+  variables the magnetic issue becomes \(H_xM_x+H_yM_y\).  Adding plain
+  \(\|M_x\|_2^2+\|M_y\|_2^2\) is not a closed local \(L^2\) monotone fix because its
+  derivative contains \(M_x\partial_yE\) and \(M_y\partial_xE\).
+  
+  ## Case split
+  
+  ### No PML
+  
+  If \(\sigma_x=\sigma_y=0\) and the PML auxiliaries are initially zero, then
+  \[
+  P_{z,1}=P_{z,2}=Q_x=Q_y=0
+  \]
+  for all time, and
+  \[
+  \frac{d}{dt}\mathcal E_{\rm em+P}
+  =-\frac{\tau}{\chi}\|P_t\|_2^2\le0 .
+  \]
+  So the no-PML Debye-Maxwell subsystem has a monotone positive alpha \(=1\) energy
+  under the natural auxiliary-zero compatibility condition.
+  
+  ### Edge PML
+  
+  For constant \(\sigma_x=s>0,\sigma_y=0\), set
+  \[
+  E=P=P_{z,1}=P_{z,2}=H_y=Q_y=0
+  \]
+  and take \(H_x,Q_x\) spatially constant.  With \(b=s/\epsilon_0\),
+  \[
+  H_{x,t}=bH_x+\frac1\mu Q_x,\qquad
+  Q_{x,t}=-bQ_x-\mu b^2H_x .
+  \]
+  The shifted quantity
+  \[
+  M_x=Q_x+\mu bH_x
+  \]
+  is constant, hence
+  \[
+  H_x(t)=H_x(0)+\frac{M_x(0)}{\mu}t,\qquad
+  Q_x(t)=Q_x(0)-bM_x(0)t .
+  \]
+  If \(M_x(0)\ne0\), \(H_x,Q_x\) grow linearly while \(E=0\) satisfies PEC.
+  
+  The case \(\sigma_x=0,\sigma_y=s>0\) has the symmetric construction with \(H_y,Q_y\)
+  and constant \(M_y=Q_y+\mu bH_y\).
+  
+  Therefore the source model as stated has an exact edge-PML obstruction: no positive
+  coercive energy controlling all displayed variables can be monotone decreasing or
+  uniformly bounded for all initial data in the edge cases.
+  
+  ### Corner PML
+  
+  For constant \(\sigma_x,\sigma_y>0\), both shifted magnetic auxiliaries are damped:
+  \[
+  M_{x,t}=a_x\partial_yE-\frac{\sigma_y}{\epsilon_0}M_x,\qquad
+  M_{y,t}=-a_y\partial_xE-\frac{\sigma_x}{\epsilon_0}M_y .
+  \]
+  Thus the exact edge linear mode is absent in both the symmetric corner
+  \(\sigma_x=\sigma_y\) and the asymmetric corner \(\sigma_x\ne\sigma_y\).
+  However, the shifted local \(L^2\) energy still produces derivative couplings
+  \(M_x\partial_yE\) and \(M_y\partial_xE\).  A monotone corner energy would need extra
+  derivative, nonlocal, or Baffet-type time-integrated structure not closed by the
+  zeroth-order variables above.  The verified result retained for the corner cases is
+  the augmented Gronwall estimate.
+  
+  ## Positivity and failure of monotonicity
+  
+  \(\mathcal E_{\rm em+P}\) and \(\mathcal E_0\) are positive because
+  \(\epsilon_0,\epsilon_\infty,\mu,\chi>0\).  The no-PML compatible subsystem is
+  monotone.  The full eight-variable PML model is not covered by any unconditional
+  positive monotone or uniformly bounded energy over all data, because the edge-PML
+  linear solution makes such an energy impossible if it controls \(H_i,Q_i\).
+  
+  The final classification is:
+  
+  - no PML with zero auxiliaries: monotone alpha \(=1\) energy;
+  - full source model with arbitrary auxiliaries and edge PML allowed: verified
+    obstruction to unconditional monotone or uniformly bounded energy;
+  - bounded nonnegative time-independent \(\sigma_x,\sigma_y\): positive augmented
+    Gronwall estimate;
+  - fractional \(0<\alpha<1\): postponed.
+  
+  ## Assembly
+  
+  `fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance` verifies
+  the source-model algebra, PEC cancellation, polarization energy, and magnetic shift.
+  `fact:2d_maxwell_pml_energy_functional_exploration:edge-pml-linear-obstruction`
+  shows that the edge cases requested by the source problem contain exact linear-growth
+  solutions for arbitrary eight-variable data.  This blocks the strong monotone target
+  and also blocks unconditional long-time-uniform boundedness for the model as stated.
+  `fact:2d_maxwell_pml_energy_functional_exploration:augmented-gronwall-energy`
+
+[14] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '1,260p' verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/codex.log"
+  status: in_progress
+  exit_code: None
+
+[15] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '1,260p' verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/codex.log"
+  status: completed
+  exit_code: 0
+  started_at: 2026-06-19T18:21:55.152924Z
+  command: /Users/wcli/.local/bin/codex exec --json -C '/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration' -m gpt-5.5 --config model_reasoning_effort=xhigh --dangerously-bypass-approvals-and-sandbox -
+  prompt_file: verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/prompt.md
+  events_log: verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/codex.events.jsonl
+  stderr_log: verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/codex.stderr.log
+  --- codex exec is running; raw JSONL events stream to codex.events.jsonl, stderr to codex.stderr.log ---
+
+[16] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '1,260p' verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/prompt.md"
+  status: in_progress
+  exit_code: None
+
+[17] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '1,260p' verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/prompt.md"
+  status: completed
+  exit_code: 0
+  You are the Iteris Verification Agent.
+  
+  Read the verification request at `/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/request.json` and verify it inside this
+  project workspace. Do not treat schema validity as enough. Your job is to check
+  whether the claim is actually supported by the cited artifacts, facts, proof
+  steps, source material, and external references when relevant.
+  
+  For mathematical work:
+  - verify statements and subproofs sequentially in the order written;
+  - check assumptions, theorem applications, definitions, and unjustified jumps;
+  - if an external theorem is cited, search/check the reference before accepting
+    it, and verify that the cited theorem's hypotheses and terminology match this
+    problem;
+  - a load-bearing external result must be located to a specific checkable
+    source (paper or identifier plus the precise statement); reliance on an
+    unnamed "standard theorem" or "well-known result" that you cannot locate
+    and check is a critical error, not a gap;
+  - mark any logical error, missing argument, unsupported theorem application, or
+    mismatched reference as a failure.
+  
+  Mode guidance:
+  - `fact`: verify the fact statement, the cited evidence, and predecessor facts.
+    Passing requires that the fact is true within its stated claim scope, not just
+    well-formed.
+  - `assembly`: verify that the terminal artifact answers the goal only by using
+    cited verified facts, and that those facts actually support the assembled
+    conclusion. If the artifact claims a theorem that the facts do not prove,
+    return `wrong`. An artifact that claims to resolve a broader or universally
+    quantified goal but whose cited facts only establish a single instance,
+    sub-family, or degenerate/boundary case overclaims and is `wrong`.
+  - `goal_success`: verify that the terminal artifact satisfies the original
+    user goal in the request claim, not merely that the artifact is internally
+    assembled from verified facts. A verified partial result, blocker, remaining
+    bridge, gap report, or weaker theorem is `wrong` unless the request claim
+    explicitly asks for that limited output.
+    Scope adequacy and quantifier check (mandatory): before judging, restate the
+    goal's quantifier structure and its intended non-trivial regime. If the goal
+    is universally quantified — "for ANY/EVERY choice of X achieve P", "an
+    algorithm that works for all inputs/instances" — then an artifact that
+    establishes P only for a single instance, a hand-picked sub-family, or a
+    boundary case is `wrong`, even when that sub-result is itself correct and
+    verified, unless it genuinely covers the whole quantifier or the problem
+    provably reduces to that case. The solver does NOT get to pick the easiest
+    admissible instance and declare the goal solved when the goal quantifies over
+    all of them. Also REJECT degenerate instantiations that trivialize the
+    objective: a parameter regime where the quantity to be improved collapses to a
+    trivial value (an approximation/competitive factor that becomes 1, a bound
+    that becomes vacuous), an "improvement" measured against an inflated or padded
+    nominal quantity rather than the effective/tight one for that instance, or
+    strictness manufactured only at a boundary (e.g. an empty or zero-optimum
+    input). Such a single-instance or degenerate obstruction may be recorded as an
+    intermediate fact but is `wrong` as goal_success. A genuinely scoped answer is
+    full goal_success when the SOURCE goal as authored (not the solver) defines that
+    scope as the target — a source that explicitly restricts to a named sub-case is
+    satisfied by solving that sub-case. Verify coverage against the ORIGINAL SOURCE goal (found in the cited
+    `source_problem` fact or the referenced direction file's `## Success criteria` /
+    `## What does NOT count`), not the solver-authored request claim: the claim is
+    written by the solver and may
+    quietly NARROW the goal to a self-chosen sub-model, scope, or parameter regime.
+    If the claim or artifact restricts success to a self-selected sub-scope of the
+    source goal, that is a scoped PARTIAL and is `wrong` as goal_success even though
+    the claim "asks for" that narrow scope — the solver does not get to redefine
+    success by narrowing the claim. Honor any explicit anti-narrowing,
+    anti-degeneracy, or "what does NOT count" instruction in the source. If the SOURCE goal's
+    deliverable is itself a maximality/optimality claim — it asks to PROVE a quantity
+    is OPTIMAL / SHARP / TIGHT / BEST-POSSIBLE, not merely to ACHIEVE a target bound,
+    give an algorithm, or prove a stated bound suffices — then `correct` requires
+    BOTH a verified constructive upper bound AND a verified matching lower bound,
+    proven in the SAME resource/access model and the intended non-degenerate regime;
+    an achievability/upper bound alone, or a bound obtained in a different or
+    trivializing model (e.g. retreating to an exact-cost model so the optimum
+    collapses to a constant), does NOT prove optimality. A goal that asks only for an
+    algorithm meeting a stated bound, or for a one-sided bound, does NOT trigger the
+    matching-lower-bound requirement — demanding a lower bound there is
+    over-rejection. When optimality IS the deliverable but the matching lower bound
+    is missing, that is `wrong` as full goal_success — record the gap as "achievable
+    bound; optimal/sharp OPEN" and finalize the honest partial via principled_stop
+    (the research-open landing below), not endless goal_success retries. Adopt a refuting stance: look for the self-narrowing,
+    the model-shift, the missing required matching bound, and the coverage gap
+    before accepting, but reserve `wrong` for a CONCRETE identified gap (a named
+    uncovered class, a witnessed model-shift, a missing required matching bound): if
+    the artifact clearly covers the source goal's full quantifier structure, accept
+    it; if the source goal cannot be located among the cited artifacts, report THAT
+    as the gap rather than refuting a complete-looking answer on mere uncertainty.
+    When the goal or the direction
+    source file it references contains a `## Success criteria` section, check
+    the artifact against EVERY criterion; a result named under `## What does
+    NOT count` does not satisfy the goal even if itself verified. When the goal
+    declares an audit contract (`## Audit routes`), every enumerated route must
+    carry an explicit verdict — a proof or a precisely-witnessed obstruction —
+    plus a synthesis verdict; a single positive result with unaddressed routes
+    is `wrong`.
+  - `principled_stop`: the request claim is the ORIGINAL goal; the artifact asks to
+    STOP because the full goal is unreachable AS STATED, not because it is solved.
+    This is the honest terminal for "provably impossible as stated" or "reduced to
+    a named open subproblem" — it is NOT a license to give up on hard work. Restate
+    the goal's quantifier structure first (as for goal_success), then default to
+    `wrong` and return `correct` ONLY if ALL hold: (1) the artifact cites a VERIFIED
+    obstruction — either a verified impossibility result for the FULL goal exactly
+    as stated, or a precise reduction to a named, well-characterized open
+    subproblem the goal provably reduces to; a vague "this is hard", an unproven
+    conjecture, or an unverified lower bound is `wrong`; (2) the obstruction is on
+    the genuine full goal, not a strawman, a misformalization, or a
+    degenerate-instance escape (the mirror of the goal_success degeneracy check: an
+    "impossibility" manufactured by misreading the goal, padding/inflating a bound,
+    or picking an adversarial sub-instance is `wrong`); (3) the artifact also states
+    the STRONGEST valid result actually achieved AND verified (e.g. the
+    conditional/partial theorem), so the stop captures real progress rather than a
+    blank give-up; (4) there is evidence of genuine exploration (recorded rejected
+    routes / alternative attempts) — a premature stop with obvious unexplored
+    routes is `wrong`. For a research-OPEN goal (not provably impossible, but not
+    fully closable this run), a precise, VERIFIED reduction (the full goal provably
+    follows from the named subproblem; reduction direction and faithfulness checked)
+    of the full goal to a named, well-characterized OPEN subproblem PLUS a
+    comprehensive obstruction map of the
+    standard routes, accompanied by the strongest verified partial and genuine
+    exploration evidence, IS a legitimate principled stop under (1)'s reduction
+    branch — the honest scientific terminal for an open problem. Do not reject such
+    an honest strong-partial merely because the full goal remains open; reject only
+    a cop-out (a weak partial, obvious unexplored routes, a vague "this is hard", or
+    an overclaim).
+  - `proof`: verify the full proof text in paper order. A proof with any gap is
+    `wrong`.
+  - `experiment`: verify the claim against the cited artifacts as for other
+    modes, and additionally verify discriminating power. The artifact must
+    declare its baseline/control and what outcome would falsify the claim; check
+    whether a trivial baseline would also pass on the same instances. An
+    experiment that any baseline passes is 0-discriminating and must not pass as
+    empirical support for the claim. When the claim selects between competing
+    hypotheses (e.g. growth laws), also check that the ANALYSIS METHOD can
+    distinguish them on the data range: near-collinear fits compared by goodness
+    of fit have no discriminating power — demand a diagnostic that separates the
+    hypotheses (such as increment/difference behavior) or mark the selection as
+    a gap. Check that the experiment declares its scope (what the data is a
+    proxy for) and does not over-claim beyond it.
+  - `source`, `code`, `claim_firewall`: verify the claim against
+    the cited artifacts at the appropriate scope and report all gaps.
+  
+  Write exactly one JSON object to `/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/verification.json` with this shape:
+  
+  ```json
+  {
+    "verification_report": {
+      "summary": "string",
+      "critical_errors": [
+        {"location": "string", "issue": "string"}
+      ],
+      "gaps": [
+        {"location": "string", "issue": "string"}
+      ]
+    },
+    "verdict": "correct",
+    "repair_hints": "string",
+    "checked_artifacts": ["path"],
+    "checked_fact_ids": ["fact:id"]
+  }
+  ```
+  
+  Use `verdict: "correct"` if and only if there are no critical errors and no
+  gaps. Otherwise use `verdict: "wrong"` and provide concrete repair hints.
+  
+  Request id: verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ
+
+[18] item.started:command_execution
+  command: /bin/zsh -lc 'rg -n "source_problem|Success criteria|What does NOT count|energy-functional|energy functional|PML|Maxwell|alpha" . -S'
+  status: in_progress
+  exit_code: None
+
+[19] item.completed:command_execution
+  command: /bin/zsh -lc 'rg -n "source_problem|Success criteria|What does NOT count|energy-functional|energy functional|PML|Maxwell|alpha" . -S'
+  status: completed
+  exit_code: 0
+  ./iteris.toml:3:title = "2D_Maxwell_PML_Energy_Functional_Exploration"
+  ./ITERIS_INPUT_GUIDE.md:21:Analyze sources/energy_functional_problem.tex. The model is the displayed 2D Maxwell--PML system with P, P_{z,1}, P_{z,2}, Q_x, Q_y and PEC boundary condition. Start with the alpha = 1 case of P + tau^alpha partial_t^alpha P = chi E; do not remove P from the model. Search first for a monotone decreasing energy functional in two dimensions. If no monotone energy can be found, derive the strongest bounded-energy/no-abnormal-growth estimate possible, in the spirit of MPML long-time stability, or identify a verified obstruction for natural quadratic energies. Only after the alpha = 1 model is understood, examine whether the fractional case 0 < alpha < 1 can be added as a positive memory energy. Write the final result to results/energy_functional_report.md.
+  ./ITERIS_INPUT_GUIDE.md:31:6. 是否只研究 `alpha=1`，还是在第二阶段继续处理 `0<alpha<1` 的分数阶记忆。
+  ./ITERIS_INPUT_GUIDE.md:35:- 不要一开始就要求完整二维变系数 + 分数阶 `0<alpha<1` + DG 离散 + 超收敛。
+  ./results/energy_functional_report.md:9:Analyze the two-dimensional TM Maxwell-PML system with unknowns
+  ./results/energy_functional_report.md:17:The non-fractional case is the alpha \(=1\) case of
+  ./results/energy_functional_report.md:19:P+\tau^\alpha\partial_t^\alpha P=\chi E,\qquad
+  ./results/energy_functional_report.md:22:This report analyzes \(\alpha=1\).  The fractional case \(0<\alpha<1\) is postponed
+  ./results/energy_functional_report.md:23:because the alpha \(=1\) PML obstruction already occurs with \(P=0\).
+  ./results/energy_functional_report.md:29:| `fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance` | verified | `verification/results/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json` |
+  ./results/energy_functional_report.md:30:| `fact:2d_maxwell_pml_energy_functional_exploration:edge-pml-linear-obstruction` | verified | `verification/results/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-.json` |
+  ./results/energy_functional_report.md:35:For \(\alpha=1\), the equations used are exactly
+  ./results/energy_functional_report.md:67:## Verified alpha=1 balance
+  ./results/energy_functional_report.md:75:PEC makes the Maxwell principal boundary flux
+  ./results/energy_functional_report.md:177:### No PML
+  ./results/energy_functional_report.md:179:If \(\sigma_x=\sigma_y=0\) and the PML auxiliaries are initially zero, then
+  ./results/energy_functional_report.md:188:So the no-PML Debye-Maxwell subsystem has a monotone positive alpha \(=1\) energy
+  ./results/energy_functional_report.md:191:### Edge PML
+  ./results/energy_functional_report.md:216:Therefore the source model as stated has an exact edge-PML obstruction: no positive
+  ./results/energy_functional_report.md:220:### Corner PML
+  ./results/energy_functional_report.md:238:\(\epsilon_0,\epsilon_\infty,\mu,\chi>0\).  The no-PML compatible subsystem is
+  ./results/energy_functional_report.md:239:monotone.  The full eight-variable PML model is not covered by any unconditional
+  ./results/energy_functional_report.md:240:positive monotone or uniformly bounded energy over all data, because the edge-PML
+  ./results/energy_functional_report.md:245:- no PML with zero auxiliaries: monotone alpha \(=1\) energy;
+  ./results/energy_functional_report.md:246:- full source model with arbitrary auxiliaries and edge PML allowed: verified
+  ./results/energy_functional_report.md:250:- fractional \(0<\alpha<1\): postponed.
+  ./results/energy_functional_report.md:254:`fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance` verifies
+  ./results/energy_functional_report.md:267:\(\alpha=1\), not a monotone two-dimensional PML energy.  The fractional memory case
+  ./PROJECT.md:1:# 2D Maxwell--PML Energy Functional Exploration
+  ./PROJECT.md:3:Goal: prepare a precise mathematical source problem for exploring monotone or dissipative energy functionals for the two-dimensional Maxwell--PML system, with a staged Cole--Cole fractional extension.
+  ./tasks/TASK_POOL.json:27:      "task_id": "task-alpha1-algebra-energy-balance",
+  ./tasks/TASK_POOL.json:29:      "objective": "Verify the alpha=1 model algebra, PEC electromagnetic balance, polarization contribution, and shifted magnetic identities.",
+  ./tasks/TASK_POOL.json:35:        "artifacts/proofs/alpha1_algebra_balance.md"
+  ./tasks/TASK_POOL.json:41:        "Verified and promoted fact: fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance."
+  ./tasks/TASK_POOL.json:48:      "task_id": "task-alpha1-pml-cases",
+  ./tasks/TASK_POOL.json:50:      "objective": "Analyze constant-coefficient no-PML, edge-PML, symmetric-corner, and asymmetric-corner cases for positive monotone or bounded quadratic energies.",
+  ./tasks/TASK_POOL.json:54:        "task-alpha1-algebra-energy-balance"
+  ./tasks/TASK_POOL.json:58:        "artifacts/proofs/alpha1_constant_pml_cases.md"
+  ./tasks/TASK_POOL.json:63:        "Started inline constant-coefficient PML case split; using verified alpha1 algebra balance as predecessor.",
+  ./tasks/TASK_POOL.json:75:      "objective": "Assemble the verified alpha=1 energy/obstruction results and fractional-case status into results/energy_functional_report.md.",
+  ./tasks/TASK_POOL.json:79:        "task-alpha1-pml-cases"
+  ./run_iteris_energy_goal.sh:13:Main objective: analyze the 2D Maxwell--PML system stated in sources/energy_functional_problem.tex, including the polarization variable P and the PML auxiliary variables P_{z,1}, P_{z,2}, Q_x, Q_y. The primary goal is to find a monotone decreasing energy functional in two dimensions. If no monotone energy can be found, find the strongest bounded-energy/no-abnormal-growth estimate possible, in the spirit of MPML long-time stability.
+  ./run_iteris_energy_goal.sh:16:The non-fractional case is the alpha = 1 case of the polarization law
+  ./run_iteris_energy_goal.sh:17:P + tau^alpha partial_t^alpha P = chi E.
+  ./run_iteris_energy_goal.sh:23:2. Start with alpha = 1, so that P + tau partial_t P = chi E. Use this identity to see whether the P contribution can be included as a positive polarization energy plus dissipation.
+  ./run_iteris_energy_goal.sh:30:6. Separately analyze edge PML cases:
+  ./run_iteris_energy_goal.sh:33:7. Then analyze the corner PML case:
+  ./run_iteris_energy_goal.sh:36:8. Try to construct a positive quadratic energy functional, allowing shifted variables, cross terms, polarization energy, and time-integrated auxiliary variables inspired by Baffet et al.
+  ./run_iteris_energy_goal.sh:38:10. Only after the alpha = 1 model is understood, examine whether the fractional case 0 < alpha < 1 can be added as a positive memory energy.
+  ./run_iteris_energy_goal.sh:45:- whether alpha = 1 or 0 < alpha < 1 is considered;
+  ./run_iteris_energy_goal.sh:48:- proposed energy functional;
+  ./verification/results/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json:3:  "request_id": "verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag",
+  ./verification/results/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json:6:  "claim": "Alpha=1 PEC balance and shifted magnetic identities are valid for the source Maxwell-PML system.",
+  ./verification/results/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json:10:  "summary": "Correct. The cited proof uses the same alpha=1 Maxwell-PML equations, PEC boundary condition, positivity assumptions, and shifted-variable definitions as the source problem. The electromagnetic balance follows by multiplying by E, H_x, H_y and integrating; the principal part is the boundary flux integral int_dOmega E(H_y n_x - H_x n_y) ds, which vanishes under E=0 on the PEC boundary. The alpha=1 polarization correction is valid in the integrated L2 sense, yielding the positive added energy (1/(2 chi))||P||_2^2 and dissipation (tau/chi)||P_t||_2^2. The shifted magnetic identities follow from M_x=Q_x-mu a_x H_x, M_y=Q_y-mu a_y H_y, time-independent coefficients, and b_x+a_x=b_y, b_y+a_y=b_x; substituting Q=M+mu a H cancels the sign-indefinite magnetic square terms and leaves H_x M_x+H_y M_y.",
+  ./verification/results/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json:15:    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md",
+  ./verification/results/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json:17:    "artifacts/proofs/alpha1_algebra_balance.md",
+  ./verification/results/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json:21:    "fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance",
+  ./verification/results/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json:29:  "agent_run_dir": "verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag",
+  ./verification/results/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json:30:  "agent_log": "verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/codex.log",
+  ./verification/results/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json:31:  "agent_events_log": "verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/codex.events.jsonl",
+  ./verification/results/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json:32:  "agent_stderr_log": "verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/codex.stderr.log",
+  ./verification/results/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json:33:  "agent_log_manifest": "verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/log_manifest.json",
+  ./memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-augmented-gronwall-energy.md:5:source_task: task-alpha1-pml-cases
+  ./memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-augmented-gronwall-energy.md:7:  - fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance
+  ./memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-augmented-gronwall-energy.md:12:claim_summary: "A positive augmented zeroth-order energy gives a Gronwall estimate for bounded nonnegative time-independent absorptions in the alpha=1 source model."
+  ./memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-augmented-gronwall-energy.md:18:For the alpha=1 source Maxwell-PML system with PEC boundary condition and bounded nonnegative time-independent sigma_x,sigma_y, the positive augmented energy E_0(t)=1/2 int_Omega (epsilon_0 epsilon_infty E^2+mu H_x^2+mu H_y^2+chi^{-1}P^2+P_{z,1}^2+P_{z,2}^2+Q_x^2+Q_y^2) dxdy satisfies dE_0/dt <= C_G E_0. The finite constant C_G depends only on the positive material parameters and the L_infty sizes of sigma_x, sigma_y, sigma_x sigma_y, sigma_x(sigma_y-sigma_x), and sigma_y(sigma_x-sigma_y). The estimate follows by adding the L2 derivatives of P_{z,1}, P_{z,2}, Q_x, Q_y to the verified alpha=1 electromagnetic-plus-polarization balance, dropping nonpositive terms, and applying Young's inequality to EP, EP_{z,1}, EP_{z,2}, H_xQ_x, H_yQ_y, and the sign-indefinite H-square terms. Hence E_0(t) <= exp(C_G t) E_0(0). This is a Gronwall-type estimate, not a monotone or uniform long-time boundedness result. Detailed proof is in artifacts/proofs/alpha1_constant_pml_cases.md.
+  ./memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-run-20260619T173930696222Z-source-problem.md:8:fact_type: source_problem
+  ./memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-run-20260619T173930696222Z-source-problem.md:17:\documentclass[UTF8,a4paper,12pt]{ctexart} \input{macros} \title{Problem Sheet for Iteris: Energy Functionals for 2D Maxwell--PML} \author{Prepared source problem} \date{\today} \begin{document} \maketitle \begin{abstract} This note is a self-contained source problem for an Iteris run. The system to be analy
+  ...[truncated 1031634 chars; see raw codex.events.jsonl]
+
+[20] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '1,220p' verification/results/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json"
+  status: in_progress
+  exit_code: None
+
+[21] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '1,220p' verification/results/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e.json"
+  status: in_progress
+  exit_code: None
+
+[22] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '1,220p' verification/results/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-.json"
+  status: in_progress
+  exit_code: None
+
+[23] item.started:command_execution
+  command: /bin/zsh -lc "nl -ba results/energy_functional_report.md | sed -n '240,310p'"
+  status: in_progress
+  exit_code: None
+
+[24] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '1,220p' verification/results/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json"
+  status: completed
+  exit_code: 0
+  {
+    "schema_version": "iteris.verification_result.v0",
+    "request_id": "verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag",
+    "backend": "agent",
+    "mode": "fact",
+    "claim": "Alpha=1 PEC balance and shifted magnetic identities are valid for the source Maxwell-PML system.",
+    "verdict": "accepted",
+    "passed": true,
+    "strict_verdict": "correct",
+    "summary": "Correct. The cited proof uses the same alpha=1 Maxwell-PML equations, PEC boundary condition, positivity assumptions, and shifted-variable definitions as the source problem. The electromagnetic balance follows by multiplying by E, H_x, H_y and integrating; the principal part is the boundary flux integral int_dOmega E(H_y n_x - H_x n_y) ds, which vanishes under E=0 on the PEC boundary. The alpha=1 polarization correction is valid in the integrated L2 sense, yielding the positive added energy (1/(2 chi))||P||_2^2 and dissipation (tau/chi)||P_t||_2^2. The shifted magnetic identities follow from M_x=Q_x-mu a_x H_x, M_y=Q_y-mu a_y H_y, time-independent coefficients, and b_x+a_x=b_y, b_y+a_y=b_x; substituting Q=M+mu a H cancels the sign-indefinite magnetic square terms and leaves H_x M_x+H_y M_y.",
+    "critical_errors": [],
+    "gaps": [],
+    "repair_hints": "",
+    "checked_artifacts": [
+      "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md",
+      "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-run-20260619T173930696222Z-source-problem.md",
+      "artifacts/proofs/alpha1_algebra_balance.md",
+      "sources/energy_functional_problem.tex"
+    ],
+    "checked_fact_ids": [
+      "fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance",
+      "fact:2d_maxwell_pml_energy_functional_exploration:run-20260619T173930696222Z:source-problem"
+    ],
+    "primary_fact_ids": [],
+    "target_artifact": null,
+    "executor": "codex",
+    "verification_scope": "codex_agent",
+    "claim_ceiling_after_verification": "verified",
+    "agent_run_dir": "verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag",
+    "agent_log": "verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/codex.log",
+    "agent_events_log": "verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/codex.events.jsonl",
+    "agent_stderr_log": "verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/codex.stderr.log",
+    "agent_log_manifest": "verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/log_manifest.json",
+    "created_at": "2026-06-19T18:08:49.575371Z",
+    "verifier": "iteris.codex_verification_agent"
+  }
+
+[25] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '1,220p' verification/results/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e.json"
+  status: completed
+  exit_code: 0
+  {
+    "schema_version": "iteris.verification_result.v0",
+    "request_id": "verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e",
+    "backend": "agent",
+    "mode": "fact",
+    "claim": "A positive augmented zeroth-order energy gives a Gronwall estimate for bounded nonnegative time-independent absorptions in the alpha=1 source model.",
+    "verdict": "accepted",
+    "passed": true,
+    "strict_verdict": "correct",
+    "summary": "Correct. The source model defines the alpha=1 Maxwell-PML system with PEC boundary condition, positive material parameters, and time-independent nonnegative absorptions. The predecessor alpha=1 electromagnetic-plus-polarization balance is already verified and also checks directly against the source equations: PEC cancels the Maxwell boundary flux, and E P_t gives the positive chi^{-1} P^2/2 contribution plus tau/chi dissipation. The cited Gronwall artifact then adds the L2 derivatives of P_{z,1}, P_{z,2}, Q_x, and Q_y, each matching the source auxiliary equations. After dropping the nonpositive E^2, P_t^2, Q_x^2, and Q_y^2 terms, the remaining sign-indefinite H-square terms and mixed products are all bounded by Young's inequality using the energy weights epsilon_0 epsilon_infty, mu, chi^{-1}, and the unweighted auxiliary norms. The required coefficients are controlled by the stated material parameters and L_infty norms of sigma_x, sigma_y, sigma_x sigma_y, sigma_x(sigma_y-sigma_x), and sigma_y(sigma_x-sigma_y). Thus dE_0/dt <= C_G E_0 and Gronwall gives E_0(t) <= exp(C_G t) E_0(0).",
+    "critical_errors": [],
+    "gaps": [],
+    "repair_hints": "",
+    "checked_artifacts": [
+      "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-augmented-gronwall-energy.md",
+      "artifacts/proofs/alpha1_constant_pml_cases.md",
+      "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md",
+      "artifacts/proofs/alpha1_algebra_balance.md",
+      "verification/results/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json",
+      "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-run-20260619T173930696222Z-source-problem.md",
+      "sources/energy_functional_problem.tex"
+    ],
+    "checked_fact_ids": [
+      "fact:2d_maxwell_pml_energy_functional_exploration:augmented-gronwall-energy",
+      "fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance",
+      "fact:2d_maxwell_pml_energy_functional_exploration:run-20260619T173930696222Z:source-problem"
+    ],
+    "primary_fact_ids": [],
+    "target_artifact": null,
+    "executor": "codex",
+    "verification_scope": "codex_agent",
+    "claim_ceiling_after_verification": "verified",
+    "agent_run_dir": "verification/agent_runs/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e",
+    "agent_log": "verification/agent_runs/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e/codex.log",
+    "agent_events_log": "verification/agent_runs/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e/codex.events.jsonl",
+    "agent_stderr_log": "verification/agent_runs/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e/codex.stderr.log",
+    "agent_log_manifest": "verification/agent_runs/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e/log_manifest.json",
+    "created_at": "2026-06-19T18:20:42.329731Z",
+    "verifier": "iteris.codex_verification_agent"
+  }
+
+[26] item.completed:command_execution
+  command: /bin/zsh -lc "nl -ba results/energy_functional_report.md | sed -n '240,310p'"
+  status: completed
+  exit_code: 0
+     240	positive monotone or uniformly bounded energy over all data, because the edge-PML
+     241	linear solution makes such an energy impossible if it controls \(H_i,Q_i\).
+     242	
+     243	The final classification is:
+     244	
+     245	- no PML with zero auxiliaries: monotone alpha \(=1\) energy;
+     246	- full source model with arbitrary auxiliaries and edge PML allowed: verified
+     247	  obstruction to unconditional monotone or uniformly bounded energy;
+     248	- bounded nonnegative time-independent \(\sigma_x,\sigma_y\): positive augmented
+     249	  Gronwall estimate;
+     250	- fractional \(0<\alpha<1\): postponed.
+     251	
+     252	## Assembly
+     253	
+     254	`fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance` verifies
+     255	the source-model algebra, PEC cancellation, polarization energy, and magnetic shift.
+     256	`fact:2d_maxwell_pml_energy_functional_exploration:edge-pml-linear-obstruction`
+     257	shows that the edge cases requested by the source problem contain exact linear-growth
+     258	solutions for arbitrary eight-variable data.  This blocks the strong monotone target
+     259	and also blocks unconditional long-time-uniform boundedness for the model as stated.
+     260	`fact:2d_maxwell_pml_energy_functional_exploration:augmented-gronwall-energy`
+     261	provides the strongest unconditional positive estimate established here:
+     262	\[
+     263	\mathcal E_0(t)\le e^{C_Gt}\mathcal E_0(0).
+     264	\]
+     265	
+     266	Thus the terminal result is an obstruction plus Gronwall-type energy estimate for
+     267	\(\alpha=1\), not a monotone two-dimensional PML energy.  The fractional memory case
+     268	is not added, since it cannot remove the displayed edge obstruction where \(P=0\).
+
+[27] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '1,220p' verification/results/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-.json"
+  status: completed
+  exit_code: 0
+  {
+    "schema_version": "iteris.verification_result.v0",
+    "request_id": "verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-",
+    "backend": "agent",
+    "mode": "fact",
+    "claim": "The alpha=1 source model has exact edge-PML solutions with linear H-Q growth, ruling out an unconditional positive monotone or uniformly bounded energy for all eight variables.",
+    "verdict": "accepted",
+    "passed": true,
+    "strict_verdict": "correct",
+    "summary": "Correct. The cited proof's edge-PML construction matches the source alpha=1 Maxwell-PML equations. For constant sigma_x=s>0, sigma_y=0, the ansatz E=P=P_{z,1}=P_{z,2}=H_y=Q_y=0 with spatially constant H_x,Q_x satisfies the electric equation, the alpha=1 polarization law, the P_z equations, the H_y/Q_y equations, and PEC. The remaining source equations reduce to H_{x,t}=bH_x+Q_x/mu and Q_{x,t}=-bQ_x-mu b^2H_x with b=s/epsilon_0, so M_x=Q_x+mu bH_x is conserved and nonzero M_x gives linear growth of H_x and Q_x. The symmetric sigma_x=0, sigma_y=s>0 construction gives the same conclusion for H_y,Q_y. Since these are exact finite-energy solutions whose displayed magnetic/auxiliary variables grow linearly, any time-independent positive coercive energy controlling the displayed variables cannot be monotone decreasing or uniformly long-time bounded for all source-system data in the edge-PML regime. The predecessor alpha=1 algebra-balance fact is verified and agrees with the source equations.",
+    "critical_errors": [],
+    "gaps": [],
+    "repair_hints": "",
+    "checked_artifacts": [
+      "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-edge-pml-linear-obstruction.md",
+      "artifacts/proofs/alpha1_constant_pml_cases.md",
+      "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md",
+      "artifacts/proofs/alpha1_algebra_balance.md",
+      "verification/results/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json",
+      "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-run-20260619T173930696222Z-source-problem.md",
+      "sources/energy_functional_problem.tex"
+    ],
+    "checked_fact_ids": [
+      "fact:2d_maxwell_pml_energy_functional_exploration:edge-pml-linear-obstruction",
+      "fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance",
+      "fact:2d_maxwell_pml_energy_functional_exploration:run-20260619T173930696222Z:source-problem"
+    ],
+    "primary_fact_ids": [],
+    "target_artifact": null,
+    "executor": "codex",
+    "verification_scope": "codex_agent",
+    "claim_ceiling_after_verification": "verified",
+    "agent_run_dir": "verification/agent_runs/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-",
+    "agent_log": "verification/agent_runs/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-/codex.log",
+    "agent_events_log": "verification/agent_runs/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-/codex.events.jsonl",
+    "agent_stderr_log": "verification/agent_runs/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-/codex.stderr.log",
+    "agent_log_manifest": "verification/agent_runs/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-/log_manifest.json",
+    "created_at": "2026-06-19T18:16:36.434806Z",
+    "verifier": "iteris.codex_verification_agent"
+  }
+
+[28] item.started:command_execution
+  command: /bin/zsh -lc "nl -ba sources/energy_functional_problem.tex | sed -n '1,180p'"
+  status: in_progress
+  exit_code: None
+
+[29] item.completed:command_execution
+  command: /bin/zsh -lc "nl -ba sources/energy_functional_problem.tex | sed -n '1,180p'"
+  status: completed
+  exit_code: 0
+       1	\documentclass[UTF8,a4paper,12pt]{ctexart}
+       2	\input{macros}
+       3	
+       4	\title{Problem Sheet for Iteris: Energy Functionals for 2D Maxwell--PML}
+       5	\author{Prepared source problem}
+       6	\date{\today}
+       7	
+       8	\begin{document}
+       9	\maketitle
+      10	
+      11	\begin{abstract}
+      12	This note is a self-contained source problem for an Iteris run.  The system to be analyzed is the two-dimensional TM Maxwell--PML model with polarization \(P\), PML auxiliary variables \(P_{z,1},P_{z,2},Q_x,Q_y\), and perfectly conducting boundary condition.  The first target is to find a genuinely monotone decreasing energy functional in two space dimensions.  If such a monotone energy cannot be found, the fallback target is to find a positive energy functional that proves boundedness/no abnormal long-time growth, in the same spirit as the long-time-stability role of MPML.  The non-fractional case should be understood as the special case \(\alpha=1\) of the displayed polarization law.
+      13	\end{abstract}
+      14	
+      15	\section{Primary Goal}
+      16	
+      17	Let \(\Om\subset\R^2\) be a rectangular computational domain containing a physical region and a PML layer.  The absorption parameters are
+      18	\[
+      19	  \sx=\sx(x)\ge0,\qquad \sy=\sy(y)\ge0,
+      20	\]
+      21	or, in a harder variant,
+      22	\[
+      23	  \sx=\sx(x,y)\ge0,\qquad \sy=\sy(x,y)\ge0.
+      24	\]
+      25	The main goal is to analyze the two-dimensional system in Section~\ref{sec:model} and construct an energy functional \(\Ecal(t)\).
+      26	
+      27	\begin{enumerate}
+      28	\item \textbf{Strong target: monotone decreasing energy.}
+      29	Find a positive energy functional such that
+      30	\[
+      31	  \frac{\dd}{\dd t}\Ecal(t)=-\Dcal(t)\le0.
+      32	\]
+      33	This is the preferred outcome.
+      34	\item \textbf{Fallback target: bounded/non-growing energy.}
+      35	If no monotone energy can be found, find a positive energy functional that rules out abnormal growth from the PML layer, for example
+      36	\[
+      37	  \Ecal(t)\le C\,\Ecal(0)
+      38	\]
+      39	with \(C\) independent of long time if possible.  If only a Gronwall estimate
+      40	\[
+      41	  \frac{\dd}{\dd t}\Ecal(t)\le C_\sigma\Ecal(t)
+      42	\]
+      43	is available, identify the precise terms responsible for the possible growth and whether they are coefficient-gradient terms, corner-PML terms, or algebraic sign-indefinite terms.
+      44	\item \textbf{Useful obstruction.}
+      45	If the strong target fails for natural quadratic energies, prove or at least sharply identify the obstruction.  An obstruction result is valuable if it explains which part of the PML coupling prevents monotonicity.
+      46	\end{enumerate}
+      47	
+      48	The energy may include weighted \(L^2\) norms, cross terms, shifted variables, time-integrated auxiliary variables, polarization energy, fractional-memory energy, and derivative terms if they are mathematically justified.
+      49	
+      50	\section{Model to Analyze}
+      51	\label{sec:model}
+      52	
+      53	The model is the system shown in the supplied manuscript image.  Write
+      54	\[
+      55	  E=E_z,\qquad \epsilon_\infty=\epsilon_{r,\infty},\qquad
+      56	  \epsilon_s=\epsilon_{r,s},\qquad \mu=\mu_0\mu_r,
+      57	\]
+      58	and
+      59	\[
+      60	  \chi=\epsilon_0(\epsilon_s-\epsilon_\infty).
+      61	\]
+      62	The unknowns are
+      63	\[
+      64	  E,\quad H_x,\quad H_y,\quad P,\quad P_{z,1},\quad P_{z,2},\quad Q_x,\quad Q_y.
+      65	\]
+      66	The PML system is
+      67	\begin{equation}
+      68	\begin{aligned}
+      69	\epsilon_0\epsilon_\infty\,\partial_t E
+      70	&= \partial_xH_y-\partial_yH_x
+      71	   -\epsilon_\infty(\sx+\sy)E
+      72	   -\partial_tP-\frac{\sx+\sy}{\epsilon_0}P
+      73	   +P_{z,1}+P_{z,2},\\
+      74	\mu\,\partial_tH_x
+      75	&= -\partial_yE-\mu\frac{\sy-\sx}{\epsilon_0}H_x+Q_x,\\
+      76	\mu\,\partial_tH_y
+      77	&= \partial_xE-\mu\frac{\sx-\sy}{\epsilon_0}H_y+Q_y,\\
+      78	P+\tau^\alpha\partial_t^\alpha P
+      79	&=\chi E,\\
+      80	\partial_tP_{z,1}
+      81	&=-\frac{\epsilon_\infty}{\epsilon_0}\sx\sy E,\\
+      82	\partial_tP_{z,2}
+      83	&=-\frac{\sx\sy}{\epsilon_0^2}P,\\
+      84	\partial_tQ_x
+      85	&=-\frac{\sx}{\epsilon_0}Q_x
+      86	  +\frac{\mu\sx(\sy-\sx)}{\epsilon_0^2}H_x,\\
+      87	\partial_tQ_y
+      88	&=-\frac{\sy}{\epsilon_0}Q_y
+      89	  +\frac{\mu\sy(\sx-\sy)}{\epsilon_0^2}H_y.
+      90	\end{aligned}
+      91	\label{eq:main-model}
+      92	\end{equation}
+      93	Here \(\partial_t^\alpha\) should be interpreted as a Caputo-type fractional derivative when \(0<\alpha<1\).  The non-fractional case requested by the user is the case
+      94	\[
+      95	  \alpha=1,\qquad
+      96	  P+\tau\partial_tP=\chi E.
+      97	\]
+      98	Thus the first stage of the analysis should use \(\alpha=1\), not a model with \(P\) removed.
+      99	
+     100	The boundary condition is the perfectly conducting boundary condition
+     101	\[
+     102	  \widehat n\times E=0\qquad\text{on }\partial\Om.
+     103	\]
+     104	For the two-dimensional TM model this should be interpreted as
+     105	\[
+     106	  E=E_z=0\qquad\text{on }\partial\Om,
+     107	\]
+     108	so that the Maxwell principal part has no positive boundary contribution.  If a proof uses a different boundary condition, it must state that choice explicitly.
+     109	
+     110	\begin{remark}
+     111	The parameters \(\epsilon_0,\epsilon_\infty,\epsilon_s,\mu,\tau\) are positive, and \(\chi>0\) when \(\epsilon_s>\epsilon_\infty\).  The absorption parameters are time-independent and nonnegative.  The first serious cases to analyze are constant \(\sx,\sy\), then separated variable coefficients \(\sx(x),\sy(y)\), and only then general \(\sx(x,y),\sy(x,y)\).
+     112	\end{remark}
+     113	
+     114	\section{First Energy Balance to Verify}
+     115	
+     116	Start with the electromagnetic part
+     117	\[
+     118	  \Ecal_{\rm em}(t)=\frac12\int_\Om
+     119	  \left(\epsilon_0\epsilon_\infty E^2+\mu H_x^2+\mu H_y^2\right)\dd x\dd y.
+     120	\]
+     121	
+     122	\begin{task}[Check the electromagnetic energy derivative]
+     123	Using \eqref{eq:main-model} and the PEC boundary condition, verify that the Maxwell principal part cancels by integration by parts, and that
+     124	\[
+     125	\begin{aligned}
+     126	\frac{\dd}{\dd t}\Ecal_{\rm em}
+     127	=\int_\Om\Big[
+     128	&-\epsilon_\infty(\sx+\sy)E^2
+     129	-E\partial_tP
+     130	-\frac{\sx+\sy}{\epsilon_0}EP
+     131	+E(P_{z,1}+P_{z,2})\\
+     132	&-\frac{\mu}{\epsilon_0}(\sy-\sx)H_x^2
+     133	-\frac{\mu}{\epsilon_0}(\sx-\sy)H_y^2
+     134	+H_xQ_x+H_yQ_y
+     135	\Big]\dd x\dd y .
+     136	\end{aligned}
+     137	\label{eq:em-balance}
+     138	\]
+     139	The terms involving \(H_x,H_y\) are sign-indefinite when \(\sx\ne\sy\).  The terms involving \(P,P_{z,1},P_{z,2}\) are the electric/PML auxiliary coupling terms that must be absorbed by a refined energy.
+     140	\end{task}
+     141	
+     142	\section{The \texorpdfstring{\(\alpha=1\)}{alpha=1} Polarization Identity}
+     143	
+     144	For the non-fractional case \(\alpha=1\),
+     145	\[
+     146	  P+\tau\partial_tP=\chi E,
+     147	\]
+     148	so
+     149	\[
+     150	  E=\frac{P+\tau\partial_tP}{\chi}.
+     151	\]
+     152	This gives the useful identity
+     153	\begin{equation}
+     154	  E\,\partial_tP
+     155	  =\frac{1}{2\chi}\frac{\dd}{\dd t}\|P\|_{L^2(\Om)}^2
+     156	   +\frac{\tau}{\chi}\|\partial_tP\|_{L^2(\Om)}^2.
+     157	\label{eq:alpha-one-dissipation}
+     158	\end{equation}
+     159	
+     160	\begin{task}[Use the alpha=1 identity]
+     161	Use \eqref{eq:alpha-one-dissipation} to decide whether the energy
+     162	\[
+     163	  \Ecal_{\rm em+P}
+     164	  =\Ecal_{\rm em}+\frac{1}{2\chi}\|P\|_{L^2(\Om)}^2
+     165	\]
+     166	is the right starting point.  Then identify the remaining troublesome electric auxiliary terms:
+     167	\[
+     168	  -\frac{\sx+\sy}{\epsilon_0}EP,\qquad
+     169	  E P_{z,1},\qquad
+     170	  E P_{z,2},\qquad
+     171	  \partial_tP_{z,1},\qquad
+     172	  \partial_tP_{z,2}.
+     173	\]
+     174	Try to absorb them using cross terms, shifted variables, or time-integrated variables.
+     175	\end{task}
+     176	
+     177	\section{Magnetic Auxiliary Variable Shift}
+     178	
+     179	Define
+     180	\[
+
+[30] item.completed:agent_message
+  The report’s core claims cite three accepted fact verifications. I’m now checking the source goal’s exact fallback criteria and the underlying proof artifact so I can distinguish “assembled partial answer” from overclaim.
+
+[31] item.started:command_execution
+  command: /bin/zsh -lc "nl -ba artifacts/proofs/alpha1_constant_pml_cases.md | sed -n '1,260p'"
+  status: in_progress
+  exit_code: None
+
+[32] item.started:command_execution
+  command: /bin/zsh -lc "nl -ba artifacts/proofs/alpha1_algebra_balance.md | sed -n '1,220p'"
+  status: in_progress
+  exit_code: None
+
+[33] item.started:command_execution
+  command: /bin/zsh -lc "nl -ba sources/energy_functional_problem.tex | sed -n '177,320p'"
+  status: in_progress
+  exit_code: None
+
+[34] item.completed:command_execution
+  command: /bin/zsh -lc "nl -ba sources/energy_functional_problem.tex | sed -n '177,320p'"
+  status: completed
+  exit_code: 0
+     177	\section{Magnetic Auxiliary Variable Shift}
+     178	
+     179	Define
+     180	\[
+     181	  a_x=\frac{\sy-\sx}{\epsilon_0},\qquad
+     182	  a_y=\frac{\sx-\sy}{\epsilon_0},\qquad
+     183	  b_x=\frac{\sx}{\epsilon_0},\qquad
+     184	  b_y=\frac{\sy}{\epsilon_0}.
+     185	\]
+     186	The magnetic equations and \(Q_x,Q_y\) equations suggest the shifted variables
+     187	\[
+     188	  M_x=Q_x-\mu a_xH_x,\qquad
+     189	  M_y=Q_y-\mu a_yH_y.
+     190	\]
+     191	
+     192	\begin{task}[Verify shifted magnetic identities]
+     193	Starting from \eqref{eq:main-model}, verify
+     194	\begin{equation}
+     195	\begin{aligned}
+     196	\partial_tM_x
+     197	&= a_x\,\partial_yE-\frac{\sy}{\epsilon_0}M_x,\\
+     198	\partial_tM_y
+     199	&= -a_y\,\partial_xE-\frac{\sx}{\epsilon_0}M_y.
+     200	\end{aligned}
+     201	\label{eq:magnetic-shift}
+     202	\end{equation}
+     203	Then test whether an energy written in terms of \(H_x,H_y,M_x,M_y\), rather than \(H_x,H_y,Q_x,Q_y\), has a cleaner dissipation structure.
+     204	\end{task}
+     205	
+     206	\begin{remark}
+     207	If \(\sx,\sy\) are spatially variable, \eqref{eq:magnetic-shift} itself does not produce \(\partial_t\sigma\) terms, because the coefficients are time-independent.  However, integrated energy identities may produce \(\partial_x\sx\), \(\partial_y\sy\), or general \(\nabla\sigma_i\) terms after integration by parts.  These terms are likely to be one source of bounded-but-not-monotone estimates.
+     208	\end{remark}
+     209	
+     210	\section{Electric PML Auxiliary Variables}
+     211	
+     212	The variables \(P_{z,1}\) and \(P_{z,2}\) satisfy
+     213	\[
+     214	  \partial_tP_{z,1}=-\frac{\epsilon_\infty}{\epsilon_0}\sx\sy E,\qquad
+     215	  \partial_tP_{z,2}=-\frac{\sx\sy}{\epsilon_0^2}P.
+     216	\]
+     217	They appear in the \(E\)-equation as \(E(P_{z,1}+P_{z,2})\).  This resembles the need for time-integrated or cross-term energies in PML analyses.
+     218	
+     219	\begin{task}[Handle Pz1 and Pz2]
+     220	Try the following routes:
+     221	\begin{enumerate}
+     222	\item define time-integrated variables
+     223	\[
+     224	  R_1(t)=\int_0^tP_{z,1}(s)\dd s,\qquad
+     225	  R_2(t)=\int_0^tP_{z,2}(s)\dd s;
+     226	\]
+     227	\item add cross terms such as \((E,P_{z,1})\), \((P,P_{z,2})\), or weighted combinations;
+     228	\item freeze \(\sx,\sy\) as constants and solve the pointwise Lyapunov matrix problem for the electric subsystem \((E,P,P_{z,1},P_{z,2})\);
+     229	\item identify whether the corner factor \(\sx\sy\) is the essential obstruction.
+     230	\end{enumerate}
+     231	\end{task}
+     232	
+     233	\section{Baffet-Type Energy Design Clue}
+     234	
+     235	Baffet--Grote--Imperiale--Kachanovska proved monotone energy decay for a second-order wave-equation PML with constant damping coefficients\cite{baffetGroteImperialeKachanovska2019}.  Their main lesson is methodological: do not start from the naive energy alone.  In two dimensions they introduce
+     236	\[
+     237	  \lambda=\nabla u+\phi,\qquad
+     238	  a=\operatorname{tr}\Gamma_1,\qquad
+     239	  b=\det\Gamma_1,
+     240	\]
+     241	and use an energy of the form
+     242	\[
+     243	  E[u,\phi]=\frac12\left(
+     244	  \|\partial_tu+a u\|^2+\|\nabla u+\phi\|^2
+     245	  +\|\phi\|^2_{a^{-1}\Gamma_1}+\|u\|^2_b\right).
+     246	\]
+     247	In three dimensions they further introduce time-integrated auxiliary variables \(\Phi,\Psi\) and a shifted variable \(q\).
+     248	
+     249	\begin{task}[Translate the Baffet idea to \eqref{eq:main-model}]
+     250	Look for Maxwell--PML analogues of the following structures:
+     251	\begin{itemize}
+     252	\item shifted field variables analogous to \(\partial_tu+a u\);
+     253	\item combinations of principal variables and PML auxiliaries analogous to \(\nabla u+\phi\);
+     254	\item time-integrated variables such as \(\int_0^tP_{z,1}\dd s\), \(\int_0^tP_{z,2}\dd s\), \(\int_0^tQ_x\dd s\), \(\int_0^tQ_y\dd s\);
+     255	\item cross terms that turn \(E P_{z,1}\), \(E P_{z,2}\), \(H_xQ_x\), \(H_yQ_y\) into exact time derivatives plus nonpositive remainders.
+     256	\end{itemize}
+     257	Any candidate energy must be checked for positive definiteness and boundary contributions.
+     258	\end{task}
+     259	
+     260	\section{Pointwise Lyapunov Matrix Route}
+     261	
+     262	For the \(\alpha=1\) case and constant \(\sx,\sy\), use
+     263	\[
+     264	  \partial_tP=\frac{\chi E-P}{\tau}
+     265	\]
+     266	to rewrite \eqref{eq:main-model} as a first-order system for
+     267	\[
+     268	  U=(E,H_x,H_y,P,P_{z,1},P_{z,2},Q_x,Q_y)^T.
+     269	\]
+     270	After Fourier transform in space,
+     271	\[
+     272	  \partial_t\widehat U=A(\sx,\sy,k_x,k_y)\widehat U.
+     273	\]
+     274	Search for a Hermitian positive matrix \(G\) such that
+     275	\[
+     276	  G A + A^*G\le0.
+     277	\]
+     278	If such a \(G\) is independent of \(k\), it suggests a local \(L^2\) energy.  If \(G\) depends polynomially on \(k\), it suggests derivative energies.  If no positive \(G\) exists in a natural class, record the obstruction.
+     279	
+     280	\begin{task}[Algebraic feasibility test]
+     281	Perform the pointwise Lyapunov search in the following order:
+     282	\begin{enumerate}
+     283	\item no PML: \(\sx=\sy=0\);
+     284	\item edge PML: \(\sx>0,\sy=0\);
+     285	\item edge PML: \(\sx=0,\sy>0\);
+     286	\item symmetric corner: \(\sx=\sy>0\);
+     287	\item asymmetric corner: \(\sx>0,\sy>0,\sx\ne\sy\).
+     288	\end{enumerate}
+     289	For each case, record whether there is an explicit positive quadratic energy, whether it is monotone, and whether the shifted variables \(M_x,M_y\) or integrated variables improve the result.
+     290	\end{task}
+     291	
+     292	\section{Fractional Case \texorpdfstring{\(0<\alpha<1\)}{0<alpha<1}}
+     293	
+     294	The first stage should analyze \(\alpha=1\).  Only after the \(\alpha=1\) mechanism is understood should the fractional case be considered.  For \(0<\alpha<1\), the equation
+     295	\[
+     296	  P+\tau^\alpha\partial_t^\alpha P=\chi E
+     297	\]
+     298	requires fractional-memory tools.  A possible route is to use a diffusive representation or complete monotonicity to produce a positive memory energy.
+     299	
+     300	\begin{task}[Fractional memory extension]
+     301	Assuming the \(\alpha=1\) energy has been found or its obstruction understood, determine whether the fractional polarization can be added as a positive memory energy.  Do not assume the correct memory weight; derive it from the Cole--Cole law.  If the fractional part is not needed for the current goal, explicitly postpone it and keep the main theorem for \(\alpha=1\).
+     302	\end{task}
+     303	
+     304	\section{Deliverables Requested from Iteris}
+     305	
+     306	An Iteris run should aim to produce one of the following terminal artifacts.
+     307	
+     308	\begin{enumerate}
+     309	\item A proved monotone energy identity for \eqref{eq:main-model} with \(\alpha=1\), under clearly stated assumptions.
+     310	\item A proved bounded-energy or no-abnormal-growth estimate for \eqref{eq:main-model} with \(\alpha=1\), if monotonicity is unavailable.
+     311	\item A verified obstruction showing why a natural class of quadratic energies cannot be monotone for the full two-dimensional corner PML.
+     312	\item A staged result: edge PML solved, corner PML reduced to a finite-dimensional Lyapunov condition, fractional \(0<\alpha<1\) case postponed with precise reason.
+     313	\end{enumerate}
+     314	
+     315	Every result should state:
+     316	\begin{itemize}
+     317	\item exact model equations used;
+     318	\item whether \(\alpha=1\) or \(0<\alpha<1\);
+     319	\item boundary assumptions, especially how PEC is used;
+     320	\item assumptions on \(\sx,\sy\);
+
+[35] item.completed:command_execution
+  command: /bin/zsh -lc "nl -ba artifacts/proofs/alpha1_algebra_balance.md | sed -n '1,220p'"
+  status: completed
+  exit_code: 0
+       1	# Alpha=1 Algebra and First Energy Balance
+       2	
+       3	Task: `task-alpha1-algebra-energy-balance`
+       4	
+       5	Source: `sources/energy_functional_problem.tex`
+       6	
+       7	## Model and conventions
+       8	
+       9	For this artifact the polarization law is the non-fractional case
+      10	\[
+      11	P+\tau \partial_t P=\chi E,\qquad \chi=\epsilon_0(\epsilon_s-\epsilon_\infty)>0.
+      12	\]
+      13	The boundary condition is PEC for the two-dimensional TM model:
+      14	\[
+      15	E=E_z=0\quad\text{on }\partial\Omega.
+      16	\]
+      17	The absorption functions are time-independent and nonnegative.  No spatial derivatives of
+      18	\(\sigma_x,\sigma_y\) are used in this algebraic artifact.
+      19	
+      20	The model equations are exactly those displayed in the source:
+      21	\[
+      22	\begin{aligned}
+      23	\epsilon_0\epsilon_\infty E_t
+      24	&= \partial_xH_y-\partial_yH_x
+      25	   -\epsilon_\infty(\sigma_x+\sigma_y)E
+      26	   -P_t-\frac{\sigma_x+\sigma_y}{\epsilon_0}P
+      27	   +P_{z,1}+P_{z,2},\\
+      28	\mu H_{x,t}
+      29	&= -\partial_yE-\mu\frac{\sigma_y-\sigma_x}{\epsilon_0}H_x+Q_x,\\
+      30	\mu H_{y,t}
+      31	&= \partial_xE-\mu\frac{\sigma_x-\sigma_y}{\epsilon_0}H_y+Q_y,\\
+      32	P+\tau P_t&=\chi E,\\
+      33	P_{z,1,t}&=-\frac{\epsilon_\infty}{\epsilon_0}\sigma_x\sigma_y E,\\
+      34	P_{z,2,t}&=-\frac{\sigma_x\sigma_y}{\epsilon_0^2}P,\\
+      35	Q_{x,t}&=-\frac{\sigma_x}{\epsilon_0}Q_x
+      36	  +\frac{\mu\sigma_x(\sigma_y-\sigma_x)}{\epsilon_0^2}H_x,\\
+      37	Q_{y,t}&=-\frac{\sigma_y}{\epsilon_0}Q_y
+      38	  +\frac{\mu\sigma_y(\sigma_x-\sigma_y)}{\epsilon_0^2}H_y.
+      39	\end{aligned}
+      40	\]
+      41	
+      42	## PEC cancellation and electromagnetic balance
+      43	
+      44	Let
+      45	\[
+      46	\mathcal E_{\rm em}
+      47	=\frac12\int_\Omega
+      48	\left(\epsilon_0\epsilon_\infty E^2+\mu H_x^2+\mu H_y^2\right)\,dxdy .
+      49	\]
+      50	Multiplying the first three equations by \(E,H_x,H_y\) and integrating gives the
+      51	principal part
+      52	\[
+      53	\int_\Omega \left(E\partial_xH_y-E\partial_yH_x-H_x\partial_yE+H_y\partial_xE\right)\,dxdy
+      54	=\int_{\partial\Omega} E(H_y n_x-H_x n_y)\,ds=0,
+      55	\]
+      56	because \(E=0\) on \(\partial\Omega\).  Therefore
+      57	\[
+      58	\begin{aligned}
+      59	\frac{d}{dt}\mathcal E_{\rm em}
+      60	=\int_\Omega\Big[
+      61	&-\epsilon_\infty(\sigma_x+\sigma_y)E^2
+      62	-E P_t
+      63	-\frac{\sigma_x+\sigma_y}{\epsilon_0}EP
+      64	+E(P_{z,1}+P_{z,2})\\
+      65	&-\frac{\mu}{\epsilon_0}(\sigma_y-\sigma_x)H_x^2
+      66	-\frac{\mu}{\epsilon_0}(\sigma_x-\sigma_y)H_y^2
+      67	+H_xQ_x+H_yQ_y
+      68	\Big]\,dxdy .
+      69	\end{aligned}
+      70	\]
+      71	This agrees with the balance stated in the source.
+      72	
+      73	## Polarization energy for alpha=1
+      74	
+      75	The identity
+      76	\[
+      77	E=\frac{P+\tau P_t}{\chi}
+      78	\]
+      79	implies
+      80	\[
+      81	E P_t=\frac{1}{2\chi}\frac{d}{dt}\|P\|_{L^2(\Omega)}^2
+      82	+\frac{\tau}{\chi}\|P_t\|_{L^2(\Omega)}^2 .
+      83	\]
+      84	Thus the positive polarization-corrected energy
+      85	\[
+      86	\mathcal E_{\rm em+P}
+      87	=\mathcal E_{\rm em}+\frac{1}{2\chi}\|P\|_{L^2(\Omega)}^2
+      88	\]
+      89	satisfies
+      90	\[
+      91	\begin{aligned}
+      92	\frac{d}{dt}\mathcal E_{\rm em+P}
+      93	=\int_\Omega\Big[
+      94	&-\epsilon_\infty(\sigma_x+\sigma_y)E^2
+      95	-\frac{\tau}{\chi}P_t^2
+      96	-\frac{\sigma_x+\sigma_y}{\epsilon_0}EP
+      97	+E(P_{z,1}+P_{z,2})\\
+      98	&-\frac{\mu}{\epsilon_0}(\sigma_y-\sigma_x)H_x^2
+      99	-\frac{\mu}{\epsilon_0}(\sigma_x-\sigma_y)H_y^2
+     100	+H_xQ_x+H_yQ_y
+     101	\Big]\,dxdy .
+     102	\end{aligned}
+     103	\]
+     104	The alpha=1 polarization contribution is therefore positive and dissipative.  The
+     105	remaining electric PML terms are
+     106	\[
+     107	-\frac{\sigma_x+\sigma_y}{\epsilon_0}EP,\qquad EP_{z,1},\qquad EP_{z,2},
+     108	\]
+     109	coupled to
+     110	\[
+     111	P_{z,1,t}=-\frac{\epsilon_\infty}{\epsilon_0}\sigma_x\sigma_y E,
+     112	\qquad
+     113	P_{z,2,t}=-\frac{\sigma_x\sigma_y}{\epsilon_0^2}P.
+     114	\]
+     115	
+     116	## Shifted magnetic variables
+     117	
+     118	Define
+     119	\[
+     120	a_x=\frac{\sigma_y-\sigma_x}{\epsilon_0},\qquad
+     121	a_y=\frac{\sigma_x-\sigma_y}{\epsilon_0},\qquad
+     122	b_x=\frac{\sigma_x}{\epsilon_0},\qquad
+     123	b_y=\frac{\sigma_y}{\epsilon_0},
+     124	\]
+     125	and
+     126	\[
+     127	M_x=Q_x-\mu a_xH_x,\qquad M_y=Q_y-\mu a_yH_y.
+     128	\]
+     129	Then the \(H\)-equations become
+     130	\[
+     131	\mu H_{x,t}=-\partial_yE+M_x,\qquad
+     132	\mu H_{y,t}=\partial_xE+M_y.
+     133	\]
+     134	Using the \(Q\)-equations and the time-independence of the coefficients,
+     135	\[
+     136	\begin{aligned}
+     137	M_{x,t}
+     138	&=Q_{x,t}-\mu a_xH_{x,t}\\
+     139	&=-b_xQ_x+\mu b_xa_xH_x
+     140	   +a_x\partial_yE+\mu a_x^2H_x-a_xQ_x\\
+     141	&=a_x\partial_yE-b_y(Q_x-\mu a_xH_x)
+     142	=a_x\partial_yE-b_yM_x,
+     143	\end{aligned}
+     144	\]
+     145	because \(b_x+a_x=b_y\).  Similarly,
+     146	\[
+     147	M_{y,t}=-a_y\partial_xE-b_xM_y.
+     148	\]
+     149	This verifies the shifted identities
+     150	\[
+     151	M_{x,t}=a_x\partial_yE-\frac{\sigma_y}{\epsilon_0}M_x,\qquad
+     152	M_{y,t}=-a_y\partial_xE-\frac{\sigma_x}{\epsilon_0}M_y.
+     153	\]
+     154	
+     155	In the electromagnetic-plus-polarization balance, substituting
+     156	\[
+     157	Q_x=M_x+\mu a_xH_x,\qquad Q_y=M_y+\mu a_yH_y
+     158	\]
+     159	cancels the two sign-indefinite magnetic square terms exactly.  The shifted balance is
+     160	\[
+     161	\boxed{
+     162	\begin{aligned}
+     163	\frac{d}{dt}\mathcal E_{\rm em+P}
+     164	=\int_\Omega\Big[
+     165	&-\epsilon_\infty(\sigma_x+\sigma_y)E^2
+     166	-\frac{\tau}{\chi}P_t^2
+     167	-\frac{\sigma_x+\sigma_y}{\epsilon_0}EP
+     168	+E(P_{z,1}+P_{z,2})\\
+     169	&+H_xM_x+H_yM_y
+     170	\Big]\,dxdy .
+     171	\end{aligned}}
+     172	\]
+     173	The shift therefore removes the explicit magnetic sign-indefinite damping terms.  It
+     174	does not by itself give a monotone energy, since \(H_xM_x+H_yM_y\) remains an
+     175	uncontrolled coupling unless additional auxiliary energy or derivative structure is
+     176	introduced.
+
+[36] item.completed:command_execution
+  command: /bin/zsh -lc "nl -ba artifacts/proofs/alpha1_constant_pml_cases.md | sed -n '1,260p'"
+  status: completed
+  exit_code: 0
+       1	# Alpha=1 PML Case Split: Edge Obstruction and Global Gronwall Energy
+       2	
+       3	Task: `task-alpha1-pml-cases`
+       4	
+       5	Predecessor fact: `fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance`
+       6	
+       7	## Scope
+       8	
+       9	This artifact uses the verified alpha=1 balance and shifted magnetic identities.  The
+      10	main conclusions are:
+      11	
+      12	1. The source model, with arbitrary data for all eight displayed unknowns, has exact
+      13	   edge-PML solutions with linear growth when one absorption coefficient is positive
+      14	   and the other is zero.  Therefore no positive energy that controls the displayed
+      15	   variables can be both monotone and uniformly bounded for all data under the full
+      16	   edge-PML assumptions as stated.
+      17	2. A positive zeroth-order augmented energy gives a closed Gronwall estimate for
+      18	   nonnegative, bounded, time-independent \(\sigma_x,\sigma_y\).  This estimate is
+      19	   valid for constant, separated-variable, and general spatially variable absorption
+      20	   profiles, since it does not integrate derivatives of \(\sigma_i\).
+      21	3. For corner PML with \(\sigma_x,\sigma_y>0\), the specific edge linear mode is
+      22	   removed because both shifted magnetic auxiliaries have damping.  The artifact does
+      23	   not prove a monotone corner energy; it records the local obstruction encountered by
+      24	   the natural shifted \(L^2\) energy.
+      25	
+      26	## Positive augmented energy for the Gronwall estimate
+      27	
+      28	Let
+      29	\[
+      30	\mathcal E_0(t)
+      31	=\frac12\int_\Omega
+      32	\left(\epsilon_0\epsilon_\infty E^2+\mu H_x^2+\mu H_y^2
+      33	+\chi^{-1}P^2+P_{z,1}^2+P_{z,2}^2+Q_x^2+Q_y^2\right)\,dxdy .
+      34	\]
+      35	This energy is positive for the displayed variables whenever
+      36	\(\epsilon_0,\epsilon_\infty,\mu,\chi>0\).  By the verified alpha=1 balance,
+      37	\[
+      38	\begin{aligned}
+      39	\frac{d}{dt}\left(\mathcal E_{\rm em}+\frac1{2\chi}\|P\|_2^2\right)
+      40	=\int_\Omega\Big[
+      41	&-\epsilon_\infty(\sigma_x+\sigma_y)E^2
+      42	-\frac{\tau}{\chi}P_t^2
+      43	-\frac{\sigma_x+\sigma_y}{\epsilon_0}EP
+      44	+E(P_{z,1}+P_{z,2})\\
+      45	&-\frac{\mu}{\epsilon_0}(\sigma_y-\sigma_x)H_x^2
+      46	-\frac{\mu}{\epsilon_0}(\sigma_x-\sigma_y)H_y^2
+      47	+H_xQ_x+H_yQ_y
+      48	\Big]\,dxdy .
+      49	\end{aligned}
+      50	\]
+      51	The auxiliary norm derivatives are
+      52	\[
+      53	\begin{aligned}
+      54	\frac12\frac{d}{dt}\|P_{z,1}\|_2^2
+      55	&=-\int_\Omega \frac{\epsilon_\infty}{\epsilon_0}\sigma_x\sigma_y\,E P_{z,1}\,dxdy,\\
+      56	\frac12\frac{d}{dt}\|P_{z,2}\|_2^2
+      57	&=-\int_\Omega \frac{\sigma_x\sigma_y}{\epsilon_0^2}\,P P_{z,2}\,dxdy,\\
+      58	\frac12\frac{d}{dt}\|Q_x\|_2^2
+      59	&=-\int_\Omega \frac{\sigma_x}{\epsilon_0}Q_x^2\,dxdy
+      60	  +\int_\Omega \frac{\mu\sigma_x(\sigma_y-\sigma_x)}{\epsilon_0^2}H_xQ_x\,dxdy,\\
+      61	\frac12\frac{d}{dt}\|Q_y\|_2^2
+      62	&=-\int_\Omega \frac{\sigma_y}{\epsilon_0}Q_y^2\,dxdy
+      63	  +\int_\Omega \frac{\mu\sigma_y(\sigma_x-\sigma_y)}{\epsilon_0^2}H_yQ_y\,dxdy .
+      64	\end{aligned}
+      65	\]
+      66	Dropping nonpositive terms and applying Young's inequality to every mixed product gives
+      67	\[
+      68	\frac{d}{dt}\mathcal E_0(t)\le C_G\,\mathcal E_0(t),
+      69	\]
+      70	where \(C_G\) is finite whenever \(\sigma_x,\sigma_y\in L^\infty(\Omega)\), and depends
+      71	only on
+      72	\[
+      73	\epsilon_0,\epsilon_\infty,\mu,\chi,\tau,\|\sigma_x\|_\infty,\|\sigma_y\|_\infty,
+      74	\|\sigma_x\sigma_y\|_\infty,
+      75	\|\sigma_x(\sigma_y-\sigma_x)\|_\infty,
+      76	\|\sigma_y(\sigma_x-\sigma_y)\|_\infty .
+      77	\]
+      78	Consequently
+      79	\[
+      80	\mathcal E_0(t)\le e^{C_G t}\mathcal E_0(0).
+      81	\]
+      82	This is a Gronwall-type estimate.  It is not a monotone or long-time-uniform
+      83	boundedness theorem.
+      84	
+      85	The terms responsible for possible growth in this estimate are exactly the
+      86	zeroth-order PML couplings
+      87	\[
+      88	EP,\quad EP_{z,1},\quad EP_{z,2},\quad H_xQ_x,\quad H_yQ_y,
+      89	\]
+      90	and the sign-indefinite magnetic squares before the magnetic shift.  In shifted
+      91	variables the magnetic square terms cancel, but the balance contains
+      92	\[
+      93	H_xM_x+H_yM_y.
+      94	\]
+      95	Adding \(\|M_x\|_2^2+\|M_y\|_2^2\) directly is not a closed zeroth-order monotone
+      96	remedy because
+      97	\[
+      98	\frac12\frac{d}{dt}\|M_x\|_2^2
+      99	=\int_\Omega a_xM_x\partial_yE-b_yM_x^2\,dxdy,\qquad
+     100	\frac12\frac{d}{dt}\|M_y\|_2^2
+     101	=\int_\Omega -a_yM_y\partial_xE-b_xM_y^2\,dxdy .
+     102	\]
+     103	Integrating by parts would introduce derivatives of \(M_i\), and for variable
+     104	coefficients also derivatives of \(a_i\).  Thus the shifted variables simplify the
+     105	algebra but do not by themselves yield a local \(L^2\) monotone energy.
+     106	
+     107	## No-PML case
+     108	
+     109	If \(\sigma_x=\sigma_y=0\) and the PML auxiliaries are initially zero, then
+     110	\(P_{z,1}=P_{z,2}=Q_x=Q_y=0\) for all time and the verified balance reduces to
+     111	\[
+     112	\frac{d}{dt}\left(\mathcal E_{\rm em}+\frac1{2\chi}\|P\|_2^2\right)
+     113	=-\frac{\tau}{\chi}\|P_t\|_2^2\le0.
+     114	\]
+     115	Thus the no-PML alpha=1 Debye-Maxwell model has a positive monotone energy under the
+     116	natural auxiliary-zero compatibility condition.
+     117	
+     118	Without that compatibility condition, arbitrary constant \(Q_i\) or \(P_{z,i}\)
+     119	remain as forcing terms when \(\sigma_x=\sigma_y=0\), and the eight-variable source
+     120	system need not have a uniformly bounded positive energy for all data.
+     121	
+     122	## Edge PML obstruction: \(\sigma_x>0,\sigma_y=0\)
+     123	
+     124	Assume constant \(\sigma_x=s>0\), \(\sigma_y=0\), and let
+     125	\[
+     126	b=\frac{s}{\epsilon_0}.
+     127	\]
+     128	Set
+     129	\[
+     130	E=P=P_{z,1}=P_{z,2}=H_y=Q_y=0,
+     131	\]
+     132	and take \(H_x,Q_x\) spatially constant.  The source equations reduce exactly to
+     133	\[
+     134	H_{x,t}=bH_x+\frac1\mu Q_x,\qquad
+     135	Q_{x,t}=-bQ_x-\mu b^2H_x .
+     136	\]
+     137	Equivalently,
+     138	\[
+     139	M_x=Q_x+\mu bH_x
+     140	\]
+     141	is constant, and
+     142	\[
+     143	H_{x,t}=\frac{M_x}{\mu},\qquad Q_x=M_x-\mu bH_x .
+     144	\]
+     145	Hence
+     146	\[
+     147	H_x(t)=H_x(0)+\frac{M_x(0)}{\mu}t,\qquad
+     148	Q_x(t)=Q_x(0)-bM_x(0)t .
+     149	\]
+     150	If \(M_x(0)\ne0\), both \(|H_x(t)|\) and \(|Q_x(t)|\) grow linearly.
+     151	
+     152	This is an exact solution satisfying the PEC condition, because \(E=0\) on
+     153	\(\partial\Omega\).  Therefore any positive quadratic or coercive energy controlling
+     154	\(\|H_x\|_2^2+\|Q_x\|_2^2\) cannot be monotone decreasing or uniformly bounded for all
+     155	initial data in this edge-PML case.
+     156	
+     157	The obstruction is not the polarization law; here \(P=0\) and the alpha=1 identity is
+     158	inactive.  It is the undamped shifted magnetic auxiliary in the zero-\(\sigma_y\)
+     159	direction:
+     160	\[
+     161	M_{x,t}=0
+     162	\]
+     163	for this spatially constant mode.
+     164	
+     165	## Edge PML obstruction: \(\sigma_x=0,\sigma_y>0\)
+     166	
+     167	The symmetric construction applies with \(s=\sigma_y>0\), \(b=s/\epsilon_0\), and
+     168	all variables zero except spatially constant \(H_y,Q_y\).  The reduced system is
+     169	\[
+     170	H_{y,t}=bH_y+\frac1\mu Q_y,\qquad
+     171	Q_{y,t}=-bQ_y-\mu b^2H_y .
+     172	\]
+     173	Equivalently \(M_y=Q_y+\mu bH_y\) is constant and
+     174	\[
+     175	H_y(t)=H_y(0)+\frac{M_y(0)}{\mu}t,\qquad
+     176	Q_y(t)=Q_y(0)-bM_y(0)t .
+     177	\]
+     178	Thus the second edge-PML case also rules out a positive monotone or uniformly bounded
+     179	energy for all eight-variable source-system data.
+     180	
+     181	## Corner cases
+     182	
+     183	When \(\sigma_x>0\) and \(\sigma_y>0\) are constant, the shifted equations contain
+     184	the damping terms
+     185	\[
+     186	M_{x,t}=a_x\partial_yE-\frac{\sigma_y}{\epsilon_0}M_x,\qquad
+     187	M_{y,t}=-a_y\partial_xE-\frac{\sigma_x}{\epsilon_0}M_y .
+     188	\]
+     189	The exact edge linear mode above is therefore absent in both symmetric
+     190	\(\sigma_x=\sigma_y\) and asymmetric \(\sigma_x\ne\sigma_y\) corners.  In the symmetric
+     191	corner \(a_x=a_y=0\), the shifted magnetic auxiliaries simply decay.  In the
+     192	asymmetric corner, the auxiliaries are damped but are also driven by transverse
+     193	derivatives of \(E\).
+     194	
+     195	This artifact does not establish a positive monotone local \(L^2\) energy for either
+     196	corner case.  The natural shifted magnetic energy creates derivative couplings
+     197	\(M_x\partial_yE\) and \(M_y\partial_xE\); controlling those terms requires derivative,
+     198	nonlocal, or more structured Baffet-type variables beyond the zeroth-order energy
+     199	proved here.  The unconditional result retained for the terminal report is therefore
+     200	the Gronwall estimate above, together with the exact edge obstruction showing that the
+     201	full source problem cannot have a positive monotone/bounded energy for all displayed
+     202	variables without additional compatibility restrictions.
+     203	
+     204	## Fractional case status
+     205	
+     206	This artifact is only for \(\alpha=1\).  The fractional case \(0<\alpha<1\) can add a
+     207	positive memory contribution for the polarization law only after the alpha=1 PML
+     208	obstruction is resolved or restricted by compatibility assumptions.  Since the edge
+     209	obstruction above occurs with \(P=0\), fractional polarization cannot remove it.
+
+[37] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '1,120p' memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-edge-pml-linear-obstruction.md && printf '\\n---\\n' && sed -n '1,120p' memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-augmented-gronwall-energy.md && printf '\\n---\\n' && sed -n '1,120p' memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md"
+  status: in_progress
+  exit_code: None
+
+[38] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '1,120p' memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-edge-pml-linear-obstruction.md && printf '\\n---\\n' && sed -n '1,120p' memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-augmented-gronwall-energy.md && printf '\\n---\\n' && sed -n '1,120p' memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md"
+  status: completed
+  exit_code: 0
+  ---
+  fact_id: fact:2d_maxwell_pml_energy_functional_exploration:edge-pml-linear-obstruction
+  problem_id: 2d_maxwell_pml_energy_functional_exploration
+  source_project: 2d_maxwell_pml_energy_functional_exploration
+  source_task: task-alpha1-pml-cases
+  predecessors:
+    - fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance
+  status: verified
+  fact_type: obstruction
+  review_level: verified
+  claim_policy: stable_claim
+  claim_summary: "The alpha=1 source model has exact edge-PML solutions with linear H-Q growth, ruling out an unconditional positive monotone or uniformly bounded energy for all eight variables."
+  verification: verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-
+  ---
+  
+  ## statement
+  
+  For the alpha=1 source Maxwell-PML system with arbitrary initial data for all eight displayed unknowns, constant edge absorptions produce exact linearly growing solutions. If sigma_x=s>0 and sigma_y=0, set E=P=P_{z,1}=P_{z,2}=H_y=Q_y=0 and take H_x,Q_x spatially constant. Then the equations reduce to H_{x,t}=b H_x+Q_x/mu and Q_{x,t}=-b Q_x-mu b^2 H_x with b=s/epsilon_0. The shifted quantity M_x=Q_x+mu b H_x is constant, so H_x(t)=H_x(0)+M_x(0)t/mu and Q_x(t)=Q_x(0)-b M_x(0)t. If M_x(0) is nonzero, H_x and Q_x grow linearly while the PEC condition is satisfied because E=0. The symmetric construction with sigma_x=0,sigma_y=s>0 gives linear growth of H_y,Q_y through constant M_y=Q_y+mu b H_y. Therefore no positive coercive energy controlling the displayed H_i,Q_i variables can be monotone decreasing or uniformly bounded for all source-system data under the full edge-PML assumptions as stated. Detailed proof is in artifacts/proofs/alpha1_constant_pml_cases.md.
+  
+  ## notes
+  
+  Exact counterexample, not numerical evidence; relies on the verified alpha=1 algebra and the source equations.
+  
+  ---
+  ---
+  fact_id: fact:2d_maxwell_pml_energy_functional_exploration:augmented-gronwall-energy
+  problem_id: 2d_maxwell_pml_energy_functional_exploration
+  source_project: 2d_maxwell_pml_energy_functional_exploration
+  source_task: task-alpha1-pml-cases
+  predecessors:
+    - fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance
+  status: verified
+  fact_type: energy_estimate
+  review_level: verified
+  claim_policy: stable_claim
+  claim_summary: "A positive augmented zeroth-order energy gives a Gronwall estimate for bounded nonnegative time-independent absorptions in the alpha=1 source model."
+  verification: verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e
+  ---
+  
+  ## statement
+  
+  For the alpha=1 source Maxwell-PML system with PEC boundary condition and bounded nonnegative time-independent sigma_x,sigma_y, the positive augmented energy E_0(t)=1/2 int_Omega (epsilon_0 epsilon_infty E^2+mu H_x^2+mu H_y^2+chi^{-1}P^2+P_{z,1}^2+P_{z,2}^2+Q_x^2+Q_y^2) dxdy satisfies dE_0/dt <= C_G E_0. The finite constant C_G depends only on the positive material parameters and the L_infty sizes of sigma_x, sigma_y, sigma_x sigma_y, sigma_x(sigma_y-sigma_x), and sigma_y(sigma_x-sigma_y). The estimate follows by adding the L2 derivatives of P_{z,1}, P_{z,2}, Q_x, Q_y to the verified alpha=1 electromagnetic-plus-polarization balance, dropping nonpositive terms, and applying Young's inequality to EP, EP_{z,1}, EP_{z,2}, H_xQ_x, H_yQ_y, and the sign-indefinite H-square terms. Hence E_0(t) <= exp(C_G t) E_0(0). This is a Gronwall-type estimate, not a monotone or uniform long-time boundedness result. Detailed proof is in artifacts/proofs/alpha1_constant_pml_cases.md.
+  
+  ## notes
+  
+  Closed zeroth-order estimate; no sampling evidence used.
+  
+  ---
+  ---
+  fact_id: fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance
+  problem_id: 2d_maxwell_pml_energy_functional_exploration
+  source_project: 2d_maxwell_pml_energy_functional_exploration
+  source_task: task-alpha1-algebra-energy-balance
+  predecessors:
+    - fact:2d_maxwell_pml_energy_functional_exploration:run-20260619T173930696222Z:source-problem
+  status: verified
+  fact_type: energy_identity
+  review_level: verified
+  claim_policy: stable_claim
+  claim_summary: "Alpha=1 PEC balance and shifted magnetic identities are valid for the source Maxwell-PML system."
+  verification: verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag
+  ---
+  
+  ## statement
+  
+  For the source 2D TM Maxwell-PML system with alpha=1 polarization law P + tau P_t = chi E and PEC boundary condition E=0 on dOmega, multiplying the first three equations by E,H_x,H_y and integrating gives the electromagnetic balance displayed in the source: the principal Maxwell contribution is the boundary flux integral int_dOmega E(H_y n_x - H_x n_y) ds and vanishes under PEC. The alpha=1 identity E P_t = (1/(2 chi)) d_t ||P||_2^2 + (tau/chi)||P_t||_2^2 makes E_em + (1/(2 chi))||P||_2^2 positive and adds dissipation (tau/chi)||P_t||_2^2. With a_x=(sigma_y-sigma_x)/epsilon_0, a_y=(sigma_x-sigma_y)/epsilon_0, b_x=sigma_x/epsilon_0, b_y=sigma_y/epsilon_0, and M_x=Q_x-mu a_x H_x, M_y=Q_y-mu a_y H_y, the shifted equations are mu H_{x,t}=-partial_y E+M_x, mu H_{y,t}=partial_x E+M_y, M_{x,t}=a_x partial_y E-b_y M_x, and M_{y,t}=-a_y partial_x E-b_x M_y. Substituting Q_x=M_x+mu a_x H_x and Q_y=M_y+mu a_y H_y cancels the sign-indefinite magnetic square terms in the E_em+P balance and leaves the magnetic coupling H_x M_x+H_y M_y. Detailed derivation is in artifacts/proofs/alpha1_algebra_balance.md.
+  
+  ## notes
+  
+  Produced by inline algebra verification; artifact indexed at artifacts/proofs/alpha1_algebra_balance.md.
+
+[39] item.completed:agent_message
+  The source explicitly allows a staged result and says a Gronwall estimate is acceptable if it identifies the responsible growth terms. I’m checking whether the report stays within that scope or quietly claims a stronger monotone/uniform result.
+
+[40] item.started:command_execution
+  command: /bin/zsh -lc "nl -ba sources/energy_functional_problem.tex | sed -n '304,380p'"
+  status: in_progress
+  exit_code: None
+
+[41] item.completed:command_execution
+  command: /bin/zsh -lc "nl -ba sources/energy_functional_problem.tex | sed -n '304,380p'"
+  status: completed
+  exit_code: 0
+     304	\section{Deliverables Requested from Iteris}
+     305	
+     306	An Iteris run should aim to produce one of the following terminal artifacts.
+     307	
+     308	\begin{enumerate}
+     309	\item A proved monotone energy identity for \eqref{eq:main-model} with \(\alpha=1\), under clearly stated assumptions.
+     310	\item A proved bounded-energy or no-abnormal-growth estimate for \eqref{eq:main-model} with \(\alpha=1\), if monotonicity is unavailable.
+     311	\item A verified obstruction showing why a natural class of quadratic energies cannot be monotone for the full two-dimensional corner PML.
+     312	\item A staged result: edge PML solved, corner PML reduced to a finite-dimensional Lyapunov condition, fractional \(0<\alpha<1\) case postponed with precise reason.
+     313	\end{enumerate}
+     314	
+     315	Every result should state:
+     316	\begin{itemize}
+     317	\item exact model equations used;
+     318	\item whether \(\alpha=1\) or \(0<\alpha<1\);
+     319	\item boundary assumptions, especially how PEC is used;
+     320	\item assumptions on \(\sx,\sy\);
+     321	\item proposed energy functional;
+     322	\item proof of positivity or explanation of why positivity fails;
+     323	\item exact energy identity or inequality;
+     324	\item whether the result is monotone, bounded without abnormal growth, Gronwall-type, or an obstruction result.
+     325	\end{itemize}
+     326	
+     327	\bibliographystyle{plainurl}
+     328	\bibliography{../references/references}
+     329	
+     330	\end{document}
+
+[42] item.completed:agent_message
+  I found one concrete assembly gap: the report says the Gronwall “possible-growth terms are exactly” `EP`, `EPz1`, `EPz2`, `HxQx`, `HyQy` plus magnetic square terms, but differentiating the displayed augmented energy also produces the sign-indefinite mixed term `P Pz2` from `d||Pz2||^2/dt`. The estimate itself is still repairable by Young’s inequality; the problem is the report’s exact-term accounting.
+
+[43] item.started:command_execution
+  command: /bin/zsh -lc 'test -e verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/verification.json; echo $?'
+  status: in_progress
+  exit_code: None
+
+[44] item.completed:command_execution
+  command: /bin/zsh -lc 'test -e verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/verification.json; echo $?'
+  status: completed
+  exit_code: 0
+  1
+
+[45] item.started:command_execution
+  command: /bin/zsh -lc "nl -ba results/energy_functional_report.md | sed -n '132,176p'"
+  status: in_progress
+  exit_code: None
+
+[46] item.completed:command_execution
+  command: /bin/zsh -lc "nl -ba results/energy_functional_report.md | sed -n '132,176p'"
+  status: completed
+  exit_code: 0
+     132	-\frac{\sigma_x+\sigma_y}{\epsilon_0}EP
+     133	+E(P_{z,1}+P_{z,2})\\
+     134	&+H_xM_x+H_yM_y
+     135	\Big]\,dxdy .
+     136	\end{aligned}
+     137	\]
+     138	
+     139	## Positive Gronwall energy
+     140	
+     141	The positive augmented energy proved here is
+     142	\[
+     143	\mathcal E_0(t)
+     144	=\frac12\int_\Omega
+     145	\left(\epsilon_0\epsilon_\infty E^2+\mu H_x^2+\mu H_y^2
+     146	+\chi^{-1}P^2+P_{z,1}^2+P_{z,2}^2+Q_x^2+Q_y^2\right)\,dxdy .
+     147	\]
+     148	Adding the \(L^2\) derivatives of \(P_{z,1},P_{z,2},Q_x,Q_y\) to the verified
+     149	balance and applying Young's inequality gives
+     150	\[
+     151	\boxed{\frac{d}{dt}\mathcal E_0(t)\le C_G\mathcal E_0(t)}
+     152	\]
+     153	with \(C_G<\infty\) depending only on the material constants and the \(L^\infty\)
+     154	sizes of
+     155	\[
+     156	\sigma_x,\ \sigma_y,\ \sigma_x\sigma_y,\ 
+     157	\sigma_x(\sigma_y-\sigma_x),\ 
+     158	\sigma_y(\sigma_x-\sigma_y).
+     159	\]
+     160	Therefore
+     161	\[
+     162	\boxed{\mathcal E_0(t)\le e^{C_Gt}\mathcal E_0(0).}
+     163	\]
+     164	This is a Gronwall-type estimate.  It is not monotone and not uniform in long time.
+     165	
+     166	The possible-growth terms are exactly
+     167	\[
+     168	EP,\quad EP_{z,1},\quad EP_{z,2},\quad H_xQ_x,\quad H_yQ_y,
+     169	\]
+     170	together with the magnetic sign-indefinite square terms before the shift.  In shifted
+     171	variables the magnetic issue becomes \(H_xM_x+H_yM_y\).  Adding plain
+     172	\(\|M_x\|_2^2+\|M_y\|_2^2\) is not a closed local \(L^2\) monotone fix because its
+     173	derivative contains \(M_x\partial_yE\) and \(M_y\partial_xE\).
+     174	
+     175	## Case split
+     176	
+
+[47] item.completed:agent_message
+  I’m going to write the verification result as `wrong` with a narrowly scoped gap, not a wholesale rejection of the obstruction or Gronwall estimate. The repair is to correct the augmented-energy derivative accounting by including the missing `P P_{z,2}` Young term, or to stop using “exactly” for the shorter list.
+
+[48] item.started:file_change
+  status: in_progress
+  [{"path":"/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/verification.json","kind":"add"}]
+
+[49] item.completed:file_change
+  status: completed
+  [{"path":"/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/verification.json","kind":"add"}]
+
+[50] item.started:command_execution
+  command: /bin/zsh -lc 'jq . verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/verification.json >/dev/null'
+  status: in_progress
+  exit_code: None
+
+[51] item.completed:command_execution
+  command: /bin/zsh -lc 'jq . verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/verification.json >/dev/null'
+  status: completed
+  exit_code: 0
+
+[52] item.completed:agent_message
+  Wrote the verification result to [verification.json](/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/verification.json).
+  
+  Verdict: `wrong`. The obstruction and Gronwall estimate are mostly supported, but the report’s “exactly” list of Gronwall possible-growth terms omits the sign-indefinite `P P_{z,2}` term from differentiating `||P_{z,2}||_2^2`. JSON syntax was validated with `jq`.
+
+[53] turn.completed
+  {"input_tokens":454852,"cached_input_tokens":402688,"output_tokens":8248,"reasoning_output_tokens":4970}

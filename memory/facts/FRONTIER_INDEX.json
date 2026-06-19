@@ -1,15 +1,15 @@
 {
   "schema_version": "iteris.frontier_index.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-06-19T18:21:15.293807Z",
+  "updated_at": "2026-06-19T18:36:22.543650Z",
   "active_frontiers": [
     {
       "schema_version": "iteris.frontier_entry.v0",
       "frontier_id": "auto-alpha1-pml-cases",
       "title": "Alpha1 Pml Cases",
       "hypothesis": "Route inferred from facts, tasks, and artifacts matching `alpha1-pml-cases`.",
-      "summary": "2 fact(s), 1 blocker fact(s), 1 active task(s), 0 artifact(s).",
-      "status": "active",
+      "summary": "2 fact(s), 1 blocker fact(s), 0 active task(s), 0 artifact(s).",
+      "status": "blocked",
       "fact_ids": [
         "fact:2d_maxwell_pml_energy_functional_exploration:augmented-gronwall-energy",
         "fact:2d_maxwell_pml_energy_functional_exploration:edge-pml-linear-obstruction"
@@ -20,9 +20,7 @@
       "task_ids": [
         "task-alpha1-pml-cases"
       ],
-      "active_tasks": [
-        "task-alpha1-pml-cases"
-      ],
+      "active_tasks": [],
       "blocked_tasks": [],
       "artifact_paths": [],
       "verification_ids": [
@@ -47,7 +45,7 @@
         }
       ],
       "task_status_counts": {
-        "running": 1
+        "done": 1
       },
       "evidence_terms": [
         "alpha",
@@ -70,66 +68,16 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-19T18:21:15.293746Z",
+      "updated_at": "2026-06-19T18:36:22.543561Z",
       "health": {
         "frontier_id": "auto-alpha1-pml-cases",
         "title": "Alpha1 Pml Cases",
-        "status": "active",
+        "status": "blocked",
         "fact_count": 2,
         "blocker_count": 1,
         "verified_count": 2,
-        "active_task_count": 1,
+        "active_task_count": 0,
         "ready_task_count": 0,
-        "artifact_count": 0,
-        "explore_run_count": 0,
-        "last_explore_at": null,
-        "cooldown_ok": true,
-        "explore_recommended": false,
-        "reason": "",
-        "recommended_focus": ""
-      }
-    },
-    {
-      "schema_version": "iteris.frontier_entry.v0",
-      "frontier_id": "auto-final-energy-report",
-      "title": "Final Energy Report",
-      "hypothesis": "Route inferred from facts, tasks, and artifacts matching `final-energy-report`.",
-      "summary": "0 fact(s), 0 blocker fact(s), 1 active task(s), 0 artifact(s).",
-      "status": "active",
-      "fact_ids": [],
-      "blocker_fact_ids": [],
-      "task_ids": [
-        "task-final-energy-report"
-      ],
-      "active_tasks": [
-        "task-final-energy-report"
-      ],
-      "blocked_tasks": [],
-      "artifact_paths": [],
-      "verification_ids": [],
-      "agent_run_ids": [],
-      "open_questions": [
-        "Assemble the verified alpha=1 energy/obstruction results and fractional-case status into results/energy_functional_report.md."
-      ],
-      "next_actions": [],
-      "recent_fact_summaries": [],
-      "task_status_counts": {
-        "ready": 1
-      },
-      "evidence_terms": [],
-      "explore_run_count": 0,
-      "last_explore_at": null,
-      "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-19T18:21:15.293757Z",
-      "health": {
-        "frontier_id": "auto-final-energy-report",
-        "title": "Final Energy Report",
-        "status": "active",
-        "fact_count": 0,
-        "blocker_count": 0,
-        "verified_count": 0,
-        "active_task_count": 1,
-        "ready_task_count": 1,
         "artifact_count": 0,
         "explore_run_count": 0,
         "last_explore_at": null,
@@ -187,7 +135,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-19T18:21:15.293736Z",
+      "updated_at": "2026-06-19T18:36:22.543551Z",
       "health": {
         "frontier_id": "auto-alpha1-algebra-energy",
         "title": "Alpha1 Algebra Energy",
@@ -195,6 +143,54 @@
         "fact_count": 1,
         "blocker_count": 0,
         "verified_count": 1,
+        "active_task_count": 0,
+        "ready_task_count": 0,
+        "artifact_count": 0,
+        "explore_run_count": 0,
+        "last_explore_at": null,
+        "cooldown_ok": true,
+        "explore_recommended": false,
+        "reason": "",
+        "recommended_focus": ""
+      }
+    },
+    {
+      "schema_version": "iteris.frontier_entry.v0",
+      "frontier_id": "auto-final-energy-report",
+      "title": "Final Energy Report",
+      "hypothesis": "Route inferred from facts, tasks, and artifacts matching `final-energy-report`.",
+      "summary": "0 fact(s), 0 blocker fact(s), 0 active task(s), 0 artifact(s).",
+      "status": "stale",
+      "fact_ids": [],
+      "blocker_fact_ids": [],
+      "task_ids": [
+        "task-final-energy-report"
+      ],
+      "active_tasks": [],
+      "blocked_tasks": [],
+      "artifact_paths": [],
+      "verification_ids": [],
+      "agent_run_ids": [],
+      "open_questions": [
+        "Assemble the verified alpha=1 energy/obstruction results and fractional-case status into results/energy_functional_report.md."
+      ],
+      "next_actions": [],
+      "recent_fact_summaries": [],
+      "task_status_counts": {
+        "done": 1
+      },
+      "evidence_terms": [],
+      "explore_run_count": 0,
+      "last_explore_at": null,
+      "generated_by": "frontier_refresh",
+      "updated_at": "2026-06-19T18:36:22.543572Z",
+      "health": {
+        "frontier_id": "auto-final-energy-report",
+        "title": "Final Energy Report",
+        "status": "stale",
+        "fact_count": 0,
+        "blocker_count": 0,
+        "verified_count": 0,
         "active_task_count": 0,
         "ready_task_count": 0,
         "artifact_count": 0,
@@ -251,7 +247,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-19T18:21:15.293753Z",
+      "updated_at": "2026-06-19T18:36:22.543568Z",
       "health": {
         "frontier_id": "auto-initial-exploration-run",
         "title": "Initial Exploration Run",

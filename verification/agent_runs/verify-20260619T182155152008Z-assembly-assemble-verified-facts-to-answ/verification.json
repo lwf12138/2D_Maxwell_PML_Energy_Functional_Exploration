@@ -1,0 +1,34 @@
+{
+  "verification_report": {
+    "summary": "The assembly is mostly supported by the cited verified facts: the alpha=1 source-model balance, PEC cancellation, polarization energy, magnetic shift, exact edge-PML linear-growth obstruction, and the positive augmented Gronwall estimate all trace to accepted fact verifications. The fractional postponement is also consistent with the edge obstruction because that obstruction occurs with P=0. However, the terminal report overclaims the exact list of Gronwall possible-growth terms: differentiating the displayed augmented energy also produces a sign-indefinite P P_{z,2} term from the P_{z,2} auxiliary norm, so the report's 'exactly' list is incomplete.",
+    "critical_errors": [],
+    "gaps": [
+      {
+        "location": "results/energy_functional_report.md:166",
+        "issue": "The report says the possible-growth terms are exactly EP, EP_{z,1}, EP_{z,2}, H_xQ_x, H_yQ_y plus magnetic square terms. But adding the L2 derivative of P_{z,2}, as shown in artifacts/proofs/alpha1_constant_pml_cases.md:56, contributes -(sigma_x sigma_y/epsilon_0^2) P P_{z,2}, another sign-indefinite mixed term that must be included in the precise growth-term accounting and Young estimate."
+      }
+    ]
+  },
+  "verdict": "wrong",
+  "repair_hints": "Repair the Positive Gronwall energy section by displaying the full derivative of E_0 or by adding the missing P P_{z,2} mixed term to the list of sign-indefinite terms handled by Young's inequality. After that correction, the cited verified facts support the alpha=1 obstruction, Gronwall estimate, and fractional-case postponement.",
+  "checked_artifacts": [
+    "verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/request.json",
+    "results/energy_functional_report.md",
+    "sources/energy_functional_problem.tex",
+    "artifacts/proofs/alpha1_algebra_balance.md",
+    "artifacts/proofs/alpha1_constant_pml_cases.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-edge-pml-linear-obstruction.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-augmented-gronwall-energy.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-run-20260619T173930696222Z-source-problem.md",
+    "verification/results/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json",
+    "verification/results/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-.json",
+    "verification/results/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e.json"
+  ],
+  "checked_fact_ids": [
+    "fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance",
+    "fact:2d_maxwell_pml_energy_functional_exploration:edge-pml-linear-obstruction",
+    "fact:2d_maxwell_pml_energy_functional_exploration:augmented-gronwall-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:run-20260619T173930696222Z:source-problem"
+  ]
+}
