@@ -1,0 +1,40 @@
+{
+  "schema_version": "iteris.verification_result.v0",
+  "request_id": "verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-",
+  "backend": "agent",
+  "mode": "fact",
+  "claim": "The alpha=1 source model has exact edge-PML solutions with linear H-Q growth, ruling out an unconditional positive monotone or uniformly bounded energy for all eight variables.",
+  "verdict": "accepted",
+  "passed": true,
+  "strict_verdict": "correct",
+  "summary": "Correct. The cited proof's edge-PML construction matches the source alpha=1 Maxwell-PML equations. For constant sigma_x=s>0, sigma_y=0, the ansatz E=P=P_{z,1}=P_{z,2}=H_y=Q_y=0 with spatially constant H_x,Q_x satisfies the electric equation, the alpha=1 polarization law, the P_z equations, the H_y/Q_y equations, and PEC. The remaining source equations reduce to H_{x,t}=bH_x+Q_x/mu and Q_{x,t}=-bQ_x-mu b^2H_x with b=s/epsilon_0, so M_x=Q_x+mu bH_x is conserved and nonzero M_x gives linear growth of H_x and Q_x. The symmetric sigma_x=0, sigma_y=s>0 construction gives the same conclusion for H_y,Q_y. Since these are exact finite-energy solutions whose displayed magnetic/auxiliary variables grow linearly, any time-independent positive coercive energy controlling the displayed variables cannot be monotone decreasing or uniformly long-time bounded for all source-system data in the edge-PML regime. The predecessor alpha=1 algebra-balance fact is verified and agrees with the source equations.",
+  "critical_errors": [],
+  "gaps": [],
+  "repair_hints": "",
+  "checked_artifacts": [
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-edge-pml-linear-obstruction.md",
+    "artifacts/proofs/alpha1_constant_pml_cases.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md",
+    "artifacts/proofs/alpha1_algebra_balance.md",
+    "verification/results/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-run-20260619T173930696222Z-source-problem.md",
+    "sources/energy_functional_problem.tex"
+  ],
+  "checked_fact_ids": [
+    "fact:2d_maxwell_pml_energy_functional_exploration:edge-pml-linear-obstruction",
+    "fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance",
+    "fact:2d_maxwell_pml_energy_functional_exploration:run-20260619T173930696222Z:source-problem"
+  ],
+  "primary_fact_ids": [],
+  "target_artifact": null,
+  "executor": "codex",
+  "verification_scope": "codex_agent",
+  "claim_ceiling_after_verification": "verified",
+  "agent_run_dir": "verification/agent_runs/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-",
+  "agent_log": "verification/agent_runs/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-/codex.log",
+  "agent_events_log": "verification/agent_runs/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-/codex.events.jsonl",
+  "agent_stderr_log": "verification/agent_runs/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-/codex.stderr.log",
+  "agent_log_manifest": "verification/agent_runs/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-/log_manifest.json",
+  "created_at": "2026-06-19T18:16:36.434806Z",
+  "verifier": "iteris.codex_verification_agent"
+}

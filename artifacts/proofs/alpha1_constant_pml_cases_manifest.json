@@ -1,0 +1,10 @@
+{
+  "schema_version": "iteris.artifact_manifest.v0",
+  "task_id": "task-alpha1-pml-cases",
+  "artifact_type": "proof",
+  "created_at": "2026-06-19T18:11:03Z",
+  "files": [
+    "artifacts/proofs/alpha1_constant_pml_cases.md"
+  ],
+  "summary": "Proves a global augmented Gronwall estimate and exact linear-growth edge-PML obstruction for alpha=1."
+}

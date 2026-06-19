@@ -1,0 +1,20 @@
+{
+  "schema_version": "iteris.verification_request.v0",
+  "request_id": "verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e",
+  "backend": "agent",
+  "executor": "codex",
+  "mode": "fact",
+  "claim": "A positive augmented zeroth-order energy gives a Gronwall estimate for bounded nonnegative time-independent absorptions in the alpha=1 source model.",
+  "artifacts": [
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-augmented-gronwall-energy.md",
+    "artifacts/proofs/alpha1_constant_pml_cases.md"
+  ],
+  "fact_ids": [],
+  "target_artifact": null,
+  "created_at": "2026-06-19T18:16:50.715620Z",
+  "prompt_path": "verification/agent_runs/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e/prompt.md",
+  "codex_log": "verification/agent_runs/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e/codex.log",
+  "codex_events": "verification/agent_runs/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e/codex.events.jsonl",
+  "codex_stderr": "verification/agent_runs/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e/codex.stderr.log",
+  "codex_log_manifest": "verification/agent_runs/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e/log_manifest.json"
+}

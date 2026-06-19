@@ -1,8 +1,211 @@
 {
   "schema_version": "iteris.frontier_index.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-06-19T18:01:27.310322Z",
+  "updated_at": "2026-06-19T18:21:15.293807Z",
   "active_frontiers": [
+    {
+      "schema_version": "iteris.frontier_entry.v0",
+      "frontier_id": "auto-alpha1-pml-cases",
+      "title": "Alpha1 Pml Cases",
+      "hypothesis": "Route inferred from facts, tasks, and artifacts matching `alpha1-pml-cases`.",
+      "summary": "2 fact(s), 1 blocker fact(s), 1 active task(s), 0 artifact(s).",
+      "status": "active",
+      "fact_ids": [
+        "fact:2d_maxwell_pml_energy_functional_exploration:augmented-gronwall-energy",
+        "fact:2d_maxwell_pml_energy_functional_exploration:edge-pml-linear-obstruction"
+      ],
+      "blocker_fact_ids": [
+        "fact:2d_maxwell_pml_energy_functional_exploration:edge-pml-linear-obstruction"
+      ],
+      "task_ids": [
+        "task-alpha1-pml-cases"
+      ],
+      "active_tasks": [
+        "task-alpha1-pml-cases"
+      ],
+      "blocked_tasks": [],
+      "artifact_paths": [],
+      "verification_ids": [
+        "verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e",
+        "verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-"
+      ],
+      "agent_run_ids": [],
+      "open_questions": [
+        "Analyze constant-coefficient no-PML, edge-PML, symmetric-corner, and asymmetric-corner cases for positive monotone or bounded quadratic energies."
+      ],
+      "next_actions": [],
+      "recent_fact_summaries": [
+        {
+          "fact_id": "fact:2d_maxwell_pml_energy_functional_exploration:augmented-gronwall-energy",
+          "status": "verified",
+          "claim_summary": "A positive augmented zeroth-order energy gives a Gronwall estimate for bounded nonnegative time-independent absorptions in the alpha=1 source model."
+        },
+        {
+          "fact_id": "fact:2d_maxwell_pml_energy_functional_exploration:edge-pml-linear-obstruction",
+          "status": "verified",
+          "claim_summary": "The alpha=1 source model has exact edge-PML solutions with linear H-Q growth, ruling out an unconditional positive monotone or uniformly bounded energy for all eight variables."
+        }
+      ],
+      "task_status_counts": {
+        "running": 1
+      },
+      "evidence_terms": [
+        "alpha",
+        "augmented",
+        "edge",
+        "energy",
+        "estimate",
+        "exact",
+        "gives",
+        "gronwall",
+        "has",
+        "model",
+        "order",
+        "pml",
+        "positive",
+        "solutions",
+        "with",
+        "zeroth"
+      ],
+      "explore_run_count": 0,
+      "last_explore_at": null,
+      "generated_by": "frontier_refresh",
+      "updated_at": "2026-06-19T18:21:15.293746Z",
+      "health": {
+        "frontier_id": "auto-alpha1-pml-cases",
+        "title": "Alpha1 Pml Cases",
+        "status": "active",
+        "fact_count": 2,
+        "blocker_count": 1,
+        "verified_count": 2,
+        "active_task_count": 1,
+        "ready_task_count": 0,
+        "artifact_count": 0,
+        "explore_run_count": 0,
+        "last_explore_at": null,
+        "cooldown_ok": true,
+        "explore_recommended": false,
+        "reason": "",
+        "recommended_focus": ""
+      }
+    },
+    {
+      "schema_version": "iteris.frontier_entry.v0",
+      "frontier_id": "auto-final-energy-report",
+      "title": "Final Energy Report",
+      "hypothesis": "Route inferred from facts, tasks, and artifacts matching `final-energy-report`.",
+      "summary": "0 fact(s), 0 blocker fact(s), 1 active task(s), 0 artifact(s).",
+      "status": "active",
+      "fact_ids": [],
+      "blocker_fact_ids": [],
+      "task_ids": [
+        "task-final-energy-report"
+      ],
+      "active_tasks": [
+        "task-final-energy-report"
+      ],
+      "blocked_tasks": [],
+      "artifact_paths": [],
+      "verification_ids": [],
+      "agent_run_ids": [],
+      "open_questions": [
+        "Assemble the verified alpha=1 energy/obstruction results and fractional-case status into results/energy_functional_report.md."
+      ],
+      "next_actions": [],
+      "recent_fact_summaries": [],
+      "task_status_counts": {
+        "ready": 1
+      },
+      "evidence_terms": [],
+      "explore_run_count": 0,
+      "last_explore_at": null,
+      "generated_by": "frontier_refresh",
+      "updated_at": "2026-06-19T18:21:15.293757Z",
+      "health": {
+        "frontier_id": "auto-final-energy-report",
+        "title": "Final Energy Report",
+        "status": "active",
+        "fact_count": 0,
+        "blocker_count": 0,
+        "verified_count": 0,
+        "active_task_count": 1,
+        "ready_task_count": 1,
+        "artifact_count": 0,
+        "explore_run_count": 0,
+        "last_explore_at": null,
+        "cooldown_ok": true,
+        "explore_recommended": false,
+        "reason": "",
+        "recommended_focus": ""
+      }
+    },
+    {
+      "schema_version": "iteris.frontier_entry.v0",
+      "frontier_id": "auto-alpha1-algebra-energy",
+      "title": "Alpha1 Algebra Energy",
+      "hypothesis": "Route inferred from facts, tasks, and artifacts matching `alpha1-algebra-energy`.",
+      "summary": "1 fact(s), 0 blocker fact(s), 0 active task(s), 0 artifact(s).",
+      "status": "promising",
+      "fact_ids": [
+        "fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance"
+      ],
+      "blocker_fact_ids": [],
+      "task_ids": [
+        "task-alpha1-algebra-energy-balance"
+      ],
+      "active_tasks": [],
+      "blocked_tasks": [],
+      "artifact_paths": [],
+      "verification_ids": [
+        "verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag"
+      ],
+      "agent_run_ids": [],
+      "open_questions": [
+        "Verify the alpha=1 model algebra, PEC electromagnetic balance, polarization contribution, and shifted magnetic identities."
+      ],
+      "next_actions": [],
+      "recent_fact_summaries": [
+        {
+          "fact_id": "fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance",
+          "status": "verified",
+          "claim_summary": "Alpha=1 PEC balance and shifted magnetic identities are valid for the source Maxwell-PML system."
+        }
+      ],
+      "task_status_counts": {
+        "done": 1
+      },
+      "evidence_terms": [
+        "alpha",
+        "are",
+        "balance",
+        "identities",
+        "magnetic",
+        "pec",
+        "shifted",
+        "valid"
+      ],
+      "explore_run_count": 0,
+      "last_explore_at": null,
+      "generated_by": "frontier_refresh",
+      "updated_at": "2026-06-19T18:21:15.293736Z",
+      "health": {
+        "frontier_id": "auto-alpha1-algebra-energy",
+        "title": "Alpha1 Algebra Energy",
+        "status": "promising",
+        "fact_count": 1,
+        "blocker_count": 0,
+        "verified_count": 1,
+        "active_task_count": 0,
+        "ready_task_count": 0,
+        "artifact_count": 0,
+        "explore_run_count": 0,
+        "last_explore_at": null,
+        "cooldown_ok": true,
+        "explore_recommended": false,
+        "reason": "",
+        "recommended_focus": ""
+      }
+    },
     {
       "schema_version": "iteris.frontier_entry.v0",
       "frontier_id": "auto-initial-exploration-run",
@@ -48,7 +251,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-19T18:01:27.310286Z",
+      "updated_at": "2026-06-19T18:21:15.293753Z",
       "health": {
         "frontier_id": "auto-initial-exploration-run",
         "title": "Initial Exploration Run",

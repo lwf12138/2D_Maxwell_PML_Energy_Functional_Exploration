@@ -1,0 +1,40 @@
+{
+  "schema_version": "iteris.verification_result.v0",
+  "request_id": "verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e",
+  "backend": "agent",
+  "mode": "fact",
+  "claim": "A positive augmented zeroth-order energy gives a Gronwall estimate for bounded nonnegative time-independent absorptions in the alpha=1 source model.",
+  "verdict": "accepted",
+  "passed": true,
+  "strict_verdict": "correct",
+  "summary": "Correct. The source model defines the alpha=1 Maxwell-PML system with PEC boundary condition, positive material parameters, and time-independent nonnegative absorptions. The predecessor alpha=1 electromagnetic-plus-polarization balance is already verified and also checks directly against the source equations: PEC cancels the Maxwell boundary flux, and E P_t gives the positive chi^{-1} P^2/2 contribution plus tau/chi dissipation. The cited Gronwall artifact then adds the L2 derivatives of P_{z,1}, P_{z,2}, Q_x, and Q_y, each matching the source auxiliary equations. After dropping the nonpositive E^2, P_t^2, Q_x^2, and Q_y^2 terms, the remaining sign-indefinite H-square terms and mixed products are all bounded by Young's inequality using the energy weights epsilon_0 epsilon_infty, mu, chi^{-1}, and the unweighted auxiliary norms. The required coefficients are controlled by the stated material parameters and L_infty norms of sigma_x, sigma_y, sigma_x sigma_y, sigma_x(sigma_y-sigma_x), and sigma_y(sigma_x-sigma_y). Thus dE_0/dt <= C_G E_0 and Gronwall gives E_0(t) <= exp(C_G t) E_0(0).",
+  "critical_errors": [],
+  "gaps": [],
+  "repair_hints": "",
+  "checked_artifacts": [
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-augmented-gronwall-energy.md",
+    "artifacts/proofs/alpha1_constant_pml_cases.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md",
+    "artifacts/proofs/alpha1_algebra_balance.md",
+    "verification/results/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-run-20260619T173930696222Z-source-problem.md",
+    "sources/energy_functional_problem.tex"
+  ],
+  "checked_fact_ids": [
+    "fact:2d_maxwell_pml_energy_functional_exploration:augmented-gronwall-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance",
+    "fact:2d_maxwell_pml_energy_functional_exploration:run-20260619T173930696222Z:source-problem"
+  ],
+  "primary_fact_ids": [],
+  "target_artifact": null,
+  "executor": "codex",
+  "verification_scope": "codex_agent",
+  "claim_ceiling_after_verification": "verified",
+  "agent_run_dir": "verification/agent_runs/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e",
+  "agent_log": "verification/agent_runs/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e/codex.log",
+  "agent_events_log": "verification/agent_runs/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e/codex.events.jsonl",
+  "agent_stderr_log": "verification/agent_runs/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e/codex.stderr.log",
+  "agent_log_manifest": "verification/agent_runs/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e/log_manifest.json",
+  "created_at": "2026-06-19T18:20:42.329731Z",
+  "verifier": "iteris.codex_verification_agent"
+}

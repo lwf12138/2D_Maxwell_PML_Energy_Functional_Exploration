@@ -1,7 +1,7 @@
 {
   "schema_version": "iteris.task_pool.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-06-19T18:09:36.259546Z",
+  "updated_at": "2026-06-19T18:21:24.432257Z",
   "active_frontier": "",
   "tasks": [
     {
@@ -48,7 +48,7 @@
       "task_id": "task-alpha1-pml-cases",
       "mode": "proof",
       "objective": "Analyze constant-coefficient no-PML, edge-PML, symmetric-corner, and asymmetric-corner cases for positive monotone or bounded quadratic energies.",
-      "status": "ready",
+      "status": "done",
       "priority": 90,
       "dependencies": [
         "task-alpha1-algebra-energy-balance"
@@ -59,10 +59,14 @@
       ],
       "assigned_agent_run": null,
       "notes": [
-        "Inline Codex proof task covering the sigma_x/sigma_y case split required by the goal prompt."
+        "Inline Codex proof task covering the sigma_x/sigma_y case split required by the goal prompt.",
+        "Started inline constant-coefficient PML case split; using verified alpha1 algebra balance as predecessor.",
+        "Heartbeat: edge obstruction verification is running; report draft structure is being prepared in parallel.",
+        "Heartbeat: Gronwall fact verification is running; edge obstruction fact is verified and promoted.",
+        "Verified and promoted edge obstruction and augmented Gronwall facts; report updated with verification links."
       ],
       "created_at": "2026-06-19T18:03:07.103962Z",
-      "updated_at": "2026-06-19T18:03:07.103962Z"
+      "updated_at": "2026-06-19T18:21:24.432249Z"
     },
     {
       "schema_version": "iteris.task_pool_task.v0",
