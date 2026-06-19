@@ -1,0 +1,112 @@
+\documentclass[UTF8,a4paper,12pt]{ctexart}
+\input{macros}
+
+\title{Notes: Candidate Energy Ansatz for 2D Maxwell--PML}
+\author{Working notes, not a proof}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Purpose}
+
+This note lists candidate structures to try.  It should not be cited as a proof.  The main source problem is \texttt{energy\_functional\_problem.tex}.
+
+\section{Naive Energy and Its Defect}
+
+For the displayed model, first take the non-fractional case \(\alpha=1\):
+\[
+  P+\tau\partial_tP=\chi E,\qquad
+  \chi=\epsilon_0(\epsilon_s-\epsilon_\infty).
+\]
+The naive electromagnetic energy is
+\[
+  \Ecal_{\rm em}
+  =\frac12\int_\Om
+  \epsilon_0\epsilon_\infty E^2+\mu H_x^2+\mu H_y^2\,\dd x\dd y.
+\]
+Under zero boundary flux, its derivative contains
+\begin{align*}
+&-\epsilon_\infty(\sx+\sy)E^2
+-E\partial_tP
+-\frac{\sx+\sy}{\epsilon_0}EP
++E(P_{z,1}+P_{z,2})\\
+&\quad
+-\frac{\mu}{\epsilon_0}(\sy-\sx)H_x^2
+-\frac{\mu}{\epsilon_0}(\sx-\sy)H_y^2
++H_xQ_x+H_yQ_y.
+\end{align*}
+The term \(-E\partial_tP\) is favorable when \(\alpha=1\), because
+\[
+  E\partial_tP
+  =\frac{1}{2\chi}\frac{\dd}{\dd t}\|P\|^2
+  +\frac{\tau}{\chi}\|\partial_tP\|^2.
+\]
+Thus a natural first correction is
+\[
+  \Ecal_{\rm em+P}
+  =\Ecal_{\rm em}+\frac{1}{2\chi}\|P\|^2.
+\]
+The remaining electric PML terms involving \(EP\), \(EP_{z,1}\), \(EP_{z,2}\), and the magnetic sign-indefinite terms still need auxiliary-variable structure.
+
+\section{Magnetic Shift}
+
+Try
+\[
+  M_x=Q_x-\frac{\mu}{\eps_0}(\sy-\sx)H_x,\qquad
+  M_y=Q_y-\frac{\mu}{\eps_0}(\sx-\sy)H_y.
+\]
+The model then gives
+\[
+  \partial_tM_x=\frac{\sy-\sx}{\eps_0}\partial_yE-\frac{\sy}{\eps_0}M_x,
+\qquad
+  \partial_tM_y=-\frac{\sx-\sy}{\eps_0}\partial_xE-\frac{\sx}{\eps_0}M_y.
+\]
+These identities suggest trying an energy in \(E,H_x,H_y,P,P_{z,1},P_{z,2},M_x,M_y\).  A possible family is
+\[
+\begin{aligned}
+\Ecal_A
+&=\Ecal_{\rm em+P}
+ +\frac12\int_\Om
+ \alpha_1 P_{z,1}^2+\alpha_2 P_{z,2}^2
+ +\alpha_xM_x^2+\alpha_yM_y^2\,\dd x\dd y\\
+&\quad
+ +\int_\Om
+ \beta_1EP_{z,1}+\beta_2EP_{z,2}+\beta_3PP_{z,2}\\
+&\quad
+ +\beta_xH_xM_x+\beta_yH_yM_y\\
+&\quad
+ +\gamma_xE\,\partial_y^{-1}M_x
+ +\gamma_yE\,\partial_x^{-1}M_y
+ \,\dd x\dd y,
+\end{aligned}
+\]
+where the last two nonlocal terms are only a brainstorming device.  Prefer local terms if possible.
+
+\section{Finite-Dimensional Lyapunov Test}
+
+For constant \(\sx,\sy\), Fourier transform in space.  For each \(k=(k_x,k_y)\), write
+\[
+  \frac{\dd}{\dd t}\widehat U=A(k,\sx,\sy)\widehat U.
+\]
+Then search for \(G=G(k,\sx,\sy)\) with
+\[
+  G=G^*>0,\qquad GA+A^*G\le0.
+\]
+If \(G\) can be chosen independent of \(k\), it is a strong hint for a local \(L^2\) energy.  If \(G\) depends on \(k\), translate it into derivative or pseudo-differential energy only with care.
+
+\section{Cole--Cole Memory}
+
+For \(0<\alpha<1\), expect a positive memory term of the schematic form
+\[
+  \Ecal_{CC}\sim c_P\|P\|^2+
+  \tau_0^\alpha\int_0^\infty w(\lambda)\|\phi(\lambda)\|^2\,\dd\lambda,
+\]
+but the constants \(c_P\) and weight \(w(\lambda)\) must be derived.  The derivation should use
+\[
+  P+\tau^\alpha\partial_t^\alpha P
+  =\epsilon_0(\epsilon_s-\epsilon_\infty)E,
+\]
+or an equivalent diffusive representation.  This should be treated only after the \(\alpha=1\) case is understood.
+
+\end{document}

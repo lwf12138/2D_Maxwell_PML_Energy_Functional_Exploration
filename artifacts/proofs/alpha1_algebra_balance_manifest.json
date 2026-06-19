@@ -1,0 +1,10 @@
+{
+  "schema_version": "iteris.artifact_manifest.v0",
+  "task_id": "task-alpha1-algebra-energy-balance",
+  "artifact_type": "proof",
+  "created_at": "2026-06-19T18:03:46Z",
+  "files": [
+    "artifacts/proofs/alpha1_algebra_balance.md"
+  ],
+  "summary": "Verified the alpha=1 polarization energy identity, PEC electromagnetic balance, and shifted magnetic auxiliary identities."
+}

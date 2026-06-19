@@ -1,0 +1,36 @@
+{
+  "schema_version": "iteris.verification_result.v0",
+  "request_id": "verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag",
+  "backend": "agent",
+  "mode": "fact",
+  "claim": "Alpha=1 PEC balance and shifted magnetic identities are valid for the source Maxwell-PML system.",
+  "verdict": "accepted",
+  "passed": true,
+  "strict_verdict": "correct",
+  "summary": "Correct. The cited proof uses the same alpha=1 Maxwell-PML equations, PEC boundary condition, positivity assumptions, and shifted-variable definitions as the source problem. The electromagnetic balance follows by multiplying by E, H_x, H_y and integrating; the principal part is the boundary flux integral int_dOmega E(H_y n_x - H_x n_y) ds, which vanishes under E=0 on the PEC boundary. The alpha=1 polarization correction is valid in the integrated L2 sense, yielding the positive added energy (1/(2 chi))||P||_2^2 and dissipation (tau/chi)||P_t||_2^2. The shifted magnetic identities follow from M_x=Q_x-mu a_x H_x, M_y=Q_y-mu a_y H_y, time-independent coefficients, and b_x+a_x=b_y, b_y+a_y=b_x; substituting Q=M+mu a H cancels the sign-indefinite magnetic square terms and leaves H_x M_x+H_y M_y.",
+  "critical_errors": [],
+  "gaps": [],
+  "repair_hints": "",
+  "checked_artifacts": [
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-run-20260619T173930696222Z-source-problem.md",
+    "artifacts/proofs/alpha1_algebra_balance.md",
+    "sources/energy_functional_problem.tex"
+  ],
+  "checked_fact_ids": [
+    "fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance",
+    "fact:2d_maxwell_pml_energy_functional_exploration:run-20260619T173930696222Z:source-problem"
+  ],
+  "primary_fact_ids": [],
+  "target_artifact": null,
+  "executor": "codex",
+  "verification_scope": "codex_agent",
+  "claim_ceiling_after_verification": "verified",
+  "agent_run_dir": "verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag",
+  "agent_log": "verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/codex.log",
+  "agent_events_log": "verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/codex.events.jsonl",
+  "agent_stderr_log": "verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/codex.stderr.log",
+  "agent_log_manifest": "verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/log_manifest.json",
+  "created_at": "2026-06-19T18:08:49.575371Z",
+  "verifier": "iteris.codex_verification_agent"
+}

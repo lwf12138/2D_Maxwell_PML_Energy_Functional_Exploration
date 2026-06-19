@@ -1,11 +1,77 @@
 {
   "schema_version": "iteris.frontier_index.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-06-19T17:39:30.692991Z",
-  "active_frontiers": [],
+  "updated_at": "2026-06-19T18:01:27.310322Z",
+  "active_frontiers": [
+    {
+      "schema_version": "iteris.frontier_entry.v0",
+      "frontier_id": "auto-initial-exploration-run",
+      "title": "Initial Exploration Run",
+      "hypothesis": "Route inferred from facts, tasks, and artifacts matching `initial-exploration-run`.",
+      "summary": "1 fact(s), 0 blocker fact(s), 0 active task(s), 0 artifact(s).",
+      "status": "stale",
+      "fact_ids": [
+        "fact:2d_maxwell_pml_energy_functional_exploration:run-20260619T173930696222Z:source-problem"
+      ],
+      "blocker_fact_ids": [],
+      "task_ids": [
+        "task-initial-source-exploration-run-20260619t173930696222z"
+      ],
+      "active_tasks": [],
+      "blocked_tasks": [],
+      "artifact_paths": [],
+      "verification_ids": [],
+      "agent_run_ids": [],
+      "open_questions": [
+        "Extract the source problem, create first memory records, and submit a structural verification claim."
+      ],
+      "next_actions": [],
+      "recent_fact_summaries": [
+        {
+          "fact_id": "fact:2d_maxwell_pml_energy_functional_exploration:run-20260619T173930696222Z:source-problem",
+          "status": "submitted",
+          "claim_summary": "The source problem has been recorded for Iteris project work."
+        }
+      ],
+      "task_status_counts": {
+        "done": 1
+      },
+      "evidence_terms": [
+        "been",
+        "has",
+        "iteris",
+        "problem",
+        "project",
+        "recorded",
+        "work"
+      ],
+      "explore_run_count": 0,
+      "last_explore_at": null,
+      "generated_by": "frontier_refresh",
+      "updated_at": "2026-06-19T18:01:27.310286Z",
+      "health": {
+        "frontier_id": "auto-initial-exploration-run",
+        "title": "Initial Exploration Run",
+        "status": "stale",
+        "fact_count": 1,
+        "blocker_count": 0,
+        "verified_count": 0,
+        "active_task_count": 0,
+        "ready_task_count": 0,
+        "artifact_count": 0,
+        "explore_run_count": 0,
+        "last_explore_at": null,
+        "cooldown_ok": true,
+        "explore_recommended": false,
+        "reason": "",
+        "recommended_focus": ""
+      }
+    }
+  ],
   "reviewed_positive_routes": [],
   "closed_lanes": [],
   "submitted_gates": [],
   "completion_gaps": [],
-  "do_not_schedule_patterns": []
+  "do_not_schedule_patterns": [],
+  "unassigned_route_evidence": []
 }

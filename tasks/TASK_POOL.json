@@ -1,7 +1,7 @@
 {
   "schema_version": "iteris.task_pool.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-06-19T17:39:30.698097Z",
+  "updated_at": "2026-06-19T18:09:36.259546Z",
   "active_frontier": "",
   "tasks": [
     {
@@ -21,6 +21,69 @@
       ],
       "created_at": "2026-06-19T17:39:30.696559Z",
       "updated_at": "2026-06-19T17:39:30.698093Z"
+    },
+    {
+      "schema_version": "iteris.task_pool_task.v0",
+      "task_id": "task-alpha1-algebra-energy-balance",
+      "mode": "foundation",
+      "objective": "Verify the alpha=1 model algebra, PEC electromagnetic balance, polarization contribution, and shifted magnetic identities.",
+      "status": "done",
+      "priority": 100,
+      "dependencies": [],
+      "inputs": [],
+      "expected_outputs": [
+        "artifacts/proofs/alpha1_algebra_balance.md"
+      ],
+      "assigned_agent_run": null,
+      "notes": [
+        "Inline Codex task for source-equation algebra and first energy identities.",
+        "Started inline algebra verification and energy-balance derivation.",
+        "Verified and promoted fact: fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance."
+      ],
+      "created_at": "2026-06-19T18:03:00.357326Z",
+      "updated_at": "2026-06-19T18:09:36.259539Z"
+    },
+    {
+      "schema_version": "iteris.task_pool_task.v0",
+      "task_id": "task-alpha1-pml-cases",
+      "mode": "proof",
+      "objective": "Analyze constant-coefficient no-PML, edge-PML, symmetric-corner, and asymmetric-corner cases for positive monotone or bounded quadratic energies.",
+      "status": "ready",
+      "priority": 90,
+      "dependencies": [
+        "task-alpha1-algebra-energy-balance"
+      ],
+      "inputs": [],
+      "expected_outputs": [
+        "artifacts/proofs/alpha1_constant_pml_cases.md"
+      ],
+      "assigned_agent_run": null,
+      "notes": [
+        "Inline Codex proof task covering the sigma_x/sigma_y case split required by the goal prompt."
+      ],
+      "created_at": "2026-06-19T18:03:07.103962Z",
+      "updated_at": "2026-06-19T18:03:07.103962Z"
+    },
+    {
+      "schema_version": "iteris.task_pool_task.v0",
+      "task_id": "task-final-energy-report",
+      "mode": "proof",
+      "objective": "Assemble the verified alpha=1 energy/obstruction results and fractional-case status into results/energy_functional_report.md.",
+      "status": "ready",
+      "priority": 80,
+      "dependencies": [
+        "task-alpha1-pml-cases"
+      ],
+      "inputs": [],
+      "expected_outputs": [
+        "results/energy_functional_report.md"
+      ],
+      "assigned_agent_run": null,
+      "notes": [
+        "Terminal artifact required by .iteris/goal_prompt.txt."
+      ],
+      "created_at": "2026-06-19T18:03:12.624000Z",
+      "updated_at": "2026-06-19T18:03:12.624000Z"
     }
   ]
 }

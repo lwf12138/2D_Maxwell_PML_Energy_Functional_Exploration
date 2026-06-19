@@ -1,0 +1,859 @@
+started_at: 2026-06-19T18:05:14.215310Z
+command: /Users/wcli/.local/bin/codex exec --json -C '/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration' -m gpt-5.5 --config model_reasoning_effort=xhigh --dangerously-bypass-approvals-and-sandbox -
+prompt_file: verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/prompt.md
+events_log: verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/codex.events.jsonl
+stderr_log: verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/codex.stderr.log
+
+--- rendered codex exec events ---
+
+[1] thread.started
+  thread_id: 019ee10e-f527-7122-8843-ba6c4894a1f6
+
+[2] turn.started
+
+[?] error: null
+
+[?] error: null
+
+[?] error: null
+
+[?] error: null
+
+[7] item.completed:error
+  id: item_0
+  message: Falling back from WebSockets to HTTPS transport. request timed out
+
+[8] item.completed:agent_message
+  I’ll read the verification request and the cited artifacts first, then check the mathematical dependencies in the order the fact relies on them. After that I’ll write the required `verification.json` with a concrete verdict.
+
+[9] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '1,240p' verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/request.json"
+  status: in_progress
+  exit_code: None
+
+[10] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '1,240p' verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/request.json"
+  status: completed
+  exit_code: 0
+  {
+    "schema_version": "iteris.verification_request.v0",
+    "request_id": "verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag",
+    "backend": "agent",
+    "executor": "codex",
+    "mode": "fact",
+    "claim": "Alpha=1 PEC balance and shifted magnetic identities are valid for the source Maxwell-PML system.",
+    "artifacts": [
+      "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md",
+      "artifacts/proofs/alpha1_algebra_balance.md"
+    ],
+    "fact_ids": [],
+    "target_artifact": null,
+    "created_at": "2026-06-19T18:05:14.214689Z",
+    "prompt_path": "verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/prompt.md",
+    "codex_log": "verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/codex.log",
+    "codex_events": "verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/codex.events.jsonl",
+    "codex_stderr": "verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/codex.stderr.log",
+    "codex_log_manifest": "verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/log_manifest.json"
+  }
+
+[11] item.completed:agent_message
+  The request is in `fact` mode, so I’m checking the stated fact itself against its proof artifact rather than only the metadata. The claim is narrow: alpha=1 algebraic PEC balance and shifted magnetic identities for the source Maxwell-PML system.
+
+[12] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '1,260p' memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md"
+  status: in_progress
+  exit_code: None
+
+[13] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '1,260p' memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md"
+  status: completed
+  exit_code: 0
+  ---
+  fact_id: fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance
+  problem_id: 2d_maxwell_pml_energy_functional_exploration
+  source_project: 2d_maxwell_pml_energy_functional_exploration
+  source_task: task-alpha1-algebra-energy-balance
+  predecessors:
+    - fact:2d_maxwell_pml_energy_functional_exploration:run-20260619T173930696222Z:source-problem
+  status: submitted
+  fact_type: energy_identity
+  review_level: none
+  claim_policy: stable_claim
+  claim_summary: "Alpha=1 PEC balance and shifted magnetic identities are valid for the source Maxwell-PML system."
+  verification: null
+  ---
+  
+  ## statement
+  
+  For the source 2D TM Maxwell-PML system with alpha=1 polarization law P + tau P_t = chi E and PEC boundary condition E=0 on dOmega, multiplying the first three equations by E,H_x,H_y and integrating gives the electromagnetic balance displayed in the source: the principal Maxwell contribution is the boundary flux integral int_dOmega E(H_y n_x - H_x n_y) ds and vanishes under PEC. The alpha=1 identity E P_t = (1/(2 chi)) d_t ||P||_2^2 + (tau/chi)||P_t||_2^2 makes E_em + (1/(2 chi))||P||_2^2 positive and adds dissipation (tau/chi)||P_t||_2^2. With a_x=(sigma_y-sigma_x)/epsilon_0, a_y=(sigma_x-sigma_y)/epsilon_0, b_x=sigma_x/epsilon_0, b_y=sigma_y/epsilon_0, and M_x=Q_x-mu a_x H_x, M_y=Q_y-mu a_y H_y, the shifted equations are mu H_{x,t}=-partial_y E+M_x, mu H_{y,t}=partial_x E+M_y, M_{x,t}=a_x partial_y E-b_y M_x, and M_{y,t}=-a_y partial_x E-b_x M_y. Substituting Q_x=M_x+mu a_x H_x and Q_y=M_y+mu a_y H_y cancels the sign-indefinite magnetic square terms in the E_em+P balance and leaves the magnetic coupling H_x M_x+H_y M_y. Detailed derivation is in artifacts/proofs/alpha1_algebra_balance.md.
+  
+  ## notes
+  
+  Produced by inline algebra verification; artifact indexed at artifacts/proofs/alpha1_algebra_balance.md.
+
+[14] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '1,320p' artifacts/proofs/alpha1_algebra_balance.md"
+  status: in_progress
+  exit_code: None
+
+[15] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '1,320p' artifacts/proofs/alpha1_algebra_balance.md"
+  status: completed
+  exit_code: 0
+  # Alpha=1 Algebra and First Energy Balance
+  
+  Task: `task-alpha1-algebra-energy-balance`
+  
+  Source: `sources/energy_functional_problem.tex`
+  
+  ## Model and conventions
+  
+  For this artifact the polarization law is the non-fractional case
+  \[
+  P+\tau \partial_t P=\chi E,\qquad \chi=\epsilon_0(\epsilon_s-\epsilon_\infty)>0.
+  \]
+  The boundary condition is PEC for the two-dimensional TM model:
+  \[
+  E=E_z=0\quad\text{on }\partial\Omega.
+  \]
+  The absorption functions are time-independent and nonnegative.  No spatial derivatives of
+  \(\sigma_x,\sigma_y\) are used in this algebraic artifact.
+  
+  The model equations are exactly those displayed in the source:
+  \[
+  \begin{aligned}
+  \epsilon_0\epsilon_\infty E_t
+  &= \partial_xH_y-\partial_yH_x
+     -\epsilon_\infty(\sigma_x+\sigma_y)E
+     -P_t-\frac{\sigma_x+\sigma_y}{\epsilon_0}P
+     +P_{z,1}+P_{z,2},\\
+  \mu H_{x,t}
+  &= -\partial_yE-\mu\frac{\sigma_y-\sigma_x}{\epsilon_0}H_x+Q_x,\\
+  \mu H_{y,t}
+  &= \partial_xE-\mu\frac{\sigma_x-\sigma_y}{\epsilon_0}H_y+Q_y,\\
+  P+\tau P_t&=\chi E,\\
+  P_{z,1,t}&=-\frac{\epsilon_\infty}{\epsilon_0}\sigma_x\sigma_y E,\\
+  P_{z,2,t}&=-\frac{\sigma_x\sigma_y}{\epsilon_0^2}P,\\
+  Q_{x,t}&=-\frac{\sigma_x}{\epsilon_0}Q_x
+    +\frac{\mu\sigma_x(\sigma_y-\sigma_x)}{\epsilon_0^2}H_x,\\
+  Q_{y,t}&=-\frac{\sigma_y}{\epsilon_0}Q_y
+    +\frac{\mu\sigma_y(\sigma_x-\sigma_y)}{\epsilon_0^2}H_y.
+  \end{aligned}
+  \]
+  
+  ## PEC cancellation and electromagnetic balance
+  
+  Let
+  \[
+  \mathcal E_{\rm em}
+  =\frac12\int_\Omega
+  \left(\epsilon_0\epsilon_\infty E^2+\mu H_x^2+\mu H_y^2\right)\,dxdy .
+  \]
+  Multiplying the first three equations by \(E,H_x,H_y\) and integrating gives the
+  principal part
+  \[
+  \int_\Omega \left(E\partial_xH_y-E\partial_yH_x-H_x\partial_yE+H_y\partial_xE\right)\,dxdy
+  =\int_{\partial\Omega} E(H_y n_x-H_x n_y)\,ds=0,
+  \]
+  because \(E=0\) on \(\partial\Omega\).  Therefore
+  \[
+  \begin{aligned}
+  \frac{d}{dt}\mathcal E_{\rm em}
+  =\int_\Omega\Big[
+  &-\epsilon_\infty(\sigma_x+\sigma_y)E^2
+  -E P_t
+  -\frac{\sigma_x+\sigma_y}{\epsilon_0}EP
+  +E(P_{z,1}+P_{z,2})\\
+  &-\frac{\mu}{\epsilon_0}(\sigma_y-\sigma_x)H_x^2
+  -\frac{\mu}{\epsilon_0}(\sigma_x-\sigma_y)H_y^2
+  +H_xQ_x+H_yQ_y
+  \Big]\,dxdy .
+  \end{aligned}
+  \]
+  This agrees with the balance stated in the source.
+  
+  ## Polarization energy for alpha=1
+  
+  The identity
+  \[
+  E=\frac{P+\tau P_t}{\chi}
+  \]
+  implies
+  \[
+  E P_t=\frac{1}{2\chi}\frac{d}{dt}\|P\|_{L^2(\Omega)}^2
+  +\frac{\tau}{\chi}\|P_t\|_{L^2(\Omega)}^2 .
+  \]
+  Thus the positive polarization-corrected energy
+  \[
+  \mathcal E_{\rm em+P}
+  =\mathcal E_{\rm em}+\frac{1}{2\chi}\|P\|_{L^2(\Omega)}^2
+  \]
+  satisfies
+  \[
+  \begin{aligned}
+  \frac{d}{dt}\mathcal E_{\rm em+P}
+  =\int_\Omega\Big[
+  &-\epsilon_\infty(\sigma_x+\sigma_y)E^2
+  -\frac{\tau}{\chi}P_t^2
+  -\frac{\sigma_x+\sigma_y}{\epsilon_0}EP
+  +E(P_{z,1}+P_{z,2})\\
+  &-\frac{\mu}{\epsilon_0}(\sigma_y-\sigma_x)H_x^2
+  -\frac{\mu}{\epsilon_0}(\sigma_x-\sigma_y)H_y^2
+  +H_xQ_x+H_yQ_y
+  \Big]\,dxdy .
+  \end{aligned}
+  \]
+  The alpha=1 polarization contribution is therefore positive and dissipative.  The
+  remaining electric PML terms are
+  \[
+  -\frac{\sigma_x+\sigma_y}{\epsilon_0}EP,\qquad EP_{z,1},\qquad EP_{z,2},
+  \]
+  coupled to
+  \[
+  P_{z,1,t}=-\frac{\epsilon_\infty}{\epsilon_0}\sigma_x\sigma_y E,
+  \qquad
+  P_{z,2,t}=-\frac{\sigma_x\sigma_y}{\epsilon_0^2}P.
+  \]
+  
+  ## Shifted magnetic variables
+  
+  Define
+  \[
+  a_x=\frac{\sigma_y-\sigma_x}{\epsilon_0},\qquad
+  a_y=\frac{\sigma_x-\sigma_y}{\epsilon_0},\qquad
+  b_x=\frac{\sigma_x}{\epsilon_0},\qquad
+  b_y=\frac{\sigma_y}{\epsilon_0},
+  \]
+  and
+  \[
+  M_x=Q_x-\mu a_xH_x,\qquad M_y=Q_y-\mu a_yH_y.
+  \]
+  Then the \(H\)-equations become
+  \[
+  \mu H_{x,t}=-\partial_yE+M_x,\qquad
+  \mu H_{y,t}=\partial_xE+M_y.
+  \]
+  Using the \(Q\)-equations and the time-independence of the coefficients,
+  \[
+  \begin{aligned}
+  M_{x,t}
+  &=Q_{x,t}-\mu a_xH_{x,t}\\
+  &=-b_xQ_x+\mu b_xa_xH_x
+     +a_x\partial_yE+\mu a_x^2H_x-a_xQ_x\\
+  &=a_x\partial_yE-b_y(Q_x-\mu a_xH_x)
+  =a_x\partial_yE-b_yM_x,
+  \end{aligned}
+  \]
+  because \(b_x+a_x=b_y\).  Similarly,
+  \[
+  M_{y,t}=-a_y\partial_xE-b_xM_y.
+  \]
+  This verifies the shifted identities
+  \[
+  M_{x,t}=a_x\partial_yE-\frac{\sigma_y}{\epsilon_0}M_x,\qquad
+  M_{y,t}=-a_y\partial_xE-\frac{\sigma_x}{\epsilon_0}M_y.
+  \]
+  
+  In the electromagnetic-plus-polarization balance, substituting
+  \[
+  Q_x=M_x+\mu a_xH_x,\qquad Q_y=M_y+\mu a_yH_y
+  \]
+  cancels the two sign-indefinite magnetic square terms exactly.  The shifted balance is
+  \[
+  \boxed{
+  \begin{aligned}
+  \frac{d}{dt}\mathcal E_{\rm em+P}
+  =\int_\Omega\Big[
+  &-\epsilon_\infty(\sigma_x+\sigma_y)E^2
+  -\frac{\tau}{\chi}P_t^2
+  -\frac{\sigma_x+\sigma_y}{\epsilon_0}EP
+  +E(P_{z,1}+P_{z,2})\\
+  &+H_xM_x+H_yM_y
+  \Big]\,dxdy .
+  \end{aligned}}
+  \]
+  The shift therefore removes the explicit magnetic sign-indefinite damping terms.  It
+  does not by itself give a monotone energy, since \(H_xM_x+H_yM_y\) remains an
+  uncontrolled coupling unless additional auxiliary energy or derivative structure is
+  introduced.
+
+[16] item.started:command_execution
+  command: /bin/zsh -lc 'rg -n "source Maxwell|Maxwell-PML|PML|PEC|alpha|α|shifted|magnetic|H_z|Hz|sigma|σ" -S .'
+  status: in_progress
+  exit_code: None
+
+[17] item.completed:command_execution
+  command: /bin/zsh -lc 'rg -n "source Maxwell|Maxwell-PML|PML|PEC|alpha|α|shifted|magnetic|H_z|Hz|sigma|σ" -S .'
+  status: completed
+  exit_code: 0
+  ./PROJECT.md:1:# 2D Maxwell--PML Energy Functional Exploration
+  ./PROJECT.md:3:Goal: prepare a precise mathematical source problem for exploring monotone or dissipative energy functionals for the two-dimensional Maxwell--PML system, with a staged Cole--Cole fractional extension.
+  ./memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md:2:fact_id: fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance
+  ./memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md:5:source_task: task-alpha1-algebra-energy-balance
+  ./memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md:12:claim_summary: "Alpha=1 PEC balance and shifted magnetic identities are valid for the source Maxwell-PML system."
+  ./memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md:18:For the source 2D TM Maxwell-PML system with alpha=1 polarization law P + tau P_t = chi E and PEC boundary condition E=0 on dOmega, multiplying the first three equations by E,H_x,H_y and integrating gives the electromagnetic balance displayed in the source: the principal Maxwell contribution is the boundary flux integral int_dOmega E(H_y n_x - H_x n_y) ds and vanishes under PEC. The alpha=1 identity E P_t = (1/(2 chi)) d_t ||P||_2^2 + (tau/chi)||P_t||_2^2 makes E_em + (1/(2 chi))||P||_2^2 positive and adds dissipation (tau/chi)||P_t||_2^2. With a_x=(sigma_y-sigma_x)/epsilon_0, a_y=(sigma_x-sigma_y)/epsilon_0, b_x=sigma_x/epsilon_0, b_y=sigma_y/epsilon_0, and M_x=Q_x-mu a_x H_x, M_y=Q_y-mu a_y H_y, the shifted equations are mu H_{x,t}=-partial_y E+M_x, mu H_{y,t}=partial_x E+M_y, M_{x,t}=a_x partial_y E-b_y M_x, and M_{y,t}=-a_y partial_x E-b_x M_y. Substituting Q_x=M_x+mu a_x H_x and Q_y=M_y+mu a_y H_y cancels the sign-indefinite magnetic square terms in the E_em+P balance and leaves the magnetic coupling H_x M_x+H_y M_y. Detailed derivation is in artifacts/proofs/alpha1_algebra_balance.md.
+  ./memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md:22:Produced by inline algebra verification; artifact indexed at artifacts/proofs/alpha1_algebra_balance.md.
+  ./artifacts/runs/run-20260619T173930696222Z/exploration.md:9:\documentclass[UTF8,a4paper,12pt]{ctexart} \input{macros} \title{Problem Sheet for Iteris: Energy Functionals for 2D Maxwell--PML} \author{Prepared source problem} \date{\today} \begin{document} \maketitle \begin{abstract} This note is a self-contained source problem for an Iteris run. The system to be analyzed is the two-dimensional TM Maxwell--PML model with polarization \(P\), PML auxiliary variables \(P_{z,1},P_{z,2},Q_x,Q_y\), and perfectly conducting boundary condition. The first target is to find a genuinely monotone decreasing energy functional in two space dimensions. If such a monotone energy cannot be found, the fallback target is to find a positive energy functional that proves boundedness/no abnormal long-time growth, in the same spirit as the long-time-stability role of MPML.
+  ./artifacts/runs/run-20260619T173930696222Z/exploration.md:13:- Keywords: frac, energy, item, alpha, epsilon_0, begin, qquad, terms, partial_tP, task, variables, epsilon
+  ./iteris.toml:3:title = "2D_Maxwell_PML_Energy_Functional_Exploration"
+  ./README.md:1:# 2D Maxwell--PML Energy Functional Exploration
+  ./README.md:3:这个文件夹用于准备后续交给 iteris 分析的数学问题：探索图中二维 Maxwell--PML 系统是否存在单调递减的能量泛函；若找不到，则寻找能排除 PML 层异常增长的有界能量泛函。非分数阶情形按 `alpha=1` 处理，分数阶 `0<alpha<1` 放在第二阶段。
+  ./README.md:17:1. 先验证 `energy_functional_problem.tex` 中图示 Maxwell--PML 模型的代数，包括 `P, P_{z,1}, P_{z,2}, Q_x, Q_y`。
+  ./README.md:18:2. 先研究 `alpha=1` 情形下常系数吸收参数的单调能量。
+  ./README.md:19:3. 使用 shifted variables 或时间积分辅助变量寻找 Baffet 型能量。
+  ./README.md:20:4. 推广到 `sigma_x(x), sigma_y(y)`，记录出现的系数梯度项。
+  ./README.md:22:6. 再考虑 `0<alpha<1` 的分数阶记忆与 diffusive representation。
+  ./memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-run-20260619T173930696222Z-source-problem.md:17:\documentclass[UTF8,a4paper,12pt]{ctexart} \input{macros} \title{Problem Sheet for Iteris: Energy Functionals for 2D Maxwell--PML} \author{Prepared source problem} \date{\today} \begin{document} \maketitle \begin{abstract} This note is a self-contained source problem for an Iteris run. The system to be analyzed is the two-dimensional TM Maxwell--PML model with polarization \(P\), PML auxiliary variables \(P_{z,1},P_{z,2},Q_x,Q_y\), and perfectly conducting boundary condition. The first target is to find a genuinely monotone decreasing energy functional in two space dimensions. If such a monotone energy cannot be found, the fallback target is to find a positive energy functional that proves boundedness/no abnormal long-time growth, in the same spirit as the long-time-stability role of MPML.
+  ./verification/requests/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json:3:  "request_id": "verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag",
+  ./verification/requests/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json:7:  "claim": "Alpha=1 PEC balance and shifted magnetic identities are valid for the source Maxwell-PML system.",
+  ./verification/requests/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json:9:    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md",
+  ./verification/requests/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json:10:    "artifacts/proofs/alpha1_algebra_balance.md"
+  ./verification/requests/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json:15:  "prompt_path": "verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/prompt.md",
+  ./verification/requests/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json:16:  "codex_log": "verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/codex.log",
+  ./verification/requests/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json:17:  "codex_events": "verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/codex.events.jsonl",
+  ./verification/requests/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json:18:  "codex_stderr": "verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/codex.stderr.log",
+  ./verification/requests/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json:19:  "codex_log_manifest": "verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/log_manifest.json"
+  ./artifacts/runs/run-20260619T173930696222Z/result.md:5:Problem: \documentclass[UTF8,a4paper,12pt]{ctexart} \input{macros} \title{Problem Sheet for Iteris: Energy Functionals for 2D Maxwell--PML} \author{Prepared source problem} \date{\today} \begin{document} \maketitle \begin{abstract} This note is a self-contained source problem for an Iteris run. The system to be analyzed is the two-dimensional TM Maxwell--PML model with polarization \(P\), PML auxiliary variables \(P_{z,1},P_{z,2},Q_x,Q_y\), and perfectly conducting boundary condition. The first target is to find a genuinely monotone decreasing energy functional in two space dimensions. If such a monotone energy cannot be found, the fallback target is to find a positive energy functional that proves boundedness/no abnormal long-time growth, in the same spirit as the long-time-stability role of MPML.
+  ./docs/OPERATOR.md:1:# 2D_Maxwell_PML_Energy_Functional_Exploration — Operator Notes
+  ./artifacts/proofs/alpha1_algebra_balance.md:3:Task: `task-alpha1-algebra-energy-balance`
+  ./artifacts/proofs/alpha1_algebra_balance.md:13:The boundary condition is PEC for the two-dimensional TM model:
+  ./artifacts/proofs/alpha1_algebra_balance.md:18:\(\sigma_x,\sigma_y\) are used in this algebraic artifact.
+  ./artifacts/proofs/alpha1_algebra_balance.md:25:   -\epsilon_\infty(\sigma_x+\sigma_y)E
+  ./artifacts/proofs/alpha1_algebra_balance.md:26:   -P_t-\frac{\sigma_x+\sigma_y}{\epsilon_0}P
+  ./artifacts/proofs/alpha1_algebra_balance.md:29:&= -\partial_yE-\mu\frac{\sigma_y-\sigma_x}{\epsilon_0}H_x+Q_x,\\
+  ./artifacts/proofs/alpha1_algebra_balance.md:31:&= \partial_xE-\mu\frac{\sigma_x-\sigma_y}{\epsilon_0}H_y+Q_y,\\
+  ./artifacts/proofs/alpha1_algebra_balance.md:33:P_{z,1,t}&=-\frac{\epsilon_\infty}{\epsilon_0}\sigma_x\sigma_y E,\\
+  ./artifacts/proofs/alpha1_algebra_balance.md:34:P_{z,2,t}&=-\frac{\sigma_x\sigma_y}{\epsilon_0^2}P,\\
+  ./artifacts/proofs/alpha1_algebra_balance.md:35:Q_{x,t}&=-\frac{\sigma_x}{\epsilon_0}Q_x
+  ./artifacts/proofs/alpha1_algebra_balance.md:36:  +\frac{\mu\sigma_x(\sigma_y-\sigma_x)}{\epsilon_0^2}H_x,\\
+  ./artifacts/proofs/alpha1_algebra_balance.md:37:Q_{y,t}&=-\frac{\sigma_y}{\epsilon_0}Q_y
+  ./artifacts/proofs/alpha1_algebra_balance.md:38:  +\frac{\mu\sigma_y(\sigma_x-\sigma_y)}{\epsilon_0^2}H_y.
+  ./artifacts/proofs/alpha1_algebra_balance.md:42:## PEC cancellation and electromagnetic balance
+  ./artifacts/proofs/alpha1_algebra_balance.md:61:&-\epsilon_\infty(\sigma_x+\sigma_y)E^2
+  ./artifacts/proofs/alpha1_algebra_balance.md:63:-\frac{\sigma_x+\sigma_y}{\epsilon_0}EP
+  ./artifacts/proofs/alpha1_algebra_balance.md:65:&-\frac{\mu}{\epsilon_0}(\sigma_y-\sigma_x)H_x^2
+  ./artifacts/proofs/alpha1_algebra_balance.md:66:-\frac{\mu}{\epsilon_0}(\sigma_x-\sigma_y)H_y^2
+  ./artifacts/proofs/alpha1_algebra_balance.md:73:## Polarization energy for alpha=1
+  ./artifacts/proofs/alpha1_algebra_balance.md:94:&-\epsilon_\infty(\sigma_x+\sigma_y)E^2
+  ./artifacts/proofs/alpha1_algebra_balance.md:96:-\frac{\sigma_x+\sigma_y}{\epsilon_0}EP
+  ./artifacts/proofs/alpha1_algebra_balance.md:98:&-\frac{\mu}{\epsilon_0}(\sigma_y-\sigma_x)H_x^2
+  ./artifacts/proofs/alpha1_algebra_balance.md:99:-\frac{\mu}{\epsilon_0}(\sigma_x-\sigma_y)H_y^2
+  ./artifacts/proofs/alpha1_algebra_balance.md:104:The alpha=1 polarization contribution is therefore positive and dissipative.  The
+  ./artifacts/proofs/alpha1_algebra_balance.md:105:remaining electric PML terms are
+  ./artifacts/proofs/alpha1_algebra_balance.md:107:-\frac{\sigma_x+\sigma_y}{\epsilon_0}EP,\qquad EP_{z,1},\qquad EP_{z,2},
+  ./artifacts/proofs/alpha1_algebra_balance.md:111:P_{z,1,t}=-\frac{\epsilon_\infty}{\epsilon_0}\sigma_x\sigma_y E,
+  ./artifacts/proofs/alpha1_algebra_balance.md:113:P_{z,2,t}=-\frac{\sigma_x\sigma_y}{\epsilon_0^2}P.
+  ./artifacts/proofs/alpha1_algebra_balance.md:116:## Shifted magnetic variables
+  ./artifacts/proofs/alpha1_algebra_balance.md:120:a_x=\frac{\sigma_y-\sigma_x}{\epsilon_0},\qquad
+  ./artifacts/proofs/alpha1_algebra_balance.md:121:a_y=\frac{\sigma_x-\sigma_y}{\epsilon_0},\qquad
+  ./artifacts/proofs/alpha1_algebra_balance.md:122:b_x=\frac{\sigma_x}{\epsilon_0},\qquad
+  ./artifacts/proofs/alpha1_algebra_balance.md:123:b_y=\frac{\sigma_y}{\epsilon_0},
+  ./artifacts/proofs/alpha1_algebra_balance.md:149:This verifies the shifted identities
+  ./artifacts/proofs/alpha1_algebra_balance.md:151:M_{x,t}=a_x\partial_yE-\frac{\sigma_y}{\epsilon_0}M_x,\qquad
+  ./artifacts/proofs/alpha1_algebra_balance.md:152:M_{y,t}=-a_y\partial_xE-\frac{\sigma_x}{\epsilon_0}M_y.
+  ./artifacts/proofs/alpha1_algebra_balance.md:155:In the electromagnetic-plus-polarization balance, substituting
+  ./artifacts/proofs/alpha1_algebra_balance.md:159:cancels the two sign-indefinite magnetic square terms exactly.  The shifted balance is
+  ./artifacts/proofs/alpha1_algebra_balance.md:165:&-\epsilon_\infty(\sigma_x+\sigma_y)E^2
+  ./artifacts/proofs/alpha1_algebra_balance.md:167:-\frac{\sigma_x+\sigma_y}{\epsilon_0}EP
+  ./artifacts/proofs/alpha1_algebra_balance.md:173:The shift therefore removes the explicit magnetic sign-indefinite damping terms.  It
+  ./verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/codex.events.jsonl:9:{"type":"item.started","item":{"id":"item_2","type":"command_execution","command":"/bin/zsh -lc \"sed -n '1,240p' veri
+  ...[truncated 37879 chars; see raw codex.events.jsonl]
+
+[18] item.completed:agent_message
+  The proof artifact gives a complete algebraic derivation, but the fact also cites the source-problem predecessor. I’m now checking the proof’s model and displayed identities against the original source file, because a correct derivation for the wrong equations would still fail this verification.
+
+[19] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '1,220p' memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-run-20260619T173930696222Z-source-problem.md"
+  status: in_progress
+  exit_code: None
+
+[20] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '1,220p' memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-run-20260619T173930696222Z-source-problem.md"
+  status: completed
+  exit_code: 0
+  ---
+  fact_id: fact:2d_maxwell_pml_energy_functional_exploration:run-20260619T173930696222Z:source-problem
+  problem_id: 2d_maxwell_pml_energy_functional_exploration
+  source_project: 2d_maxwell_pml_energy_functional_exploration
+  source_task: task-initial-source-exploration-run-20260619t173930696222z
+  predecessors: []
+  status: submitted
+  fact_type: source_problem
+  review_level: none
+  claim_policy: stable_claim
+  claim_summary: "The source problem has been recorded for Iteris project work."
+  verification: null
+  ---
+  
+  ## statement
+  
+  \documentclass[UTF8,a4paper,12pt]{ctexart} \input{macros} \title{Problem Sheet for Iteris: Energy Functionals for 2D Maxwell--PML} \author{Prepared source problem} \date{\today} \begin{document} \maketitle \begin{abstract} This note is a self-contained source problem for an Iteris run. The system to be analyzed is the two-dimensional TM Maxwell--PML model with polarization \(P\), PML auxiliary variables \(P_{z,1},P_{z,2},Q_x,Q_y\), and perfectly conducting boundary condition. The first target is to find a genuinely monotone decreasing energy functional in two space dimensions. If such a monotone energy cannot be found, the fallback target is to find a positive energy functional that proves boundedness/no abnormal long-time growth, in the same spirit as the long-time-stability role of MPML.
+  
+  ## notes
+  
+  Source file: sources/energy_functional_problem.tex. Exploration artifact: artifacts/runs/run-20260619T173930696222Z/exploration.md.
+
+[21] item.started:command_execution
+  command: /bin/zsh -lc "nl -ba artifacts/proofs/alpha1_algebra_balance.md | sed -n '1,230p'"
+  status: in_progress
+  exit_code: None
+
+[22] item.started:command_execution
+  command: /bin/zsh -lc "nl -ba sources/energy_functional_problem.tex | sed -n '60,215p'"
+  status: in_progress
+  exit_code: None
+
+[23] item.completed:command_execution
+  command: /bin/zsh -lc "nl -ba sources/energy_functional_problem.tex | sed -n '60,215p'"
+  status: completed
+  exit_code: 0
+      60	  \chi=\epsilon_0(\epsilon_s-\epsilon_\infty).
+      61	\]
+      62	The unknowns are
+      63	\[
+      64	  E,\quad H_x,\quad H_y,\quad P,\quad P_{z,1},\quad P_{z,2},\quad Q_x,\quad Q_y.
+      65	\]
+      66	The PML system is
+      67	\begin{equation}
+      68	\begin{aligned}
+      69	\epsilon_0\epsilon_\infty\,\partial_t E
+      70	&= \partial_xH_y-\partial_yH_x
+      71	   -\epsilon_\infty(\sx+\sy)E
+      72	   -\partial_tP-\frac{\sx+\sy}{\epsilon_0}P
+      73	   +P_{z,1}+P_{z,2},\\
+      74	\mu\,\partial_tH_x
+      75	&= -\partial_yE-\mu\frac{\sy-\sx}{\epsilon_0}H_x+Q_x,\\
+      76	\mu\,\partial_tH_y
+      77	&= \partial_xE-\mu\frac{\sx-\sy}{\epsilon_0}H_y+Q_y,\\
+      78	P+\tau^\alpha\partial_t^\alpha P
+      79	&=\chi E,\\
+      80	\partial_tP_{z,1}
+      81	&=-\frac{\epsilon_\infty}{\epsilon_0}\sx\sy E,\\
+      82	\partial_tP_{z,2}
+      83	&=-\frac{\sx\sy}{\epsilon_0^2}P,\\
+      84	\partial_tQ_x
+      85	&=-\frac{\sx}{\epsilon_0}Q_x
+      86	  +\frac{\mu\sx(\sy-\sx)}{\epsilon_0^2}H_x,\\
+      87	\partial_tQ_y
+      88	&=-\frac{\sy}{\epsilon_0}Q_y
+      89	  +\frac{\mu\sy(\sx-\sy)}{\epsilon_0^2}H_y.
+      90	\end{aligned}
+      91	\label{eq:main-model}
+      92	\end{equation}
+      93	Here \(\partial_t^\alpha\) should be interpreted as a Caputo-type fractional derivative when \(0<\alpha<1\).  The non-fractional case requested by the user is the case
+      94	\[
+      95	  \alpha=1,\qquad
+      96	  P+\tau\partial_tP=\chi E.
+      97	\]
+      98	Thus the first stage of the analysis should use \(\alpha=1\), not a model with \(P\) removed.
+      99	
+     100	The boundary condition is the perfectly conducting boundary condition
+     101	\[
+     102	  \widehat n\times E=0\qquad\text{on }\partial\Om.
+     103	\]
+     104	For the two-dimensional TM model this should be interpreted as
+     105	\[
+     106	  E=E_z=0\qquad\text{on }\partial\Om,
+     107	\]
+     108	so that the Maxwell principal part has no positive boundary contribution.  If a proof uses a different boundary condition, it must state that choice explicitly.
+     109	
+     110	\begin{remark}
+     111	The parameters \(\epsilon_0,\epsilon_\infty,\epsilon_s,\mu,\tau\) are positive, and \(\chi>0\) when \(\epsilon_s>\epsilon_\infty\).  The absorption parameters are time-independent and nonnegative.  The first serious cases to analyze are constant \(\sx,\sy\), then separated variable coefficients \(\sx(x),\sy(y)\), and only then general \(\sx(x,y),\sy(x,y)\).
+     112	\end{remark}
+     113	
+     114	\section{First Energy Balance to Verify}
+     115	
+     116	Start with the electromagnetic part
+     117	\[
+     118	  \Ecal_{\rm em}(t)=\frac12\int_\Om
+     119	  \left(\epsilon_0\epsilon_\infty E^2+\mu H_x^2+\mu H_y^2\right)\dd x\dd y.
+     120	\]
+     121	
+     122	\begin{task}[Check the electromagnetic energy derivative]
+     123	Using \eqref{eq:main-model} and the PEC boundary condition, verify that the Maxwell principal part cancels by integration by parts, and that
+     124	\[
+     125	\begin{aligned}
+     126	\frac{\dd}{\dd t}\Ecal_{\rm em}
+     127	=\int_\Om\Big[
+     128	&-\epsilon_\infty(\sx+\sy)E^2
+     129	-E\partial_tP
+     130	-\frac{\sx+\sy}{\epsilon_0}EP
+     131	+E(P_{z,1}+P_{z,2})\\
+     132	&-\frac{\mu}{\epsilon_0}(\sy-\sx)H_x^2
+     133	-\frac{\mu}{\epsilon_0}(\sx-\sy)H_y^2
+     134	+H_xQ_x+H_yQ_y
+     135	\Big]\dd x\dd y .
+     136	\end{aligned}
+     137	\label{eq:em-balance}
+     138	\]
+     139	The terms involving \(H_x,H_y\) are sign-indefinite when \(\sx\ne\sy\).  The terms involving \(P,P_{z,1},P_{z,2}\) are the electric/PML auxiliary coupling terms that must be absorbed by a refined energy.
+     140	\end{task}
+     141	
+     142	\section{The \texorpdfstring{\(\alpha=1\)}{alpha=1} Polarization Identity}
+     143	
+     144	For the non-fractional case \(\alpha=1\),
+     145	\[
+     146	  P+\tau\partial_tP=\chi E,
+     147	\]
+     148	so
+     149	\[
+     150	  E=\frac{P+\tau\partial_tP}{\chi}.
+     151	\]
+     152	This gives the useful identity
+     153	\begin{equation}
+     154	  E\,\partial_tP
+     155	  =\frac{1}{2\chi}\frac{\dd}{\dd t}\|P\|_{L^2(\Om)}^2
+     156	   +\frac{\tau}{\chi}\|\partial_tP\|_{L^2(\Om)}^2.
+     157	\label{eq:alpha-one-dissipation}
+     158	\end{equation}
+     159	
+     160	\begin{task}[Use the alpha=1 identity]
+     161	Use \eqref{eq:alpha-one-dissipation} to decide whether the energy
+     162	\[
+     163	  \Ecal_{\rm em+P}
+     164	  =\Ecal_{\rm em}+\frac{1}{2\chi}\|P\|_{L^2(\Om)}^2
+     165	\]
+     166	is the right starting point.  Then identify the remaining troublesome electric auxiliary terms:
+     167	\[
+     168	  -\frac{\sx+\sy}{\epsilon_0}EP,\qquad
+     169	  E P_{z,1},\qquad
+     170	  E P_{z,2},\qquad
+     171	  \partial_tP_{z,1},\qquad
+     172	  \partial_tP_{z,2}.
+     173	\]
+     174	Try to absorb them using cross terms, shifted variables, or time-integrated variables.
+     175	\end{task}
+     176	
+     177	\section{Magnetic Auxiliary Variable Shift}
+     178	
+     179	Define
+     180	\[
+     181	  a_x=\frac{\sy-\sx}{\epsilon_0},\qquad
+     182	  a_y=\frac{\sx-\sy}{\epsilon_0},\qquad
+     183	  b_x=\frac{\sx}{\epsilon_0},\qquad
+     184	  b_y=\frac{\sy}{\epsilon_0}.
+     185	\]
+     186	The magnetic equations and \(Q_x,Q_y\) equations suggest the shifted variables
+     187	\[
+     188	  M_x=Q_x-\mu a_xH_x,\qquad
+     189	  M_y=Q_y-\mu a_yH_y.
+     190	\]
+     191	
+     192	\begin{task}[Verify shifted magnetic identities]
+     193	Starting from \eqref{eq:main-model}, verify
+     194	\begin{equation}
+     195	\begin{aligned}
+     196	\partial_tM_x
+     197	&= a_x\,\partial_yE-\frac{\sy}{\epsilon_0}M_x,\\
+     198	\partial_tM_y
+     199	&= -a_y\,\partial_xE-\frac{\sx}{\epsilon_0}M_y.
+     200	\end{aligned}
+     201	\label{eq:magnetic-shift}
+     202	\end{equation}
+     203	Then test whether an energy written in terms of \(H_x,H_y,M_x,M_y\), rather than \(H_x,H_y,Q_x,Q_y\), has a cleaner dissipation structure.
+     204	\end{task}
+     205	
+     206	\begin{remark}
+     207	If \(\sx,\sy\) are spatially variable, \eqref{eq:magnetic-shift} itself does not produce \(\partial_t\sigma\) terms, because the coefficients are time-independent.  However, integrated energy identities may produce \(\partial_x\sx\), \(\partial_y\sy\), or general \(\nabla\sigma_i\) terms after integration by parts.  These terms are likely to be one source of bounded-but-not-monotone estimates.
+     208	\end{remark}
+     209	
+     210	\section{Electric PML Auxiliary Variables}
+     211	
+     212	The variables \(P_{z,1}\) and \(P_{z,2}\) satisfy
+     213	\[
+     214	  \partial_tP_{z,1}=-\frac{\epsilon_\infty}{\epsilon_0}\sx\sy E,\qquad
+     215	  \partial_tP_{z,2}=-\frac{\sx\sy}{\epsilon_0^2}P.
+
+[24] item.completed:command_execution
+  command: /bin/zsh -lc "nl -ba artifacts/proofs/alpha1_algebra_balance.md | sed -n '1,230p'"
+  status: completed
+  exit_code: 0
+       1	# Alpha=1 Algebra and First Energy Balance
+       2	
+       3	Task: `task-alpha1-algebra-energy-balance`
+       4	
+       5	Source: `sources/energy_functional_problem.tex`
+       6	
+       7	## Model and conventions
+       8	
+       9	For this artifact the polarization law is the non-fractional case
+      10	\[
+      11	P+\tau \partial_t P=\chi E,\qquad \chi=\epsilon_0(\epsilon_s-\epsilon_\infty)>0.
+      12	\]
+      13	The boundary condition is PEC for the two-dimensional TM model:
+      14	\[
+      15	E=E_z=0\quad\text{on }\partial\Omega.
+      16	\]
+      17	The absorption functions are time-independent and nonnegative.  No spatial derivatives of
+      18	\(\sigma_x,\sigma_y\) are used in this algebraic artifact.
+      19	
+      20	The model equations are exactly those displayed in the source:
+      21	\[
+      22	\begin{aligned}
+      23	\epsilon_0\epsilon_\infty E_t
+      24	&= \partial_xH_y-\partial_yH_x
+      25	   -\epsilon_\infty(\sigma_x+\sigma_y)E
+      26	   -P_t-\frac{\sigma_x+\sigma_y}{\epsilon_0}P
+      27	   +P_{z,1}+P_{z,2},\\
+      28	\mu H_{x,t}
+      29	&= -\partial_yE-\mu\frac{\sigma_y-\sigma_x}{\epsilon_0}H_x+Q_x,\\
+      30	\mu H_{y,t}
+      31	&= \partial_xE-\mu\frac{\sigma_x-\sigma_y}{\epsilon_0}H_y+Q_y,\\
+      32	P+\tau P_t&=\chi E,\\
+      33	P_{z,1,t}&=-\frac{\epsilon_\infty}{\epsilon_0}\sigma_x\sigma_y E,\\
+      34	P_{z,2,t}&=-\frac{\sigma_x\sigma_y}{\epsilon_0^2}P,\\
+      35	Q_{x,t}&=-\frac{\sigma_x}{\epsilon_0}Q_x
+      36	  +\frac{\mu\sigma_x(\sigma_y-\sigma_x)}{\epsilon_0^2}H_x,\\
+      37	Q_{y,t}&=-\frac{\sigma_y}{\epsilon_0}Q_y
+      38	  +\frac{\mu\sigma_y(\sigma_x-\sigma_y)}{\epsilon_0^2}H_y.
+      39	\end{aligned}
+      40	\]
+      41	
+      42	## PEC cancellation and electromagnetic balance
+      43	
+      44	Let
+      45	\[
+      46	\mathcal E_{\rm em}
+      47	=\frac12\int_\Omega
+      48	\left(\epsilon_0\epsilon_\infty E^2+\mu H_x^2+\mu H_y^2\right)\,dxdy .
+      49	\]
+      50	Multiplying the first three equations by \(E,H_x,H_y\) and integrating gives the
+      51	principal part
+      52	\[
+      53	\int_\Omega \left(E\partial_xH_y-E\partial_yH_x-H_x\partial_yE+H_y\partial_xE\right)\,dxdy
+      54	=\int_{\partial\Omega} E(H_y n_x-H_x n_y)\,ds=0,
+      55	\]
+      56	because \(E=0\) on \(\partial\Omega\).  Therefore
+      57	\[
+      58	\begin{aligned}
+      59	\frac{d}{dt}\mathcal E_{\rm em}
+      60	=\int_\Omega\Big[
+      61	&-\epsilon_\infty(\sigma_x+\sigma_y)E^2
+      62	-E P_t
+      63	-\frac{\sigma_x+\sigma_y}{\epsilon_0}EP
+      64	+E(P_{z,1}+P_{z,2})\\
+      65	&-\frac{\mu}{\epsilon_0}(\sigma_y-\sigma_x)H_x^2
+      66	-\frac{\mu}{\epsilon_0}(\sigma_x-\sigma_y)H_y^2
+      67	+H_xQ_x+H_yQ_y
+      68	\Big]\,dxdy .
+      69	\end{aligned}
+      70	\]
+      71	This agrees with the balance stated in the source.
+      72	
+      73	## Polarization energy for alpha=1
+      74	
+      75	The identity
+      76	\[
+      77	E=\frac{P+\tau P_t}{\chi}
+      78	\]
+      79	implies
+      80	\[
+      81	E P_t=\frac{1}{2\chi}\frac{d}{dt}\|P\|_{L^2(\Omega)}^2
+      82	+\frac{\tau}{\chi}\|P_t\|_{L^2(\Omega)}^2 .
+      83	\]
+      84	Thus the positive polarization-corrected energy
+      85	\[
+      86	\mathcal E_{\rm em+P}
+      87	=\mathcal E_{\rm em}+\frac{1}{2\chi}\|P\|_{L^2(\Omega)}^2
+      88	\]
+      89	satisfies
+      90	\[
+      91	\begin{aligned}
+      92	\frac{d}{dt}\mathcal E_{\rm em+P}
+      93	=\int_\Omega\Big[
+      94	&-\epsilon_\infty(\sigma_x+\sigma_y)E^2
+      95	-\frac{\tau}{\chi}P_t^2
+      96	-\frac{\sigma_x+\sigma_y}{\epsilon_0}EP
+      97	+E(P_{z,1}+P_{z,2})\\
+      98	&-\frac{\mu}{\epsilon_0}(\sigma_y-\sigma_x)H_x^2
+      99	-\frac{\mu}{\epsilon_0}(\sigma_x-\sigma_y)H_y^2
+     100	+H_xQ_x+H_yQ_y
+     101	\Big]\,dxdy .
+     102	\end{aligned}
+     103	\]
+     104	The alpha=1 polarization contribution is therefore positive and dissipative.  The
+     105	remaining electric PML terms are
+     106	\[
+     107	-\frac{\sigma_x+\sigma_y}{\epsilon_0}EP,\qquad EP_{z,1},\qquad EP_{z,2},
+     108	\]
+     109	coupled to
+     110	\[
+     111	P_{z,1,t}=-\frac{\epsilon_\infty}{\epsilon_0}\sigma_x\sigma_y E,
+     112	\qquad
+     113	P_{z,2,t}=-\frac{\sigma_x\sigma_y}{\epsilon_0^2}P.
+     114	\]
+     115	
+     116	## Shifted magnetic variables
+     117	
+     118	Define
+     119	\[
+     120	a_x=\frac{\sigma_y-\sigma_x}{\epsilon_0},\qquad
+     121	a_y=\frac{\sigma_x-\sigma_y}{\epsilon_0},\qquad
+     122	b_x=\frac{\sigma_x}{\epsilon_0},\qquad
+     123	b_y=\frac{\sigma_y}{\epsilon_0},
+     124	\]
+     125	and
+     126	\[
+     127	M_x=Q_x-\mu a_xH_x,\qquad M_y=Q_y-\mu a_yH_y.
+     128	\]
+     129	Then the \(H\)-equations become
+     130	\[
+     131	\mu H_{x,t}=-\partial_yE+M_x,\qquad
+     132	\mu H_{y,t}=\partial_xE+M_y.
+     133	\]
+     134	Using the \(Q\)-equations and the time-independence of the coefficients,
+     135	\[
+     136	\begin{aligned}
+     137	M_{x,t}
+     138	&=Q_{x,t}-\mu a_xH_{x,t}\\
+     139	&=-b_xQ_x+\mu b_xa_xH_x
+     140	   +a_x\partial_yE+\mu a_x^2H_x-a_xQ_x\\
+     141	&=a_x\partial_yE-b_y(Q_x-\mu a_xH_x)
+     142	=a_x\partial_yE-b_yM_x,
+     143	\end{aligned}
+     144	\]
+     145	because \(b_x+a_x=b_y\).  Similarly,
+     146	\[
+     147	M_{y,t}=-a_y\partial_xE-b_xM_y.
+     148	\]
+     149	This verifies the shifted identities
+     150	\[
+     151	M_{x,t}=a_x\partial_yE-\frac{\sigma_y}{\epsilon_0}M_x,\qquad
+     152	M_{y,t}=-a_y\partial_xE-\frac{\sigma_x}{\epsilon_0}M_y.
+     153	\]
+     154	
+     155	In the electromagnetic-plus-polarization balance, substituting
+     156	\[
+     157	Q_x=M_x+\mu a_xH_x,\qquad Q_y=M_y+\mu a_yH_y
+     158	\]
+     159	cancels the two sign-indefinite magnetic square terms exactly.  The shifted balance is
+     160	\[
+     161	\boxed{
+     162	\begin{aligned}
+     163	\frac{d}{dt}\mathcal E_{\rm em+P}
+     164	=\int_\Omega\Big[
+     165	&-\epsilon_\infty(\sigma_x+\sigma_y)E^2
+     166	-\frac{\tau}{\chi}P_t^2
+     167	-\frac{\sigma_x+\sigma_y}{\epsilon_0}EP
+     168	+E(P_{z,1}+P_{z,2})\\
+     169	&+H_xM_x+H_yM_y
+     170	\Big]\,dxdy .
+     171	\end{aligned}}
+     172	\]
+     173	The shift therefore removes the explicit magnetic sign-indefinite damping terms.  It
+     174	does not by itself give a monotone energy, since \(H_xM_x+H_yM_y\) remains an
+     175	uncontrolled coupling unless additional auxiliary energy or derivative structure is
+     176	introduced.
+
+[25] item.completed:agent_message
+  The source and proof equations match on the model, PEC boundary condition, electromagnetic balance, alpha=1 law, and shifted variable definitions. I’m doing one more pass for notation and algebraic consistency before deciding whether any imprecision rises to a verification gap.
+
+[26] item.started:command_execution
+  command: /bin/zsh -lc 'find verification -name verification.json -maxdepth 4 -type f -print'
+  status: in_progress
+  exit_code: None
+
+[27] item.completed:command_execution
+  command: /bin/zsh -lc 'find verification -name verification.json -maxdepth 4 -type f -print'
+  status: completed
+  exit_code: 0
+
+[28] item.started:command_execution
+  command: /bin/zsh -lc 'ls -la verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag'
+  status: in_progress
+  exit_code: None
+
+[29] item.completed:command_execution
+  command: /bin/zsh -lc 'ls -la verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag'
+  status: completed
+  exit_code: 0
+  total 304
+  drwxr-xr-x@ 7 wcli  staff    224 Jun 20 02:05 .
+  drwxr-xr-x@ 3 wcli  staff     96 Jun 20 02:05 ..
+  -rw-r--r--@ 1 wcli  staff  81972 Jun 20 02:08 codex.events.jsonl
+  -rw-r--r--@ 1 wcli  staff    770 Jun 20 02:05 codex.log
+  -rw-r--r--@ 1 wcli  staff      0 Jun 20 02:05 codex.stderr.log
+  -rw-r--r--@ 1 wcli  staff  10868 Jun 20 02:05 prompt.md
+  -rw-------@ 1 wcli  staff   1236 Jun 20 02:05 request.json
+
+[30] item.started:command_execution
+  command: /bin/zsh -lc 'rg -n "verdict|critical_errors|gaps|Alpha=1|alpha1" verification memory/facts artifacts/proofs -S'
+  status: in_progress
+  exit_code: None
+
+[31] item.completed:command_execution
+  command: /bin/zsh -lc 'rg -n "verdict|critical_errors|gaps|Alpha=1|alpha1" verification memory/facts artifacts/proofs -S'
+  status: completed
+  exit_code: 0
+  verification/results/verify-20260619T173930697319Z-source-the-bootstrap-run-correctly-extra.json:6:  "verdict": "accepted",
+  verification/results/verify-20260619T173930697319Z-source-the-bootstrap-run-correctly-extra.json:8:  "strict_verdict": "correct",
+  verification/results/verify-20260619T173930697319Z-source-the-bootstrap-run-correctly-extra.json:10:  "critical_errors": [],
+  verification/results/verify-20260619T173930697319Z-source-the-bootstrap-run-correctly-extra.json:11:  "gaps": [],
+  memory/facts/FRONTIER_INDEX.json:74:  "completion_gaps": [],
+  artifacts/proofs/alpha1_algebra_balance.md:1:# Alpha=1 Algebra and First Energy Balance
+  artifacts/proofs/alpha1_algebra_balance.md:3:Task: `task-alpha1-algebra-energy-balance`
+  artifacts/proofs/alpha1_algebra_balance_manifest.json:3:  "task_id": "task-alpha1-algebra-energy-balance",
+  artifacts/proofs/alpha1_algebra_balance_manifest.json:7:    "artifacts/proofs/alpha1_algebra_balance.md"
+  memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md:2:fact_id: fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance
+  memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md:5:source_task: task-alpha1-algebra-energy-balance
+  memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md:12:claim_summary: "Alpha=1 PEC balance and shifted magnetic identities are valid for the source Maxwell-PML system."
+  memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md:18:For the source 2D TM Maxwell-PML system with alpha=1 polarization law P + tau P_t = chi E and PEC boundary condition E=0 on dOmega, multiplying the first three equations by E,H_x,H_y and integrating gives the electromagnetic balance displayed in the source: the principal Maxwell contribution is the boundary flux integral int_dOmega E(H_y n_x - H_x n_y) ds and vanishes under PEC. The alpha=1 identity E P_t = (1/(2 chi)) d_t ||P||_2^2 + (tau/chi)||P_t||_2^2 makes E_em + (1/(2 chi))||P||_2^2 positive and adds dissipation (tau/chi)||P_t||_2^2. With a_x=(sigma_y-sigma_x)/epsilon_0, a_y=(sigma_x-sigma_y)/epsilon_0, b_x=sigma_x/epsilon_0, b_y=sigma_y/epsilon_0, and M_x=Q_x-mu a_x H_x, M_y=Q_y-mu a_y H_y, the shifted equations are mu H_{x,t}=-partial_y E+M_x, mu H_{y,t}=partial_x E+M_y, M_{x,t}=a_x partial_y E-b_y M_x, and M_{y,t}=-a_y partial_x E-b_x M_y. Substituting Q_x=M_x+mu a_x H_x and Q_y=M_y+mu a_y H_y cancels the sign-indefinite magnetic square terms in the E_em+P balance and leaves the magnetic coupling H_x M_x+H_y M_y. Detailed derivation is in artifacts/proofs/alpha1_algebra_balance.md.
+  memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md:22:Produced by inline algebra verification; artifact indexed at artifacts/proofs/alpha1_algebra_balance.md.
+  memory/facts/FACT_INDEX.jsonl:1:{"claim_policy": "stable_claim", "claim_summary": "Alpha=1 PEC balance and shifted magnetic identities are valid for the source Maxwell-PML system.", "fact_id": "fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance", "fact_type": "energy_identity", "origin_fact_id": "fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance", "path": "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md", "predecessors": ["fact:2d_maxwell_pml_energy_functional_exploration:run-20260619T173930696222Z:source-problem"], "project_id": "2d_maxwell_pml_energy_functional_exploration", "review_level": "none", "schema_version": "iteris.fact_index_line.v0", "source_project": "2d_maxwell_pml_energy_functional_exploration", "source_task": "task-alpha1-algebra-energy-balance", "status": "submitted", "updated_at": "2026-06-19T18:05:07.278320Z", "verification": null}
+  verification/VERIFICATION_INDEX.jsonl:1:{"schema_version":"iteris.verification_result.v0","request_id":"verify-20260619T173930697319Z-source-the-bootstrap-run-correctly-extra","mode":"source","claim":"The bootstrap run correctly extracted and recorded the source problem for first-stage planning.","verdict":"accepted","passed":true,"strict_verdict":"correct","summary":"Accepted source claim at structural precheck scope: The bootstrap run correctly extracted and recorded the source problem for first-stage planning.","critical_errors":[],"gaps":[],"repair_hints":[],"checked_artifacts":["artifacts/runs/run-20260619T173930696222Z/exploration.md","memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-run-20260619T173930696222Z-source-problem.md"],"checked_fact_ids":[],"primary_fact_ids":[],"target_artifact":null,"verification_scope":"structural_precheck","claim_ceiling_after_verification":"reviewed","created_at":"2026-06-19T17:39:30.697402Z","verifier":"iteris.structural_precheck"}
+  verification/requests/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json:7:  "claim": "Alpha=1 PEC balance and shifted magnetic identities are valid for the source Maxwell-PML system.",
+  verification/requests/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json:9:    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md",
+  verification/requests/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json:10:    "artifacts/proofs/alpha1_algebra_balance.md"
+  verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/request.json:7:  "claim": "Alpha=1 PEC balance and shifted magnetic identities are valid for the source Maxwell-PML system.",
+  verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/request.json:9:    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md",
+  verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/request.json:10:    "artifacts/proofs/alpha1_algebra_balance.md"
+  verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/prompt.md:90:  carry an explicit verdict — a proof or a precisely-witnessed obstruction —
+  verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/prompt.md:91:  plus a synthesis verdict; a single positive result with unaddressed routes
+  verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/prompt.md:137:  the cited artifacts at the appropriate scope and report all gaps.
+  verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/prompt.md:145:    "critical_errors": [
+  verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/prompt.md:148:    "gaps": [
+  verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/prompt.md:152:  "verdict": "correct",
+  verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/prompt.md:159:Use `verdict: "correct"` if and only if there are no critical errors and no
+  verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/prompt.md:160:gaps. Otherwise use `verdict: "wrong"` and provide concrete repair hints.
+  verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/codex.events.jsonl:8:{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"I’ll read the verification request and the cited artifacts first, then check the mathematical dependencies in the order the fact relies on them. After that I’ll write the required `verification.json` with a concrete verdict."}}
+  verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/codex.events.jsonl:10:{"type":"item.completed","item":{"id":"item_2","type":"command_execution","command":"/bin/zsh -lc \"sed -n '1,240p' verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/request.json\"","aggregated_output":"{\n  \"schema_version\": \"iteris.verification_request.v0\",\n  \"request_id\": \"verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag\",\n  \"backend\": \"agent\",\n  \"executor\": \"codex\",\n  \"mode\": \"fact\",\n  \"claim\": \"Alpha=1 PEC balance and shifted magnetic identities are valid for the source Maxwell-PML system.\",\n  \"artifacts\": [\n    \"memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md\",\n    \"artifacts/proofs/alpha1_algebra_balance.md\"\n  ],\n  \"fact_ids\": [],\n  \"target_artifact\": null,\n  \"created_at\": \"2026-06-19T18:05:14.214689Z\",\n  \"prompt_path\": \"verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/prompt.md\",\n  \"codex_log\": \"verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/codex.log\",\n  \"codex_events\": \"verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/codex.events.jsonl\",\n  \"codex_stderr\": \"verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/codex.stderr.log\",\n  \"codex_log_manifest\": \"verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/log_manifest.json\"\n}\n","exit_code":0,"status":"completed"}}
+  verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/codex.events.jsonl:12:{"type":"item.started","item":{"id":"item_4","type":"command_execution","command":"/bin/zsh -lc \"sed -n '1,260p' memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md\"","aggregated_output":"","exit_code":null,"status":"in_progress"}}
+  verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/codex.events.jsonl:13:{"type":"item.completed","item":{"id":"item_4","type":"command_execution","command":"/bin/zsh -lc \"sed -n '1,260p' memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md\"","aggregated_output":"---\nfact_id: fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance\nproblem_id: 2d_maxwell_pml_energy_functional_exploration\nsource_project: 2d_maxwell_pml_energy_functional_exploration\nsource_task: task-alpha1-algebra-energy-balance\npredecessors:\n  - fact:2d_maxwell_pml_energy_functional_exploration:run-20260619T173930696222Z:source-problem\nstatus: submitted\nfact_type: energy_identity\nreview_level: none\nclaim_policy: stable_claim\nclaim_summary: \"Alpha=1 PEC balance and shifted magnetic identities are valid for the source Maxwell-PML system.\"\nverification: null\n---\n\n## statement\n\nFor the source 2D TM Maxwell-PML system with alpha=1 polarization law P + tau P_t = chi E and PEC boundary condition E=0 on dOmega, multiplying the first three equations by E,H_x,H_y and integrating gives the electromagnetic balance displayed in the source: the principal Maxwell contribution is the boundary flux integral int_dOmega E(H_y n_x - H_x n_y) ds and vanishes under PEC. The alpha=1 identity E P_t = (1/(2 chi)) d_t ||P||_2^2 + (tau/chi)||P_t||_2^2 makes E_em + (1/(2 chi))||P||_2^2 positive and adds dissipation (tau/chi)||P_t||_2^2. With a_x=(sigma_y-sigma_x)/epsilon_0, a_y=(sigma_x-sigma_y)/epsilon_0, b_x=sigma_x/epsilon_0, b_y=sigma_y/epsilon_0, and M_x=Q_x-mu a_x H_x, M_y=Q_y-mu a_y H_y, the shifted equations are mu H_{x,t}=-partial_y E+M_x, mu H_{y,t}=partial_x E+M_y, M_{x,t}=a_x partial_y E-b_y M_x, and M_{y,t}=-a_y partial_x E-b_x M_y. Substituting Q_x=M_x+mu a_x H_x and Q_y=M_y+mu a_y H_y cancels the sign-indefinite magnetic square terms in the E_em+P balance and leaves the magnetic coupling H_x M_x+H_y M_y. Detailed derivation is in artifacts/proofs/alpha1_algebra_balance.md.\n\n## notes\n\nProduced by inline algebra verification; artifact indexed at artifacts/proofs/alpha1_algebra_balance.md.\n","exit_code":0,"
+  ...[truncated 65968 chars; see raw codex.events.jsonl]
+
+[32] item.completed:agent_message
+  I found no load-bearing external theorem: this is an internal algebra check against the source system. I’m writing the verification result now, marking the minor norm notation as the standard integrated \(L^2\) reading used by the subsequent balance rather than a substantive gap.
+
+[33] item.started:file_change
+  status: in_progress
+  [{"path":"/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/verification.json","kind":"add"}]
+
+[34] item.completed:file_change
+  status: completed
+  [{"path":"/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/verification.json","kind":"add"}]
+
+[35] item.completed:agent_message
+  The result file is in place. I’ll run a quick JSON parse check so the verifier output is syntactically usable.
+
+[36] item.started:command_execution
+  command: /bin/zsh -lc "jq . verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/verification.json >/dev/null && printf 'valid json\\n'"
+  status: in_progress
+  exit_code: None
+
+[37] item.completed:command_execution
+  command: /bin/zsh -lc "jq . verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/verification.json >/dev/null && printf 'valid json\\n'"
+  status: completed
+  exit_code: 0
+  valid json
+
+[38] item.completed:agent_message
+  Wrote the verification result to:
+  
+  [verification.json](/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/verification.json)
+  
+  Verdict: `correct`.
+  
+  I also validated the file with `jq`; it parses as valid JSON.
+
+[39] turn.completed
+  {"input_tokens":257143,"cached_input_tokens":212608,"output_tokens":4394,"reasoning_output_tokens":2446}
