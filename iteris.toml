@@ -1,0 +1,5 @@
+[project]
+id = "2d_maxwell_pml_energy_functional_exploration"
+title = "2D_Maxwell_PML_Energy_Functional_Exploration"
+created_at = "2026-06-19T17:39:30.692991Z"
+source_file = "sources/energy_functional_problem.tex"

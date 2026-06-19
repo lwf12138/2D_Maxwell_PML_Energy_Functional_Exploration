@@ -1,0 +1,43 @@
+{
+  "schema_version": "iteris.bootstrap_run_summary.v0",
+  "run_id": "run-20260619T173930696222Z",
+  "source": "sources/energy_functional_problem.tex",
+  "task": {
+    "schema_version": "iteris.task.v0",
+    "task_id": "task-initial-source-exploration-run-20260619t173930696222z",
+    "title": "initial-source-exploration-run-20260619T173930696222Z",
+    "category": "foundation",
+    "objective": "Extract the source problem, create first memory records, and submit a structural verification claim.",
+    "claim_ceiling": "submitted",
+    "status": "done",
+    "verification_required": true,
+    "created_at": "2026-06-19T17:39:30.696272Z"
+  },
+  "fact_path": "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-run-20260619T173930696222Z-source-problem.md",
+  "fact_index_records": 1,
+  "verification": {
+    "schema_version": "iteris.verification_result.v0",
+    "request_id": "verify-20260619T173930697319Z-source-the-bootstrap-run-correctly-extra",
+    "mode": "source",
+    "claim": "The bootstrap run correctly extracted and recorded the source problem for first-stage planning.",
+    "verdict": "accepted",
+    "passed": true,
+    "strict_verdict": "correct",
+    "summary": "Accepted source claim at structural precheck scope: The bootstrap run correctly extracted and recorded the source problem for first-stage planning.",
+    "critical_errors": [],
+    "gaps": [],
+    "repair_hints": [],
+    "checked_artifacts": [
+      "artifacts/runs/run-20260619T173930696222Z/exploration.md",
+      "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-run-20260619T173930696222Z-source-problem.md"
+    ],
+    "checked_fact_ids": [],
+    "primary_fact_ids": [],
+    "target_artifact": null,
+    "verification_scope": "structural_precheck",
+    "claim_ceiling_after_verification": "reviewed",
+    "created_at": "2026-06-19T17:39:30.697402Z",
+    "verifier": "iteris.structural_precheck"
+  },
+  "created_at": "2026-06-19T17:39:30.698238Z"
+}

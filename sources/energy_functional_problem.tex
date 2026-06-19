@@ -1,0 +1,330 @@
+\documentclass[UTF8,a4paper,12pt]{ctexart}
+\input{macros}
+
+\title{Problem Sheet for Iteris: Energy Functionals for 2D Maxwell--PML}
+\author{Prepared source problem}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This note is a self-contained source problem for an Iteris run.  The system to be analyzed is the two-dimensional TM Maxwell--PML model with polarization \(P\), PML auxiliary variables \(P_{z,1},P_{z,2},Q_x,Q_y\), and perfectly conducting boundary condition.  The first target is to find a genuinely monotone decreasing energy functional in two space dimensions.  If such a monotone energy cannot be found, the fallback target is to find a positive energy functional that proves boundedness/no abnormal long-time growth, in the same spirit as the long-time-stability role of MPML.  The non-fractional case should be understood as the special case \(\alpha=1\) of the displayed polarization law.
+\end{abstract}
+
+\section{Primary Goal}
+
+Let \(\Om\subset\R^2\) be a rectangular computational domain containing a physical region and a PML layer.  The absorption parameters are
+\[
+  \sx=\sx(x)\ge0,\qquad \sy=\sy(y)\ge0,
+\]
+or, in a harder variant,
+\[
+  \sx=\sx(x,y)\ge0,\qquad \sy=\sy(x,y)\ge0.
+\]
+The main goal is to analyze the two-dimensional system in Section~\ref{sec:model} and construct an energy functional \(\Ecal(t)\).
+
+\begin{enumerate}
+\item \textbf{Strong target: monotone decreasing energy.}
+Find a positive energy functional such that
+\[
+  \frac{\dd}{\dd t}\Ecal(t)=-\Dcal(t)\le0.
+\]
+This is the preferred outcome.
+\item \textbf{Fallback target: bounded/non-growing energy.}
+If no monotone energy can be found, find a positive energy functional that rules out abnormal growth from the PML layer, for example
+\[
+  \Ecal(t)\le C\,\Ecal(0)
+\]
+with \(C\) independent of long time if possible.  If only a Gronwall estimate
+\[
+  \frac{\dd}{\dd t}\Ecal(t)\le C_\sigma\Ecal(t)
+\]
+is available, identify the precise terms responsible for the possible growth and whether they are coefficient-gradient terms, corner-PML terms, or algebraic sign-indefinite terms.
+\item \textbf{Useful obstruction.}
+If the strong target fails for natural quadratic energies, prove or at least sharply identify the obstruction.  An obstruction result is valuable if it explains which part of the PML coupling prevents monotonicity.
+\end{enumerate}
+
+The energy may include weighted \(L^2\) norms, cross terms, shifted variables, time-integrated auxiliary variables, polarization energy, fractional-memory energy, and derivative terms if they are mathematically justified.
+
+\section{Model to Analyze}
+\label{sec:model}
+
+The model is the system shown in the supplied manuscript image.  Write
+\[
+  E=E_z,\qquad \epsilon_\infty=\epsilon_{r,\infty},\qquad
+  \epsilon_s=\epsilon_{r,s},\qquad \mu=\mu_0\mu_r,
+\]
+and
+\[
+  \chi=\epsilon_0(\epsilon_s-\epsilon_\infty).
+\]
+The unknowns are
+\[
+  E,\quad H_x,\quad H_y,\quad P,\quad P_{z,1},\quad P_{z,2},\quad Q_x,\quad Q_y.
+\]
+The PML system is
+\begin{equation}
+\begin{aligned}
+\epsilon_0\epsilon_\infty\,\partial_t E
+&= \partial_xH_y-\partial_yH_x
+   -\epsilon_\infty(\sx+\sy)E
+   -\partial_tP-\frac{\sx+\sy}{\epsilon_0}P
+   +P_{z,1}+P_{z,2},\\
+\mu\,\partial_tH_x
+&= -\partial_yE-\mu\frac{\sy-\sx}{\epsilon_0}H_x+Q_x,\\
+\mu\,\partial_tH_y
+&= \partial_xE-\mu\frac{\sx-\sy}{\epsilon_0}H_y+Q_y,\\
+P+\tau^\alpha\partial_t^\alpha P
+&=\chi E,\\
+\partial_tP_{z,1}
+&=-\frac{\epsilon_\infty}{\epsilon_0}\sx\sy E,\\
+\partial_tP_{z,2}
+&=-\frac{\sx\sy}{\epsilon_0^2}P,\\
+\partial_tQ_x
+&=-\frac{\sx}{\epsilon_0}Q_x
+  +\frac{\mu\sx(\sy-\sx)}{\epsilon_0^2}H_x,\\
+\partial_tQ_y
+&=-\frac{\sy}{\epsilon_0}Q_y
+  +\frac{\mu\sy(\sx-\sy)}{\epsilon_0^2}H_y.
+\end{aligned}
+\label{eq:main-model}
+\end{equation}
+Here \(\partial_t^\alpha\) should be interpreted as a Caputo-type fractional derivative when \(0<\alpha<1\).  The non-fractional case requested by the user is the case
+\[
+  \alpha=1,\qquad
+  P+\tau\partial_tP=\chi E.
+\]
+Thus the first stage of the analysis should use \(\alpha=1\), not a model with \(P\) removed.
+
+The boundary condition is the perfectly conducting boundary condition
+\[
+  \widehat n\times E=0\qquad\text{on }\partial\Om.
+\]
+For the two-dimensional TM model this should be interpreted as
+\[
+  E=E_z=0\qquad\text{on }\partial\Om,
+\]
+so that the Maxwell principal part has no positive boundary contribution.  If a proof uses a different boundary condition, it must state that choice explicitly.
+
+\begin{remark}
+The parameters \(\epsilon_0,\epsilon_\infty,\epsilon_s,\mu,\tau\) are positive, and \(\chi>0\) when \(\epsilon_s>\epsilon_\infty\).  The absorption parameters are time-independent and nonnegative.  The first serious cases to analyze are constant \(\sx,\sy\), then separated variable coefficients \(\sx(x),\sy(y)\), and only then general \(\sx(x,y),\sy(x,y)\).
+\end{remark}
+
+\section{First Energy Balance to Verify}
+
+Start with the electromagnetic part
+\[
+  \Ecal_{\rm em}(t)=\frac12\int_\Om
+  \left(\epsilon_0\epsilon_\infty E^2+\mu H_x^2+\mu H_y^2\right)\dd x\dd y.
+\]
+
+\begin{task}[Check the electromagnetic energy derivative]
+Using \eqref{eq:main-model} and the PEC boundary condition, verify that the Maxwell principal part cancels by integration by parts, and that
+\[
+\begin{aligned}
+\frac{\dd}{\dd t}\Ecal_{\rm em}
+=\int_\Om\Big[
+&-\epsilon_\infty(\sx+\sy)E^2
+-E\partial_tP
+-\frac{\sx+\sy}{\epsilon_0}EP
++E(P_{z,1}+P_{z,2})\\
+&-\frac{\mu}{\epsilon_0}(\sy-\sx)H_x^2
+-\frac{\mu}{\epsilon_0}(\sx-\sy)H_y^2
++H_xQ_x+H_yQ_y
+\Big]\dd x\dd y .
+\end{aligned}
+\label{eq:em-balance}
+\]
+The terms involving \(H_x,H_y\) are sign-indefinite when \(\sx\ne\sy\).  The terms involving \(P,P_{z,1},P_{z,2}\) are the electric/PML auxiliary coupling terms that must be absorbed by a refined energy.
+\end{task}
+
+\section{The \texorpdfstring{\(\alpha=1\)}{alpha=1} Polarization Identity}
+
+For the non-fractional case \(\alpha=1\),
+\[
+  P+\tau\partial_tP=\chi E,
+\]
+so
+\[
+  E=\frac{P+\tau\partial_tP}{\chi}.
+\]
+This gives the useful identity
+\begin{equation}
+  E\,\partial_tP
+  =\frac{1}{2\chi}\frac{\dd}{\dd t}\|P\|_{L^2(\Om)}^2
+   +\frac{\tau}{\chi}\|\partial_tP\|_{L^2(\Om)}^2.
+\label{eq:alpha-one-dissipation}
+\end{equation}
+
+\begin{task}[Use the alpha=1 identity]
+Use \eqref{eq:alpha-one-dissipation} to decide whether the energy
+\[
+  \Ecal_{\rm em+P}
+  =\Ecal_{\rm em}+\frac{1}{2\chi}\|P\|_{L^2(\Om)}^2
+\]
+is the right starting point.  Then identify the remaining troublesome electric auxiliary terms:
+\[
+  -\frac{\sx+\sy}{\epsilon_0}EP,\qquad
+  E P_{z,1},\qquad
+  E P_{z,2},\qquad
+  \partial_tP_{z,1},\qquad
+  \partial_tP_{z,2}.
+\]
+Try to absorb them using cross terms, shifted variables, or time-integrated variables.
+\end{task}
+
+\section{Magnetic Auxiliary Variable Shift}
+
+Define
+\[
+  a_x=\frac{\sy-\sx}{\epsilon_0},\qquad
+  a_y=\frac{\sx-\sy}{\epsilon_0},\qquad
+  b_x=\frac{\sx}{\epsilon_0},\qquad
+  b_y=\frac{\sy}{\epsilon_0}.
+\]
+The magnetic equations and \(Q_x,Q_y\) equations suggest the shifted variables
+\[
+  M_x=Q_x-\mu a_xH_x,\qquad
+  M_y=Q_y-\mu a_yH_y.
+\]
+
+\begin{task}[Verify shifted magnetic identities]
+Starting from \eqref{eq:main-model}, verify
+\begin{equation}
+\begin{aligned}
+\partial_tM_x
+&= a_x\,\partial_yE-\frac{\sy}{\epsilon_0}M_x,\\
+\partial_tM_y
+&= -a_y\,\partial_xE-\frac{\sx}{\epsilon_0}M_y.
+\end{aligned}
+\label{eq:magnetic-shift}
+\end{equation}
+Then test whether an energy written in terms of \(H_x,H_y,M_x,M_y\), rather than \(H_x,H_y,Q_x,Q_y\), has a cleaner dissipation structure.
+\end{task}
+
+\begin{remark}
+If \(\sx,\sy\) are spatially variable, \eqref{eq:magnetic-shift} itself does not produce \(\partial_t\sigma\) terms, because the coefficients are time-independent.  However, integrated energy identities may produce \(\partial_x\sx\), \(\partial_y\sy\), or general \(\nabla\sigma_i\) terms after integration by parts.  These terms are likely to be one source of bounded-but-not-monotone estimates.
+\end{remark}
+
+\section{Electric PML Auxiliary Variables}
+
+The variables \(P_{z,1}\) and \(P_{z,2}\) satisfy
+\[
+  \partial_tP_{z,1}=-\frac{\epsilon_\infty}{\epsilon_0}\sx\sy E,\qquad
+  \partial_tP_{z,2}=-\frac{\sx\sy}{\epsilon_0^2}P.
+\]
+They appear in the \(E\)-equation as \(E(P_{z,1}+P_{z,2})\).  This resembles the need for time-integrated or cross-term energies in PML analyses.
+
+\begin{task}[Handle Pz1 and Pz2]
+Try the following routes:
+\begin{enumerate}
+\item define time-integrated variables
+\[
+  R_1(t)=\int_0^tP_{z,1}(s)\dd s,\qquad
+  R_2(t)=\int_0^tP_{z,2}(s)\dd s;
+\]
+\item add cross terms such as \((E,P_{z,1})\), \((P,P_{z,2})\), or weighted combinations;
+\item freeze \(\sx,\sy\) as constants and solve the pointwise Lyapunov matrix problem for the electric subsystem \((E,P,P_{z,1},P_{z,2})\);
+\item identify whether the corner factor \(\sx\sy\) is the essential obstruction.
+\end{enumerate}
+\end{task}
+
+\section{Baffet-Type Energy Design Clue}
+
+Baffet--Grote--Imperiale--Kachanovska proved monotone energy decay for a second-order wave-equation PML with constant damping coefficients\cite{baffetGroteImperialeKachanovska2019}.  Their main lesson is methodological: do not start from the naive energy alone.  In two dimensions they introduce
+\[
+  \lambda=\nabla u+\phi,\qquad
+  a=\operatorname{tr}\Gamma_1,\qquad
+  b=\det\Gamma_1,
+\]
+and use an energy of the form
+\[
+  E[u,\phi]=\frac12\left(
+  \|\partial_tu+a u\|^2+\|\nabla u+\phi\|^2
+  +\|\phi\|^2_{a^{-1}\Gamma_1}+\|u\|^2_b\right).
+\]
+In three dimensions they further introduce time-integrated auxiliary variables \(\Phi,\Psi\) and a shifted variable \(q\).
+
+\begin{task}[Translate the Baffet idea to \eqref{eq:main-model}]
+Look for Maxwell--PML analogues of the following structures:
+\begin{itemize}
+\item shifted field variables analogous to \(\partial_tu+a u\);
+\item combinations of principal variables and PML auxiliaries analogous to \(\nabla u+\phi\);
+\item time-integrated variables such as \(\int_0^tP_{z,1}\dd s\), \(\int_0^tP_{z,2}\dd s\), \(\int_0^tQ_x\dd s\), \(\int_0^tQ_y\dd s\);
+\item cross terms that turn \(E P_{z,1}\), \(E P_{z,2}\), \(H_xQ_x\), \(H_yQ_y\) into exact time derivatives plus nonpositive remainders.
+\end{itemize}
+Any candidate energy must be checked for positive definiteness and boundary contributions.
+\end{task}
+
+\section{Pointwise Lyapunov Matrix Route}
+
+For the \(\alpha=1\) case and constant \(\sx,\sy\), use
+\[
+  \partial_tP=\frac{\chi E-P}{\tau}
+\]
+to rewrite \eqref{eq:main-model} as a first-order system for
+\[
+  U=(E,H_x,H_y,P,P_{z,1},P_{z,2},Q_x,Q_y)^T.
+\]
+After Fourier transform in space,
+\[
+  \partial_t\widehat U=A(\sx,\sy,k_x,k_y)\widehat U.
+\]
+Search for a Hermitian positive matrix \(G\) such that
+\[
+  G A + A^*G\le0.
+\]
+If such a \(G\) is independent of \(k\), it suggests a local \(L^2\) energy.  If \(G\) depends polynomially on \(k\), it suggests derivative energies.  If no positive \(G\) exists in a natural class, record the obstruction.
+
+\begin{task}[Algebraic feasibility test]
+Perform the pointwise Lyapunov search in the following order:
+\begin{enumerate}
+\item no PML: \(\sx=\sy=0\);
+\item edge PML: \(\sx>0,\sy=0\);
+\item edge PML: \(\sx=0,\sy>0\);
+\item symmetric corner: \(\sx=\sy>0\);
+\item asymmetric corner: \(\sx>0,\sy>0,\sx\ne\sy\).
+\end{enumerate}
+For each case, record whether there is an explicit positive quadratic energy, whether it is monotone, and whether the shifted variables \(M_x,M_y\) or integrated variables improve the result.
+\end{task}
+
+\section{Fractional Case \texorpdfstring{\(0<\alpha<1\)}{0<alpha<1}}
+
+The first stage should analyze \(\alpha=1\).  Only after the \(\alpha=1\) mechanism is understood should the fractional case be considered.  For \(0<\alpha<1\), the equation
+\[
+  P+\tau^\alpha\partial_t^\alpha P=\chi E
+\]
+requires fractional-memory tools.  A possible route is to use a diffusive representation or complete monotonicity to produce a positive memory energy.
+
+\begin{task}[Fractional memory extension]
+Assuming the \(\alpha=1\) energy has been found or its obstruction understood, determine whether the fractional polarization can be added as a positive memory energy.  Do not assume the correct memory weight; derive it from the Cole--Cole law.  If the fractional part is not needed for the current goal, explicitly postpone it and keep the main theorem for \(\alpha=1\).
+\end{task}
+
+\section{Deliverables Requested from Iteris}
+
+An Iteris run should aim to produce one of the following terminal artifacts.
+
+\begin{enumerate}
+\item A proved monotone energy identity for \eqref{eq:main-model} with \(\alpha=1\), under clearly stated assumptions.
+\item A proved bounded-energy or no-abnormal-growth estimate for \eqref{eq:main-model} with \(\alpha=1\), if monotonicity is unavailable.
+\item A verified obstruction showing why a natural class of quadratic energies cannot be monotone for the full two-dimensional corner PML.
+\item A staged result: edge PML solved, corner PML reduced to a finite-dimensional Lyapunov condition, fractional \(0<\alpha<1\) case postponed with precise reason.
+\end{enumerate}
+
+Every result should state:
+\begin{itemize}
+\item exact model equations used;
+\item whether \(\alpha=1\) or \(0<\alpha<1\);
+\item boundary assumptions, especially how PEC is used;
+\item assumptions on \(\sx,\sy\);
+\item proposed energy functional;
+\item proof of positivity or explanation of why positivity fails;
+\item exact energy identity or inequality;
+\item whether the result is monotone, bounded without abnormal growth, Gronwall-type, or an obstruction result.
+\end{itemize}
+
+\bibliographystyle{plainurl}
+\bibliography{../references/references}
+
+\end{document}
