@@ -1,0 +1,42 @@
+{
+  "verification_report": {
+    "summary": "Goal-success check passed. Scope/quantifier check: the source stage-3 goal is a multi-part research contract for the 2D Maxwell-PML alpha=1 Maxwell-Debye regime, not a universal optimality theorem. It asks to test the v2 model against all planar outgoing modes in the constant-coefficient interface matching test; if it fails, identify the formula-level mismatch, propose repaired PML models, give an energy identity or obstruction for the accepted repair, address the old eight-variable model and fractional status, and include the required literature record. The terminal report satisfies that scope: it proves the v2 squared-admittance mismatch, gives standard stretched-coordinate/CFS/MPML/Baffet-type repair classifications, supplies a verified full 2D constant-coefficient Baffet-primitive dissipative identity for the exact stretched-coordinate Maxwell-Debye PML, preserves the correct non-strict/nullspace qualification, records the old edge obstruction and fractional limitation, and includes the requested reading table. It does not overclaim variable-coefficient monotonicity or whole-domain strict decay.",
+    "critical_errors": [],
+    "gaps": []
+  },
+  "verdict": "correct",
+  "repair_hints": "No repair needed. Preserve the stated scope: the Baffet-Debye monotone identity is verified for constant-coefficient PML blocks with zero/nonpositive boundary flux or canceling transmission flux; variable damping profiles and fractional positive-memory theorems remain future work and are not claimed as solved.",
+  "checked_artifacts": [
+    "verification/agent_runs/verify-20260620T141636842186Z-goal_success-read-.iteris-goal_prompt.tx/request.json",
+    ".iteris/goal_prompt.txt",
+    "sources/energy_functional_problem.tex",
+    "results/energy_functional_report_verified.md",
+    "results/energy_design_v2_report_verified.md",
+    "results/energy_design_v3_perfect_matching_report.md",
+    "artifacts/proofs/stage3_v2_perfect_matching_test.md",
+    "artifacts/proofs/stage3_repaired_model_energy.md",
+    "artifacts/proofs/stage3_baffet_debye_2d_energy.md",
+    "artifacts/references/stage3_literature_reading_record.md",
+    "verification/results/verify-20260620T073403963252Z-assembly-updated-stage-3-terminal-report.json",
+    "verification/results/verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa.json",
+    "verification/results/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d.json",
+    "verification/results/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m.json",
+    "verification/results/verify-20260620T065326237995Z-fact-the-standard-stretched-coordinate-m.json",
+    "verification/results/verify-20260620T065810059861Z-fact-strict-decay-of-total-electromagnet.json",
+    "references/processed/Joly - 2012 - An elementary introduction to the construction and the analysis of perfectly matched layers for time.txt",
+    "references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt",
+    "references/processed/Xie 等 - 2023 - Multi-axial unsplit frequency-shifted perfectly matched layer for displacement-based anisotropic wav.txt"
+  ],
+  "checked_fact_ids": [
+    "fact:2d_maxwell_pml_energy_functional_exploration:v2-covariant-model-not-perfectly-matched",
+    "fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:stretched-coordinate-debye-pml-matching-and-energy-gap",
+    "fact:2d_maxwell_pml_energy_functional_exploration:whole-domain-strict-decay-nullspace-obstruction",
+    "fact:2d_maxwell_pml_energy_functional_exploration:baffet-primitive-stretched-debye-2d-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:covariantly-damped-debye-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:edge-pml-linear-obstruction",
+    "fact:2d_maxwell_pml_energy_functional_exploration:augmented-gronwall-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance",
+    "fact:2d_maxwell_pml_energy_functional_exploration:run-20260619T173930696222Z:source-problem"
+  ]
+}
