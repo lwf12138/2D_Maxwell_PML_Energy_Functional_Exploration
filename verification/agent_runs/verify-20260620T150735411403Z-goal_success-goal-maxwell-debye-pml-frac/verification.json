@@ -1,0 +1,45 @@
+{
+  "verification_report": {
+    "summary": "Goal quantifier and scope check: the source goal asks for a substantive redesigned energy-functional artifact for the 2D Maxwell--Debye--PML problem, with alpha=1 handled first, perfect-matching status verified before the final model is selected, at least one monotone/integral-dissipative/bounded-stability conclusion under stated assumptions, explicit caveats where stronger claims are not proved, machine algebra checks, a compilable Chinese TeX/PDF, and a literature reading record. It does not require a universal theorem for every variable damping profile, a completed 0<alpha<1 fractional theorem, or strict exponential decay for all nonzero states. Under that scope, the terminal TeX satisfies the goal: it distinguishes the old eight-variable model, the v2 stable-but-mismatched layer, and the selected standard stretched-coordinate repaired model; verifies planar-interface matching by the Laplace-Fourier admittance calculation; proves the constant/piecewise-constant alpha=1 Baffet--Debye primitive energy identity with nonnegative dissipation and boundary-flux conditions; states the semidefinite/gauge and edge/undamped-region limitations; classifies monotonicity, integral dissipation, and the lack of exponential decay; records the postponed Cole--Cole route with formula-level reasons; and includes the requested generated files. The cited fact verifications are present and passed, the prior assembly verification passed, SymPy ran successfully, Lean was unavailable and that failure was documented, and the TeX build produced the PDF without fatal errors.",
+    "critical_errors": [],
+    "gaps": []
+  },
+  "verdict": "correct",
+  "repair_hints": "No repair needed. Any future strengthening would be beyond this goal-success scope: prove a variable-coefficient monotone identity, a strictly positive edge-PML primitive energy without gauge qualifications, or a full 0<alpha<1 Cole--Cole memory theorem.",
+  "checked_artifacts": [
+    "verification/agent_runs/verify-20260620T150735411403Z-goal_success-goal-maxwell-debye-pml-frac/request.json",
+    ".iteris/goal_prompt.txt",
+    "sources/energy_functional_problem.tex",
+    "tex/new_energy_functional_2d_debye_pml.tex",
+    "tex/new_energy_functional_2d_debye_pml.pdf",
+    "tex/new_energy_functional_2d_debye_pml_build.log",
+    "results/new_energy_functional_2d_debye_pml_report.md",
+    "verification/algebra/new_energy_functional_sympy.py",
+    "verification/algebra/NewEnergyFunctional.lean",
+    "verification/results/verify-20260620T150039430501Z-assembly-tex-terminal-artifact-tex-new_e.json",
+    "artifacts/proofs/stage3_baffet_debye_2d_energy.md",
+    "artifacts/references/stage3_literature_reading_record.md",
+    "references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt",
+    "references/processed/Joly - 2012 - An elementary introduction to the construction and the analysis of perfectly matched layers for time.txt",
+    "verification/results/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json",
+    "verification/results/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-.json",
+    "verification/results/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e.json",
+    "verification/results/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw.json",
+    "verification/results/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d.json",
+    "verification/results/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m.json",
+    "verification/results/verify-20260620T065326237995Z-fact-the-standard-stretched-coordinate-m.json",
+    "verification/results/verify-20260620T065810059861Z-fact-strict-decay-of-total-electromagnet.json",
+    "verification/results/verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa.json"
+  ],
+  "checked_fact_ids": [
+    "fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance",
+    "fact:2d_maxwell_pml_energy_functional_exploration:edge-pml-linear-obstruction",
+    "fact:2d_maxwell_pml_energy_functional_exploration:augmented-gronwall-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:covariantly-damped-debye-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:v2-covariant-model-not-perfectly-matched",
+    "fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:stretched-coordinate-debye-pml-matching-and-energy-gap",
+    "fact:2d_maxwell_pml_energy_functional_exploration:whole-domain-strict-decay-nullspace-obstruction",
+    "fact:2d_maxwell_pml_energy_functional_exploration:baffet-primitive-stretched-debye-2d-energy"
+  ]
+}

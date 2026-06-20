@@ -1,7 +1,7 @@
 {
   "schema_version": "iteris.task_pool.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-06-20T15:07:11.513625Z",
+  "updated_at": "2026-06-20T15:15:49.659769Z",
   "active_frontier": "",
   "tasks": [
     {
@@ -258,7 +258,7 @@
       "task_id": "task-new-energy-functional-tex-contract",
       "mode": "proof",
       "objective": "Create the TeX/PDF terminal artifact, algebra verification files, and Markdown summary required by the new Iteris goal prompt.",
-      "status": "running",
+      "status": "done",
       "priority": 200,
       "dependencies": [],
       "inputs": [
@@ -278,10 +278,11 @@
         "Started inline by Codex after reading the new goal_prompt terminal-artifact contract.",
         "SymPy verification file created and passed; Lean file created, but local command failed with 'lean: command not found'.",
         "Created TeX/PDF artifact, build log, and Markdown summary; STATUS.md now points to the new TeX terminal artifact.",
-        "Assembly verification passed: verify-20260620T150039430501Z-assembly-tex-terminal-artifact-tex-new_e."
+        "Assembly verification passed: verify-20260620T150039430501Z-assembly-tex-terminal-artifact-tex-new_e.",
+        "Goal-success verification passed: verify-20260620T150735411403Z-goal_success-goal-maxwell-debye-pml-frac. Artifact gate passed."
       ],
       "created_at": "2026-06-20T14:45:16.831494Z",
-      "updated_at": "2026-06-20T15:07:11.513617Z"
+      "updated_at": "2026-06-20T15:15:49.659760Z"
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "schema_version": "iteris.frontier_index.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-06-20T15:00:28.053350Z",
+  "updated_at": "2026-06-20T15:15:49.661198Z",
   "active_frontiers": [
     {
       "schema_version": "iteris.frontier_entry.v0",
@@ -34,7 +34,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T15:00:28.053199Z",
+      "updated_at": "2026-06-20T15:15:49.661035Z",
       "health": {
         "frontier_id": "auto-new-energy-functional",
         "title": "New Energy Functional",
@@ -128,7 +128,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T15:00:28.053179Z",
+      "updated_at": "2026-06-20T15:15:49.661015Z",
       "health": {
         "frontier_id": "auto-stage3-repaired-model",
         "title": "Stage3 Repaired Model",
@@ -212,7 +212,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T15:00:28.053155Z",
+      "updated_at": "2026-06-20T15:15:49.660991Z",
       "health": {
         "frontier_id": "auto-alpha1-pml-cases",
         "title": "Alpha1 Pml Cases",
@@ -281,7 +281,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T15:00:28.053183Z",
+      "updated_at": "2026-06-20T15:15:49.661019Z",
       "health": {
         "frontier_id": "auto-stage3-perfect-matching",
         "title": "Stage3 Perfect Matching",
@@ -348,7 +348,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T15:00:28.053145Z",
+      "updated_at": "2026-06-20T15:15:49.660981Z",
       "health": {
         "frontier_id": "auto-alpha1-algebra-energy",
         "title": "Alpha1 Algebra Energy",
@@ -399,7 +399,7 @@
       "explore_run_count": 1,
       "last_explore_at": "2026-06-20T02:27:13.918334Z",
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T15:00:28.053214Z",
+      "updated_at": "2026-06-20T15:15:49.661051Z",
       "health": {
         "frontier_id": "auto-explore-second-stage",
         "title": "Explore Second Stage",
@@ -447,7 +447,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T15:00:28.053188Z",
+      "updated_at": "2026-06-20T15:15:49.661024Z",
       "health": {
         "frontier_id": "auto-final-energy-report",
         "title": "Final Energy Report",
@@ -511,7 +511,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T15:00:28.053172Z",
+      "updated_at": "2026-06-20T15:15:49.661008Z",
       "health": {
         "frontier_id": "auto-initial-exploration-run",
         "title": "Initial Exploration Run",
@@ -555,7 +555,7 @@
       "explore_run_count": 1,
       "last_explore_at": "2026-06-20T02:20:45.187532Z",
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T15:00:28.053208Z",
+      "updated_at": "2026-06-20T15:15:49.661045Z",
       "health": {
         "frontier_id": "auto-second-stage-constructive",
         "title": "Second Stage Constructive",
@@ -603,7 +603,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T15:00:28.053191Z",
+      "updated_at": "2026-06-20T15:15:49.661027Z",
       "health": {
         "frontier_id": "auto-stage2-final-report",
         "title": "Stage2 Final Report",
@@ -670,7 +670,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T15:00:28.053167Z",
+      "updated_at": "2026-06-20T15:15:49.661003Z",
       "health": {
         "frontier_id": "auto-stage2-repair-design",
         "title": "Stage2 Repair Design",
@@ -737,7 +737,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T15:00:28.053162Z",
+      "updated_at": "2026-06-20T15:15:49.660997Z",
       "health": {
         "frontier_id": "auto-stage3-final-report",
         "title": "Stage3 Final Report",
@@ -785,7 +785,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T15:00:28.053195Z",
+      "updated_at": "2026-06-20T15:15:49.661031Z",
       "health": {
         "frontier_id": "auto-stage3-literature-sources",
         "title": "Stage3 Literature Sources",
