@@ -1,7 +1,7 @@
 {
   "schema_version": "iteris.frontier_index.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-06-20T04:25:28.805053Z",
+  "updated_at": "2026-06-20T04:28:21.231928Z",
   "active_frontiers": [
     {
       "schema_version": "iteris.frontier_entry.v0",
@@ -34,7 +34,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:25:28.804904Z",
+      "updated_at": "2026-06-20T04:28:21.231785Z",
       "health": {
         "frontier_id": "auto-stage3-final-report",
         "title": "Stage3 Final Report",
@@ -58,16 +58,21 @@
       "frontier_id": "auto-stage3-repaired-model",
       "title": "Stage3 Repaired Model",
       "hypothesis": "Route inferred from facts, tasks, and artifacts matching `stage3-repaired-model`.",
-      "summary": "0 fact(s), 0 blocker fact(s), 1 active task(s), 0 artifact(s).",
-      "status": "active",
-      "fact_ids": [],
-      "blocker_fact_ids": [],
+      "summary": "3 fact(s), 2 blocker fact(s), 0 active task(s), 0 artifact(s).",
+      "status": "blocked",
+      "fact_ids": [
+        "fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy",
+        "fact:2d_maxwell_pml_energy_functional_exploration:stretched-coordinate-debye-pml-matching-and-energy-gap",
+        "fact:2d_maxwell_pml_energy_functional_exploration:whole-domain-strict-decay-nullspace-obstruction"
+      ],
+      "blocker_fact_ids": [
+        "fact:2d_maxwell_pml_energy_functional_exploration:stretched-coordinate-debye-pml-matching-and-energy-gap",
+        "fact:2d_maxwell_pml_energy_functional_exploration:whole-domain-strict-decay-nullspace-obstruction"
+      ],
       "task_ids": [
         "task-stage3-repaired-model-energy"
       ],
-      "active_tasks": [
-        "task-stage3-repaired-model-energy"
-      ],
+      "active_tasks": [],
       "blocked_tasks": [],
       "artifact_paths": [],
       "verification_ids": [],
@@ -76,23 +81,58 @@
         "Construct repaired stretched-coordinate/ADE candidate models and derive a dissipative energy or obstruction classification for the accepted model."
       ],
       "next_actions": [],
-      "recent_fact_summaries": [],
+      "recent_fact_summaries": [
+        {
+          "fact_id": "fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy",
+          "status": "submitted",
+          "claim_summary": "The standard stretched-coordinate Maxwell-Debye PML restores perfect matching and has a reduced normal-incidence dissipative energy identity."
+        },
+        {
+          "fact_id": "fact:2d_maxwell_pml_energy_functional_exploration:stretched-coordinate-debye-pml-matching-and-energy-gap",
+          "status": "submitted",
+          "claim_summary": "The standard stretched-coordinate Maxwell-Debye PML is perfectly matched but the naive physical Debye energy has sign-indefinite ADE memory couplings."
+        },
+        {
+          "fact_id": "fact:2d_maxwell_pml_energy_functional_exploration:whole-domain-strict-decay-nullspace-obstruction",
+          "status": "submitted",
+          "claim_summary": "Strict decay of total energy on the whole domain is impossible without a nullspace."
+        }
+      ],
       "task_status_counts": {
-        "running": 1
+        "done": 1
       },
-      "evidence_terms": [],
+      "evidence_terms": [
+        "coordinate",
+        "debye",
+        "decay",
+        "domain",
+        "energy",
+        "is",
+        "maxwell",
+        "of",
+        "on",
+        "perfect",
+        "perfectly",
+        "pml",
+        "restores",
+        "standard",
+        "stretched",
+        "strict",
+        "total",
+        "whole"
+      ],
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:25:28.804901Z",
+      "updated_at": "2026-06-20T04:28:21.231764Z",
       "health": {
         "frontier_id": "auto-stage3-repaired-model",
         "title": "Stage3 Repaired Model",
-        "status": "active",
-        "fact_count": 0,
-        "blocker_count": 0,
+        "status": "blocked",
+        "fact_count": 3,
+        "blocker_count": 2,
         "verified_count": 0,
-        "active_task_count": 1,
+        "active_task_count": 0,
         "ready_task_count": 0,
         "artifact_count": 0,
         "explore_run_count": 0,
@@ -168,7 +208,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:25:28.804868Z",
+      "updated_at": "2026-06-20T04:28:21.231744Z",
       "health": {
         "frontier_id": "auto-alpha1-pml-cases",
         "title": "Alpha1 Pml Cases",
@@ -235,7 +275,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:25:28.804885Z",
+      "updated_at": "2026-06-20T04:28:21.231769Z",
       "health": {
         "frontier_id": "auto-stage3-perfect-matching",
         "title": "Stage3 Perfect Matching",
@@ -302,7 +342,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:25:28.804858Z",
+      "updated_at": "2026-06-20T04:28:21.231733Z",
       "health": {
         "frontier_id": "auto-alpha1-algebra-energy",
         "title": "Alpha1 Algebra Energy",
@@ -353,7 +393,7 @@
       "explore_run_count": 1,
       "last_explore_at": "2026-06-20T02:27:13.918334Z",
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:25:28.804922Z",
+      "updated_at": "2026-06-20T04:28:21.231801Z",
       "health": {
         "frontier_id": "auto-explore-second-stage",
         "title": "Explore Second Stage",
@@ -401,7 +441,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:25:28.804889Z",
+      "updated_at": "2026-06-20T04:28:21.231774Z",
       "health": {
         "frontier_id": "auto-final-energy-report",
         "title": "Final Energy Report",
@@ -465,7 +505,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:25:28.804880Z",
+      "updated_at": "2026-06-20T04:28:21.231757Z",
       "health": {
         "frontier_id": "auto-initial-exploration-run",
         "title": "Initial Exploration Run",
@@ -509,7 +549,7 @@
       "explore_run_count": 1,
       "last_explore_at": "2026-06-20T02:20:45.187532Z",
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:25:28.804916Z",
+      "updated_at": "2026-06-20T04:28:21.231795Z",
       "health": {
         "frontier_id": "auto-second-stage-constructive",
         "title": "Second Stage Constructive",
@@ -557,7 +597,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:25:28.804893Z",
+      "updated_at": "2026-06-20T04:28:21.231778Z",
       "health": {
         "frontier_id": "auto-stage2-final-report",
         "title": "Stage2 Final Report",
@@ -624,7 +664,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:25:28.804875Z",
+      "updated_at": "2026-06-20T04:28:21.231750Z",
       "health": {
         "frontier_id": "auto-stage2-repair-design",
         "title": "Stage2 Repair Design",
@@ -672,7 +712,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:25:28.804897Z",
+      "updated_at": "2026-06-20T04:28:21.231781Z",
       "health": {
         "frontier_id": "auto-stage3-literature-sources",
         "title": "Stage3 Literature Sources",

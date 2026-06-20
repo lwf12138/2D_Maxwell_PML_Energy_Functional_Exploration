@@ -1,8 +1,9 @@
-phase: goal_success_verified
-last_updated: 2026-06-20T02:40:57.774959Z
+phase: stage3_report_drafting
+last_updated: 2026-06-20T04:27:50Z
 source: sources/energy_functional_problem.tex
-target_artifact: results/energy_design_v2_report.md
-stage2_fact_verification: verification/results/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw.json
-assembly_verification: verification/results/verify-20260620T023007094217Z-assembly-assemble-verified-facts-to-answ.json
-goal_success_verification: verification/results/verify-20260620T023507094543Z-goal_success-read-.iteris-goal_prompt.tx.json
-next: finalize Iteris goal for results/energy_design_v2_report.md
+target_artifact: results/energy_design_v3_perfect_matching_report.md
+stage3_literature_record: artifacts/references/stage3_literature_reading_record.md
+stage3_matching_artifact: artifacts/proofs/stage3_v2_perfect_matching_test.md
+stage3_repaired_model_artifact: artifacts/proofs/stage3_repaired_model_energy.md
+verification_status: pending; agent verifier hit usage limit before verdict on stage-3 fact verification
+next: draft results/energy_design_v3_perfect_matching_report.md, then resubmit fact, assembly, and goal-success verifications

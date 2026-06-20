@@ -1,7 +1,7 @@
 {
   "schema_version": "iteris.task_pool.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-06-20T04:25:24.644449Z",
+  "updated_at": "2026-06-20T04:31:40.236838Z",
   "active_frontier": "",
   "tasks": [
     {
@@ -202,7 +202,7 @@
       "task_id": "task-stage3-repaired-model-energy",
       "mode": "proof",
       "objective": "Construct repaired stretched-coordinate/ADE candidate models and derive a dissipative energy or obstruction classification for the accepted model.",
-      "status": "running",
+      "status": "done",
       "priority": 140,
       "dependencies": [
         "task-stage3-perfect-matching-test"
@@ -214,17 +214,19 @@
       "assigned_agent_run": null,
       "notes": [
         "Include at least two candidates if v2 fails and classify matching/stability/energy status.",
-        "Started repaired-model classification: exact stretched-coordinate ADE PML, dispersive/CFS generalized PML, MPML stability repair, and dissipative-energy identities/obstructions."
+        "Started repaired-model classification: exact stretched-coordinate ADE PML, dispersive/CFS generalized PML, MPML stability repair, and dissipative-energy identities/obstructions.",
+        "Completed artifacts/proofs/stage3_repaired_model_energy.md and recorded standard stretched-coordinate repair fact; agent verification remains pending due usage-limit failure.",
+        "Completed artifacts/proofs/stage3_repaired_model_energy.md and recorded fact candidates for stretched-coordinate matching/energy gap and whole-domain strict-decay obstruction; agent verification pending due Codex usage limit."
       ],
       "created_at": "2026-06-20T04:12:14.509395Z",
-      "updated_at": "2026-06-20T04:25:24.644443Z"
+      "updated_at": "2026-06-20T04:28:12.934658Z"
     },
     {
       "schema_version": "iteris.task_pool_task.v0",
       "task_id": "task-stage3-final-report",
       "mode": "proof",
       "objective": "Assemble verified stage-3 facts into results/energy_design_v3_perfect_matching_report.md and pass assembly plus goal-success verification.",
-      "status": "ready",
+      "status": "running",
       "priority": 130,
       "dependencies": [
         "task-stage3-repaired-model-energy"
@@ -235,10 +237,11 @@
       ],
       "assigned_agent_run": null,
       "notes": [
-        "Terminal artifact for stage-3 Iteris goal."
+        "Terminal artifact for stage-3 Iteris goal.",
+        "Drafted results/energy_design_v3_perfect_matching_report.md; performing consistency pass before verification retry."
       ],
       "created_at": "2026-06-20T04:12:20.338555Z",
-      "updated_at": "2026-06-20T04:12:20.338555Z"
+      "updated_at": "2026-06-20T04:31:40.236829Z"
     }
   ]
 }
