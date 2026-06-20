@@ -20,3 +20,6 @@
 {"timestamp":"2026-06-20T02:40:57.803478Z","channel":"events","record":{"event_type":"git_checkpoint","message":"checkpoint: finalize phase stamp","paths":["."]}}
 {"timestamp":"2026-06-20T04:12:34.828070Z","channel":"events","record":{"event_type":"git_checkpoint","message":"checkpoint: stage3 task route initialized","paths":["."]}}
 {"timestamp":"2026-06-20T04:19:12.511323Z","channel":"events","record":{"event_type":"git_checkpoint","message":"checkpoint: stage3 literature reading record","paths":["."]}}
+{"timestamp":"2026-06-20T04:21:25.333458Z","channel":"events","record":{"event_type":"fact_add","fact_id":"fact:2d_maxwell_pml_energy_functional_exploration:v2-covariant-model-not-perfectly-matched","path":"memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-v2-covariant-model-not-perfectly-matched.md","resubmit":false,"reindexed":true}}
+{"timestamp":"2026-06-20T04:22:20.116544Z","channel":"events","record":{"event_type":"fact_add","fact_id":"fact:2d_maxwell_pml_energy_functional_exploration:v2-perfect-matching-mismatch","path":"memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-v2-perfect-matching-mismatch.md","resubmit":false,"reindexed":true}}
+{"timestamp":"2026-06-20T04:25:55.266682Z","channel":"events","record":{"event_type":"git_checkpoint","message":"checkpoint: stage3 v2 perfect-matching mismatch derived","paths":["."]}}

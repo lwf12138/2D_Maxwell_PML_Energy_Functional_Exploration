@@ -1,7 +1,7 @@
 {
   "schema_version": "iteris.task_pool.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-06-20T04:19:00.432880Z",
+  "updated_at": "2026-06-20T04:25:24.644449Z",
   "active_frontier": "",
   "tasks": [
     {
@@ -166,17 +166,19 @@
         "Stage-3 task required by .iteris/goal_prompt.txt.",
         "Started inline reading of required source reports and local PDFs.",
         "Heartbeat: completed targeted reading of required reports, references.bib, and formula/stability pages from local PDFs; preparing literature reading record artifact.",
-        "Completed artifacts/references/stage3_literature_reading_record.md after reading required source reports, references.bib, and local PDF formula/stability pages."
+        "Completed artifacts/references/stage3_literature_reading_record.md after reading required source reports, references.bib, and local PDF formula/stability pages.",
+        "Heartbeat: extracted local PDFs with page markers and inspected source reports, Joly, Bécache 2023, Baffet, CFS/ADE, MPML, and local Cole-Cole/UPML notes.",
+        "Literature intake complete; artifact artifacts/references/stage3_literature_reading_record.md reviewed against current PDF extracts."
       ],
       "created_at": "2026-06-20T04:12:02.401905Z",
-      "updated_at": "2026-06-20T04:19:00.432872Z"
+      "updated_at": "2026-06-20T04:20:17.185266Z"
     },
     {
       "schema_version": "iteris.task_pool_task.v0",
       "task_id": "task-stage3-perfect-matching-test",
       "mode": "proof",
       "objective": "Derive planar-interface perfect-matching criterion and test the v2 covariantly damped Maxwell-Debye model, including exact impedance mismatch if it fails.",
-      "status": "ready",
+      "status": "done",
       "priority": 150,
       "dependencies": [
         "task-stage3-literature-and-sources"
@@ -187,17 +189,20 @@
       ],
       "assigned_agent_run": null,
       "notes": [
-        "Must produce durable fact candidates for v2 matching or mismatch."
+        "Must produce durable fact candidates for v2 matching or mismatch.",
+        "Started inline Laplace/Fourier derivation for the planar-interface matching criterion and v2 impedance test.",
+        "Completed artifacts/proofs/stage3_v2_perfect_matching_test.md and recorded the mismatch fact. Agent verification was attempted but failed before verdict due account usage limit; will resubmit before final assembly.",
+        "Completed artifacts/proofs/stage3_v2_perfect_matching_test.md and recorded fact candidate fact:2d_maxwell_pml_energy_functional_exploration:v2-perfect-matching-mismatch; Codex agent verification attempt failed due external usage limit, not claim rejection."
       ],
       "created_at": "2026-06-20T04:12:08.439739Z",
-      "updated_at": "2026-06-20T04:12:08.439739Z"
+      "updated_at": "2026-06-20T04:25:17.727986Z"
     },
     {
       "schema_version": "iteris.task_pool_task.v0",
       "task_id": "task-stage3-repaired-model-energy",
       "mode": "proof",
       "objective": "Construct repaired stretched-coordinate/ADE candidate models and derive a dissipative energy or obstruction classification for the accepted model.",
-      "status": "ready",
+      "status": "running",
       "priority": 140,
       "dependencies": [
         "task-stage3-perfect-matching-test"
@@ -208,10 +213,11 @@
       ],
       "assigned_agent_run": null,
       "notes": [
-        "Include at least two candidates if v2 fails and classify matching/stability/energy status."
+        "Include at least two candidates if v2 fails and classify matching/stability/energy status.",
+        "Started repaired-model classification: exact stretched-coordinate ADE PML, dispersive/CFS generalized PML, MPML stability repair, and dissipative-energy identities/obstructions."
       ],
       "created_at": "2026-06-20T04:12:14.509395Z",
-      "updated_at": "2026-06-20T04:12:14.509395Z"
+      "updated_at": "2026-06-20T04:25:24.644443Z"
     },
     {
       "schema_version": "iteris.task_pool_task.v0",

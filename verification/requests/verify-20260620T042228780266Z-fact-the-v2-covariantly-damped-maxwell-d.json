@@ -1,0 +1,20 @@
+{
+  "schema_version": "iteris.verification_request.v0",
+  "request_id": "verify-20260620T042228780266Z-fact-the-v2-covariantly-damped-maxwell-d",
+  "backend": "agent",
+  "executor": "codex",
+  "mode": "fact",
+  "claim": "The v2 covariantly damped Maxwell-Debye layer is not perfectly matched at a planar constant x-PML interface, with the squared-admittance mismatch stated in memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-v2-perfect-matching-mismatch.md.",
+  "artifacts": [
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-v2-perfect-matching-mismatch.md",
+    "artifacts/proofs/stage3_v2_perfect_matching_test.md"
+  ],
+  "fact_ids": [],
+  "target_artifact": null,
+  "created_at": "2026-06-20T04:22:28.780651Z",
+  "prompt_path": "verification/agent_runs/verify-20260620T042228780266Z-fact-the-v2-covariantly-damped-maxwell-d/prompt.md",
+  "codex_log": "verification/agent_runs/verify-20260620T042228780266Z-fact-the-v2-covariantly-damped-maxwell-d/codex.log",
+  "codex_events": "verification/agent_runs/verify-20260620T042228780266Z-fact-the-v2-covariantly-damped-maxwell-d/codex.events.jsonl",
+  "codex_stderr": "verification/agent_runs/verify-20260620T042228780266Z-fact-the-v2-covariantly-damped-maxwell-d/codex.stderr.log",
+  "codex_log_manifest": "verification/agent_runs/verify-20260620T042228780266Z-fact-the-v2-covariantly-damped-maxwell-d/log_manifest.json"
+}

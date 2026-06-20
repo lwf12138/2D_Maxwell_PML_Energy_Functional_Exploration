@@ -1,7 +1,7 @@
 {
   "schema_version": "iteris.frontier_index.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-06-20T04:19:07.025138Z",
+  "updated_at": "2026-06-20T04:25:28.805053Z",
   "active_frontiers": [
     {
       "schema_version": "iteris.frontier_entry.v0",
@@ -34,60 +34,10 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:19:07.025004Z",
+      "updated_at": "2026-06-20T04:25:28.804904Z",
       "health": {
         "frontier_id": "auto-stage3-final-report",
         "title": "Stage3 Final Report",
-        "status": "active",
-        "fact_count": 0,
-        "blocker_count": 0,
-        "verified_count": 0,
-        "active_task_count": 1,
-        "ready_task_count": 1,
-        "artifact_count": 0,
-        "explore_run_count": 0,
-        "last_explore_at": null,
-        "cooldown_ok": true,
-        "explore_recommended": false,
-        "reason": "",
-        "recommended_focus": ""
-      }
-    },
-    {
-      "schema_version": "iteris.frontier_entry.v0",
-      "frontier_id": "auto-stage3-perfect-matching",
-      "title": "Stage3 Perfect Matching",
-      "hypothesis": "Route inferred from facts, tasks, and artifacts matching `stage3-perfect-matching`.",
-      "summary": "0 fact(s), 0 blocker fact(s), 1 active task(s), 0 artifact(s).",
-      "status": "active",
-      "fact_ids": [],
-      "blocker_fact_ids": [],
-      "task_ids": [
-        "task-stage3-perfect-matching-test"
-      ],
-      "active_tasks": [
-        "task-stage3-perfect-matching-test"
-      ],
-      "blocked_tasks": [],
-      "artifact_paths": [],
-      "verification_ids": [],
-      "agent_run_ids": [],
-      "open_questions": [
-        "Derive planar-interface perfect-matching criterion and test the v2 covariantly damped Maxwell-Debye model, including exact impedance mismatch if it fails."
-      ],
-      "next_actions": [],
-      "recent_fact_summaries": [],
-      "task_status_counts": {
-        "ready": 1
-      },
-      "evidence_terms": [],
-      "explore_run_count": 0,
-      "last_explore_at": null,
-      "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:19:07.024997Z",
-      "health": {
-        "frontier_id": "auto-stage3-perfect-matching",
-        "title": "Stage3 Perfect Matching",
         "status": "active",
         "fact_count": 0,
         "blocker_count": 0,
@@ -128,13 +78,13 @@
       "next_actions": [],
       "recent_fact_summaries": [],
       "task_status_counts": {
-        "ready": 1
+        "running": 1
       },
       "evidence_terms": [],
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:19:07.025001Z",
+      "updated_at": "2026-06-20T04:25:28.804901Z",
       "health": {
         "frontier_id": "auto-stage3-repaired-model",
         "title": "Stage3 Repaired Model",
@@ -143,7 +93,7 @@
         "blocker_count": 0,
         "verified_count": 0,
         "active_task_count": 1,
-        "ready_task_count": 1,
+        "ready_task_count": 0,
         "artifact_count": 0,
         "explore_run_count": 0,
         "last_explore_at": null,
@@ -218,7 +168,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:19:07.024947Z",
+      "updated_at": "2026-06-20T04:25:28.804868Z",
       "health": {
         "frontier_id": "auto-alpha1-pml-cases",
         "title": "Alpha1 Pml Cases",
@@ -226,6 +176,73 @@
         "fact_count": 2,
         "blocker_count": 1,
         "verified_count": 2,
+        "active_task_count": 0,
+        "ready_task_count": 0,
+        "artifact_count": 0,
+        "explore_run_count": 0,
+        "last_explore_at": null,
+        "cooldown_ok": true,
+        "explore_recommended": false,
+        "reason": "",
+        "recommended_focus": ""
+      }
+    },
+    {
+      "schema_version": "iteris.frontier_entry.v0",
+      "frontier_id": "auto-stage3-perfect-matching",
+      "title": "Stage3 Perfect Matching",
+      "hypothesis": "Route inferred from facts, tasks, and artifacts matching `stage3-perfect-matching`.",
+      "summary": "1 fact(s), 1 blocker fact(s), 0 active task(s), 0 artifact(s).",
+      "status": "blocked",
+      "fact_ids": [
+        "fact:2d_maxwell_pml_energy_functional_exploration:v2-covariant-model-not-perfectly-matched"
+      ],
+      "blocker_fact_ids": [
+        "fact:2d_maxwell_pml_energy_functional_exploration:v2-covariant-model-not-perfectly-matched"
+      ],
+      "task_ids": [
+        "task-stage3-perfect-matching-test"
+      ],
+      "active_tasks": [],
+      "blocked_tasks": [],
+      "artifact_paths": [],
+      "verification_ids": [],
+      "agent_run_ids": [],
+      "open_questions": [
+        "Derive planar-interface perfect-matching criterion and test the v2 covariantly damped Maxwell-Debye model, including exact impedance mismatch if it fails."
+      ],
+      "next_actions": [],
+      "recent_fact_summaries": [
+        {
+          "fact_id": "fact:2d_maxwell_pml_energy_functional_exploration:v2-covariant-model-not-perfectly-matched",
+          "status": "submitted",
+          "claim_summary": "The v2 covariantly damped Maxwell-Debye layer is not perfectly matched."
+        }
+      ],
+      "task_status_counts": {
+        "done": 1
+      },
+      "evidence_terms": [
+        "covariantly",
+        "damped",
+        "debye",
+        "is",
+        "layer",
+        "maxwell",
+        "not",
+        "v2"
+      ],
+      "explore_run_count": 0,
+      "last_explore_at": null,
+      "generated_by": "frontier_refresh",
+      "updated_at": "2026-06-20T04:25:28.804885Z",
+      "health": {
+        "frontier_id": "auto-stage3-perfect-matching",
+        "title": "Stage3 Perfect Matching",
+        "status": "blocked",
+        "fact_count": 1,
+        "blocker_count": 1,
+        "verified_count": 0,
         "active_task_count": 0,
         "ready_task_count": 0,
         "artifact_count": 0,
@@ -285,7 +302,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:19:07.024937Z",
+      "updated_at": "2026-06-20T04:25:28.804858Z",
       "health": {
         "frontier_id": "auto-alpha1-algebra-energy",
         "title": "Alpha1 Algebra Energy",
@@ -336,7 +353,7 @@
       "explore_run_count": 1,
       "last_explore_at": "2026-06-20T02:27:13.918334Z",
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:19:07.025019Z",
+      "updated_at": "2026-06-20T04:25:28.804922Z",
       "health": {
         "frontier_id": "auto-explore-second-stage",
         "title": "Explore Second Stage",
@@ -384,7 +401,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:19:07.024986Z",
+      "updated_at": "2026-06-20T04:25:28.804889Z",
       "health": {
         "frontier_id": "auto-final-energy-report",
         "title": "Final Energy Report",
@@ -448,7 +465,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:19:07.024981Z",
+      "updated_at": "2026-06-20T04:25:28.804880Z",
       "health": {
         "frontier_id": "auto-initial-exploration-run",
         "title": "Initial Exploration Run",
@@ -492,7 +509,7 @@
       "explore_run_count": 1,
       "last_explore_at": "2026-06-20T02:20:45.187532Z",
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:19:07.025013Z",
+      "updated_at": "2026-06-20T04:25:28.804916Z",
       "health": {
         "frontier_id": "auto-second-stage-constructive",
         "title": "Second Stage Constructive",
@@ -540,7 +557,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:19:07.024990Z",
+      "updated_at": "2026-06-20T04:25:28.804893Z",
       "health": {
         "frontier_id": "auto-stage2-final-report",
         "title": "Stage2 Final Report",
@@ -607,7 +624,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:19:07.024953Z",
+      "updated_at": "2026-06-20T04:25:28.804875Z",
       "health": {
         "frontier_id": "auto-stage2-repair-design",
         "title": "Stage2 Repair Design",
@@ -655,7 +672,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:19:07.024993Z",
+      "updated_at": "2026-06-20T04:25:28.804897Z",
       "health": {
         "frontier_id": "auto-stage3-literature-sources",
         "title": "Stage3 Literature Sources",
