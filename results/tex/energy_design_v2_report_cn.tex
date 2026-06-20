@@ -1,0 +1,323 @@
+\documentclass[UTF8,a4paper,12pt]{ctexart}
+
+\usepackage{amsmath,amssymb,amsthm,bm}
+\usepackage{geometry}
+\usepackage{booktabs,longtable,array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\geometry{left=2.6cm,right=2.6cm,top=2.6cm,bottom=2.6cm}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!55!black,
+  citecolor=blue!55!black,
+  urlcolor=blue!55!black
+}
+\setlist[itemize]{leftmargin=2em,itemsep=0.25em,topsep=0.25em}
+\setlist[enumerate]{leftmargin=2.2em,itemsep=0.25em,topsep=0.25em}
+\renewcommand{\arraystretch}{1.15}
+\sloppy
+
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\Om}{\Omega}
+\newcommand{\sx}{\sigma_x}
+\newcommand{\sy}{\sigma_y}
+\newcommand{\Ecal}{\mathcal E}
+
+\title{二维 Maxwell--PML 能量设计第二阶段报告}
+\author{由 \texttt{energy\_design\_v2\_report.md} 整理翻译}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{问题背景与第二阶段目标}
+
+本报告对应项目编号为
+\[
+\texttt{2d\_maxwell\_pml\_energy\_functional\_exploration},
+\]
+原始问题文件为
+\[
+\texttt{sources/energy\_functional\_problem.tex}.
+\]
+
+第二阶段目标是：以上一轮已经验证的边 PML obstruction 为输入，不再停留于“旧八变量模型不能无条件单调”这一诊断结论，而是进一步构造或提出经过修复的 PML/吸收层模型，并寻找具有单调性或真正耗散性的能量估计。
+
+上一轮结论表明，原始 \(\alpha=1\) 八变量模型
+\[
+E,\quad H_x,\quad H_y,\quad P,\quad P_{z,1},\quad P_{z,2},\quad Q_x,\quad Q_y
+\]
+在边 PML 情形下存在精确的线性增长模态。因此，本阶段的重点是设计新的吸收层结构、辅助变量变换、兼容条件、MPML/CFS 型阻尼或等价 PML 模型，使其具有单调下降能量或长时间一致耗散估计。
+
+\section{事实索引}
+
+\begin{itemize}
+\item \textbf{\(\alpha=1\) 代数平衡事实：} verified.
+
+\begin{quote}\small
+\url{fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance}
+\end{quote}
+
+\item \textbf{边 PML 线性增长 obstruction：} verified.
+
+\begin{quote}\small
+\url{fact:2d_maxwell_pml_energy_functional_exploration:edge-pml-linear-obstruction}
+\end{quote}
+
+\item \textbf{增广 Gronwall 能量：} verified.
+
+\begin{quote}\small
+\url{fact:2d_maxwell_pml_energy_functional_exploration:augmented-gronwall-energy}
+\end{quote}
+
+\item \textbf{协变阻尼 Maxwell--Debye 能量：} verified.
+
+\begin{quote}\small
+\url{fact:2d_maxwell_pml_energy_functional_exploration:covariantly-damped-debye-energy}
+\end{quote}
+\end{itemize}
+
+第二阶段设计的证明产物为
+\[
+\texttt{artifacts/proofs/stage2\_repair\_design.md}.
+\]
+
+\section{旧模型中的已验证 obstruction}
+
+在旧的 \(\alpha=1\) 源模型中，引入
+\[
+a_x=\frac{\sy-\sx}{\epsilon_0},\qquad
+a_y=\frac{\sx-\sy}{\epsilon_0},
+\]
+以及平移后的磁场辅助变量
+\[
+M_x=Q_x-\mu a_xH_x,\qquad M_y=Q_y-\mu a_yH_y.
+\]
+它们满足
+\[
+M_{x,t}=a_x\partial_yE-\frac{\sy}{\epsilon_0}M_x,\qquad
+M_{y,t}=-a_y\partial_xE-\frac{\sx}{\epsilon_0}M_y .
+\]
+
+考虑 \(x\)-方向边 PML，令
+\[
+\sx=s>0,\qquad \sy=0,
+\]
+并取
+\[
+E=P=P_{z,1}=P_{z,2}=H_y=Q_y=0,
+\]
+其中 \(H_x,Q_x\) 为空间常数。此时
+\[
+M_x=Q_x+\mu\frac{s}{\epsilon_0}H_x
+\]
+是常数，从而
+\[
+H_x(t)=H_x(0)+\frac{M_x(0)}{\mu}t,\qquad
+Q_x(t)=Q_x(0)-\frac{s}{\epsilon_0}M_x(0)t .
+\]
+这说明旧模型中导致 obstruction 的根源是：在边 PML 方向上存在未被阻尼的平移磁场辅助变量。由于该精确增长解满足 \(P=0\)，单纯改变 Debye 极化律或分数阶极化律无法消除这个 obstruction。
+
+\section{修复路线一：辅助变量兼容条件}
+
+对旧方程而言，杀掉已验证边 PML 常数模态的最小兼容条件为
+\[
+Q_x(0)+\mu\frac{\sx}{\epsilon_0}H_x(0)=0
+\quad\text{on an \(x\)-edge zero-transverse mode,}
+\]
+以及对称条件
+\[
+Q_y(0)+\mu\frac{\sy}{\epsilon_0}H_y(0)=0
+\quad\text{on a \(y\)-edge zero-transverse mode.}
+\]
+若 \(Q_i\) 并非独立初值，而是由 PML 构造生成的历史变量，则该兼容条件具有一定物理意义。
+
+对应候选能量为
+\[
+\Ecal_0=\frac12\int_\Om
+\left(
+\epsilon_0\epsilon_\infty E^2+\mu H_x^2+\mu H_y^2
++\chi^{-1}P^2+P_{z,1}^2+P_{z,2}^2+Q_x^2+Q_y^2
+\right)\dd x\dd y .
+\]
+上一轮已经验证
+\[
+\Ecal_0'(t)\le C_G\Ecal_0(t).
+\]
+
+该路线的分类为：有用但仅是部分修复。在真正二维 \(x\)-边 PML 中，
+\[
+M_{x,t}=-\frac{\sx}{\epsilon_0}\partial_yE,
+\]
+因此点态条件 \(M_x=0\) 对一般二维数据并不保持不变。该路线能够去掉已验证的横向零模自由增长，但不能给出旧模型的完整二维单调能量。
+
+\section{修复路线二：平移变量的 MPML 型阻尼}
+
+保留旧的平移变量，但加入边方向上为正的额外阻尼
+\[
+\eta_x,\eta_y\ge0.
+\]
+修改为
+\[
+Q_{x,t}=-(b_x+\eta_x)Q_x+\mu(b_x+\eta_x)a_xH_x,
+\]
+\[
+Q_{y,t}=-(b_y+\eta_y)Q_y+\mu(b_y+\eta_y)a_yH_y,
+\]
+其中
+\[
+b_i=\frac{\sigma_i}{\epsilon_0}.
+\]
+等价地，
+\[
+M_{x,t}=a_x\partial_yE-(b_y+\eta_x)M_x,\qquad
+M_{y,t}=-a_y\partial_xE-(b_x+\eta_y)M_y .
+\]
+
+对于旧模型中的 \(x\)-边自由子系统，该修改给出
+\[
+H_{x,t}=\frac{M_x}{\mu},\qquad M_{x,t}=-\eta_xM_x .
+\]
+若 \(\eta_x>0\)，则
+\[
+\Ecal_{x,\eta}
+=\frac{\mu}{2}\left|H_x+\frac{M_x}{\mu\eta_x}\right|^2
++\frac{c_x}{2}|M_x|^2,\qquad c_x>0,
+\]
+满足
+\[
+\frac{\dd}{\dd t}\Ecal_{x,\eta}
+=-c_x\eta_x|M_x|^2\le0 .
+\]
+
+该路线的分类为：对孤立边自由模态是单调的，并且可以看作对旧 Jordan block 的一种 MPML/CFS 型修复。不过在完整二维系统中仍会出现
+\[
+M_x\partial_yE,\qquad M_y\partial_xE
+\]
+耦合项，因此完整定理还需要导数能量、非局部能量或 Baffet 型时间积分结构。
+
+\section{选定模型：协变阻尼 Maxwell--Debye 吸收层}
+
+第二阶段最强的已验证构造结果是一个修改后的 \(\alpha=1\) Maxwell--Debye 吸收层模型。设
+\[
+\rho_x,\rho_y\in L^\infty(\Omega),\qquad
+\rho_x,\rho_y\ge0,
+\]
+并记
+\[
+\rho=\rho_x+\rho_y,\qquad D_\rho=\partial_t+\rho .
+\]
+其中 \(\rho_x,\rho_y\) 在物理区域中为零，在吸收层中为正。
+
+选定模型为
+\begin{equation}
+\boxed{
+\begin{aligned}
+\epsilon_0\epsilon_\infty D_\rho E
+&=\partial_xH_y-\partial_yH_x-D_\rho P,\\
+\mu(\partial_t+\rho_y)H_x&=-\partial_yE,\\
+\mu(\partial_t+\rho_x)H_y&=\partial_xE,\\
+P+\tau D_\rho P&=\chi E .
+\end{aligned}}
+\label{eq:covariant-model}
+\end{equation}
+边界条件仍取 PEC：
+\[
+E=0\qquad\text{on }\partial\Omega .
+\]
+
+该模型删除了彼此独立的 \(P_{z,i}\) 与 \(Q_i\) 变量，因此旧模型中的边辅助变量自由增长模态不再存在。关键设计是：在 Debye 极化律中使用与电场方程一致的协变导数 \(D_\rho\)。这样，旧模型中的符号不定 \(EP\) 阻尼项被转化为正的极化耗散项。
+
+\section{能量泛函}
+
+对模型 \eqref{eq:covariant-model}，取
+\[
+\boxed{
+\Ecal_\rho(t)=\frac12\int_\Omega
+\left(
+\epsilon_0\epsilon_\infty E^2+\mu H_x^2+\mu H_y^2+\chi^{-1}P^2
+\right)\dd x\dd y .}
+\]
+由于
+\[
+\epsilon_0,\quad \epsilon_\infty,\quad \mu,\quad \chi
+\]
+均为正，所以 \(\Ecal_\rho(t)\) 是正定能量。
+
+\section{能量恒等式}
+
+将模型 \eqref{eq:covariant-model} 中各方程分别乘以 \(E,H_x,H_y\)，积分，并使用 PEC 边界条件，Maxwell 主部满足标准抵消：
+\[
+\int_\Omega
+\left(
+E\partial_xH_y-E\partial_yH_x-H_x\partial_yE+H_y\partial_xE
+\right)\dd x\dd y=0 .
+\]
+协变 Debye 律给出
+\[
+E\,D_\rho P
+=\frac{1}{2\chi}\partial_t(P^2)
++\frac{\rho}{\chi}P^2
++\frac{\tau}{\chi}|D_\rho P|^2 .
+\]
+因此可得单调能量恒等式
+\[
+\boxed{
+\frac{\dd}{\dd t}\Ecal_\rho(t)
+=-\int_\Omega
+\left(
+\epsilon_0\epsilon_\infty\rho E^2
++\mu\rho_yH_x^2
++\mu\rho_xH_y^2
++\frac{\rho}{\chi}P^2
++\frac{\tau}{\chi}|D_\rho P|^2
+\right)\dd x\dd y\le0 .}
+\]
+于是
+\[
+\boxed{
+\Ecal_\rho(t)\le \Ecal_\rho(0)\qquad\text{for all }t\ge0 .
+}
+\]
+
+该结论的分类为：单调下降、耗散，并且长时间一致有界。需要强调的是，这是一种修复后的吸收层模型，而不是旧八变量非分裂 PML 模型的单调性证明。
+
+\section{仍待解决的问题}
+
+\begin{enumerate}
+\item 选定的协变阻尼模型是否严格 perfect matching，本文尚未证明。当前已验证的是稳定性与吸收层耗散。
+\item 平移变量 MPML 修复仍需要完整二维导数能量或非局部能量，用于控制
+\[
+M_x\partial_yE,\qquad M_y\partial_xE .
+\]
+\item 兼容条件路线还需要通过横向零模投影的 Fourier 分析来进一步精化，并需要给出与边界兼容的旧模型允许初值定义。
+\item 分数阶情形 \(0<\alpha<1\) 可在后续通过正的分数阶记忆表示加入；但它本身无法移除旧模型中的边 PML obstruction，因为该 obstruction 已经在 \(P=0\) 子系统中出现。
+\end{enumerate}
+
+\section{结论组装}
+
+旧模型 obstruction 由
+\begin{quote}\small
+\url{fact:2d_maxwell_pml_energy_functional_exploration:edge-pml-linear-obstruction}
+\end{quote}
+给出。旧模型代数和 Gronwall fallback 分别由
+\begin{quote}\small
+\url{fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance}
+\end{quote}
+以及
+\begin{quote}\small
+\url{fact:2d_maxwell_pml_energy_functional_exploration:augmented-gronwall-energy}
+\end{quote}
+给出。
+
+第二阶段的建设性结论由
+\begin{quote}\small
+\url{fact:2d_maxwell_pml_energy_functional_exploration:covariantly-damped-debye-energy}
+\end{quote}
+给出：修改后的协变阻尼 Maxwell--Debye 吸收层具有正的单调能量恒等式。
+
+因此，本阶段回答了第二轮目标：首先确认旧模型 obstruction 的来源，随后比较三种修复路线，并选出一个已经验证的修复模型，该模型具有长时间一致的耗散能量估计。
+
+\end{document}

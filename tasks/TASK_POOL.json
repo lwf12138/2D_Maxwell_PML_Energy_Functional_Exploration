@@ -1,7 +1,7 @@
 {
   "schema_version": "iteris.task_pool.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-06-20T02:39:31.454344Z",
+  "updated_at": "2026-06-20T04:12:20.338561Z",
   "active_frontier": "",
   "tasks": [
     {
@@ -143,6 +143,93 @@
       ],
       "created_at": "2026-06-20T02:28:24.258293Z",
       "updated_at": "2026-06-20T02:39:31.454336Z"
+    },
+    {
+      "schema_version": "iteris.task_pool_task.v0",
+      "task_id": "task-stage3-literature-and-sources",
+      "mode": "foundation",
+      "objective": "Read required source reports and local references for stage-3 perfect-matching analysis.",
+      "status": "ready",
+      "priority": 160,
+      "dependencies": [],
+      "inputs": [
+        "sources/energy_functional_problem.tex",
+        "results/energy_functional_report_verified.md",
+        "results/energy_design_v2_report.md",
+        "results/energy_design_v2_report_verified.md"
+      ],
+      "expected_outputs": [
+        "artifacts/references/stage3_literature_reading_record.md"
+      ],
+      "assigned_agent_run": null,
+      "notes": [
+        "Stage-3 task required by .iteris/goal_prompt.txt."
+      ],
+      "created_at": "2026-06-20T04:12:02.401905Z",
+      "updated_at": "2026-06-20T04:12:02.401905Z"
+    },
+    {
+      "schema_version": "iteris.task_pool_task.v0",
+      "task_id": "task-stage3-perfect-matching-test",
+      "mode": "proof",
+      "objective": "Derive planar-interface perfect-matching criterion and test the v2 covariantly damped Maxwell-Debye model, including exact impedance mismatch if it fails.",
+      "status": "ready",
+      "priority": 150,
+      "dependencies": [
+        "task-stage3-literature-and-sources"
+      ],
+      "inputs": [],
+      "expected_outputs": [
+        "artifacts/proofs/stage3_v2_perfect_matching_test.md"
+      ],
+      "assigned_agent_run": null,
+      "notes": [
+        "Must produce durable fact candidates for v2 matching or mismatch."
+      ],
+      "created_at": "2026-06-20T04:12:08.439739Z",
+      "updated_at": "2026-06-20T04:12:08.439739Z"
+    },
+    {
+      "schema_version": "iteris.task_pool_task.v0",
+      "task_id": "task-stage3-repaired-model-energy",
+      "mode": "proof",
+      "objective": "Construct repaired stretched-coordinate/ADE candidate models and derive a dissipative energy or obstruction classification for the accepted model.",
+      "status": "ready",
+      "priority": 140,
+      "dependencies": [
+        "task-stage3-perfect-matching-test"
+      ],
+      "inputs": [],
+      "expected_outputs": [
+        "artifacts/proofs/stage3_repaired_model_energy.md"
+      ],
+      "assigned_agent_run": null,
+      "notes": [
+        "Include at least two candidates if v2 fails and classify matching/stability/energy status."
+      ],
+      "created_at": "2026-06-20T04:12:14.509395Z",
+      "updated_at": "2026-06-20T04:12:14.509395Z"
+    },
+    {
+      "schema_version": "iteris.task_pool_task.v0",
+      "task_id": "task-stage3-final-report",
+      "mode": "proof",
+      "objective": "Assemble verified stage-3 facts into results/energy_design_v3_perfect_matching_report.md and pass assembly plus goal-success verification.",
+      "status": "ready",
+      "priority": 130,
+      "dependencies": [
+        "task-stage3-repaired-model-energy"
+      ],
+      "inputs": [],
+      "expected_outputs": [
+        "results/energy_design_v3_perfect_matching_report.md"
+      ],
+      "assigned_agent_run": null,
+      "notes": [
+        "Terminal artifact for stage-3 Iteris goal."
+      ],
+      "created_at": "2026-06-20T04:12:20.338555Z",
+      "updated_at": "2026-06-20T04:12:20.338555Z"
     }
   ]
 }
