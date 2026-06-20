@@ -1,0 +1,15 @@
+{
+  "schema_version": "iteris.verification_request.v0",
+  "request_id": "verify-20260620T043300709633Z-assembly-stage-3-report-assembles-the-pe",
+  "mode": "assembly",
+  "claim": "Stage-3 report assembles the perfect-matching test, repaired-model classification, energy identities, obstruction statements, and literature record for results/energy_design_v3_perfect_matching_report.md.",
+  "artifacts": [
+    "results/energy_design_v3_perfect_matching_report.md",
+    "artifacts/proofs/stage3_v2_perfect_matching_test.md",
+    "artifacts/proofs/stage3_repaired_model_energy.md",
+    "artifacts/references/stage3_literature_reading_record.md"
+  ],
+  "fact_ids": [],
+  "target_artifact": "results/energy_design_v3_perfect_matching_report.md",
+  "created_at": "2026-06-20T04:33:00.710270Z"
+}

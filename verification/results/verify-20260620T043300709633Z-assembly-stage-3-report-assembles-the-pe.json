@@ -1,0 +1,43 @@
+{
+  "schema_version": "iteris.verification_result.v0",
+  "request_id": "verify-20260620T043300709633Z-assembly-stage-3-report-assembles-the-pe",
+  "mode": "assembly",
+  "claim": "Stage-3 report assembles the perfect-matching test, repaired-model classification, energy identities, obstruction statements, and literature record for results/energy_design_v3_perfect_matching_report.md.",
+  "verdict": "needs_repair",
+  "passed": false,
+  "strict_verdict": "wrong",
+  "summary": "assembly claim needs repair before promotion: Stage-3 report assembles the perfect-matching test, repaired-model classification, energy identities, obstruction statements, and literature record for results/energy_design_v3_per",
+  "critical_errors": [],
+  "gaps": [
+    {
+      "location": "artifacts/references/stage3_literature_reading_record.md",
+      "issue": "terminal artifact should include a fact index"
+    },
+    {
+      "location": "artifacts/references/stage3_literature_reading_record.md",
+      "issue": "terminal artifact should include an assembly section"
+    },
+    {
+      "location": "artifacts/references/stage3_literature_reading_record.md",
+      "issue": "terminal artifact must cite at least one fact:<id>"
+    }
+  ],
+  "repair_hints": [
+    "artifacts/references/stage3_literature_reading_record.md: terminal artifact should include a fact index",
+    "artifacts/references/stage3_literature_reading_record.md: terminal artifact should include an assembly section",
+    "artifacts/references/stage3_literature_reading_record.md: terminal artifact must cite at least one fact:<id>"
+  ],
+  "checked_artifacts": [
+    "results/energy_design_v3_perfect_matching_report.md",
+    "artifacts/proofs/stage3_v2_perfect_matching_test.md",
+    "artifacts/proofs/stage3_repaired_model_energy.md",
+    "artifacts/references/stage3_literature_reading_record.md"
+  ],
+  "checked_fact_ids": [],
+  "primary_fact_ids": [],
+  "target_artifact": "results/energy_design_v3_perfect_matching_report.md",
+  "verification_scope": "structural_precheck",
+  "claim_ceiling_after_verification": "submitted",
+  "created_at": "2026-06-20T04:33:00.710261Z",
+  "verifier": "iteris.structural_precheck"
+}

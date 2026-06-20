@@ -1,0 +1,74 @@
+{
+  "schema_version": "iteris.verification_result.v0",
+  "request_id": "verify-20260620T043309704737Z-assembly-stage-3-terminal-report-results",
+  "mode": "assembly",
+  "claim": "Stage-3 terminal report results/energy_design_v3_perfect_matching_report.md includes the required fact index, literature record, matching test, repaired-model classification, energy identities, obstructions, and assembly.",
+  "verdict": "needs_repair",
+  "passed": false,
+  "strict_verdict": "wrong",
+  "summary": "assembly claim needs repair before promotion: Stage-3 terminal report results/energy_design_v3_perfect_matching_report.md includes the required fact index, literature record, matching test, repaired-model classification, energ",
+  "critical_errors": [],
+  "gaps": [
+    {
+      "location": "fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy",
+      "issue": "referenced fact status is 'submitted', not 'verified'"
+    },
+    {
+      "location": "fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy",
+      "issue": "referenced fact lacks a verification link"
+    },
+    {
+      "location": "fact:2d_maxwell_pml_energy_functional_exploration:stretched-coordinate-debye-pml-matching-and-energy-gap",
+      "issue": "referenced fact status is 'submitted', not 'verified'"
+    },
+    {
+      "location": "fact:2d_maxwell_pml_energy_functional_exploration:stretched-coordinate-debye-pml-matching-and-energy-gap",
+      "issue": "referenced fact lacks a verification link"
+    },
+    {
+      "location": "fact:2d_maxwell_pml_energy_functional_exploration:v2-covariant-model-not-perfectly-matched",
+      "issue": "referenced fact status is 'submitted', not 'verified'"
+    },
+    {
+      "location": "fact:2d_maxwell_pml_energy_functional_exploration:v2-covariant-model-not-perfectly-matched",
+      "issue": "referenced fact lacks a verification link"
+    },
+    {
+      "location": "fact:2d_maxwell_pml_energy_functional_exploration:whole-domain-strict-decay-nullspace-obstruction",
+      "issue": "referenced fact status is 'submitted', not 'verified'"
+    },
+    {
+      "location": "fact:2d_maxwell_pml_energy_functional_exploration:whole-domain-strict-decay-nullspace-obstruction",
+      "issue": "referenced fact lacks a verification link"
+    }
+  ],
+  "repair_hints": [
+    "fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy: referenced fact status is 'submitted', not 'verified'",
+    "fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy: referenced fact lacks a verification link",
+    "fact:2d_maxwell_pml_energy_functional_exploration:stretched-coordinate-debye-pml-matching-and-energy-gap: referenced fact status is 'submitted', not 'verified'",
+    "fact:2d_maxwell_pml_energy_functional_exploration:stretched-coordinate-debye-pml-matching-and-energy-gap: referenced fact lacks a verification link",
+    "fact:2d_maxwell_pml_energy_functional_exploration:v2-covariant-model-not-perfectly-matched: referenced fact status is 'submitted', not 'verified'",
+    "fact:2d_maxwell_pml_energy_functional_exploration:v2-covariant-model-not-perfectly-matched: referenced fact lacks a verification link",
+    "fact:2d_maxwell_pml_energy_functional_exploration:whole-domain-strict-decay-nullspace-obstruction: referenced fact status is 'submitted', not 'verified'",
+    "fact:2d_maxwell_pml_energy_functional_exploration:whole-domain-strict-decay-nullspace-obstruction: referenced fact lacks a verification link"
+  ],
+  "checked_artifacts": [
+    "results/energy_design_v3_perfect_matching_report.md"
+  ],
+  "checked_fact_ids": [
+    "fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance",
+    "fact:2d_maxwell_pml_energy_functional_exploration:augmented-gronwall-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:covariantly-damped-debye-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:edge-pml-linear-obstruction",
+    "fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:stretched-coordinate-debye-pml-matching-and-energy-gap",
+    "fact:2d_maxwell_pml_energy_functional_exploration:v2-covariant-model-not-perfectly-matched",
+    "fact:2d_maxwell_pml_energy_functional_exploration:whole-domain-strict-decay-nullspace-obstruction"
+  ],
+  "primary_fact_ids": [],
+  "target_artifact": "results/energy_design_v3_perfect_matching_report.md",
+  "verification_scope": "structural_precheck",
+  "claim_ceiling_after_verification": "submitted",
+  "created_at": "2026-06-20T04:33:09.705670Z",
+  "verifier": "iteris.structural_precheck"
+}

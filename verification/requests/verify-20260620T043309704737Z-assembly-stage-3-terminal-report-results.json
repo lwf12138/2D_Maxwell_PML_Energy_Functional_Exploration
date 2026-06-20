@@ -1,0 +1,12 @@
+{
+  "schema_version": "iteris.verification_request.v0",
+  "request_id": "verify-20260620T043309704737Z-assembly-stage-3-terminal-report-results",
+  "mode": "assembly",
+  "claim": "Stage-3 terminal report results/energy_design_v3_perfect_matching_report.md includes the required fact index, literature record, matching test, repaired-model classification, energy identities, obstructions, and assembly.",
+  "artifacts": [
+    "results/energy_design_v3_perfect_matching_report.md"
+  ],
+  "fact_ids": [],
+  "target_artifact": "results/energy_design_v3_perfect_matching_report.md",
+  "created_at": "2026-06-20T04:33:09.705674Z"
+}

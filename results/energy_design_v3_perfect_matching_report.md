@@ -1,4 +1,4 @@
-<!-- ITERIS STAGE-3 DRAFT: agent fact/assembly/goal-success verification pending because codex verifier hit an external usage limit on 2026-06-20T04:24Z. -->
+<!-- ITERIS STAGE-3 DRAFT: agent fact/assembly/goal-success verification pending because Codex verifier runs hit an external usage limit before verdict; retry after 2026-06-20 14:33 Asia/Shanghai. -->
 # Energy Design V3 Perfect Matching Report
 
 Problem id: `2d_maxwell_pml_energy_functional_exploration`

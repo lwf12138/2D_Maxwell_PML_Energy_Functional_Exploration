@@ -1,58 +1,8 @@
 {
   "schema_version": "iteris.frontier_index.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-06-20T04:28:21.231928Z",
+  "updated_at": "2026-06-20T04:37:51.454499Z",
   "active_frontiers": [
-    {
-      "schema_version": "iteris.frontier_entry.v0",
-      "frontier_id": "auto-stage3-final-report",
-      "title": "Stage3 Final Report",
-      "hypothesis": "Route inferred from facts, tasks, and artifacts matching `stage3-final-report`.",
-      "summary": "0 fact(s), 0 blocker fact(s), 1 active task(s), 0 artifact(s).",
-      "status": "active",
-      "fact_ids": [],
-      "blocker_fact_ids": [],
-      "task_ids": [
-        "task-stage3-final-report"
-      ],
-      "active_tasks": [
-        "task-stage3-final-report"
-      ],
-      "blocked_tasks": [],
-      "artifact_paths": [],
-      "verification_ids": [],
-      "agent_run_ids": [],
-      "open_questions": [
-        "Assemble verified stage-3 facts into results/energy_design_v3_perfect_matching_report.md and pass assembly plus goal-success verification."
-      ],
-      "next_actions": [],
-      "recent_fact_summaries": [],
-      "task_status_counts": {
-        "ready": 1
-      },
-      "evidence_terms": [],
-      "explore_run_count": 0,
-      "last_explore_at": null,
-      "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:28:21.231785Z",
-      "health": {
-        "frontier_id": "auto-stage3-final-report",
-        "title": "Stage3 Final Report",
-        "status": "active",
-        "fact_count": 0,
-        "blocker_count": 0,
-        "verified_count": 0,
-        "active_task_count": 1,
-        "ready_task_count": 1,
-        "artifact_count": 0,
-        "explore_run_count": 0,
-        "last_explore_at": null,
-        "cooldown_ok": true,
-        "explore_recommended": false,
-        "reason": "",
-        "recommended_focus": ""
-      }
-    },
     {
       "schema_version": "iteris.frontier_entry.v0",
       "frontier_id": "auto-stage3-repaired-model",
@@ -124,7 +74,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:28:21.231764Z",
+      "updated_at": "2026-06-20T04:37:51.454341Z",
       "health": {
         "frontier_id": "auto-stage3-repaired-model",
         "title": "Stage3 Repaired Model",
@@ -208,7 +158,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:28:21.231744Z",
+      "updated_at": "2026-06-20T04:37:51.454323Z",
       "health": {
         "frontier_id": "auto-alpha1-pml-cases",
         "title": "Alpha1 Pml Cases",
@@ -216,6 +166,56 @@
         "fact_count": 2,
         "blocker_count": 1,
         "verified_count": 2,
+        "active_task_count": 0,
+        "ready_task_count": 0,
+        "artifact_count": 0,
+        "explore_run_count": 0,
+        "last_explore_at": null,
+        "cooldown_ok": true,
+        "explore_recommended": false,
+        "reason": "",
+        "recommended_focus": ""
+      }
+    },
+    {
+      "schema_version": "iteris.frontier_entry.v0",
+      "frontier_id": "auto-stage3-final-report",
+      "title": "Stage3 Final Report",
+      "hypothesis": "Route inferred from facts, tasks, and artifacts matching `stage3-final-report`.",
+      "summary": "0 fact(s), 0 blocker fact(s), 0 active task(s), 0 artifact(s).",
+      "status": "blocked",
+      "fact_ids": [],
+      "blocker_fact_ids": [],
+      "task_ids": [
+        "task-stage3-final-report"
+      ],
+      "active_tasks": [],
+      "blocked_tasks": [
+        "task-stage3-final-report"
+      ],
+      "artifact_paths": [],
+      "verification_ids": [],
+      "agent_run_ids": [],
+      "open_questions": [
+        "Assemble verified stage-3 facts into results/energy_design_v3_perfect_matching_report.md and pass assembly plus goal-success verification."
+      ],
+      "next_actions": [],
+      "recent_fact_summaries": [],
+      "task_status_counts": {
+        "blocked": 1
+      },
+      "evidence_terms": [],
+      "explore_run_count": 0,
+      "last_explore_at": null,
+      "generated_by": "frontier_refresh",
+      "updated_at": "2026-06-20T04:37:51.454361Z",
+      "health": {
+        "frontier_id": "auto-stage3-final-report",
+        "title": "Stage3 Final Report",
+        "status": "blocked",
+        "fact_count": 0,
+        "blocker_count": 1,
+        "verified_count": 0,
         "active_task_count": 0,
         "ready_task_count": 0,
         "artifact_count": 0,
@@ -275,7 +275,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:28:21.231769Z",
+      "updated_at": "2026-06-20T04:37:51.454346Z",
       "health": {
         "frontier_id": "auto-stage3-perfect-matching",
         "title": "Stage3 Perfect Matching",
@@ -342,7 +342,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:28:21.231733Z",
+      "updated_at": "2026-06-20T04:37:51.454313Z",
       "health": {
         "frontier_id": "auto-alpha1-algebra-energy",
         "title": "Alpha1 Algebra Energy",
@@ -393,7 +393,7 @@
       "explore_run_count": 1,
       "last_explore_at": "2026-06-20T02:27:13.918334Z",
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:28:21.231801Z",
+      "updated_at": "2026-06-20T04:37:51.454375Z",
       "health": {
         "frontier_id": "auto-explore-second-stage",
         "title": "Explore Second Stage",
@@ -441,7 +441,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:28:21.231774Z",
+      "updated_at": "2026-06-20T04:37:51.454350Z",
       "health": {
         "frontier_id": "auto-final-energy-report",
         "title": "Final Energy Report",
@@ -505,7 +505,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:28:21.231757Z",
+      "updated_at": "2026-06-20T04:37:51.454335Z",
       "health": {
         "frontier_id": "auto-initial-exploration-run",
         "title": "Initial Exploration Run",
@@ -549,7 +549,7 @@
       "explore_run_count": 1,
       "last_explore_at": "2026-06-20T02:20:45.187532Z",
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:28:21.231795Z",
+      "updated_at": "2026-06-20T04:37:51.454370Z",
       "health": {
         "frontier_id": "auto-second-stage-constructive",
         "title": "Second Stage Constructive",
@@ -597,7 +597,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:28:21.231778Z",
+      "updated_at": "2026-06-20T04:37:51.454354Z",
       "health": {
         "frontier_id": "auto-stage2-final-report",
         "title": "Stage2 Final Report",
@@ -664,7 +664,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:28:21.231750Z",
+      "updated_at": "2026-06-20T04:37:51.454330Z",
       "health": {
         "frontier_id": "auto-stage2-repair-design",
         "title": "Stage2 Repair Design",
@@ -712,7 +712,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T04:28:21.231781Z",
+      "updated_at": "2026-06-20T04:37:51.454357Z",
       "health": {
         "frontier_id": "auto-stage3-literature-sources",
         "title": "Stage3 Literature Sources",
