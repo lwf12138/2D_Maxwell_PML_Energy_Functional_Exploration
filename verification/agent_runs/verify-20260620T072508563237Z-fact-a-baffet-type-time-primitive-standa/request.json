@@ -1,0 +1,25 @@
+{
+  "schema_version": "iteris.verification_request.v0",
+  "request_id": "verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa",
+  "backend": "agent",
+  "executor": "codex",
+  "mode": "fact",
+  "claim": "A Baffet-type time-primitive standard stretched-coordinate Maxwell-Debye PML has a full 2D constant-coefficient dissipative energy identity and remains Laplace-equivalent to the exact stretched-coordinate Maxwell-Debye PML.",
+  "artifacts": [
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-baffet-primitive-stretched-debye-2d-energy.md",
+    "artifacts/proofs/stage3_baffet_debye_2d_energy.md",
+    "artifacts/proofs/stage3_repaired_model_energy.md",
+    "verification/results/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m.json",
+    "verification/results/verify-20260620T065810059861Z-fact-strict-decay-of-total-electromagnet.json"
+  ],
+  "fact_ids": [
+    "fact:2d_maxwell_pml_energy_functional_exploration:baffet-primitive-stretched-debye-2d-energy"
+  ],
+  "target_artifact": null,
+  "created_at": "2026-06-20T07:25:08.563584Z",
+  "prompt_path": "verification/agent_runs/verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa/prompt.md",
+  "codex_log": "verification/agent_runs/verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa/codex.log",
+  "codex_events": "verification/agent_runs/verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa/codex.events.jsonl",
+  "codex_stderr": "verification/agent_runs/verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa/codex.stderr.log",
+  "codex_log_manifest": "verification/agent_runs/verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa/log_manifest.json"
+}

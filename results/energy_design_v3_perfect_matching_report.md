@@ -41,9 +41,10 @@ PML：在 Laplace 域中只把空间导数替换为 \(S_i(s)^{-1}\partial_i\)，
 perfectly matched。
 
 3. 能量方面必须分开陈述。v2 模型有完整的单调耗散恒等式，但它不是精确匹配
-PML。标准 stretched-coordinate 修复模型有精确匹配；在法向入射的一维块中有一个
-正的耗散能量；在完整二维 ADE 形式中，朴素物理能量的导数包含符号不定的记忆耦合
-项，尚未得到完整的 Baffet 型二维单调能量。
+PML。标准 stretched-coordinate 修复模型有精确匹配；其朴素物理能量在完整二维
+ADE 形式中有符号不定的记忆耦合项，但引入 Baffet 型 time-primitive 变量
+\(u_t=E,q_t=P\) 后，在常系数二维 PML 块上得到正的非增能量
+\(\mathcal E_{BD}\) 和耗散恒等式。
 
 4. 全计算区域上的“所有非零态严格衰减”不可能成立。若物理区域内
 \(\sigma_x=\sigma_y=0\)，取
@@ -55,8 +56,8 @@ E=0,\qquad P=0,\qquad H_x=\partial_x\phi,\qquad H_y=\partial_y\phi,
 都必须刻画这个零耗散空间。
 
 当前最强结论是：v2 是稳定吸收层而不是 perfectly matched PML；标准
-stretched-coordinate/ADE Maxwell--Debye 模型修复了匹配性；完整二维单调能量仍需
-新的 augmented/passive-memory 构造。下一篇 manuscript 不应把 v2 称为 PML。
+stretched-coordinate/Baffet-primitive Maxwell--Debye 模型在常系数二维块上同时给出
+perfect matching 与非增耗散能量。下一篇 manuscript 不应把 v2 称为 PML。
 
 ## Fact index
 
@@ -70,12 +71,14 @@ stretched-coordinate/ADE Maxwell--Debye 模型修复了匹配性；完整二维�
 | `fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy` | verified | `verification/results/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m.json` |
 | `fact:2d_maxwell_pml_energy_functional_exploration:stretched-coordinate-debye-pml-matching-and-energy-gap` | verified | `verification/results/verify-20260620T065326237995Z-fact-the-standard-stretched-coordinate-m.json` |
 | `fact:2d_maxwell_pml_energy_functional_exploration:whole-domain-strict-decay-nullspace-obstruction` | verified | `verification/results/verify-20260620T065810059861Z-fact-strict-decay-of-total-electromagnet.json` |
+| `fact:2d_maxwell_pml_energy_functional_exploration:baffet-primitive-stretched-debye-2d-energy` | verified | `verification/results/verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa.json` |
 
 Stage-3 proof artifacts:
 
 - `artifacts/references/stage3_literature_reading_record.md`
 - `artifacts/proofs/stage3_v2_perfect_matching_test.md`
 - `artifacts/proofs/stage3_repaired_model_energy.md`
+- `artifacts/proofs/stage3_baffet_debye_2d_energy.md`
 
 ## 2. Literature reading record
 
@@ -441,7 +444,116 @@ E P_t=\frac{1}{2\chi}\partial_t(P^2)+\frac{\tau}{\chi}P_t^2,
 +\int_{\partial I}EH_y n_x\,ds.}
 \]
 在 PEC 或非正通量边界下，这是单调耗散恒等式。该结果说明标准 stretched repair
-并非与能量方法冲突；困难出现在完整二维斜入射/ADE 耦合。
+并非与能量方法冲突；完整二维情形需要下面的 Baffet 型 time-primitive 变量。
+
+### 6.4 常系数二维 Baffet--Debye 正耗散恒等式
+
+对常系数 PML 块，令
+\[
+e=\epsilon_0\epsilon_\infty,\qquad
+a=\sigma_x+\sigma_y,\qquad b=\sigma_x\sigma_y,\qquad a>0,
+\]
+\[
+\Gamma_1=\begin{pmatrix}\sigma_x&0\\0&\sigma_y\end{pmatrix},\qquad
+\Gamma_2=\begin{pmatrix}\sigma_y-\sigma_x&0\\0&\sigma_x-\sigma_y\end{pmatrix}.
+\]
+取 electric primitive \(u\) 和 polarization primitive \(q\)：
+\[
+E=u_t,\qquad q_t=P,\qquad \tau P_t+P=\chi u_t,\qquad q+\tau P=\chi u.
+\]
+引入
+\[
+\lambda=\nabla u+\phi,
+\]
+并考虑 Baffet 型二维系统
+\[
+\mu\{e(u_{tt}+a u_t+b u)+P_t+aP+bq\}-\nabla\cdot\lambda=0,
+\]
+\[
+\phi_t+\Gamma_1\phi=\Gamma_2\nabla u.
+\]
+Laplace 消去 \(\phi\) 得到
+\[
+\widehat\lambda_x=\frac{S_y}{S_x}\partial_x\widehat u,\qquad
+\widehat\lambda_y=\frac{S_x}{S_y}\partial_y\widehat u,\qquad
+S_i=1+\frac{\sigma_i}{s}.
+\]
+又因
+\[
+\widehat P=\frac{\chi s}{1+\tau s}\widehat u,\qquad
+\widehat q=\frac1s\widehat P,
+\]
+所以该系统等价于
+\[
+\mu\varepsilon_D(s)s^2\widehat u
+=S_x^{-1}\partial_x(S_x^{-1}\partial_x\widehat u)
++S_y^{-1}\partial_y(S_y^{-1}\partial_y\widehat u),
+\]
+即从标准 stretched-coordinate Maxwell--Debye PML 消去 \(H_x,H_y\) 后得到的二阶方程。
+因此它继承 section 5.1 的平面界面 perfect matching。
+
+定义
+\[
+\alpha=1+2a\tau,\qquad \beta=a+b\tau,\qquad \gamma=a^2+b(1+a\tau).
+\]
+验证过的 Baffet--Debye 能量为
+\[
+\boxed{
+\begin{aligned}
+\mathcal E_{BD}
+=\frac12\int_\Omega\{&
+\mu e(u_t+a u)^2+|\lambda|^2+|\phi|_{a^{-1}\Gamma_1}^2+\mu e\,b u^2\\
+&+\frac{\mu}{\chi}\left(\alpha P^2+2\beta Pq+\gamma q^2\right)
+\}\,dxdy .
+\end{aligned}}
+\]
+\(P,q\) 二次型正定，因为
+\[
+\alpha>0,\qquad
+\alpha\gamma-\beta^2
+=b+ab\tau+2a^3\tau+b(2a^2-b)\tau^2>0.
+\]
+其耗散项为
+\[
+\boxed{
+\begin{aligned}
+\mathcal D_{BD}
+=\int_\Omega\{&
+|\lambda|^2_{\Gamma_1(I+a^{-1}\Gamma_1)}
++\frac{b}{a}|\nabla u|^2+\mu e\,ab u^2\\
+&+\frac{\mu}{\chi}\left[
+\tau P_t^2+\tau(a^2-b)P^2+abq^2
+\right]\}\,dxdy .
+\end{aligned}}
+\]
+直接乘以 \(u_t+a u\)，并用 Baffet 恒等式
+\[
+\lambda_t+\Gamma_1\lambda
+=\nabla u_t+(\Gamma_1+\Gamma_2)\nabla u
+\]
+以及 Debye primitive 乘积恒等式
+\[
+(P_t+aP+bq)(u_t+a u)
+=\frac1\chi\left[
+\frac12\partial_t(\alpha P^2+2\beta Pq+\gamma q^2)
++\tau P_t^2+\tau(a^2-b)P^2+abq^2
+\right]
+\]
+得到
+\[
+\boxed{
+\frac{d}{dt}\mathcal E_{BD}(t)
+=-\mathcal D_{BD}(t)
++\int_{\partial\Omega}(u_t+a u)\lambda\cdot n\,ds.}
+\]
+在 PEC 外边界或分块常系数界面的通量抵消条件下，
+\[
+\mathcal E_{BD}(t)+\int_0^t\mathcal D_{BD}(r)\,dr\le \mathcal E_{BD}(0).
+\]
+这就是 accepted repaired model 的二维非增/no-abnormal-growth 结论。它不是“所有非零态严格
+衰减”：零空间仍包含未阻尼物理区域中的定常 curl-free 磁场模式和 primitive gauge 模式。
+对空间连续变化的 damping profile，本报告只声称需另作变量系数能量证明；已验证结论是
+常系数及分块常系数传输框架。
 
 ## 7. Obstructions and impossibility statements
 
@@ -508,31 +620,36 @@ s\varepsilon_D(s)\widehat E
 \]
 证明平面界面处 \(\nu_+=S_i\nu_0\)、\(Y_+=Y_0\)、\(R=0\)。
 
-**Theorem B: energy/stability.** 有两个可行方向：
-
-1. 若使用 v2 协变阻尼模型，则 theorem 是单调稳定吸收层 theorem，不应称为 PML。
-2. 若坚持 exact stretched-coordinate PML，则从上面的 1D 正耗散恒等式出发，构造完整二维
-   Baffet/passive-memory augmented energy，用来吸收
+**Theorem B: energy/stability.** 以 Baffet--Debye primitive 形式作为 exact
+stretched-coordinate PML 的能量 theorem。常系数块中使用 \(u_t=E,q_t=P\)，证明
 \[
-E\psi_{E,x},\quad E\psi_{E,y},\quad H_x\psi_{H_x,y},\quad H_y\psi_{H_y,x}.
+\frac{d}{dt}\mathcal E_{BD}(t)
+=-\mathcal D_{BD}(t)
++\int_{\partial\Omega}(u_t+a u)\lambda\cdot n\,ds,
+\qquad \mathcal D_{BD}\ge0.
 \]
+在 PEC 或传输通量抵消条件下得到非增能量和 no-abnormal-growth estimate。变量系数
+damping profile 应作为后续独立 theorem，而不是从常系数结论直接推出。
 
-目前已验证的最强稳定结论是：v2 的单调能量成立但 v2 不 perfect matched；标准
-stretched-coordinate 模型修复了 matching，并在 1D 法向入射块中有正耗散恒等式；完整二维
-单调能量仍未闭合。
+若使用 v2 协变阻尼模型，则 theorem 只能是单调稳定吸收层 theorem，不应称为 PML。
+目前已验证的最强结论是：标准 stretched-coordinate/Baffet-primitive Maxwell--Debye
+模型在常系数二维块中同时给出 exact matching 与非增耗散能量；全域严格衰减需排除
+section 7.2 的零空间。
 
 ## Assembly
 
 Fact index 中列出的已验证事实给出旧模型 obstruction、Gronwall fallback、v2 单调能量、
-v2 matching 失效、标准 stretched-coordinate matching/1D 能量，以及全域严格衰减的零空间
-obstruction。由这些事实组装得到：
+v2 matching 失效、标准 stretched-coordinate matching/1D 能量、Baffet-primitive 二维
+常系数能量，以及全域严格衰减的零空间 obstruction。由这些事实组装得到：
 
 - v2 的 \(D_\rho\) Debye law 把物理 \(\varepsilon_D(s)\) 改为
   \(\varepsilon_D(s+\rho)\)，并改变斜入射导纳项，所以不是 perfectly matched。
 - 标准 stretched-coordinate Maxwell--Debye PML 保持 \(\varepsilon_D(s)\) 并只拉伸空间导数，
   因此平面界面导纳不变。
-- 能量结论必须按模型分类：v2 单调但不匹配；标准 stretched PML 匹配，1D 法向入射块单调，
-  完整二维 ADE 能量仍需要 augmented 变量。
+- 能量结论必须按模型分类：v2 单调但不匹配；标准 stretched PML 匹配；其朴素能量不单调，
+  但 Baffet-primitive 形式在常系数二维块中给出
+  \(\frac{d}{dt}\mathcal E_{BD}=-\mathcal D_{BD}\) 加边界通量的非增恒等式。
 
 这回答了 stage-3 目标的核心分歧：v2 不能作为最终 PML；下一步应以标准
-stretched-coordinate/ADE 模型为 matching theorem 的基础，并另行建立 Baffet 型二维能量。
+stretched-coordinate/Baffet-primitive 模型为 manuscript 的主 theorem，并把变量系数
+damping 与 fractional 正记忆表示列为后续工作。

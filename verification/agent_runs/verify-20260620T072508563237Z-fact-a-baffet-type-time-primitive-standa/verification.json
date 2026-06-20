@@ -1,0 +1,28 @@
+{
+  "verification_report": {
+    "summary": "Correct within the stated constant-coefficient scope. The cited Baffet-Debye artifact defines the primitive variables and compatibility constraint, derives the Laplace symbol of the auxiliary field, and reduces the model to the same second-order stretched-coordinate Maxwell-Debye equation as the verified standard PML fact. The Debye compatibility gives the advertised material factor epsilon_D(s), so the planar-interface perfect-matching conclusion is inherited from the verified predecessor fact. The energy identity is also supported: the spatial part matches the checked two-dimensional Baffet identity for constant damping, the Debye primitive product expands exactly into the derivative of the stated P,q quadratic plus nonnegative remainders, and the P,q determinant is positive for sigma_x,sigma_y >= 0, a > 0, tau > 0. The artifact correctly limits the result to non-increase/no-abnormal-growth with boundary flux cancellation and nullspace/gauge limitations, not strict decay or variable-coefficient monotonicity.",
+    "critical_errors": [],
+    "gaps": []
+  },
+  "verdict": "correct",
+  "repair_hints": "No repair needed.",
+  "checked_artifacts": [
+    "verification/agent_runs/verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa/request.json",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-baffet-primitive-stretched-debye-2d-energy.md",
+    "artifacts/proofs/stage3_baffet_debye_2d_energy.md",
+    "artifacts/proofs/stage3_repaired_model_energy.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-standard-stretched-pml-matching-and-1d-energy.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-whole-domain-strict-decay-nullspace-obstruction.md",
+    "verification/results/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m.json",
+    "verification/results/verify-20260620T065810059861Z-fact-strict-decay-of-total-electromagnet.json",
+    "sources/energy_functional_problem.tex",
+    "sources/energy_functional_problem.bbl",
+    "artifacts/references/stage3_literature_reading_record.md",
+    "references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt"
+  ],
+  "checked_fact_ids": [
+    "fact:2d_maxwell_pml_energy_functional_exploration:baffet-primitive-stretched-debye-2d-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:whole-domain-strict-decay-nullspace-obstruction"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "verification_report": {
+    "summary": "Scope adequacy check: the source stage-3 goal is not just to find any stable absorbing model or a boundary-case calculation. After testing v2, if v2 is not perfectly matched, the goal requires a repaired standard/Berenger/CFS/MPML/Baffet-type Maxwell-Debye PML and, for the accepted or repaired model in the intended 2D regime, either a genuinely dissipative energy identity/inequality with positivity, boundary terms, and nullspace/no-growth classification, or a formula-level obstruction showing why such an energy cannot exist. The terminal report correctly supports the v2 admittance mismatch and the planar-interface perfect matching of a standard stretched-coordinate repair, and it gives verified energy identities for v2 and for the repaired model only in a 1D normal-incidence block. However, the report explicitly states that the full 2D exact stretched-coordinate/ADE PML monotone energy remains unclosed. The sign-indefinite naive-energy couplings only show the naive physical energy fails; they do not prove no augmented/passive-memory energy can exist. The whole-domain strict-decay nullspace only rules out strict decay for every nonzero state, not the non-increasing dissipative identity with characterized nullspace that the goal would accept. Thus the artifact is a strong partial report, but it does not satisfy goal_success for the original stage-3 goal.",
+    "critical_errors": [],
+    "gaps": [
+      {
+        "location": ".iteris/goal_prompt.txt:20 and .iteris/goal_prompt.txt:126",
+        "issue": "The goal requires an energy functional/identity or final inequality for the accepted or repaired model, with positivity, boundary terms, and classification. The report's exact-matching repaired model is the full 2D stretched-coordinate/ADE Maxwell-Debye PML, but results/energy_design_v3_perfect_matching_report.md:392 and results/energy_design_v3_perfect_matching_report.md:520 explicitly leave the full 2D monotone energy unclosed."
+      },
+      {
+        "location": "results/energy_design_v3_perfect_matching_report.md:360 and results/energy_design_v3_perfect_matching_report.md:395",
+        "issue": "The provided repaired-model energy work covers only the naive physical energy obstruction and a 1D normal-incidence subcase. This is a self-selected subcase of the repaired 2D PML and does not cover oblique incidence/full ADE couplings."
+      },
+      {
+        "location": "results/energy_design_v3_perfect_matching_report.md:392 and results/energy_design_v3_perfect_matching_report.md:467",
+        "issue": "The report does not give the alternative required formula-level nonexistence obstruction. Sign-indefinite terms in the naive energy do not rule out Baffet/passive-memory augmented energies, and the stationary magnetic nullspace only rules out strict decay for all nonzero whole-domain states, not a dissipative identity with a characterized nullspace."
+      }
+    ]
+  },
+  "verdict": "wrong",
+  "repair_hints": "Repair by either proving and verifying a full 2D dissipative identity or no-abnormal-growth estimate for the exact stretched-coordinate/CFS/ADE Maxwell-Debye repair, including positivity, boundary/interface terms, and nullspace classification, or by proving a precise formula-level impossibility/reduction for that full 2D energy problem and finalizing via principled_stop. The existing v2 energy, 1D normal-incidence repaired-model identity, and naive-energy sign-indefinite calculation are useful facts but are not full goal_success.",
+  "checked_artifacts": [
+    "verification/agent_runs/verify-20260620T071026348925Z-goal_success-read-.iteris-goal_prompt.tx/request.json",
+    ".iteris/goal_prompt.txt",
+    "sources/energy_functional_problem.tex",
+    "results/energy_design_v3_perfect_matching_report.md",
+    "artifacts/proofs/stage3_v2_perfect_matching_test.md",
+    "artifacts/proofs/stage3_repaired_model_energy.md",
+    "artifacts/references/stage3_literature_reading_record.md",
+    "verification/results/verify-20260620T070357651402Z-assembly-stage-3-terminal-report-results.json",
+    "verification/results/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d.json",
+    "verification/results/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m.json",
+    "verification/results/verify-20260620T065326237995Z-fact-the-standard-stretched-coordinate-m.json",
+    "verification/results/verify-20260620T065810059861Z-fact-strict-decay-of-total-electromagnet.json",
+    "verification/results/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw.json",
+    "verification/results/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-.json",
+    "verification/results/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e.json",
+    "references/processed/Joly - 2012 - An elementary introduction to the construction and the analysis of perfectly matched layers for time.txt",
+    "references/processed/Baffet \u7b49 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt",
+    "references/processed/Be\u0301cache \u7b49 - 2023 - Convergence analysis of time-domain PMLS for 2D electromagnetic wave propagation in dispersive waveg.txt"
+  ],
+  "checked_fact_ids": [
+    "fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance",
+    "fact:2d_maxwell_pml_energy_functional_exploration:edge-pml-linear-obstruction",
+    "fact:2d_maxwell_pml_energy_functional_exploration:augmented-gronwall-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:covariantly-damped-debye-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:v2-covariant-model-not-perfectly-matched",
+    "fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:stretched-coordinate-debye-pml-matching-and-energy-gap",
+    "fact:2d_maxwell_pml_energy_functional_exploration:whole-domain-strict-decay-nullspace-obstruction",
+    "fact:2d_maxwell_pml_energy_functional_exploration:run-20260619T173930696222Z:source-problem"
+  ]
+}

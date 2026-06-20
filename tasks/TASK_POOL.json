@@ -1,7 +1,7 @@
 {
   "schema_version": "iteris.task_pool.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-06-20T07:09:52.299999Z",
+  "updated_at": "2026-06-20T07:33:24.896879Z",
   "active_frontier": "",
   "tasks": [
     {
@@ -242,10 +242,12 @@
         "Blocked on required agent verifications: repeated verifier runs fail before verdict with external Codex usage limit, retry-after 2:33 PM local. Terminal artifact draft exists at results/energy_design_v3_perfect_matching_report.md; fact/assembly/goal_success still pending.",
         "Latest fact-verifier retry verify-20260620T043846315949Z failed before verdict with Codex usage limit (retry-after 2:33 PM local); no verification.json was produced, so stage-3 facts remain unverified and assembly/goal_success remain blocked.",
         "Stage-3 durable facts are now verified and promoted: v2 mismatch, standard stretched-coordinate matching/1D energy, full 2D ADE energy gap, and whole-domain strict-decay nullspace obstruction. Report fact index updated; starting assembly verification.",
-        "Assembly verification passed: verify-20260620T070357651402Z-assembly-stage-3-terminal-report-results. Starting goal-success verification against the original stage-3 goal prompt."
+        "Assembly verification passed: verify-20260620T070357651402Z-assembly-stage-3-terminal-report-results. Starting goal-success verification against the original stage-3 goal prompt.",
+        "Goal-success verification failed: verify-20260620T071026348925Z-goal_success-read-.iteris-goal_prompt.tx. Gap is full 2D dissipative/no-growth theorem or formula-level impossibility for the exact stretched-coordinate/CFS/ADE repair; current 1D identity and naive-energy sign-indefinite calculation are insufficient.",
+        "Repaired goal-success gap: added and verified fact:2d_maxwell_pml_energy_functional_exploration:baffet-primitive-stretched-debye-2d-energy (verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa), then updated report with full 2D constant-coefficient Baffet-Debye energy identity."
       ],
       "created_at": "2026-06-20T04:12:20.338555Z",
-      "updated_at": "2026-06-20T07:09:52.299987Z"
+      "updated_at": "2026-06-20T07:33:24.896871Z"
     }
   ]
 }
