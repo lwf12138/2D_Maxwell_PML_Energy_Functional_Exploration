@@ -28,3 +28,4 @@
 {"timestamp":"2026-06-20T04:28:05.507739Z","channel":"events","record":{"event_type":"fact_add","fact_id":"fact:2d_maxwell_pml_energy_functional_exploration:whole-domain-strict-decay-nullspace-obstruction","path":"memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-whole-domain-strict-decay-nullspace-obstruction.md","resubmit":false,"reindexed":true}}
 {"timestamp":"2026-06-20T04:32:41.241567Z","channel":"events","record":{"event_type":"git_checkpoint","message":"checkpoint: stage3 perfect matching report draft","paths":["."]}}
 {"timestamp":"2026-06-20T04:44:43.625361Z","channel":"events","record":{"event_type":"git_checkpoint","message":"checkpoint: stage3 verifier quota blocker recorded","paths":["."]}}
+{"timestamp":"2026-06-20T04:45:55.163946Z","channel":"events","record":{"event_type":"git_checkpoint","message":"checkpoint: stage3 verification blocked on external quota","paths":["."]}}

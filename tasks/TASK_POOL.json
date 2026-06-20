@@ -1,7 +1,7 @@
 {
   "schema_version": "iteris.task_pool.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-06-20T04:35:38.279206Z",
+  "updated_at": "2026-06-20T04:45:28.453880Z",
   "active_frontier": "",
   "tasks": [
     {
@@ -239,10 +239,11 @@
       "notes": [
         "Terminal artifact for stage-3 Iteris goal.",
         "Drafted results/energy_design_v3_perfect_matching_report.md; performing consistency pass before verification retry.",
-        "Blocked on required agent verifications: repeated verifier runs fail before verdict with external Codex usage limit, retry-after 2:33 PM local. Terminal artifact draft exists at results/energy_design_v3_perfect_matching_report.md; fact/assembly/goal_success still pending."
+        "Blocked on required agent verifications: repeated verifier runs fail before verdict with external Codex usage limit, retry-after 2:33 PM local. Terminal artifact draft exists at results/energy_design_v3_perfect_matching_report.md; fact/assembly/goal_success still pending.",
+        "Latest fact-verifier retry verify-20260620T043846315949Z failed before verdict with Codex usage limit (retry-after 2:33 PM local); no verification.json was produced, so stage-3 facts remain unverified and assembly/goal_success remain blocked."
       ],
       "created_at": "2026-06-20T04:12:20.338555Z",
-      "updated_at": "2026-06-20T04:35:38.279198Z"
+      "updated_at": "2026-06-20T04:45:28.453872Z"
     }
   ]
 }
