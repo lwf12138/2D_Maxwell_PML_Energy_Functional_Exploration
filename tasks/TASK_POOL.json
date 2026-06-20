@@ -1,7 +1,7 @@
 {
   "schema_version": "iteris.task_pool.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-06-20T14:23:33.618953Z",
+  "updated_at": "2026-06-20T14:45:16.831499Z",
   "active_frontier": "",
   "tasks": [
     {
@@ -252,6 +252,33 @@
       ],
       "created_at": "2026-06-20T04:12:20.338555Z",
       "updated_at": "2026-06-20T14:23:33.618945Z"
+    },
+    {
+      "schema_version": "iteris.task_pool_task.v0",
+      "task_id": "task-new-energy-functional-tex-contract",
+      "mode": "proof",
+      "objective": "Create the TeX/PDF terminal artifact, algebra verification files, and Markdown summary required by the new Iteris goal prompt.",
+      "status": "running",
+      "priority": 200,
+      "dependencies": [],
+      "inputs": [
+        ".iteris/goal_prompt.txt",
+        "results/energy_design_v3_perfect_matching_report.md",
+        "artifacts/proofs/stage3_baffet_debye_2d_energy.md"
+      ],
+      "expected_outputs": [
+        "tex/new_energy_functional_2d_debye_pml.tex",
+        "tex/new_energy_functional_2d_debye_pml.pdf",
+        "verification/algebra/new_energy_functional_sympy.py",
+        "verification/algebra/NewEnergyFunctional.lean",
+        "results/new_energy_functional_2d_debye_pml_report.md"
+      ],
+      "assigned_agent_run": null,
+      "notes": [
+        "Started inline by Codex after reading the new goal_prompt terminal-artifact contract."
+      ],
+      "created_at": "2026-06-20T14:45:16.831494Z",
+      "updated_at": "2026-06-20T14:45:16.831494Z"
     }
   ]
 }
