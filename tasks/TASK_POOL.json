@@ -1,7 +1,7 @@
 {
   "schema_version": "iteris.task_pool.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-06-20T02:29:42.437836Z",
+  "updated_at": "2026-06-20T02:39:31.454344Z",
   "active_frontier": "",
   "tasks": [
     {
@@ -124,7 +124,7 @@
       "task_id": "task-stage2-final-report",
       "mode": "proof",
       "objective": "Assemble the verified second-stage repaired-model result into results/energy_design_v2_report.md and pass assembly plus goal-success verification.",
-      "status": "review",
+      "status": "done",
       "priority": 110,
       "dependencies": [
         "task-stage2-repair-design"
@@ -138,10 +138,11 @@
       "assigned_agent_run": null,
       "notes": [
         "Terminal artifact for the second-stage Iteris goal.",
-        "Wrote results/energy_design_v2_report.md; ready for assembly verification."
+        "Wrote results/energy_design_v2_report.md; ready for assembly verification.",
+        "Assembly verification passed: verify-20260620T023007094217Z-assembly-assemble-verified-facts-to-answ. Goal-success verification passed: verify-20260620T023507094543Z-goal_success-read-.iteris-goal_prompt.tx."
       ],
       "created_at": "2026-06-20T02:28:24.258293Z",
-      "updated_at": "2026-06-20T02:29:42.437827Z"
+      "updated_at": "2026-06-20T02:39:31.454336Z"
     }
   ]
 }

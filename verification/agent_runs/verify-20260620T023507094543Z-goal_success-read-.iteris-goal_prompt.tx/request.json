@@ -1,0 +1,23 @@
+{
+  "schema_version": "iteris.verification_request.v0",
+  "request_id": "verify-20260620T023507094543Z-goal_success-read-.iteris-goal_prompt.tx",
+  "backend": "agent",
+  "executor": "codex",
+  "mode": "goal_success",
+  "claim": "Read .iteris/goal_prompt.txt and execute the second-stage Iteris goal: analyze the verified obstruction in results/energy_functional_report_verified.md without treating it as final success; identify the old-model edge-PML linear-growth term; propose at least three repairs including compatibility restriction, shifted-variable reformulation, and modified damping/PML model; derive candidate energies, positivity, and energy derivative classifications; select the most promising repaired model; write results/energy_design_v2_report.md with obstruction, modified models, exact best-candidate equations, energy functional, positivity proof, energy identity or inequality, classification, and open problems; pass assembly and goal-success verification.",
+  "artifacts": [
+    ".iteris/goal_prompt.txt",
+    "sources/energy_functional_problem.tex",
+    "results/energy_functional_report_verified.md",
+    "results/energy_design_v2_report.md",
+    "verification/results/verify-20260620T023007094217Z-assembly-assemble-verified-facts-to-answ.json"
+  ],
+  "fact_ids": [],
+  "target_artifact": "results/energy_design_v2_report.md",
+  "created_at": "2026-06-20T02:35:07.094932Z",
+  "prompt_path": "verification/agent_runs/verify-20260620T023507094543Z-goal_success-read-.iteris-goal_prompt.tx/prompt.md",
+  "codex_log": "verification/agent_runs/verify-20260620T023507094543Z-goal_success-read-.iteris-goal_prompt.tx/codex.log",
+  "codex_events": "verification/agent_runs/verify-20260620T023507094543Z-goal_success-read-.iteris-goal_prompt.tx/codex.events.jsonl",
+  "codex_stderr": "verification/agent_runs/verify-20260620T023507094543Z-goal_success-read-.iteris-goal_prompt.tx/codex.stderr.log",
+  "codex_log_manifest": "verification/agent_runs/verify-20260620T023507094543Z-goal_success-read-.iteris-goal_prompt.tx/log_manifest.json"
+}

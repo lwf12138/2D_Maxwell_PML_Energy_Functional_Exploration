@@ -1,0 +1,28 @@
+{
+  "verification_report": {
+    "summary": "Correct. The source goal is a stage-2 constructive task, not a universal proof that the original eight-variable source PML is monotone: it requires analyzing the verified old edge-PML obstruction, proposing repaired or modified formulations, deriving energies/positivity/derivative classifications, selecting a promising repaired model, and writing results/energy_design_v2_report.md. The terminal report covers that scope. It identifies the undamped shifted magnetic edge mode as the old-model obstruction, gives three repair routes (compatibility restriction, shifted-variable MPML damping, and a covariantly damped Maxwell-Debye absorbing layer), classifies the first two as partial, and selects the covariantly damped model. The selected model's positivity and monotone energy identity are supported by the cited verified fact and by the displayed calculation: PEC cancels the Maxwell flux, and the covariant Debye identity converts E D_rho P into the time derivative of chi^{-1}P^2/2 plus nonnegative rho P^2/chi and tau |D_rho P|^2/chi dissipation. The report does not overclaim exact perfect matching or a monotone energy for the old eight-variable model.",
+    "critical_errors": [],
+    "gaps": []
+  },
+  "verdict": "correct",
+  "repair_hints": "No repair needed.",
+  "checked_artifacts": [
+    "verification/agent_runs/verify-20260620T023507094543Z-goal_success-read-.iteris-goal_prompt.tx/request.json",
+    ".iteris/goal_prompt.txt",
+    "sources/energy_functional_problem.tex",
+    "results/energy_functional_report_verified.md",
+    "results/energy_design_v2_report.md",
+    "artifacts/proofs/stage2_repair_design.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-covariantly-damped-debye-energy.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-edge-pml-linear-obstruction.md",
+    "verification/results/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw.json",
+    "verification/results/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-.json",
+    "verification/results/verify-20260620T023007094217Z-assembly-assemble-verified-facts-to-answ.json"
+  ],
+  "checked_fact_ids": [
+    "fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance",
+    "fact:2d_maxwell_pml_energy_functional_exploration:edge-pml-linear-obstruction",
+    "fact:2d_maxwell_pml_energy_functional_exploration:augmented-gronwall-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:covariantly-damped-debye-energy"
+  ]
+}
