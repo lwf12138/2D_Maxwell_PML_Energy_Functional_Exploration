@@ -1,0 +1,41 @@
+{
+  "verification_report": {
+    "summary": "The terminal TeX artifact is supported by the cited verified facts and does not overclaim beyond them. It assembles the old eight-variable obstruction, Gronwall fallback, v2 monotone energy and perfect-matching failure, standard stretched-coordinate matching and naive-energy gap, Baffet-Debye constant-coefficient primitive energy identity, nullspace/strict-decay obstruction, algebra checks, build record, and literature-reading record. The main positive theorem is explicitly limited to constant or piecewise-constant stretched-coordinate Maxwell-Debye PML blocks with flux cancellation; variable damping profiles, full-domain strict exponential decay, and the 0<alpha<1 Cole-Cole theorem are correctly marked as unproved.",
+    "critical_errors": [],
+    "gaps": []
+  },
+  "verdict": "correct",
+  "repair_hints": "No repair needed.",
+  "checked_artifacts": [
+    "verification/agent_runs/verify-20260620T150039430501Z-assembly-tex-terminal-artifact-tex-new_e/request.json",
+    "verification/agent_runs/verify-20260620T150039430501Z-assembly-tex-terminal-artifact-tex-new_e/prompt.md",
+    "prompts/run_energy_design_v4_new_functional.sh",
+    "tex/new_energy_functional_2d_debye_pml.tex",
+    "tex/new_energy_functional_2d_debye_pml.pdf",
+    "tex/new_energy_functional_2d_debye_pml_build.log",
+    "results/new_energy_functional_2d_debye_pml_report.md",
+    "verification/algebra/new_energy_functional_sympy.py",
+    "verification/algebra/NewEnergyFunctional.lean",
+    "artifacts/references/stage3_literature_reading_record.md",
+    "verification/results/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json",
+    "verification/results/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-.json",
+    "verification/results/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e.json",
+    "verification/results/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw.json",
+    "verification/results/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d.json",
+    "verification/results/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m.json",
+    "verification/results/verify-20260620T065326237995Z-fact-the-standard-stretched-coordinate-m.json",
+    "verification/results/verify-20260620T065810059861Z-fact-strict-decay-of-total-electromagnet.json",
+    "verification/results/verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa.json"
+  ],
+  "checked_fact_ids": [
+    "fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance",
+    "fact:2d_maxwell_pml_energy_functional_exploration:edge-pml-linear-obstruction",
+    "fact:2d_maxwell_pml_energy_functional_exploration:augmented-gronwall-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:covariantly-damped-debye-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:v2-covariant-model-not-perfectly-matched",
+    "fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:stretched-coordinate-debye-pml-matching-and-energy-gap",
+    "fact:2d_maxwell_pml_energy_functional_exploration:whole-domain-strict-decay-nullspace-obstruction",
+    "fact:2d_maxwell_pml_energy_functional_exploration:baffet-primitive-stretched-debye-2d-energy"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": "iteris.verification_request.v0",
+  "request_id": "verify-20260620T150039430501Z-assembly-tex-terminal-artifact-tex-new_e",
+  "backend": "agent",
+  "executor": "codex",
+  "mode": "assembly",
+  "claim": "TeX terminal artifact tex/new_energy_functional_2d_debye_pml.tex assembles the verified Maxwell-Debye-PML facts, algebra checks, perfect-matching analysis, candidate energy comparison, Baffet-Debye constant-coefficient energy identity, decay classification, and literature reading record required by the new Iteris goal prompt.",
+  "artifacts": [
+    "tex/new_energy_functional_2d_debye_pml.tex"
+  ],
+  "fact_ids": [],
+  "target_artifact": "tex/new_energy_functional_2d_debye_pml.tex",
+  "created_at": "2026-06-20T15:00:39.430748Z",
+  "prompt_path": "verification/agent_runs/verify-20260620T150039430501Z-assembly-tex-terminal-artifact-tex-new_e/prompt.md",
+  "codex_log": "verification/agent_runs/verify-20260620T150039430501Z-assembly-tex-terminal-artifact-tex-new_e/codex.log",
+  "codex_events": "verification/agent_runs/verify-20260620T150039430501Z-assembly-tex-terminal-artifact-tex-new_e/codex.events.jsonl",
+  "codex_stderr": "verification/agent_runs/verify-20260620T150039430501Z-assembly-tex-terminal-artifact-tex-new_e/codex.stderr.log",
+  "codex_log_manifest": "verification/agent_runs/verify-20260620T150039430501Z-assembly-tex-terminal-artifact-tex-new_e/log_manifest.json"
+}
