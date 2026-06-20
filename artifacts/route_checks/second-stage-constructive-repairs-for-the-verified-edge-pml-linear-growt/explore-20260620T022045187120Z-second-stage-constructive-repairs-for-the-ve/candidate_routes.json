@@ -1,0 +1,62 @@
+{
+  "schema_version": "iteris.candidate_routes.v0",
+  "run_id": "explore-20260620T022045187120Z-second-stage-constructive-repairs-for-the-ve",
+  "focus": "Second-stage constructive repairs for the verified edge-PML linear-growth obstruction in the alpha=1 2D Maxwell-PML model.",
+  "routes": [
+    {
+      "route_id": "stage2-edge-compatibility-quotient",
+      "title": "Edge compatibility or quotient-space restriction",
+      "type": "restriction",
+      "hypothesis": "The original source equations can have a uniformly bounded restricted estimate if the transverse zero-mode projection of the undamped shifted magnetic invariant is excluded.",
+      "core_object": "For x-edges, the kernel projection of M_x=Q_x+mu*(sigma_x/epsilon_0)*H_x; for y-edges, the analogous M_y projection.",
+      "expected_energy_type": "Uniformly bounded or non-growing estimate on a restricted data class, likely with a quotient or negative-norm component.",
+      "falsification_test": "Freeze constant edge coefficients, Fourier transform transversely, and check whether any nonzero transverse mode still has a Jordan block or positive real eigenvalue.",
+      "evidence_paths": [
+        "artifacts/proofs/alpha1_constant_pml_cases.md",
+        "results/energy_functional_report.md"
+      ],
+      "risk": "medium"
+    },
+    {
+      "route_id": "stage2-damped-shifted-mpml",
+      "title": "Damped shifted-variable MPML repair",
+      "type": "modified_model",
+      "hypothesis": "Adding positive damping to the shifted magnetic variables in edge layers removes the verified Jordan block and admits a positive Lyapunov functional for the edge zero mode.",
+      "core_object": "Modified equations M_{x,t}=a_x partial_y E - gamma_x M_x and M_{y,t}=-a_y partial_x E - gamma_y M_y with edge-positive gamma_i.",
+      "expected_energy_type": "Uniformly bounded energy with cross terms; possible monotone Lyapunov functional for frozen modes.",
+      "falsification_test": "Construct P>0 such that A^T P + P A <= 0 for the zero-mode matrix A=[[0,1/mu],[0,-gamma]], then test frozen nonzero modes numerically or symbolically.",
+      "evidence_paths": [
+        "artifacts/route_checks/second-stage-constructive-repairs-for-the-verified-edge-pml-linear-growt/explore-20260620T022045187120Z-second-stage-constructive-repairs-for-the-ve/exploration_report.md"
+      ],
+      "risk": "medium"
+    },
+    {
+      "route_id": "stage2-cfs-split-field",
+      "title": "CFS or split-field repaired PML",
+      "type": "modified_model",
+      "hypothesis": "A CFS/split-field formulation with positive frequency shifts moves the zero-frequency PML pole and removes the free shifted magnetic invariant for arbitrary repaired-model data.",
+      "core_object": "Split memories with decay rates shifted by positive alpha parameters, so edge memories have lambda+alpha denominators instead of lambda denominators.",
+      "expected_energy_type": "Positive symmetrizer for frozen Fourier modes, followed by a physical-space energy under constant or controlled variable coefficients.",
+      "falsification_test": "Write the alpha=1 repaired edge and corner symbol and search for a common positive Lyapunov matrix over relevant frozen frequencies.",
+      "evidence_paths": [
+        "artifacts/references/theorem_search/query-9d73afa901e4c1ba5d4f58bd.json",
+        "artifacts/proofs/alpha1_algebra_balance.md"
+      ],
+      "risk": "high"
+    },
+    {
+      "route_id": "stage2-corner-first-symmetrizer",
+      "title": "Corner-first shifted symmetrizer",
+      "type": "subcase",
+      "hypothesis": "Since both shifted magnetic variables are damped when sigma_x and sigma_y are positive, constant corners may admit a stronger frozen-mode Lyapunov energy even though edges do not.",
+      "core_object": "The damped shifted equations for M_x and M_y in constant corner PMLs.",
+      "expected_energy_type": "Frozen-mode positive Lyapunov energy for symmetric corners, possibly bounded perturbative energy for asymmetric corners.",
+      "falsification_test": "Perform a frozen Fourier-mode semidefinite search separately for sigma_x=sigma_y and sigma_x != sigma_y.",
+      "evidence_paths": [
+        "artifacts/proofs/alpha1_constant_pml_cases.md",
+        "artifacts/references/theorem_search/query-9d73afa901e4c1ba5d4f58bd.json"
+      ],
+      "risk": "medium"
+    }
+  ]
+}

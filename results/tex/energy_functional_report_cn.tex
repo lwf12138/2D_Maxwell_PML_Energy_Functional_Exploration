@@ -1,0 +1,394 @@
+\documentclass[UTF8,a4paper,12pt]{ctexart}
+
+\usepackage{amsmath,amssymb,amsthm,bm}
+\usepackage{geometry}
+\usepackage{booktabs,longtable,array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\geometry{left=2.6cm,right=2.6cm,top=2.6cm,bottom=2.6cm}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!55!black,
+  citecolor=blue!55!black,
+  urlcolor=blue!55!black
+}
+\setlist[itemize]{leftmargin=2em,itemsep=0.25em,topsep=0.25em}
+\setlist[enumerate]{leftmargin=2.2em,itemsep=0.25em,topsep=0.25em}
+\renewcommand{\arraystretch}{1.15}
+\sloppy
+
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\Om}{\Omega}
+\newcommand{\sx}{\sigma_x}
+\newcommand{\sy}{\sigma_y}
+\newcommand{\Ecal}{\mathcal E}
+
+\title{二维 Maxwell--PML 能量泛函分析报告}
+\author{由 \texttt{energy\_functional\_report.md} 整理翻译}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{问题与目标}
+
+本报告对应的项目编号为
+\[
+\texttt{2d\_maxwell\_pml\_energy\_functional\_exploration}.
+\]
+原始问题文件为
+\[
+\texttt{sources/energy\_functional\_problem.tex}.
+\]
+
+需要分析的是二维 TM Maxwell--PML 系统，未知量为
+\[
+E,\quad H_x,\quad H_y,\quad P,\quad P_{z,1},\quad P_{z,2},\quad Q_x,\quad Q_y,
+\]
+并采用 PEC 边界条件
+\[
+E=0\qquad \text{on }\partial\Omega .
+\]
+首要目标是寻找一个正的、单调下降的能量泛函。若无法得到这种能量，则目标退而变为寻找最强的有效结论：有界能量、无异常增长估计、Gronwall 型估计，或者能够说明单调能量不存在的 obstruction。
+
+非分数阶情形被理解为
+\[
+P+\tau^\alpha\partial_t^\alpha P=\chi E,\qquad
+\chi=\epsilon_0(\epsilon_s-\epsilon_\infty)
+\]
+中的 \(\alpha=1\) 情形。本文只分析 \(\alpha=1\)。由于在 \(P=0\) 的子系统中已经出现 PML obstruction，分数阶情形 \(0<\alpha<1\) 暂不加入。
+
+\section{事实索引}
+
+\begin{itemize}
+\item \textbf{代数平衡事实：} verified.
+
+Fact id:
+\begin{quote}\small
+\url{fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance}
+\end{quote}
+验证记录：
+\begin{quote}\small\ttfamily
+verification/results/\\
+verify-20260619T180514214437Z-\\
+fact-alpha-1-pec-balance-and-shifted-mag.json
+\end{quote}
+
+\item \textbf{边 PML 线性增长 obstruction：} verified.
+
+Fact id:
+\begin{quote}\small
+\url{fact:2d_maxwell_pml_energy_functional_exploration:edge-pml-linear-obstruction}
+\end{quote}
+验证记录：
+\begin{quote}\small\ttfamily
+verification/results/\\
+verify-20260619T181255226823Z-\\
+fact-the-alpha-1-source-model-has-exact-.json
+\end{quote}
+
+\item \textbf{增广 Gronwall 能量：} verified.
+
+Fact id:
+\begin{quote}\small
+\url{fact:2d_maxwell_pml_energy_functional_exploration:augmented-gronwall-energy}
+\end{quote}
+验证记录：
+\begin{quote}\small\ttfamily
+verification/results/\\
+verify-20260619T181650715321Z-\\
+fact-a-positive-augmented-zeroth-order-e.json
+\end{quote}
+\end{itemize}
+
+\section{使用的模型}
+
+当 \(\alpha=1\) 时，本文使用的方程组为
+\begin{equation}
+\begin{aligned}
+\epsilon_0\epsilon_\infty E_t
+&= \partial_xH_y-\partial_yH_x
+   -\epsilon_\infty(\sx+\sy)E
+   -P_t-\frac{\sx+\sy}{\epsilon_0}P
+   +P_{z,1}+P_{z,2},\\
+\mu H_{x,t}
+&= -\partial_yE-\mu\frac{\sy-\sx}{\epsilon_0}H_x+Q_x,\\
+\mu H_{y,t}
+&= \partial_xE-\mu\frac{\sx-\sy}{\epsilon_0}H_y+Q_y,\\
+P+\tau P_t&=\chi E,\\
+P_{z,1,t}&=-\frac{\epsilon_\infty}{\epsilon_0}\sx\sy E,\\
+P_{z,2,t}&=-\frac{\sx\sy}{\epsilon_0^2}P,\\
+Q_{x,t}&=-\frac{\sx}{\epsilon_0}Q_x
+  +\frac{\mu\sx(\sy-\sx)}{\epsilon_0^2}H_x,\\
+Q_{y,t}&=-\frac{\sy}{\epsilon_0}Q_y
+  +\frac{\mu\sy(\sx-\sy)}{\epsilon_0^2}H_y .
+\end{aligned}
+\label{eq:model}
+\end{equation}
+边界条件为 PEC：
+\[
+E=0\qquad\text{on }\partial\Omega .
+\]
+Gronwall 估计所需的吸收参数假设为
+\[
+\sx,\sy\in L^\infty(\Omega),\qquad \sx,\sy\ge0,
+\]
+且系数与时间无关。该假设包含常系数、分离变量系数以及一般空间变系数情形。
+
+\section{已验证的 \texorpdfstring{\(\alpha=1\)}{alpha=1} 能量平衡}
+
+电磁能量定义为
+\[
+\Ecal_{\rm em}
+=\frac12\int_\Omega
+\left(\epsilon_0\epsilon_\infty E^2+\mu H_x^2+\mu H_y^2\right)\dd x\dd y .
+\]
+由 PEC 边界条件，Maxwell 主部的边界通量
+\[
+\int_{\partial\Omega}E(H_y n_x-H_x n_y)\dd s
+\]
+为零。利用
+\[
+P+\tau P_t=\chi E
+\]
+可得
+\[
+E P_t=\frac{1}{2\chi}\frac{\dd}{\dd t}\|P\|_2^2
++\frac{\tau}{\chi}\|P_t\|_2^2 .
+\]
+因此
+\[
+\Ecal_{\rm em+P}
+=\Ecal_{\rm em}+\frac1{2\chi}\|P\|_2^2
+\]
+是正能量，并满足
+\begin{equation}
+\begin{aligned}
+\frac{\dd}{\dd t}\Ecal_{\rm em+P}
+=\int_\Omega\Big[
+&-\epsilon_\infty(\sx+\sy)E^2
+-\frac{\tau}{\chi}P_t^2
+-\frac{\sx+\sy}{\epsilon_0}EP
++E(P_{z,1}+P_{z,2})\\
+&-\frac{\mu}{\epsilon_0}(\sy-\sx)H_x^2
+-\frac{\mu}{\epsilon_0}(\sx-\sy)H_y^2
++H_xQ_x+H_yQ_y
+\Big]\dd x\dd y .
+\end{aligned}
+\label{eq:em-p-balance}
+\end{equation}
+
+令
+\[
+a_x=\frac{\sy-\sx}{\epsilon_0},\quad
+a_y=\frac{\sx-\sy}{\epsilon_0},\quad
+b_x=\frac{\sx}{\epsilon_0},\quad
+b_y=\frac{\sy}{\epsilon_0},
+\]
+并引入平移变量
+\[
+M_x=Q_x-\mu a_xH_x,\qquad M_y=Q_y-\mu a_yH_y.
+\]
+则有
+\[
+\mu H_{x,t}=-\partial_yE+M_x,\qquad
+\mu H_{y,t}=\partial_xE+M_y,
+\]
+以及
+\[
+M_{x,t}=a_x\partial_yE-b_yM_x,\qquad
+M_{y,t}=-a_y\partial_xE-b_xM_y .
+\]
+代入后，磁场中的符号不定平方项会被抵消，留下
+\begin{equation}
+\begin{aligned}
+\frac{\dd}{\dd t}\Ecal_{\rm em+P}
+=\int_\Omega\Big[
+&-\epsilon_\infty(\sx+\sy)E^2
+-\frac{\tau}{\chi}P_t^2
+-\frac{\sx+\sy}{\epsilon_0}EP
++E(P_{z,1}+P_{z,2})\\
+&+H_xM_x+H_yM_y
+\Big]\dd x\dd y .
+\end{aligned}
+\label{eq:shifted-balance}
+\end{equation}
+
+\section{正的 Gronwall 能量}
+
+本文得到的正的增广能量为
+\[
+\Ecal_0(t)
+=\frac12\int_\Omega
+\left(
+\epsilon_0\epsilon_\infty E^2+\mu H_x^2+\mu H_y^2
++\chi^{-1}P^2+P_{z,1}^2+P_{z,2}^2+Q_x^2+Q_y^2
+\right)\dd x\dd y .
+\]
+将 \(P_{z,1},P_{z,2},Q_x,Q_y\) 的 \(L^2\) 导数加到已验证的能量平衡式中，并使用 Young 不等式，可得
+\[
+\boxed{
+\frac{\dd}{\dd t}\Ecal_0(t)\le C_G\Ecal_0(t)
+}
+\]
+其中 \(C_G<\infty\)，且只依赖材料常数和下列量的 \(L^\infty\) 范数：
+\[
+\sx,\quad \sy,\quad \sx\sy,\quad
+\sx(\sy-\sx),\quad
+\sy(\sx-\sy).
+\]
+因此
+\[
+\boxed{
+\Ecal_0(t)\le e^{C_Gt}\Ecal_0(0).
+}
+\]
+这是一个 Gronwall 型估计。它不是单调估计，也不是长时间一致有界估计。
+
+可能导致增长的项准确地包括
+\[
+EP,\quad EP_{z,1},\quad EP_{z,2},\quad PP_{z,2},\quad H_xQ_x,\quad H_yQ_y,
+\]
+以及平移之前磁场中的符号不定平方项。在平移变量下，磁场问题转化为
+\[
+H_xM_x+H_yM_y.
+\]
+仅仅加入
+\[
+\|M_x\|_2^2+\|M_y\|_2^2
+\]
+并不能给出封闭的局部 \(L^2\) 单调修正，因为其导数中含有
+\[
+M_x\partial_yE,\qquad M_y\partial_xE.
+\]
+
+\section{分情形分析}
+
+\subsection{无 PML 情形}
+
+若
+\[
+\sx=\sy=0
+\]
+且 PML 辅助变量初值为零，则
+\[
+P_{z,1}=P_{z,2}=Q_x=Q_y=0
+\]
+对所有时间成立，并且
+\[
+\frac{\dd}{\dd t}\Ecal_{\rm em+P}
+=-\frac{\tau}{\chi}\|P_t\|_2^2\le0 .
+\]
+因此，在自然的辅助变量零初值兼容条件下，无 PML 的 Debye--Maxwell 子系统具有一个单调下降的正能量。
+
+\subsection{边 PML 情形}
+
+考虑常系数边 PML：
+\[
+\sx=s>0,\qquad \sy=0.
+\]
+令
+\[
+E=P=P_{z,1}=P_{z,2}=H_y=Q_y=0,
+\]
+并取 \(H_x,Q_x\) 为空间常数。记
+\[
+b=\frac{s}{\epsilon_0}.
+\]
+则
+\[
+H_{x,t}=bH_x+\frac1\mu Q_x,\qquad
+Q_{x,t}=-bQ_x-\mu b^2H_x .
+\]
+平移量
+\[
+M_x=Q_x+\mu bH_x
+\]
+为常数，因此
+\[
+H_x(t)=H_x(0)+\frac{M_x(0)}{\mu}t,\qquad
+Q_x(t)=Q_x(0)-bM_x(0)t .
+\]
+若
+\[
+M_x(0)\ne0,
+\]
+则 \(H_x,Q_x\) 线性增长，而 \(E=0\) 仍满足 PEC。
+
+当
+\[
+\sx=0,\qquad \sy=s>0
+\]
+时，可对称构造 \(H_y,Q_y\) 的例子，并得到常数
+\[
+M_y=Q_y+\mu bH_y.
+\]
+
+因此，原始模型本身在边 PML 情形下存在精确 obstruction：若能量正定并控制所有列出的变量，则不可能对所有初值同时单调下降或长时间一致有界。
+
+\subsection{角 PML 情形}
+
+当
+\[
+\sx,\sy>0
+\]
+为常数时，两个平移后的磁场辅助变量都带有阻尼：
+\[
+M_{x,t}=a_x\partial_yE-\frac{\sy}{\epsilon_0}M_x,\qquad
+M_{y,t}=-a_y\partial_xE-\frac{\sx}{\epsilon_0}M_y .
+\]
+因此，无论是对称角点
+\[
+\sx=\sy
+\]
+还是非对称角点
+\[
+\sx\ne\sy,
+\]
+上述精确的边 PML 线性增长模态都不再出现。然而，平移后的局部 \(L^2\) 能量仍会产生导数耦合项
+\[
+M_x\partial_yE,\qquad M_y\partial_xE.
+\]
+若要得到角点 PML 的单调能量，可能需要额外的导数能量、非局部能量，或 Baffet 型时间积分结构；仅依靠上述零阶变量无法封闭。当前已验证并保留下来的角点结论是增广 Gronwall 估计。
+
+\section{正性与单调性失败}
+
+\(\Ecal_{\rm em+P}\) 和 \(\Ecal_0\) 都是正的，因为
+\[
+\epsilon_0,\quad \epsilon_\infty,\quad \mu,\quad \chi
+\]
+均为正。无 PML 且辅助变量满足零初值兼容条件时，系统能量单调下降。完整八变量 PML 模型则不能得到对所有初值无条件成立的正的单调能量或长时间一致有界能量，因为边 PML 的线性增长解已经排除了这种可能。
+
+最终分类如下：
+\begin{itemize}
+\item 无 PML 且辅助变量初值为零：存在 \(\alpha=1\) 单调能量；
+\item 完整源模型，允许任意辅助变量初值并允许边 PML：存在已验证 obstruction，阻止无条件单调能量或长时间一致有界能量；
+\item 有界非负且时间无关的 \(\sx,\sy\)：存在正的增广 Gronwall 估计；
+\item 分数阶情形 \(0<\alpha<1\)：暂不处理。
+\end{itemize}
+
+\section{结论组装}
+
+\begin{quote}\small
+\url{fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance}
+\end{quote}
+验证了源模型的代数、PEC 边界抵消、极化能量以及磁场平移变量。
+
+\begin{quote}\small
+\url{fact:2d_maxwell_pml_energy_functional_exploration:edge-pml-linear-obstruction}
+\end{quote}
+说明源问题要求覆盖的边 PML 情形中存在对八变量任意初值而言的精确线性增长解。这阻止了强单调目标，也阻止了对该模型无条件长时间一致有界的能量结论。
+
+\begin{quote}\small
+\url{fact:2d_maxwell_pml_energy_functional_exploration:augmented-gronwall-energy}
+\end{quote}
+给出了当前建立的最强无条件正能量估计：
+\[
+\Ecal_0(t)\le e^{C_Gt}\Ecal_0(0).
+\]
+
+因此，最终结果是：对于 \(\alpha=1\)，当前获得的是 obstruction 加 Gronwall 型能量估计，而不是二维 PML 的单调能量。分数阶记忆项没有加入，因为它无法消除 \(P=0\) 子系统中已经存在的边 PML obstruction。
+
+\end{document}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "iteris.verification_request.v0",
+  "request_id": "verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw",
+  "backend": "agent",
+  "executor": "codex",
+  "mode": "fact",
+  "claim": "The covariantly damped alpha=1 Maxwell-Debye absorbing-layer model has a positive monotone energy identity.",
+  "artifacts": [
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-covariantly-damped-debye-energy.md",
+    "artifacts/proofs/stage2_repair_design.md"
+  ],
+  "fact_ids": [],
+  "target_artifact": null,
+  "created_at": "2026-06-20T02:24:11.192473Z",
+  "prompt_path": "verification/agent_runs/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw/prompt.md",
+  "codex_log": "verification/agent_runs/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw/codex.log",
+  "codex_events": "verification/agent_runs/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw/codex.events.jsonl",
+  "codex_stderr": "verification/agent_runs/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw/codex.stderr.log",
+  "codex_log_manifest": "verification/agent_runs/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw/log_manifest.json"
+}

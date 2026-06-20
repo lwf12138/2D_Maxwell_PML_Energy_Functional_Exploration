@@ -1,0 +1,28 @@
+{
+  "verification_report": {
+    "summary": "Correct within the stated claim scope. The cited fact and proof define a modified covariantly damped alpha=1 Maxwell-Debye absorbing-layer model with variables E, H_x, H_y, P, nonnegative time-independent rho_x,rho_y, rho=rho_x+rho_y, and D_rho=partial_t+rho. Multiplying the field equations by E,H_x,H_y gives the energy derivative plus the nonnegative electric and magnetic damping terms; the Maxwell principal part integrates to the boundary flux int_dOmega E(H_y n_x - H_x n_y) ds, which vanishes under PEC E=0. The covariant Debye law P+tau D_rho P=chi E gives E D_rho P=(2 chi)^{-1} partial_t(P^2)+rho chi^{-1}P^2+tau chi^{-1}|D_rho P|^2, so the proposed positive energy has exactly the displayed monotone identity. The predecessor facts about the original source model are verified and are used only as context/motivation for the repair; the artifact clearly states that the covariantly damped model is a modified absorbing model, not an algebraically identical proof for the old eight-variable unsplit PML and not a proof of exact perfect matching.",
+    "critical_errors": [],
+    "gaps": []
+  },
+  "verdict": "correct",
+  "repair_hints": "",
+  "checked_artifacts": [
+    "verification/agent_runs/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw/request.json",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-covariantly-damped-debye-energy.md",
+    "artifacts/proofs/stage2_repair_design.md",
+    "sources/energy_functional_problem.tex",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-edge-pml-linear-obstruction.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-augmented-gronwall-energy.md",
+    "verification/results/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json",
+    "verification/results/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-.json",
+    "verification/results/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e.json"
+  ],
+  "checked_fact_ids": [
+    "fact:2d_maxwell_pml_energy_functional_exploration:covariantly-damped-debye-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance",
+    "fact:2d_maxwell_pml_energy_functional_exploration:edge-pml-linear-obstruction",
+    "fact:2d_maxwell_pml_energy_functional_exploration:augmented-gronwall-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:run-20260619T173930696222Z:source-problem"
+  ]
+}

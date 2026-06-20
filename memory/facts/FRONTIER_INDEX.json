@@ -1,8 +1,77 @@
 {
   "schema_version": "iteris.frontier_index.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-06-19T18:36:22.543650Z",
+  "updated_at": "2026-06-20T02:28:05.216645Z",
   "active_frontiers": [
+    {
+      "schema_version": "iteris.frontier_entry.v0",
+      "frontier_id": "auto-stage2-repair-design",
+      "title": "Stage2 Repair Design",
+      "hypothesis": "Route inferred from facts, tasks, and artifacts matching `stage2-repair-design`.",
+      "summary": "1 fact(s), 0 blocker fact(s), 1 active task(s), 0 artifact(s).",
+      "status": "active",
+      "fact_ids": [
+        "fact:2d_maxwell_pml_energy_functional_exploration:covariantly-damped-debye-energy"
+      ],
+      "blocker_fact_ids": [],
+      "task_ids": [
+        "task-stage2-repair-design"
+      ],
+      "active_tasks": [
+        "task-stage2-repair-design"
+      ],
+      "blocked_tasks": [],
+      "artifact_paths": [],
+      "verification_ids": [
+        "verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw"
+      ],
+      "agent_run_ids": [],
+      "open_questions": [
+        "Design and compare at least three repairs for the verified edge-PML obstruction, including compatibility, shifted-variable, and modified PML formulations."
+      ],
+      "next_actions": [],
+      "recent_fact_summaries": [
+        {
+          "fact_id": "fact:2d_maxwell_pml_energy_functional_exploration:covariantly-damped-debye-energy",
+          "status": "verified",
+          "claim_summary": "The covariantly damped alpha=1 Maxwell-Debye absorbing-layer model has a positive monotone energy identity."
+        }
+      ],
+      "task_status_counts": {
+        "review": 1
+      },
+      "evidence_terms": [
+        "absorbing",
+        "alpha",
+        "covariantly",
+        "damped",
+        "debye",
+        "layer",
+        "maxwell",
+        "model"
+      ],
+      "explore_run_count": 0,
+      "last_explore_at": null,
+      "generated_by": "frontier_refresh",
+      "updated_at": "2026-06-20T02:28:05.216561Z",
+      "health": {
+        "frontier_id": "auto-stage2-repair-design",
+        "title": "Stage2 Repair Design",
+        "status": "active",
+        "fact_count": 1,
+        "blocker_count": 0,
+        "verified_count": 1,
+        "active_task_count": 1,
+        "ready_task_count": 0,
+        "artifact_count": 0,
+        "explore_run_count": 0,
+        "last_explore_at": null,
+        "cooldown_ok": true,
+        "explore_recommended": false,
+        "reason": "",
+        "recommended_focus": ""
+      }
+    },
     {
       "schema_version": "iteris.frontier_entry.v0",
       "frontier_id": "auto-alpha1-pml-cases",
@@ -68,7 +137,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-19T18:36:22.543561Z",
+      "updated_at": "2026-06-20T02:28:05.216555Z",
       "health": {
         "frontier_id": "auto-alpha1-pml-cases",
         "title": "Alpha1 Pml Cases",
@@ -135,7 +204,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-19T18:36:22.543551Z",
+      "updated_at": "2026-06-20T02:28:05.216546Z",
       "health": {
         "frontier_id": "auto-alpha1-algebra-energy",
         "title": "Alpha1 Algebra Energy",
@@ -149,6 +218,57 @@
         "explore_run_count": 0,
         "last_explore_at": null,
         "cooldown_ok": true,
+        "explore_recommended": false,
+        "reason": "",
+        "recommended_focus": ""
+      }
+    },
+    {
+      "schema_version": "iteris.frontier_entry.v0",
+      "frontier_id": "auto-explore-second-stage",
+      "title": "Explore Second Stage",
+      "hypothesis": "Route inferred from facts, tasks, and artifacts matching `explore-second-stage`.",
+      "summary": "0 fact(s), 0 blocker fact(s), 0 active task(s), 2 artifact(s).",
+      "status": "stale",
+      "fact_ids": [],
+      "blocker_fact_ids": [],
+      "task_ids": [],
+      "active_tasks": [],
+      "blocked_tasks": [],
+      "artifact_paths": [
+        "artifacts/route_checks/second-stage-constructive-repairs-for-the-verified-edge-pml-linear-growt/explore-20260620T022045187120Z-second-stage-constructive-repairs-for-the-ve/exploration_report.md",
+        "artifacts/route_checks/second-stage-constructive-repairs-for-the-verified-edge-pml-linear-growt/explore-20260620T022045187120Z-second-stage-constructive-repairs-for-the-ve/candidate_routes.json"
+      ],
+      "verification_ids": [
+        "Verify candidate fact: constant edge compatibility Fourier factorization and exact zero-mode obstruction class.",
+        "Verify candidate fact: damped shifted-variable zero-mode Lyapunov matrix for gamma>0.",
+        "Source-level proof request: derive an alpha=1 CFS/split-field repaired model and check frozen-mode Lyapunov positivity."
+      ],
+      "agent_run_ids": [
+        "explore-20260620T022045187120Z-second-stage-constructive-repairs-for-the-ve"
+      ],
+      "open_questions": [],
+      "next_actions": [],
+      "recent_fact_summaries": [],
+      "task_status_counts": {},
+      "evidence_terms": [],
+      "explore_run_count": 1,
+      "last_explore_at": "2026-06-20T02:27:13.918334Z",
+      "generated_by": "frontier_refresh",
+      "updated_at": "2026-06-20T02:28:05.216583Z",
+      "health": {
+        "frontier_id": "auto-explore-second-stage",
+        "title": "Explore Second Stage",
+        "status": "stale",
+        "fact_count": 0,
+        "blocker_count": 0,
+        "verified_count": 0,
+        "active_task_count": 0,
+        "ready_task_count": 0,
+        "artifact_count": 2,
+        "explore_run_count": 1,
+        "last_explore_at": "2026-06-20T02:27:13.918334Z",
+        "cooldown_ok": false,
         "explore_recommended": false,
         "reason": "",
         "recommended_focus": ""
@@ -183,7 +303,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-19T18:36:22.543572Z",
+      "updated_at": "2026-06-20T02:28:05.216570Z",
       "health": {
         "frontier_id": "auto-final-energy-report",
         "title": "Final Energy Report",
@@ -247,7 +367,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-19T18:36:22.543568Z",
+      "updated_at": "2026-06-20T02:28:05.216566Z",
       "health": {
         "frontier_id": "auto-initial-exploration-run",
         "title": "Initial Exploration Run",
@@ -261,6 +381,50 @@
         "explore_run_count": 0,
         "last_explore_at": null,
         "cooldown_ok": true,
+        "explore_recommended": false,
+        "reason": "",
+        "recommended_focus": ""
+      }
+    },
+    {
+      "schema_version": "iteris.frontier_entry.v0",
+      "frontier_id": "auto-second-stage-constructive",
+      "title": "Second Stage Constructive",
+      "hypothesis": "Route inferred from facts, tasks, and artifacts matching `second-stage-constructive`.",
+      "summary": "0 fact(s), 0 blocker fact(s), 0 active task(s), 0 artifact(s).",
+      "status": "stale",
+      "fact_ids": [],
+      "blocker_fact_ids": [],
+      "task_ids": [],
+      "active_tasks": [],
+      "blocked_tasks": [],
+      "artifact_paths": [],
+      "verification_ids": [],
+      "agent_run_ids": [
+        "explore-20260620T022045187120Z-second-stage-constructive-repairs-for-the-ve"
+      ],
+      "open_questions": [],
+      "next_actions": [],
+      "recent_fact_summaries": [],
+      "task_status_counts": {},
+      "evidence_terms": [],
+      "explore_run_count": 1,
+      "last_explore_at": "2026-06-20T02:20:45.187532Z",
+      "generated_by": "frontier_refresh",
+      "updated_at": "2026-06-20T02:28:05.216577Z",
+      "health": {
+        "frontier_id": "auto-second-stage-constructive",
+        "title": "Second Stage Constructive",
+        "status": "stale",
+        "fact_count": 0,
+        "blocker_count": 0,
+        "verified_count": 0,
+        "active_task_count": 0,
+        "ready_task_count": 0,
+        "artifact_count": 0,
+        "explore_run_count": 1,
+        "last_explore_at": "2026-06-20T02:20:45.187532Z",
+        "cooldown_ok": false,
         "explore_recommended": false,
         "reason": "",
         "recommended_focus": ""

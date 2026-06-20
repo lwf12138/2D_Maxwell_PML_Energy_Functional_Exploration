@@ -1,0 +1,222 @@
+\begin{thebibliography}{10}
+
+\bibitem{ab-got:97}
+S.~Abarbanel and D.~Gottlieb.
+\newblock {A mathematical analysis of the PML method}.
+\newblock {\em J. Comput. Phys.}, 134(2):357--363, 1997.
+
+\bibitem{Abarbanel:1999}
+S.~Abarbanel, D.~Gottlieb, and J.~S. Hesthaven.
+\newblock {Well-Posed perfectly matched layers for advective acoustics}.
+\newblock {\em J. Comput. Phys.}, 154(2):266--283, 1999.
+
+\bibitem{Abarbanel:2002}
+S.~Abarbanel, D.~Gottlieb, and J.~S. Hesthaven.
+\newblock {Long Time Behavior of the Perfectly Matched Layer Equations in
+  Computational Electromagnetics}.
+\newblock {\em J. Sci. Comput.}, 17(1-4):405--422, 2002.
+
+\bibitem{appelo2007pml}
+D.~Appel{\"o}, T.~Hagstrom, and G.~Kreiss.
+\newblock {Perfectly matched layers for hyperbolic systems: general
+  formulation, well-posedness, and stability}.
+\newblock {\em SIAM J. Appl. Math.}, 67(1):1--23, 2007.
+
+\bibitem{ApKr-pmleuler03}
+D.~Appel{\"o} and G.~Kreiss.
+\newblock Evaluation of a well-posed perfectly matched layer for computational
+  acoustics.
+\newblock In T.Y. Hou and E.~Tadmor, editors, {\em {Hyperbolic problems:
+  Theory, Numerics, Applications}}, pages 285--294, Berlin, 2003. Springer.
+
+\bibitem{ApKr06}
+D.~Appel{\"o} and G.~Kreiss.
+\newblock A new absorbing layer for elastic waves.
+\newblock {\em J. Comput. Phys.}, 215(2):642--660, 2006.
+
+\bibitem{BasuChopra:pml-elas:04}
+U.~Basu and Anil~K. Chopra.
+\newblock Perfectly matched layers for transient elastodynamics of unbounded
+  domains.
+\newblock {\em Int. J. Numer. Methods Eng.}, 59(8):1039--1074, 2004.
+
+\bibitem{HDR-Bec-2003}
+E.~B\'{e}cache.
+\newblock {\em M\'ethodes variationnelles, domaines fictifs et conditions aux
+  limites artificielles pour des probl\`emes hyperboliques lin\'eaires.
+  Applications aux ondes dans les solides}.
+\newblock Habilitation \`{a} {D}iriger des {R}echerches, Universit\'e Paris
+  Dauphine, 2003.
+
+\bibitem{BFJ:2003}
+E.~B\'{e}cache, S.~Fauqueux, and P.~Joly.
+\newblock {Stability of perfectly matched layers, group velocities and
+  anisotropic waves}.
+\newblock {\em J. Comput. Phys.}, 188(2):399--433, 2003.
+
+\bibitem{BJ:02}
+E.~B\'ecache and P.~Joly.
+\newblock {On the analysis of Berenger's Perfectly Matched Layers for Maxwell's
+  equations}.
+\newblock {\em ESAIM Math. Model. Numer. Anal.}, 36(1):87--119, 2002.
+
+\bibitem{BPG:04}
+E.~B{\'e}cache, P.~G. Petropoulos, and S.~D. Gedney.
+\newblock On the long-time behavior of unsplit perfectly matched layers.
+\newblock {\em IEEE Trans. Antennas Propag.}, 52(5):1335--1342, 2004.
+
+\bibitem{Ber94}
+J.~P. B\'erenger.
+\newblock {A Perfectly Matched Layer for the Absorption of Electromagnetic
+  Waves}.
+\newblock {\em J. Comput. Phys.}, 114:185--200, 1994.
+
+\bibitem{Chew:1994}
+W.~C. Chew and W.~H. Weedon.
+\newblock {A 3D perfectly matched medium from modified Maxwell's equations with
+  stretched coordinates}.
+\newblock {\em Microwave Opt. Technol. Lett.}, 7(13):599--604, 1994.
+
+\bibitem{cohen-fauq:00}
+G.~Cohen and S.~Fauqueux.
+\newblock Mixed finite elements with mass lumping for the transient wave
+  equation.
+\newblock {\em J. Comput. Acous.}, 8(1):171--188, 2000.
+
+\bibitem{Collino:1998:2}
+F.~Collino and P.~Monk.
+\newblock {The perfectly matched layer in curvilinear coordinates}.
+\newblock {\em SIAM J. Sci. Comput.}, 19(6):2061--2090, 1998.
+
+\bibitem{Collino:1998:1}
+F.~Collino and P.~B. Monk.
+\newblock {Optimizing the perfectly matched layer}.
+\newblock {\em Comput. Methods Appl. Mech. Engrg.}, 164(1-2):157--171, 1998.
+
+\bibitem{Col-Tso2}
+F.~Collino and C.~Tsogka.
+\newblock {Application of the PML absorbing layer model to the linear
+  elastodynamic problem in anisotropic heteregeneous media}.
+\newblock {\em Geophysics}, 66(1):294--307, 2001.
+
+\bibitem{DJ-euler:03}
+J.~Diaz and P.~Joly.
+\newblock Stabilized perfectly matched layer for advective acoustics.
+\newblock In G.~C. Cohen, E.~Heikkola, P.~Joly, and P.~Neittaanm{\"a}ki,
+  editors, {\em Mathematical and numerical aspects of wave propagation---WAVES
+  2003}, pages 115--119, Berlin, 2003. Springer.
+
+\bibitem{Engq-Majd-77}
+B.~Engquist and A.~Majda.
+\newblock {Absorbing Boundary Conditions for the Numerical Simulation of
+  Waves}.
+\newblock {\em Math. Comput.}, 31(139):629--651, 1977.
+
+\bibitem{fauqueux}
+S.~Fauqueux.
+\newblock {\em {El{\'e}ments finis mixtes spectraux et couches absorbantes
+  parfaitement adapt{\'e}es pour la propagation d'ondes {\'e}lastiques en
+  r{\'e}gime transitoire}}.
+\newblock PhD thesis, Universit{\'e} Paris IX, 2003.
+
+\bibitem{Gedney96}
+S.~D. Gedney.
+\newblock An anisotropic perfectly matched layer absorbing media for the
+  truncation of fdtd lattices.
+\newblock {\em IEEE Trans. Antennas Propag.}, 44:1630--1639, 1996.
+
+\bibitem{Giv-Hag-Pat:06}
+D.~Givoli, T.~Hagstrom, and I.~Patlashenko.
+\newblock Finite element formulation with high-order absorbing boundary
+  conditions for time-dependent waves.
+\newblock {\em Comput. Methods Appl. Mech. Engrg.}, 195(29-32):3666--3690,
+  2006.
+
+\bibitem{Hag-pml03}
+T.~Hagstrom.
+\newblock A new construction of perfectly matched layers for hyperbolic systems
+  with applications to the linearized {E}uler equations.
+\newblock In G.~C. Cohen, E.~Heikkola, P.~Joly, and P.~Neittaanm{\"a}ki,
+  editors, {\em Mathematical and numerical aspects of wave propagation---WAVES
+  2003}, pages 125--129, Berlin, 2003. Springer.
+
+\bibitem{Hesthaven:1998}
+J.~S. Hesthaven.
+\newblock {On the analysis and construction of perfectly matched layers for the
+  linearized Euler equations}.
+\newblock {\em J. Comput. Phys.}, 142:129--147, 1998.
+
+\bibitem{Hu:1996}
+F.~Q. Hu.
+\newblock {On absorbing boundary conditions for linearized Euler equations by a
+  perfectly matched layer}.
+\newblock {\em J. Comput. Phys.}, 129:201--219, 1996.
+
+\bibitem{Hu:2001}
+F.~Q. Hu.
+\newblock {A stable, perfectly matched layer for linearized Euler equations in
+  unsplit physical variables}.
+\newblock {\em J. Comput. Phys.}, 173:455--480, 2001.
+
+\bibitem{LVM:02}
+J.-L. Lions, J.~M{\'e}tral, and O.~Vacus.
+\newblock Well-posed absorbing layer for hyperbolic problems.
+\newblock {\em Numer. Math.}, 92(3):535--562, 2002.
+
+\bibitem{Nataf-JCP05}
+F.~Nataf.
+\newblock A new approach to perfectly matched layers for the linearized {E}uler
+  system.
+\newblock {\em J. Comput. Phys.}, 214(2):757--772, 2006.
+
+\bibitem{Petropoulos:2000}
+P.~G. Petropoulos.
+\newblock {Reflectionless sponge layers as absorbing boundary condition for the
+  numerical solution of Maxwell's equations in rectangular, cylindrical, and
+  spherical coordinates.}
+\newblock {\em SIAM J. Appl. Math.}, 60(3):1037--1058, 2000.
+
+\bibitem{pezhca98}
+P.~G. Petropoulos, L.~Zhao, and A.~C. Cangellaris.
+\newblock {A reflectionless sponge layer absorbing boundary condition for the
+  solution of Maxwell's equations with high-order staggered finite difference
+  schemes}.
+\newblock {\em J. Comput. Phys.}, 139(1):184--208, 1998.
+
+\bibitem{rahm:phd}
+A.~N. Rahmouni.
+\newblock {\em {Des mod\`eles PML bien pos\'es pour divers probl\`emes
+  hyperboliques}}.
+\newblock PhD thesis, Universit\'e Paris Nord-Paris XIII, 2000.
+
+\bibitem{Ramahi99}
+O.~M. Ramahi.
+\newblock {Stability of absorbing boundary conditions}.
+\newblock {\em IEEE Trans. Antennas Propagation}, 47(4):593--599, 1999.
+
+\bibitem{Rappaport:1995}
+C.~M. Rappaport.
+\newblock {Perfectly matched absorbing conditions based on anisotropic lossy
+  mapping of space}.
+\newblock {\em IEEE Microw. Guided W.}, 5(3):90--92, 1995.
+
+\bibitem{Turkel1998533}
+E.~Turkel and A.~Yefet.
+\newblock {Absorbing PML boundary layers for wave-like equations}.
+\newblock {\em Appl. Numer. Math.}, 27(4):533--557, 1998.
+
+\bibitem{ZC}
+L.~Zhao and A.~C. Cangellaris.
+\newblock {A general approach for the development of unsplit-field
+  time-domainimplementations of perfectly matched layers for FDTD grid
+  truncation}.
+\newblock {\em IEEE Microw. Guided W.}, 6(5):209--211, 1996.
+
+\bibitem{Zhao:1996}
+L.~Zhao and A.~C. Cangellaris.
+\newblock {GT-PML: Generalized theory of perfectly matched layers and its
+  application to the reflectionless truncation of finite-difference time-domain
+  grids}.
+\newblock {\em IEEE Trans. Microwave Theory Tech.}, 44(12):2555--2563, 1996.
+
+\end{thebibliography}

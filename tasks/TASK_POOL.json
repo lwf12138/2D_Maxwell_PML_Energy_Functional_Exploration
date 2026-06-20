@@ -1,7 +1,7 @@
 {
   "schema_version": "iteris.task_pool.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-06-19T18:36:00.078910Z",
+  "updated_at": "2026-06-20T02:29:42.437836Z",
   "active_frontier": "",
   "tasks": [
     {
@@ -92,6 +92,56 @@
       ],
       "created_at": "2026-06-19T18:03:12.624000Z",
       "updated_at": "2026-06-19T18:36:00.078903Z"
+    },
+    {
+      "schema_version": "iteris.task_pool_task.v0",
+      "task_id": "task-stage2-repair-design",
+      "mode": "proof",
+      "objective": "Design and compare at least three repairs for the verified edge-PML obstruction, including compatibility, shifted-variable, and modified PML formulations.",
+      "status": "done",
+      "priority": 120,
+      "dependencies": [
+        "task-alpha1-pml-cases"
+      ],
+      "inputs": [
+        "results/energy_functional_report_verified.md"
+      ],
+      "expected_outputs": [
+        "artifacts/proofs/stage2_repair_design.md"
+      ],
+      "assigned_agent_run": null,
+      "notes": [
+        "Second-stage constructive search requested by .iteris/goal_prompt.txt.",
+        "Started inline derivation of compatibility, shifted-variable, and split-field/CFS-style repaired models.",
+        "Drafted artifacts/proofs/stage2_repair_design.md with three repair classes and the closed covariantly damped Maxwell-Debye energy identity.",
+        "Verified and promoted fact: fact:2d_maxwell_pml_energy_functional_exploration:covariantly-damped-debye-energy."
+      ],
+      "created_at": "2026-06-20T02:17:48.207792Z",
+      "updated_at": "2026-06-20T02:29:42.437012Z"
+    },
+    {
+      "schema_version": "iteris.task_pool_task.v0",
+      "task_id": "task-stage2-final-report",
+      "mode": "proof",
+      "objective": "Assemble the verified second-stage repaired-model result into results/energy_design_v2_report.md and pass assembly plus goal-success verification.",
+      "status": "review",
+      "priority": 110,
+      "dependencies": [
+        "task-stage2-repair-design"
+      ],
+      "inputs": [
+        "artifacts/proofs/stage2_repair_design.md"
+      ],
+      "expected_outputs": [
+        "results/energy_design_v2_report.md"
+      ],
+      "assigned_agent_run": null,
+      "notes": [
+        "Terminal artifact for the second-stage Iteris goal.",
+        "Wrote results/energy_design_v2_report.md; ready for assembly verification."
+      ],
+      "created_at": "2026-06-20T02:28:24.258293Z",
+      "updated_at": "2026-06-20T02:29:42.437827Z"
     }
   ]
 }

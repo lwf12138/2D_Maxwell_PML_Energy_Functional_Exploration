@@ -1,7 +1,6 @@
-phase: goal_success_verified
-last_updated: 2026-06-19T18:36:45.895733Z
+phase: stage2_report_written
+last_updated: 2026-06-20T02:28:24Z
 source: sources/energy_functional_problem.tex
-target_artifact: results/energy_functional_report.md
-assembly_verification: verification/results/verify-20260619T182724786704Z-assembly-assemble-verified-facts-to-answ.json
-goal_success_verification: verification/results/verify-20260619T183134018854Z-goal_success-analyze-sources-energy_func.json
-next: finalized report ready
+target_artifact: results/energy_design_v2_report.md
+stage2_fact_verification: verification/results/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw.json
+next: run assembly and goal_success verification for results/energy_design_v2_report.md

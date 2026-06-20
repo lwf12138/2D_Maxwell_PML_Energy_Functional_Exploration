@@ -1,0 +1,43 @@
+{
+  "schema_version": "iteris.agent_run_request.v0",
+  "run_id": "explore-20260620T022045187120Z-second-stage-constructive-repairs-for-the-ve",
+  "executor": "codex",
+  "role": "explore",
+  "mode": null,
+  "task_id": null,
+  "focus": "Second-stage constructive repairs for the verified edge-PML linear-growth obstruction in the alpha=1 2D Maxwell-PML model: compatibility restrictions, shifted-variable/MPML damping, CFS or split-field models with monotone or uniformly bounded energy.",
+  "project_path": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration",
+  "iteris_cli": "/Users/wcli/.local/share/iteris/venv/bin/iteris",
+  "detached": true,
+  "dry_run": false,
+  "created_at": "2026-06-20T02:20:45.187978Z",
+  "prompt_path": "artifacts/agent_runs/explore-20260620T022045187120Z-second-stage-constructive-repairs-for-the-ve/prompt.md",
+  "output_markdown": "artifacts/agent_runs/explore-20260620T022045187120Z-second-stage-constructive-repairs-for-the-ve/output.md",
+  "output_json": "artifacts/agent_runs/explore-20260620T022045187120Z-second-stage-constructive-repairs-for-the-ve/output.json",
+  "status_path": "artifacts/agent_runs/explore-20260620T022045187120Z-second-stage-constructive-repairs-for-the-ve/status.json",
+  "codex_log": "artifacts/agent_runs/explore-20260620T022045187120Z-second-stage-constructive-repairs-for-the-ve/codex.log",
+  "codex_events": "artifacts/agent_runs/explore-20260620T022045187120Z-second-stage-constructive-repairs-for-the-ve/codex.events.jsonl",
+  "codex_stderr": "artifacts/agent_runs/explore-20260620T022045187120Z-second-stage-constructive-repairs-for-the-ve/codex.stderr.log",
+  "codex_log_manifest": "artifacts/agent_runs/explore-20260620T022045187120Z-second-stage-constructive-repairs-for-the-ve/log_manifest.json",
+  "artifact_index": "artifacts/ARTIFACT_INDEX.jsonl",
+  "artifact_workspace": "artifacts/route_checks/second-stage-constructive-repairs-for-the-verified-edge-pml-linear-growt/explore-20260620T022045187120Z-second-stage-constructive-repairs-for-the-ve",
+  "artifact_manifest": "artifacts/route_checks/second-stage-constructive-repairs-for-the-verified-edge-pml-linear-growt/explore-20260620T022045187120Z-second-stage-constructive-repairs-for-the-ve/artifact_manifest.json",
+  "recommended_artifacts": {
+    "exploration_report": "artifacts/route_checks/second-stage-constructive-repairs-for-the-verified-edge-pml-linear-growt/explore-20260620T022045187120Z-second-stage-constructive-repairs-for-the-ve/exploration_report.md",
+    "candidate_routes": "artifacts/route_checks/second-stage-constructive-repairs-for-the-verified-edge-pml-linear-growt/explore-20260620T022045187120Z-second-stage-constructive-repairs-for-the-ve/candidate_routes.json"
+  },
+  "timeout_seconds": 7200,
+  "codex_command": [
+    "/Users/wcli/.local/bin/codex",
+    "exec",
+    "--json",
+    "-C",
+    "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration",
+    "-m",
+    "gpt-5.5",
+    "--config",
+    "model_reasoning_effort=high",
+    "--dangerously-bypass-approvals-and-sandbox",
+    "-"
+  ]
+}

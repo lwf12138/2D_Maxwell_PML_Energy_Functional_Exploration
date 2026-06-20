@@ -1,0 +1,10 @@
+{
+  "schema_version": "iteris.artifact_manifest.v0",
+  "task_id": "task-stage2-repair-design",
+  "artifact_type": "proof",
+  "created_at": "2026-06-20T02:24:00Z",
+  "files": [
+    "artifacts/proofs/stage2_repair_design.md"
+  ],
+  "summary": "Compares compatibility, shifted MPML damping, and covariantly damped Maxwell-Debye absorbing-layer repairs for the verified edge-PML obstruction."
+}
