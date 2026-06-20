@@ -1,7 +1,7 @@
 {
   "schema_version": "iteris.task_pool.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-06-20T07:41:05.269708Z",
+  "updated_at": "2026-06-20T07:46:47.678226Z",
   "active_frontier": "",
   "tasks": [
     {
@@ -226,7 +226,7 @@
       "task_id": "task-stage3-final-report",
       "mode": "proof",
       "objective": "Assemble verified stage-3 facts into results/energy_design_v3_perfect_matching_report.md and pass assembly plus goal-success verification.",
-      "status": "running",
+      "status": "blocked",
       "priority": 130,
       "dependencies": [
         "task-stage3-repaired-model-energy"
@@ -245,10 +245,11 @@
         "Assembly verification passed: verify-20260620T070357651402Z-assembly-stage-3-terminal-report-results. Starting goal-success verification against the original stage-3 goal prompt.",
         "Goal-success verification failed: verify-20260620T071026348925Z-goal_success-read-.iteris-goal_prompt.tx. Gap is full 2D dissipative/no-growth theorem or formula-level impossibility for the exact stretched-coordinate/CFS/ADE repair; current 1D identity and naive-energy sign-indefinite calculation are insufficient.",
         "Repaired goal-success gap: added and verified fact:2d_maxwell_pml_energy_functional_exploration:baffet-primitive-stretched-debye-2d-energy (verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa), then updated report with full 2D constant-coefficient Baffet-Debye energy identity.",
-        "Updated assembly verification passed: verify-20260620T073403963252Z-assembly-updated-stage-3-terminal-report. Rerunning goal-success with Baffet-Debye energy repair included."
+        "Updated assembly verification passed: verify-20260620T073403963252Z-assembly-updated-stage-3-terminal-report. Rerunning goal-success with Baffet-Debye energy repair included.",
+        "Repaired goal-success rerun verify-20260620T074203627681Z failed before verdict due external Codex usage limit; a low-effort gpt-5.4-mini probe also hit the same limit. Next real-agent retry is after 2026-06-20 19:41 Asia/Shanghai. Terminal report, new fact verification, and repaired assembly are ready."
       ],
       "created_at": "2026-06-20T04:12:20.338555Z",
-      "updated_at": "2026-06-20T07:41:05.269702Z"
+      "updated_at": "2026-06-20T07:46:47.678217Z"
     }
   ]
 }

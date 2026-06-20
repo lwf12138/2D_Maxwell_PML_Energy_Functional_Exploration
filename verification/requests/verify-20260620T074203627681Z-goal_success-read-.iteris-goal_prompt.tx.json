@@ -1,0 +1,33 @@
+{
+  "schema_version": "iteris.verification_request.v0",
+  "request_id": "verify-20260620T074203627681Z-goal_success-read-.iteris-goal_prompt.tx",
+  "backend": "agent",
+  "executor": "codex",
+  "mode": "goal_success",
+  "claim": "Read .iteris/goal_prompt.txt and execute the stage-3 Iteris goal: verify whether the v2 covariantly damped Maxwell-Debye model is perfectly matched; if not, identify the exact mismatch; propose repaired PML models close to stretched-coordinate/Berenger/CFS/MPML/Baffet constructions; derive energy identities or formula-level obstructions; address the old eight-variable model and fractional status; include a literature reading record; and write results/energy_design_v3_perfect_matching_report.md with verified facts, assembly, and required conclusions, including the repaired Baffet-primitive 2D constant-coefficient energy identity for the exact stretched-coordinate Maxwell-Debye PML.",
+  "artifacts": [
+    ".iteris/goal_prompt.txt",
+    "sources/energy_functional_problem.tex",
+    "results/energy_functional_report_verified.md",
+    "results/energy_design_v2_report_verified.md",
+    "results/energy_design_v3_perfect_matching_report.md",
+    "artifacts/proofs/stage3_v2_perfect_matching_test.md",
+    "artifacts/proofs/stage3_repaired_model_energy.md",
+    "artifacts/proofs/stage3_baffet_debye_2d_energy.md",
+    "artifacts/references/stage3_literature_reading_record.md",
+    "verification/results/verify-20260620T073403963252Z-assembly-updated-stage-3-terminal-report.json",
+    "verification/results/verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa.json",
+    "verification/results/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d.json",
+    "verification/results/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m.json",
+    "verification/results/verify-20260620T065326237995Z-fact-the-standard-stretched-coordinate-m.json",
+    "verification/results/verify-20260620T065810059861Z-fact-strict-decay-of-total-electromagnet.json"
+  ],
+  "fact_ids": [],
+  "target_artifact": "results/energy_design_v3_perfect_matching_report.md",
+  "created_at": "2026-06-20T07:42:03.628325Z",
+  "prompt_path": "verification/agent_runs/verify-20260620T074203627681Z-goal_success-read-.iteris-goal_prompt.tx/prompt.md",
+  "codex_log": "verification/agent_runs/verify-20260620T074203627681Z-goal_success-read-.iteris-goal_prompt.tx/codex.log",
+  "codex_events": "verification/agent_runs/verify-20260620T074203627681Z-goal_success-read-.iteris-goal_prompt.tx/codex.events.jsonl",
+  "codex_stderr": "verification/agent_runs/verify-20260620T074203627681Z-goal_success-read-.iteris-goal_prompt.tx/codex.stderr.log",
+  "codex_log_manifest": "verification/agent_runs/verify-20260620T074203627681Z-goal_success-read-.iteris-goal_prompt.tx/log_manifest.json"
+}
