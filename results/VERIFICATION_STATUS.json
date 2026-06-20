@@ -1,9 +1,9 @@
 {
   "schema_version": "iteris.verification_status.v0",
-  "target_artifact": "results/energy_design_v2_report.md",
+  "target_artifact": "results/energy_design_v3_perfect_matching_report.md",
   "terminal_mode": "goal_success",
   "ok": true,
-  "assembly_request_id": "verify-20260620T023007094217Z-assembly-assemble-verified-facts-to-answ",
-  "goal_success_request_id": "verify-20260620T023507094543Z-goal_success-read-.iteris-goal_prompt.tx",
-  "verified_artifact": "results/energy_design_v2_report_verified.md"
+  "assembly_request_id": "verify-20260620T073403963252Z-assembly-updated-stage-3-terminal-report",
+  "goal_success_request_id": "verify-20260620T141636842186Z-goal_success-read-.iteris-goal_prompt.tx",
+  "verified_artifact": "results/energy_design_v3_perfect_matching_report_verified.md"
 }
