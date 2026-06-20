@@ -1,5 +1,5 @@
-phase: stage2_goal_success_verified
-last_updated: 2026-06-20T02:39:31Z
+phase: goal_success_verified
+last_updated: 2026-06-20T02:40:57.774959Z
 source: sources/energy_functional_problem.tex
 target_artifact: results/energy_design_v2_report.md
 stage2_fact_verification: verification/results/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw.json

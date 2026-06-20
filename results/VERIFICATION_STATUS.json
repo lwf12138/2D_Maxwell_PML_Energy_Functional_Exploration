@@ -1,9 +1,9 @@
 {
   "schema_version": "iteris.verification_status.v0",
-  "target_artifact": "results/energy_functional_report.md",
+  "target_artifact": "results/energy_design_v2_report.md",
   "terminal_mode": "goal_success",
   "ok": true,
-  "assembly_request_id": "verify-20260619T182724786704Z-assembly-assemble-verified-facts-to-answ",
-  "goal_success_request_id": "verify-20260619T183134018854Z-goal_success-analyze-sources-energy_func",
-  "verified_artifact": "results/energy_functional_report_verified.md"
+  "assembly_request_id": "verify-20260620T023007094217Z-assembly-assemble-verified-facts-to-answ",
+  "goal_success_request_id": "verify-20260620T023507094543Z-goal_success-read-.iteris-goal_prompt.tx",
+  "verified_artifact": "results/energy_design_v2_report_verified.md"
 }
