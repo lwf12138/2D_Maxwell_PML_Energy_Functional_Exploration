@@ -1,7 +1,7 @@
 {
   "schema_version": "iteris.task_pool.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-06-20T07:33:24.896879Z",
+  "updated_at": "2026-06-20T07:41:05.269708Z",
   "active_frontier": "",
   "tasks": [
     {
@@ -244,10 +244,11 @@
         "Stage-3 durable facts are now verified and promoted: v2 mismatch, standard stretched-coordinate matching/1D energy, full 2D ADE energy gap, and whole-domain strict-decay nullspace obstruction. Report fact index updated; starting assembly verification.",
         "Assembly verification passed: verify-20260620T070357651402Z-assembly-stage-3-terminal-report-results. Starting goal-success verification against the original stage-3 goal prompt.",
         "Goal-success verification failed: verify-20260620T071026348925Z-goal_success-read-.iteris-goal_prompt.tx. Gap is full 2D dissipative/no-growth theorem or formula-level impossibility for the exact stretched-coordinate/CFS/ADE repair; current 1D identity and naive-energy sign-indefinite calculation are insufficient.",
-        "Repaired goal-success gap: added and verified fact:2d_maxwell_pml_energy_functional_exploration:baffet-primitive-stretched-debye-2d-energy (verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa), then updated report with full 2D constant-coefficient Baffet-Debye energy identity."
+        "Repaired goal-success gap: added and verified fact:2d_maxwell_pml_energy_functional_exploration:baffet-primitive-stretched-debye-2d-energy (verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa), then updated report with full 2D constant-coefficient Baffet-Debye energy identity.",
+        "Updated assembly verification passed: verify-20260620T073403963252Z-assembly-updated-stage-3-terminal-report. Rerunning goal-success with Baffet-Debye energy repair included."
       ],
       "created_at": "2026-06-20T04:12:20.338555Z",
-      "updated_at": "2026-06-20T07:33:24.896871Z"
+      "updated_at": "2026-06-20T07:41:05.269702Z"
     }
   ]
 }

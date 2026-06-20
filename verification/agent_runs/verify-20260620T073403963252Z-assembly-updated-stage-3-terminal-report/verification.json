@@ -1,0 +1,50 @@
+{
+  "verification_report": {
+    "summary": "Correct as an assembly. The updated terminal report uses verified facts within their stated scopes: the v2 covariantly damped Maxwell-Debye layer is dissipative but not perfectly matched at the planar constant x-interface; the standard stretched-coordinate Maxwell-Debye model preserves the physical Debye law and gives planar-interface admittance matching; the naive ADE physical energy has sign-indefinite memory terms; the added Baffet-primitive formulation is Laplace-equivalent to the standard stretched-coordinate model and supplies a full 2D constant-coefficient non-increasing energy identity with nonnegative dissipation up to boundary flux; and strict whole-domain decay is correctly weakened by the verified stationary magnetic/nullspace obstruction. The old-model obstruction, fractional status, and literature record are used as context or scoped classifications, not as unsupported theorem claims. The report also keeps variable damping profiles as future work and does not derive them from the constant-coefficient theorem.",
+    "critical_errors": [],
+    "gaps": []
+  },
+  "verdict": "correct",
+  "repair_hints": "No repair needed. Maintain the current scope: the Baffet-Debye energy theorem is verified for constant coefficients and for boundary/transmission situations where the stated flux term is zero or nonpositive; variable damping profiles require a separate theorem.",
+  "checked_artifacts": [
+    "verification/agent_runs/verify-20260620T073403963252Z-assembly-updated-stage-3-terminal-report/request.json",
+    "results/energy_design_v3_perfect_matching_report.md",
+    "artifacts/proofs/stage3_v2_perfect_matching_test.md",
+    "artifacts/proofs/stage3_repaired_model_energy.md",
+    "artifacts/proofs/stage3_baffet_debye_2d_energy.md",
+    "artifacts/references/stage3_literature_reading_record.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-v2-covariant-model-not-perfectly-matched.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-standard-stretched-pml-matching-and-1d-energy.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-stretched-coordinate-debye-pml-matching-and-energy-gap.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-whole-domain-strict-decay-nullspace-obstruction.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-baffet-primitive-stretched-debye-2d-energy.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-covariantly-damped-debye-energy.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-edge-pml-linear-obstruction.md",
+    "verification/results/verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa.json",
+    "verification/results/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d.json",
+    "verification/results/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m.json",
+    "verification/results/verify-20260620T065326237995Z-fact-the-standard-stretched-coordinate-m.json",
+    "verification/results/verify-20260620T065810059861Z-fact-strict-decay-of-total-electromagnet.json",
+    "verification/results/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw.json",
+    "verification/results/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-.json",
+    "sources/energy_functional_problem.tex",
+    ".iteris/goal_prompt.txt",
+    "references/processed/Joly - 2012 - An elementary introduction to the construction and the analysis of perfectly matched layers for time.txt",
+    "references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt",
+    "references/processed/Bécache 等 - 2023 - Convergence analysis of time-domain PMLS for 2D electromagnetic wave propagation in dispersive waveg.txt",
+    "references/processed/Xie 等 - 2023 - Multi-axial unsplit frequency-shifted perfectly matched layer for displacement-based anisotropic wav.txt",
+    "references/processed/A_Nonconvolutional_Split-Field_Perfectly_Matched_L.txt"
+  ],
+  "checked_fact_ids": [
+    "fact:2d_maxwell_pml_energy_functional_exploration:v2-covariant-model-not-perfectly-matched",
+    "fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:stretched-coordinate-debye-pml-matching-and-energy-gap",
+    "fact:2d_maxwell_pml_energy_functional_exploration:whole-domain-strict-decay-nullspace-obstruction",
+    "fact:2d_maxwell_pml_energy_functional_exploration:baffet-primitive-stretched-debye-2d-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:covariantly-damped-debye-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:edge-pml-linear-obstruction",
+    "fact:2d_maxwell_pml_energy_functional_exploration:augmented-gronwall-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance",
+    "fact:2d_maxwell_pml_energy_functional_exploration:run-20260619T173930696222Z:source-problem"
+  ]
+}
