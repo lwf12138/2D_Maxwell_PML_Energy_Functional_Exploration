@@ -1,5 +1,5 @@
-phase: new_energy_tex_goal_success
-last_updated: 2026-06-20T15:15:19Z
+phase: goal_success_verified
+last_updated: 2026-06-20T15:16:01.406719Z
 source: sources/energy_functional_problem.tex
 target_artifact: tex/new_energy_functional_2d_debye_pml.tex
 verified_artifact: tex/new_energy_functional_2d_debye_pml.tex

@@ -1,0 +1,1056 @@
+<!-- ITERIS VERIFIED: goal_success verify-20260620T150735411403Z-goal_success-goal-maxwell-debye-pml-frac assembly verify-20260620T150039430501Z-assembly-tex-terminal-artifact-tex-new_e -->
+\documentclass[UTF8,a4paper,11pt]{ctexart}
+
+\usepackage{amsmath,amssymb,amsthm,bm,mathtools}
+\usepackage{geometry}
+\usepackage{booktabs,longtable,array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{xurl}
+\usepackage{hyperref}
+
+\geometry{left=2.5cm,right=2.5cm,top=2.4cm,bottom=2.4cm}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!55!black,
+  citecolor=blue!55!black,
+  urlcolor=blue!55!black
+}
+\setlist[itemize]{leftmargin=2em,itemsep=0.25em,topsep=0.25em}
+\setlist[enumerate]{leftmargin=2.2em,itemsep=0.25em,topsep=0.25em}
+\renewcommand{\arraystretch}{1.16}
+\sloppy
+
+\newtheorem{definition}{定义}
+\newtheorem{lemma}{引理}
+\newtheorem{theorem}{定理}
+\newtheorem{remark}{说明}
+
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\Om}{\Omega}
+\newcommand{\sx}{\sigma_x}
+\newcommand{\sy}{\sigma_y}
+\newcommand{\Ecal}{\mathcal E}
+\newcommand{\Dcal}{\mathcal D}
+\newcommand{\R}{\mathbb R}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcommand{\fact}[1]{{\scriptsize\path{#1}}}
+
+\title{二维 Maxwell--Debye--PML 新能量泛函设计}
+\author{Iteris 终端报告}
+\date{2026-06-20}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+本文针对项目
+\texttt{2d\_maxwell\_pml\_energy\_functional\_exploration}
+重新设计二维 Maxwell--Debye--PML 能量泛函。结论必须分清两个性质：
+协变阻尼 v2 模型有正的单调耗散能量，但不是 perfectly matched layer；
+标准 stretched-coordinate Maxwell--Debye PML 保留物理 Debye 响应并在平面界面
+零反射。为了同时获得匹配性和能量单调性，本文采用 Baffet 型 time-primitive
+变量 \(u_t=E\)、\(q_t=P\)，在常系数二维 PML 块上给出正的非增能量
+\(\Ecal_{BD}\) 及
+\[
+\frac{\dd}{\dd t}\Ecal_{BD}(t)
+=-\Dcal_{BD}(t)+\hbox{boundary flux},\qquad \Dcal_{BD}\ge0.
+\]
+在 PEC 外边界或分块常系数传输通量抵消条件下得到
+\(\Ecal_{BD}(t)+\int_0^t\Dcal_{BD}(r)\dd r\le \Ecal_{BD}(0)\)。
+本文不声称变量阻尼剖面的单调能量，也不声称全域所有非零态严格指数衰减。
+\end{abstract}
+
+\tableofcontents
+
+\section{研究目标与事实索引}
+
+原始目标要求读取并整理当前材料，不只是验证旧能量，而是为二维
+Maxwell--Debye--PML 系统设计新的能量泛函。本文先处理
+\(\alpha=1\) Debye 情形，再说明 \(0<\alpha<1\) Cole--Cole 推广的状态。
+终端 artifact 为
+\[
+\texttt{tex/new\_energy\_functional\_2d\_debye\_pml.tex}.
+\]
+
+本文只把已经通过 Iteris agent verification 的事实作为装配依据。
+
+{\footnotesize
+\begin{longtable}{L{0.50\textwidth}L{0.10\textwidth}L{0.32\textwidth}}
+\toprule
+fact id & 状态 & verification \\
+\midrule
+\endfirsthead
+\toprule
+fact id & 状态 & verification \\
+\midrule
+\endhead
+\fact{fact:2d\_maxwell\_pml\_energy\_functional\_exploration:alpha1-algebra-balance}
+& verified
+& \path{verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag} \\
+\fact{fact:2d\_maxwell\_pml\_energy\_functional\_exploration:edge-pml-linear-obstruction}
+& verified
+& \path{verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-} \\
+\fact{fact:2d\_maxwell\_pml\_energy\_functional\_exploration:augmented-gronwall-energy}
+& verified
+& \path{verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e} \\
+\fact{fact:2d\_maxwell\_pml\_energy\_functional\_exploration:covariantly-damped-debye-energy}
+& verified
+& \path{verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw} \\
+\fact{fact:2d\_maxwell\_pml\_energy\_functional\_exploration:v2-covariant-model-not-perfectly-matched}
+& verified
+& \path{verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d} \\
+\fact{fact:2d\_maxwell\_pml\_energy\_functional\_exploration:standard-stretched-pml-matching-and-1d-energy}
+& verified
+& \path{verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m} \\
+\fact{fact:2d\_maxwell\_pml\_energy\_functional\_exploration:stretched-coordinate-debye-pml-matching-and-energy-gap}
+& verified
+& \path{verify-20260620T065326237995Z-fact-the-standard-stretched-coordinate-m} \\
+\fact{fact:2d\_maxwell\_pml\_energy\_functional\_exploration:whole-domain-strict-decay-nullspace-obstruction}
+& verified
+& \path{verify-20260620T065810059861Z-fact-strict-decay-of-total-electromagnet} \\
+\fact{fact:2d\_maxwell\_pml\_energy\_functional\_exploration:baffet-primitive-stretched-debye-2d-energy}
+& verified
+& \path{verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa} \\
+\bottomrule
+\end{longtable}
+}
+
+\section{符号和三个模型的区分}
+
+设 \(\Om\subset\R^2\) 为矩形计算区域。二维 TM 变量写作
+\[
+E=E_z,\qquad H=(H_x,H_y),\qquad
+\mu=\mu_0\mu_r,\qquad e=\epsilon_0\epsilon_\infty,
+\]
+\[
+\chi=\epsilon_0(\epsilon_s-\epsilon_\infty)>0.
+\]
+Debye 情形为
+\[
+\tau P_t+P=\chi E,\qquad \tau>0.
+\]
+Cole--Cole 情形则为 \(P+\tau^\alpha\partial_t^\alpha P=\chi E\)，
+本文在 \(\alpha=1\) 完成能量设计。
+
+本文区分三类模型。
+
+\begin{enumerate}
+\item \textbf{用户原始八变量模型。} 变量为
+\[
+E,\ H_x,\ H_y,\ P,\ P_{z,1},\ P_{z,2},\ Q_x,\ Q_y .
+\]
+该模型来自 \texttt{sources/energy\_functional\_problem.tex}，有
+edge-PML 线性增长 obstruction。
+\item \textbf{Iteris 第二轮 v2 协变阻尼层。} 它去掉
+\(P_{z,i},Q_i\)，用 \(D_\rho=\partial_t+\rho\) 阻尼 Debye 方程。
+它是稳定吸收层，但界面阻抗失配，不能称为 strict PML。
+\item \textbf{本文选定的 repaired model。} 使用标准 stretched-coordinate
+Maxwell--Debye PML，并用 Baffet 型 primitive 变量构造常系数二维耗散能量。
+该模型在连续平面常系数界面处 perfectly matched。
+\end{enumerate}
+
+\section{原始二维 PML 模型及现有困难}
+
+原始模型为
+\begin{align}
+eE_t
+&=\partial_xH_y-\partial_yH_x
+-\epsilon_\infty(\sx+\sy)E-P_t-\frac{\sx+\sy}{\epsilon_0}P
++P_{z,1}+P_{z,2}, \notag\\
+\mu H_{x,t}
+&=-\partial_yE-\mu\frac{\sy-\sx}{\epsilon_0}H_x+Q_x,\notag\\
+\mu H_{y,t}
+&=\partial_xE-\mu\frac{\sx-\sy}{\epsilon_0}H_y+Q_y,\notag\\
+\tau P_t+P&=\chi E,\notag\\
+P_{z,1,t}&=-\frac{\epsilon_\infty}{\epsilon_0}\sx\sy E,\qquad
+P_{z,2,t}=-\frac{\sx\sy}{\epsilon_0^2}P,\notag\\
+Q_{x,t}&=-\frac{\sx}{\epsilon_0}Q_x
++\frac{\mu\sx(\sy-\sx)}{\epsilon_0^2}H_x,\notag\\
+Q_{y,t}&=-\frac{\sy}{\epsilon_0}Q_y
++\frac{\mu\sy(\sx-\sy)}{\epsilon_0^2}H_y .
+\label{eq:old-model}
+\end{align}
+外边界采用 PEC 条件 \(E=0\)。
+
+电磁能量
+\[
+\Ecal_{\rm em}
+=\frac12\int_\Om(eE^2+\mu H_x^2+\mu H_y^2)\dd x\dd y
+\]
+满足
+\begin{align}
+\frac{\dd}{\dd t}\Ecal_{\rm em}
+=\int_\Om\{&
+-\epsilon_\infty(\sx+\sy)E^2
+-EP_t-\frac{\sx+\sy}{\epsilon_0}EP+E(P_{z,1}+P_{z,2}) \notag\\
+&-\frac{\mu}{\epsilon_0}(\sy-\sx)H_x^2
+-\frac{\mu}{\epsilon_0}(\sx-\sy)H_y^2
++H_xQ_x+H_yQ_y\}\dd x\dd y .
+\label{eq:em-old}
+\end{align}
+其中 Maxwell 主部边界通量
+\[
+\int_{\partial\Om}E(H_y n_x-H_x n_y)\dd s
+\]
+由 PEC 消去。Debye 恒等式
+\[
+EP_t=\frac1{2\chi}\partial_t(P^2)+\frac{\tau}{\chi}P_t^2
+\]
+说明自然极化修正
+\[
+\Ecal_{\rm em+P}=\Ecal_{\rm em}+\frac1{2\chi}\|P\|_{L^2(\Om)}^2
+\]
+是正的，但 \eqref{eq:em-old} 中仍有 \(EP\)、\(EP_{z,i}\)、
+\(H_iQ_i\) 及磁场符号不定项。
+
+令
+\[
+a_x=\frac{\sy-\sx}{\epsilon_0},\qquad
+a_y=\frac{\sx-\sy}{\epsilon_0},\qquad
+b_x=\frac{\sx}{\epsilon_0},\qquad
+b_y=\frac{\sy}{\epsilon_0},
+\]
+\[
+M_x=Q_x-\mu a_xH_x,\qquad M_y=Q_y-\mu a_yH_y.
+\]
+则
+\[
+M_{x,t}=a_x\partial_yE-b_yM_x,\qquad
+M_{y,t}=-a_y\partial_xE-b_xM_y.
+\]
+该变换消去了 \eqref{eq:em-old} 中的磁场平方符号不定项，但留下
+\[
+H_xM_x+H_yM_y
+\]
+以及 \(M_x\partial_yE,M_y\partial_xE\) 型导数耦合。
+
+\begin{lemma}[旧八变量模型的边 PML obstruction]
+在常系数 \(x\)-edge PML 中取
+\[
+\sx=s_0>0,\qquad \sy=0,
+\]
+并令
+\[
+E=P=P_{z,1}=P_{z,2}=H_y=Q_y=0
+\]
+且 \(H_x,Q_x\) 为空间常数，则
+\[
+M_x=Q_x+\mu\frac{s_0}{\epsilon_0}H_x
+\]
+为常数，并且
+\[
+H_x(t)=H_x(0)+\frac{M_x(0)}{\mu}t,\qquad
+Q_x(t)=Q_x(0)-\frac{s_0}{\epsilon_0}M_x(0)t.
+\]
+若 \(M_x(0)\ne0\)，则 \(H_x,Q_x\) 线性增长。
+\end{lemma}
+
+\begin{proof}
+把上述 ansatz 代入 \eqref{eq:old-model}，只剩
+\[
+H_{x,t}=\frac{s_0}{\epsilon_0}H_x+\frac1\mu Q_x,\qquad
+Q_{x,t}=-\frac{s_0}{\epsilon_0}Q_x-\mu\frac{s_0^2}{\epsilon_0^2}H_x.
+\]
+直接相加得
+\(\partial_t(Q_x+\mu s_0H_x/\epsilon_0)=0\)，积分即得结论。
+\end{proof}
+
+因此任何控制所有八个显示变量的时间无关正能量，都不可能在该边 PML
+全数据类上单调下降或长时间一致有界。原模型仍有 Gronwall 型正能量
+\(\Ecal_0'(t)\le C_G\Ecal_0(t)\)，但这不是单调耗散。
+
+\section{Perfect matching 判据}
+
+物理区域取 \(x<0\)，PML 取 \(x>0\)。考虑常系数平面界面和
+Laplace--Fourier 模态
+\[
+U(x,y,t)=\widehat U e^{st+ik_y y+\nu x},\qquad \Re s>0.
+\]
+物理 Maxwell--Debye 介质满足
+\[
+\widehat P=\frac{\chi}{1+\tau s}\widehat E,\qquad
+\varepsilon_D(s)=e+\frac{\chi}{1+\tau s}.
+\]
+物理代数系统为
+\[
+s\varepsilon_D(s)E=\partial_xH_y-\partial_yH_x,\quad
+\mu sH_x=-\partial_yE,\quad
+\mu sH_y=\partial_xE.
+\]
+代入 \(\partial_x=\nu_0\)、\(\partial_y=ik_y\) 得
+\[
+H_x=-\frac{ik_y}{\mu s}E,\qquad
+H_y=\frac{\nu_0}{\mu s}E,
+\]
+\[
+\nu_0^2=k_y^2+\mu s^2\varepsilon_D(s).
+\]
+定义物理导纳
+\[
+Y_0=\frac{H_y}{E}=\frac{\nu_0}{\mu s}.
+\]
+
+界面连续量为 \(E,H_y\)。入射、反射、透射振幅满足
+\[
+1+R=T,\qquad Y_0(1-R)=Y_+T,
+\]
+因此
+\[
+R=\frac{Y_0-Y_+}{Y_0+Y_+}.
+\]
+故连续层面的 perfect matching 公式判据是
+\[
+Y_+(s,k_y)=Y_0(s,k_y)\quad \hbox{对所有出射模成立}.
+\]
+
+\subsection{v2 协变阻尼层的失配}
+
+v2 模型为
+\[
+eD_\rho E=\partial_xH_y-\partial_yH_x-D_\rho P,\qquad
+\mu(\partial_t+\rho_y)H_x=-\partial_yE,
+\]
+\[
+\mu(\partial_t+\rho_x)H_y=\partial_xE,\qquad
+P+\tau D_\rho P=\chi E,\qquad D_\rho=\partial_t+\rho_x+\rho_y.
+\]
+在 \(x\)-PML 中取
+\[
+\rho_x=\rho>0,\qquad \rho_y=0.
+\]
+则
+\[
+\varepsilon_\rho(s)=e+\frac{\chi}{1+\tau(s+\rho)}.
+\]
+代数系统为
+\[
+(s+\rho)\varepsilon_\rho(s)E=\nu H_y-ik_yH_x,
+\]
+\[
+\mu sH_x=-ik_yE,\qquad
+\mu(s+\rho)H_y=\nu E.
+\]
+故
+\[
+Y_{v2}^2=\frac1{\mu^2}\left(
+\mu\varepsilon_\rho(s)+\frac{k_y^2}{s(s+\rho)}\right),
+\qquad
+Y_0^2=\frac1{\mu^2}\left(
+\mu\varepsilon_D(s)+\frac{k_y^2}{s^2}\right).
+\]
+相减得到
+\begin{equation}
+\boxed{
+Y_{v2}^2-Y_0^2
+=-\frac{\rho}{\mu^2}\left[
+\frac{\mu\chi\tau}{(1+\tau s)(1+\tau(s+\rho))}
++\frac{k_y^2}{s^2(s+\rho)}
+\right].}
+\label{eq:v2-mismatch}
+\end{equation}
+该表达式通常不为零，所以
+\[
+R_{v2}=\frac{Y_0-Y_{v2}}{Y_0+Y_{v2}}
+\]
+通常不为零。失配来自两个公式层面原因：Debye 响应从
+\(\chi/(1+\tau s)\) 变成 \(\chi/(1+\tau(s+\rho))\)，并且斜入射项从
+\(k_y^2/s^2\) 变成 \(k_y^2/[s(s+\rho)]\)。
+因此 v2 是 stable absorbing layer，不是严格 PML。
+
+\subsection{标准 stretched-coordinate 修复模型}
+
+标准修复模型在 Laplace 域中只拉伸空间导数：
+\[
+S_i(s)=1+\frac{\sigma_i}{s},\qquad
+\partial_i\mapsto S_i^{-1}\partial_i,
+\]
+并保持
+\[
+(1+\tau s)\widehat P=\chi\widehat E.
+\]
+即
+\begin{equation}
+\boxed{
+s\varepsilon_D(s)\widehat E
+=S_x^{-1}\partial_x\widehat H_y
+-S_y^{-1}\partial_y\widehat H_x,}
+\label{eq:sc-pml-E}
+\end{equation}
+\[
+\boxed{
+\mu s\widehat H_x=-S_y^{-1}\partial_y\widehat E,\qquad
+\mu s\widehat H_y=S_x^{-1}\partial_x\widehat E.}
+\]
+在 \(x\)-界面 \(S_y=1\)。透射模满足
+\[
+(S_x^{-1}\nu_+)^2=k_y^2+\mu s^2\varepsilon_D(s),
+\]
+故
+\[
+\nu_+=S_x\nu_0,\qquad
+Y_+=\frac{S_x^{-1}\nu_+}{\mu s}
+=\frac{\nu_0}{\mu s}=Y_0.
+\]
+于是 \(R=0\)。变系数剖面 \(\sigma_i(x_i)\) 的严格反射系数计算通常通过
+局部冻结系数或渐近 argument 处理；本文证明的能量恒等式限于常系数或分块常系数。
+
+\section{候选能量泛函比较}
+
+\subsection{候选一：原模型自然能量和辅助变量能量}
+
+取
+\[
+\Ecal_0=\frac12\int_\Om
+\left(eE^2+\mu H_x^2+\mu H_y^2+\chi^{-1}P^2
++P_{z,1}^2+P_{z,2}^2+Q_x^2+Q_y^2\right)\dd x\dd y .
+\]
+该能量正定，但导数包含
+\[
+EP,\quad EP_{z,1},\quad EP_{z,2},\quad PP_{z,2},\quad
+H_xQ_x,\quad H_yQ_y
+\]
+以及未平移前的磁场符号不定平方项。Young 不等式只给出
+\[
+\Ecal_0'(t)\le C_G\Ecal_0(t).
+\]
+边 PML 精确线性增长模态说明该候选无法成为全数据单调能量。
+
+\subsection{候选二：含交叉项的 Lyapunov 修正}
+
+在旧模型中可尝试
+\[
+\Ecal_L=\Ecal_{\rm em+P}
++\eta_1(E,P_{z,1})+\eta_2(E,P_{z,2})
++\eta_3(P,P_{z,2})+\eta_x(H_x,M_x)+\eta_y(H_y,M_y)
++\cdots .
+\]
+正定性可通过 Schur 补要求
+\[
+|\eta_i|<\sqrt{a_i a_j}
+\]
+来保证。但 \(M_{x,t}=a_x\partial_yE-b_yM_x\) 和
+\(M_{y,t}=-a_y\partial_xE-b_xM_y\) 会产生导数耦合
+\[
+M_x\partial_yE,\qquad M_y\partial_xE.
+\]
+没有额外一阶导数项、非局部算子或 primitive 变量时，这些项不能在纯
+zeroth-order \(L^2\) 能量中闭合。该候选是局部 Lyapunov 思路，但不解决完整二维问题。
+
+\subsection{候选三：v2 协变阻尼能量}
+
+v2 层取
+\[
+\Ecal_\rho=\frac12\int_\Om
+\left(eE^2+\mu H_x^2+\mu H_y^2+\chi^{-1}P^2\right)\dd x\dd y .
+\]
+利用
+\[
+E D_\rho P
+=\frac1{2\chi}\partial_t(P^2)+\frac{\rho}{\chi}P^2
++\frac{\tau}{\chi}|D_\rho P|^2
+\]
+得到
+\[
+\frac{\dd}{\dd t}\Ecal_\rho
+=-\int_\Om\left(
+e\rho E^2+\mu\rho_yH_x^2+\mu\rho_xH_y^2
++\frac{\rho}{\chi}P^2+\frac{\tau}{\chi}|D_\rho P|^2
+\right)\dd x\dd y.
+\]
+该候选成功给出单调耗散，但根据 \eqref{eq:v2-mismatch} 不是 perfectly matched。
+
+\subsection{候选四：标准 stretched ADE 的朴素物理能量}
+
+对 \eqref{eq:sc-pml-E} 的 ADE 实现，引入
+\[
+\mathcal A_i=S_i^{-1}=\frac{s}{s+\sigma_i},\qquad
+\mathcal A_i f=f+\psi_i,\qquad
+(\partial_t+\sigma_i)\psi_i=-\sigma_i f.
+\]
+朴素物理 Debye 能量为
+\[
+\Ecal_{\rm phys}=\frac12\int_\Om(eE^2+\mu H_x^2+\mu H_y^2+\chi^{-1}P^2)\dd x\dd y.
+\]
+计算得
+\[
+\frac{\dd}{\dd t}\Ecal_{\rm phys}
+=-\int_\Om\frac{\tau}{\chi}P_t^2\dd x\dd y
++\int_\Om\left[
+E(\psi_{E,x}-\psi_{E,y})-H_x\psi_{H_x,y}
++H_y\psi_{H_y,x}\right]\dd x\dd y.
+\]
+最后一行无固定符号。因此精确匹配的 stretched PML 需要非朴素的
+Baffet 型增广能量。
+
+\section{选定模型：Baffet 型 primitive Maxwell--Debye PML}
+
+在一个常系数二维 PML 块上设
+\[
+\sx,\sy\ge0,\qquad a=\sx+\sy,\qquad b=\sx\sy,\qquad a>0,
+\]
+\[
+\Gamma_1=\begin{pmatrix}\sx&0\\0&\sy\end{pmatrix},\qquad
+\Gamma_2=\begin{pmatrix}\sy-\sx&0\\0&\sx-\sy\end{pmatrix}.
+\]
+令
+\[
+E=u_t,\qquad q_t=P,
+\]
+并把 Debye law 写成兼容 primitive 形式
+\[
+\tau P_t+P=\chi u_t,\qquad q+\tau P=\chi u.
+\]
+后一关系若初始成立，则由前两个关系保持。
+
+引入
+\[
+\lambda=\nabla u+\phi.
+\]
+本文选定的常系数 repaired model 为
+\begin{align}
+\mu\{e(u_{tt}+a u_t+b u)+P_t+aP+bq\}-\nabla\cdot\lambda&=0,
+\label{eq:bd-main}\\
+\phi_t+\Gamma_1\phi&=\Gamma_2\nabla u,
+\label{eq:bd-phi}\\
+\tau P_t+P=\chi u_t,\qquad q_t=P,\qquad q+\tau P&=\chi u.
+\label{eq:bd-debye}
+\end{align}
+外边界通量取
+\[
+\int_{\partial\Omega}(u_t+a u)\lambda\cdot n\,\dd s.
+\]
+PEC primitive 条件可取 \(u=0\)，故 \(u_t=E=0\)。分块常系数内部界面取
+\(u\) 与 \(\lambda\cdot n\) 连续，使通量成对抵消。
+
+\begin{lemma}[与标准 stretched-coordinate PML 的等价性]
+常系数下，\eqref{eq:bd-main}--\eqref{eq:bd-debye} 在 Laplace 域等价于
+从标准 stretched-coordinate Maxwell--Debye PML 消去 \(H_x,H_y\) 后得到的二阶方程。
+\end{lemma}
+
+\begin{proof}
+由 \eqref{eq:bd-phi} 得
+\[
+\widehat\phi_x=\frac{\sy-\sx}{s+\sx}\partial_x\widehat u,\qquad
+\widehat\phi_y=\frac{\sx-\sy}{s+\sy}\partial_y\widehat u.
+\]
+故
+\[
+\widehat\lambda_x
+=\frac{s+\sy}{s+\sx}\partial_x\widehat u
+=\frac{S_y}{S_x}\partial_x\widehat u,\qquad
+\widehat\lambda_y
+=\frac{s+\sx}{s+\sy}\partial_y\widehat u
+=\frac{S_x}{S_y}\partial_y\widehat u.
+\]
+由 Debye 兼容性，
+\[
+\widehat P=\frac{\chi s}{1+\tau s}\widehat u,\qquad
+\widehat q=\frac1s\widehat P.
+\]
+因此
+\[
+e(s^2+as+b)\widehat u+s\widehat P+a\widehat P+b\widehat q
+=\left(e+\frac{\chi}{1+\tau s}\right)(s^2+as+b)\widehat u.
+\]
+又 \(s^2+as+b=s^2S_xS_y\)，于是 \eqref{eq:bd-main} 变成
+\[
+\mu\varepsilon_D(s)s^2S_xS_y\widehat u=\nabla\cdot\widehat\lambda.
+\]
+除以 \(S_xS_y\) 后得
+\[
+\mu\varepsilon_D(s)s^2\widehat u
+=S_x^{-1}\partial_x(S_x^{-1}\partial_x\widehat u)
++S_y^{-1}\partial_y(S_y^{-1}\partial_y\widehat u),
+\]
+这正是 \eqref{eq:sc-pml-E} 消去磁场后的方程。
+\end{proof}
+
+\section{新能量泛函和正定性}
+
+定义
+\[
+\alpha=1+2a\tau,\qquad
+\beta=a+b\tau,\qquad
+\gamma=a^2+b(1+a\tau).
+\]
+选定能量为
+\begin{equation}
+\boxed{
+\begin{aligned}
+\Ecal_{BD}
+=\frac12\int_\Omega \{&
+\mu e(u_t+a u)^2+|\lambda|^2
++|\phi|_{a^{-1}\Gamma_1}^2+\mu e\,b u^2\\
+&+\frac{\mu}{\chi}\left(\alpha P^2+2\beta Pq+\gamma q^2\right)
+\}\dd x\dd y .
+\end{aligned}}
+\label{eq:EBD}
+\end{equation}
+这不是朴素物理能量，而是含 shifted 变量 \(u_t+a u\)、\(\lambda=\nabla u+\phi\)
+和 primitive \(q\) 的 Baffet 型增广能量。
+
+\begin{lemma}[Debye primitive 二次型正性]
+在 \(a>0\)、\(b\ge0\)、\(\tau>0\) 下，
+\[
+M_{Pq}=\begin{pmatrix}\alpha&\beta\\ \beta&\gamma\end{pmatrix}
+\]
+正定。
+\end{lemma}
+
+\begin{proof}
+Sylvester 判据给出
+\[
+\alpha=1+2a\tau>0.
+\]
+并且
+\[
+\alpha\gamma-\beta^2
+=b+ab\tau+2a^3\tau+b(2a^2-b)\tau^2.
+\]
+由于 \(b=\sx\sy\ge0\)，且
+\[
+2a^2-b=2\sx^2+3\sx\sy+2\sy^2\ge0,
+\]
+上式严格为正。故 \(M_{Pq}>0\)。
+等价地，
+\[
+\alpha P^2+2\beta Pq+\gamma q^2
+=\alpha\left(P+\frac{\beta}{\alpha}q\right)^2
++\left(\gamma-\frac{\beta^2}{\alpha}\right)q^2.
+\]
+\end{proof}
+
+若 \(\sx,\sy>0\)，则 \(b>0\)，\(|\phi|_{a^{-1}\Gamma_1}^2\)、
+\(\mu e b u^2\) 也给出严格正权重，于是 \(\Ecal_{BD}\) 对局部变量
+\[
+U=(W,\lambda_x,\lambda_y,\phi_x,\phi_y,u,P,q)^T,\qquad W=u_t+a u
+\]
+的矩阵为
+\[
+M=\diag\!\left(
+\mu e,\ 1,\ 1,\ \frac{\sx}{a},\ \frac{\sy}{a},\ \mu e b
+\right)
+\oplus \frac{\mu}{\chi}
+\begin{pmatrix}\alpha&\beta\\ \beta&\gamma\end{pmatrix},
+\]
+满足 \(M>0\)。在单向 edge PML 中 \(b=0\) 或某个 \(\sigma_i=0\) 时，完整
+primitive 局部矩阵只半正定；此时要么使用相应降维单向 PML 变量，要么用
+边界/传输条件排除 primitive gauge。本文的耗散结论诚实表述为非增和无异常增长，
+不把半正定 gauge 模式误称为严格衰减。
+
+\section{能量恒等式}
+
+用 \(u_t+a u\) 测试 \eqref{eq:bd-main}。非色散部分给出
+\begin{align}
+&\frac12\frac{\dd}{\dd t}
+\int_\Omega\mu e\{(u_t+a u)^2+b u^2\}\dd x\dd y
++\int_\Omega\mu e\,ab u^2\dd x\dd y \notag\\
+&\qquad
+=\int_\Omega(u_t+a u)\nabla\cdot\lambda\dd x\dd y
+-\mu\int_\Omega(P_t+aP+bq)(u_t+a u)\dd x\dd y.
+\label{eq:step-main}
+\end{align}
+第一项分部积分：
+\[
+\int_\Omega(u_t+a u)\nabla\cdot\lambda\dd x\dd y
+=-\int_\Omega\nabla(u_t+a u)\cdot\lambda\dd x\dd y
++\int_{\partial\Omega}(u_t+a u)\lambda\cdot n\,\dd s.
+\]
+
+由 \(\lambda=\nabla u+\phi\) 和 \eqref{eq:bd-phi}，
+\[
+\lambda_t+\Gamma_1\lambda
+=\nabla u_t+\widetilde\Gamma_2\nabla u,\qquad
+\widetilde\Gamma_2=\Gamma_1+\Gamma_2
+=\begin{pmatrix}\sy&0\\0&\sx\end{pmatrix}.
+\]
+Baffet 乘子计算给出
+\begin{align}
+&\frac12\frac{\dd}{\dd t}
+\int_\Omega\left(|\lambda|^2+|\phi|_{a^{-1}\Gamma_1}^2\right)\dd x\dd y
+\notag\\
+&\qquad
++\int_\Omega\left(
+|\lambda|^2_{\Gamma_1(I+a^{-1}\Gamma_1)}
++\frac{b}{a}|\nabla u|^2
+\right)\dd x\dd y
+=\int_\Omega\nabla(u_t+a u)\cdot\lambda\dd x\dd y.
+\label{eq:step-baffet}
+\end{align}
+该式使用矩阵恒等式
+\[
+\Gamma_1\widetilde\Gamma_2=bI,\qquad
+a^{-1}\Gamma_1(\Gamma_1+\widetilde\Gamma_2)+\widetilde\Gamma_2=aI.
+\]
+
+Debye primitive 贡献由
+\[
+u_t+a u=\frac{\tau P_t+(1+a\tau)P+a q}{\chi}
+\]
+和 \(q_t=P\) 得到
+\begin{align}
+&(P_t+aP+bq)(u_t+a u) \notag\\
+&\quad
+=\frac1\chi\left[
+\frac12\partial_t(\alpha P^2+2\beta Pq+\gamma q^2)
++\tau P_t^2+\tau(a^2-b)P^2+abq^2
+\right].
+\label{eq:debye-product}
+\end{align}
+
+把 \eqref{eq:step-main}、\eqref{eq:step-baffet}、\eqref{eq:debye-product}
+相加，内部交叉项 \(\nabla(u_t+a u)\cdot\lambda\) 精确抵消，得到：
+
+\begin{theorem}[常系数二维 Baffet--Debye PML 能量恒等式]
+设 \(\sx,\sy\ge0\)、\(a=\sx+\sy>0\)、\(b=\sx\sy\)，且材料参数
+\(e,\mu,\chi,\tau>0\)。对足够光滑解，\(\Ecal_{BD}\) 满足
+\begin{equation}
+\boxed{
+\frac{\dd}{\dd t}\Ecal_{BD}(t)
+=-\Dcal_{BD}(t)
++\int_{\partial\Omega}(u_t+a u)\lambda\cdot n\,\dd s,}
+\label{eq:EBD-identity}
+\end{equation}
+其中
+\begin{equation}
+\boxed{
+\begin{aligned}
+\Dcal_{BD}
+=\int_\Omega \{&
+|\lambda|^2_{\Gamma_1(I+a^{-1}\Gamma_1)}
++\frac{b}{a}|\nabla u|^2+\mu e\,ab u^2\\
+&+\frac{\mu}{\chi}\left[
+\tau P_t^2+\tau(a^2-b)P^2+abq^2
+\right]\}\dd x\dd y .
+\end{aligned}}
+\label{eq:DBD}
+\end{equation}
+并且 \(\Dcal_{BD}\ge0\)。若边界通量为零或非正，则
+\[
+\Ecal_{BD}(t)+\int_0^t\Dcal_{BD}(r)\dd r\le \Ecal_{BD}(0).
+\]
+\end{theorem}
+
+\begin{proof}
+上述三步相加即得 \eqref{eq:EBD-identity}。非负性来自
+\[
+\Gamma_1(I+a^{-1}\Gamma_1)
+=\diag\!\left(\sx(1+\sx/a),\sy(1+\sy/a)\right)\ge0,
+\]
+\[
+\frac{b}{a}\ge0,\qquad ab\ge0,\qquad
+a^2-b=\sx^2+\sx\sy+\sy^2\ge0.
+\]
+PEC primitive 条件 \(u=0\) 使外边界通量为零；分块常系数界面上 \(u\) 与
+\(\lambda\cdot n\) 连续时，通量成对抵消。
+\end{proof}
+
+因此本文得到的强结论是
+\[
+\frac{\dd}{\dd t}\Ecal_{BD}(t)+\Dcal_{BD}(t)\le0,\qquad \Dcal_{BD}\ge0,
+\]
+在上述常系数或分块常系数通量条件下成立。
+
+\section{耗散矩阵 \texorpdfstring{\(Q\)}{Q} 与参数条件}
+
+若把耗散写在局部变量
+\[
+V=(\lambda_x,\lambda_y,u_x,u_y,u,P_t,P,q)^T
+\]
+上，则 \(Q\) 为对角块：
+\[
+Q=\diag\!\left(
+\sx(1+\sx/a),\ \sy(1+\sy/a),\
+\frac{b}{a},\ \frac{b}{a},\
+\mu eab,\ \frac{\mu\tau}{\chi},\
+\frac{\mu\tau(a^2-b)}{\chi},\
+\frac{\mu ab}{\chi}
+\right).
+\]
+在 \(\sx,\sy\ge0\)、\(a>0\)、\(e,\mu,\chi,\tau>0\) 下
+\[
+Q\ge0.
+\]
+若希望 \(M>0\) 且 \(Q>0\) 在所有分量严格成立，需要角 PML 条件
+\(\sx>0,\sy>0\) 并排除 primitive gauge；edge PML 或物理未阻尼区必然有
+零耗散方向，不能推出所有非零态严格衰减。
+
+\section{衰减结论和不能证明之处}
+
+由定理得到
+\[
+\Ecal_{BD}(t)\le \Ecal_{BD}(0),
+\]
+以及积分耗散
+\[
+\Ecal_{BD}(t)+\int_0^t\Dcal_{BD}(r)\dd r\le\Ecal_{BD}(0).
+\]
+这已经排除了 PML 块中的异常能量增长。
+
+不能直接推出
+\[
+\Ecal_{BD}(t)\le C e^{-\gamma t}\Ecal_{BD}(0)
+\]
+有两个公式层面原因。
+
+\begin{enumerate}
+\item \(\Dcal_{BD}\) 不控制所有 primitive/gauge 分量。例如 edge PML 中 \(b=0\)，
+则 \(\mu eab u^2\) 与 \(\mu abq^2/\chi\) 消失。
+\item 全域含未阻尼物理区域时存在定常磁场零空间。取
+\[
+E=0,\qquad P=0,\qquad H_x=\partial_x\varphi,\qquad H_y=\partial_y\varphi,
+\]
+其中 \(\varphi\) 光滑且支撑在 \(\sx=\sy=0\) 的物理区域内，则
+\(\partial_xH_y-\partial_yH_x=0\)，所有阻尼项为零，但磁能非零。
+\end{enumerate}
+若要证明指数衰减，需要额外的 Poincare 或 Maxwell 型 Poincare 不等式、
+几何控制条件、全域正阻尼、边界条件排除零频模，以及补偿泛函。本文不声称该结论。
+
+\section{与原模型的比较}
+
+原八变量模型的核心困难是独立 \(P_{z,i},Q_i\) 与边 PML 磁场辅助变量的 Jordan
+型增长；自然能量和简单交叉项不能消去所有二维导数耦合。v2 模型通过
+\(D_\rho\) 同时阻尼 Maxwell 与 Debye 方程得到单调能量，但公式
+\eqref{eq:v2-mismatch} 证明它改变材料响应和斜入射导纳，故不是 perfectly matched。
+
+本文选定模型保持物理 Debye 响应 \((1+\tau s)\widehat P=\chi\widehat E\)，
+只拉伸空间导数，从而通过 \(Y_+=Y_0\) 的计算保留 perfect matching。
+能量方面不再使用朴素 \(E,H,P\) 能量，而是加入
+\[
+u_t+a u,\qquad \lambda=\nabla u+\phi,\qquad q_t=P,
+\]
+以及 \(P,q\) 的正定交叉二次型。这使完整二维常系数 PML 块获得非增耗散恒等式。
+
+对后续 DG 离散而言，\(\Ecal_{BD}\) 比旧八变量能量更友好，因为其主耗散项是
+Baffet 型正矩阵和 Debye 正二次型；但离散实现需要维护 primitive 变量、界面通量抵消
+和常系数/分块常系数假设。
+
+\section{Cole--Cole 情形 \texorpdfstring{\(0<\alpha<1\)}{0<alpha<1}}
+
+Cole--Cole law 为
+\[
+P+\tau^\alpha\partial_t^\alpha P=\chi E.
+\]
+若使用 Caputo 导数，可通过 diffusive representation 引入记忆变量
+\(\theta(\lambda,t)\) 使
+\[
+\partial_t^\alpha P
+=\int_0^\infty w_\alpha(\lambda)\theta(\lambda,t)\dd\lambda,\qquad
+\theta_t=-\lambda\theta+P_t,
+\]
+其中权重 \(w_\alpha\) 必须从 Cole--Cole law 推导并保证非负。这样有希望把
+Debye 的 \(\tau P_t^2\) 替换为正记忆耗散。
+
+但 fractional 极化不能修复与 \(P\) 无关的 PML 失配：旧模型 edge obstruction
+可取 \(P=0\)；v2 失配在 \(\chi=0\) 且 \(k_y\ne0\) 时仍有斜入射项。
+因此 \(0<\alpha<1\) 的正确路线是在已经 matched 的 stretched-coordinate
+PML 上加入正记忆能量，而不是用 fractional law 修补错误的 PML 阻抗。
+本文不声称完成 fractional theorem，标记为待证明。
+
+\section{机器辅助代数验证}
+
+创建了两个验证文件：
+\begin{center}
+\path{verification/algebra/new_energy_functional_sympy.py}\\
+\path{verification/algebra/NewEnergyFunctional.lean}
+\end{center}
+
+SymPy 实际运行命令为
+\[
+\texttt{python3 verification/algebra/new\_energy\_functional\_sympy.py}.
+\]
+实际输出摘要：
+\begin{verbatim}
+=== Energy matrix M: Debye primitive P,q block ===
+alpha = 2*sigma_x*tau + 2*sigma_y*tau + 1
+det(M_pq) sum-of-positive-terms form: 0
+P,q completed-square identity: 0
+Debye primitive multiplier expansion: 0
+v2 squared-admittance mismatch: 0
+stretched-coordinate admittance: 0
+All SymPy algebra checks passed.
+\end{verbatim}
+该脚本检查了 \(M_{Pq}\) 主子式、Schur 补、完成平方恒等式、
+Debye 关键交叉项抵消、\(Q\) 的非负对角项、v2 admittance mismatch 以及
+stretched-coordinate 导纳匹配。
+
+Lean 文件包含对应的 Lean/Mathlib theorem 目标，包括二阶矩阵完成平方、
+Debye primitive product identity、\(P,q\) determinant identity 和 v2 mismatch
+identity。实际运行命令为
+\[
+\texttt{lean verification/algebra/NewEnergyFunctional.lean}.
+\]
+本机输出为
+\begin{verbatim}
+zsh:1: command not found: lean
+\end{verbatim}
+因此 Lean 验证未运行，原因是本地环境缺少 Lean 可执行文件；这不是公式反例。
+
+\section{文献阅读记录表}
+
+下表只记录本轮实际使用的读法和作用。PDF 页码为本地抽取文本中的 PDF 页码或
+已验证 stage-3 文献记录中的页码；不可解析公式不作为证明依据。
+
+{\footnotesize
+\begin{longtable}{L{0.20\textwidth}L{0.14\textwidth}L{0.29\textwidth}L{0.22\textwidth}}
+\toprule
+文献/材料 & 读取位置 & 读到的内容 & 本文作用 \\
+\midrule
+\endfirsthead
+\toprule
+文献/材料 & 读取位置 & 读到的内容 & 本文作用 \\
+\midrule
+\endhead
+\path{sources/energy_functional_problem.tex}
+& 全文
+& 原八变量模型、PEC、\(\alpha=1\) Debye 化、\(M_x,M_y\) 提示和 deliverables。
+& 定义原模型和旧 obstruction。 \\
+\path{sources/energy_ansatz_notes.tex}
+& 全文
+& 记录自然能量、磁变量平移、Lyapunov 矩阵、Baffet 型变量建议。
+& 候选能量比较的路线来源。 \\
+\path{results/energy_functional_report_verified.md}
+& 全文
+& 已验证旧模型代数、edge-PML 线性增长、Gronwall fallback。
+& 作为旧模型困难的 verified background。 \\
+\path{results/energy_design_v2_report_verified.md}
+& 全文
+& v2 协变阻尼层有正单调能量，但未证明 perfect matching。
+& 提供 v2 模型和后续 mismatch 测试对象。 \\
+\path{results/energy_design_v3_perfect_matching_report.md}
+& 全文
+& v2 mismatch、standard stretch matching、Baffet-Debye energy identity。
+& 本文终端 TeX 的主要 verified 事实来源。 \\
+\path{references/references.bib}
+& 全文
+& Berenger、Becache、Joly、Baffet、CFS/ADE、MPML、Cole--Cole 文献条目。
+& 题名和作者年份核对。 \\
+Joly, 2012, elementary PML introduction
+& PDF pp. 6--8, 15--20
+& PML 源于阻抗匹配和复坐标变换；二维中拉伸 PML 方向导数；PML 稳定性并非自动。
+& 使用导纳 \(Y_+=Y_0\) 作为匹配判据。 \\
+Baffet--Grote--Imperiale--Kachanovska, 2019
+& PDF pp. 4--11, 35
+& 二阶波方程 PML 的常系数能量使用 shifted/time-integrated 变量；非变量剖面能量证明困难。
+& 设计 \(\Ecal_{BD}\) 和限定常系数范围。 \\
+Becache--Kachanovska--Wess, 2023
+& PDF pp. 1--10
+& 色散 waveguide 中 PML 通过 Laplace 域材料响应和 stretch 构造；稳定性模型相关。
+& 支持保持 \(\varepsilon_D(s)\) 而非改成 \(\varepsilon_D(s+\rho)\)。 \\
+Becache--Fliss--Kachanovska--Kazakova, 2021
+& PDF pp. 1--4
+& 3D 对角各向异性 Maxwell 中 PML 可因 backward waves 失稳。
+& 强调 perfect matching 与 stability 不等价。 \\
+Huang--Li--Liu, 2023
+& PDF pp. 1--3
+& 等价 Berenger PML 的稳定性和离散稳定性分析非平凡。
+& 不把 ADE 朴素能量误作单调证明。 \\
+Xie--Zheng--Cristini--Zhang, 2023
+& PDF pp. 1--2
+& M-PML 因多轴伸缩失去 perfect matching 但可改善长时间稳定。
+& MPML 候选被标记为 absorbing/stability repair。 \\
+Correia--Jin, 2006
+& PDF pp. 1--5
+& regular PML、CFS-PML、second-order PML 对倏逝和低频行为不同。
+& CFS/ADE 候选背景。 \\
+Feng--Li, 2013
+& PDF pp. 1--4, 6--9
+& 高阶 stretched-coordinate PML 可由 ADE 实现。
+& rational stretch 的实现背景。 \\
+Ping--Xu--Mao--Yang, 2014
+& PDF pp. 1--3, 8--10
+& M-PML 用于长时间稳定弹性模拟。
+& MPML 作为稳定修复背景。 \\
+\path{references/main.pdf}
+& pp. 4--6, 38--48, 54--56
+& 本地 Cole--Cole/UPML 频域和稳定性笔记，部分公式抽取不可读。
+& 项目背景；未核实公式标记为待核实。 \\
+\path{references/Super.pdf}
+& pp. 1--5, 20, 30, 35--38
+& 含 PML 的 DG 超收敛和 2D C-CPML 稳定性背景。
+& 项目背景；不作为匹配证明。 \\
+\path{references/Thesis.pdf}
+& pp. 80--86, 111--112, 144--149
+& 1D C-CPML 可有耗散能量；2D C-CPML 多为 Gronwall 稳定。
+& 支持 1D 与 2D 能量强度的区分。 \\
+\bottomrule
+\end{longtable}
+}
+
+\section{结论}
+
+本文给出的最强可验证结论是：
+
+\begin{itemize}
+\item 原八变量二维 Maxwell--Debye--PML 模型存在 edge-PML 线性增长模态，不能有控制所有变量的无条件正单调能量。
+\item v2 协变阻尼 Maxwell--Debye layer 有完整单调耗散能量，但公式 \eqref{eq:v2-mismatch} 证明其不是 perfectly matched。
+\item 标准 stretched-coordinate Maxwell--Debye PML 保持 \(\varepsilon_D(s)\) 并满足
+\(\nu_+=S_x\nu_0\)、\(Y_+=Y_0\)，因此常系数平面界面 \(R=0\)。
+\item 引入 Baffet 型 primitive 变量后，常系数二维 PML 块有正的非增能量
+\(\Ecal_{BD}\) 和耗散恒等式 \eqref{eq:EBD-identity}。
+\item 该结论是单调性和积分耗散，不是全域严格指数衰减；变量阻尼剖面和
+\(0<\alpha<1\) Cole--Cole 正记忆 theorem 仍需单独证明。
+\end{itemize}
+
+\begin{thebibliography}{99}
+\bibitem{berenger1994}
+J.-P. Berenger.
+\newblock A perfectly matched layer for the absorption of electromagnetic waves.
+\newblock \emph{Journal of Computational Physics}, 114(2):185--200, 1994.
+
+\bibitem{joly2012}
+P. Joly.
+\newblock An elementary introduction to the construction and the analysis of perfectly matched layers for time domain wave propagation.
+\newblock \emph{SeMA Journal}, 57:5--48, 2012.
+
+\bibitem{becache-joly2002}
+E. Becache and P. Joly.
+\newblock On the analysis of Berenger's perfectly matched layers for Maxwell's equations.
+\newblock \emph{ESAIM: Mathematical Modelling and Numerical Analysis}, 36(1):87--119, 2002.
+
+\bibitem{baffet2019}
+D. H. Baffet, M. J. Grote, S. Imperiale, and M. Kachanovska.
+\newblock Energy decay and stability of a perfectly matched layer for the wave equation.
+\newblock \emph{Journal of Scientific Computing}, 81:2237--2270, 2019.
+
+\bibitem{becache2023}
+E. Becache, M. Kachanovska, and M. Wess.
+\newblock Convergence analysis of time-domain PMLs for 2D electromagnetic wave propagation in dispersive waveguides.
+\newblock \emph{ESAIM: Mathematical Modelling and Numerical Analysis}, 57(4):2451--2491, 2023.
+
+\bibitem{becache2021}
+E. Becache, S. Fliss, M. Kachanovska, and M. Kazakova.
+\newblock On a surprising instability result of perfectly matched layers for Maxwell's equations in 3D media with diagonal anisotropy.
+\newblock \emph{Comptes Rendus. Mathematique}, 359(3):249--256, 2021.
+
+\bibitem{huang2023}
+Y. Huang, J. Li, and X. Liu.
+\newblock Developing and analyzing an explicit unconditionally stable finite element scheme for an equivalent Berenger's PML model.
+\newblock \emph{ESAIM: Mathematical Modelling and Numerical Analysis}, 57(2):621--644, 2023.
+
+\bibitem{xie2023}
+Z. Xie, Y. Zheng, P. Cristini, and X. Zhang.
+\newblock Multi-axial unsplit frequency-shifted perfectly matched layer for displacement-based anisotropic wave simulation in infinite domain.
+\newblock \emph{Earthquake Engineering and Engineering Vibration}, 22(2):407--421, 2023.
+
+\bibitem{correia2006}
+D. Correia and J.-M. Jin.
+\newblock Performance of regular PML, CFS-PML, and second-order PML for waveguide problems.
+\newblock \emph{Microwave and Optical Technology Letters}, 48(10):2121--2126, 2006.
+
+\bibitem{feng2013}
+N. Feng and J. Li.
+\newblock Novel and efficient FDTD implementation of higher-order perfectly matched layer based on ADE method.
+\newblock \emph{Journal of Computational Physics}, 232(1):318--326, 2013.
+
+\bibitem{ping2014}
+P. Ping, Y. Xu, W. Mao, and J. Yang.
+\newblock A multiaxial perfectly matched layer (M-PML) for the long-time simulation of elastic wave propagation in the second-order equations.
+\newblock \emph{Journal of Applied Geophysics}, 101:124--135, 2014.
+\end{thebibliography}
+
+\end{document}

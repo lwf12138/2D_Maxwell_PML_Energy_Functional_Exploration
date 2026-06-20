@@ -1,0 +1,9 @@
+{
+  "schema_version": "iteris.verification_status.v0",
+  "target_artifact": "tex/new_energy_functional_2d_debye_pml.tex",
+  "terminal_mode": "goal_success",
+  "ok": true,
+  "assembly_request_id": "verify-20260620T150039430501Z-assembly-tex-terminal-artifact-tex-new_e",
+  "goal_success_request_id": "verify-20260620T150735411403Z-goal_success-goal-maxwell-debye-pml-frac",
+  "verified_artifact": "tex/new_energy_functional_2d_debye_pml_verified.tex"
+}
