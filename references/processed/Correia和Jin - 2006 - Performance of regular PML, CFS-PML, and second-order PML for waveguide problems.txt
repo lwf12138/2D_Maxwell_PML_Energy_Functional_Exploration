@@ -1,0 +1,839 @@
+
+--- Page 1 ---
+PERFORMANCE OF REGULAR PML,
+CFS-PML, AND SECOND-ORDER PML
+FOR WAVEGUIDE PROBLEMS
+
+Davi Correia and Jian-Ming Jin
+Department of Computer and Electrical Engineering, Center for
+Computational Electromagnetics, University of Illinois at Urbana-
+Champaign, Urbana, IL
+
+Received 15 March 2006
+
+ABSTRACT: The performance of regular, complex frequency shifted
+(CFS), and second-order perfectly matched layers (PMLs) is studied for the
+numerical simulation of waveguide problems. The limitations of each PML
+is clearly demonstrated. It is shown that the second-order PML is overall
+the best choice for a general problem, since the regular PML is incapable
+of absorbing evanescent waves and the CFS-PML is ineffective for the
+absorption of low-frequency propagating waves. Both two- and three-
+dimensional problems are considered to conﬁrm the analysis. © 2006
+Wiley Periodicals, Inc. Microwave Opt Technol Lett 48: 2121–2126,
+2006; Published online in Wiley InterScience (www.interscience.wiley.
+com). DOI 10.1002/mop.21872
+
+Key words: perfectly matched layers; ﬁnite difference time domain
+(FDTD) method; numerical analysis; computational electromagnetics
+
+1. INTRODUCTION
+The basic concept of perfectly matched layers (PMLs) was ﬁrst
+introduced by Be´renger [1] as a material-based absorbing bound-
+ary condition (ABC) for the ﬁnite-difference time-domain (FDTD)
+simulation of open-region electromagnetic problems. The PML
+enjoyed a great success because of its great capability of absorbing
+propagating waves regardless of their frequency. However, in its
+original form, the PML is incapable of absorbing evanescent
+waves and various efforts have been attempted to overcome this
+limitation [2–5]. Among these, the complex frequency shifted
+(CFS)-PML [5] is shown to be highly effective, especially after the
+development of a simple convolution-based implementation [6].
+The CFS-PML has since been applied to several different prob-
+lems [7–10].
+
+While the CFS-PML is highly effective in absorbing evanes-
+cent waves, it compromises the capability of the original PML in
+the absorption of low-frequency propagating waves. Therefore, for
+a general problem where both evanescent and low-frequency prop-
+agating waves exist, both the CFS and the regular PMLs fail to
+provide a highly accurate solution.
+
+To overcome the limitations of the CFS and the regular PMLs,
+we proposed the second-order PML [11], which retains the advan-
+tages of both the CFS and regular PMLs. We have shown that the
+second-order PML is highly effective in absorbing both evanescent
+and low-frequency propagating waves in both open-region and
+periodic problems [11]. In this study, we evaluate the performance
+of the second-order PML, relative to the regular and CFS-PMLs,
+for the simulation of waveguide problems with a goal to identify
+the best choice for various speciﬁc problems.
+
+2. REGULAR PML, CFS-PML, AND SECOND-ORDER PML
+Following the approach of stretched coordinates [12], we can write
+the z-projection of Maxwell–Ampere’s law in free-space for the
+modiﬁed Maxwell’s equations as
+
+jw(cid:1)Ez (cid:2) (cid:3)
+
+(cid:4)
+(cid:4) y
+
+Hx (cid:5)
+
+1
+sx
+
+(cid:4)
+(cid:4) x
+
+Hy,
+
+(1)
+
+where sx
+is the stretched-coordinate metric coefﬁcient. For
+waveguide problems, absorption is needed only in one direction,
+which is assumed to be the x-direction here.
+
+For the second-order PML proposed in [11], we set sx to be
+
+sx (cid:2)(cid:1) (cid:6)
+
+1
+
+(cid:5)
+
+(cid:8)
+1
+
+(cid:7)
+1
+
+(cid:5) jw(cid:1)(cid:2)(cid:1) (cid:6)
+
+2
+
+(cid:7)
+2
+
+(cid:5) jw(cid:1)(cid:2) ,
+
+(cid:5)
+
+(cid:8)
+2
+
+(2)
+
+1,2, (cid:7)
+
+(cid:1) 0, (cid:6)
+2
+(cid:1) 1, and (cid:7)
+2
+
+where (cid:6)
+1,2, and a1,2 are the parameters that can be chosen to
+control the PML performance. Note that the second-order PML is
+(cid:1) 0, and
+(cid:1) 1, and (cid:7)
+reduced to the regular PML when a1
+2
+(cid:1) 0. We also note
+to the CFS-PML when a1
+(cid:1) 0, the second-order PML is reduced to the
+that when a1
+(cid:9) 1 only
+one proposed in Ref. 13. In all cases, (cid:7)
+inside the PML region. The numerical implementation of the
+regular and the CFS-PMLs is described in Ref. 9 and the imple-
+mentation of the second-order PML is described in Ref. 11 using
+auxiliary differential equations.
+
+(cid:9) 0 and (cid:6)
+
+(cid:2) 0, (cid:6)
+2
+
+(cid:1) a2
+
+1,2
+
+1,2
+
+Even though it is not required theoretically that the real part of
+the metric coefﬁcient (rpml) is 1 at the air/PML interface, in
+(cid:1) 1 at the interface is desirable as it reduces
+practice setting rpml
+grid reﬂections. This requirement can easily be satisﬁed for the
+regular or the CFS-PML by setting (cid:6) (cid:1) 1 at the interface. How-
+ever, it would require a special treatment if the second-order PML
+is used because the real part of the second-order PML is given by
+
+rpml (cid:2) (cid:6)
+
+(cid:6)
+2
+1
+
+(cid:5)
+
+(cid:6)
+(cid:7)
+1a2
+2
+2 (cid:5) (cid:3)(cid:10)(cid:1)(cid:4)2)
+a2
+
+(cid:5)
+
+(cid:7)
+1
+
+(cid:6)
+2a1
+2 (cid:5) (cid:3)(cid:10)(cid:1)(cid:4)2
+a1
+
+(cid:5)
+
+(cid:7)
+2
+
+(cid:5)a1a2
+(cid:7)
+1
+2 (cid:5) (cid:3)(cid:10)(cid:1)(cid:4)2(cid:6) (cid:5)a2
+
+(cid:5)a1
+
+(cid:3) (cid:3)(cid:10)(cid:1)(cid:4)2(cid:6)
+
+2 (cid:5) (cid:3)(cid:10)(cid:1)(cid:4)2(cid:6).
+
+(3)
+
+This real part reduces to 1 at the interface when (cid:7)
+(cid:1) 1 at the interface.
+
+1,2
+
+(cid:1) 0 and (cid:6)
+
+1,2
+
+The imaginary part of the second-order PML, responsible for
+
+the attenuation of propagating waves, is given by
+
+ipml (cid:2) (cid:3)
+
+(cid:6)
+(cid:10)(cid:1)
+(cid:7)
+2
+1
+2 (cid:5) (cid:3)(cid:10)(cid:1)(cid:4)2
+a2
+
+(cid:3)
+
+(cid:6)
+(cid:10)(cid:1))
+(cid:7)
+1
+2
+2 (cid:5) (cid:3)(cid:10)(cid:1)(cid:4)2
+a1
+
+(cid:3)
+
+(cid:10)(cid:1)(cid:3)a1
+(cid:7)
+(cid:7)
+2
+1
+2 (cid:5) (cid:3)(cid:10)(cid:1)(cid:4)2(cid:6) (cid:5)a2
+
+(cid:4)
+(cid:5) a2
+2 (cid:5) (cid:3)(cid:10)(cid:1)(cid:4)2(cid:6).
+
+(cid:5)a1
+
+(4)
+
+(cid:2) 0, the
+Here, it is important to realize that, if both a1
+second-order PML will have the same problem as the CFS-PML at
+low frequencies, since the reﬂection coefﬁcient for the PML,
+assuming for simplicity that all the variables are constant, is given
+by
+
+(cid:2) 0 and a2
+
+R(cid:3)(cid:11)(cid:4) (cid:2) e(cid:7)2d(cid:12)(cid:10)c cos (cid:11)(cid:13)˙pml,
+
+(5)
+
+where (cid:11) is the angle of incidence at the PML interface, (cid:12) is the
+free-space impedance, c is the speed of light, and d is the PML
+thickness. Clearly the reﬂection coefﬁcient for the PML is 1 when
+(cid:10) 3 0. A simple way of overcoming this limitation is to set either
+(cid:1) 0, the ﬁrst term in Eq. (5) will be
+a1 or a2 to be zero. If a2
+frequency independent and will resemble the absorption of the
+regular PML.
+
+Even though the second-order PML adds more degrees of
+freedom that might help to achieve lower reﬂections, the trade-off
+between the gain and the computational cost and the time required
+to adjust all the variables has to be taken into account. If the
+problem does not require absorption of evanescent waves, the cost
+
+DOI 10.1002/mop
+
+MICROWAVE AND OPTICAL TECHNOLOGY LETTERS / Vol. 48, No. 10, October 2006
+
+2121
+
+
+--- Page 2 ---
+those two modes at the same time and compare the performance of
+each metric coefﬁcient.
+
+Our ﬁrst case of study is a simple parallel-plate waveguide
+excited with a TEM mode using the same waveguide as in Refs. 3,
+7, and 15. Since the cutoff frequency for the TEM mode is 0 Hz,
+the propagating spectrum will include frequencies in the entire
+band. For that reason, the regular PML will perform very well in
+the entire band, as can be seen in Figure 1. However, the CFS-
+PML eventually breaks down at low frequencies. The only way to
+make the CFS-PML work for low-frequency propagating waves is
+to reduce the value of a, which effectively reduces the CFS-PML
+to the regular PML. The performance of the second-order PML is
+as good as that of the regular PML. The parameters used here for
+the regular PML are (cid:6) (cid:1) 1 and (cid:7) (cid:1) 5(cid:14)3, where (cid:14) is zero at the
+air/PML interface and 1 at the end. For the CFS-PML, we used the
+same proﬁle with two different values for a. Finally, for the
+second-order PML we used (cid:7)
+2, (cid:6)
+1
+(cid:1) (cid:6)
+2
+The second case is the same parallel-plate waveguide but excited
+with the TM1 mode, as was done in Refs. 3 and 7. In this case, the
+regular PML is totally ineffective at the cutoff frequency of the TM1
+mode. It is possible to improve its performance for evanescent waves
+at the low-frequency end of the spectrum by setting (cid:6)(cid:2) 1. However,
+this compromises the absorption of propagating waves at the high-
+frequency end. Fang and Wu [3] developed a modiﬁed PML that can
+absorb evanescent waves without such a problem. However, the
+absorption at cutoff is still problematic. Figure 2 shows the perfor-
+mance of the regular PML for this problem with (cid:7) having the same
+proﬁle as in the previous example.
+
+(cid:1) 1, and a2
+
+(cid:1) 4.5(cid:14)3, (cid:7)
+2
+
+(cid:1) 2.9(cid:14)3, a1
+
+(cid:1) 0.
+
+(cid:1) (cid:7)
+
+1
+
+As shown in Ref. 7, the CFS-PML is very effective for the
+absorption of the evanescent waves below the cutoff frequency for
+this problem. Indeed, the performance of the CFS-PML is better
+than the regular PML even if one takes into account the increase in
+memory requirement from the regular PML to the CFS-PML.
+Although the simulations in Ref. 7 showed large reﬂection at the
+cut-off, this problem can be alleviated by setting (cid:6) (cid:2) 1. Figure 3
+shows the results of the CFS-PML using two different values for
+(cid:6)
+max. As is the case with the regular PML, the increase in (cid:6)
+compromises the absorption of high-frequency propagating waves.
+The proﬁle used for the CFS-PML where (cid:6) (cid:2) 1 is (cid:7) (cid:1) 35(cid:14)3, a (cid:1)
+0.1, and (cid:6)(cid:1) 1 (cid:8) 4(cid:14)2, with (cid:14)zero at the air/PML interface and one
+at the end. For (cid:6) (cid:1) 1, we used a (cid:1) 0.1 and (cid:7) (cid:1) 7(cid:14)3.
+
+Figure 2 Reﬂection error for a 10-layer regular PML as a function of
+frequency for the TM1 mode in a parallel-plate waveguide for (cid:6)
+(cid:1) 1
+(solid line) and (cid:6)
+
+(cid:1) 5 (dotted line)
+
+max
+
+max
+
+Figure 1 Reﬂection error as a function of frequency for the TEM mode
+in a parallel-plate waveguide using a 10-layer regular PML, CFS-PML, and
+second-order PML
+
+both in memory requirement and in time spent adjusting the
+parameters for both the CFS-PML and the second-order PML will
+not pay off. Similarly, if no low-frequency propagating waves are
+present, the CFS-PML would be sufﬁcient. For general problems,
+where both evanescent and low-frequency propagating waves are
+present, the rule-of-thumb is to use the best CFS-PML available as
+(cid:1) 0 in the second term. Also,
+the ﬁrst term in Eq. (2) and to set a2
+(cid:7)
+(cid:1) 0.075 seems sufﬁcient to guarantee absorption of low-
+frequency propagating waves. With this setup, the second-order
+PML can perform better than both the regular and CFS-PMLs in
+many different problems.
+
+2max
+
+We begin our analysis of waveguide problems with the sim-
+plest 2D-case. An empty parallel-plate waveguide will be simu-
+lated. This example will show the difference in the performance of
+different PMLs. It
+is suitable for that purpose because such
+waveguide can support both TEM and higher-order modes. Then
+we apply the technique to different types of 3D waveguide prob-
+lems. An empty rectangular waveguide and an inhomogeneous
+dielectric waveguide will be considered. In both cases, no TEM
+waves are supported, so the CFS-PML will have a good perfor-
+mance. We ﬁnally consider a microstrip problem where the prop-
+agating spectrum includes both low-frequency propagating waves,
+for which the CFS-PML does not perform well, and higher-order
+modes for which the regular PML will have a poor performance.
+In all cases, the reﬂection coefﬁcient is calculated at the PML/air
+interface 10 cells away from the source. A reference solution is
+obtained by simulating a waveguide long enough so that no re-
+ﬂection occurs during the simulation period.
+
+3. PARALLEL-PLATE WAVEGUIDE
+In the past, several authors have tried to address the problem of
+absorbing evanescent waves in a waveguide [3, 7, 14, 15]. In all
+cases, even though the absorption of those waves indeed became
+better, the PMLs employed were completely ineffective at the
+cutoff frequencies for the waveguide modes.
+
+In this section, we will optimize the performance of the regular
+PML, the CFS-PML, and the second-order PML for each different
+problem. The idea is to demonstrate the limitations of each metric
+coefﬁcient and their advantages. The parallel-plate waveguide is
+the best choice for this study, since we can excite the TEM mode
+individually, the TM1 mode individually, or a combination of
+
+2122
+
+MICROWAVE AND OPTICAL TECHNOLOGY LETTERS / Vol. 48, No. 10, October 2006
+
+DOI 10.1002/mop
+
+ 10982760, 2006, 10, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mop.21872 by Peking University Health, Wiley Online Library on [15/01/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+--- Page 3 ---
+Figure 3 Reﬂection error for a 10-layer CFS-PML as a function of
+frequency for the TM1 mode in a parallel-plate waveguide for different
+values of (cid:6)
+
+The performance of the second-order PML is shown in Figure
+4, which is just slightly better than the performance of the CFS-
+PML while both signiﬁcantly outperform the regular PML. It
+should be noted that the regular PML performs better at high
+frequencies because we were mainly concerned about the maxi-
+mum reﬂection coefﬁcient in the entire frequency band. Both the
+CFS-PML and the second-order PML can be made to better absorb
+high-frequency propagating waves, but at the expense of a higher
+reﬂection around the cutoff frequency. The proﬁle for the second-
+(cid:1) 0.1
+(cid:1) 12(cid:14)4, (cid:6)
+order PML is (cid:7)
+1
+1
+(cid:8) 0.65(cid:7)
+2, and a2
+
+(cid:1) 12(cid:14)2, (cid:7)
+2
+(cid:1) 0.1.
+
+(cid:1) 1 (cid:8) (cid:14)2, a1
+
+(cid:1) (cid:6)
+2
+
+The last case of study for the parallel-plate waveguide has a
+simultaneous excitation of both the TEM and the TM1 modes. In
+this case, neither the regular PML nor the CFS-PML are expected
+to have a good performance at low frequencies. The regular PML
+will be limited by its poor absorption around the cutoff frequency
+and its poor absorption of evanescent waves. The CFS-PML will
+be limited by its poor performance for low-frequency propagating
+waves. Figure 5 shows the results of the regular PML using
+
+Figure 5 Reﬂection error for a 10-layer regular PML as a function of
+frequency for the TEM and TM1 modes in a parallel-plate waveguide for
+different values of (cid:6)
+max. The values for (cid:6) start from 1 at the interface and
+grow with a quadratic proﬁle to the value of (cid:6)
+
+max at the end
+
+different values for (cid:6)
+max, all having a quadratic proﬁle. Next, we
+analyze the CFS-PML performance. Figure 6 shows the results of
+using the CFS-PML with a constant a (cid:1) 0.05 and a linear decay
+for a (cid:1) 0.05(1 (cid:7) (cid:14)), both with (cid:7) (cid:1) 17(cid:14)3 and (cid:6) (cid:1) 1 (cid:8) 4(cid:14)2. As can
+be expected, the CFS-PML fails to absorb low-frequency waves,
+even when a has a linear decay.
+
+Finally, Figure 7 shows the performance of the second-order
+PML as compared to those of the regular and the CFS-PMLs. For
+the regular PML, we have (cid:7) (cid:1) 5(cid:14)3 and (cid:6) (cid:1) 1. For the CFS-PML,
+we have (cid:7) (cid:1) 17(cid:14)3, a (cid:1) 0.075, and (cid:6) (cid:1) 1 (cid:8) (cid:14)2. Finally, for the
+second-order PML, we have (cid:7)
+(cid:1) 0.05(cid:14)3,
+(cid:1) 1 (cid:8) (cid:14)2, (cid:7)
+1
+2
+(cid:1) 0. By doing so, we recover in
+a1
+the second-order PML the same behavior as the CFS-PML for
+absorbing evanescent waves while achieving a much better ab-
+sorption at low frequencies.
+
+(cid:1) 0.075 (cid:8) (cid:7)
+
+(cid:1) 1, and a2
+
+(cid:1) 17(cid:14)3, (cid:6)
+1
+
+2, (cid:6)
+
+2
+
+4. RECTANGULAR WAVEGUIDE
+In the previous section, we had different proﬁles for the regular
+PML, the CFS-PML, and the second-order PML, depending on the
+
+Figure 4 Reﬂection error for a 10-layer regular PML, CFS-PML, and
+second-order PML as a function of frequency for the TM1 mode in a
+parallel-plate waveguide
+
+Figure 6 Reﬂection error for a 10-layer CFS-PML as a function of
+frequency for the TEM and TM1 modes in a parallel-plate waveguide for
+constant a (solid line) and a linear decay in a (dashed line)
+
+DOI 10.1002/mop
+
+MICROWAVE AND OPTICAL TECHNOLOGY LETTERS / Vol. 48, No. 10, October 2006
+
+2123
+
+ 10982760, 2006, 10, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mop.21872 by Peking University Health, Wiley Online Library on [15/01/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+--- Page 4 ---
+Figure 7 Reﬂection error for a 10-layer regular PML, CFS-PML, and
+second-order PML as a function of frequency for the TEM and TM1 modes
+in a parallel-plate waveguide
+
+type of problem we were solving. The idea was to optimize the
+three different metric coefﬁcients for each problem. This approach,
+however, is not recommended for practical purposes. It is always
+desirable to have a PML robust enough to absorb waves in a
+general problem. Since the most general case was the one with
+both the TEM and TM1 modes, we use that proﬁles for all the 3D
+problems shown here. Hence, in all cases here we have, for the
+regular PML, (cid:7) (cid:1) 5(cid:14)3 and (cid:6) (cid:1) 1. For the CFS-PML, we have (cid:7)
+(cid:1) 17(cid:14)3, a (cid:1) 0.075, and (cid:6) (cid:1) 1 (cid:8) (cid:14)2. Finally, for the second-order
+(cid:1) 0.075
+PML, we have (cid:7)
+(cid:1) 1 (cid:8) (cid:14)2, (cid:7)
+1
+2
+(cid:8) (cid:7)
+(cid:1) 0, where (cid:14) varies from 0 at the air/PML
+interface to 1 at the end.
+
+(cid:1) 0.05(cid:14)3, a1
+
+(cid:1) 17(cid:14)3, (cid:6)
+1
+
+(cid:1) 1, a2
+
+2, (cid:6)
+
+2
+
+4.1 Empty Waveguide
+Our ﬁrst 3D problem is an empty rectangular waveguide having a
+cross-section of 40 mm (cid:9) 10 mm. We excite this waveguide with
+TE10 and TE20 modes. As stated in Ref. 15, the higher-order
+evanescent waves attenuate faster than the lower-order ones, so
+one needs to set the best parameters for the ﬁrst higher-order mode.
+
+Figure 9 Computational domain for the inhomogeneous waveguide
+problem excited by a line source
+
+But contrary to Ref. 15, here we launch both TE10 and TE20 modes
+simultaneously to check the performance of the PML. The cutoff
+frequencies for the two modes are 3.75 and 7.5 GHz, respectively.
+For this problem, no TEM wave is supported. We expect the result
+to be similar for the TM1 mode in the parallel-plate waveguide
+problem. The CFS-PML is expected to perform better than the
+regular PML and the second-order PML to be similar to the
+CFS-PML. This is indeed the case as shown in Figure 8.
+
+r
+
+4.2 Inhomogeneous Waveguide
+The next two examples are made of a partially ﬁlled waveguide. In
+both cases, the upper half of the waveguide is ﬁlled with air and the
+lower half with a dielectric having (cid:1)
+(cid:1) 4. In the ﬁrst example, we
+used a line source to excite multiple modes, as shown in Figure 9.
+The spectrum of the excited incident ﬁeld is plotted in Figure 10.
+The performance of the regular PML, CFS-PML, and second-
+order PML is exhibited in Figure 11. We can clearly see that the
+regular PML fails to absorb the waves around the cutoff frequen-
+cies. By using the same CFS-PML, as in the example for the empty
+waveguide, the reﬂection error drops by 40 dB throughout the
+frequency band with its maximum value being around (cid:7)30 dB
+
+Figure 8 Reﬂection error for a 10-layer regular PML, CFS-PML, and
+second-order PML as a function of frequency for the TE10 and TE20 modes
+in a rectangular waveguide
+
+Figure 10 Spectrum of the incident ﬁeld 10 cells away from the source
+for the inhomogeneous waveguide problem
+
+2124
+
+MICROWAVE AND OPTICAL TECHNOLOGY LETTERS / Vol. 48, No. 10, October 2006
+
+DOI 10.1002/mop
+
+ 10982760, 2006, 10, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mop.21872 by Peking University Health, Wiley Online Library on [15/01/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+--- Page 5 ---
+Figure 11 Reﬂection error for a 10-layer regular PML, CFS-PML, and
+second-order PML as a function of frequency for the inhomogeneous
+waveguide problem excited by a line source
+
+Figure 13 Reﬂection error for a 10-layer regular PML, CFS-PML, and
+second-order PML as a function of frequency for the microstrip problem
+excited by a line source
+
+compared to 0 dB for the regular PML. The second-order PML has
+a similar performance to that of the CFS-PML.
+
+In the last example, we simulate a microstrip line inside the
+waveguide. In this case, the structure supports a quasi-TEM mode.
+Hence, low-frequency propagating waves can be excited. Similarly
+to the previous problem, we use a line source located in the
+dielectric to excite both the quasi-TEM and waveguide modes, as
+shown in Figure 12. Figure 13 shows the reﬂection error for this
+problem. Similar to the 2D problem with low-frequency evanes-
+cent and propagating waves, the regular and the CFS-PMLs have
+a poor performance at low frequencies. However, the second-order
+PML performs signiﬁcantly better.
+
+5. CONCLUSION
+We studied the performance of three different types of metric
+coefﬁcients for the PML. The regular PML is the best choice when
+only propagating waves are present. The CFS-PML is the best
+choice if strong evanescent waves are present but low-frequency
+propagating waves are absent. In more general cases, where both
+low-frequency propagating waves and strong evanescent waves
+are present, the second-order PML is the best choice. Both the
+
+Figure 12 Computational domain for the microstrip problem excited by
+a line source
+
+regular and the CFS-PMLs are special cases of the second-order
+PML; hence, an implementation of the second-order PML includes
+both of them at the expense of some memory and computation
+time increase.
+
+ACKNOWLEDGMENT
+This work was partially supported by the Brazilian Agency
+CAPES BEX 1184 – 01-6.
+
+REFERENCES
+
+1. J.P. Be´renger, A perfectly matched layer for the absorption of elec-
+
+tromagnetic waves, J Comput Phys 114 (1994), 185–200.
+
+2. J.P. Be´renger, Evanescent waves in PMLs: Origin of numerical reﬂec-
+tion in wave-structure interaction problems, IEEE Trans Antennas
+Propag 47 (1999), 1497–1503.
+
+3. J. Fang and Z. Wu, Generalized perfectly matched layer- an extension
+of Berenger’s perfectly matched layer boundary conditions, IEEE
+Microwave Guid Wave Lett 6 (1996), 447– 449.
+
+4. J.D. Moerloose and M.A. Stuchly, Behavior of Berenger’s ABC for
+evanescent waves, IEEE Microwave Guid Wave Lett 5 (1995), 344 –
+346.
+
+5. M. Kuzuoglu and R. Mittra, Frequency dependence of the constutive
+parameters of causal perfectly anisotropic absorbers, IEEE Microwave
+Guid Wave Lett 6 (1996), 447– 449.
+
+6. J.A. Roden and S.D. Gedney, Convolution PML (CPML): An efﬁcient
+FDTD implementation of the CFS-PML for arbitrary media, Micro-
+wave Opt Technol Lett 27 (2000), 334 –339.
+
+7. J.P. Be´renger, Application of the CFS PML to the absorption of
+evanescent waves in waveguides, IEEE Microwave Wireless Compon
+Lett 12 (2002), 218 –220.
+
+8. D. Correia and J.-M. Jin, A simple and efﬁcient implementation of
+CFS-PML in the FDTD analysis of periodic structures, IEEE Micro-
+wave Wireless Compon Lett 15 (2005), 487– 489.
+
+9. S. Gedney, Perfectly matched layer absorbing boundary condition, In:
+A. Taﬂove and S. Hagness, (Eds.), Computational electrodynamics:
+The ﬁnite-difference time domain method, 3rd ed., Artech House,
+Norwood, MA, 2005.
+
+10. E. Be´cache, P.G. Petropoulus, and S.D. Gedney, On the long-time
+behavior of unsplit perfectly matched layers, IEEE Trans Antennas
+Propag 52 (2004), 1335–1342.
+
+11. D.Correia and J.-M. Jin, On the development of a higher-order PML,
+
+IEEE Trans Antennas Propag 53 (2005), 4157– 4163.
+
+12. W.C. Chew and W.H. Weedon, A 3D perfectly medium from modiﬁed
+
+DOI 10.1002/mop
+
+MICROWAVE AND OPTICAL TECHNOLOGY LETTERS / Vol. 48, No. 10, October 2006
+
+2125
+
+ 10982760, 2006, 10, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mop.21872 by Peking University Health, Wiley Online Library on [15/01/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+--- Page 6 ---
+Maxwell’s equation with stretched coordinates, Microwave Opt Tech-
+nol Lett 7 (1994), 599 – 604.
+
+13. M.W. Chevalier and U.S. Inan, A PML using a convolutional curl
+operator and a numerical reﬂection coefﬁcient for general media, IEEE
+Trans Antennas Propag 52 (2004), 1647–1657.
+
+14. M. Ozkar, G. Lazzi, and A. Mortazawi, A modiﬁed unsplit PML
+formulation for evanescent mode absorption in waveguides, IEEE
+Microwave Wireless Compon Lett 13 (2003), 220 –222.
+
+15. Z. Wu and J. Fang, Numerical implementation and performance of
+perfectly matched layer boundary condition for waveguide structures,
+IEEE Trans Microwave Theory Tech 43 (1995), 2676 –2683.
+
+© 2006 Wiley Periodicals, Inc.
+
+EFFICIENT AND SYSTEMATIC
+EXTRACTION METHOD FOR
+ACCURATE DETERMINATION OF HBT
+TEMPERATURE-DEPENDENT DC
+MODEL PARAMETERS
+
+Sami Bousnina
+PolyGrames Research Center, Montreal, Canada
+
+Received 26 March 2006
+
+ABSTRACT: This paper presents an efﬁcient and systematic parameter
+extraction method of HBT temperature-dependent DC model, suitable
+for monitoring device/process development. All parameters of the
+model current sources, including self-heating parameters, were ex-
+tracted using a developed simple algorithm based on a set of alge-
+braic nonlinear equations. The modeling methodology was success-
+fully applied to predict accurately the DC characteristics of a 2 (cid:9)
+25 (cid:15)m2 InGaP/GaAs HBT device. © 2006 Wiley Periodicals, Inc.
+Microwave Opt Technol Lett 48: 2126 –2131, 2006; Published online
+in Wiley InterScience (www.interscience.wiley.com). DOI 10.1002/mop.
+21867
+
+Key words: HBT device; DC model; thermal effect; extraction method
+
+1. INTRODUCTION
+Heterojunction bipolar
+transistors (HBTs) have demonstrated
+high-power output densities at microwave frequencies and are
+increasingly utilized for design of RF circuits, such as power
+ampliﬁers, oscillators, and mixers [1]. Thus, an accurate large-
+signal model for HBT devices is of great importance in designing
+such circuits especially when the transistor is operated in nonlinear
+regions where self-heating effect becomes signiﬁcant. Although
+the temperature sensitivity of transistor parameters is signiﬁcant
+for all types of power transistors, it is particularly important for the
+HBT with its relatively poor thermal conductivity. Efforts have
+been made to include this effect in HBT DC equivalent circuit
+models [2–7], and close agreements with measured data have been
+(cid:7) Vce characteristics. To simulate accurately the
+obtained for Ic
+DC characteristics of the device, several other effects have to be
+included in the HBT DC model such as Kirk effect. Beside this, the
+DC model extraction process is as important as the DC model
+topology and formulations. This is because the end-user of a model
+must know how to extract the parameters of that model. Several
+researchers have worked extensively in the ﬁeld of modeling of
+HBT devices, and different model topologies with corresponding
+parameter extraction methodologies were proposed earlier [2–12].
+However, there are still some difﬁculties in extracting accurately
+and directly some of the DC model parameters such as diode
+parameters, self-heating parameters, and thermal resistance.
+
+In this paper, an efﬁcient, systematic, and detailed method for
+the extraction of the HBT DC model parameters is presented. A
+simple and reliable procedure was developed for the determination
+of the thermal resistance Rth, which required only forward Gum-
+mel data at different ambient temperatures and different collector–
+emitter bias voltages. The developed HBT DC model was imple-
+mented in ADS as an SDD (symbolically deﬁned device) and
+validated using measured I–V characteristics.
+
+2. MODEL DESCRIPTION
+
+2.1. Model Parameters
+The adopted HBT large-signal model is based on the equivalent
+electric circuit shown in Figure 1. The thermal equivalent circuit
+included in Figure 1 is used to calculate temperature rise at the
+emitter junction. Rth is the thermal resistance. The conﬁguration of
+the large-signal model equivalent electric circuit is similar to that
+used for small-signal model presented in Ref. 13.
+
+The extrinsic elements describing parasitic capacitances and
+inductances of the device are not shown in Figure 1, and they were
+de-embedded form device measurements using the technique pub-
+lished in Ref. 14. Rb, Rc, and Re are the extrinsic resistances. Rbb
+is the intrinsic base resistance. Cbe is the base-emitter capacitance.
+Cbc and Cc are respectively the extrinsic and intrinsic base-collec-
+tor capacitance. This paper focuses only on the extraction and
+validation of the DC part of the presented HBT large-signal model.
+Four diodes were used in the model to account for the currents
+ﬂowing through the device junctions. Dbf3 and Dbr represent
+base-emitter and base-collector junctions respectively. Dbf1 and
+Dbf2 model base-emitter leakage and recombination at the device
+surface and in the emitter space-charge region respectively. Col-
+lector– emitter current source IcT in the model is calculated as
+follows:
+
+ICT
+
+(cid:2) Icf
+
+(cid:3) Icr,
+
+(1)
+
+where Icf is the forward collector– emitter current component and
+Icr is the reverse collector– emitter current component.
+
+The total forward base current is calculated from the sum of the
+current components Ibf1, Ibf2, and Ibf3 that correspond to the diodes
+Dbf1, Dbf2, and Dbf3 respectively. The reverse base-collector
+current component Ibr corresponds to the diode Dbr.
+
+Figure 1 Equivalent circuit of the adopted HBT large signal model
+
+2126
+
+MICROWAVE AND OPTICAL TECHNOLOGY LETTERS / Vol. 48, No. 10, October 2006
+
+DOI 10.1002/mop
+
+ 10982760, 2006, 10, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/mop.21872 by Peking University Health, Wiley Online Library on [15/01/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License

@@ -1,0 +1,3750 @@
+
+--- Page 1 ---
+Journal of Applied Geophysics 101 (2014) 124–135
+
+Contents lists available at ScienceDirect
+
+Journal of Applied Geophysics
+
+j o u r n a l h o m e p a g e : w w w . e l s e v i e r . c o m / l o c a t e / j a p p g e o
+
+A multiaxial perfectly matched layer (M-PML) for the long-time
+simulation of elastic wave propagation in the second-order equations
+Ping Ping a, Yu Zhang b,c, Yixian Xu a,d,⁎
+a Insititute of Geophysics and Geomatics, China University of Geosciences, Wuhan 430074, China
+b School of Geodesy and Geomatics, Wuhan University, Wuhan 430079, China
+c Key Laboratory of Geospace Environment and Geodesy, Ministry of Education, Wuhan 430079, China
+d State Key Laboratory of Geological Processes and Mineral Resources, China University of Geosciences, Wuhan 430074, China
+
+a r t i c l e
+
+i n f o
+
+a b s t r a c t
+
+Article history:
+Received 5 May 2013
+Accepted 10 December 2013
+Available online 19 December 2013
+
+Keywords:
+Multiaxial perfectly matched layer (M-PML)
+Second-order M-PML
+Long-time simulation of wave propagation
+High Poisson's ratio
+Elastic anisotropic media
+
+Contents
+
+In order to conquer the spurious reﬂections from the truncated edges and maintain the stability in the long-time
+simulation of elastic wave propagation, several perfectly matched layer (PML) methods have been proposed in the
+ﬁrst-order (e.g., velocity–stress equations) and the second-order (e.g., energy equation with displacement un-
+known only) formulations. The multiaxial perfectly matched layer (M-PML) holds the excellent stability for the
+long-time simulation of wave propagation, even though it is not perfectly matched in the discretized M-PML equa-
+tion system. This absorbing boundary approach can offer an alternative way to solve the problem of the late-time
+instability, especially for anisotropic media, which is also suffered by the convolutional perfectly matched layer (C-
+PML) that is supposed to be competent to handle most stable problems. The M-PML termination implementation
+in the ﬁrst-order formulations is well proposed. The common drawback of the implementation of the ﬁrst-order
+M-PML formulations is that it necessitates fundamental reconstruction of the existing codes of the second-order
+spectral element method (SEM) or ﬁnite element method (FEM). Therefore, we propose a nonconvolutional
+second-order M-PML absorbing boundary condition approach for the wave propagation simulation in elastic
+media that has not yet been developed before. Two-dimensional numerical simulation validations demonstrate
+that the proposed second-order M-PML has good performances: 1) superior efﬁciency and stability of absorbing
+the spurious elastic waveﬁelds, both the surface waves and body waves, reﬂected on the boundaries; 2) superior
+stability in the long-time simulation even in the isotropic medium with a high Poisson's ratio; 3) superior efﬁciency
+and stability in the long-time simulation for anisotropic media. This method hence makes the SEM and FEM in the
+second-order wave equation formulation more efﬁcient and stable for the long-time simulation.
+
+© 2013 Elsevier B.V. All rights reserved.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+1.
+2.
+3.
+4.
+5.
+6.
+.
+Acknowledgments .
+.
+Appendix .
+.
+References
+
+Introduction .
+.
+The classical second-order PML formulations
+The M-PML formulations
+.
+The second-order M-PML formulations .
+.
+Numerical validation .
+.
+.
+Conclusions
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+
+.
+.
+.
+.
+
+.
+.
+.
+.
+
+.
+.
+
+.
+.
+
+.
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+124
+125
+126
+126
+128
+132
+133
+133
+134
+
+1. Introduction
+
+A number of absorbing boundary conditions (ABCs) have been
+developed in wave propagation modeling in recent decades, which are
+
+⁎ Corresponding author at: State Key Laboratory of Geological Processes and Mineral
+Resources, China University of Geosciences, Wuhan 430074, China. Tel.: +86 27 67883252.
+
+E-mail addresses: xyxian65@aliyun.com, xyxian@cug.edu.cn (Y. Xu).
+
+0926-9851/$ – see front matter © 2013 Elsevier B.V. All rights reserved.
+http://dx.doi.org/10.1016/j.jappgeo.2013.12.006
+
+necessary techniques to suppress spurious reﬂections from the truncat-
+ed edges of a ﬁnite-sized discrete earth model. The classical ABCs,
+‘sponge zones’ (Cerjan et al., 1985; Sochacki et al., 1987) and paraxial
+boundaries (Clayton and Engquist, 1977; Engquist and Majda, 1977;
+Higdon, 1991; Quarteroni et al., 1998; Stacey, 1988), etc., have been pro-
+posed and demonstrated great efﬁciency in simulating seismic wave
+propagation. However, the angle and the frequency of incident waves,
+the elastic properties of the earth model as well, obviously affect the ab-
+sorbing efﬁciency.
+
+
+--- Page 2 ---
+P. Ping et al. / Journal of Applied Geophysics 101 (2014) 124–135
+
+125
+
+The perfectly matched layer (PML), introduced by Bérenger (1994),
+was ﬁrstly used in Maxwell equations. In order to make it possible to in-
+corporate mathematical formulations for desired absorbency, the ﬁeld
+variables of the PML are split into nonphysical components. Because of
+the advantages of independences on the angle and the frequency of in-
+cident waves, researchers promote the PML method in different wave
+propagation modeling problems, as electromagnetic wave propagation
+(e.g., Bérenger, 1996, 1998; Collino and Monk, 1998; Harari et al.,
+2000; Teixeira and Chew, 1998a, b), acoustical wave propagation (e.g.,
+Hesthaven, 1998; Hu, 1996; Nataf, 2006), as well as elastic wave propa-
+gation in elastic media (e.g., Basu and Chopra, 2004; Chew and Liu,
+1996; Collino and Tsogka, 2001; Festa and Nielsen, 2003; Hastings
+et al., 1996), in viscoelastic media (Bécache et al., 2004; Martin and
+Komatitsch, 2009), and in poroelastic media (Martin et al., 2008; Zeng
+et al., 2001).
+
+Although the numerical validations of this method are successful,
+the PML still faces many challenges, e.g., poor absorbency for strong re-
+ﬂections at grazing incidences, and instability for the long-time simula-
+tion (Festa et al., 2005; Komatitsch and Martin, 2007; Matzen, 2011).
+These problems have been intensively investigated in recent years
+(Halpern et al., 2011). For example, due to the divergence of the PML so-
+lution under small perturbations (Abarbanel and Gottlieb, 1997), it was
+initially thought that noncausality of the constitutive parameters makes
+dynamical instability of the classical PML (Kuzuoglu and Mittra, 1996).
+The convolutional perfectly matched layer (C-PML), an alternative caus-
+al frequency dependent PML, was hence proposed and particularly in-
+vestigated (Abarbanel and Gottlieb, 1998; Appelö and Kreiss, 2005;
+Basu and Chopra, 2004; Gedney, 1996; Komatitsch and Martin, 2007;
+Li and Matar, 2010; Matzen, 2011; Zhao and Cangellaris, 1996;
+Ziolkowski, 1997). The absorbency of the reﬂected waves from incident
+outgoing waves on artiﬁcial boundaries at grazing angle is improved
+(Bérenger, 2002; Festa and Vilotte, 2005; Komatitsch and Martin,
+2007; Martin and Komatitsch, 2009; Martin et al., 2008; Roden and
+Gedney, 2000). However, the C-PML cannot solve all the instable prob-
+lems (Komatitsch and Martin, 2007). It is believed to suffer from the
+late-time instability, especially for anisotropic media (Matzen, 2011).
+Meanwhile, the C-PML loses its absorptive capacity in an elastic medi-
+um at low frequencies (Meza-Fajardo and Papageogiou, 2008). The
+multiaxial PML (M-PML) method, which is efﬁcient and stable without
+dependence on the frequency and the direction of wave propagation,
+was hence developed (Meza-Fajardo and Papageogiou, 2008, 2010,
+2012). The M-PML method is based upon a more general coordinate
+stretching version of the classical split-ﬁeld PML, in which the waves
+are absorbed in all directions with different damping factors. Zeng et al.
+(2011) validated the excellent stability of the M-PML method in the
+media with high Poisson's ratios. Due to effective absorption of the
+spurious reﬂections, even though it is not perfectly matched in the
+discretized M-PML formulation system (Meza-Fajardo and Papageogiou,
+2012), the M-PML is implemented for anisotropic elastic media with
+good performance (Dmitriev and Lisitsa, 2011, 2012). The M-PML meth-
+od has been veriﬁed to be more stable and efﬁcient than the classical PML
+and the C-PML in the long-time simulation of wave propagation in iso-
+tropic and anisotropic media in the ﬁrst-order equation formulation
+(Meza-Fajardo and Papageogiou, 2008). Meza-Fajardo and Papageogiou
+(2012) further pointed out that increasing the layer thickness has very
+important impact on (i.e., is more effective in) reducing reﬂections.
+Through their numerical examples, it illustrated that the overall reﬂec-
+tions of the M-PML are the same or less than that obtained when the
+classical PML and the C-PML are used.
+
+For the second-order wave equations, however, the ﬁrst-order M-
+PML cannot be applied straightforwardly. The common drawback of im-
+plementation of these formulations is that it necessitates fundamental
+reconstruction of the existing codes of the ﬁnite element method
+(FEM) or spectral element method (SEM) in the second-order equations.
+In addition, the reconstructed codes of the FEM or SEM may in common
+consume more computing resources, due to system matrices with extra
+
+non-zero entries (and broken symmetries) implying growth in storage,
+and the number of ﬂops to be performed at each time step, since, apart
+from displacements, stresses additionally become the unknowns. Fur-
+thermore, most of the existing FEM software for solid mechanical prob-
+lems solves the wave equations for the displacements only. Therefore,
+it is an urgent need that the PML formulations are established for the
+second-order elastic wave equations. Komatitsch and Tromp (2003)
+ﬁrstly introduced a classical PML for the second-order wave equations
+in elastic media. Their PML is highly absorbent for the surface waves in
+elastic media, but unstable in the long-time simulation. Li and Matar
+(2010) proposed a non-split C-PML for the second-order mixed wave
+equations in elastic media. In reality, their scheme formulations are
+also needed in reconstructing the existing second-order FEM or SEM
+codes. Matzen (2011) explicitly investigated non-split C-PML formula-
+tions for the second-order wave equations in elastic media. He believed
+that the second-order C-PML would suffer from the late-time instabilities
+in anisotropic media. To our best knowledge, the PML approaches to con-
+quer the late-time instabilities for wave simulation in the second-order
+equations, especially for anisotropic media, are rather limited. Whereas
+the M-PML has offered an applicable way to solve the problem in the
+ﬁrst-order equations (Meza-Fajardo and Papageogiou, 2008, 2012;
+Zeng et al., 2011), however, the applications of the M-PML in the context
+of the second-order wave equations are not explicitly studied. Thus, the
+promotion of the M-PML into the second-order equations has still to be
+suggested to meet the urgent need.
+
+2. The classical second-order PML formulations
+
+The elastic wave equation can be written as
+
+(cid:4)
+
+2s ¼ ∇ (cid:2) c : 1
+2
+
+ρ∂
+t
+
+(cid:3)
+(cid:1)
+∇sþ∇T s
+
+(cid:5)
+;
+
+ð1Þ
+
+where s is the unknown displacement vector, c is the elastic tensor and
+ρ is the mass density. Eq. (1) also has the form in the frequency-domain
+of
+
+(cid:4)
+
+−ρω2s¼∇ (cid:2) c : 1
+2
+
+(cid:1)
+
+∇sþ∇T s
+
+(cid:3)
+
+(cid:5)
+;
+
+ð2Þ
+
+where ω is the angular frequency. In order to obtain the PML formula-
+tions of Eq. (1), the gradient operator ∇ can be split into the compo-
+nents perpendicular and parallel to the boundary between the regular
+and the PML region.
+
+∇ ¼ n∂
+
+n
+
+þ ∇==;
+
+ð3Þ
+
+where the local normal direction of the boundary between the regular
+and the PML region is denoted by the vector n in Fig. 1 (always indicates
+the normal vector of the coordinates). And ∇// = (I − nn) ⋅ ∇ = m∂m,
+the parallel direction of the boundary is presented as the vector m in
+Fig. 1. Damping of the wave equation can be accomplished by introducing
+a new variable
+
+en nð Þ ¼ n− i
+ω
+
+Z
+
+n
+
+0
+
+d ζð Þdζ :
+
+ð4Þ
+
+Therefore, the relation between the new and the regular variable can
+
+be expressed by
+
+;
+
+∂n
+∂en
+∂
+∂n
+
+iω
+¼
+iω þ d nð Þ
+(cid:6) (cid:7)
+∂n
+∂en
+
+¼ −
+
+iω
+ð
+iω þ d nð Þ
+
+∂d nð Þ
+∂n
+
+;
+
+Þ2
+
+ð5Þ
+
+
+--- Page 3 ---
+126
+
+P. Ping et al. / Journal of Applied Geophysics 101 (2014) 124–135
+
+where d(n), a function of the distance to the interface n, is a damping
+proﬁle across the PML region. Then, if we substitute Eq. (3) into
+Eq. (2), and replace the wave equation written in n with the generalized
+variable en mentioned in Eq. (4), we can obtain
+
+∇ ¼ n∂en
+
+þ ∇==:
+
+The PML formulations can be rewritten as
+
+−ρω2s¼ n∂en
+
+(cid:1)
+
+(cid:4)
+1
+(cid:2) c:
+2
+(cid:4)
+
+(cid:3)
+(cid:1)
+(cid:3)
+(cid:1)
+T
+n∂en
+þ n∂en
+s
+s
+(cid:1)
+(cid:1)
+(cid:3)
+(cid:1)
+n∂en
+þ n∂en
+s
+s
+
+(cid:5)
+
+(cid:3)
+
+(cid:3)
+
+(cid:3)
+T
+
+(cid:4)
+(cid:2) c:
+(cid:4)
+
+(cid:1)
+
+1
+2
+
+þ n∂en
+(cid:5)
+
+1
+þ ∇== (cid:2) c:
+2
+
+(cid:1)
+
+(cid:3)
+s
+
+(cid:1)
+þ ∇==
+
+s
+
+∇==
+
+(cid:5)
+
+(cid:3)
+
+(cid:3)
+T
+
+(cid:1)
+
+(cid:1)
+∇==
+
+(cid:3)
+s
+
+(cid:1)
+þ ∇==
+
+(cid:3)
+s
+
+T
+
+(cid:3)
+
+(cid:5)
+:
+
+1
+þ∇== (cid:2) c:
+2
+
+ð6Þ
+
+ð7Þ
+
+The summation of the split displacements represents the real dis-
+
+placement in the PML region.
+
+where p(m/n) and p(l/n) are the constants for ﬁne-tuning of the stability of
+the M-PML region.
+
+The design of the M-PML is achieved by interpreting it not as a me-
+dium of complex space variables, but as a medium with complex wave
+vectors.
+
+e
+kn
+
+¼ kn
+
+þ 1
+iω
+
+nð Þ
+
+α
+
+n
+
+;
+
+kn
+
+e
+km
+
+¼ km
+
+þ 1
+iω
+
+nð Þ
+
+α
+
+m
+
+;
+
+km
+
+e
+kl
+
+¼ kl
+
+þ 1
+iω
+
+α
+
+l
+
+nð Þ
+
+;
+
+kl
+
+ð13Þ
+
+where α
+n
+nð Þ
+ﬁles dn
+
+α
+
+n
+
+nð Þ ¼ 1
+n
+
+nð Þ
+
+, α
+, dm
+
+m
+nð Þ
+
+nð Þ
+
+and α
+l
+nð Þ
+
+and dl
+
+nð Þ
+
+are the functions related to the damping pro-
+
+, which can be written as
+
+Zn
+
+0
+
+nð Þ ζð Þdζ ; α
+
+nð Þ ¼ dm
+
+m
+
+nð Þ
+
+dn
+
+nð Þ; α
+
+nð Þ ¼ dl
+
+l
+
+nð Þ
+
+nð Þ:
+
+ð14Þ
+
+In order to investigate the efﬁciency of the M-PML formulations, the
+
+plane-wave solution can be expressed as
+
+s¼s1 þ s2 þ s3 þ s4;
+
+ð8Þ
+
+½
+u ¼ A exp −i k (cid:2) r−ωt
+
+ð
+
+(cid:3);
+Þ
+
+ð15Þ
+
+where −ρω2s1 ~ − ρω2s4 denote the four components of the right part
+of Eq. (7). Then, the weak forms of the split PML formulations in the
+time domain can be rewritten by Komatitsch and Tromp (2003)
+
+where A is the polarization vector, k is the wave vector and r is the po-
+sition vector.
+
+Substituting the transformations of Eq. (13) into Eq. (15), the solu-
+
+tion of Eq. (15) can be rewritten as
+
+ð
+ρ ∂
+t
+
+þ d
+
+Þ2s1(cid:2)wd3r¼‐
+
+Z
+
+ns
+
+ð
+Þþ n∂
+
+ns
+
+ÞT
+
+(cid:3)
+d3r
+
+u ¼ A exp ‐α (cid:2) r
+
+ð
+
+ð
+Þ exp −i k (cid:2) r−ωt
+
+½
+
+h
+j
+(cid:3); α¼ kj
+Þ
+ω en
+
+nð Þ
+
+α
+
+n
+
+nð Þ
+
+α
+
+em
+
+m
+
+nð Þ
+
+el
+
+α
+
+l
+
+i
+
+;
+
+ð16Þ
+
+Þ: c :
+
+nwð
+n∂
+Z
+
+nwð
+
+Þ: c :
+
+Γ
+
+V
+þ
+
+(cid:1)
+ð
+n∂
+
+1
+2
+(cid:1)
+ð
+n∂
+
+1
+2
+
+ns
+
+ð
+Þþ n∂
+
+ns
+
+ÞT
+
+(cid:3)
+d2r;
+
+Z
+Þ3s2(cid:2)wd3r¼‐
+
+þ d
+
+ð
+ρ ∂
+t
+
+′
+
+d
+
+nw: c :
+
+(cid:1)
+
+1
+2
+
+(cid:3)
+
+ð
+n∂
+
+ns
+
+ð
+Þþ n∂
+
+ns
+
+ÞT
+
+d3r;
+
+V
+
+Z
+
+ρ∂
+t
+
+ð
+∂
+t
+
+þ d
+
+Þs3(cid:2)wd3r¼‐
+
+V
+
+(cid:4)
+nwð
+n∂
+
+Þ: c :
+
+1
+2
+
+(cid:1)
+
+(cid:1)
+∇==
+
+(cid:3)
+s
+
+(cid:1)
+þ ∇==
+
+s
+
+(cid:3)
+
+(cid:3)
+T
+
+(cid:1)
+þ ∇==
+
+(cid:3)
+
+w
+
+: c :
+
+1
+2
+
+(cid:1)
+n∂
+ð
+
+ð
+Þþ n∂
+
+ns
+
+#
+
+(cid:3)
+
+ÞT
+
+ns
+
+d3rþ
+
+Z
+
+Γ
+
+nwð
+
+Þ: c :
+
+1
+2
+
+(cid:1)
+
+(cid:1)
+∇==
+
+(cid:3)
+s
+
+(cid:1)
+þ ∇==
+
+(cid:3)
+T
+s
+
+(cid:3)
+d2r;
+
+Z
+
+V
+
+ρ∂
+t
+
+2s4(cid:2)wd3r¼ ‐
+
+(cid:1)
+∇==
+
+(cid:3)
+
+w
+
+: c :
+
+1
+2
+
+Z
+
+V
+
+(cid:1)
+
+(cid:1)
+∇==
+
+s
+
+(cid:3)
+
+(cid:1)
+þ ∇==
+
+s
+
+(cid:3)
+
+(cid:3)
+T
+
+d3r;
+
+where w represents the test function, Г denotes the boundary of the
+PML that does not contact the regular region.
+
+3. The M-PML formulations
+
+In the classical PML, there is only one damping proﬁle, d(n), which is
+speciﬁed to be a function of the distance to the interface n, while the
+other two proﬁles, e.g. d(m) and d(l), whose directions are perpendicu-
+lar to n, are equal to 0, i.e.
+
+dn
+
+¼ dn nð Þ; dm
+
+¼ 0; dl
+
+¼ 0:
+
+ð10Þ
+
+Nevertheless, the damping proﬁles in the proposed M-PML can be
+
+rewritten as the functions of the n variable
+
+ð9Þ
+
+written by (Meza-Fajardo and Papageogiou, 2008)
+
+where en, em, and el are the direction cosines of the wave vector k. The
+factor exp(‐α ⋅ r) implies the waveﬁleds in the M-PML region decaying
+in the direction of the wave vector.
+
+The transformations that result from the application of the variable
+
+stretching approach in the M-PML formulations are written as
+
+en ¼ n þ 1
+iω
+
+nð Þ
+
+n;
+
+α
+
+n
+
+em ¼ m þ 1
+iω
+
+α
+
+m
+
+nð Þ
+
+m ;
+
+l ¼ l þ 1
+e
+iω
+
+nð Þ
+
+l :
+
+α
+
+l
+
+ð17Þ
+
+Comparing Eq. (17) with Eq. (4), we ﬁnd that they have the same
+form. Then, the M-PML may be accomplished by introducing new vari-
+ables en, em and
+
+e
+l in Eq. (17).
+
+The corresponding partial derivatives of the stretching variables are
+
+∂en
+∂n
+
+¼ 1 þ 1
+
+iω dn
+
+nð Þ;
+
+∂ em
+∂m
+
+¼ 1 þ 1
+
+iω dm
+
+nð Þ;
+
+∂e
+l
+∂l
+
+¼ 1 þ 1
+
+iω dl
+
+nð Þ :
+
+ð18Þ
+
+4. The second-order M-PML formulations
+
+For two-dimensional case, we suppose that the boundary between the
+regular region and the PML region is a line with the normal direction rep-
+resented by n, and the parallel direction represented by m (see Fig. 1).
+
+In the classical second-order PML system, Eq. (6) represents the
+waveform damping along the direction n. There is no damping in the di-
+rection parallel to the boundary for the parallel gradient ∇//. In order to
+make the waveﬁelds decay in all the directions of the wave vector k, the
+parallel gradient ∇// needs to be operated in the PML. The operate ∇//
+can be rewritten as
+
+∇== ¼ m∂
+
+m
+
+;
+
+ð19Þ
+
+Z
+
+V
+
+Z
+
+V
+
+Z
+
+V
+
+dn
+
+¼ dn
+
+nð Þ
+
+nð Þ; dm
+
+¼ dm
+
+nð Þ
+
+nð Þ; dl
+
+¼ dl
+
+nð Þ
+
+nð Þ:
+
+ð11Þ
+
+where m is parallel to the boundary.
+
+The additional damping proﬁles dm
+
+(n)(n) and dl
+
+(n)(n) are propor-
+
+tional to dn
+
+(n)(n) (Meza-Fajardo and Papageogiou, 2008):
+
+The M-PML system can be accomplished by replacing both n and m
+with the generalized variable en and em in Eq. (19), respectively. There-
+fore,
+
+nð Þ
+
+dm
+
+nð Þ ¼ p m=n
+
+ð
+
+Þ
+
+nð Þ
+
+nð Þ; dl
+
+nð Þ
+
+nð Þ ¼ p l=nð
+
+Þ
+
+nð Þ
+
+nð Þ;
+
+dn
+
+dn
+
+ð12Þ
+
+∇== ¼ m∂em
+
+:
+
+ð20Þ
+
+
+--- Page 4 ---
+P. Ping et al. / Journal of Applied Geophysics 101 (2014) 124–135
+
+127
+
+The new complex variable em in the M-PML has the form as
+
+em ¼ m þ 1
+iω
+
+α
+
+m
+
+nð Þ
+
+m;
+
+ð21Þ
+
+where the function α
+d nð Þ and the constant p(m/n) are also
+for ﬁne-tuning the stability of the M-PML region. Therefore, the relation
+between the new and the regular variables can be also expressed by
+
+m
+
+nð Þ ¼ p m=n
+
+ð
+
+Þ
+
+∂m
+∂ em
+
+¼
+
+iω
+Þ
+iω þ d mð
+
+;
+
+where d(m) = p(m/n)d(n). Then,
+
+iω
+ð
+iω þ d mð
+Þ
+
+Þ
+
+ð
+
+Þ2 p m=n
+
+(cid:6) (cid:7)
+∂m
+∂ em
+(cid:6) (cid:7)
+∂m
+∂ em
+(cid:6) (cid:7)
+∂n
+∂en
+
+∂
+∂n
+∂
+∂m
+∂
+∂m
+
+¼ −
+
+¼ 0;
+
+¼ 0;
+
+0
+
+d
+
+nð Þ;
+
+ð22Þ
+
+ð23Þ
+
+Substituting Eq. (20) into Eq. (6), the gradient operator ∇ can be
+
+expressed as
+
+∇¼n∂en
+
+þm∂em
+
+:
+
+−ρω2s¼n∂
+n
+
+Therefore, by substituting Eq. (24) into Eq. (2), the wave equation in
+
+the frequency domain can be rewritten as
+
+(cid:4)
+(cid:2) c:
+(cid:4)
+
+(cid:1)
+n∂
+ð
+
+1
+2
+(cid:1)
+ð
+n∂
+
+þn (cid:2) c:
+(
+
+1
+2
+(cid:4)
+(cid:2) c:
+n∂
+n
+(cid:4)
+
+þ
+
+1
+2
+(cid:1)
+ð
+
+ð
+Þþ n∂
+
+ns
+
+ÞT
+
+(cid:3)
+
+(cid:5)
+ð
+
+∂n=∂en
+
+Þ2
+
+ns
+
+(cid:3)
+
+(cid:5)
+∂n=∂en
+ð
+(cid:5)
+
+(cid:3)
+
+(cid:3)
+T
+
+ð
+Þþ n∂
+
+ÞT
+
+ns
+
+ns
+(cid:1)
+(cid:1)
+∇==
+
+(cid:3)
+s
+
+(cid:1)
+þ ∇==
+
+s
+(cid:5))
+(cid:3)
+ð
+
+n∂
+
+1
+þ∇== (cid:2) c:
+2
+(cid:4)
+(cid:1)
+(cid:1)
+∇==
+
+s
+
+ns
+(cid:3)
+
+ð
+Þþ n∂
+
+(cid:1)
+þ ∇==
+
+ÞT
+
+ns
+(cid:3)
+T
+
+s
+
+(cid:3)
+
+(cid:5)
+∂n=∂en
+ð
+
+Þ∂
+n
+
+∂n=∂en
+
+Þ ∂m=∂ em
+Þ
+ð
+
+1
+2
+
+1
+2
+
+þn (cid:2) c:
+(cid:4)
+
+þm (cid:2) c:
+(cid:4)
+
+þ∇== (cid:2) c:
+(cid:4)
+
+þm (cid:2) c:
+
+1
+2
+
+1
+2
+(cid:1)
+
+(cid:1)
+ð
+n∂
+
+ns
+
+ð
+Þþ n∂
+
+ÞT
+
+ns
+(cid:1)
+þ ∇==
+
+(cid:3)
+
+(cid:1)
+
+(cid:1)
+∇==
+
+s
+
+(cid:3)
+
+(cid:5)
+∂m=∂ em
+ð
+(cid:5)
+ð
+
+(cid:3)
+
+(cid:3)
+T
+s
+
+Þ∂
+
+m
+
+∂m=∂ em
+
+Þ2
+
+(cid:1)
+∇==
+
+s
+
+(cid:3)
+
+(cid:1)
+þ ∇==
+
+s
+
+(cid:3)
+T
+
+(cid:3)
+
+(cid:5)
+ð
+
+∂m=∂ em
+
+Þ∂
+
+m
+
+ð25Þ
+
+∂m=∂ em
+Þ
+ð
+
+∂n=∂en
+Þ
+ð
+
+Fig. 2. The geometry of a PML model. The PML boundaries are set in vertical and bottom
+edges.
+
+Then, we can split the displacement vector into ﬁve parts,
+
+ð24Þ
+
+s¼s1 þ s2 þ s3 þ s4 þ s5:
+
+ð26Þ
+
+Eq. (25) can be rewritten as
+
+∂n=∂en
+Þ
+ð
+
+−ρω2s1 ¼ n∂
+n
+
+(cid:4)
+(cid:2) c:
+
+1
+2
+
+Þ∂
+n
+
+(cid:1)
+ð
+n∂
+ns
+(cid:4)
+
+−ρω2s2 ¼ n (cid:2) c:
+
+(
+
+−ρω2s3 ¼
+
+n∂
+n
+
+(cid:4)
+
+þ∇== (cid:2) c:
+
+1
+2
+
+(cid:1)
+ð
+n∂
+ns
+(cid:4)
+
+−ρω2s4 ¼ ∇== (cid:2) c:
+(cid:1)
+
+(cid:4)
+
+(cid:5)
+
+(cid:3)
+
+ð
+Þþ n∂
+
+ns
+
+ÞT
+
+∂n=∂en
+ð
+
+Þ2;
+
+(cid:1)
+ð
+n∂
+
+1
+2
+(cid:4)
+(cid:2) c:
+
+1
+2
+
+ns
+(cid:1)
+(cid:1)
+∇==
+
+ð
+Þþ n∂
+
+ns
+
+ÞT
+
+(cid:5)
+
+(cid:3)
+
+ÞT
+
+ð
+Þþ n∂
+
+ns
+
+(cid:3)
+
+(cid:1)
+þ ∇==
+
+s
+(cid:5))
+(cid:3)
+∂n=∂en
+ð
+
+Þ∂
+n
+
+∂n=∂en
+Þ;
+ð
+
+∂n=∂en
+ð
+(cid:5)
+
+(cid:3)
+
+(cid:3)
+s
+
+T
+
+Þ ∂m=∂ em
+Þ;
+ð
+
+1
+2
+(cid:1)
+∇==
+
+1
+2
+
+(cid:1)
+
+(cid:1)
+∇==
+
+(cid:3)
+
+(cid:1)
+þ ∇==
+
+s
+
+(cid:3)
+
+T
+
+(cid:3)
+
+(cid:5)
+ð
+
+s
+
+∂m=∂ em
+
+Þ2;
+
+(cid:3)
+s
+
+(cid:1)
+þ ∇==
+
+s
+
+(cid:3)
+T
+
+(cid:5)
+
+(cid:3)
+
+∂n=∂en
+ð
+
+Þ∂
+n
+
+∂m=∂ em
+Þ:
+ð
+
+ð27Þ
+
+ð
+
+∂m=∂ em
+Þ:
+
+−ρω2s5 ¼ n (cid:2) c:
+
+The displacement vector in the second-order formulations becomes to
+be represented by ﬁve components in the M-PML region, one more than
+those for the classical PML method. The weak form of the second-order
+M-PML formulations is obtained by multiplying Eq. (27) with the test
+vector w and converting them back into the time domain as
+
+Table 1
+Parameters of isotropic models.
+
+Material properties
+
+P wave velocity VP(m/s)
+S wave velocity VS(m/s)
+Mass density ρ(kg/m3)
+Poisson's ratio ν
+
+a Komatitsch and Tromp (2003).
+b Zeng et al. (2011).
+
+Case 1a
+
+2000
+1154.7
+2200
+
+0.25
+
+Case 2b
+
+800
+200
+2000
+
+0.47
+
+Fig. 1. Relation of the regular region and the PML region. n and m denote the normal and
+the parallel directions of the interface, respectively. They all indicate the damping
+directions.
+
+
+--- Page 5 ---
+128
+
+P. Ping et al. / Journal of Applied Geophysics 101 (2014) 124–135
+
+Case 4b
+
+7100
+1.65 × 1011
+5.00 × 1010
+6.20 × 1010
+3.96 × 1010
+
+(cid:3)
+
+ÞT
+
+d2r
+
+(cid:3)
+d2r;
+
+Þ:c:
+
+1
+2
+
+(cid:1)
+
+(cid:1)
+
+∇==
+
+(cid:1)
+
+∇==
+
+(cid:3)
+
+(cid:3)
+
+s
+
+s
+
+Table 2
+Parameters of anisotropic models.
+
+Material properties
+
+Mass density ρ(kg/m3)
+C11 (N/m2)
+C12 (N/m2)
+C22 (N/m2)
+C33 (N/m2)
+
+Case 3a
+
+5000
+2.00 × 1010
+3.75 × 1010
+1.00 × 1011
+1.00 × 1010
+
+a Bécache et al. (2001).
+b Meza-Fajardo and Papageogiou (2008).
+
+∫
+
+V
+
+ð
+ρ ∂t þ d nð Þ
+
+Þ2s1(cid:2)wd2r¼‐∫
+V
+
+n∂nwð
+
+Þ:c:
+
+nwð
+
+Þ:c:
+
+þ∫
+Γ
+
+1
+2
+
+Þ3s2(cid:2)wd2r¼‐∫
+V
+
+′
+d
+
+nð Þnw:c:
+
+(cid:1)
+
+ð
+n∂ns
+
+1
+2
+(cid:1)
+ð
+n∂ns
+(cid:1)
+ð
+n∂ns
+
+1
+2
+
+ð
+Þþ n∂ns
+
+ð
+Þþ n∂ns
+
+(cid:3)
+dr;
+
+ÞT
+
+ð
+Þþ n∂ns
+
+ÞT
+
+∫
+
+V
+
+∫
+
+V
+
+∫
+
+V
+Z
+
+V
+
+ð
+ρ ∂t þ d nð Þ
+h
+ρ ∂t
+(cid:1)
+þ ∇==
+
+2 þ d mð
+Þþdð
+ð
+(cid:1)
+(cid:3)
+(cid:3)
+T
+þ ∇==
+
+s
+
+(cid:1)
+þ ∇==
+
+s
+
+(cid:3)
+T
+
+Þdr;
+
+Þ2s4(cid:2)wd2r¼‐∫
+Þ
+ð
+ρ ∂tþd mð
+V
+Z
+Þ3s5(cid:2)wd2r¼‐
+Þ
+þ d mð
+
+ð
+ρ ∂
+
+t
+
+V
+
+nÞÞ∂t þ d mð
+
+Þd nð Þ(cid:3)s3 (cid:2) wd2r¼‐∫
+V
+(cid:3)d2r þ∫
+
+ð
+Þþ n∂ns
+
+ÞT
+
+(cid:3)
+
+(cid:1)
+2 n∂ns
+ð
+
+½ n∂nwð
+
+(cid:3)
+
+w
+
+:c:1
+
+nwð
+
+Þ:c:
+
+(cid:1)
+
+1
+2
+
+Γ
+
+(cid:1)
+
+∇==
+
+(cid:3)
+
+w
+
+:c:
+
+1
+2
+
+(cid:6)
+
+(cid:1)
+
+∇==
+
+(cid:3)
+s
+
+(cid:1)
+þ ∇==
+
+s
+
+(cid:3)
+T
+
+(cid:7)
+
+d2r;
+
+Þ
+
+ð
+
+p m=n
+
+′
+
+d
+
+nð Þnw:c:
+
+1
+2
+
+(cid:1)
+
+(cid:1)
+∇==
+
+(cid:1)
+(cid:3)
+þ ∇==
+s
+
+(cid:3)
+T
+s
+
+(cid:3)
+d2r; ð28Þ
+
+where d(m) = p(m/n)d(n). Г denotes the boundary of the PML that is not
+in contact with the regular region. Actually, we note that these second-
+order M-PML formulations could be written for different second-order
+numerical schemes, e.g. the SEM, FEM and FDM.
+
+Due to the split components in the second-order wave equation are
+not linearly independent but coupling, there is no appropriate treat-
+ment of the corner regions (see Fig. 2) in the classical second-order
+PML formulations at present. Straightforwardly to add the damping var-
+iables in the two directions of the plane as in the ﬁrst-order equations is
+no longer applicable. In order to handle the damping in the corner re-
+gions for the second-order classical PML, we have to reconstruct the
+PML formulations for damping the waveﬁelds in different directions at
+the same time. The damping variables of the coupling terms in the equa-
+tions face complicate mathematical procedure, while in the proposed
+second-order M-PML formulations (Eq. (28)), such difﬁculty is over-
+come in the uniform formulations.
+
+The treatment of the corner regions for the proposed second-order
+M-PML is similar to that of the ﬁrst-order M-PML (Meza-Fajardo and
+Papageogiou, 2008). Moreover, in corner regions, the formulations of
+Eq. (28) are replaced by seven independent equations (see Appendix).
+
+5. Numerical validation
+
+To illustrate the efﬁciency and the stability of the second-order M-
+PML formulations, we consider four numerical experiments of the elas-
+tic wave propagation with P-SV polarization in two-dimensional
+models with free surface. The wave equations in the regular region
+and the M-PML region are solved with the spectral element method
+(SEM). The accuracy of the proposed scheme is demonstrated by the
+comparison of the numerical and the analytical solutions in an isotropic
+half-space model. The results for the classical second-order PML are also
+presented for comparison. In the ﬁrst two numerical experiments, we
+investigate the stability of the second-order M-PML for the isotropic
+half-space models. A high Poisson's ratio, which may yield unstable
+issue in the implementation of some ABCs, especially for Rayleigh
+wave modeling (Zeng et al., 2011), is considered. In the other two ex-
+periments, we simulate wave propagation in the anisotropic media,
+which may cause severely unstable issues.
+
+For Case 1 of the isotropic half-space models, the size of the model is
+192 m × 192 m. The source locates at (62.4 m, 0 m) on the free surface.
+The Ricker wavelet function is selected for the source time function with
+the central frequency of 50 Hz, and the time shift of 0.04 s. The PML ab-
+sorbing boundaries are set in vertical and bottom edges (Fig. 2) with the
+span of 38.4 m. The model is discretized in 40 × 40 spectral elements
+with polynomial degree of N = 4. The physic parameters of the model
+are listed in Table 1.
+
+For Case 2 of the isotropic half-space models, the size of the model is
+55 m × 40 m. The source locates at (18.0 m, 0 m) on the free surface.
+The Ricker wavelet function is also selected with the central frequency
+and the time shift of 40 Hz and 0.04 s. The PML absorbing boundaries
+are set in vertical and bottom edges (Fig. 2) with the span of 8 m. The
+model is discretized in 55 × 40 spectral elements. The polynomial de-
+gree N = 4 is chosen in each element. The physic parameters of the
+model are listed in Table 1.
+
+For Case 3 of the anisotropic half-space models, the size of the model
+is 616 m × 448 m. The Ricker wavelet source locates at (201.6 m, 0 m)
+on the free surface, with the central frequency of 22.5 Hz, and the time
+shift of 0.044 s. The PML absorbing boundaries are set 67.2 m in width
+around the three edges (see Fig. 2). The model consists of 55 × 40 spec-
+tral elements with polynomial degree of N = 4. The physic parameters
+of the model are listed in Table 2.
+
+Fig. 3. Simulated seismograms of the horizontal (a) and the vertical (b) displacements on the surface with offset of 74.4 m in an elastic half-space model (Table 1, Case 1). The solid line, the
+dot-dashed line and the dashed line indicate the records obtained by the numerical simulations using the second-order classical PML (Komatitsch and Tromp, 2003), the M-PML and the
+analytical solution (Berg et al., 1994), respectively. The results show a good agreement. There is almost no spurious wave reﬂected off the boundary in the two numerical solutions.
+
+
+--- Page 6 ---
+P. Ping et al. / Journal of Applied Geophysics 101 (2014) 124–135
+
+129
+
+For Case 4 of the anisotropic half-space models, the size of the model
+is 660 m × 480 m. The Ricker wavelet source locates at (216.0 m, 0 m)
+on the free surface, with the central frequency and the time shift of
+40 Hz and 0.05 s. The PML absorbing boundaries are set 96 m in
+width around the three edges (see Fig. 2). The model is discretized in
+55 × 40 spectral elements. The polynomial degree N = 4 is chosen in
+each element. The physic parameters of the model are listed in Table 2.
+The boundaries between the regular region and the PML region are
+
+marked by the solid lines in the snapshots.
+
+The damping coefﬁcient can be written by (Komatitsch and Tromp,
+
+2003)
+
+d xð Þ ¼ 3α
+
+2δ log
+
+(cid:6) (cid:7)
+1
+R
+
+(cid:1) (cid:3)
+x
+2
+δ
+
+;
+
+ð29Þ
+
+where δ is the width of the PML region, x is the distance between the
+calculating point to the interface of the PML and the regular region in
+
+Fig. 4. Snapshots of the horizontal displacement simulated by the SEM in an isotropic elastic
+medium (Table 1, Case 1) at (a)t = 0.112 s, (b) t = 0.21 s, (c) t = 0.35 s, (d) t = 5.6 s,
+(e) t = 6.8 s. The left and right panels correspond to the second-order classical PML and
+the second-order M-PML (p(x/z) = p(z/x) = 0.1) terminations, respectively. No instability
+is observed in the M-PML termination.
+
+Fig. 5. Snapshots of the vertical displacement simulated by the SEM in an isotropic elastic
+medium (Table 1, Case 1) at (a) t = 0.112 s, (b) t = 0.21 s, (c) t = 0.35 s, (d) t = 5.6 s,
+(e) t = 6.8 s The left and right panels correspond to the second-order classical PML and
+the second-order M-PML (p(x/z) = p(z/x) = 0.1) terminations, respectively. The late-time
+instability is visible in the classical PML. No instability is observed in the M-PML
+termination.
+
+
+--- Page 7 ---
+130
+
+P. Ping et al. / Journal of Applied Geophysics 101 (2014) 124–135
+
+Case 2. In this section, the efﬁciency of the second-order M-PML is val-
+idated in an isotropic medium with a high Poisson's ratio of v = 0.47,
+which may yield unstable issue in the implementation of some ABCs
+(Clayton and Engquist, 1977; Mahrer, 1990; Stacey, 1988), especially
+for Rayleigh wave modeling (Zeng et al., 2011).
+
+For the P-wave velocity greatly larger than S-wave velocity, when
+the P-wave is far away the source, the S-wave propagates nearby the
+source (Figs. 7a, 8a). At t = 0.2 s, the body and surface waves have
+propagated into the PML region, and are efﬁciently absorbed (Figs. 7b,
+8b). For the classical PML, when the body and surface waves prop-
+agate outside the ﬁnite simulated model, most of the spurious re-
+ﬂections are suppressed (Figs. 7c, 8c) except for some small
+unexpected energies appear nearby the corner regions (left panels
+of Figs. 7c, 8c). These unexpected energies aggravate as time goes
+by (left panels of Figs. 7d, 8d). At t = 1.6 s the instable energies
+erode the regular region and the run breaks down. In contrary to
+
+the damping direction. R denotes the theoretical reﬂection coefﬁcient
+after discretization, which can be chosen very small (a typical value as
+8 × 10−4).
+
+Finally, in order to illustrate the efﬁciency of the second-order M-
+PML method, the total energy inside the regular region during the sim-
+ulation is investigated. Thus, the total energy at each time can be
+expressed as (Matzen, 2011)
+
+˙sT M˙sþ 1
+E ¼ 1
+2
+2
+
+sT Ks;
+
+ð30Þ
+
+where M is the mass matrix, K is the stiffness matrix, and s is the dis-
+placement vector.
+
+Case 1. By using the second-order PML, the seismograms of the hori-
+zontal (Fig. 3a) and the vertical (Fig. 3b) displacements are recorded
+on the free surface with the offset of 74.4 m. The modeling seismograms
+(up to 0.4 s), both for the classical second-order PML and the proposed
+second-order M-PML, ﬁt the analytical solution perfectly (Berg et al.,
+1994). No obvious reﬂectors are observed in both the horizontal and
+the vertical displacements.
+
+The horizontal (Fig. 4) and the vertical (Fig. 5) displacement snap-
+shots are obtained for the second-order classical PML and the second-
+order M-PML, respectively. The dominant Rayleigh waves can be easily
+identiﬁed (Figs. 4a, 5a (t = 0.112 s)). At t = 0.21 s, all the waves prop-
+agate outside the regular region. The damping of both the classical PML
+and the M-PML works perfectly inside the regular region. No obvious
+reﬂected waveﬁelds are observed (Figs. 4b, 5b). When the waves prop-
+agate outside the ﬁnite simulated model, no visible waveﬁelds can be
+identiﬁed, but only very low amplitude noise from the numerical proce-
+dures (Figs. 4c, 5c). For the long-time simulation (t = 5.6 s), the insta-
+bility of the classical second-order PML appears (left panels of Figs. 4d,
+5d). If the simulation is running for longer time, the values of unexpect-
+ed waveﬁelds will grow to cause instability and even overﬂow. Howev-
+er, no instability is identiﬁed for the M-PML (right panels of Figs. 4d–e,
+5d–e), which can also be veriﬁed in the energy curves (Fig. 6).
+
+Dmitriev and Lisitsa (2011) have proved that the M-PML method is
+not perfectly matched, and the reﬂectivity of the M-PML exceeds that of
+the classical PML at some time steps. We can observe these phenomena
+in the energy curves around 0.3 s to 0.5 s (Fig. 6). These slight reﬂec-
+tions are insigniﬁcant and acceptable in the simulation. The total energy
+decays continuously for the M-PML, however, after around 2 s, the en-
+ergy increases illogically for the classical PML, which results in the
+instability.
+
+Fig. 6. Energy curves versus time for the classical PML and the M-PML in the regular region
+for Case 1.
+
+Fig. 7. Snapshots of the horizontal displacement simulated by the SEM in an isotro-
+pic elastic medium with high Poisson's ratio (Table 1, Case 2) at (a) t = 0.08 s,
+(b) t = 0.2 s, (c) t = 0.56 s, (d) t = 1.04 s, (e) t = 7.9 s. The left and right
+panels correspond to the second-order classical PML and the second-order
+M-PML (p(x/z) = p(z/x) = 0.6) terminations, respectively. No instability is ob-
+served in the M-PML termination.
+
+
+--- Page 8 ---
+P. Ping et al. / Journal of Applied Geophysics 101 (2014) 124–135
+
+131
+
+the classical PML, the proposed M-PML has very good performance
+to suppress the spurious reﬂections in whole simulation time
+(right panels of Figs. 7c–e, 8c–e).
+
+The energy curves in the regular region for the second-order classi-
+cal PML and the second-order M-PML display in Fig. 9. The insigniﬁcant
+and acceptable reﬂections of the M-PML, that exceed that of the classical
+PML, are observed in the energy curves around 0.3 s to 1.0 s. The simu-
+lation is performed up to 7.9 s, and no instability represented by the
+energy increment is observed for the M-PML. The total energy for the
+M-PML decays smoothly and steadily, which demonstrates the numer-
+ical stability for the M-PML, even for high Poisson's ratio. However, after
+around 1.5 s, the energy increases illogically for the classical PML, which
+results in the instability. The simulation cannot be normally performed
+after that time step.
+
+Case 3. This particular orthotropic anisotropic model has been studied
+previously (The normalized parameters are given in Bécache et al.,
+2001). Meza-Fajardo and Papageogiou (2008) designed a stable M-
+
+PML for this particular medium in the ﬁrst-order equations. The de-
+signed half-space model with the free surface undoubtedly augments
+the instabilities. Observing the snapshots of the horizontal and the ver-
+tical displacements for the classical PML and the M-PML (Figs. 10 and
+11), the waveﬁelds in the regular region spread normally (Figs. 10a,
+11a), while the body waves are splitting. The instability appears at
+about t = 0.32 s for the classical PML (left panels of Fig. 10b, 11b), at
+that time the split slow waves propagate into the absorbing region.
+This instability becomes visible and the waveﬁelds are severely polluted
+in the regular region before t = 0.56 s (left panels of Figs. 10c, 11c),
+while the propagating waveﬁelds have not totally been out of the regu-
+lar region. We can identify these phenomena in the energy curves for
+the classical PML (Fig. 12). The spurious energies erode the whole regu-
+lar region at t = 0.6 s and the run breaks down (Fig. 12). On the con-
+trary, no instability is observed during the simulated procedure with
+time up to 2 s for the proposed second-order M-PML (right panels of
+Figs. 10, 11). Some slight reﬂections can be observed at t = 0.56 s
+(right panels of Figs. 10c, 11c), which may be caused by the imperfect
+match for the M-PML. Nevertheless, the total energy in the regular re-
+gion for the M-PML damps smoothly and steadily. No instability appears
+by illogical energy increasing for the M-PML in whole simulation time
+(up to 2 s, see Fig. 12).
+
+Case 4. The classical PML and the C-PML may suffer from the late-time
+instabilities for the numerical simulation in anisotropic media (Matzen,
+2011; Meza-Fajardo and Papageogiou, 2008) involving the model of
+common crystals like the metal, zinc (Komatitsch and Martin, 2007). Al-
+though the ﬁrst-order M-PML scheme can be applied to handle the sit-
+uation (Meza-Fajardo and Papageogiou, 2008), the second-order
+approach need to be further investigated in this speciﬁc model.
+
+In view of the snapshots of the horizontal and the vertical displace-
+ments (Figs. 13 and 14), the split body waves are well absorbed by the
+two PML methods (Figs. 13a–d, 14a–d). At t = 1.4 s (left panels of
+Figs. 13e and 14e), the numerical noise derived by the instability has
+polluted the regular region for the classical PML. The unexpected
+waveﬁelds grow so severely in the vertical strips that the calculation
+cannot be continued any more.
+
+On the other hand, no instability is observed in the snapshots for the
+proposed second-order M-PML (right panels of Figs. 13 and 14). The en-
+ergy curve for the M-PML also demonstrates its superior performance
+(Fig. 15). In the long-time simulation, there is no instability appearing
+in the regular region. The total energy for the M-PML decays smoothly
+and steadily during simulation time. Although it is less than that for
+the M-PML around 0.3 s to 0.8 s, the total energy for the classical PML
+
+Fig. 8. Snapshots of the vertical displacement simulated by the SEM in an isotro-
+pic elastic medium with high Poisson's ratio (Table 1, Case 2) at (a) t = 0.08 s,
+(b) t = 0.2 s, (c) t = 0.56 s, (d) t = 1.04 s, (e) t = 7.9 s. The left and right
+panels correspond to the second-order classical PML and the second-order M-
+PML (p(x/z) = p(z/x) = 0.6) terminations, respectively. The late-time instability is visible
+in the classical PML. No instability is observed in the M-PML termination.
+
+Fig. 9. Energy curves versus time for the classical PML and the M-PML in the regular region
+for Case 2.
+
+
+--- Page 9 ---
+132
+
+P. Ping et al. / Journal of Applied Geophysics 101 (2014) 124–135
+
+Fig. 10. Snapshots of the horizontal displacement simulated by the SEM in an orthotropic
+anisotropic elastic medium (Table 2, Case 3) at (a) t = 0.1 s, (b) t = 0.32 s, (c) t = 0.56 s,
+(d) t = 1.04 s, (e) t = 2 s. The left and right panels correspond to the second-order clas-
+sical PML and the second-order M-PML (p(x/z) = 0.25, p(z/x) = 0.3) terminations, respec-
+tively. No instability is observed for the M-PML termination.
+
+Fig. 11. Snapshots of the vertical displacement simulated by the SEM in an orthotropic an-
+isotropic elastic medium (Table 2, Case 3) at (a) t = 0.1 s, (b) t = 0.32 s, (c) t = 0.56 s,
+(d) t = 1.04 s, (e) t = 2 s. The left and right panels correspond to the second-order clas-
+sical PML and the second-order M-PML (p(x/z) = 0.25, p(z/x) = 0.3) terminations, respec-
+tively. The instability appears when the split slow waves propagate into the absorbing
+region. No instability is observed for the M-PML termination.
+
+increases illogically after 0.8 s (Fig. 15), which results in the instability.
+The instability aggravates as time goes by and the run will break down.
+
+6. Conclusions
+
+A nonconvolutional perfectly matched layer, referred to as the mul-
+tiaxial perfectly matched layer (M-PML) for the second-order elastic
+wave equations, has been proposed and numerically validated. The pri-
+mary of this work is to show that an efﬁcient M-PML implementation is
+indeed possible when e.g. the existing displacement-based (second-
+order) SEM or FEM codes need to tackle the limited region elastic
+wave simulation problems. It is veriﬁed that the absorbing boundary
+represented in the second-order wave equations can be well construct-
+ed by the M-PML formulations. The present scheme is stable and efﬁ-
+cient, and allows us to simulate the elastic waveﬁelds, especially in
+anisotropic media for long time using the spatial second-order wave
+equations in the SEM, FEM and FDM.
+
+Through the comparison with the second-order classical PML pro-
+posed by Komatitsch and Tromp (2003), better stability is achieved by
+the second-order M-PML formulations in the several numerical
+
+Fig. 12. Energy curves versus time for the classical PML and the M-PML in the regular re-
+gion for Case 3.
+
+
+--- Page 10 ---
+P. Ping et al. / Journal of Applied Geophysics 101 (2014) 124–135
+
+133
+
+experiments. In the long-time simulation, the proposed second-order
+M-PML scheme keeps stable, even for the media with high Poisson's
+ratio (Case 2), and the speciﬁc orthotropic anisotropy (Cases 3, 4)
+which may usually yield unstable issue in the implementation of the
+PML methods, such as the ﬁrst-order C-PML. The resulting elasto-
+dynamics remain valid for the wave propagation of different frequen-
+cies and directions, and show advantages to the second-order classical
+PML.
+
+The established formulations are similar to the M-PML in the ﬁrst-
+order wave equations. The generality of the proposed second-order
+M-PML scheme leads to its adaptability in other second-order formula-
+tions, as in acoustics and electromagnetics. Extension of the proposed
+
+scheme to three-dimensional problems is straightforward and will be
+studied in the future.
+
+Acknowledgments
+
+Gratitude is expressed for the ﬁnancial support of the National Nat-
+ural Science Foundation of China (NSFC, Grant No. 41304077), Postdoc-
+toral Science Foundation of China (Grant No. 2013M531744), and Key
+Laboratory of Geospace Environment and Geodesy (Grant No. 12-02-
+03). We thank Dr. K. Holliger and an anonymous reviewer for their crit-
+ical comments and for the enhancement of scientiﬁc level in the
+manuscript.
+
+Fig. 13. Snapshots of the horizontal displacement simulated by the SEM in an orthotropic
+anisotropic elastic medium (Table 2, Case 4) at (a)t = 0.15 s, (b) t = 0.2 s, (c) t = 0.3 s,
+(d) t = 0.5 s, (e) t = 1.4 s, (f) t = 5.4 s. The left and right panels correspond to the
+second-order classical PML and the second-order M-PML (p(x/z) = p(z/x) = 0.15) termina-
+tions, respectively. No instability is observed for the M-PML termination.
+
+Fig. 14. Snapshots of the vertical displacement simulated by the SEM in an orthotropic an-
+isotropic elastic medium (Table 2, Case 4) at (a) t = 0.15 s, (b) t = 0.2 s, (c) t = 0.3 s,
+(d) t = 0.5 s, (e) t = 1.4 s, (f) t = 5.4 s. The left and right panels correspond to the
+second-order classical PML and the second-order M-PML (p(x/z) = p(z/x) = 0.15) termi-
+nations, respectively. The late-time instability is visible in the classical PML. No instability
+is observed in the M-PML termination.
+
+
+--- Page 11 ---
+134
+
+P. Ping et al. / Journal of Applied Geophysics 101 (2014) 124–135
+
+Abarbanel, S., Gottlieb, D., 1998. On the construction and analysis of absorbing layer in
+
+CEM. Appl. Numer. Math. 27 (4), 331–340.
+
+Appelö, D., Kreiss, G., 2005. A new absorbing layer for elastic waves. J. Comput. Phys. 215,
+
+642–660.
+
+Basu, U., Chopra, A.K., 2004. Perfectly matched layers for transient elastodynamics of un-
+
+bounded domains. Int. J. Numer. Methods Eng. 59, 1039–1074.
+
+Bécache, E., Fauqueux, S., Joly, P., 2001. Stability of perfectly matched layers, group veloc-
+ities and anisotropic waves. Rapport de recherche n°4304, Thème 4, Simulation et op-
+timisation de systèmes complexes, Projet Ondes, pp. 1–35.
+
+Bécache, E., Ezziani, A., Joly, P., 2004. A mixed ﬁnite element approach for viscoelastic
+
+wave propagation. Comput. Geosci. 8, 255–299.
+
+Bérenger, J.P., 1994. A perfectly matched layer for the absorption of electromagnetic
+
+waves. J. Comput. Phys. 114, 185–200.
+
+Bérenger, J.P., 1996. Three-dimensional perfectly matched layer for the absorption of elec-
+
+tromagnetic waves. J. Comput. Phys. 127, 363–379.
+
+Bérenger, J.P., 1998. An effective PML for the absorption of evanescent waves in wave-
+
+guides. Microw. Guided Wave Lett. 8 (no. 5), 188.
+
+Bérenger, J.P., 2002. Numerical reﬂection from FDTD-PMLs: a comparison of the split PML
+with the unsplit and CFS PMLs. IEEE Trans. Antennas Propag. 50 (3), 258–265.
+Berg, P., If, F., Nilsen, P., Skovgaard, O., 1994. Analytical reference solutions: advanced seis-
+mic modeling. In: Helbig, K. (Ed.), Modeling the earth for oil exploration. Pergamon
+Press, pp. 421–427.
+
+Cerjan, C., Kosloff, D., Kosloff, R., Reshef, M., 1985. A nonreﬂecting boundary condition for
+
+discrete acoustic and elastic wave equation. Geophysics 50, 705–708.
+
+Chew, W.C., Liu, Q.H., 1996. Perfectly matched layers for elastodynamics: a new absorbing
+
+boundary condition. J. Comput. Acoust. 4 (4), 341–359.
+
+Clayton, R., Engquist, B., 1977. Absorbing boundary conditions for acoustic and elastic
+
+wave equations. Bull. Seismol. Soc. Am. 67, 1529–1540.
+
+Collino, F., Monk, P.B., 1998. Optimizing the perfectly matched layer. Comput. Methods
+
+Appl. Mech. Eng. 164, 157–171.
+
+Collino, F., Tsogka, C., 2001. Application of the perfectly matched layer absorbing layer
+model to the linear elastodynamic problem in anisotropic heterogeneous media.
+Geophysics 66 (1), 294–307.
+
+Dmitriev, M.N., Lisitsa, V.V., 2011. Application of M-PML reﬂectionless boundary condi-
+tions to the numerical simulation of wave propagation in anisotropic media. Part I:
+reﬂectivity. Sib. Zh. Vych. Mat. 14 (no. 4), 333–344.
+
+Dmitriev, M.N., Lisitsa, V.V., 2012. Application of M-PML reﬂectionless boundary condi-
+tions to the numerical simulation of wave propagation in anisotropic media. Part II:
+stability. Sib. Zh. Vych. Mat. 15 (1), 45–55.
+
+Engquist, B., Majda, A., 1977. Absorbing boundary conditions for the numerical simulation
+
+of waves. Math. Comput. 31, 629–651.
+
+Festa, G., Nielsen, S., 2003. PML absorbing boundaries. Bull. Seismol. Soc. Am. 93 (2),
+
+891–903.
+
+Festa, G., Delavaud, E., Vilotte, J.P., 2005. Interaction between surface waves and absorbing
+boundaries for wave propagation in geological basins: 2D numerical simulations.
+Geophys. Res. Lett. 32, L20306. http://dx.doi.org/10.1029/2005GL024091.
+
+Festa, G., Vilotte, J.P., 2005. The Newmark scheme as velocity-stress time-staggering: an
+efﬁcient PML implementation for spectral-element simulations of elastodynamics.
+Geophys. J. Int. 161, 789–812.
+
+Gedney, S.D., 1996. An anisotropic perfectly matched layer-absorbing medium for the
+
+truncation of FDTD lattices. IEEE Trans. Antennas Propag. 44, 1630–1639.
+
+Halpern, L., Petit-Bergez, S., Rauch, J., 2011. The analysis of matched layers. Conﬂuentes
+
+Math. 3 (2), 159–236.
+
+Harari, I., Slavutin, M., Turkel, E., 2000. Analytical and numerical studies of a ﬁnite element
+
+PML for the Helmholtz equation. J. Comput. Acoust. 8 (1), 121–137.
+
+Hastings, F.D., Schneider, J.B., Broschat, S.L., 1996. Application of the perfectly matched
+layer (PML) absorbing boundary condition to elastic wave propagation. J. Acoust.
+Soc. Am. 100, 3061–3069.
+
+Hesthaven, J.S., 1998. On the analysis and construction of perfectly matched layers for the
+
+linearized Euler equations. J. Comput. Phys. 142, 129–147.
+
+Higdon, R.L., 1991. Absorbing boundary conditions for elastic waves. Geophysics 56,
+
+231–241.
+
+Hu, F.Q., 1996. On absorbing boundary conditions for linearized Euler equations by a per-
+
+fectly matched layer. J. Comput. Phys. 129, 201–2019.
+
+Komatitsch, D., Tromp, J., 2003. A perfectly matched layer absorbing boundary con-
+dition for the second-order seismic wave equation. Geophys. J. Int. 154 (1),
+146–153.
+
+Komatitsch, D., Martin, R., 2007. An unsplit convolutional perfectly matched layer im-
+proved at grazing incidence for the seismic wave equation. Geophysics 72 (5),
+SM155–SM167.
+
+Kuzuoglu, M., Mittra, R., 1996. Frequency dependence of the constitutive parameters of
+causal perfectly matched anisotropic absorbers. IEEE Microw. Guided Wave Lett. 6
+(no. 12), 447–449.
+
+Li, Y.F., Matar, O.B., 2010. Convolutional perfectly matched layer for elastic second-order
+
+wave equation. J. Acoust. Soc. Am. 127 (3), 1318–1327.
+
+Mahrer, K.D., 1990. Numerical time step instability and Stacey's and Clayton-Engquist's
+
+absorbing boundary conditions. Bull. Seismol. Soc. Am. 80, 213–217.
+
+Martin, R., Komatitsch, D., Ezziani, A., 2008. An unsplit convolutional perfectly matched
+layer improved at grazing incidence for seismic wave equation in poroelastic
+media. Geophysics 73 (4), T51–T61.
+
+Martin, R., Komatitsch, D., 2009. An unsplit convolutional perfectly matched layer tech-
+nique improved at grazing incidence for the viscoelastic wave equation. Geophys.
+J. Int. 179 (1), 333–344.
+
+Matzen, R., 2011. An efﬁcient ﬁnite element time-domain formulation for the elastic
+second-order wave equation: a non-split complex frequency shifted convolutional
+PML. Int. J. Numer. Methods Eng. 88, 951–973.
+
+V
+
+Z
+
+þ
+
+Z
+
+V
+Z
+
+Γ
+
+(cid:1)
+ρ ∂
+t
+
+Z
+
+V
+Z
+
+(cid:1)
+ρ ∂
+t
+
+(cid:1)
+ρ ∂
+
+t
+
+Fig. 15. Energy curves versus time for the classical PML and the M-PML in the regular re-
+gion for Case 4.
+
+Appendix
+
+The seven independent equations in the corner region can be writ-
+
+ten by
+
+Z
+
+(cid:1)
+ρ ∂
+
+t
+
+(cid:3)
+2
+þ d nð Þ þ pn=md mð
+Þ
+
+s1(cid:2)wd2r¼‐
+
+nwð
+
+Þ:c:
+
+(cid:1)
+ð
+
+n∂
+
+1
+2
+
+ð
+Þþ n∂
+
+ns
+
+ÞT
+
+ns
+
+(cid:3)
+
+dr;
+
+nwð
+n∂
+
+Þ:c:
+
+(cid:1)
+ð
+
+1
+2
+
+Z
+
+V
+
+(cid:3)
+
+n∂
+
+ð
+Þþ n∂
+
+ns
+
+ÞT
+
+ns
+
+d2r
+
+(cid:3)
+þ d nð Þ þ pn=md mð
+Þ
+
+3
+
+Z
+s2(cid:2)wd2r¼‐
+
+′
+
+d
+
+nð Þnw:c:
+
+(cid:1)
+
+ð
+
+1
+2
+
+n∂
+
+ns
+
+ð
+Þþ n∂
+
+ns
+
+(cid:3)
+d2r;
+
+ÞT
+
+(cid:1)
+2 þ d mð
+
+ð
+
+Þ þ p m=n
+
+Þ
+
+ρ½∂
+
+t
+
+V
+
+d nð Þ þ d nð Þ þ p n=mð
+
+Þ
+
+(cid:3)
+Þ
+d mð
+
+∂
+
+t
+
+V
+
+(cid:1)
+þ d mð
+
+ð
+
+Þ þ p m=n
+
+(cid:3)
+
+(cid:1)
+
+Þ
+
+d nð Þ
+
+d nð Þ þ p n=mð
+
+Þ
+
+(cid:3)
+Þ
+d mð
+
+(cid:3)s3 (cid:2) wd2r
+
+Z
+
+¼‐
+
+nwð
+½ n∂
+
+Þ:c:
+
+V
+
+(cid:1)
+þ ∇==
+
+(cid:3)
+
+w
+
+:c:
+
+(cid:1)
+
+1
+2
+
+(cid:1)
+
+(cid:1)
+
+(cid:3)
+s
+
+(cid:1)
+þ ∇==
+
+(cid:3)
+s
+
+T
+
+(cid:3)
+
+∇==
+
+1
+2
+
+(cid:3)
+
+Z
+
+ð
+
+n∂
+
+ns
+
+ð
+Þþ n∂
+
+ÞT
+
+ns
+
+(cid:3)d2rþ
+
+nwð
+
+Þ:c:
+
+þ d mð
+
+ð
+
+Þ þ p m=n
+
+Þ
+
+(cid:3)
+d nð Þ
+
+2
+
+Γ
+
+Z
+s4 (cid:2) wd2r¼‐
+
+(cid:1)
+
+(cid:1)
+
+(cid:3)
+
+(cid:1)
+þ ∇==
+
+s
+
+(cid:3)
+
+(cid:3)
+T
+
+dr;
+
+∇==
+
+s
+
+1
+2
+
+(cid:1)
+
+∇==
+
+(cid:3)
+
+w
+
+:c:
+
+1
+2
+
+(cid:1)
+
+(cid:1)
+
+(cid:3)
+s
+
+(cid:1)
+þ ∇==
+
+(cid:3)
+s
+
+T
+
+(cid:3)
+
+d2r;
+
+∇==
+
+þ d mð
+
+ð
+
+Þ þ p m=n
+
+Þ
+
+d nð Þ
+
+(cid:1)
+(cid:3)
+2 ∂
+
+t
+
+V
+
+þ d nð Þ þ p n=mð
+
+Þ
+
+Þ
+d mð
+
+(cid:3)
+
+s5(cid:2)wd2r
+
+V
+
+Z
+
+¼‐
+
+Þ
+
+ð
+
+p m=n
+
+′
+
+d
+
+nð Þnw:c:
+
+1
+2
+
+(cid:1)
+
+(cid:1)
+
+(cid:3)
+
+(cid:1)
+þ ∇==
+
+s
+
+(cid:3)
+
+(cid:3)
+T
+
+d2r;
+
+∇==
+
+s
+
+Z
+
+V
+(cid:1)
+ρ ∂
+
+t
+
+þ d nð Þ þ p n=mð
+
+Þ
+
+Þ
+d mð
+
+(cid:3)
+
+(cid:1)
+2 ∂
+t
+
+þ d mð
+
+ð
+
+Þ þ p m=n
+
+Þ
+
+(cid:3)
+d nð Þ
+
+s6(cid:2)wd2r
+
+V
+
+Z
+
+¼‐
+
+Þ
+
+p n=mð
+
+d
+
+′
+
+mð
+
+Þmw:c:
+
+(cid:1)
+ð
+
+1
+2
+
+(cid:3)
+
+n∂
+
+ð
+Þþ n∂
+
+ns
+
+ÞT
+
+ns
+
+d2r;
+
+V
+
+(cid:1)
+ρ ∂
+t
+
+Z
+
+V
+
+þ d mð
+
+ð
+
+Þ þ p m=n
+
+Þ
+
+(cid:3)
+d nð Þ
+
+3
+
+Z
+s7(cid:2)wd2r¼‐
+
+′
+
+d
+
+mð
+
+Þmw:c:
+
+1
+2
+
+(cid:1)
+
+(cid:1)
+
+(cid:3)
+s
+
+(cid:1)
+þ ∇==
+
+(cid:3)
+s
+
+T
+
+(cid:3)
+
+d2r;
+
+∇==
+
+V
+
+ð29Þ
+
+where s1, s2, s3, s4, s5, s6 and s7 represent the real displacements with
+different direction couplings.
+
+References
+
+Abarbanel, S., Gottlieb, D., 1997. A mathematical analysis of the PML method. J. Comput.
+
+Acoust. 134, 357–363.
+
+
+--- Page 12 ---
+P. Ping et al. / Journal of Applied Geophysics 101 (2014) 124–135
+
+135
+
+Meza-Fajardo, K.C., Papageogiou, A.S., 2008. A nonconvolutional, split-ﬁeld, perfectly
+matched layer for wave propagation in isotropic and anisotropic elastic media: stabil-
+ity analysis. Bull. Seismol. Soc. Am. 98 (4), 1811–1836.
+
+Meza-Fajardo, K.C., Papageogiou, A.S., 2010. On the stability of a non-convolutional perfectly
+matched layer for isotropic elastic media. Soil Dyn. Earthquake Eng. 30 (3), 68–81.
+Meza-Fajardo, K.C., Papageogiou, A.S., 2012. Study of the accuracy of the multiaxial per-
+fectly matched layer for the elastic-wave equation. Bull. Seismol. Soc. Am. 102 (6),
+2458–2467.
+
+Nataf, F., 2006. A new construction of perfectly matched layers for the linearized Euler
+
+equations. J. Comput. Phys. 214 (2), 757–772.
+
+Quarteroni, A., Tagliani, A., Zampieri, E., 1998. Generalized Galerkin approximations of
+elastic waves with absorbing boundary conditions. Comput. Methods Appl. Mech.
+Eng. 163, 323–341.
+
+Roden, J.A., Gedney, S.D., 2000. Convolution PML (CPML): an efﬁcient FDTD implementa-
+tion of the CFS-PML for arbitrary media. Microw. Opt. Technol. Lett. 27 (5), 334–339.
+Sochacki, J., Kubichek, R., George, J., Fletcher, W.R., Smithson, S., 1987. Absorbing bound-
+
+ary conditions and surface waves. Geophysics 52 (1), 60–71.
+
+Stacey, R., 1988. Improved transparent boundary formulations for the elastic wave equa-
+
+tion. Bull. Seismol. Soc. Am. 78 (6), 2089–2097.
+
+Teixeira, F.L., Chew, W.C., 1998a. Analytical derivation of a conformal perfectly matched
+
+absorber for electromagnetic waves. Microw. Opt. Technol. 17 (4), 231–236.
+
+Teixeira, F.L., Chew, W.C., 1998b. Extension of the PML absorbing boundary condition to
+
+3D spherical coordinates: scalar case. IEEE Trans. Magn. 34 (5), 2680–2683.
+
+Zeng, C., Xia, J., Miller, R., Tsoﬂias, G., 2011. Application of the multiaxial perfectly matched
+layer (M-PML) to near-surface seismic modeling with Rayleigh waves. Geophysics 76
+(3), T43–T52.
+
+Zeng, Y.Q., He, J.Q., Liu, Q.H., 2001. The application of the perfectly matched layer in numer-
+ical modeling of wave propagation in poroelastic media. Geophysics 66 (5),
+1258–1266.
+
+Zhao, L., Cangellaris, A.C., 1996. GT-PML: generalized theory of perfectly matched layers
+and its application to the reﬂectionless truncation of ﬁnite-difference time-domain
+grids. IEEE Trans. Microw. Theory. Technol. 44, 2555–2563.
+
+Ziolkowski, R.W., 1997. Time-derivative Lorenz material model based absorbing bound-
+
+ary conditions. IEEE Trans. Antennas Propag. 45, 1530–1535.
+

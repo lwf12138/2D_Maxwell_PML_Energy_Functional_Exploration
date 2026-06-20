@@ -1,0 +1,5696 @@
+
+--- Page 1 ---
+Energy Decay and Stability of a Perfectly Matched
+Layer For the Wave Equation
+Daniel Henri Baffet, Marcus J. Grote, Sébastien Imperiale, Maryna
+
+Kachanovska
+
+To cite this version:
+
+Daniel Henri Baffet, Marcus J. Grote, Sébastien Imperiale, Maryna Kachanovska. Energy Decay and
+Stability of a Perfectly Matched Layer For the Wave Equation. Journal of Scientific Computing, 2019,
+￿10.1007/s10915-019-01089-9￿. ￿hal-01865484v2￿
+
+HAL Id: hal-01865484
+
+https://hal.science/hal-01865484v2
+
+Submitted on 15 Nov 2019
+
+HAL is a multi-disciplinary open access
+archive for the deposit and dissemination of sci-
+entific research documents, whether they are pub-
+lished or not. The documents may come from
+teaching and research institutions in France or
+abroad, or from public or private research centers.
+
+L’archive ouverte pluridisciplinaire HAL, est
+destinée au dépôt et à la diffusion de documents
+scientifiques de niveau recherche, publiés ou non,
+émanant des établissements d’enseignement et de
+recherche français ou étrangers, des laboratoires
+publics ou privés.
+
+
+--- Page 2 ---
+Noname manuscript No.
+(will be inserted by the editor)
+
+Energy Decay and Stability of a Perfectly Matched Layer
+For the Wave Equation
+
+Daniel H. Baﬀet · Marcus J. Grote ·
+S´ebastien Imperiale · Maryna Kachanovska
+
+November 15, 2019
+
+Abstract In [26, 25], a PML formulation was proposed for the wave equation in
+its standard second-order form. Here, energy decay and L2 stability bounds in two
+and three space dimensions are rigorously proved both for continuous and discrete
+formulations with constant damping coeﬃcients. Numerical results validate the
+theory.
+
+1 Introduction
+
+In the last two decades, the perfectly matched layer (PML) approach [13] has
+proved a ﬂexible and accurate method for the simulation of waves in unbounded
+media. It consists in surrounding the region of interest by an absorbing layer,
+which generates no reﬂections at its interface; hence, it is perfectly matched. As
+the waves propagate through the layer, they decay exponentially until becoming
+vanishingly small at the outer boundary of the computational domain, where any
+stable boundary condition can be imposed. Due to its simplicity, versatility and
+robust treatment of corners, B´erenger’s perfectly matched layer (PML) approach
+
+D. Baﬀet
+Department of Mathematics and Computer Science, University of Basel, Spiegelgasse 1, 4051
+Basel, Switzerland
+E-mail: daniel.baﬀet@unibas.ch
+
+M. J. Grote
+Department of Mathematics and Computer Science, University of Basel, Spiegelgasse 1, 4051
+Basel, Switzerland
+E-mail: marcus.grote@unibas.ch
+
+S. Imperiale
+Inria — LMS, Ecole Polytechnique, CNRS — Institut Polytechnique de Paris, Palaiseau,
+France
+E-mail: sebastien.imperiale@inria.fr
+
+M. Kachanovska
+POEMS (UMR 7231 CNRS, ENSTA, INRIA), INRIA, Institut Polytechnique de Paris,
+Palaiseau, France
+E-mail: maryna.kachanovska@inria.fr
+
+
+--- Page 3 ---
+2
+
+Daniel H. Baﬀet et al.
+
+[13] for Maxwell’s equations quickly gained in popularity and was soon extended
+to other ﬁrst-order hyperbolic equations [28, 2, 19].
+
+The original PML formulation [13, 14] was based on splitting the electromag-
+netic ﬁelds into two parts, the ﬁrst containing the tangential derivatives and the
+second containing the normal derivatives; damping was then enforced only upon
+the normal component. Abarbanel and Gottlieb [1] showed that B´erenger’s ”split-
+ﬁeld” approach was only weakly well-posed. Several strongly well-posed ”unsplit”
+formulations were then proposed, some of which were shown to be linearly equiv-
+alent [3, 36]. Well-posedness, however, does not prevent exponential growth of the
+solution while even the stronger notion of stability generally allows for polynomial
+growth in time. In fact, both split and unsplit PML formulations can generate
+late-time linear growth [1, 7], an undesirable behavior which was later removed
+through an alternative complex frequency shifted (CFS) scaling function [12].
+
+Although stable PML formulations existed for a variety of wave equations,
+exponential growth was observed in various models involving anisotropy. In [6],
+B´ecache, Fauqueux and Joly derived a necessary condition for the stability of
+PML for general hyperbolic systems based on the geometrical properties of the
+dispersion relation. Related to the existence of backward propagating waves, this
+condition explains in particular instabilities observed in anisotropic elasticity and
+led to necessary and suﬃcient stability conditions for orthotropic elastic waves.
+Appel¨o, Hagstrom and Kreiss [3] also derived necessary and suﬃcient stability con-
+ditions for ﬁrst order constant coeﬃcient Cauchy problems; they require verifying
+a number of algebraic inequalities in Fourier-Laplace domain, but also yield an en-
+ergy in physical space that involves combinations of higher order derivatives of the
+unknowns and decays with time – see also [27]. In recent years, stable PML formu-
+lations were proposed for linearized Euler equations [29, 34], anisotropic acoustics
+[20], aeroacoustics [21], short water waves [5] and electromagnetic dispersive media
+[9, 10, 11, 8].
+
+Even when the geometric stability condition [6] guarantees the temporal sta-
+bility of the Cauchy problem, physical boundaries and interfaces that interact with
+the PML can induce new instabilities. However, if the complex change of variables
+in the Laplace domain is applied not only to the normal derivatives inside the
+PML but also to the tangential derivatives at the physical boundary condition,
+the initial-boundary value problem generally inherits the stability of the Cauchy
+problem [23].
+
+By using the Cagniard-De Hoop technique, Diaz and Joly [21] proved the expo-
+nential accuracy of PMLs with respect to the damping coeﬃcient and the layer’s
+thickness. Convergence for two-dimensional scattering problems with an annular
+PML was proved in [16]. Exponential decay of the energy both for a continuous
+and a semi-discrete PML formulation for the one-dimensional wave equation was
+proved in [24]. In two or more space dimensions, however, the derivation of sta-
+bility estimates for the transmission problem associated with a PML using energy
+techniques, well suited for any subsequent numerical analysis, still remains an open
+question.
+
+In the frequency domain, PML formulations essentially consist of a complex-
+valued coordinate stretching across the damping layer [17]. The inverse Fourier
+transformation back to the time domain, however, is more intricate and gen-
+erally introduces additional unknowns. Moreover, initial PML formulations for
+time-dependent wave equations in second-order form required ﬁrst reformulat-
+
+
+--- Page 4 ---
+Stability Analysis of a PML for the Second-order Wave Equation
+
+3
+
+ing them as ﬁrst-order hyperbolic systems, thereby introducing many additional
+unknowns. In [33, 35, 4], various PML formulations were derived for second-order
+wave equations from acoustics, electromagnetics and elasticity. Still, the inverse
+Fourier transformation of the PML system in the frequency domain typically led
+to convolution integrals in the time domain [33].
+
+In [26, 25], Grote and Sim proposed an eﬃcient PML formulation directly for
+the wave equation in its second-order form, which avoids convolution integrals
+while keeping minimal the number of auxiliary variables; in fact, it requires only
+two auxiliary variables in two dimensions and four auxiliary variables in three di-
+mensions inside the absorbing layer. As it avoids convolution integrals, it is also
+local in time and easily coupled with standard ﬁnite diﬀerence or ﬁnite element
+methods. Moreover, discontinuous absorption coeﬃcients can be used without spe-
+cial treatment of the transmission conditions (i.e. without introducing boundary
+terms) as they are naturally taken into account into the variational formulation,
+unlike in e.g. [20]. Kaltenbacher, Kaltenbacher and Sim [32] addressed the stabil-
+ity of the PML formulation from [26, 25] via an energy analysis and also applied it
+to aeroacoustics. By ”omitting one critical term involving the mixed products of
+the damping functions”, they were able to prove long-time stability of a reduced
+(rPML) formulation which, however, ”will not achieve perfect matching” [32].
+
+Here, we consider the original PML formulation from [26, 25] for the wave
+equation in its standard second-order form. In Section 2, as a ﬁrst step towards
+analyzing more general higher-dimensional transmission problems, we prove energy
+decay both in two and three space dimensions for the PML system of [26, 25] with
+constant damping functions. The key distinguishing features of our analysis is that
+it avoids Laplace/Fourier transforming the problem into the frequency domain and
+thus explicitly yields a new (space-time) energy of the PML system including ﬁnite
+thickness and corners. These results then imply boundedness of all the unknowns
+in the L2-norm. Next, in Section 3, we derive similar estimates for the semi-discrete
+and the fully discrete case. Finally, in Section 4, we present numerical results which
+validate the theory.
+
+2 Continuous formulation and energy estimates
+
+We consider the wave equation in its standard second-order form with constant
+unit wave speed inside a three dimensional rectangular region of interest, Ω0. To
+avoid spurious reﬂections from the boundary of Ω0, we surround it by a perfectly
+matched layer (PML), Ωpml, truncated by a rectangular outer boundary, B. Inside
+the computational domain Ω, the interior of Ω0 ∪ Ωpml, we consider the PML
+formulation of [25, 26]:
+
+
+
+
+
+
+∂2
+t u + tr Γ1∂tu + tr Γ3u + det Γ1ψ − ∆u − div φ = 0,
+∂tψ = u,
+∂tφ + Γ1φ = Γ2∇u + Γ3∇ψ,
+
+(2.1a)
+
+(2.1b)
+
+(2.1c)
+
+
+--- Page 5 ---
+4
+
+Daniel H. Baﬀet et al.
+
+where, u, ψ : (0, T ) × Ω → R and φ : (0, T ) × Ω → R3. The matrices Γ1, Γ2 and Γ3
+are deﬁned as
+
+Γ1 =
+
+
+
+
+
+ξ1 0 0
+0 ξ2 0
+0 0 ξ3
+
+
+
+ ,
+
+
+
+
+
+Γ2 =
+
+ξ2 + ξ3 − ξ1
+0
+0
+
+0
+ξ1 + ξ3 − ξ2
+0
+
+0
+0
+ξ1 + ξ2 − ξ3
+
+
+
+
+
+and
+
+Γ3 =
+
+
+
+
+
+ξ2ξ3 0
+
+0
+0 ξ1ξ3 0
+0
+
+0 ξ2ξ1
+
+
+
+ ,
+
+where each damping function ξi only depends on the i-th spatial coordinate xi,
+is non-negative throughout Ω and identically zero inside the (physical) region Ω0.
+Note that Γ1 is deﬁned here with the opposite sign with respect to the original
+formulation in [25, 26].
+
+The PML system (2.1) must be completed with appropriate initial conditions
+in Ω and boundary conditions on B. Inside Ωpml, all the initial conditions (and
+source terms) are identically zero. On the outer boundary B, we impose either
+homogeneous Dirichlet or Neumann conditions,
+
+Dirichlet: u = 0
+
+(D),
+
+Neumann: ∂ν u + φ · ν = 0
+
+(N).
+
+(2.2)
+
+We do not consider here Robin or absorbing boundary conditions (see for instance
+[18] or [22]), however our analysis could be extended to include more general
+boundary conditions.
+
+When the PML is used only in a single direction, i.e. when ξi (cid:54)≡ 0 and ξj =
+ξk ≡ 0, for i (cid:54)= j (cid:54)= k, both Γ3 and det Γ1 are zero and equations (2.1a) and (2.1c)
+no longer involve ψ; then, the above PML formulation involves only the three
+(scalar) auxiliary variables φi, i = 1, 2, 3. At a corner, however, where ξiξj (cid:54)≡ 0 for
+some i (cid:54)= j, the above formulation requires the four auxiliary variables ψ and φi,
+i = 1, 2, 3.
+
+To derive energy estimates for (2.1), we assume that the damping functions
+ξ1, ξ2, ξ3 are constant throughout Ω. We note that to the best of our knowledge
+there is no energy-based proof of the stability of the PML system with non-constant
+coeﬃcients (and it seems that this question is highly non-trivial). The stability
+analysis of the PML system with constant coeﬃcients is justiﬁed by the fact that
+when the damping proﬁles are piecewise constant, the PML system (2.1) can be
+written as a transmission problem between (2.1) with ξ1 = ξ2 = ξ3 = 0 stated
+in Ω0 and (2.1) with piecewise-constant ξ1, ξ2, ξ3 inside Ωpml, each of which can
+also be split into multiple transmission problems with constant ξ1, ξ2, ξ3 and ap-
+propriate transmission conditions – see [20]. Thus to analyze the stability of such
+a transmission problem, it is natural to ﬁrst analyze the stability of each of the
+corresponding boundary value problems.
+
+We introduce the following notations. Given u, v : Ω → Rn, n ≥ 1, we let
+
+(cid:104)u, v(cid:105) =
+
+(cid:90)
+
+Ω
+
+n
+(cid:88)
+
+k=1
+
+uk(x)vk(x)dx,
+
+(cid:107)u(cid:107) = (cid:104)u, u(cid:105)
+
+1
+2 .
+
+More generally, for any given n × n symmetric positive semideﬁnite matrix M , we
+let
+
+(cid:90)
+
+(cid:104)u, v(cid:105)M =
+
+uT (x)M v(x) dx ,
+
+(cid:107)u(cid:107)2
+
+M = (cid:104)u, u(cid:105)M ;
+
+
+--- Page 6 ---
+Stability Analysis of a PML for the Second-order Wave Equation
+
+5
+
+when M = m Id, with m > 0 scalar, we write (cid:104)·, ·(cid:105)m instead of (cid:104)·, ·(cid:105)m Id. Moreover,
+given u, v : R+ → (cid:0)L2(Ω)(cid:1)n
+, we will use the notation
+
+(cid:104)u, v(cid:105) ≡ (cid:104)u, v(cid:105)(t) ≡ (cid:104)u(t), v(t)(cid:105),
+
+and similarly for (cid:104)·, ·(cid:105)M .
+
+2.1 Two-dimensional formulation
+
+In two space dimensions, the PML formulation (2.1) reduces to:
+
+
+
+
+
+
+∂2
+t u + tr(Γ1) ∂tu + det(Γ1) u − ∆u − div φ = 0,
+
+∂tφ + Γ1φ = Γ2∇u,
+
+(2.3a)
+
+(2.3b)
+
+where the matrices Γ1 and Γ2 are given by
+
+Γ1 =
+
+(cid:18)ξ1 0
+0 ξ2
+
+(cid:19)
+
+,
+
+Γ2 =
+
+(cid:18)ξ2 − ξ1
+0
+
+(cid:19)
+
+.
+
+0
+ξ1 − ξ2
+
+Here, only two damping functions ξ1, ξ2 and two auxiliary variables φ1, φ2 are
+needed.
+
+With the above 2D PML system we associate the following energy functional:
+
+E[u, φ] =
+
+1
+2
+
+(cid:16)
+(cid:107)∂tu + au(cid:107)2 + (cid:107)∇u + φ(cid:107)2 + (cid:107)φ(cid:107)2
+
+a−1Γ1
+
++ (cid:107)u(cid:107)2
+b
+
+(cid:17)
+,
+
+where
+
+a = tr Γ1,
+
+b = det Γ1.
+
+(2.4)
+
+In [7], a similar energy was shown to decay for a single PML layer formulation with
+positive constant damping coeﬃcients for the 2D transverse electric (TE) Maxwell
+equations. Since the PML formulation (2.3) for the second-order wave equation
+diﬀers from the ﬁrst-order formulation in [7], we provide a proof of energy decay,
+which also paves the way to the analysis in the 3D case.
+
+Theorem 2.1 Let (u, φ) be a suﬃciently regular solution of (2.3) with constant damp-
+ing coeﬃcients ξ1, ξ2. Then
+
+d
+dt
+
+E[u, φ] = −
+
+(cid:16)
+(cid:107)∇u + φ(cid:107)2
+
+Γ1(Id +a−1Γ1) + (cid:107)∇u(cid:107)2
+
+a−1b + (cid:107)u(cid:107)2
+ab
+
+(cid:17)
+
+.
+
+(2.5)
+
+Hence, E[u, φ] is a nonincreasing function of t.
+
+Proof We write (2.3a) as
+
+∂2
+t u + a ∂tu + b u = div λ ,
+
+(2.6a)
+
+where a, b are deﬁned in (2.4) and λ = ∇u + φ. By adding ∇∂tu + Γ1∇u to both
+sides of (2.3b) we obtain
+
+∂tλ + Γ1λ = ∇∂tu + (cid:101)Γ2∇u ,
+
+(2.6b)
+
+
+--- Page 7 ---
+6
+
+where
+
+(cid:101)Γ2 = Γ2 + Γ1 =
+
+(cid:19)
+
+(cid:18)ξ2 0
+0 ξ1
+
+.
+
+Daniel H. Baﬀet et al.
+
+Testing (2.6a) with ∂tu + au yields
+
+(cid:16)
+
+(cid:107)∂tu + au(cid:107)2 + b(cid:107)u(cid:107)2(cid:17)
+
+1
+2
+
+d
+dt
+
++ (cid:107)u(cid:107)2
+
+ab = −(cid:104)∇(∂tu + au), λ(cid:105) .
+
+(2.7)
+
+Next we test (2.6b) with
+
+g = (Id +a−1Γ1)λ − a−1Γ1∇u .
+
+The inner product of g with the left hand side of (2.6b) then yields
+
+(cid:104)g, ∂tλ + Γ1λ(cid:105) =
+
+1
+2
+
+d
+dt
+
+(cid:16)
+(cid:107)λ(cid:107)2 + (cid:107)λ(cid:107)2
+
+a−1Γ1
+
+(cid:17)
+
++ (cid:107)λ(cid:107)2
+
+Γ1(Id +a−1Γ1)
+
+− (cid:104)a−1Γ1∇u, ∂tλ + Γ1λ(cid:105) .
+
+The inner product of g with the right hand side of (2.6b) leads to
+
+(cid:104)g, ∇∂tu + (cid:101)Γ2∇u(cid:105) =
+
+(cid:68)
+
+(Id +a−1Γ1)λ, ∇∂tu + (cid:101)Γ2∇u
+
+(cid:69)
+
+−
+
+1
+2
+
+d
+dt
+
+(cid:107)∇u(cid:107)2
+
+a−1Γ1
+
+− (cid:107)∇u(cid:107)2
+
+a−1b ,
+
+since Γ1 (cid:101)Γ2 = b Id.
+
+Because of (2.6b), the right hand sides of the last two equations must be equal.
+
+By rearranging terms, we thus obtain
+
+1
+2
+
+d
+dt
+
+(cid:16)
+(cid:107)λ(cid:107)2 + (cid:107)λ(cid:107)2
+
+a−1Γ1
+
++ (cid:107)∇u(cid:107)2
+
+(cid:17)
+
++ (cid:107)λ(cid:107)2
+
+a−1Γ1
+(cid:68)
+
+Γ1(Id +a−1Γ1) + (cid:107)∇u(cid:107)2
+(cid:69)
+
+a−1b
+
+= (cid:104)a−1Γ1∇u, ∂tλ + Γ1λ(cid:105) +
+
+(Id +a−1Γ1)λ, ∇∂tu + (cid:101)Γ2∇u
+(cid:68)(cid:2)a−1Γ1(Γ1 + (cid:101)Γ2) + (cid:101)Γ2
+
+(cid:69)
+(cid:3)∇u, λ
+
+.
+
+(2.8)
+
+=
+
+d
+dt
+
+(cid:104)∇u, λ(cid:105)a−1Γ1 + (cid:104)∇∂tu, λ(cid:105) +
+
+It remains to deal with the terms on the right hand side of (2.8). First, we note
+
+that the term d
+
+dt (cid:104)∇u, λ(cid:105)a−1Γ1 can be expressed using the identity:
+
+(cid:107)φ(cid:107)2
+
+a−1Γ1
+
+= (cid:107)λ(cid:107)2
+
+a−1Γ1
+
++ (cid:107)∇u(cid:107)2
+
+a−1Γ1
+
+− 2(cid:104)∇u, λ(cid:105)a−1Γ1
+
+.
+
+Next, we simplify the last term of the right hand side of (2.8) by using
+
+a−1Γ1(Γ1 + (cid:101)Γ2) + (cid:101)Γ2 = Γ1 + (cid:101)Γ2 = a Id .
+
+Substitution into (2.8) then yields
+
+1
+2
+
+d
+dt
+
+(cid:16)
+(cid:107)λ(cid:107)2 + (cid:107)φ(cid:107)2
+
+a−1Γ1
+
+(cid:17)
+
+(cid:68)
+
+=
+
+∇∂tu + a∇u, λ
+
++ (cid:107)λ(cid:107)2
+(cid:69)
+
+Γ1(Id +a−1Γ1) + (cid:107)∇u(cid:107)2
+
+a−1b
+
+(2.9)
+
+Finally, we sum (2.7) and (2.9) to obtain (2.5), which concludes the proof.
+
+(cid:117)(cid:116)
+
+
+--- Page 8 ---
+Stability Analysis of a PML for the Second-order Wave Equation
+
+7
+
+2.2 Three-dimensional formulation
+
+We now return to the PML formulation (2.1) in its full three-dimensional setting.
+First, we prove a result on energy decay, analogous to Theorem 2.1 for the 2D
+case. To determine a judicious energy functional associated to (2.1), we study
+the coercivity of the sesquilinear form associated with our PML formulation in
+the Fourier-Laplace domain, following ideas from [31]; those calculations are not
+repeated here and we simply use the resulting expression for the energy. Then, we
+prove L2 bounds on all the unknowns involved in (2.1).
+
+2.2.1 Energy Decay
+
+First, we introduce two additional unknowns, which are not present in (2.1) but
+are needed in our energy estimates below. For a solution (u, ψ, φ) of (2.1), let
+
+Ψ (t) =
+
+t
+
+(cid:90)
+
+0
+
+ψ(τ )dτ,
+
+Φ(t) =
+
+t
+
+(cid:90)
+
+0
+
+φ(τ )dτ + Φ(0),
+
+(2.10)
+
+where Φ(0) satisﬁes
+
+Γ1
+
+(cid:16)
+
+Γ1Φ(0) + φ(0) − Γ2∇ψ(0)
+
+= 0.
+
+(2.11)
+
+(cid:17)
+
+This condition is required in the proof of Theorem 2.2 and imposes no true re-
+striction. Indeed for suﬃciently regular ψ, φ, that is for Γ1 (φ(0) + Γ2∇ψ(0)) ∈
+(cid:0)L2(Ω)(cid:1)3
+, we may always deﬁne Φ(0) as follows: for each i = 1, 2, 3, let j and k be
+such that {i, j, k} = {1, 2, 3}, and set Φi(0) = 0, if ξi = 0, and
+
+Φi(0) = −ξ−1
+
+i φi(0) + ξ−1
+
+i
+
+(ξj + ξk − ξi)∂xi ψ(0)
+
+otherwise. Next, we introduce the additional unknown q,
+
+q := ∂tu + tr Γ1u + tr Γ3ψ + det Γ1Ψ,
+
+(2.12)
+
+which also plays an important role in the energy identity.
+
+Using the above deﬁnitions, we associate with the 3D PML system (2.1) the
+
+energy functional
+
+E[u, ψ, φ, Φ, Ψ ] =
+
+1
+2
+
+(cid:16)
+
+(cid:107)q(cid:107)2 + (cid:107)∇u + φ(cid:107)2 + (cid:107)Γ1(∇ψ + Φ)(cid:107)2(cid:17)
+
+.
+
+The following theorem summarizes the principal result of this section.
+
+Theorem 2.2 Let (u, ψ, φ) be a suﬃciently regular solution of (2.1) with constant
+damping functions ξ1, ξ2, ξ3. Then, the energy satisﬁes
+
+d
+dt
+
+E[u, ψ, φ, Φ, Ψ ] = −2(cid:107)∇u + φ(cid:107)2
+
+Γ1 ,
+
+where Φ and Ψ are given by (2.10) and Φ(0) satisﬁes (2.11). Hence, E[u, ψ, φ, Φ, Ψ ]
+is nonincreasing in time.
+
+For the proof we will need the following two lemmas.
+
+
+--- Page 9 ---
+8
+
+Daniel H. Baﬀet et al.
+
+Lemma 2.1 Let (u, ψ, φ) be a suﬃciently regular solution of (2.1) with constant damp-
+ing functions, Ψ and Φ be deﬁned by (2.10) with Φ(0) satisfying (2.11). Then q, deﬁned
+in (2.12), satisﬁes
+
+∇q = ∂2
+
+t Λ + 2Γ1∂tΛ + Γ 2
+
+1 Λ,
+
+where
+
+Λ = ∇ψ + Φ.
+
+(2.13)
+
+(2.14)
+
+Proof Since ξi = const, i = 1, 2, 3, we can interchange ∇ and multiplication by
+traces and determinants of the matrices Γ1, Γ3 in (2.12):
+
+∇q = ∂t∇u + tr Γ1∇u + tr Γ3∇ψ + det Γ1∇Ψ.
+
+(2.15)
+
+We start by rewriting tr Γ1∇u in (2.15) in a more convenient form. Since,
+
+tr Γ1 Id = Γ2 + 2Γ1
+
+(2.16)
+
+we have using (2.1c):
+
+tr Γ1∇u = Γ2∇u + 2Γ1∇u = ∂tφ + Γ1φ − Γ3∇ψ + 2Γ1∇u.
+
+Inserting the above into (2.15) yields
+
+∇q = ∂t(∇u + φ) + Γ1φ − Γ3∇ψ + 2Γ1∇u + tr Γ3∇ψ + det Γ1∇Ψ
+
+= ∂t(∇u + φ) + 2Γ1(∇u + φ) − Γ1φ + (tr Γ3 Id −Γ3)∇ψ + det Γ1∇Ψ.
+
+Next, we use the two identities
+
+tr Γ3 Id −Γ3 = Γ1(Γ1 + Γ2),
+
+det Γ1 Id = Γ1Γ3,
+
+(2.17)
+
+together with (2.14) to obtain
+
+∇q = ∂2
+
+t Λ + 2Γ1∂tΛ − Γ1φ + Γ1(Γ1 + Γ2)∇ψ + Γ1Γ3∇Ψ,
+
+or equivalently
+
+(cid:16)
+
+∇q −
+
+t Λ + 2Γ1∂tΛ + Γ 2
+∂2
+
+1 Λ
+
+(cid:17)
+
+(cid:16)
+
+= Γ1
+
+− Γ1Λ − φ + (Γ1 + Γ2)∇ψ + Γ3∇Ψ
+
+(cid:17)
+
+.
+
+Thus, (2.13) holds true provided that
+
+(cid:16)
+
+Γ1
+
+− Γ1Φ − φ + Γ2∇ψ + Γ3∇Ψ
+
+(cid:17)
+
+= 0.
+
+If ξi = 0, the ith component of the vector on the left hand side automatically
+vanishes; otherwise, the result follows from Lemma 2.2, since Φ(0) satisﬁes (2.11).
+(cid:117)(cid:116)
+
+Remark 2.1 When ξi, i = 1, 2, 3 are not constant and belong to C1(Ω), it follows
+that
+
+∇q = ∂2
+
+t Λ + 2Γ1∂tΛ + Γ 2
+
+1 Λ + u∇ tr Γ1 + ψ∇ tr Γ3 + Ψ ∇ det Γ1.
+
+
+--- Page 10 ---
+Stability Analysis of a PML for the Second-order Wave Equation
+
+9
+
+Lemma 2.2 Let Ψ, Φ be deﬁned by (2.10), with Φ(0) satisfying (2.11), and the indices
+i, j, k ∈ {1, 2, 3} be all diﬀerent. If ξi (cid:54)= 0, then
+
+φi(t) + ξiΦi(t) = (ξj + ξk − ξi)∂xi ψ(t) + ξj ξk∂xi Ψ (t),
+
+t ≥ 0.
+
+(2.18)
+
+Proof Let ξi (cid:54)= 0. Integrating the i-th component of (2.1c), we obtain using (2.10)
+
+φi(t) − φi(0) + ξi (Φi(t) − Φi(0)) = (ξj + ξk − ξi)∂xi (ψ(t) − ψ(0)) + ξj ξk∂xi Ψ (t).
+
+Since (2.11) implies that φi(0)+ξiΦi(0) = (ξj +ξk −ξi)∂xi ψ(0), the terms evaluated
+at t = 0 cancel each other, which completes the proof.
+(cid:117)(cid:116)
+
+Now we have all the necessary ingredients to prove Theorem 2.2.
+
+Proof (Theorem 2.2) We test equation (2.1a) with q, deﬁned in (2.12). Integration
+by parts then yields
+
+1
+2
+
+d
+dt
+
+(cid:107)q(cid:107)2 + (cid:104)∇u + φ, ∇q(cid:105) =
+
+(cid:90)
+
+B
+
+(∇u + φ) · ν q.
+
+(2.19)
+
+If the Dirichlet boundary condition (2.2)(D) is imposed, by (2.12) it follows that
+q = 0 on B and thus the right hand side of (2.20) vanishes. If the Neumann
+boundary condition (2.2)(N) is used, the same conclusion holds. Therefore, in
+either case we have
+
+1
+2
+
+d
+dt
+
+(cid:107)q(cid:107)2 + (cid:104)∇u + φ, ∇q(cid:105) = 0.
+
+From (2.13) and (2.14), we thus obtain the statement of the theorem:
+
+1
+2
+
+d
+dt
+
+or equivalently
+
+(cid:107)q(cid:107)2 + (cid:104)∂tΛ, ∂2
+
+t Λ + 2Γ1∂tΛ + Γ 2
+
+1 Λ(cid:105) = 0,
+
+(cid:18) 1
+2
+
+d
+dt
+
+(cid:107)q(cid:107)2 +
+
+1
+2
+
+(cid:107)∂tΛ(cid:107)2 +
+
+(cid:19)
+
+(cid:107)Γ1Λ(cid:107)2
+
+1
+2
+
+= −2(cid:107)∂tΛ(cid:107)2
+
+Γ1 .
+
+(2.20)
+
+(2.21)
+
+(2.22)
+
+(cid:117)(cid:116)
+
+Remark 2.2 If ξ1 = ξ2 = ξ3 = 0, Theorem 2.2 implies the following bound for some
+constant C ≥ 0, which depends only on the initial data:
+
+(cid:107)∇u(t)(cid:107)2 + (cid:107)∂tu(t)(cid:107)2 ≤ C, t ≥ 0.
+
+(2.23)
+
+Indeed, in this particular case (2.1) reduces to
+
+∂2
+t u − ∆u − div φ = 0,
+
+∂tφ = 0,
+
+and the energy identity of Theorem 2.2 reduces to
+(cid:107)∂tu(cid:107)2 + (cid:107)∇u + φ(cid:107)2(cid:17)
+
+(cid:16)
+
+d
+dt
+
+= 0.
+
+Since (cid:107)φ(t)(cid:107) = (cid:107)φ(0)(cid:107) for all t ≥ 0, we infer the bound in (2.23).
+
+
+--- Page 11 ---
+10
+
+Daniel H. Baﬀet et al.
+
+In practice the damping parameters, ξ1, ξ2, ξ3 are not constant. The following
+remarks address two more realistic cases where the damping parameters may vary.
+
+Remark 2.3 In the case when ξi, i = 1, 2, 3, are non-constant, but suﬃciently reg-
+ular (for instance, C1(Ω)), it follows from Remark 2.1 and (2.20), that
+
+d
+dt
+
+E[u, ψ, φ, Φ, Ψ ] = −2(cid:107)∂tΛ(cid:107)2
+
+Γ1 − (cid:104)∂tΛ, u∇ tr Γ1 + ψ∇ tr Γ3 + Ψ ∇ det Γ1(cid:105).
+
+Using Gronwall’s inequality, one can derive an exponential bound on the energy
+(which yields well-posedness).
+
+Remark 2.4 If ξi, with i = 1, 2, 3, are piecewise constant, a similar analysis can
+be carried out. For simplicity, consider the case of a PML applied only in the
+direction of x1. Suppose Ω0 = (−1, 0)3, ΩP M L = (0, 1) × (−1, 0)2, ξ2 = ξ3 = 0 and
+ξ1(x1) = 0, for x1 < 0, and ξ1 > 0 constant, for x1 ≥ 0. Let Σ = {x1 = 0} × [−1, 0]2
+be the interface between the physical domain Ω0 and the PML domain ΩP M L. The
+respective normal is then e1 = (1, 0, 0). For this formulation we have the identity
+
+d
+dt
+
+E[u, ψ, φ, Φ, Ψ ] = −2(cid:107)∂tΛ(cid:107)2
+
+Γ1 −
+
+(cid:90)
+
+Σ
+
+(∂tΛ · e1)u[ξ1]Σ,
+
+(2.24)
+
+where [f ]Σ, given by
+
+[f ]Σ = lim
+ε→0+
+
+(f (ε) − f (−ε)) ,
+
+represents the jump of f on Σ. Since the last term of (2.24) is, in general, not
+positive, we can not conclude energy decay from equation (2.24). We remark that
+to obtain (2.24) we implicitly use the transmission conditions
+
+[u]Σ = 0
+
+and [(∇u + φ) · e1]Σ = [∂tΛ · e1]Σ = 0,
+
+which are a consequence of the requirement that the layer in ΩP M L perfectly
+matches the medium inside Ω0 (see [30] for the related discussion). Note also that
+since φ(0) = 0 in Ω, there holds φ(t) = 0 in the physical domain Ω0, and therefore,
+in general, [∇u · e1]Σ (cid:54)= 0.
+
+2.2.2 Control of the unknowns
+
+Theorem 2.2 does not immediately imply u, ψ and φ do not grow in time. We
+clarify the behaviour of the unknowns solving (2.1) in the following theorem.
+
+Assumption 1 The initial data for (2.1) satisﬁes
+
+u(0), ψ(0) ∈ H 1(Ω),
+
+∂tu(0) ∈ L2(Ω), φ(0) ∈ (L2(Ω))3.
+
+Theorem 2.3 Let (u, φ, ψ) solve (2.1) with initial data satisfying Assumption 1 and
+ξ1, ξ2, ξ3 ≥ 0 constant. Then there exists a non-negative constant C, which depends
+only on the initial data and ξj , j = 1, 2, 3, such that
+
+– if ξi (cid:54)= 0 for some i ∈ {1, 2, 3}, then
+
+(cid:107)u(t)(cid:107)H 1 + (cid:107)∂tu(t)(cid:107) + (cid:107)φ(t)(cid:107) ≤ C,
+
+for all t ≥ 0;
+
+
+--- Page 12 ---
+Stability Analysis of a PML for the Second-order Wave Equation
+
+11
+
+– if, additionally, ξj (cid:54)= 0 for some j (cid:54)= i, j ∈ {1, 2, 3}, then
+
+(cid:107)ψ(t)(cid:107)H 1 ≤ C for all t ≥ 0.
+
+From these estimates, it appears that we control the L2-norms of all the unknowns
+inside the PML. Indeed, when ξi (cid:54)= 0, ξj (cid:54)= 0 for some i (cid:54)= j, this precisely corre-
+sponds to the statement of the theorem. Still, when only one ξi is nonzero, that is
+for a PML in a single direction, the norm of ψ in fact is not necessarily bounded. In
+that particular situation, however, (2.1a) and (2.1c) decouple from (2.1b) – see the
+discussion below (2.1) – and hence ψ can be excluded from the PML formulation.
+The proof of Theorem 2.3 relies on Lemmas 2.4, 2.5 below, whose proofs ex-
+
+tensively use the Gronwall lemma stated below.
+
+Lemma 2.3 Let v ∈ C1([0, ∞); L2(Ω)) and w be deﬁned by
+
+w = ∂tv + γv,
+
+γ > 0,
+
+(2.25)
+
+and assume that for some constant Cw ≥ 0, (cid:107)w(t)(cid:107) ≤ Cw uniformly for all t ≥ 0.
+Then,
+
+(cid:107)v(t)(cid:107) ≤ (cid:107)v(0)(cid:107) + γ−1Cw,
+
+(cid:107)∂tv(t)(cid:107) ≤ 2Cw + γ(cid:107)v(0)(cid:107),
+
+for all t ≥ 0.
+
+(2.26)
+
+The estimate of Theorem 2.2 controls the norm of q deﬁned in (2.12). The following
+lemma shows that whenever ξi > 0 for some i ∈ {1, 2, 3}, controlling (cid:107)q(t)(cid:107) amounts
+to controlling (cid:107)u(t)(cid:107).
+
+Lemma 2.4 Let (u, ψ, φ) solve (2.1) with initial data satisfying Assumption 1 and
+ξ1, ξ2, ξ3 ≥ 0 constant. Then there exists a constant C > 0, which depends only on
+the initial data and ξj , j = 1, 2, 3, such that
+
+– if ξi (cid:54)= 0 for some i ∈ {1, 2, 3}, then for all t ≥ 0,
+
+(cid:107)u(t)(cid:107) ≤ C,
+
+(2.27a)
+
+(cid:107)∂tu(t)(cid:107) ≤ C.
+
+(2.27b)
+
+– If, additionally, ξj (cid:54)= 0, j (cid:54)= i, then
+
+(cid:107)ψ(t)(cid:107) ≤ C,
+
+for all t ≥ 0.
+
+(2.28)
+
+Proof In the following, we let C denote a generic constant that depends only on
+the initial data and ξj , j = 1, 2, 3. From Theorem 2.2 it follows that q, deﬁned in
+(2.12), satisﬁes
+
+(cid:107)q(t)(cid:107) ≤ C
+
+for all t ≥ 0.
+
+We now consider the following three distinct cases:
+
+1. ξi (cid:54)= 0 and ξj = ξk = 0, i (cid:54)= j (cid:54)= k, k ∈ {1, 2, 3}. The bounds (2.27a, 2.27b)
+
+follow from q ≡ ∂tu + ξiu and a direct application of Lemma 2.3.
+
+
+--- Page 13 ---
+12
+
+Daniel H. Baﬀet et al.
+
+2. ξi, ξj (cid:54)= 0 and ξk = 0. Due to ∂tψ = u, we have
+
+q ≡ ∂tu + (ξi + ξj)u + ξiξj ψ = (∂t + ξi)(∂t + ξj)ψ.
+
+(2.29)
+
+By applying Lemma 2.3 with v = (∂t + ξj)ψ and γ = ξi, we get (using ∂tψ(0) =
+u(0))
+
+(cid:107)(∂t + ξj)ψ(t)(cid:107) ≤ (cid:107)∂tψ(0) + ξj ψ(0)(cid:107) + Cξ−1
+≤ (cid:107)u(0)(cid:107) + (cid:107)ξj ψ(0)(cid:107) + Cξ−1
+
+i
+
+i
+
+,
+
+(cid:107)∂t(∂t + ξj)ψ(t)(cid:107) ≤ ξi ((cid:107)u(0)(cid:107) + (cid:107)ξj ψ(0)(cid:107)) + 2C.
+
+From Lemma 2.3 applied to the ﬁrst expression above, we get (2.28). By apply-
+ing Lemma 2.3 to the second expression and using ∂tψ = u, we deduce (2.27a)
+and (2.27b).
+
+3. ξ1, ξ2, ξ3 > 0. In this case one can verify that
+
+q = (∂t + ξ1)(∂t + ξ2)(∂t + ξ3)Ψ.
+
+The desired bounds are obtained like in the previous case by multiple appli-
+cations of Lemma 2.3. The bounds in these expressions depend only on the
+initial data for ψ, u, since Ψ (0) ≡ 0, and on ξj , j = 1, 2, 3.
+
+(cid:117)(cid:116)
+
+The next Lemma 2.5 shows that controlling (cid:107)∇u + φ(cid:107) and (cid:107)Γ1(∇ψ + Φ)(cid:107) allows
+to control φ and ∇u.
+
+Lemma 2.5 Let (u, φ, ψ) satisfy (2.1) with initial data satisfying Assumption 1 and
+ξ1, ξ2, ξ3 ≥ 0 constant. Then there exists a constant C > 0, which depends only on
+the initial data and ξi, i = 1, 2, 3, such that
+
+– if ξi (cid:54)= 0 for some i = 1, 2, 3, then fora all t ≥ 0,
+
+(cid:107)∇u(t)(cid:107) ≤ C,
+
+(2.30a)
+
+(cid:107)φ(t)(cid:107) ≤ C.
+
+(2.30b)
+
+– If, additionally, ξj (cid:54)= 0, for some j ∈ {1, 2, 3}, j (cid:54)= i, then
+
+(cid:107)∇ψ(t)(cid:107) ≤ C for all t ≥ 0.
+
+(2.31)
+
+Proof In the following, let C > 0 denote a generic non-negative constant, which
+depends only on ξj , j = 1, 2, 3 and the initial data. Thanks to Theorem 2.2, we
+have
+
+(cid:107)∇u(t) + φ(t)(cid:107) ≤ C,
+(cid:107)Γ1(∇ψ(t) + Φ(t))(cid:107) ≤ C,
+
+(2.32)
+
+(2.33)
+
+uniformly for all t ≥ 0. We now consider four separate cases.
+
+1. ξi = ξj = ξk = 0. Then (2.30a), (2.30b) follow directly from Theorem 2.2, see
+
+Remark 2.2.
+
+2. ξi (cid:54)= 0, and ξj = ξk = 0. Without loss of generality, let us assume that i = 1.
+
+To prove (2.30a) and (2.30b), we proceed in two steps.
+
+
+--- Page 14 ---
+Stability Analysis of a PML for the Second-order Wave Equation
+
+13
+
+– Uniform bounds on (cid:107)∂x1 u(t)(cid:107), (cid:107)φ1(t)(cid:107). From Lemma 2.2, we have
+
+φ1 = −ξ1Φ1 − ξ1∂x1 ψ.
+
+Then, (2.33) immediately implies (cid:107)φ1(t)(cid:107) ≤ C for all t ≥ 0, which together
+with (2.32), yields (cid:107)∂x1 u(t)(cid:107) ≤ C for all t ≥ 0.
+
+– Uniform bounds on (cid:107)∂x(cid:96) u(t)(cid:107), (cid:107)φ(cid:96)(t)(cid:107), (cid:96) (cid:54)= 1. Without loss of generality,
+we let (cid:96) = 2; the bound for (cid:96) = 3 can be shown similarly. Since ξ2 = ξ3 = 0,
+the second component of (2.1c) reduces to
+
+∂tφ2 = ξ1∂x2 u.
+
+Hence, w := (∂t + ξ1) ξ−1
+Lemma 2.3, we thus conclude that
+
+1 φ2 = ∂x2 u + φ2 is controlled by (2.32). From
+
+(cid:107)φ2(t)(cid:107) ≤ C,
+
+for all t ≥ 0,
+
+and, using (2.32), that a similar corresponding bound holds for ∂x2 u(t).
+
+3. ξi (cid:54)= 0, ξj (cid:54)= 0, ξk ≡ 0. Without loss of generality, we let i = 1, j = 2 and k = 3.
+To prove the three bounds (2.30a), (2.30b), and (2.31), we again proceed in
+two steps.
+– Uniform bounds on (cid:107)∂x(cid:96) u(t)(cid:107), (cid:107)∂x(cid:96) ψ(t)(cid:107), (cid:107)φ(cid:96)(t)(cid:107), (cid:96) = 1, 2. Without loss
+of generality, we let (cid:96) = 1; for (cid:96) = 2, the argument is essentially identical.
+By Lemma 2.2,
+
+φ1 + ξ1Φ1 = (ξ2 − ξ1)∂x1 ψ,
+
+(2.34)
+
+or, adding to both sides of the above identity ∂x1 u = ∂x1 ∂tψ,
+
+φ1 + ∂x1 u + ξ1Φ1 + ξ1∂x1 ψ = ∂t∂x1 ψ + ξ2∂x1 ψ.
+
+The bounds (2.32) and (2.33) show that the L2-norm of the left hand side of
+the above expression is uniformly bounded in t ≥ 0. Applying Lemma 2.3 to
+w = ∂t∂x1 ψ+ξ2∂x1 ψ, we deduce that (cid:107)∂x1 ψ(t)(cid:107) and (cid:107)∂x1 ∂tψ(t)(cid:107) = (cid:107)∂x1 u(t)(cid:107)
+are uniformly bounded in time. From (2.32) a uniform bound on (cid:107)φ1(t)(cid:107)
+immediately follows.
+
+– Uniform bounds on (cid:107)∂x3 u(t)(cid:107), (cid:107)∂x3 ψ(t)(cid:107), (cid:107)φ3(t)(cid:107). Note (2.18) cannot be
+used here for i = 3. Thus, to obtain a similar expression, we integrate from
+0 to t the third component of (2.1c). Using (2.10), we get
+
+φ3(t) − φ3(0) = (ξ1 + ξ2)∂x3 ψ(t)
+
+− (ξ2 + ξ1)∂x3 ψ(0) + ξ1ξ2∂x3 Ψ (t).
+
+(2.35)
+
+We now add ∂x3 u(t) to both sides of (2.35) and use ∂tψ = u to rewrite the
+resulting expression as
+
+φ3(t) + ∂x3 u(t) − φ3(0) + (ξ2 + ξ1)∂x3 ψ(0) = (∂t + ξ1)
+
+× (∂t + ξ2)∂x3 Ψ (t).
+
+The L2-norm of the left hand side of the above is uniformly bounded in
+time thanks to (2.32). By applying Lemma 2.3 twice to the right-hand side,
+
+
+--- Page 15 ---
+14
+
+Daniel H. Baﬀet et al.
+
+we obtain uniform bounds on (cid:107)∂x3 u(t)(cid:107) and (cid:107)∂x3 ψ(t)(cid:107). The bound on φ3
+follows immediately from the triangle inequality applied to (2.32).
+
+4. ξ1, ξ2, ξ3 (cid:54)= 0. To prove the three bounds (2.30a), (2.30b), and (2.31), we ﬁrst
+derive uniform bounds on (cid:107)∂x1 u(t)(cid:107), (cid:107)φ1(t)(cid:107), (cid:107)∂x1 ψ(t)(cid:107) (for the remaining com-
+ponents the bounds can be derived similarly). By adding ∂x1 u to both sides of
+(2.18) with i = 1 and using (2.10), we obtain
+
+φ1 + ∂x1 u + ξ1(Φ1 + ∂x1 ψ) = (∂t + ξ2)(∂t + ξ3)∂x1 Ψ.
+
+The left-hand side of the above equation is uniformly bounded due to (2.32)
+and (2.33). Then, we again apply twice Lemma 2.3 to the right-hand side,
+which allows us to bound the L2-norms of ∂x1 Ψ , ∂x1 ψ and ∂x1 u uniformly in
+time. Because of (2.32), we also control (cid:107)φ1(t)(cid:107).
+
+Proof (Theorem 2.3) The bounds of the theorem follow directly from Lemma 2.4
+and Lemma 2.5.
+(cid:117)(cid:116)
+
+(cid:117)(cid:116)
+
+3 Discretization of the PML system and energy estimates
+
+Here, we consider a discretization of the 3D PML system (2.1) and prove that
+it is stable by energy arguments similar to the analysis for the continuous case
+in Section 2. We start with a construction and analysis of an implicit scheme,
+because the derivation of the explicit discretization (and its stability analysis) will
+rely heavily on the respective results obtained for the implicit scheme. In fact,
+the explicit scheme can be seen as a slight modiﬁcation of the implicit one, which
+allows us to prove that it retains the same stability properties under a standard
+CFL condition, independent of the damping functions inside the PML.
+
+3.1 Implicit scheme
+
+We consider an implicit semi-discretization in time of (2.1), based on the classical
+second-order θ-scheme (see [15] for a complete convergence analysis) with θ = 1
+4 .
+
+3.1.1 Notation
+
+We denote by vn ≈ v(tn), where tn = n∆t. Given a sequence {vn}∞
+for n ≥ 1,
+
+n=0, we deﬁne
+
+[vn]∆t =
+
+vn+1 − vn−1
+2∆t
+
+,
+
+[[vn]]∆t =
+
+vn+1 − 2vn + vn−1
+∆t2
+
+,
+
+{vn}1/4 =
+
+vn+1 + 2vn + vn−1
+4
+
+,
+
+vn+1/2 =
+
+vn + vn+1
+2
+
+.
+
+(3.1)
+
+The following lemmas provide some useful algebraic identities.
+
+
+--- Page 16 ---
+Stability Analysis of a PML for the Second-order Wave Equation
+
+15
+
+Lemma 3.1 Let two sequences {an}∞
+satisfy
+
+n=0 and {bn}∞
+
+n=0 of elements in some vector space
+
+an+1 − an
+∆t
+
+=
+
+bn+1 + bn
+2
+
+,
+
+n ≥ 0.
+
+(3.2)
+
+Then, for each n ≥ 1, the following identities hold:
+
+[an]∆t =
+
+an+1/2 − an−1/2
+∆t
+
+= {bn}1/4,
+
+[[an]]∆t = [bn]∆t.
+
+(3.3)
+
+The proof of Lemma 3.1 is straightforward and therefore omitted. In the sequel,
+we shall employ Lemma 3.1 repeatedly without making explicit reference to it.
+
+The following algebraic result is classical and corresponds to the discrete coun-
+
+terpart of the continuous equalities: v∂tv = ∂tv2/2 and ∂tv∂2
+
+t v = ∂t|∂tv|2/2.
+
+Lemma 3.2 For any sequence {vn}∞
+
+n=0, the following identities hold for all n ≥ 1:
+
+{vn}1/4 · [vn]∆t =
+
+[vn]∆t · [[vn]]∆t =
+
+1
+2∆t
+1
+2∆t
+
+(cid:16) (cid:12)
+(cid:12)
+
+(cid:16) (cid:12)
+(cid:12)
+
+vn+1 + vn
+2
+vn+1 − vn
+∆t
+
+(cid:12)
+2
+(cid:12)
+
+− (cid:12)
+(cid:12)
+
+2
+
+(cid:12)
+(cid:12)
+
+− (cid:12)
+(cid:12)
+
+vn + vn−1
+2
+vn − vn−1
+∆t
+
+(cid:12)
+(cid:12)
+
+(cid:12)
+(cid:12)
+
+2 (cid:17)
+
+2 (cid:17)
+
+,
+
+.
+
+(3.4)
+
+(3.5)
+
+Below we shall also use the following generalization of Lemma 3.2.
+
+Lemma 3.3 For any sequences {vn}∞
+n ≥ 1:
+
+n=0, {hn}∞
+
+n=0, the following identity holds for all
+
+(cid:0)[vn]∆t + {hn}1/4
+
+where
+
+r(cid:96)+ 1
+
+2 =
+
+(cid:1) · ([[vn]]∆t + [hn]∆t) =
+h(cid:96)+1 + h(cid:96)
+v(cid:96)+1 − v(cid:96)
+2
+∆t
+
++
+
+,
+
+1
+2∆t
+
+(cid:16) (cid:12)
+(cid:12)rn+1/2(cid:12)
+(cid:12)
+
+2
+
+− (cid:12)
+
+(cid:12)rn−1/2(cid:12)
+(cid:12)
+
+2(cid:17)
+,
+
+(3.6)
+
+(cid:96) ≥ 0.
+
+The proofs of these two results are omitted here.
+
+3.1.2 Implicit semi-discretization
+
+We discretize (2.1a) with the implicit θ-scheme as follows:
+
+– discretize terms v(tn) by {vn}1/4,
+– discretize terms ∂tv(tn) by [vn]∆t,
+– discretize terms ∂2
+
+t v(tn) by [[vn]]∆t.
+
+Equations (2.1b) and (2.1c) are discretized using second-order ﬁnite diﬀerences
+centered about time (n + 1/2)∆t. Then the semi-discrete version of (2.1) reads:
+
+[[un]]∆t + tr Γ1[un]∆t + tr Γ3{un}1/4 + det Γ1{ψn}1/4
+− ∆{un}1/4 − div{φn}1/4 = 0,
+
+ψn+1 − ψn
+∆t
+
+=
+
+un+1 + un
+2
+
+,
+
+φn+1 − φn
+∆t
+
++ Γ1
+
+φn+1 + φn
+2
+
+= Γ2∇
+
+un+1 + un
+2
+
++ Γ3∇
+
+ψn+1 + ψn
+2
+
+,
+
+(3.7a)
+
+(3.7b)
+
+(3.7c)
+
+
+--- Page 17 ---
+16
+
+Daniel H. Baﬀet et al.
+
+which is equipped with appropriate initial conditions for (u0, u1, ψ0, φ0). The last
+two equations imply
+
+[ψn]∆t = {un}1/4,
+[φn]∆t + Γ1{φn}1/4 = Γ2∇{un}1/4 + Γ3∇{ψn}1/4.
+
+(3.8)
+
+(3.9)
+
+Similarly to the setup of the continuous formulation, here we consider either of
+the following boundary conditions
+
+Dirichlet: un = 0
+
+(D),
+
+Neumann: ∂ν un + φn · ν = 0
+
+(N),
+
+(3.10)
+
+on the boundary B of Ω.
+
+Next, we introduce two auxiliary unknowns, Φn and Ψ n, in accordance with
+
+(2.10), as well as an auxiliary ’velocity’ variable vn:
+
+Ψ n+1 − Ψ n
+∆t
+Φn+1 − Φn
+∆t
+vn+1 + vn
+2
+
+=
+
+=
+
+ψn+1 + ψn
+2
+φn+1 + φn
+2
+
+,
+
+,
+
+=
+
+un+1 − un
+∆t
+
+.
+
+Again, we remark that (3.11) and (3.12) imply
+
+[Ψ n]∆t = {ψn}1/4,
+[Φn]∆t = {φn}1/4.
+
+(3.11)
+
+(3.12)
+
+(3.13)
+
+(3.14)
+
+(3.15)
+
+For these equations to be consistent with (2.10), we also need to deﬁne initial
+conditions for Ψ and Φ – see (2.11) and the related discussion afterwards:
+
+Ψ 0 = 0,
+
+Γ1Φ0 + φ0 − Γ2∇ψ0(cid:17)
+(cid:16)
+
+Γ1
+
+= 0.
+
+(3.16)
+
+With this choice, the energy of the discrete system (3.7) corresponds to the energy
+of the continuous setting deﬁned in Theorem 2.2. In particular, as previously,
+
+qn := vn + tr Γ1un + tr Γ3ψn + det Γ1Ψ n,
+
+n ≥ 0.
+
+(3.17)
+
+Using (3.1), we further introduce the notation:
+
+n+ 1
+E
+2
+k
+
+=
+
+1
+2
+1
+2
+n+ 1
+impl = E
+2
+
+=
+
+n+ 1
+E
+2
+p
+
+E
+
+,
+
+2
+
+2 (cid:13)
+(cid:13)
+(cid:13)qn+ 1
+(cid:13)
+(cid:16)
+(cid:107)∇un+ 1
+
+2 + φn+ 1
+
+2 (cid:107)2 + (cid:13)
+
+(cid:13)Γ1
+
+n+ 1
+2
+k
+
+n+ 1
++ E
+2
+p
+
+.
+
+(cid:16)
+∇ψn+ 1
+
+2 + Φn+ 1
+
+2
+
+2(cid:17)
+
+(cid:17) (cid:13)
+(cid:13)
+
+,
+
+(3.18)
+
+(3.19)
+
+(3.20)
+
+Here the subscript k stands for ’kinetic’, p for ’potential’ and impl for ’implicit’.
+
+With these notations, the energy decay result for the semi-discrete system (3.7)
+
+is summarized in the following theorem.
+
+
+--- Page 18 ---
+Stability Analysis of a PML for the Second-order Wave Equation
+
+17
+
+Theorem 3.1 For any suﬃciently regular solution (un, ψn, φn) of the initial-value
+problem for (3.7) it holds for all n ≥ 1,
+
+(cid:16)
+
+1
+∆t
+
+E
+
+n+ 1
+impl − E
+2
+
+n− 1
+2
+impl
+
+(cid:17)
+
+= −2(cid:13)
+
+(cid:13){∇un + φn}1/4
+
+(cid:13)
+2
+(cid:13)
+Γ1
+
+,
+
+where En+ 1
+
+2 is deﬁned in (3.20) and Φn in (3.12) and satisﬁes (3.16).
+
+The proof is based on the following two lemmas.
+
+Lemma 3.4 For any suﬃciently regular solution (un, ψn, φn) of the initial-value
+problem for (3.7), and Φn, Ψ n deﬁned in (3.11, 3.12) and satisfying (3.16), it holds
+for n ≥ 1:
+
+∇{qn}1/4=[[Λn]]∆t + 2Γ1[Λn]∆t + Γ 2
+
+1 {Λn}1/4,
+
+where
+
+Λn = ∇ψn + Φn.
+
+(3.21)
+
+Proof The proof follows the derivation of Lemma 2.1. In particular, for n ≥ 1,
+∇{qn}1/4 = ∇{vn}1/4 + tr Γ1∇{un}1/4 + tr Γ3∇{ψn}1/4 + det Γ1 ∇{Ψ n}1/4.
+
+By Lemma 3.1, {vn}1/4 = [un]∆t. Thus, with (2.16), the above yields:
+∇{qn}1/4 = ∇[un]∆t + (Γ2 + 2Γ1)∇{un}1/4 + tr Γ3∇{ψn}1/4 + det Γ1∇{Ψ n}1/4
+
+(3.9)
+= ∇[un]∆t + [φn]∆t + Γ1{φn}1/4 − Γ3∇{ψn}1/4 + 2Γ1∇{un}1/4
++ tr Γ3∇{ψn}1/4 + det Γ1∇{Ψ n}1/4.
+
+Using (2.17) to substitute in the above tr Γ3 Id −Γ3 and det Γ1, we obtain
+
+∇{qn}1/4 = [∇un + φn]∆t + 2Γ1{∇un + φn}1/4 − Γ1{φn}1/4
++ Γ1(Γ1 + Γ2)∇{ψn}1/4 + Γ1Γ3∇{Ψ n}1/4.
+With Λn deﬁned in the statement of the lemma and the observations (3.8) and
+(3.15),
+
+(3.22)
+
+[Λn]∆t = ∇[ψn]∆t + [Φn]∆t = ∇{un}1/4 + {φn}1/4.
+
+(3.23)
+
+Similarly, a direct computation, with the use of (3.7b) and (3.12) gives
+
+[[Λn]]∆t = ∇[un]∆t + [φn]∆t.
+(3.24)
+By expressing the ﬁrst two terms in (3.22) via Λn and replacing {φn}1/4 from
+(3.15), we obtain:
+
+∇{qn}1/4 = [[Λn]]∆t + 2Γ1[Λn]∆t − Γ1[Φn]∆t
+
++ Γ1(Γ1 + Γ2)∇{ψn}1/4 + Γ1Γ3∇{Ψ n}1/4.
+
+Or, alternatively,
+
+∇{qn}1/4−
+
+(cid:16)
+[[Λn]]∆t + 2Γ1[Λn]∆t + Γ 2
++Γ3∇{Ψ n}1/4 + Γ2∇{ψn}1/4 − [Φn]∆t
+
+1 {Λn}1/4
+
+(cid:17)
+
+= Γ1
+(cid:1) .
+
+(cid:0)−Γ1{Φn}1/4
+
+The left-hand side of the above vanishes because of Lemma 3.5, which concludes
+the proof.
+(cid:117)(cid:116)
+
+
+--- Page 19 ---
+18
+
+Daniel H. Baﬀet et al.
+
+Lemma 3.5 Let Ψ n, Φn be deﬁned by (3.11), (3.12), with Ψ 0, Φ0 satisfying (3.16).
+Then, H n = H 0 for all n ≥ 0, where
+
+H n = φn + Γ1Φn − Γ2∇ψn − Γ3∇Ψ n.
+
+(3.25)
+
+In particular, when ξi (cid:54)= 0 and {i, j, k} = {1, 2, 3}, we have
+
+i + ξiΦn
+φn
+
+i = (ξj + ξk − ξi)∂xi ψn + ξj ξk∂xi Ψ n,
+
+(3.26)
+
+for all n ≥ 0.
+
+Proof Replacing the averages in (3.7c) by diﬀerences, using (3.12), (3.7b) and
+(3.11), yields
+
+φn+1 − φn
+∆t
+
++ Γ1
+
+Φn+1 − Φn
+∆t
+
+= Γ2∇
+
+ψn+1 − ψn
+∆t
+
++ Γ3∇
+
+Ψ n+1 − Ψ n
+∆t
+
+.
+
+(3.27)
+
+By multiplying (3.27) by ∆t and rearranging the terms we recover H n+1 = H n.
+Since n ≥ 0 is arbitrary, it follows that H n = H 0, by induction. Owing to (3.16),
+we have Γ1H n = Γ1H 0 = 0, and hence the conclusion.
+(cid:117)(cid:116)
+
+Now we have all the ingredients necessary to prove Theorem 3.1.
+
+Proof (Theorem 3.1) We proceed as in the proof of Theorem 2.2. From (3.17), we
+note that
+
+[qn]∆t = [vn]∆t + tr Γ1[un]∆t + tr Γ3[ψn]∆t + det Γ1[Ψ n]∆t
+
+= [[un]]∆t + tr Γ1[un]∆t + tr Γ3{un}1/4 + det Γ1{ψn}1/4,
+
+(3.28)
+
+because of (3.13), (3.8), (3.14). Thus, (3.7a) reads
+
+[qn]∆t − div (cid:0)∇{un}1/4 + {φn}1/4
+
+(cid:1) = 0.
+
+We test (3.7a) with {qn}1/4 and integrate by parts, noting that, similarly to the
+continuous case, either of the boundary conditions (3.10) yields no boundary terms
+(see discussion after (2.19)), and thus we get
+
+En+1/2
+
+k
+
+− En−1/2
+k
+∆t
+
++ (cid:104){∇un + φn}1/4, ∇{qn}1/4(cid:105) = 0,
+
+(3.29)
+
+with E(cid:96)+1/2
+k
+
+given by (3.18). By Lemma 3.4 and (3.23), we have
+
+(cid:104){∇un + φn}1/4, ∇{qn}1/4(cid:105) = (cid:104)[Λn]∆t, [[Λn]]∆t + 2Γ1[Λn]∆t + Γ 2
+
+1 {Λn}1/4(cid:105)
+
+and thus by Lemma 3.2 we recover
+
+(cid:104){∇un + φn}1/4, ∇{qn}1/4(cid:105) =
+
+1
+2∆t
+
+(cid:32)(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+Λn+1 − Λn
+∆t
+
+(cid:13)
+2
+(cid:13)
+(cid:13)
+(cid:13)
+
++ (cid:107)Γ1Λn+ 1
+
+2 (cid:107)2
+
+−
+
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+Λn − Λn−1
+∆t
+
+(cid:13)
+2
+(cid:13)
+(cid:13)
+(cid:13)
+
+(cid:33)
+
+− (cid:107)Γ1Λn− 1
+
+2 (cid:107)2
+
++ 2(cid:107)[Λn]∆t(cid:107)2
+
+Γ1 .
+
+
+--- Page 20 ---
+Stability Analysis of a PML for the Second-order Wave Equation
+
+19
+
+From (3.7b) and (3.12), we recall that
+
+Λn+1 − Λn
+∆t
+
+= ∇un+ 1
+
+2 + φn+ 1
+2 .
+
+Thus, using (3.19) and (3.23), we obtain
+
+(cid:104){∇un + φn}1/4, ∇{qn}1/4(cid:105) =
+
+(cid:16)
+
+E
+
+n+ 1
+2
+p
+
+n− 1
+− E
+2
+p
+
+(cid:17)
+
+1
+∆t
+
++ 2(cid:107){∇un + φn}1/4(cid:107)2
+
+Γ1 .
+
+Substitution of the above into the energy identity (3.29) concludes the proof. (cid:117)(cid:116)
+
+This result implies that the discretization (3.7) is unconditionally stable; moreover,
+its energy mimics the energy of the continuous PML system (2.1).
+
+3.2 Explicit scheme
+
+In applications, explicit numerical methods are not only more convenient but also
+often more eﬃcient than implicit schemes. To derive an explicit method, we ﬁrst
+discretize (2.1) in space and then modify the previous implicit scheme (3.7).
+
+3.2.1 Spatial semi-discretization
+
+Starting from (2.1), we consider a Galerkin ﬁnite element (FE) discretization in
+space: the semi-discrete approximations of u, ψ are denoted by uh, ψh, and that of
+φ by φh. Hence, we seek uh, ψh in Uh = span{uj , j = 1, . . . , n} ⊂ H 1(Ω) (or H 1
+0 (Ω))
+and φh ∈ F h ⊂ (cid:0)L2(Ω)(cid:1)3
+, F h = span{f j , j = 1, . . . , m}. We denote by (cid:104)·, ·.(cid:105)h an
+(approximate) L2(Ω) scalar product on Uh deﬁned using numerical quadratures,
+and for vh, wh ∈ F h, we denote
+
+(cid:104)vh, wh(cid:105)h :=
+
+3
+(cid:88)
+
+(cid:104)(vh)i, (wh)i(cid:105)h.
+
+i=1
+Next we introduce discrete operators on the ﬁnite-dimensional spaces Uh and F h,
+deﬁned by respective sesquilinear forms:
+
+∇h : Uh → F h,
+divh : F h → Uh,
+∆h : Uh → Uh,
+
+(cid:104)∇hqh, vh(cid:105)h := (cid:104)∇qh, vh(cid:105)h,
+(cid:104)divh vh, qh(cid:105)h := −(cid:104)vh, ∇hqh(cid:105)h,
+
+(cid:104)∆hqh, ph(cid:105)h := −(cid:104)∇hqh, ∇hph(cid:105)h,
+
+(qh, vh) ∈ Uh × F h,
+(qh, vh) ∈ Uh × F h,
+(qh, ph) ∈ Uh × Uh.
+
+Observe that by deﬁnition,
+
+∆h = divh ∇h.
+
+(3.30)
+
+We emphasize that this property holds even if mass-lumping is used.
+
+For the sake of simplicity we drop the subscript h in what follows and denote
+by (cid:107) · (cid:107) the induced norm. The spatial semi-discretization of (2.1) for constant
+{ξi}3
+
+i=1 then reads:
+
+
+
+
+
+
+∂2
+t uh + tr Γ1∂tuh + tr Γ3uh + det Γ1ψh − ∆huh − divh φh = 0,
+
+∂tψh = uh,
+
+∂tφh + Γ1φh = Γ2∇huh + Γ3∇hψh.
+
+(3.31)
+
+Note that we need to replace the multiplications with tr Γ1, tr Γ2, det Γ1, Γ1, Γ2,
+Γ3 by more complicated expressions when ξi (cid:54)= const.
+
+
+--- Page 21 ---
+20
+
+Daniel H. Baﬀet et al.
+
+3.2.2 Explicit discretization and energy estimates
+
+To obtain a fully explicit scheme, we now replace in (3.7a) ∆{un}1/4 and div{φn}1/4
+by ∆un and div φn, respectively. Combined with the spatial semi-discretization
+(3.31), this results in the following fully discrete system:
+
+[[un
+− ∆hun
+ψn+1
+h − ψn
+∆t
+
+h]]∆t + tr Γ1[un
+h]∆t + tr Γ3{un
+h − divh φn
+h = 0,
+un+1
+h + un
+2
+
+=
+
+h
+
+h
+
+,
+
+h}1/4 + det Γ1{ψn
+
+h }1/4
+
+φn+1
+h − φn
+∆t
+
+h
+
++ Γ1
+
+φn+1
+h + φn
+2
+
+h
+
+= Γ2∇h
+
+un+1
+h + un
+2
+
+h
+
++ Γ3∇h
+
+ψn+1
+h + ψn
+2
+
+h
+
+.
+
+(3.32a)
+
+(3.32b)
+
+(3.32c)
+
+Remark 3.1 In contrast to the time discretization used in [26, 25], the zeroth order
+term in (3.32a) involving Γ3 is not simply evaluated at the current time tn but
+instead replaced by the weighted time average {un
+h}1/4. This small distinction leads
+to a provably stable fully discrete numerical scheme for constant damping functions
+ξi. Numerical results with varying ξi also suggest that the above formulation is
+more stable in the presence of steep gradients or high contrasts in the damping
+proﬁles.
+
+To prove the stability of the above fully discrete explicit scheme under a certain
+
+CFL condition to be determined, we require the following algebraic identity.
+
+Lemma 3.6 For any sequence {vn}∞
+
+n=0, it holds that
+
+vn = {vn}1/4 −
+
+∆t2
+4
+
+[[vn]]∆t,
+
+n ≥ 1.
+
+We deﬁne Φh, Ψh, vh as in (3.11)–(3.13), with all the unknowns replaced by their
+discrete analogues, which therefore satisfy:
+
+Ψ 0
+h = 0,
+
+Γ1
+
+As in (3.17), (3.21), we let
+
+(cid:16)
+Γ1Φ0
+
+h + φ0
+
+h − Γ2∇hψ0
+h
+
+(cid:17)
+
+= 0.
+
+h = vn
+qn
+h = ∇hψn
+Λn
+
+h + tr Γ3ψn
+h + tr Γ1un
+h + Φn
+h,
+
+n ≥ 0.
+
+h + det Γ1Ψ n
+h ,
+
+(3.33)
+
+(3.34)
+
+(3.35)
+
+Due to the similarities between the semi-discrete implicit scheme of the previ-
+ous section and the above explicit fully discrete scheme, some results obtained for
+the former also hold true for the latter. Thus to adapt these results to the explicit
+scheme, we need only add the subscript h to the appropriate variables and oper-
+ators. We refrain from repeating these results for the explicit scheme and instead
+simply refer to the previous results for the implicit scheme, with the understanding
+that the semi-discrete variables and spatial operators should be replaced by their
+appropriate discrete counterparts.
+
+
+--- Page 22 ---
+Stability Analysis of a PML for the Second-order Wave Equation
+
+21
+
+With the above deﬁnitions, we introduce the following energy-related quantities
+
+– see also (3.18-3.20):
+
+E
+
+n+ 1
+k,h =
+2
+
+E
+
+n+ 1
+p,h =
+2
+
+1
+2
+
+1
+2
+
+E
+
+n+ 1
+add,h =
+2
+
+n+ 1
+2
+h
+
+2(cid:19)
+
+(cid:13)
+(cid:13)
+(cid:13)
+
+,
+
+(cid:18)(cid:13)
+n+ 1
+(cid:13)
+(cid:13)q
+2
+h
+(cid:18)(cid:13)
+(cid:13)
+(cid:13)∇hu
+
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+
+
+(∆t)2
+8
+
+(cid:13)
+2
+(cid:13)
+(cid:13)
+
+−
+
+∆t2
+4
+
+n+ 1
+h + φ
+2
+
+n+ 1
+2
+h
+
+(cid:13)
+(cid:13)
+(cid:13)∇hq
+(cid:13)
+2
+(cid:13)
+(cid:13)
+
++
+
+Γ1
+
+Λn+1
+
+h − Λn
+∆t
+
+h
+
+(cid:13)
+2
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+(cid:13)
+(cid:13)
+(cid:13)Γ1
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
++
+
+(cid:16)
+
+∇hψ
+
+n+ 1
+n+ 1
+h + Φ
+2
+2
+h
+
+2(cid:19)
+
+(cid:17)(cid:13)
+(cid:13)
+(cid:13)
+
+,
+
+Λn+1
+
+h − Λn
+∆t
+
+h
+
++ Γ 2
+
+n+ 1
+1 Λ
+2
+h
+
+2
+ ,
+
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+2Γ1
+
+E
+
+n+ 1
+expl = E
+2
+
+n+ 1
+k,h + E
+2
+
+n+ 1
+p,h + E
+2
+
+n+ 1
+add,h,
+2
+
+(3.36)
+
+(3.37)
+
+(3.38)
+
+(3.39)
+
+where the subscript expl stands for ’explicit’ whereas add stands for ’additional’
+to underline that this term does not appear in the expression for the energy of the
+n+ 1
+expl corresponds to a true (positive deﬁnite) energy
+implicit scheme. Note that E
+2
+n+ 1
+k,h ≥ 0, that is under the (classical) CFL condition CCF L ≤ 1,
+2
+
+provided that E
+where
+
+CCF L :=
+
+∆t
+2
+
+max
+vh∈Uh
+
+(cid:107)∇hvh(cid:107)
+(cid:107)vh(cid:107)
+
+.
+
+(3.40)
+
+With the above deﬁnitions, we can now formulate the following energy identity.
+h , φn
+
+h) of the initial value problem for (3.32),
+
+h, ψn
+
+Theorem 3.2 For any solution (un
+and Φn
+
+h satisfying (3.33), it holds: for n ≥ 1,
+
+h, Ψ n
+
+(cid:16)
+
+1
+∆t
+
+E
+
+n+ 1
+expl − E
+2
+
+n− 1
+2
+expl
+
+(cid:17)
+
+= −
+
+∆t2
+2
+− 2(cid:107){∇hun
+
+(cid:107)[∇hun
+h + φn
+
+h + φn
+h}1/4(cid:107)2
+
+Γ1 .
+
+h]∆t(cid:107)2
+Γ1
+
+(3.41)
+
+For the proof, we need the following two auxiliary lemmas.
+
+Lemma 3.7 For all n ≥ 1,
+
+[∇hqn
+
+h ]∆t = [[∇hun
+
+h + φn
+
+h]]∆t + 2Γ1[[Λn
+
+h]]∆t + Γ 2
+
+1 [Λn
+
+h]∆t.
+
+Proof The proof follows the derivation of Lemma 3.4. First, we note that
+
+[∇hqn
+
+h ]∆t = [[∇hun
+
+h]]∆t + tr Γ1[∇hun
+
+h]∆t + tr Γ3[ψn
+
+h ]∆t + det Γ1[∇hΨ n
+
+h ]∆t.
+
+By using (2.16),we rewrite the above as
+
+[∇hqn
+
+h ]∆t = [[∇hun
++ tr Γ3[ψn
+
+h]]∆t + (Γ2 + 2Γ1)[∇hun
+h ]∆t + det Γ1[∇hΨ n
+h ]∆t.
+
+h]∆t
+
+(3.42)
+
+From (3.32c), we infer that
+
+h]]∆t + Γ1[φn
+which we use to replace Γ2[∇hun
+
+[[φn
+
+h]∆t − Γ3[∇hψn
+
+h ]∆t = Γ2[∇hun
+
+h]∆t,
+
+h]∆t in (3.42). This yields
+
+[∇hqn
+
+h ]∆t = [[∇hun
+
+h + φn
+
+h]]∆t + Γ1[φn
+h]∆t + tr Γ3[ψn
+
+h]∆t − Γ3[∇hψn
+h ]∆t
+h ]∆t + det Γ1[∇hΨ n
+
+h ]∆t.
+
++ 2Γ1[∇hun
+
+
+--- Page 23 ---
+22
+
+Daniel H. Baﬀet et al.
+
+As in the proof of Lemma 3.4, we now substitute in the above tr Γ3 Id −Γ3 and
+
+det Γ1 from (2.17):
+
+[∇hqn
+
+h ]∆t = [[∇hun
+
+h + φn
++ Γ1(Γ1 + Γ2)[∇hψn
+
+h]]∆t + 2Γ1[∇hun
+
+h + φn
+h ]∆t + Γ1Γ3[∇hΨ n
+
+h]∆t − Γ1[φn
+h ]∆t.
+
+h]∆t
+
+Using (3.9) for discretized ﬁelds (which follows from (3.32c)), as well as (3.15),
+
+[∇hqn
+
+h ]∆t = [[∇hun
+
+h + φn
+
+h]]∆t + 2Γ1[∇hun
+
+h + φn
+
+h]∆t + Γ 2
+
+1 {∇hun
+
+h + φn
+
+h}1/4.
+
+The statement of the lemma follows from the above combined with (3.24) and
+(3.23) rewritten for the discrete case.
+(cid:117)(cid:116)
+
+Lemma 3.8 For all n ≥ 1, it holds
+
+(cid:104)[[∇hun
+
+h + φn
+
+h]]∆t, {∇hqn
+
+h }1/4(cid:105) =
+
+n+ 1
+(cid:107)∇hq
+2
+h
+
+(cid:16)
+
+1
+2∆t
+− 2(cid:107)[∇hun
+
+h + φn
+
+h]∆t(cid:107)2
+
+n− 1
+(cid:107)2 − (cid:107)∇hq
+2
+h
+4
+(∆t)3
+
+Γ1 −
+
+(cid:107)2(cid:17)
+(cid:16)
+
+E
+
+n+ 1
+add,h − E
+2
+
+n− 1
+2
+add,h
+
+(cid:17)
+
+.
+
+Proof From Lemma 3.7, we have
+[[∇hun
+
+h + φn
+Using (3.4) we thus obtain
+(cid:104)[[∇hun
+
+h + φn
+
+h]]∆t = [∇hqn
+
+h ]∆t − 2Γ1[[Λn
+
+h]]∆t − Γ 2
+
+1 [Λn
+
+h]∆t.
+
+h]]∆t, ∇h{qn}1/4(cid:105) = (cid:104)[∇hqn
+h ]∆t − 2Γ1[[Λn
+(cid:16)
+n+ 1
+(cid:107)∇hq
+2
+h
+h]]∆t + Γ 2
+
+1
+2∆t
+− (cid:104)2Γ1[[Λn
+
+1 [Λn
+h]]∆t − Γ 2
+(cid:107)2(cid:17)
+n− 1
+(cid:107)2 − (cid:107)∇hq
+2
+h
+h]∆t, {∇hqn
+1 [Λn
+
+=
+
+h]∆t, {∇hqn
+
+h }1/4(cid:105)
+
+h }1/4(cid:105).
+
+(3.43)
+
+We now focus on the very last term in (3.43) and use Lemma 3.4 to express
+
+{∇hqn
+
+h }1/4 via Λh to obtain:
+h]]∆t + Γ 2
+
+(cid:104)2Γ1[[Λn
+
+1 [Λn
++ (cid:104)2Γ1[[Λn
+
+h]∆t, {∇hqn
+h]]∆t + Γ 2
+
+h }1/4(cid:105) = (cid:104)2Γ1[[Λn
+h]∆t, 2Γ1[Λn
+1 [Λn
+
+h]]∆t + Γ 2
+h]∆t + Γ 2
+
+1 [Λn
+1 {Λn
+
+h]∆t, [[Λn
+h}1/4(cid:105).
+
+h]]∆t(cid:105)
+
+From (3.5) it follows that
+(cid:104)2Γ1[[Λn
+h]]∆t + Γ 2
+
+h }1/4(cid:105) = 2Γ1(cid:107)[[Λn
+
+h]]∆t(cid:107)2
+
+h]∆t, {∇hqn
+1 [Λn
+
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
++ (cid:104)2Γ1[[Λn
+h]]∆t + Γ 2
+
+1
+2∆t
+
+Λn+1
+
+Γ1
+
+
+
++
+
+h − Λn
+∆t
+
+1 [Λn
+
+h
+
+−
+
+Γ1
+
+(cid:13)
+2
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+h]∆t, 2Γ1[Λn
+
+Λn
+
+h − Λn−1
+∆t
+
+h
+
+2
+
+
+
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+1 {Λn
+
+h]∆t + Γ 2
+
+h}1/4(cid:105).
+
+Finally, with (3.6), we obtain
+h]]∆t + Γ 2
+
+(cid:104)2Γ1[[Λn
+
+1 [Λn
+h]∆t, {∇hqn
+
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+h }1/4(cid:105) = 2(cid:107)[[Λn
+(cid:13)
+2
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+h − Λn
+∆t
+
+Λn+1
+
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+1
+2∆t
+
+Γ1
+
+2Γ1
+
+
+
++
+
+h]]∆t(cid:107)2
+Γ1
+h − Λn
+∆t
+
+Λn+1
+
+h
+
+h
+
++
+
++ Γ 2
+1
+
+Λn+1
+h + Λn
+2
+
+h
+
+(cid:13)
+2
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+−
+
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+Γ1
+
+Λn
+
+h − Λn−1
+∆t
+
+h
+
+(cid:13)
+2
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+−
+
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+2Γ1
+
+Λn
+
+h − Λn−1
+∆t
+
+h
+
++ Γ 2
+1
+
+Λn
+
+h + Λn−1
+2
+
+h
+
+2
+ .
+
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+
+--- Page 24 ---
+Stability Analysis of a PML for the Second-order Wave Equation
+
+23
+
+To conclude the proof, we combine the above expression with (3.43) and recall
+that [[Λn
+(cid:117)(cid:116)
+
+h]∆t (see (3.24) ).
+
+h]]∆t = [∇hun
+
+h + φn
+
+Now we can prove the principal result of this section, namely Theorem 3.2.
+
+Proof (Theorem 3.2) By proceeding as in the proof of Theorem 3.1 and using (3.30),
+we obtain the following identity:
+
+(cid:107)q
+
+n+ 1
+2
+h
+
+n− 1
+2
+h
+
+(cid:107)2
+
+(cid:107)2 − (cid:107)q
+2∆t
+
++ (cid:104)∇hun
+
+h + φn
+
+h, ∇h{qn
+
+h }1/4(cid:105) = 0.
+
+Let us remark that to obtain the above, we use the fact that due to either of
+boundary conditions (3.10), integration by parts yields no boundary terms (see
+discussion after (2.19)). On applying Lemma 3.6 to ∇hun
+h, the above trans-
+forms into
+
+h + φn
+
+(cid:107)q
+
+n+ 1
+2
+h
+
+−
+
+∆t2
+4
+
+n− 1
+(cid:107)2 − (cid:107)q
+2
+h
+2∆t
+(cid:104)[[∇hun
+
+(cid:107)2
+
++ (cid:104){∇hun
+
+h + φn
+
+h}1/4, ∇h{qn
+
+h }1/4(cid:105)
+
+(3.44)
+
+h + φn
+
+h]]∆t, ∇h{qn
+
+h }1/4(cid:105) = 0.
+
+By proceeding as in the proof of Theorem 3.1 and using (3.36) to express the ﬁrst
+
+two terms in the above via E
+
+n± 1
+k,h , we rewrite (3.44) as follows:
+2
+
+(cid:16)
+
+E
+
+1
+∆t
+
+n+ 1
+k,h − E
+2
+
+n− 1
+2
+k,h
+
+(cid:17)
+
++
+
+∆t
+8
+
+(cid:16)
+
+n+ 1
+p,h − E
+2
+
+n− 1
+2
+p,h
+
+(cid:17)
+
+E
+
++ 2
+
+(cid:18)(cid:13)
+(cid:13)
+(cid:13)∇hq
+(cid:13)
+(cid:8)∇hun
+(cid:13)
+(cid:13)
+
+n+ 1
+2
+h
+
+(cid:13)
+2
+(cid:13)
+(cid:13)
+
+−
+
+h + φn
+h
+
+(cid:9)
+
+2(cid:19)
+
+(cid:13)
+(cid:13)
+(cid:13)
+
+(cid:13)
+n− 1
+(cid:13)
+(cid:13)∇hq
+2
+h
+(cid:13)
+2
+(cid:13)
+(cid:13)
+
+1/4
+
+Γ1
+
+(cid:104)[[∇hun
+
+h + φn
+
+h]]∆t, ∇h{qn
+
+h }1/4(cid:105) = 0.
+
++
+
+−
+
+1
+∆t
+∆t2
+4
+
+Substitution of the last term using Lemma 3.8 ﬁnally yields (3.41).
+
+(cid:117)(cid:116)
+
+3.3 Control of unknowns
+
+Here, we demonstrate that the norms of the unknown discrete ﬁelds do not grow
+in time when the explicit time discretization (3.32) is used, which corresponds to
+the discrete counterpart of Theorem 2.3.
+
+h, φn
+
+Theorem 3.3 Let (un
+h ) solve the initial-value problem for (3.32) with ξ1, ξ2,
+ξ3 ≥ 0 and CCF L < 1, where the CFL constant CCF L is given by (3.40). Then there
+exists a constant C > 0, which depends only on the initial data, the damping functions
+ξj , j = 1, 2, 3 and CCF L, such that
+
+h, ψn
+
+– if ξi (cid:54)= 0 for some i ∈ {1, 2, 3}, then
+
+(cid:107)un
+
+h(cid:107) +
+
+(cid:13)
+(cid:13)
+(cid:13)∇hu
+
+n+ 1
+2
+h
+
+(cid:13)
+(cid:13)
+(cid:13) +
+
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+un+1
+h − un
+∆t
+
+h
+
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
++ (cid:107)φn
+
+h(cid:107) ≤ C,
+
+for all n ≥ 0.
+
+– if, additionally, ξj (cid:54)= 0 for some j (cid:54)= i ∈ {1, 2, 3}, then
+
+(cid:107)ψn
+
+h (cid:107) + (cid:107)∇hψn
+
+h (cid:107) ≤ C,
+
+for all n ≥ 0.
+
+
+--- Page 25 ---
+24
+
+Daniel H. Baﬀet et al.
+
+Again the proof relies on several auxiliary lemmas. The following result mimics
+Lemma 2.3.
+
+Lemma 3.9 Let vn
+
+h ∈ Uh, n ≥ 0, and let the sequence wn+ 1
+
+2 be deﬁned by
+
+wn+ 1
+
+2 =
+
+vn+1 − vn
+∆t
+
++ γ
+
+vn+1 + vn
+2
+
+,
+
+γ > 0, ∆t > 0.
+
+(3.45)
+
+If there exists a constant Cw > 0, s.t. (cid:107)wk+1/2(cid:107) ≤ Cw uniformly for all k ≥ 0, then
+the following bounds hold uniformly for all n ≥ 0:
+
+(cid:107)vn(cid:107) ≤ (cid:107)v0(cid:107) + Cv,
+
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+vn+1 − vn
+∆t
+
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+≤ γ(cid:107)v0(cid:107) + C(cid:48)
+v.
+
+(3.46)
+
+Here the constants Cv, C(cid:48)
+
+v > 0 only depend on Cw and γ.
+
+Proof From (3.45), we have
+
+vn+1 =
+
+(cid:19)−1
+
+(cid:18) 1
+∆t
+
++
+
+γ
+2
+
+wn+ 1
+
+2 + vnν,
+
+(cid:18)
+
+1 −
+
+ν =
+
+γ∆t
+2
+
+(cid:19) (cid:18)
+
+1 +
+
+(cid:19)−1
+
+.
+
+γ∆t
+2
+
+Hence,
+
+vn+1 = v0νn+1 +
+
+n
+(cid:88)
+
+(cid:96)=0
+
+wn−(cid:96)+1/2ν(cid:96)
+
+(cid:18) 1
+∆t
+
++
+
+γ
+2
+
+(cid:19)−1
+
+.
+
+Since |ν| < 1, the above implies the uniform bound (3.46) for (cid:107)vn(cid:107). By applying
+the triangle inequality to (3.45) and using the uniform bound for wn+ 1
+2 , we get:
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+vn+1 + vn
+2
+
+vn+1 − vn
+∆t
+
+≤ Cw + γ
+
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+,
+
+which, together with (cid:107)vn(cid:107) ≤ (cid:107)v0(cid:107) + Cv, results in the second bound in (3.46). Note
+that all constants are also uniformly bounded in ∆t.
+(cid:117)(cid:116)
+
+Next, we need the discrete counterpart of Lemma 2.4.
+h , φn
+
+Lemma 3.10 Let (un
+h) solve the initial-value problem for (3.32) with ξ1, ξ2,
+ξ3 ≥ 0, and CCF L < 1 with CCF L given by (3.40). Then there exists a constant C > 0,
+which depends only on the initial data and ξj , j = 1, 2, 3, such that
+
+h, ψn
+
+– if ξi (cid:54)= 0, then for all n ≥ 0,
+
+(cid:107)un
+
+h(cid:107) ≤ C,
+
+(3.47a)
+
+– if, additionally, ξj (cid:54)= 0, for j (cid:54)= i, then
+
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+un+1
+h − un
+∆t
+
+h
+
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+≤ C.
+
+(3.47b)
+
+(cid:107)ψn
+
+h (cid:107) ≤ C,
+
+n ≥ 0.
+
+(3.48)
+
+Proof Again, we let C denote a generic constant that depends on the initial data,
+damping functions and the CFL only. Theorem 3.2, combined with the assumption
+CCF L < 1, implies the following uniform bound in (cid:96):
+
+Next, we consider the following three separate cases:
+
+(cid:107)q
+
+(cid:96)+ 1
+2
+h
+
+(cid:107) ≤ C,
+
+(cid:96) ≥ 0.
+
+
+--- Page 26 ---
+Stability Analysis of a PML for the Second-order Wave Equation
+
+25
+
+– ξi (cid:54)= 0 and ξj = ξk = 0, i (cid:54)= j (cid:54)= k. The bounds (3.47a, 3.47b) follow from
+
+n+ 1
+q
+2
+h
+
+= v
+
+n+ 1
+h + ξiu
+2
+
+n+ 1
+h =
+2
+
+un+1
+h − un
+∆t
+
+h
+
++ ξiu
+
+n+ 1
+2
+h
+
+(see (3.13) for the deﬁnition of vn
+
+h ) and Lemma 3.9.
+
+– ξi, ξj (cid:54)= 0 and ξk = 0. Here we need to show (3.47a), (3.47b) and (3.48) following
+
+similar ideas as previously. First, we recall that
+
+n+ 1
+2
+h
+
+q
+
+=
+
+un+1
+h − un
+∆t
+
+h
+
++ (ξi + ξj)u
+
+n+ 1
+h + ξiξj ψ
+2
+
+n+ 1
+2
+h
+
+.
+
+Next, we deﬁne the auxiliary unknown,
+
+h = un
+gn
+
+h + ξiψn
+h ,
+
+which yields
+
+n+ 1
+g
+2
+h
+
+= u
+
+n+ 1
+h + ξiψ
+2
+
+n+ 1
+2
+h
+
+=
+
+ψn+1
+h − ψn
+∆t
+
+h
+
++ ξiψ
+
+n+ 1
+2
+h
+
+,
+
+where the last identity follows from (3.32b). We also have
+
+gn+1
+h − gn
+∆t
+
+h
+
+=
+
+un+1
+h − un
+∆t
+
+h
+
++ ξiu
+
+n+ 1
+2
+h
+
+.
+
+Therefore, we can rewrite (3.49) as
+
+n+ 1
+q
+2
+h
+
+=
+
+gn+1
+h − gn
+∆t
+
+h
+
+n+ 1
++ ξj g
+2
+h
+
+.
+
+(3.49)
+
+(3.50)
+
+(3.51)
+
+(3.52)
+
+By applying Lemma 3.9, we deduce that for all n ≥ 0,
+
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+(cid:107)gn
+
+(3.53)
+
+h (cid:107) ≤ C,
+
+gn+1
+h − gn
+∆t
+With (3.53), Lemma 3.9 applied to (3.51) yields the bound (3.48). The uniform
+bound (3.47a) follows from the triangle inequality applied to (3.50), and the
+bound (3.47b) follows from (3.54) and the triangle inequality applied to (3.52)
+using (3.47a).
+
+(3.54)
+
+≤ C.
+
+h
+
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+– ξ1, ξ2, ξ3 (cid:54)= 0. We will only sketch the proof, since it is very similar to the previous
+case, and consists in multiple applications of Lemma 2.3. Let us ﬁrst deﬁne an
+auxiliary unknown wn
+h :
+
+h = un
+wn
+
+h + (ξ2 + ξ1)ψn
+
+h + ξ1ξ2Ψ n
+h .
+
+Then, with (3.32b) and (3.11), we have
+
+wn+1
+h − wn
+∆t
+
+h
+
++ ξ3w
+
+n+ 1
+2
+h
+
+=
+
+un+1
+h − un
+∆t
+
+h
+
++ (ξ2 + ξ1)u
+
+n+ 1
+h + ξ1ξ2ψ
+2
+
+n+ 1
+2
+h
+
++ξ3u
+
+n+ 1
+h + ξ3(ξ2 + ξ1)ψ
+2
+
+n+ 1
+h + ξ1ξ2ξ3Ψ
+2
+
+n+ 1
+2
+h
+
+.
+
+Upon comparison with (3.34), we obtain
+
+n+ 1
+2
+h
+
+q
+
+=
+
+wn+1
+h − wn
+∆t
+
+h
+
++ ξ3w
+
+n+ 1
+2
+h
+
+.
+
+(3.55)
+
+(3.56)
+
+(3.57)
+
+
+--- Page 27 ---
+26
+
+Next, we let
+
+and verify that
+
+and
+
+Gn
+
+h = ψn
+
+h + ξ2Ψ n
+h ,
+
+Gn+1
+
+h − Gn
+∆t
+
+h
+
++ ξ1G
+
+n+ 1
+h = w
+2
+
+n+ 1
+2
+h
+
+,
+
+Gn+1
+
+h − Gn
+∆t
+
+h
+
+=
+
+ψn+1
+h − ψn
+∆t
+
+h
+
++ ξ2ψ
+
+n+ 1
+2
+h
+
+,
+
+Daniel H. Baﬀet et al.
+
+(3.58)
+
+(3.59)
+
+(3.60)
+
+h
+
+h
+
+(cid:13)
+(cid:13)
+(cid:13)
+
+wn+1
+
+Gn+1
+
+h (cid:107) and
+
+h −wn
+∆t
+
+h −Gn
+∆t
+
+Then the desired result follows by multiple applications of Lemma 2.3, ﬁrst
+to (3.57) (to bound (cid:107)wn
+h(cid:107) and
+(cid:13)
+(cid:13)
+(cid:13)), and ﬁnally to (3.60) (which permits to bound (cid:107)ψn
+(cid:13)
+(cid:13)
+h (cid:107), thus obtaining
+(cid:13)
+(3.48)). Applying the triangle inequality to (3.58), we obtain a uniform bound
+on (cid:107)Ψ n
+h (cid:107); next, the triangle inequality with (3.55) gives us the uniform bound
+(3.47a) on (cid:107)un
+h(cid:107). Finally, to get (3.47b), it suﬃces to apply the triangle inequality
+to (3.56).
+
+(cid:13)
+(cid:13)), next to (3.59) (to bound (cid:107)Gn
+(cid:13)
+
+The following lemma shows that we also control the discrete norms of the deriva-
+tives. For conciseness, we shall henceforth use the following notation:
+
+(cid:117)(cid:116)
+
+∇huh =
+
+(cid:16)
+x1 uh, ∂h
+∂h
+
+x2 uh, ∂h
+
+x3 uh
+
+(cid:17)
+
+.
+
+Lemma 3.11 Let (un
+h ) solve the initial-value problem for (3.32) with ξ1 , ξ2,
+ξ3 ≥ 0 and CCF L < 1 with CCF L as in (3.40). Then there exists a constant C > 0,
+which depends only on the initial data, ξj , j = 1, 2, 3, and CCF L, such that
+
+h, φn
+
+h, ψn
+
+– we have
+
+(cid:13)
+n+ 1
+(cid:13)
+(cid:13)∇hu
+2
+h
+
+(cid:13)
+(cid:13)
+(cid:13) ≤ C,
+
+for all n ≥ 0;
+
+(3.61)
+
+– if, additionally, for some i ∈ {1, 2, 3}, ξi (cid:54)= 0, then
+
+(cid:107)φn
+
+h(cid:107) ≤ C,
+
+n ≥ 0.
+
+– if, additionally, ξj (cid:54)= 0, for some j (cid:54)= i, then
+
+(cid:107)∇hψn
+
+h (cid:107) ≤ C,
+
+n ≥ 0.
+
+(3.62)
+
+(3.63)
+
+Proof Again, we let C > 0 denote a generic constant that depends only on the
+initial data, CCF L and ξj , j = 1, 2, 3. Due to the assumptions of the lemma together
+with Theorem 3.2, the following uniform bounds hold:
+
+(cid:16)
+
+(cid:13)
+(cid:13)
+(cid:13)Γ1
+(cid:13)
+(cid:13)
+(cid:13)∇hu
+
+∇hψ
+
+n+ 1
+n+ 1
+h + Φ
+2
+2
+h
+(cid:13)
+n+ 1
+n+ 1
+(cid:13)
+h + φ
+(cid:13) ≤ C,
+2
+2
+h
+
+(cid:17)(cid:13)
+(cid:13)
+(cid:13) ≤ C,
+
+n ≥ 0.
+
+(3.64)
+
+(3.65)
+
+Let us consider the following four separate cases.
+
+
+--- Page 28 ---
+Stability Analysis of a PML for the Second-order Wave Equation
+
+27
+
+– ξ1 = ξ2 = ξ3 = 0. Then (3.61) is a direct consequence of Theorem 3.2, see
+
+Remark 2.2.
+
+– ξi (cid:54)= 0, and ξj = ξk = 0, i (cid:54)= j (cid:54)= k, i, j, k ∈ {1, 2, 3}. Without loss of generality,
+
+let us assume i = 1. We can split the proof into two cases:
+1. Uniform bounds for (cid:107)∂h
+x1 u
+fully discrete form written for i = 1; it clearly yields
+
+(cid:107) and (cid:107)φn
+
+n+ 1
+2
+h
+
+h,1(cid:107). Let us consider (3.26) in its
+
+n+ 1
+h,1 + ξ1Φ
+2
+
+n+ 1
+h,1 = −ξ1∂h
+2
+
+x1 ψ
+
+n+ 1
+2
+h
+
+φ
+
+.
+
+From the above expression and (3.64), we deduce that (cid:107)φ
+uniformly in n, which together with (3.65) implies the bound on ∂h
+To bound (cid:107)φn
+
+h,1(cid:107), we use (3.32c) written for φh,1, namely,
+
+n+ 1
+h,1 (cid:107) is bounded
+2
+.
+x1 u
+
+n+ 1
+2
+h
+
+φn+1
+h,1 − φn
+∆t
+
+h,1
+
++ ξ1φ
+
+n+ 1
+h,1 = −ξ1∂h
+2
+
+x1 u
+
+n+ 1
+2
+h
+
+,
+
+and apply to it Lemma 3.9, as the right hand side is bounded uniformly in
+n.
+
+(cid:107) and (cid:107)φn
+
+h,(cid:96)(cid:107), (cid:96) (cid:54)= 1. First, note that (3.32c)
+
+2. Uniform bounds for (cid:107)∂h
+written for φh,2 reads:
+
+x(cid:96) u
+
+n+ 1
+2
+h
+
+φn+1
+h,2 − φn
+∆t
+
+h,2
+
+= ξ1∂h
+
+x2 u
+
+n+ 1
+2
+h
+
+.
+
+(3.66)
+
+Adding to both sides of the above expression ξ1φ
+
+n+ 1
+h,2 , we obtain
+2
+
+φn+1
+h,2 − φn
+∆t
+
+h,2
+
++ ξ1φ
+
+n+ 1
+h,2 = ξ1∂h
+2
+
+x2 u
+
+n+ 1
+h + ξ1φ
+2
+
+n+ 1
+h,2 .
+2
+
+The right-hand side of this equation is bounded uniformly in n due to (3.65).
+With Lemma 3.9, we obtain the uniform bound (3.62) on (cid:107)φn
+h,2(cid:107), as well
+φn+1
+h,2 −φn
+∆t
+
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+immediately implies the uniform bound (3.61) for (cid:107)∂h
+
+. The latter, combined with (3.66),
+
+as the uniform bound on
+
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+(cid:107).
+
+h,2
+
+x2 u
+
+n+ 1
+2
+h
+
+– ξiξj (cid:54)= 0, ξk ≡ 0, for i (cid:54)= j (cid:54)= k. In this case we will demonstrate (3.61), (3.62)
+
+and (3.63). Without loss of generality, let i = 1, j = 2 and k = 3.
+1. Uniform bounds for (cid:107)∂h
+
+h (cid:107), (cid:96) = 1, 2. Without loss
+of generality, we show the bounds for (cid:96) = 1, as the proofs are essentially
+identical for (cid:96) = 2.
+From (3.26) with i = 1, we have
+
+h,(cid:96)(cid:107), (cid:107)∂h
+
+(cid:107), (cid:107)φn
+
+n+ 1
+2
+h
+
+x(cid:96) ψn
+
+x(cid:96) u
+
+n+ 1
+h,1 + ξ1Φ
+2
+
+n+ 1
+h,1 = (ξ2 − ξ1)∂h
+2
+
+x1 ψ
+
+n+ 1
+2
+h
+
+φ
+
+.
+
+Adding to both sides of the above ∂h
+
+x1 u
+
+n+ 1
+2
+h
+
+results in
+
+n+ 1
+h,1 + ∂h
+φ
+2
+
+x1 un+ 1
+
+2 + ξ1Φ
+
+n+ 1
+h,1 + ξ1∂h
+2
+
+x1 ψ
+
+n+ 1
+2
+h
+
+= ξ2∂h
+
+x1 ψ
+
+n+ 1
+h + ∂h
+2
+
+x1 u
+
+n+ 1
+2
+h
+
+
+--- Page 29 ---
+28
+
+Daniel H. Baﬀet et al.
+
+By using (3.32b), we can rewrite the above as
+
+n+ 1
+h,1 + ∂h
+2
+
+x1 un+ 1
+
+φ
+
+2 + ξ1Φ
+
+n+ 1
+h,1 + ξ1∂h
+2
+
+x1 ψ
+
+n+ 1
+2
+h
+
+=
+
+x1 ψn+1
+h − ∂h
+∂h
+∆t
+
+x1 ψn
+h
+
++ ξ2∂h
+
+x1 ψ
+
+n+ 1
+2
+h
+
+.
+
+By (3.64) and (3.65), the left-hand side is bounded uniformly in n. The
+application of Lemma 3.9 then implies for all n ≥ 0 that
+
+(cid:107)∂h
+
+x1 ψn
+
+h (cid:107) ≤ C,
+
+(cid:13)
+(cid:13)
+∂h
+(cid:13)
+x1
+(cid:13)
+(cid:13)
+
+ψn+1
+h − ψn
+∆t
+
+h
+
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+≡ (cid:107)∂h
+
+x1 u
+
+n+ 1
+2
+h
+
+(cid:107) ≤ C.
+
+Finally, to get a uniform bound on (cid:107)φn
+(3.32c) written for φh,1:
+
+h,1(cid:107), it suﬃces to apply Lemma 3.9 to
+
+φn+1
+h,1 − φn
+∆t
+
+h,1
+
++ ξ1φ
+
+n+ 1
+h,1 = (ξ2 − ξ1)∂h
+2
+
+x1 u
+
+n+ 1
+2
+h
+
+.
+
+2. Uniform bounds for (cid:107)∂h
+
+h (cid:107). Since ξ3 = 0, we may
+not use (3.26) here, though we can use the ﬁrst part of Lemma 3.5, which
+yields the following identity:
+
+h,3(cid:107) and (cid:107)∂h
+
+(cid:107), (cid:107)φn
+
+x3 ψn
+
+x3 u
+
+n+ 1
+2
+h
+
+φn+1
+h,3 − φ0
+
+h,3 = (ξ1 + ξ2)∂h
+
+x3 ψn+1
+
+h − (ξ1 + ξ2)∂h
+
+x3 ψ0
+
+h + ξ1ξ2∂h
+
+x3 Ψ n+1
+h
+
+,
+
+(3.67)
+
+which, in its turn, yields
+
+n+ 1
+h,3 − φ0
+φ
+2
+
+h,3 + (ξ1 + ξ2)∂h
+
+x3 ψ0
+
+h = (ξ1 + ξ2)∂h
+
+x3 ψ
+
+n+ 1
+h + ξ1ξ2∂h
+2
+
+x3 Ψ
+
+n+ 1
+2
+h
+
+.
+
+Next, we add to both sides of the above ∂h
+
+x3 u
+
+n+ 1
+2
+h
+
+to obtain
+
+n+ 1
+h,3 + ∂h
+2
+
+x3 u
+
+n+ 1
+2
+h
+
+φ
+
+− φ0
+
+h,3 + (ξ1 + ξ2)∂h
+
++(ξ1 + ξ2)∂h
+
+x3 ψ
+
+h = ∂h
+x3 ψ0
+n+ 1
+h + ξ1ξ2∂h
+2
+
+x3 Ψ
+
+x3 u
+
+n+ 1
+2
+h
+n+ 1
+2
+h
+
+.
+
+(3.68)
+
+The left hand side of the above is bounded because of (3.65). As for the
+right-hand side, one can easily verify that it can be rewritten as follows:
+
+∂h
+x3 u
+
+n+ 1
+h + (ξ1 + ξ2)∂h
+2
+
+x3 ψ
+
+n+ 1
+h + ξ1ξ2∂h
+2
+
+x3 Ψ
+
+n+ 1
+2
+h
+
+=
+
+where
+
+Gn+1
+
+h − Gn
+∆t
+
+h
+
+Gn
+
+h = ∂x3 ψn
+
+h + ξ2∂x3 Ψ n
+h ,
+
+n+ 1
++ ξ1G
+2
+h
+
+,
+
+(3.69)
+
+(3.70)
+
+as in the proof of Lemma 3.10, case ξi, ξj (cid:54)= 0 and ξk = 0, for instance.
+By applying Lemma 3.9 to (3.69), we now deduce that the following two
+bounds hold uniformly in n:
+
+(cid:107)Gn
+
+h(cid:107) ≤ C,
+
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+Gn+1
+
+h − Gn
+∆t
+
+h
+
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+≤ C.
+
+
+--- Page 30 ---
+Stability Analysis of a PML for the Second-order Wave Equation
+
+29
+
+Again by applying Lemma 3.9 to (3.70) rewritten as
+
+Gn+1/2
+h
+
+= ∂x3
+
+Ψ n+1
+h − Ψ n
+∆t
+
+h
+
++ ξ2∂x3 Ψ n+1/2
+
+h
+
+,
+
+we deduce that
+
+(cid:13)
+(cid:13)∂x3 Ψ n
+h
+
+(cid:13)
+(cid:13) ≤ C, for all n ≥ 0.
+
+(3.71)
+
+Next, Lemma 3.9 applied to
+h − Gn
+∆t
+
+Gn+1
+
+h
+
+= ∂x3
+
+ψn+1
+h − ψn
+∆t
+
+h
+
++ ξ2∂x3 ψ
+
+n+ 1
+2
+h
+
+,
+
+yields the following bounds, for some constant C > 0:
+
+(cid:107)∂x3 ψn
+
+h (cid:107) ≤ C,
+
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+∂x3
+
+ψn+1
+h − ψn
+∆t
+
+h
+
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+≡ (cid:107)∂x3 u
+
+n+ 1
+2
+h
+
+(cid:107) ≤ C, for all n ≥ 0. (3.72)
+
+Finally, to get the bound on (cid:107)φn
+combined with the above uniform bound on (cid:107)∂x3 ψn
+
+h,3(cid:107), we use the triangle inequality in (3.67),
+
+h (cid:107) and (3.71).
+
+– Finally, it remains to consider the case ξ1, ξ2, ξ3 > 0. Let us ﬁrst obtain the
+bounds on (cid:107)∂h
+h,1(cid:107), as the bounds for the remaining
+terms are similar. Here, we shall only sketch the proof, since it is very similar
+to previously used arguments.
+From (3.26) for i = 1, we have
+
+h (cid:107) and (cid:107)φn
+
+(cid:107), (cid:107)∂h
+
+x1 ψn
+
+n+ 1
+2
+h
+
+x1 u
+
+n+ 1
+h,1 + ξ1Φ
+2
+
+n+ 1
+h,1 = (ξ2 + ξ3 − ξ1)∂h
+2
+
+x1 ψ
+
+φ
+
+or, after adding to both sides of the above ∂h
+
+x1 u
+
+(cid:16)
+
+φ
+
+n+ 1
+h,1 + ∂h
+2
+
+x1 u
+
+n+ 1
+2
+h
+
+(cid:17)
+
+(cid:16)
+
++ ξ1
+
+n+ 1
+h,1 + ∂h
+Φ
+2
+
+x1 ψ
+
+x1 Ψ
+
+n+ 1
+2
+h
+
+,
+
+n+ 1
+h + ξ2ξ3∂h
+2
+n+ 1
+h + ξ1∂h
+2
+n+ 1
+2
+h
+
+= ∂h
+
+x1 ψ
+
+(cid:17)
+
+n+ 1
+2
+h
+
+,
+
+x1 u
+
+n+ 1
+2
+h
+
+With
+
++(ξ2 + ξ3)∂h
+
+x1 ψ
+
+n+ 1
+h + ξ2ξ3∂h
+2
+
+x1 Ψ
+
+n+ 1
+2
+h
+
+.
+
+Gn
+
+h = ∂h
+
+x1 ψn
+
+h + ξ3∂h
+
+x1 Ψ n
+h ,
+
+(3.73)
+
+it is not diﬃcult to verify (see the proof of Lemma 3.10, case ξi, ξj (cid:54)= 0 and
+ξk = 0) that
+
+(cid:16)
+
+n+ 1
+h,1 + ∂h
+2
+
+x1 u
+
+n+ 1
+2
+h
+
+φ
+
+(cid:17)
+
+(cid:16)
+
++ ξ1
+
+n+ 1
+h,1 + ∂h
+Φ
+2
+
+x1 ψ
+
+n+ 1
+2
+h
+
+(cid:17)
+
+=
+
+Gn+1
+
+h − Gn
+∆t
+
+h
+
+n+ 1
++ ξ2G
+2
+h
+
+. (3.74)
+
+Thanks to (3.64), (3.65) and Lemma 3.9, we obtain
+
+(cid:107)Gn
+
+h(cid:107) ≤ C,
+
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+Gn+1
+
+h − Gn
+∆t
+
+h
+
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+(cid:13)
+
+≤ C,
+
+for all n ≥ 0.
+
+Hence, the desired bounds for (cid:107)∂h
+to those in (3.72). Finally, to get a uniform bound on (cid:107)φn
+3.9 to the left-hand side of (3.32c) written for φn
+
+(cid:107) and (cid:107)∂h
+
+x1 ψn
+
+x1 u
+
+h,1.
+
+n+ 1
+2
+h
+
+h (cid:107) can be obtained similarly
+h,1(cid:107), we apply Lemma
+
+Proof (Theorem 3.3) The proof is a direct corollary of Lemmas 3.10 and 3.11. (cid:117)(cid:116)
+
+(cid:117)(cid:116)
+
+
+--- Page 31 ---
+30
+
+Daniel H. Baﬀet et al.
+
+4 Numerical results
+
+Here we perform a series of numerical experiments where we compute the solution
+of the 3D PML system (2.1) in the unit cube Ω = [0, 1]3 using the explicit scheme
+described in Section 3.2. First, we consider damping functions ξi that are constant
+throughout Ω to validate the theory. Next, we consider the realistic situation of
+piecewise constant damping functions that identically vanish inside the region of
+interest, Ω0.
+
+For the spatial discretization, we use standard sixth-order hexahedral Q6-ﬁnite
+elements, which leads to approximately 1.4 · 107 degrees of freedom. The time step
+is set to ∆t ≈ 0.001, which corresponds to approximately 95% of the allowed
+maximal time step. We set the initial conditions to zero and consider either Neu-
+mann or Dirichlet conditions at the outer boundary B of the PML for the sake of
+completeness.
+
+To initiate an outward propagating spherical wave, we include in (2.1) the
+
+essentially compactly supported Gaussian source centered about x0,
+
+f (t, x) = f0e−σx(cid:107)x−x0(cid:107)2 d
+dt
+
+(cid:16)
+
+σx = 2 · 103, σt = 5 · 104, x0 =
+
+e−σt(t−t0)2 (cid:17)
+,
+(cid:18) 1
+2
+
+,
+
+(cid:19)
+
+1
+2
+
+,
+
+1
+2
+
+, t0 = 0.02, f0 = 102.
+
+(4.1)
+
+The source f (t, x) only acts during the very short time interval [0, 0.04] while its
+amplitude lies below machine precision past t = 0.08. In the simulations below, all
+quantities of interest are therefore computed after those ﬁrst 80 time steps, that is
+for tn > 0.08 when f is essentially zero and our theory is valid. The discrete energy
+n+ 1
+expl deﬁned in (3.39), in particular, then satisﬁes the identity in Theorem 3.2
+E
+2
+for n ≥ 80.
+
+4.1 Constant damping coeﬃcients
+
+We consider the situation of constant damping functions, where ξ1, ξ2 and ξ3
+are constant throughout Ω; hence, the PML occupies the entire computational
+domain. We perform two sets of experiments:
+
+– PML in a single direction, either with Dirichlet or Neumann conditions, with
+
+ξ1 = 40, ξ2 = ξ3 = 0.
+
+– PML in all three directions, corresponding to a corner situation, either with
+
+Dirichlet or Neumann conditions, with ξ1 = 40, ξ2 = 45, ξ3 = 50.
+
+In Fig. 4.1, we observe that the decay rate of the energy is only algebraic for
+the PML in a single direction, while for the PML in all three directions (corner)
+the energy decays exponentially fast. To further validate Theorem 3.2, we evaluate
+the relative error
+(cid:18) 1
+∆t
+
+n+ 1
+expl − E
+2
+
+n− 1
+2
+expl
+
+(cid:15)n =
+
+E
+
+(cid:17)
+
+(cid:16)
+
++
+
+(∆t)2
+2
+
+(cid:107)[∇hun
+
+h + φn
+
+h]∆t(cid:107)2
+
+Γ1 + 2(cid:107){∇un
+
+h + φn
+
+h}1/4(cid:107)2
+Γ1
+
+(cid:19) (cid:30)
+
+E
+
+n+ 1
+expl .
+2
+
+(4.2)
+
+
+--- Page 32 ---
+Stability Analysis of a PML for the Second-order Wave Equation
+
+31
+
+Dirichlet
+Neumann
+
+10−2
+
+12
++
+n
+
+l
+p
+x
+e
+E
+
+10−12
+
+Dirichlet
+Neumann
+
+10−2
+
+12
++
+n
+
+l
+p
+x
+e
+E
+
+10−2.5
+
+3
+
+4
+
+10−22
+
+1
+
+1
+
+2
+
+t
+
+3
+
+4
+
+2
+
+t
+
+n+ 1
+2
+Fig. 4.1 Constant damping functions. Left: the energy E
+expl deﬁned in (3.39) for the
+PML in a single direction, computed either with Dirichlet or Neumann conditions. Right: the
+
+n+ 1
+2
+energy E
+expl
+boundary conditions.
+
+for the PML in all three directions, computed either with Dirichlet or Neumann
+
+In all our computations, (cid:15)n never exceeded 10−12 thereby demonstrating the va-
+lidity of Theorem 3.2 down to machine precision.
+
+4.2 Variable damping coeﬃcients
+
+We consider the realistic situation of varying damping functions, when our theory
+is in fact not valid. More precisely, we choose ξi piecewise-constant as
+
+ξi(xi) =
+
+(cid:26) 40, xi ≤ 0.1 or xi > 0.9,
+otherwise,
+
+0
+
+i = 1, 2, 3.
+
+Hence Ω0 = [0.1, 0.9]3 and the PML has width 0.1 in each direction, while the
+FE mesh is aligned with the boundary B of the perfectly matched layer to avoid
+spurious reﬂections due to the discretization. In Fig. 4.2, snapshots of the numerical
+solution with a Dirichlet boundary condition are shown at diﬀerent times. We
+recall that at t = 0.2, the source is essentially zero. The spherical wave front
+enters the PML around t ≈ 0.4 and is fully absorbed by time t = 0.8 without any
+noticeable reﬂections. In contrast to similar experiments performed elsewhere, we
+did not observe any instabilities or spurious reﬂections when using discontinuous
+damping proﬁles. Indeed, as shown in the left frame of Fig. 4.3, we observe no
+spurious oscillations as the solution enters the PML. At later times, however, we
+observe in the right frame of Fig. 4.3 a thousandfold smaller back propagating
+reﬂection caused by the outer boundary of the PML. The absence of any spurious
+oscillations at the interface is probably due to the use of a very high 6-th order
+FE discretization.
+
+n+ 1
+2
+expl
+
+In the left frame of Fig. 4.4, we display the time evolution of the discrete energy
+for piecewise constant damping functions that identically vanish inside Ω0,
+E
+using either Dirichlet or Neumann boundary conditions. In the right frame, we
+show the discrete rate of change of the energy,
+
+δn
+h =
+
+E
+
+n+ 1
+expl − E
+2
+∆t
+
+n− 1
+2
+expl
+
+.
+
+(4.3)
+
+
+--- Page 33 ---
+32
+
+Daniel H. Baﬀet et al.
+
+t ≈ 0.2
+
+t ≈ 0.4
+
+t ≈ 0.6
+
+t ≈ 0.8
+
+Fig. 4.2 Piecewise constant damping functions. Snapshots of the numerical solution at
+times t (cid:39) 0.2, 0.4, 0.6, 0.8.
+
+·10−2
+
+·10−5
+
+u
+
+2
+
+0
+
+−2
+
+2
+
+1
+
+0
+
+u
+
+0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+−1
+
+0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+x
+
+x
+
+t ≈ 0.2
+
+t ≈ 0.4
+
+t ≈ 0.6
+
+t ≈ 0.8
+
+Fig. 4.3 Piecewise constant damping functions. Snapshots of u(t, x, 1
+Left: t (cid:39) 0.2, 0.4, right: t (cid:39) 0.6, 0.8. Notice the diﬀerence in ﬁgure scales.
+
+2 , 1
+
+2 ) for x ∈ (0, 1).
+
+Clearly, we no longer expect (cid:15)n deﬁned in (4.2) to vanish identically. Still, we
+n+ 1
+expl deﬁned in (3.39) nonetheless decays
+wish to investigate whether the energy E
+2
+in a situation of varying damping functions, that is whether δn
+h in (4.3) remains
+negative.
+
+
+--- Page 34 ---
+Stability Analysis of a PML for the Second-order Wave Equation
+
+33
+
+10−1
+
+12
++
+n
+
+l
+p
+x
+e
+E
+
+10−4
+
+Dirichlet
+Neumann
+
+10−7
+
+1
+
+3
+
+4
+
+2
+
+t
+
+0
+
+nh
+δ
+
+−0.1
+
+−0.2
+
+Dirichlet
+Neumann
+
+3
+
+4
+
+1
+
+2
+
+t
+
+n+ 1
+2
+Fig. 4.4 Piecewise constant damping functions, short time. Left: the energy E
+expl ,
+deﬁned in (3.39), computed either with Dirichlet or Neumann conditions. Right: the discrete
+rate of change in the energy δn
+h , deﬁned in (4.3), computed either with Dirichlet or Neumann
+conditions.
+
+nh
+δ
+
+2
+
+1
+
+0
+
+−1
+
+−2
+
+·10−3
+
+Dirichlet
+Neumann
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+t
+
+Fig. 4.5 Piecewise constant damping functions, a closer look. The discrete rate of
+change of the energy δn
+h computed either with Dirichlet or Neumann conditions. Zoom on the
+right frame of Fig. 4.4.
+
+In Fig. 4.4, it appears at ﬁrst that the energy still decays even in a situation
+of varying damping proﬁles. However, as we take a closer look in Fig. 4.5 at the
+time evolution of the discrete rate of change of the energy, we observe that in fact
+the energy no longer monotonically decreases. Indeed at time t ≈ 0.4, that is when
+the wave front ﬁrst penetrates the PML, δn
+h exhibits an albeit small but positive
+maximum, though it remains strictly negative at all later times.
+
+Finally, we demonstrate the long-time stability of our perfectly matched layer
+by performing a much longer simulation until time t = 36. All parameters remain
+identical, except that we choose a FE mesh twice as coarse with about 1.8 · 106
+degrees of freedom and a time-step about twice as large, ∆t ≈ 0.002. In Fig. 4.6,
+we observe that the energy (3.39) remains bounded and essentially decays during
+the entire simulation, be it with Dirichlet or Neumann conditions. Note that the
+energy essentially vanishes beyond time t = 0.8, once the spherical wave has left
+the physical domain Ω0.
+
+
+--- Page 35 ---
+34
+
+Daniel H. Baﬀet et al.
+
+Dirichlet
+Neumann
+
+10−2
+
+12
++
+n
+
+l
+p
+x
+e
+E
+
+10−5
+
+10−8
+
+0
+
+10
+
+20
+
+30
+
+t
+
+Fig. 4.6 Piecewise constant damping functions, long time. The discrete energy (3.39)
+computed either with Dirichlet or Neumann conditions.
+
+5 Concluding remarks
+
+Starting from the PML formulation from [26, 25] for the wave equation in its stan-
+dard second-order form, we have proved energy decay ﬁrst in two and then in
+three space dimensions for a judicious space-time energy functional. Our energy
+estimates apply in the full 3D setting including corners and imply boundedness
+of all the unknowns in the L2-norm. Although we assume constant damping func-
+tions inside the PML for our analysis, our estimates pave the way for establishing
+stability in more general situations with variable damping functions or nonlinear
+dispersive terms.
+
+We have also proposed a fully explicit discrete formulation which is provably
+stable for constant damping functions. The time-stepping scheme is based on the
+well-known leapfrog method and is stable under a CFL stability condition which
+is independent of the damping parameters inside the PML. The present time dis-
+cretization slightly diﬀers from that used in [26, 25] and appears more stable in
+numerical computations – see Remark 3.1.
+
+Our numerical results for constant damping coeﬃcients validate the theory to
+machine precision. The energy decays algebraically in the PML single layer for-
+mulation and exponentially in the PML corner formulation. We have also tested
+numerically the scheme for PMLs with piecewise constant damping functions. The
+implementation of the present formulation for this case is rather straightforward
+since it does not require transmission conditions to be treated explicitly. Although
+the conclusions of the theory are no longer valid for piecewise constant damp-
+ing functions, our numerical results show that the energy still essentially decays
+even for very long times. They also illustrate that smooth or even just continuous
+damping functions are not necessary to achieve perfect matching at the discrete
+level.
+
+Acknowledgements The fourth author acknowledges the partial support of a public grant
+as part of the Investissement d’avenir project, reference ANR-11-LABX-0056-LMH, LabEx
+LMH.
+
+
+--- Page 36 ---
+Stability Analysis of a PML for the Second-order Wave Equation
+
+35
+
+References
+
+1. Abarbanel, S., Gottlieb, D.: A mathematical analysis of the PML method. J. Comp. Phys.
+
+134, 357–363 (1997)
+
+2. Abarbanel, S., Gottlieb, D., Hestahaven, J.S.: Well-posed perfectly matched layers for
+
+advective acoustics. J. Comput. Phys. 154, 266–283 (1999)
+
+3. Appel¨o, D., Hagstrom, T., Kreiss, G.: Perfectly matched layers for hyperbolic systems:
+general formulation, well-posedness, and stability. SIAM J. Appl. Math. 67(1), 1–23 (2006)
+4. Appel¨o, D., Kreiss, G.: Application of a perfectly matched layer to the nonlinear wave
+
+equation. Wave Motion 44, 531–548 (2007)
+
+5. Barucq, H., Diaz, J., Tlemcani, M.: New absorbing layers conditions for short water waves.
+J. Comput. Phys. 229(1), 58–72 (2010). DOI 10.1016/j.jcp.2009.08.033. URL https:
+//doi.org/10.1016/j.jcp.2009.08.033
+
+6. B´ecache, E., Fauqueux, S., Joly, P.: Stability of perfectly matched layers, group velocities
+
+and anisotropic waves. J. Comp. Phys. 188, 399–433 (2003)
+
+7. B´ecache, E., Joly, P.: On the analysis of B´erenger’s perfectly matched layers for Maxwell’s
+
+equations. M2AN Math. Model. Numer. Anal. 36(1), 87–119 (2002)
+
+8. B´ecache, E., Joly, P., Kachanovska, M.: Stable perfectly matched layers for a cold plasma
+in a strong background magnetic ﬁeld. J. Comput. Phys. 341, 76–101 (2017). DOI
+10.1016/j.jcp.2017.03.051. URL https://doi.org/10.1016/j.jcp.2017.03.051
+
+9. B´ecache, ´E., Joly, P., Kachanovska, M., Vinoles, V.: Perfectly matched layers in negative
+index metamaterials and plasmas. In: CANUM 2014—42e Congr`es National d’Analyse
+Num´erique, ESAIM Proc. Surveys, vol. 50, pp. 113–132. EDP Sci., Les Ulis (2015)
+10. B´ecache, E., Joly, P., Vinoles, V.: On the analysis of perfectly matched layers for a class
+of dispersive media and application to negative index metamaterials. Mathematics of
+Computations 87(314), 2775–2810 (2018)
+
+11. B´ecache, E., Kachanovska, M.: Stable perfectly matched layers for a class of anisotropic
+dispersive models. Part I: Necessary and suﬃcient conditions of stability. ESAIM Math.
+Model. Numer. Anal. 51(6), 2399–2434 (2017)
+
+12. B´ecache, E., Petropoulos, P.G., Gedney, S.D.: On the long-time behavior of unsplit per-
+fectly matched layers. IEEE Trans. Antennas and Propagation 52(5), 1335–1342 (2004)
+13. B´erenger, J.P.: A perfectly matched layer for the absorption of electromagnetic waves. J.
+
+Comput. Phys. 114(2), 185–200 (1994)
+
+14. B´erenger, J.P.: Three-dimensional perfectly matched layer for the absorption of electro-
+
+magnetic waves. J. Comput. Phys. 127(2), 363–379 (1996)
+
+15. Chabassier, J., Imperiale, S.: Space/time convergence analysis of a class of conservative
+schemes for linear wave equations. C. R. Math. Acad. Sci. Paris 355(3), 282–289 (2017).
+DOI 10.1016/j.crma.2016.12.009. URL https://doi.org/10.1016/j.crma.2016.12.009
+
+16. Chen, Z.: Convergence of the time-domain perfectly matched layer method for acoustic
+
+scattering problems. Int. J. Numer. Anal. Model. 6(1), 124–146 (2009)
+
+17. Chew, W.C., Weedon, W.H.: A 3D perfectly matched medium from modiﬁed Maxwell’s
+equations with stretched coordinates. Microwave and Optical Technology Letters 7(13),
+599–604 (1994)
+
+18. Collino, F., Monk, P.B.: Optimizing the perfectly matched layer. Comput. Methods Appl.
+Mech. Engrg. 164(1-2), 157–171 (1998). DOI 10.1016/S0045-7825(98)00052-8. URL
+https://doi.org/10.1016/S0045-7825(98)00052-8. Exterior problems of wave propa-
+gation (Boulder, CO, 1997; San Francisco, CA, 1997)
+
+19. Collino, F., Tsogka, C.: Application of the perfectly matched absorbing layer model to the
+linear elastodynamic problem in anisotropic heterogeneous media. Geophysics 66, 294–307
+(2001)
+
+20. Demaldent, E., Imperiale, S.: Perfectly matched transmission problem with absorbing
+layers: application to anisotropic acoustics in convex polygonal domains.
+Internat. J.
+Numer. Methods Engrg. 96(11), 689–711 (2013). DOI 10.1002/nme.4572. URL https:
+//doi.org/10.1002/nme.4572
+
+21. Diaz, J., Joly, P.: A time domain analysis of PML models in acoustics. Comput. Methods
+
+Appl. Mech. Engrg. 195(29-32), 3820–3853 (2006)
+
+22. Duru, K.: The role of numerical boundary procedures in the stability of perfectly matched
+layers. SIAM J. Sci. Comput. 38(2), A1171–A1194 (2016). DOI 10.1137/140976443. URL
+https://doi.org/10.1137/140976443
+
+23. Duru, K., Kreiss, G.: Boundary waves and stability of the perfectly matched layer for the
+two space dimensional elastic wave equation in second order form. SIAM Numer. Anal.
+52, 2883–2904 (2014)
+
+
+--- Page 37 ---
+36
+
+Daniel H. Baﬀet et al.
+
+24. Ervedoza, S., Zuazua, E.: Perfectly matched layers in 1-d: energy decay for continuous and
+
+semi-discrete waves. Numer. Math. 109(4), 597–634 (2008)
+
+25. Grote, M., Sim, I.: Eﬃcient PML for the wave equation. preprint, arXiv:1001.0319
+
+[math:NA] (2010)
+
+26. Grote, M.J., Sim, I.: Perfectly matched layer for the second-order wave equation. In: Pro-
+ceedings of the Ninth International Conference on Numerical Aspects of Wave Propagation
+(WAVES 2009, held in Pau, France, 2009), pp. 370–371
+
+27. Hagstrom, T., Appel¨o, D.: Automatic symmetrization and energy estimates using local
+operators for partial diﬀerential equations. Comm. Partial Diﬀerential Equations 32(7-9),
+1129–1145 (2007)
+
+28. Hu, F.Q.: On absorbing boundary conditions for linearized Euler equations by a perfectly
+
+matched layer. J. Comput. Phys. 129, 201–219 (1996)
+
+29. Hu, F.Q.: A stable, perfectly matched layer for linearized Euler equations in unsplit phys-
+ical variables. J. Comput. Phys. 173(2), 455–480 (2001). DOI 10.1006/jcph.2001.6887.
+URL https://doi.org/10.1006/jcph.2001.6887
+
+30. Joly, P.: An elementary introduction to the construction and the analysis of perfectly
+
+matched layers for time domain wave propagation. SeMA J. (57), 5–48 (2012)
+
+31. Kachanovska, M.: Stable perfectly matched layers for a class of anisotropic dispersive
+models. Part II: Energy estimates (2017). URL https://hal.inria.fr/hal-01419682.
+Https://hal.inria.fr/hal-01419682
+
+32. Kaltenbacher, B., Kaltenbacher, M., Sim, I.: A modiﬁed and stable version of a perfectly
+matched layer technique for the 3-d second order wave equation in time domain with an
+application to aeroacoustics. J. Comput. Phys. 235, 407–422 (2013). DOI 10.1016/j.jcp.
+2012.10.016. URL https://doi.org/10.1016/j.jcp.2012.10.016
+
+33. Komatitsch, D., Tromp, J.: A perfectly matched layer absorbing boundary conditionfor
+
+the second-order seismic wave equation. Geophysics J. Int. 154, 146–153 (2003)
+
+34. Nataf, F.: A new approach to perfectly matched layers for the linearized Euler system.
+J. Comput. Phys. 214(2), 757–772 (2006). DOI 10.1016/j.jcp.2005.10.014. URL https:
+//doi.org/10.1016/j.jcp.2005.10.014
+
+35. Sj¨ogreen, B., Petersson, N.A.: Perfectly matched layers for Maxwell’s equations in second
+
+order formulation. J. Comp. Phys. 209, 19–46 (2005)
+
+36. Zhao, L., Cangellaris, A.C.: Gt-pml: generalized theory of perfectly matched layers and
+its application to the reﬂectionless truncation of ﬁnite-diﬀerence time-domain grids. IEEE
+Transactions on Microwave Theory and Techniques 44(12), 2555–2563 (1996)
+

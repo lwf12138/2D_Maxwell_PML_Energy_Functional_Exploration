@@ -1,0 +1,4131 @@
+
+--- Page 1 ---
+Bulletin of the Seismological Society of America, Vol. 98, No. 4, pp. 1811–1836, August 2008, doi: 10.1785/0120070223
+
+A Nonconvolutional, Split-Field, Perfectly Matched Layer for
+Wave Propagation in Isotropic and Anisotropic
+Elastic Media: Stability Analysis
+
+by Kristel C. Meza-Fajardo and Apostolos S. Papageorgiou
+
+Abstract A nonconvolutional, split-field, perfectly matched layer, referred to as
+the multiaxial perfectly matched layer (M-PML), is proposed and implemented.
+The new formulation is obtained by generalizing the classical perfectly matched layer
+(PML; as originally proposed by Bérenger, [1994]) to a medium in which damping
+profiles are specified in more than one direction. Under the hypothesis of small damp-
+ing and using an eigenvalue sensitivity analysis based on first derivatives, we propose
+a method to study the stability of the M-PML. With this method we demonstrate that
+the stability of the M-PML is related to the ratios of the specified damping profiles.
+Recognition of this fact leads to a general procedure for constructing robust, stable
+M-PML models for anisotropic media. It is also demonstrated that for any anisotropic
+medium the classical PML exhibits instabilities related to an eigenvalue with zero real
+part of multiplicity higher than one. Furthermore, we show that exponential growth
+due to eigenvalues with positive real part can be present in the classical PML for some
+orthotropic media. The effectiveness of the proposed M-PML and its advantages re-
+lative to the classical PML are demonstrated by constructing stable terminations for the
+aforementioned anisotropic media. The method of stability analysis is developed and
+demonstrated for two-dimensional elastodynamics problems, but its extension to
+three-dimensional configurations is straightforward.
+
+Introduction
+
+The perfectly matched layer (PML) model was intro-
+duced by Bérenger (1994) as a material boundary condition
+for electromagnetic wave propagation problems in un-
+bounded domains. The model consists of an absorbing layer
+of finite width that surrounds the physical domain of interest
+so that all outgoing waves are damped out irrespective of
+their frequency and direction of propagation. The main fea-
+ture of the PML is that, in the case of the continuum (i.e.,
+before discretization), it does not generate reflections at
+the interface separating the absorbing layer and the physical
+medium (i.e., it is perfectly matched); however, a small re-
+flection is always present after discretization. Being a mate-
+rial absorbing condition, the PML leads naturally to sparse
+systems; it is well suited for implementation in parallel
+computers and, consequently, is very attractive for numerical
+simulations. In its original version (i.e., as it was originally
+proposed by Bérenger [1994], we refer to this version as
+the classical PML), the field variables of the PML are split
+into nonphysical components so as to make it possible to
+incorporate in the mathematical formulation the desired ab-
+sorption. This mathematical formulation of the PML has
+come to be known as the split formulation. Because of
+
+the effectiveness of the PML in absorbing the radiation ex-
+iting the physical domain, the extra memory storage required
+in order to accommodate the increased number of field
+variables is usually counterbalanced by the savings that
+are achieved by reducing the size of the physical domain.
+The satisfactory (in most cases) performance of the PML
+has resulted in a considerable amount of work toward its
+implementation in several wavelike problems (a concise
+yet comprehensive review of the subject is presented by
+Komatitsch and Martin [2007]), such as Maxwell’s equations
+(e.g., Bérenger, 1996, 1998; Collino and Monk, 1998;
+Teixeira and Chew, 1998a), the linearized Euler equations
+(e.g., Hu, 1996; Hesthaven, 1998; Nataf, 2006), Helmholtz
+equations (e.g., Teixeira and Chew, 1998b; Harari et al.,
+2000), and the elastic wave equations (e.g., Chew and
+Liu, 1996; Hastings et al., 1996; Collino and Tsogka,
+2001; Festa and Nielsen, 2003; Komatitsch and Tromp,
+2003; Basu and Chopra, 2004).
+
+Despite the general success of the PML in most ap-
+plications, there are still some instances for which the per-
+formance of the PML does not meet expectations. In the case
+of elastic waves in isotropic media, it has been reported
+
+1811
+
+
+--- Page 2 ---
+1812
+
+K. C. Meza-Fajardo and A. S. Papageorgiou
+
+(Festa et al., 2005; Komatitsch and Martin, 2007) that large
+reflections are obtained for waves entering the PML at graz-
+ing incidence and also that instabilities appear in long (in
+time) simulations. Similar problems have been observed
+in the fields of electromagnetism (De Moerloose and Stuchly,
+1995; Bérenger, 1998) and acoustics (Hu, 1996). In addition,
+Bécache et al. (2003) documented that exponentially grow-
+ing solutions could appear in some models for anisotropic
+media. These problems have been intensively investigated
+in recent years, and a significant number of contributions
+on the subject has appeared in the published literature.
+For example, it was initially thought (Kuzuoglu and Mittra,
+1996) that the source of the dynamical instability of the clas-
+sical PML could be attributed to the fact the constitutive para-
+meters did not satisfy causality, and an alternative causal
+frequency-dependent PML, known as the convolutional per-
+fectly matched layer (C-PML), was proposed. Later, Teixeira
+and Chew (1999) showed that the original Cartesian PML
+parameters do indeed satisfy causality and that the aforemen-
+tioned conclusion (regarding causality) was reached based
+on a technical error related to the Kramers–Kronig equations.
+Another approach was taken by Abarbanel and Gottlieb
+(1997) who suggested that because the split formulation is
+only weakly well posed, the PML solution diverged under
+small perturbations. This result motivated various investiga-
+tors to develop unsplit formulations (Gedney, 1996; Zhao
+and Cangellaris, 1996; Ziolkowski, 1997; Abarbanel and
+Gottlieb, 1998; Basu and Chopra, 2004; Appelö and Kreiss,
+2005). The unsplit formulations have the advantage of a
+more straightforward implementation in the various numeri-
+cal schemes, although they also imply an additional compu-
+tational cost, in some cases comparable to that of the split
+PML, due to the presence of either convolution operations,
+high-order time derivatives, or auxiliary variables. It was
+later found (Abarbanel et al., 2002) that the unsplit formula-
+tions for Maxwell’s equations were still susceptible to
+manifest slowly growing spurious solutions that eventually
+spread and pollute the physical domain. Subsequently, it
+was demonstrated (Bécache et al., 2004) that the C-PML does
+not suffer from such instabilities. It was also reported that the
+C-PML improves the absorption of waves at grazing inci-
+dence (Roden and Gedney, 2000; Bérenger, 2002; Festa
+and Vilotte, 2005; Komatitsch and Martin, 2007). However,
+it should be noted that the C-PML behaves as an elastic
+medium at low frequencies, losing its absorptive capacity.
+Furthermore, at high frequencies C-PML reduces asymptoti-
+cally to the PML, losing its stabilizing properties. In addition,
+Komatitsch and Martin (2007) observed that the C-PML does
+not solve all the instability problems of PML models for elas-
+tic anisotropic media reported by Bécache et al. (2003).
+More recently, Appelö and Kreiss (2005) succeeded in sta-
+bilizing some but not all those PML models for anisotropic
+media, by implementing a PML formulation obtained from a
+modification of the modal solutions of the elastic system
+(Hagstrom, 2003). Despite all the work done on the subject,
+a comprehensive mathematical analysis of the PML is not yet
+
+available, and the problem of developing a general method to
+construct stable PML terminations remains open.
+
+In this article, we extend the formulation of the split-
+field PML to a more general absorptive medium, which
+we refer to as multiaxial perfectly matched layer (M-PML),
+for which damping profiles are specified along more than
+one direction. We also present a simple method to demon-
+strate that the stability of the system is related to the ratio
+of the damping profiles and thus provide a general procedure
+for constructing stable M-PML terminations for any model of
+anisotropic elastic media. The method provides a split-field
+M-PML for anisotropic elastodynamics that does not require
+convolution operations and remains efficient and stable for
+all frequencies and all directions of propagation. The analy-
+sis is presented for two-dimensional inplane (P-SV) wave
+propagation in elastic orthotropic media. However, extension
+of the results to three dimensions is straightforward. The gen-
+erality of the method renders it suitable to study stability of
+PMLs for other wavelike problems (such as in acoustics and
+electromagnetism) as well. An analytical and numerical
+study of the accuracy of the M-PML for simulations using
+the spectral element method has been performed and will
+be reported in a future publication.
+
+Split-Field Formulation of the Classical PML
+
+The elastodynamics problem under no external forces is
+defined by Cauchy’s equation of motion (also referred to as
+the momentum equation) and the generalized Hooke’s law:
+
+ρ
+
+∂2u
+∂t2 (cid:1) ∇ · T;
+
+T (cid:1) C∶E;
+
+(1)
+
+where u(cid:2)x; t(cid:3) is the displacement field, x is the position vec-
+tor, T(cid:2)x; t(cid:3) is the stress tensor, E(cid:2)x; t(cid:3) (cid:1) (cid:2)1
+2(cid:3)(cid:4)∇u (cid:5) (cid:2)∇u(cid:3)T(cid:6)
+is the strain tensor, ρ(cid:2)x(cid:3) is the mass density, and ∇ (cid:1)
+(cid:4) ∂
+∂
+∂z (cid:6). The preceding system of equations admits
+∂x
+plane-wave solutions of the form
+
+∂
+∂y
+
+(2)
+
+u (cid:1) A exp(cid:4)(cid:7)i(cid:2)k · x (cid:7) ωt(cid:3)(cid:6);
+p
+
+, and ω is the
+where A is the polarization vector, i (cid:1)
+circular frequency. The vector k (cid:1) (cid:4) kx
+kz (cid:6), known
+as the wave vector, gives the direction of propagation of
+the wavefront. Its amplitude k (cid:1) jkj (cid:1)
+known as the wavenumber.
+
+(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)
+(cid:7)1
+ky
+(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)
+y (cid:5) k2
+x (cid:5) k2
+k2
+z
+
+q
+
+is
+
+As stated by Komatitsch and Tromp (2003), the main
+idea of the classical PML is to construct a new wave equation
+that admits plane-wave solutions of the form
+
+u (cid:1) A exp
+
+(cid:2)
+(cid:7)i(cid:2)k · x (cid:7) ωt(cid:3) (cid:7)
+
+(cid:3)
+;
+
+kx
+
+γx
+ω
+
+γx(cid:2)x(cid:3) > 0;
+
+(3)
+
+where the additional factor exp(cid:2)(cid:7)γxkx=ω(cid:3) modulates the
+amplitude of the wave resulting in waves that decay expo-
+nentially in the direction of increasing x. A general procedure
+
+
+--- Page 3 ---
+Nonconvolutional, Split-Field, Perfectly Matched Layer for Wave Propagation in Elastic Media
+
+1813
+
+to derive PML formulations for linear wave propagation pro-
+blems, known as coordinate stretching, was devised by inter-
+preting the PML medium as an analytical continuation of the
+spatial variables of the original linear medium to a complex
+spatial variable domain (Chew and Weedon, 1994; Chew
+et al., 1997). The complex space variable in the PML medium
+is then defined as follows:
+
+~x (cid:1) x (cid:5)
+
+γx
+iω
+
+:
+
+(4)
+
+physical domain and entering the PML are damped out.
+To avoid reflections, the damping profile is selected so as
+the physical domain–PML interface and
+to be zero at
+smoothly increase across the PML width. The treatment of
+the regions where two or three PMLs overlap, the corner re-
+gions, is straightforward because its properties are just the
+superposition of the intersecting PMLs, that is, at the corner
+regions the coordinate stretching takes place in more than
+one direction. In a three-dimensional problem the new ∇~x
+operator for a corner region becomes
+
+Then, the transformation (4) is used to derive a new operator
+∇~x (cid:1) (cid:4) ∂
+
+∂
+∂z (cid:6), where
+
+∂
+∂y
+
+∂ ~x
+
+∂
+∂ ~x (cid:1)
+
+1
+sx
+
+∂
+∂x
+
+;
+
+sx (cid:1) 1 (cid:5)
+
+1
+iω
+
+dx;
+
+dx (cid:1)
+
+∂γx
+∂x
+
+:
+
+(5)
+
+where
+
+The function dx (cid:1) dx(cid:2)x(cid:3) is referred to as the damping
+profile and is specified to introduce attenuation, while sx is
+referred to as the stretching factor. The new operator ∇~x then
+replaces ∇ in system (1) to obtain the new wave equation,
+governing the motions of the PML medium, that we set
+out to construct. It is easy to verify that the plane wave ex-
+pressed by equation (3) is obtained through substitution of
+equation (4) in the original expression (2), and thus equa-
+tion (3) represents a solution of the new wave equation. Note
+that when dx (cid:1) 0 the operator ∇~x reduces to that of the
+elastic medium. Bérenger’s method then consists of placing
+the PML medium (which has a finite width by computational
+necessity) next to the boundary of the physical domain of
+interest (as shown in Fig. 1) so that the waves leaving the
+
+h
+∇~x (cid:1) ∂
+
+∂ ~x
+
+i
+
+;
+
+∂
+∂ ~z
+
+∂
+∂ ~y
+
+∂(cid:2)·(cid:3)
+∂ ~xj
+
+(cid:1)
+
+1
+sn
+
+∂(cid:2)·(cid:3)
+∂xj
+
+δjn;
+
+sn (cid:1) 1 (cid:5)
+
+1
+iω
+
+dn;
+
+dn (cid:1)
+
+∂γn
+∂xj
+
+δjn;
+
+(6)
+
+(7)
+
+(8)
+
+(9)
+
+where δjn denotes the Kronecker delta and we use the
+standard convention that repeated indices imply summation.
+In elastodynamics, one convenient way to implement the
+transformation expressed by equations (6)–(9) is to express
+system (1) as a first-order stress-velocity system in the fre-
+quency domain, using the velocity gradient tensor ∇v instead
+of the strain tensor E, and then making the substitution of the
+new operator ∇~x:
+
+iωρvi (cid:1)
+
+1
+sj
+
+∂Tji
+∂xj
+
+;
+
+iωTij (cid:1) cijkl
+
+(cid:4)
+
+(cid:5)
+
+:
+
+1
+sk
+
+∂vl
+∂xk
+
+(10)
+
+In order to express the system in terms of the original opera-
+tor ∇, velocities and stresses are split into components, each
+component being proportional to the individual terms on the
+right-hand side of equations (10) as follows:
+
+iωρ
+
+X
+
+j
+
+v(cid:2)j(cid:3)
+i (cid:1)
+
+1
+sj
+
+∂Tji
+∂xj
+
+;
+
+iω
+
+X
+
+T(cid:2)k(cid:3)
+
+ij (cid:1) cijkl
+
+k
+
+(cid:4)
+
+1
+sk
+
+(cid:5)
+:
+
+∂vl
+∂xk
+
+(11)
+
+After splitting the velocity and stress tensor components, the
+stretching factors Sn are transferred to the left-hand side of
+the equations, and upon substitution of relation (8), the final
+time-domain system of split-field PML equations can be ex-
+pressed as (Festa and Vilotte, 2005)
+
+Figure 1. A physical domain, which extends beyond the bound-
+aries displayed in the figure, is bounded by an Absorbing boundary
+condition (ABC) referred to as a PML. The two strips that are normal
+to the x axis are referred to as the vertical termination strips while
+the two strips that are normal to the y axis are referred to as the
+horizontal termination strips.
+
+ρ
+
+∂v(cid:2)n(cid:3)
+∂t (cid:5) ρdnv(cid:2)n(cid:3)
+i
+
+i (cid:1)
+
+∂Tij
+∂xj
+
+δjn;
+
+∂T(cid:2)n(cid:3)
+ij
+∂t (cid:5) dnT(cid:2)n(cid:3)
+
+ij (cid:1) cijkl
+
+∂vl
+∂xk
+
+δkn:
+
+(12)
+
+
+--- Page 4 ---
+1814
+
+K. C. Meza-Fajardo and A. S. Papageorgiou
+
+The M-PML Formulation
+
+Suppose that the interface between the physical domain
+and the absorbing medium is a plane normal to the x axis at
+x (cid:1) 0. The half-space corresponding to x < 0 is the physical
+domain, and the other half-space corresponding to x > 0 is
+the PML medium. In a classical PML, only one damping pro-
+file, dx, is specified to be a function of the space variable x,
+whereas the other two profiles are set equal to zero:
+
+dx (cid:1) dx(cid:2)x(cid:3);
+
+dy (cid:1) 0;
+
+dz (cid:1) 0:
+
+(13)
+
+We propose to generalize the properties of the classical PML
+by selecting all three of the preceding damping profiles to be
+functions of the x coordinate:
+
+dx (cid:1) d(cid:2)x(cid:3)
+
+x (cid:2)x(cid:3);
+
+dy (cid:1) d(cid:2)x(cid:3)
+
+y (cid:2)x(cid:3);
+
+dz (cid:1) d(cid:2)x(cid:3)
+
+z (cid:2)x(cid:3):
+
+(14)
+
+The additional damping profiles d(cid:2)x(cid:3)
+be proportional to d(cid:2)x(cid:3)
+
+x (cid:2)x(cid:3):
+
+y (cid:2)x(cid:3) and d(cid:2)x(cid:3)
+
+z (cid:2)x(cid:3) are set to
+
+dx (cid:1) d(cid:2)x(cid:3)
+x (cid:2)x(cid:3);
+dz (cid:1) p(cid:2)z=x(cid:3)d(cid:2)x(cid:3)
+p(cid:2)z=x(cid:3) (cid:1) d(cid:2)x(cid:3)
+
+x (cid:2)x(cid:3);
+z =d(cid:2)x(cid:3)
+x :
+
+dy (cid:1) p(cid:2)y=x(cid:3)d(cid:2)x(cid:3)
+
+x (cid:2)x(cid:3);
+p(cid:2)y=x(cid:3) (cid:1) d(cid:2)x(cid:3)
+
+y =d(cid:2)x(cid:3)
+x ;
+
+(15)
+
+In view of the fact that d(cid:2)x(cid:3)
+x (cid:2)x(cid:3) vanishes at x (cid:1) 0, it becomes
+evident that all damping profiles vanish at x (cid:1) 0, and con-
+sequently, the proposed M-PML medium retains the nonre-
+flection characteristics of a PML. Then, the ratios of the
+damping profiles, namely, the constants p(cid:2)y=x(cid:3) and p(cid:2)z=x(cid:3), be-
+come parameters that allow fine-tuning of the stability of the
+M-PML medium.
+
+The design of an M–PML medium is achieved by inter-
+preting it not as a medium of complex space variables, but as
+a medium with complex wave vectors. Let us note that the
+solutions (3) in the case of the classical PML can alternatively
+be obtained by means of the following transformation:
+
+~kx (cid:1) kx (cid:5)
+
+1
+iω
+
+αxkx;
+
+(16)
+
+where αx (cid:1) γx=x. Therefore, we can interpret the classical
+PML as a medium where only the component kx of the wave
+vector is complex. In the case of M–PML, the generalization
+(14) of the damping profiles results in a medium with, in a
+sense, more regular properties, because all components of the
+wave vector are complex. The transformation to obtain the
+M–PML is then given by
+
+~kx (cid:1) kx (cid:5)
+
+~kz (cid:1) kz (cid:5)
+
+1
+iω
+1
+iω
+
+α(cid:2)x(cid:3)
+
+x kx;
+
+~ky (cid:1) ky (cid:5)
+
+1
+iω
+
+α(cid:2)x(cid:3)
+
+y ky;
+
+α(cid:2)x(cid:3)
+
+z kz:
+
+(17)
+
+Substitution of these transformations in the product ~k · x
+gives
+~k · x (cid:1) ~kxx (cid:5) ~kyy (cid:5) ~kzz
+
+(cid:1) kxx (cid:5)
+
+kx
+iω
+
+α(cid:2)x(cid:3)
+
+x x (cid:5) kyy (cid:5)
+
+ky
+iω
+
+y y (cid:5) ~kzz (cid:5)
+α(cid:2)x(cid:3)
+
+kz
+iω
+
+α(cid:2)x(cid:3)
+
+z z:
+
+(18)
+
+Then, the transformations that result from the use of the
+coordinate stretching approach are the following:
+
+~x (cid:1) x (cid:5)
+
+~z (cid:1) z (cid:5)
+
+1
+iω
+1
+iω
+
+α(cid:2)x(cid:3)
+
+x x;
+
+α(cid:2)x(cid:3)
+
+z z:
+
+~y (cid:1) y (cid:5)
+
+1
+iω
+
+α(cid:2)x(cid:3)
+
+y y;
+
+(19)
+
+The corresponding stretching factors sn are
+
+sx (cid:1)
+
+sy (cid:1)
+
+sz (cid:1)
+
+∂ ~x
+∂x (cid:1) 1 (cid:5)
+∂ ~y
+∂y (cid:1) 1 (cid:5)
+∂ ~z
+∂z (cid:1) 1 (cid:5)
+
+1
+iω
+
+1
+iω
+
+1
+iω
+
+∂(cid:2)xα(cid:2)x(cid:3)
+x (cid:3)
+
+∂x (cid:1) 1 (cid:5)
+
+1
+iω
+
+∂(cid:2)γx(cid:3)
+∂x (cid:1) 1 (cid:5)
+
+1
+iω
+
+d(cid:2)x(cid:3)
+x ;
+
+∂(cid:2)yα(cid:2)x(cid:3)
+y (cid:3)
+
+∂y (cid:1) 1 (cid:5)
+
+∂(cid:2)zα(cid:2)x(cid:3)
+z (cid:3)
+
+∂z (cid:1) 1 (cid:5)
+
+1
+iω
+
+1
+iω
+
+α(cid:2)x(cid:3)
+y ;
+
+α(cid:2)x(cid:3)
+z
+
+:
+
+(20)
+
+Therefore, the damping profiles d(cid:2)x(cid:3)
+y , and α(cid:2)x(cid:3)
+to the functions α(cid:2)x(cid:3)
+Z
+1
+x
+
+x , α(cid:2)x(cid:3)
+γx(cid:2)x(cid:3)
+
+x (cid:2)x(cid:3) (cid:1)
+
+α(cid:2)x(cid:3)
+
+x
+
+z
+
+0
+
+d(cid:2)x(cid:3)
+x (cid:2)ξ(cid:3) dξ;
+
+x , d(cid:2)x(cid:3)
+
+y , and d(cid:2)x(cid:3)
+as follows:
+
+z are related
+
+y (cid:2)x(cid:3) (cid:1) d(cid:2)x(cid:3)
+α(cid:2)x(cid:3)
+
+z (cid:2)x(cid:3) (cid:1) d(cid:2)x(cid:3)
+α(cid:2)x(cid:3)
+
+z (cid:2)x(cid:3);
+
+(21)
+
+x (cid:1)
+y (cid:2)x(cid:3);
+
+while the plane-wave solutions in the M-PML take the follow-
+ing form:
+
+u (cid:1) A exp(cid:2)(cid:7)α · x(cid:3) exp(cid:4)(cid:7)i(cid:2)k · x (cid:7) ωt(cid:3)(cid:6);
+
+α (cid:1)
+
+h
+
+jkj
+ω
+
+nxα(cid:2)x(cid:3)
+x
+
+nyα(cid:2)x(cid:3)
+y
+
+nzα(cid:2)x(cid:3)
+z
+
+i
+
+;
+
+(22)
+
+(23)
+
+where nx, ny, and nz are the direction cosines of the wave
+vector k. As in the case of the classical PML, which clearly
+is a particular case of M-PML, the phase of the waves is main-
+tained as they penetrate in the M-PML medium, and the mod-
+ulating factor exp(cid:2)(cid:7)α · x(cid:3) introduces exponential decay that
+increases with increasing x. Furthermore, because the ratio jkj
+ω
+in equation (23) is equal to the reciprocal of the phase velo-
+city, attenuation in the M-PML does not depend on frequency,
+and thus the M-PML is a nondispersive medium. The real-
+valued vector α can be interpreted as the attenuation vector
+used for viscoelastic media, which gives the direction of
+maximum attenuation (Aki and Richards, 2002). Therefore,
+in the classical PML (α(cid:2)x(cid:3)
+z (cid:1) 0) the maximum
+attenuation is always in the direction of the x coordinate
+and is proportional to the kx component of the wave vector.
+For waves entering the PML at grazing incidence, kx ∼ 0, and
+
+y (cid:1) 0, α(cid:2)x(cid:3)
+
+
+--- Page 5 ---
+Nonconvolutional, Split-Field, Perfectly Matched Layer for Wave Propagation in Elastic Media
+
+1815
+
+thus the effect of attenuation is minimal. In the M-PML on the
+other hand, the components of α are related to those of k,
+that is, the direction of maximum attenuation is closely
+linked to the direction of propagation, and thus it is apparent
+that the absorption of waves entering the M-PML is more
+efficient, in particular, for the grazing incidence.
+
+The treatment of the corner regions is similar to that of
+the classical PML, that is, the properties of the overlapping
+layers are superimposed, with the only difference being that
+now the damping profiles have additional parts that depend
+on other space coordinates:
+
+dx (cid:1) d(cid:2)x(cid:3)
+dy (cid:1) d(cid:2)x(cid:3)
+dz (cid:1) d(cid:2)x(cid:3)
+
+x (cid:2)x(cid:3) (cid:5) d(cid:2)y(cid:3)
+y (cid:2)x(cid:3) (cid:5) d(cid:2)y(cid:3)
+z (cid:2)x(cid:3) (cid:5) d(cid:2)y(cid:3)
+
+x (cid:2)y(cid:3) (cid:5) d(cid:2)z(cid:3)
+y (cid:2)y(cid:3) (cid:5) d(cid:2)z(cid:3)
+z (cid:2)y(cid:3) (cid:5) d(cid:2)z(cid:3)
+
+x (cid:2)z(cid:3);
+
+y (cid:2)z(cid:3);
+
+z (cid:2)z(cid:3):
+
+with
+
+(24)
+
+Because the generalization of the M-PML is on the damping
+profiles, implementation of the M-PML in codes that already
+use the classical PML requires only the modification of the
+damping profiles, and thus the necessary changes are minor.
+
+Stability Analysis
+
+In this section we perform a stability analysis of the
+M-PML for isotropic as well as orthotropic elastic media. In-
+stabilities in PML implementations reported in the literature
+have been detected using different discretization methods,
+such as the finite differences method (Hu, 1996; Komatitsch
+and Martin, 2007), the finite element method (Bécache et al.,
+2003), and the spectral element method (Festa et al., 2005).
+Therefore, the stability analysis is carried out for the conti-
+nuum; that is, we study the stability of the solutions of the
+partial differential equation that governs the motion of
+the M-PML.
+
+M-PML Equations as a Linear Autonomous System
+
+In this section the system of elastodynamic equations,
+expressed in their stress-velocity form, is rewritten in the
+time domain expressing the velocity gradient and stress ten-
+sors as column vectors and the elastic coefficient tensor as a
+matrix. The stability analysis is performed for M-PML termi-
+nations for a two-dimensional homogeneous elastic orthotro-
+pic medium whose axes of symmetry coincide with the x and
+y axes. The equations governing the inplane (P-SV) wave
+motion in an elastic medium can be expressed as a first-order
+system:
+
+"
+
+(cid:3)
+
+(cid:2)
+
+vx
+vy
+
+ρ
+
+∂
+∂t
+
+(cid:1)
+
+∂
+
+∂x Txx (cid:5) ∂
+∂x Txy (cid:5) ∂
+
+∂y Tyx
+∂y Tyy
+
+∂
+
+#
+
+;
+
+2
+
+4
+
+∂
+∂t
+
+Txx
+Tyy
+Txy
+
+3
+
+5 (cid:1)
+
+2
+
+4
+
+c11
+c12
+0
+
+c12
+c22
+0
+
+0
+0
+c33
+
+0
+0
+c33
+
+The corresponding equations governing the motion of an iso-
+tropic elastic medium follow easily as a special case of the
+preceding equations by setting
+
+c11 (cid:1) c22 (cid:1) λ (cid:5) 2μ;
+
+c12 (cid:1) λ;
+
+c33 (cid:1) μ:
+
+(26)
+
+Following a procedure similar to that presented by Collino
+and Tsogka (2001), this system can be alternatively written
+as
+
+∂
+∂t v (cid:1) D(cid:2)x(cid:3)
+∂
+∂t
+
+τ (cid:1) C(cid:2)x(cid:3)
+
+τ (cid:5) D(cid:2)y(cid:3)
+
+∂
+∂x
+∂
+∂x v (cid:5) C(cid:2)y(cid:3)
+
+τ;
+
+∂
+∂y
+∂
+∂y v
+
+(cid:2)
+
+(cid:3)
+
+;
+
+vx
+vy
+
+v (cid:1)
+
+3
+
+5;
+
+2
+
+4
+
+Txx
+Tyy
+Txy
+
+τ (cid:1)
+
+(27)
+
+(28)
+
+D(cid:2)x(cid:3) (cid:1)
+
+(cid:2)
+
+1
+0
+
+1
+ρ
+
+(cid:3)
+
+;
+
+0 0
+0 1
+
+D(cid:2)y(cid:3) (cid:1)
+
+(cid:2)
+
+0
+0
+
+1
+ρ
+
+(cid:3)
+
+;
+
+1
+0
+
+0
+1
+
+(29)
+
+C(cid:2)x(cid:3) (cid:1)
+
+2
+
+4
+
+c11
+c12
+0
+
+3
+
+5;
+
+0
+0
+c33
+
+C(cid:2)y(cid:3) (cid:1)
+
+2
+
+4
+
+0
+0
+c33
+
+3
+
+5
+
+c12
+c22
+0
+
+(30)
+
+for a nonzero mass density ρ. After applying transformations
+(19) and splitting the velocity and stress fields, we obtain the
+system of equations for the M-PML:
+
+∂
+∂t v(cid:2)x(cid:3) (cid:5) dxv(cid:2)x(cid:3) (cid:1) D(cid:2)x(cid:3)
+∂
+∂t v(cid:2)y(cid:3) (cid:5) dyv(cid:2)y(cid:3) (cid:1) D(cid:2)y(cid:3)
+∂
+∂t
+∂
+∂t
+
+τ (cid:2)x(cid:3) (cid:5) dxτ (cid:2)x(cid:3) (cid:1) C(cid:2)x(cid:3)
+
+τ (cid:2)y(cid:3) (cid:5) dyτ (cid:2)y(cid:3) (cid:1) C(cid:2)y(cid:3)
+
+∂
+∂x (cid:2)τ (cid:2)x(cid:3) (cid:5) τ (cid:2)y(cid:3)(cid:3);
+∂
+∂y (cid:2)τ (cid:2)x(cid:3) (cid:5) τ (cid:2)y(cid:3)(cid:3);
+∂
+∂x (cid:2)v(cid:2)x(cid:3) (cid:5) v(cid:2)y(cid:3)(cid:3);
+∂
+∂y (cid:2)v(cid:2)x(cid:3) (cid:5) v(cid:2)y(cid:3)(cid:3);
+
+(31)
+
+where dx (cid:1) d(cid:2)x(cid:3)
+files, defined and discussed in the previous section, and
+
+x (cid:2)x(cid:3) and dy (cid:1) d(cid:2)x(cid:3)
+
+y (cid:2)x(cid:3) are the damping pro-
+
+(cid:2)
+
+v(cid:2)x(cid:3) (cid:1)
+
+τ (cid:2)x(cid:3) (cid:1)
+
+(cid:3)
+
+;
+
+3
+
+5;
+
+v(cid:2)x(cid:3)
+x
+v(cid:2)x(cid:3)
+y
+T(cid:2)x(cid:3)
+xx
+T(cid:2)x(cid:3)
+yy
+T(cid:2)x(cid:3)
+xy
+
+2
+
+4
+
+(cid:2)
+
+v(cid:2)y(cid:3) (cid:1)
+
+τ (cid:2)y(cid:3) (cid:1)
+
+4
+
+(cid:3)
+;
+
+v(cid:2)y(cid:3)
+x
+v(cid:2)y(cid:3)
+y
+2
+
+T(cid:2)y(cid:3)
+xx
+T(cid:2)y(cid:3)
+yy
+T(cid:2)y(cid:3)
+xy
+
+3
+
+5:
+
+(32)
+
+3
+
+5
+
+2
+
+6
+6
+6
+6
+4
+
+3
+
+7
+7
+7
+7
+5
+
+:
+
+∂vx
+∂x
+∂vy
+∂y
+∂vy
+∂x
+∂vx
+∂y
+
+(25)
+
+Assembling the preceding components of the split velocity
+and stress vectors in one vector, system (31) can be cast in the
+following form:
+
+∂Ψ
+∂t (cid:1) Ax
+
+∂Ψ
+∂x (cid:5) Ay
+
+∂Ψ
+∂y (cid:7) BΨ;
+
+(33)
+
+
+--- Page 6 ---
+1816
+
+where
+
+Ψ (cid:1)
+
+(cid:6)
+
+K. C. Meza-Fajardo and A. S. Papageorgiou
+
+T(cid:2)xx(cid:3)
+xx
+
+T(cid:2)x(cid:3)
+yy
+
+T(cid:2)x(cid:3)
+xy
+
+T(cid:2)y(cid:3)
+xx
+
+T(cid:2)y(cid:3)
+xy
+
+T(cid:2)y(cid:3)
+yy
+
+v(cid:2)x(cid:3)
+x
+
+v(cid:2)x(cid:3)
+y
+
+v(cid:2)y(cid:3)
+x
+
+v(cid:2)y(cid:3)
+y
+
+(cid:7)
+
+T:
+
+(34)
+
+Matrices Ax, Ay, and B are block matrices having the follow-
+ing form:
+
+2
+
+3
+
+6
+6
+4
+
+2
+
+6
+6
+4
+
+Ax (cid:1)
+
+Ay (cid:1)
+
+033 C(cid:2)x(cid:3) C(cid:2)x(cid:3)
+033
+032
+032
+033
+033
+D(cid:2)x(cid:3) D(cid:2)x(cid:3)
+022
+022
+022
+022
+023
+023
+
+033
+032
+032
+033
+033 C(cid:2)y(cid:3) C(cid:2)y(cid:3)
+033
+022
+022
+023
+023
+D(cid:2)y(cid:3) D(cid:2)y(cid:3)
+022
+022
+
+2
+
+6
+6
+4
+
+dxI3
+033
+023
+023
+
+B (cid:1)
+
+033
+dyI3
+023
+023
+
+032
+032
+dxI2
+022
+
+032
+032
+022
+dyI2
+
+7
+7
+5;
+
+3
+
+7
+7
+5;
+
+3
+
+7
+7
+5;
+
+(35)
+
+(36)
+
+where 0nm is the n × m zero matrix and In is the n × n iden-
+tity matrix. The diagonal matrix B is referred to as the damp-
+ing matrix. Furthermore, it is assumed that the mass density ρ
+and damping profiles dx and dy have constant values (in this
+case we refer to dx and dy as damping coefficients) so as to
+make Fourier analysis in space tractable. Following Bécache
+et al. (2003), we link the results of the analysis performed for
+a medium with constant coefficients to those of a medium
+with variable coefficients by invoking the frozen coefficient
+technique expounded in Kreiss and Lorenz (1989). In the
+system that results by taking the Fourier transform (with re-
+spect to the spatial variables) of equation (33), partial differ-
+entiation with respect to the x and y spatial coordinates is
+represented by the factors ikx and iky, respectively. The
+transformed set of equations may be written as a 10 × 10 sys-
+tem that takes the following form:
+
+∂U
+∂t (cid:1) AU;
+
+(37)
+
+where
+
+U(cid:2)kx; ky; t(cid:3) (cid:1)
+
+Z
+
+(cid:5)∞
+
+(cid:7)∞
+
+Ψ(cid:2)x; y; t(cid:3) exp(cid:2)ikxx (cid:5) ikyy(cid:3) dx dy
+
+and A is a block matrix given by
+
+2
+
+6
+6
+4
+
+A (cid:1)
+
+(cid:7)dxI3
+033
+ikxD(cid:2)x(cid:3)
+ikyD(cid:2)y(cid:3)
+
+ikxC(cid:2)x(cid:3)
+033
+ikyC(cid:2)y(cid:3)
+(cid:7)dyI3
+ikxD(cid:2)x(cid:3) (cid:7)dxI2
+ikyD(cid:2)y(cid:3)
+022
+
+(38)
+
+(39)
+
+3
+
+7
+7
+5:
+
+ikxC(cid:2)x(cid:3)
+ikyC(cid:2)y(cid:3)
+022
+(cid:7)dyI2
+
+Because the coefficients of matrix A do not depend on the
+time variable, system (37) is a time-invariant or autonomous
+system. We can then apply the classical spectral stability
+criteria provided by the theory of linear dynamical systems
+(e.g., Hinrichsen and Pritchard, 2005; Velhurst, 2006). This
+
+theory studies the stability of linear autonomous systems by
+investigating the behavior of the solutions close to the equi-
+librium points. An equilibrium point is a solution that is time
+independent (i.e., a solution that satisfies ∂U=∂t (cid:1) 0). Note
+that if matrix A in (37) is nonsingular, the only equilibrium
+point of the autonomous system is the origin U(cid:2)t(cid:3) (cid:1) 0. Then,
+one question that has to be addressed is whether solutions
+that start to evolve at time t (cid:1) t0 in a neighborhood of
+the origin will stay in this neighborhood for t > t0. A stron-
+ger type of stability would require that solutions not only stay
+in a neighborhood of the origin but also converge to it with
+time. This is the notion of asymptotic stability. An equili-
+brium point is called asymptotically stable if all solutions
+U∈Rn approach the equilibrium point as t → ∞. Further-
+more, as briefly outlined in the Appendix, the equilibrium
+solution at the origin U(cid:2)t(cid:3) (cid:1) 0 is asymptotically stable if
+all the eigenvalues fσig of A have negative real parts. For
+the autonomous system (37), this means that all solutions
+U(cid:2)t(cid:3) are composed of transients (i.e., terms that exponen-
+tially decay to zero). When at least one eigenvalue σi has
+a positive or zero real part, a nontransient solution exists.
+Because an absorbing layer like the M-PML is designed to
+dissipate all energy exiting the physical domain, asymptotic
+stability for the M-PML is desired. Thus, for the purposes of
+this work, we consider system (37) as stable if all the eigen-
+values fσig have negative real parts; otherwise, the system is
+unstable. In the next section we propose a simple procedure
+to determine whether there are eigenvalues σi of A with a
+positive or zero real part.
+
+Eigenvalue Sensitivity Analysis
+When the original elastic unsplit 5 × 5 system (27) is
+
+expressed as an autonomous system,
+
+∂Uu
+∂t (cid:1) AuUu;
+where the superscript u stands for unsplit and undamped,
+(cid:7)
+Uu (cid:1) Txx Tyy Txy
+, and the matrix Au takes
+vy
+the form
+
+(40)
+
+vx
+
+(cid:6)
+
+Au (cid:1)
+
+2
+
+6
+6
+6
+6
+4
+
+0
+0
+0
+ikx
+0
+
+1
+ρ
+
+0
+0
+0
+0
+iky
+
+1
+ρ
+
+0
+0
+0
+iky
+ikx
+
+1
+ρ
+1
+ρ
+
+ikxc11
+ikxc12
+ikyc33
+0
+0
+
+3
+
+7
+7
+7
+7
+5
+
+;
+
+ikyc12
+ikyc22
+ikxc33
+0
+0
+
+(41)
+
+the associated eigenvalue problem is given by
+
+i Vu
+σu
+
+i (cid:1) AuVu
+i ;
+
+(42)
+
+
+--- Page 7 ---
+Nonconvolutional, Split-Field, Perfectly Matched Layer for Wave Propagation in Elastic Media
+
+1817
+
+i and Vu
+
+where σu
+i are the ith eigenvalue and the ith eigen-
+vector of the system, respectively. The eigenvalues corre-
+sponding to system (40) are then easily obtained:
+
+value should be considered in the mathematical analysis of
+PML models, if their construction is based on the first-order
+(i.e., stress velocity) formulation. In the case of the split elas-
+
+(cid:8)
+
+σu
+
+i (cid:1)
+
+(cid:8)
+
+i
+p
+
+r
+
+(cid:8)
+
+i
+p
+
+(cid:1)(cid:1)(cid:1)
+2
+
+q
+
+r
+
+y (cid:5) c3k2
+
+(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)
+(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)
+xk2
+(cid:2)c4k2
+(cid:2)c4k2
+;
+y(cid:3)
+
+y (cid:5) c5k2
+y (cid:5) c3k2
+(cid:1)(cid:1)(cid:1)
+2
+(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)
+(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)
+xk2
+(cid:2)c4k2
+(cid:2)c4k2
+;
+y(cid:3)
+
+x(cid:3)2 (cid:7) 4(cid:2)c1k4
+
+x(cid:3)2 (cid:7) 4(cid:2)c1k4
+
+y (cid:5) c5k2
+
+y (cid:5) c3k2
+
+x (cid:5) c2k4
+
+y (cid:5) c3k2
+
+x (cid:5) c2k4
+
+x(cid:3) (cid:5)
+
+x(cid:3) (cid:7)
+
+q
+
+(cid:9)
+
+0
+
+;
+
+(43)
+
+where
+
+c1 (cid:1)
+
+c33c11
+ρ2
+
+;
+
+c4 (cid:1)
+
+c22 (cid:5) c33
+ρ
+
+;
+
+c2 (cid:1)
+
+;
+
+c3 (cid:1)
+
+c11 (cid:5) c33
+ρ
+
+c33c22
+ρ2
+c11c22 (cid:7) c2
+12 (cid:7) 2c12c33
+ρ2
+
+c5 (cid:1)
+
+:
+
+(44)
+
+We note that for an isotropic medium, eigenvalues (43) take
+the following simple form:
+s
+
+(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)
+λ (cid:5) 2μ
+ρ
+
+y (cid:5) k2
+x(cid:3)
+
+(cid:2)k2
+
+r
+
+(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)
+μ
+y (cid:5) k2
+ρ (cid:2)k2
+;
+x(cid:3)
+
+; (cid:8)i
+
+(cid:9)
+0
+
+:
+
+(cid:8)
+
+σu
+
+i (cid:1)
+
+(cid:8)i
+
+tic (i.e., undamped) system, the constant coefficient matrix
+Ae (e stands for elastic)
+
+;
+
+2
+
+6
+6
+4
+
+Ae (cid:1)
+
+033
+033
+ikxD(cid:2)x(cid:3)
+ikyD(cid:2)y(cid:3)
+
+033
+033
+ikxD(cid:2)x(cid:3)
+ikyD(cid:2)y(cid:3)
+
+ikxC(cid:2)x(cid:3)
+ikyC(cid:2)y(cid:3)
+022
+022
+
+3
+
+7
+7
+5
+
+ikxC(cid:2)x(cid:3)
+ikyC(cid:2)y(cid:3)
+022
+022
+
+(46)
+
+(45)
+
+has the following set of eigenvalues:
+
+(cid:8)
+
+σe
+
+i (cid:1)
+
+(cid:8)
+
+(cid:8)
+
+i
+p
+
+(cid:1)(cid:1)(cid:1)
+2
+
+i
+p
+r
+
+q
+
+r
+
+y (cid:5) c3k2
+
+(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)
+(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)
+xk2
+(cid:2)c4k2
+(cid:2)c4k2
+;
+y(cid:3)
+
+y (cid:5) c5k2
+y (cid:5) c3k2
+(cid:1)(cid:1)(cid:1)
+2
+(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)
+(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)(cid:1)
+xk2
+(cid:2)c4k2
+(cid:2)c4k2
+;
+y(cid:3)
+
+x(cid:3)2 (cid:7) 4(cid:2)c1k4
+
+x(cid:3)2 (cid:7) 4(cid:2)c1k4
+
+x (cid:5) c2k4
+
+y (cid:5) c3k2
+
+x (cid:5) c2k4
+
+y (cid:5) c3k2
+
+y (cid:5) c5k2
+
+x(cid:3) (cid:5)
+
+x(cid:3) (cid:7)
+
+q
+
+(cid:9)
+
+0(cid:2)6(cid:3)
+
+;
+
+(47)
+
+The four nonzero eigenvalues in (43) are then identical to the
+eigenvalues obtained for the second-order (i.e., displace-
+ment) formulation, and they correspond to the propagating
+quasi-P and quasi-S modes (e.g., Slawinski, 2003). Because
+of the symmetry of the elastic coefficient tensor C, those four
+eigenvalues remain purely imaginary for all kx and ky (e.g.,
+Slawinski, 2003). It is important to remark that when the
+two-dimensional elastodynamics equations for inplane mo-
+tion are written as a first-order system (as in the present case),
+an additional spurious zero eigenvalue (corresponding to a
+nonpropagating/rigid-body mode) is introduced. This eigen-
+
+where the exponent in the zero eigenvalue denotes its multi-
+plicity. Clearly, five of the eigenvalues are identical to those
+given in (43) for the unsplit (and undamped) system. The
+additional five eigenvalues that are equal to zero are intro-
+duced when the velocity and stress fields are split. On the
+other hand, it is evident from equation (47) that the real parts
+of all eigenvalues of the elastic system are zero. It is expected
+that the introduction of damping would have the effect of
+moving the eigenvalues toward the negative half complex
+plane (i.e., the half complex plane corresponding to the ne-
+gative real semiaxis), and thus the resulting system would be
+
+
+--- Page 8 ---
+1818
+
+K. C. Meza-Fajardo and A. S. Papageorgiou
+
+asymptotically stable. However, in view of the fact that the
+coefficient matrices in systems (37) and (40) are asymmetric,
+the presence of the damping matrix may have a destabilizing
+effect on the system. A physical explanation for this phenom-
+enon has been given by several researchers (e.g., Semler
+et al., 1998; Gallina, 2003). These investigators attribute the
+appearance of instabilities to modifications that the modes of
+vibration of the dynamical system undergo due to introduc-
+tion of damping. Such modifications of the modes of vibra-
+tion could cause the work done by external forces to increase.
+If the work done by external forces exceeds the energy dis-
+sipated by damping, the system becomes unstable.
+
+In the case of the M-PML, the characteristic equation of
+
+matrix A as in (39) is given by
+
+(cid:2)σ (cid:5) dx(cid:3)(cid:2)σ (cid:5) dy(cid:3)(cid:2)σ8 (cid:5) q7σ7 (cid:5) q6σ6 (cid:5) q5σ5 (cid:5) q4σ4
+
+(cid:5) q3σ3 (cid:5) q2σ2 (cid:5) q1σ (cid:5) q0(cid:3) (cid:1) 0;
+
+(48)
+
+where
+
+y (cid:5) c3d2
+
+xd4
+
+yk2
+
+x (cid:5) c4d4
+
+xd2
+
+yk2
+y
+
+xd3
+
+y (cid:5) c2d3
+
+xk4
+y(cid:3)
+xdyk2
+y(cid:2)dx (cid:5) 2dy(cid:3)
+
+y (cid:5) 8dxdy(cid:3) (cid:5) 6(cid:2)c1d2
+
+yk4
+
+x (cid:5) c2d2
+
+xk4
+y(cid:3)
+
+xk4
+
+y (cid:5) c2d4
+xd4
+y (cid:5) c1k4
+xd2
+xk2
+yk2
+y;
+y(cid:2)dx (cid:5) dy(cid:3) (cid:5) 4(cid:2)c1k4
+
+q0 (cid:1) d4
+
+q2 (cid:1) 2d2
+
+q1 (cid:1) 4d3
+
+xd2
+(cid:5) c3d2
+(cid:5) c4d2
+(cid:5) c5d2
+
+xd4
+(cid:5) c5d2
+xd3
+yk2
+(cid:5) 2c3dxd3
+(cid:5) 2c5dxdyk2
+y(cid:2)3d2
+x (cid:5) d2
+yk2
+x (cid:5) 6d2
+xk2
+x (cid:5) d2
+xk2
+q3 (cid:1) 4dxdy(cid:2)dx (cid:5) dy(cid:3)(cid:2)d2
+(cid:5) 4(cid:2)c1dyk4
+(cid:5) 4c4dxk2
+xk2
+(cid:5) 2c5k2
+x (cid:5) c2k4
+x (cid:5) d4
+y(cid:2)6d2
+
+q4 (cid:1) c1k4
+(cid:5) d4
+(cid:5) c4k2
+q5 (cid:1) 4(cid:2)dx (cid:5) dy(cid:3)(cid:2)d2
+(cid:5) 2c4k2
+
+x (cid:5) d2
+y(cid:2)2dx (cid:5) dy(cid:3);
+x (cid:5) 16dxdy (cid:5) 6d2
+
+q6 (cid:1) 6d2
+q7 (cid:1) 4(cid:2)dx (cid:5) dy(cid:3):
+
+y(cid:2)dx (cid:5) dy(cid:3);
+
+x(cid:2)2dx (cid:5) dy(cid:3) (cid:5) 2c4d3
+xk2
+x (cid:5) 3d2
+x(cid:2)6d2
+y(cid:2)d2
+y(cid:2)d2
+
+y (cid:5) 8dxdy(cid:3)
+y (cid:5) 8dxdy(cid:3)
+y (cid:5) 4dxdy(cid:3);
+x (cid:5) d2
+
+y (cid:5) 5dxdy(cid:3)
+y(cid:3) (cid:5) 4c3dyk2
+
+xdyk2
+y
+
+y(cid:3) (cid:5) 12c4d2
+
+x (cid:5) c2dxk4
+y(cid:2)d2
+x (cid:5) d2
+y(cid:2)dx (cid:5) dy(cid:3);
+y (cid:5) 4dxdy(cid:2)4d2
+xk2
+y (cid:5) c5k2
+y (cid:5) c3k2
+x (cid:5) 6d2
+x(cid:2)d2
+x (cid:5) d2
+y (cid:5) 8dxdy(cid:3);
+
+y (cid:5) c3k2
+
+x (cid:5) c4k2
+y;
+
+x (cid:5) 4d2
+
+y (cid:5) 9dxdy(cid:3)
+
+y (cid:5) 8dxdy(cid:3)
+
+y (cid:5) 5dxdy(cid:3) (cid:5) 2c3k2
+
+x(cid:2)dx (cid:5) 2dy(cid:3)
+
+x(cid:2)d2
+
+x (cid:5) d2
+
+y (cid:5) 3dxdy(cid:3)
+
+This result shows that, when damping is introduced, two of
+the six eigenvalues of the undamped split-field system that
+are equal to zero move to the left half of the complex plane.
+However, in the case of the classical PML, one of the two
+damping coefficients (50) is zero, and thus, with this simple
+result it becomes apparent that the classical PML medium is
+not asymptotically stable. On the other hand, there are no
+general closed form expressions for the remaining eight
+eigenvalues, because they are the roots of the polynomial
+of degree eight in (48). However, we recall that in order
+to characterize the stability of the M-PML system, we need
+to know only the sign of the real part of the eigenvalues.
+Furthermore, we recall that all eigenvalues of the undamped
+system have zero real parts and therefore lie on the imaginary
+axis of the complex plane. Therefore, all we need to know is
+the direction toward which the eigenvalues of the undamped
+system would tend to move as soon as we introduce damping
+into the system. In order to foresee which direction on the
+complex plane those eight eigenvalues would move by the
+introduction of damping, we perform an eigenvalue sensitiv-
+ity analysis (Adhikari and Friswell, 2001; Gallina, 2003).
+The method consists of finding the first derivatives of the
+eigenvalues with respect to the damping coefficient evaluated
+at the point where that damping coefficient is zero. If the
+amount of damping introduced is small, the derivative will
+indicate toward which side of the complex plane, relative
+to the imaginary axis, the eigenvalue will move. The proce-
+dure starts by expressing the damping matrix B as a product
+of a matrix ~B and the damping coefficient d(cid:2)x(cid:3)
+
+B (cid:1) d(cid:2)x(cid:3)
+
+x
+
+~B (cid:1) d(cid:2)x(cid:3)
+
+x
+
+2
+
+6
+6
+4
+
+033
+
+I3
+033 p(cid:2)y=x(cid:3)I3
+023
+023
+
+023
+023
+
+x , namely,
+3
+
+032
+032
+022
+
+032
+032
+I2
+022 p(cid:2)y=x(cid:3)I2
+
+7
+7
+5;
+
+(51)
+
+x
+
+where the definitions/notation established in (15) have been
+used. Note that if d(cid:2)x(cid:3)
+x (cid:1) 0, equation (33), and therefore
+matrix A in (39), reduce to the case of the undamped
+split-field system. As d(cid:2)x(cid:3)
+increases, the eigenvalues will tend
+to move either toward the left, negative half or toward the
+right, positive half complex plane. If the values of d(cid:2)x(cid:3)
+are
+small, a simple way to detect the direction of motion of
+the ith eigenvalue is to evaluate its first derivative with
+respect to d(cid:2)x(cid:3)
+x (cid:1) 0, namely,
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+
+x when d(cid:2)x(cid:3)
+
+(52)
+
+:
+
+x
+
+dσi
+dd(cid:2)x(cid:3)
+x
+
+d(cid:2)x(cid:3)
+x (cid:1)0
+
+Because in the undamped case all eigenvalues σe
+i have zero
+real part, if Re(cid:2)dσi=dd(cid:2)x(cid:3)
+x (cid:1)0(cid:3) > 0 for all i, a small d(cid:2)x(cid:3)
+will induce motion of the eigenvalues toward the positive
+half complex plane, causing the system to become unstable.
+While if
+
+x jd(cid:2)x(cid:3)
+
+x
+
+(49)
+
+Two eigenvalues are obtained by inspection:
+
+σ1 (cid:1) (cid:7)dx;
+
+σ2 (cid:1) (cid:7)dy:
+
+(50)
+
+(cid:5)
+
+(cid:4)
+
+Re
+
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+
+dσi
+dd(cid:2)x(cid:3)
+x
+
+d(cid:2)x(cid:3)
+x (cid:1)0
+
+< 0 ∀ i;
+
+(53)
+
+
+--- Page 9 ---
+Nonconvolutional, Split-Field, Perfectly Matched Layer for Wave Propagation in Elastic Media
+
+1819
+
+a small d(cid:2)x(cid:3)
+x will induce motion of the eigenvalues toward the
+negative half complex plane, causing the system to become
+asymptotically stable.
+
+In the analyses presented by Adhikari and Friswell
+(2001), the derivatives are obtained from expressions requir-
+ing the right and left eigenvectors of the undamped system.
+Here we adopt a different approach and derive exact expres-
+sions for the derivatives by applying implicit differentiation
+to the characteristic equation. In fact, because two eigen-
+values have already been explicitly obtained, the procedure
+is applied only to the polynomial of degree eight given in
+(48). The derivative of the mth root of that eighth degree
+polynomial with respect to d(cid:2)x(cid:3)
+x (cid:1) 0 ob-
+x
+tained by implicit differentiation is given by (Meza-Fajardo,
+2007)
+
+evaluated at d(cid:2)x(cid:3)
+
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+
+dσm
+dd(cid:2)x(cid:3)
+x
+
+(cid:1) (cid:7)
+
+d(cid:2)x(cid:3)
+x (cid:1)0
+1
+D f2(cid:2)1 (cid:5) p(cid:2)y=x(cid:3)(cid:3)(cid:2)σe
+x(cid:2)1 (cid:5) 2p(cid:2)y=x(cid:3)(cid:3) (cid:5) c4k2
+x (cid:5) c2k4
+
+(cid:5) (cid:4)c3k2
+(cid:5) 2(cid:2)c1p(cid:2)y=x(cid:3)k4
+
+m(cid:3)4
+
+y(cid:3) (cid:5) c5k2
+
+y(cid:2)2 (cid:5) p(cid:2)y=x(cid:3)(cid:3)(cid:6)(cid:2)σe
+
+m(cid:3)2
+y(cid:2)1 (cid:5) p(cid:2)y=x(cid:3)(cid:3)g;
+
+xk2
+
+where
+
+D (cid:1) 4(cid:2)σe
+
+m(cid:3)4 (cid:5) 3(cid:2)c3k2
+x (cid:5) c2k4
+
+x (cid:5) c4k2
+y (cid:5) c5k2
+
+y(cid:3)(cid:2)σe
+xk2
+y(cid:3)
+
+(cid:5) 2(cid:2)c1k4
+
+m(cid:3)2
+
+(54)
+
+(55)
+
+and the definitions (15) have been used. Because the deriva-
+tive is evaluated at d(cid:2)x(cid:3)
+x (cid:1) 0, the eigenvalue that appears on
+the right-hand side of the preceding equation is the eigen-
+value σe
+m of the undamped system. Four out of the eight
+eigenvalues fσe
+m∶m (cid:1) 1; 2; …; 8g are zero and the other four
+that are nonzero are given in closed form in (47). Further-
+more, because all those eigenvalues are either zero or purely
+imaginary, the factors (cid:2)σe
+m(cid:3)2 are real, and conse-
+m(cid:3)4 and (cid:2)σe
+quently derivative (54) is also real, that is,
+
+(cid:4)
+
+dσm
+dd(cid:2)x(cid:3)
+x
+
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+
+Re
+
+(cid:5)
+
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+
+(cid:1)
+
+dσm
+dd(cid:2)x(cid:3)
+x
+
+:
+
+d(cid:2)x(cid:3)
+x (cid:1)0
+
+d(cid:2)x(cid:3)
+x (cid:1)0
+
+(56)
+
+Now, because the M-PML medium is by construction aniso-
+tropic, the behavior of a strip perpendicular to the x axis (re-
+ferred to as the vertical termination strip) is not the same as
+that of a strip perpendicular to the y axis (referred to as the
+horizontal termination strip). In the case of the horizontal ter-
+mination strip, the damping profiles are defined as
+
+dx (cid:1) d(cid:2)y(cid:3)
+p(cid:2)x=y(cid:3) (cid:1) d(cid:2)y(cid:3)
+
+x (cid:1) p(cid:2)x=y(cid:3)d(cid:2)y(cid:3)
+x =d(cid:2)y(cid:3)
+y ;
+
+y (cid:2)y(cid:3);
+
+dy (cid:1) d(cid:2)y(cid:3)
+
+y (cid:2)y(cid:3);
+
+(57)
+
+and thus the derivatives should be computed with respect
+to the damping coefficient d(cid:2)y(cid:3)
+y (cid:1) 0.
+y
+
+and evaluated at d(cid:2)y(cid:3)
+
+Again, the mth eigenderivative is obtained by implicit differ-
+entiation of the polynomial in (48) (Meza-Fajardo, 2007)
+
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+
+dσm
+dd(cid:2)y(cid:3)
+y
+
+(cid:1) (cid:7)
+
+d(cid:2)y(cid:3)
+y (cid:1)0
+1
+D f2(cid:2)1 (cid:5) p(cid:2)x=y(cid:3)(cid:3)(cid:2)σe
+x(cid:2)2 (cid:5) p(cid:2)x=y(cid:3)(cid:3) (cid:5) c4k2
+x (cid:5) c2p(cid:2)x=y(cid:3)k4
+
+m(cid:3)4
+
+(cid:5) (cid:4)c3k2
+(cid:5) 2(cid:2)c1k4
+
+y(cid:2)1 (cid:5) 2p(cid:2)x=y(cid:3)(cid:3)(cid:6)(cid:2)σe
+
+m(cid:3)2
+y(cid:2)1 (cid:5) p(cid:2)x=y(cid:3)(cid:3)g
+
+xk2
+
+y(cid:3) (cid:5) c5k2
+
+(58)
+
+with D as in (55). It becomes clear that the eigenderivatives
+(54) and (58) are determined by the elastic constants, the
+direction of propagation, and by the ratios p(cid:2)y=x(cid:3) and
+p(cid:2)x=y(cid:3), respectively. This is consistent with the conclusions
+of Herrmann et al.
+(1966) and Bolotin and Zhinzher
+(1969) who showed that the destabilizing effect induced
+by the introduction of a slight amount of damping on dy-
+namic systems can be related to the ratio of the damping
+coefficients. Furthermore, because it is always possible to
+express the eigenvalues in terms of the wavenumber, equa-
+tions (54) and (58) can be recast in such a form as to reveal
+that they are independent of wavenumber jkj and, conse-
+quently, independent of frequency, as follows:
+
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+
+dσm
+dd(cid:2)x(cid:3)
+x
+
+(cid:1) (cid:7)
+
+d(cid:2)x(cid:3)
+x (cid:1)0
+1
+~D
+(cid:5) (cid:4)c3n2
+(cid:5) 2(cid:2)c1p(cid:2)y=x(cid:3)n4
+
+f2(cid:2)1 (cid:5) p(cid:2)y=x(cid:3)(cid:3)(cid:2) ~σe
+
+m(cid:3)4
+
+x(cid:2)1 (cid:5) 2p(cid:2)y=x(cid:3)(cid:3) (cid:5) c4n2
+x (cid:5) c2n4
+
+y(cid:3) (cid:5) c5n2
+
+y(cid:2)2 (cid:5) p(cid:2)y=x(cid:3)(cid:3)(cid:6)(cid:2) ~σe
+
+m(cid:3)2
+y(cid:2)1 (cid:5) p(cid:2)x=y(cid:3)(cid:3)g;
+
+xn2
+
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+
+dσm
+dd(cid:2)y(cid:3)
+y
+
+(cid:1) (cid:7)
+
+d(cid:2)y(cid:3)
+y (cid:1)0
+1
+~D
+(cid:5) (cid:4)c3n2
+(cid:5) 2(cid:2)c1n4
+
+f2(cid:2)1 (cid:5) p(cid:2)x=y(cid:3)(cid:3)(cid:2) ~σe
+
+m(cid:3)4
+
+x(cid:2)2 (cid:5) p(cid:2)x=y(cid:3)(cid:3) (cid:5) c4n2
+x (cid:5) c2p(cid:2)x=y(cid:3)n4
+
+y(cid:2)1 (cid:5) 2p(cid:2)x=y(cid:3)(cid:3)(cid:6)(cid:2) ~σe
+
+m(cid:3)2
+y(cid:2)1 (cid:5) p(cid:2)x=y(cid:3)(cid:3)g
+
+xn2
+
+y(cid:3) (cid:5) c5n2
+
+with
+
+~D (cid:1) 4(cid:2) ~σe
+
+m(cid:3)4 (cid:5) 3(cid:2)c3n2
+x (cid:5) c2n4
+
+x (cid:5) c4n2
+y (cid:5) c5n2
+
+y(cid:3)(cid:2) ~σe
+xn2
+y(cid:3);
+
+(cid:5) 2(cid:2)c1n4
+
+m(cid:3)2
+
+(59)
+
+(60)
+
+(61)
+
+m (cid:1) jkj ~σe
+
+where σe
+m and nx and ny are the direction cosines of
+the wave vector, that is, kx (cid:1) jkjnx and ky (cid:1) jkjny. We recall
+that these derivatives should be evaluated for each eigenvalue
+σe
+m of the undamped system. For example, we can evaluate
+derivatives (59) and (60) for the case when ny (cid:1) 0 and
+nx (cid:1) 1. This case corresponds to waves propagating in the
+direction of the x axis. Such derivatives are easily obtained
+
+
+--- Page 10 ---
+1820
+
+K. C. Meza-Fajardo and A. S. Papageorgiou
+
+and turn out to be independent of the elastic constants, as
+shown by the following expressions:
+
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+
+dσm
+dd(cid:2)x(cid:3)
+x
+dσm
+dd(cid:2)x(cid:3)
+x
+
+d(cid:2)x(cid:3)
+x (cid:1)0
+
+d(cid:2)x(cid:3)
+x (cid:1)0
+
+(cid:1) (cid:7)p(cid:2)y=x(cid:3);
+
+(cid:1) (cid:7)1;
+
+dσm
+dd(cid:2)y(cid:3)
+y
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+
+d(cid:2)y(cid:3)
+y (cid:1)0
+
+dσm
+dd(cid:2)y(cid:3)
+y
+
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+
+d(cid:2)y(cid:3)
+y (cid:1)0
+
+(cid:1) (cid:7)1
+
+for σe
+
+m (cid:1) 0;
+
+(cid:1) (cid:7)p(cid:2)x=y(cid:3)
+
+for σe
+
+m ≠ 0:
+
+(62)
+
+Similar results are obtained for the case of waves propagating
+in the direction of the y axis (nx (cid:1) 0 and ny (cid:1) 1):
+
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+
+dσm
+dd(cid:2)x(cid:3)
+x
+dσm
+dd(cid:2)x(cid:3)
+x
+
+d(cid:2)x(cid:3)
+x (cid:1)0
+
+d(cid:2)x(cid:3)
+x (cid:1)0
+
+(cid:1) (cid:7)1;
+
+(cid:1) (cid:7)p(cid:2)y=x(cid:3);
+
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+
+dσm
+dd(cid:2)y(cid:3)
+y
+
+d(cid:2)y(cid:3)
+y (cid:1)0
+(cid:10)
+(cid:10)
+dσm
+(cid:10)
+(cid:10)
+dd(cid:2)y(cid:3)
+y
+
+(cid:1) (cid:7)p(cid:2)x=y(cid:3)
+
+for σe
+
+m (cid:1) 0;
+
+d(cid:2)y(cid:3)
+y (cid:1)0
+
+(cid:1) (cid:7)1
+
+for σe
+
+m ≠ 0:
+
+(63)
+
+These particular (limiting) cases make apparent that the clas-
+sical PML is indeed an unstable medium. Expressions (62)
+and (63) indicate that the classical PML (p(cid:2)y=x(cid:3) (cid:1) p(cid:2)x=y(cid:3) (cid:1)
+0) can have an eigenvalue with multiplicity four with zero
+real part, in addition to the zero eigenvalue observed in
+(50). In the case of a classical PML for an isotropic medium,
+these are the only conditions for which the real part of
+the eigenvalues will be nonnegative. This conclusion can
+be easily reached when the eigenderivatives (59) and (60)
+are evaluated for the special case of an M-PML for an isotro-
+pic elastic medium, as follows:
+
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+(cid:10)
+
+dσm
+dd(cid:2)x(cid:3)
+x
+dσm
+dd(cid:2)y(cid:3)
+y
+dσm
+dd(cid:2)x(cid:3)
+x
+dσm
+dd(cid:2)y(cid:3)
+y
+
+d(cid:2)x(cid:3)
+x (cid:1)0
+
+d(cid:2)y(cid:3)
+y (cid:1)0
+
+d(cid:2)x(cid:3)
+x (cid:1)0
+
+d(cid:2)y(cid:3)
+y (cid:1)0
+
+(cid:1) (cid:7)(cid:2)p(cid:2)y=x(cid:3)n2
+
+x (cid:5) n2
+
+y(cid:3);
+
+(cid:1) (cid:7)(cid:2)n2
+
+x (cid:5) p(cid:2)x=y(cid:3)n2
+y(cid:3)
+
+for σe
+
+m (cid:1) 0;
+
+(cid:1) (cid:7)(cid:2)n2
+
+x (cid:5) p(cid:2)y=x(cid:3)n2
+
+y(cid:3);
+
+(cid:1) (cid:7)(cid:2)p(cid:2)x=y(cid:3)n2
+
+x (cid:5) n2
+y(cid:3)
+
+for σe
+
+m ≠ 0:
+
+(64)
+
+The preceding derivatives depend only on the direction of
+propagation and ratios of damping coefficients. In Figure 2
+these derivatives have been plotted as a function of the angle
+of incidence θ (the angle between the vector k and the x axis,
+that is, cos θ (cid:1) nx). Figure 2a and b correspond to the eigen-
+derivatives for the classical PML (i.e., p(cid:2)y=x(cid:3) (cid:1) p(cid:2)x=y(cid:3) (cid:1) 0),
+whereas Figure 2c and d show the derivatives for the M-PML
+with p(cid:2)y=x(cid:3) (cid:1) p(cid:2)x=y(cid:3) (cid:1) 0:1. Clearly, if the ratios of damping
+coefficients are nonzero, the eigenderivatives (64) are nega-
+tive for all directions of propagation, and therefore for small
+damping coefficients the real part of the eigenvalues fσmg is
+negative and consequently the M-PML for isotropic media
+
+is asymptotically stable. On the other hand, if the ratios
+of damping coefficients are zero (classical PML), the deriva-
+tives (64) will be zero for waves propagating parallel either
+to the x axis or to the y axis, as Figure 2a and b shows. Con-
+sequently, the classical PML medium can have eigenvalues
+with zero real part of multiplicity higher than one. Such
+eigenvalues explain the late-time instability that has been re-
+ported in practical applications of the classical PML for iso-
+tropic elastic media. Note that because the eigenvalues
+corresponding to the physical qS and qP modes in the clas-
+sical PML can indeed have zero real part, the late-time in-
+stability is not related to the additional zero eigenvalues
+introduced in split PML formulations.
+
+Now we turn our attention to classical PML for more
+general orthotropic media. Those models not only exhibit
+the instability due to multiple eigenvalues with zero real part
+mentioned in the preceding discussion (polynomial growth;
+see equation A.4 in the Appendix), but may also develop in-
+stabilities that are associated with eigenvalues having posi-
+tive real part (exponential growth) and thus become evident
+considerably earlier during a simulation. We illustrate this
+second type of instability with a few examples. In particular,
+we consider the five PML models for orthotropic media in-
+vestigated by Bécache et al. (2003) (denoted by the Roman
+numerals I, II, III, VI, and V in Bécache et al. [2003]) and
+the models for apatite and zinc reported by Komatitsch
+and Martin (2007). The properties of the models are listed
+in Table 1. It is important to remark that the derivatives
+(59) and (60) depend on the ratio of the elastic coefficients
+and not on their absolute values.
+
+The eigenderivatives of a classical PML for models I, II,
+IV, and V as a function of the angle of incidence have been
+plotted in Figures (3), (4), (5), and (6), respectively. In the
+cases of these more general orthotropic models, the PML ei-
+genderivatives related to the qP and qS modes take different
+values. Figures (3)–(6) clearly illustrate that the models I, II,
+IV, and V exhibit only the instability related to eigenvalues
+with zero real part of multiplicity higher than one. As it was
+shown for the isotropic case, any small nonzero value for
+the ratios p(cid:2)y=x(cid:3) and p(cid:2)x=y(cid:3) (say 0.1) will make the four media
+asymptotically stable. On the other hand, the classical PML
+eigenderivatives for model III can take positive values for
+several finite ranges of θ, as shown in Figure 7. Therefore,
+the real parts of the corresponding eigenvalues will take
+positive values, and the solution will exhibit exponential
+growth. In the case of the vertical termination strip, Figure 7a
+indicates that the derivatives related to the nonpropagating
+mode and the qS mode take positive values for the ranges
+(0°, 16° ) and (45°, 90°), respectively. The values of the de-
+rivative corresponding to the nonpropagating mode are
+relatively closer to zero. However, the positive values of
+the derivative related to the qS mode are relatively higher,
+greater than 0.1 for some angles, leading to eigenvalues with
+a positive real part of higher magnitude (i.e., higher rates of
+growth), and therefore, the instability associated to that mode
+will become evident first. The same trend is observed in the
+
+
+--- Page 11 ---
+Nonconvolutional, Split-Field, Perfectly Matched Layer for Wave Propagation in Elastic Media
+
+1821
+
+Figure 2. M-PML eigenderivatives for isotropic elastic media. (a) and (b) correspond to the classical PML (p(cid:2)y=x(cid:3) (cid:1) p(cid:2)x=y(cid:3) (cid:1) 0). (c) and
+(d) correspond to the M-PML with p(cid:2)y=x(cid:3) (cid:1) p(cid:2)x=y(cid:3) (cid:1) 0:1. In the case of M-PML for isotropic media, the eigenderivatives related to the quasi-P
+(qP) and quasi-S (qS) modes are identical. As it is clearly evident from (c) and (d), the eigenvalues of the M-PML with p(cid:2)y=x(cid:3) (cid:1) p(cid:2)x=y(cid:3) (cid:1) 0:1
+have a negative real part for all incidence angles, and thus the medium is asymptotically stable.
+
+Table 1
+Elastic Coefficients for Selected Orthotropic Models
+
+Elastic Constants (N=m2)
+
+I
+
+II
+
+III
+
+c11
+c22
+c33
+c12
+
+4
+20
+2
+3.80
+
+20
+20
+2
+3.8
+
+4
+20
+2
+7.5
+
+Model
+
+IV
+
+10
+20
+6
+2
+
+V
+
+Apatite
+
+Zinc
+
+30
+6
+1.5
+9.9
+
+1:67E(cid:5)11
+1:40E(cid:5)11
+6:63E(cid:5)10
+6:60E(cid:5)10
+
+1:65E(cid:5)11
+6:20E(cid:5)10
+3:96E(cid:5)10
+5:00E(cid:5)10
+
+
+--- Page 12 ---
+1822
+
+K. C. Meza-Fajardo and A. S. Papageorgiou
+
+Classical PML eigenderivatives for an orthotropic elastic medium (model I). (a) Eigenderivatives with respect to d(cid:2)x(cid:3)
+
+Figure 3.
+at d(cid:2)x(cid:3)
+horizontal termination strips exhibit only the instability due to eigenvalues with zero real part of multiplicity greater than one.
+
+x (cid:1) 0, for a vertical strip. (b) Eigenderivatives with respect to d(cid:2)y(cid:3)
+
+x evaluated
+y (cid:1) 0, for a horizontal strip. Both vertical and
+
+evaluated at d(cid:2)y(cid:3)
+
+y
+
+x (cid:1) 0, for a vertical termination strip. (b) Eigenderivatives with respect to d(cid:2)y(cid:3)
+
+Classical PML eigenderivatives for an orthotropic elastic medium (model II). (a) Eigenderivatives with respect to d(cid:2)x(cid:3)
+
+Figure 4.
+x evaluated
+at d(cid:2)x(cid:3)
+y (cid:1) 0, for a horizontal termination
+strip. Both vertical and horizontal termination strips exhibit only the instability due to eigenvalues with zero real part of multiplicity greater
+than one.
+
+evaluated at d(cid:2)y(cid:3)
+
+y
+
+eigenderivatives for the horizontal
+termination strip, as
+shown in Figure 7b. The derivatives associated with the zero
+eigenvalue and the qS mode take positive values for the
+ranges (58°, 90°) and (0°, 29°), respectively. The derivative
+associated to the zero eigenvalue again remains close to zero
+whereas the one related to the qS mode can take values of
+about 0.34 for some angles. Thus, for the horizontal termi-
+
+nation strip, the exponential growth of the qS mode will be
+observed first.
+
+In order to design a stable M-PML for the orthotropic
+model III, we evaluate the eigenderivatives with ratios
+p(cid:2)y=x(cid:3) and p(cid:2)x=y(cid:3) different from zero. As Figure 8a and b il-
+lustrate, using ratios p(cid:2)y=x(cid:3) and p(cid:2)x=y(cid:3) both equal to 0.15 sta-
+bilizes the vertical termination strip, but not the horizontal
+
+
+--- Page 13 ---
+Nonconvolutional, Split-Field, Perfectly Matched Layer for Wave Propagation in Elastic Media
+
+1823
+
+Classical PML eigenderivatives for an orthotropic elastic medium (model IV). (a) Eigenderivatives with respect to d(cid:2)x(cid:3)
+
+Figure 5.
+eval-
+uated at d(cid:2)x(cid:3)
+y (cid:1) 0, for a horizontal termination
+strip. Both vertical and horizontal termination strips exhibit only the instability due to eigenvalues with zero real part of multiplicity greater
+than one.
+
+x (cid:1) 0, for a vertical termination strip. (b) Eigenderivatives with respect to d(cid:2)y(cid:3)
+
+y evaluated at d(cid:2)y(cid:3)
+
+x
+
+x (cid:1) 0, for a vertical termination strip. (b) Eigenderivatives with respect to d(cid:2)y(cid:3)
+
+Classical PML eigenderivatives for an orthotropic elastic medium (model V). (a) Eigenderivatives with respect to d(cid:2)x(cid:3)
+
+Figure 6.
+x evaluated
+at d(cid:2)x(cid:3)
+y (cid:1) 0, for a horizontal termination
+strip. Both vertical and horizontal termination strips exhibit only the instability due to eigenvalues with zero real part of multiplicity greater
+than one.
+
+evaluated at d(cid:2)y(cid:3)
+
+y
+
+one. For the latter, the maximum value of the eigenderivative
+associated with the qS mode still takes positive values for the
+range of (9°, 26° ). Thus, the eigenderivative for the horizon-
+tal termination strip is recalculated with p(cid:2)x=y(cid:3) (cid:1) 0:3, and the
+results are shown in Figure 8c. This time the derivatives
+associated with all modes are negative for all values of
+
+the incidence angle, and therefore, the horizontal M-PML
+is asymptotically stable.
+
+Figure 9a and b and Figure 10a and b show that classical
+PML models for apatite and zinc also exhibit exponential
+growth. For both cases, the positive eigenvalues are related
+to the qS mode and are present in both the horizontal and
+
+
+--- Page 14 ---
+1824
+
+K. C. Meza-Fajardo and A. S. Papageorgiou
+
+x (cid:1) 0, for a vertical termination strip. (b) Eigenderivatives with respect to d(cid:2)y(cid:3)
+
+Classical PML eigenderivatives for an orthotropic elastic medium (model III). (a) Eigenderivatives with respect to d(cid:2)x(cid:3)
+
+Figure 7.
+x evaluated
+at d(cid:2)x(cid:3)
+y (cid:1) 0, for a horizontal termination
+strip. Both horizontal and vertical termination strips exhibit the instability related to the polynomial growth as well as the exponential
+growth instability.
+
+evaluated at d(cid:2)y(cid:3)
+
+y
+
+vertical termination strips. As it can be observed in Figure 9c
+and d, a value of 0.1 for the ratios p(cid:2)y=x(cid:3) and p(cid:2)x=y(cid:3) is suffi-
+cient to stabilize the model for apatite. In the case of the
+M-PML model for zinc, p(cid:2)x=y(cid:3) (cid:1) 0:1 stabilizes the horizontal
+termination strip, as shown in Figure 10d. For the vertical
+termination strip to become asymptotically stable, however,
+p(cid:2)y=x(cid:3) (cid:1) 0:15 seems to be the proper value, as Figure 10c
+indicates.
+
+We have shown that with the simple eigenvalue sensi-
+tivity analysis one can design robust M-PML terminations,
+that is, media that are asymptotically stable. It should be
+pointed out, however, that prediction of the sign of the real
+part of the eigenvalues based on the sign of the first eigen-
+derivative is valid only if the damping coefficients are small
+(close to zero). If the damping coefficients are large enough
+to allow the eigenvalues to oscillate and change sign as they
+move away from the values that they have for zero damping,
+then the analysis presented in the preceding discussion based
+on the first derivatives is not valid any more. Such cases may
+be encountered when the damping profiles of the M-PML are
+specified to grow very fast, and much higher values of the
+ratios p(cid:2)y=x(cid:3) and p(cid:2)x=y(cid:3) would be required to stabilize such
+media. However, because very high damping ratio ampli-
+tudes increase the reflections due to the numerical dispersion
+that exists at the discrete level of the PML terminations (e.g.,
+Collino and Tsogka, 2001), using small damping ratios, and
+therefore, reasonably thicker M-PMLs for stabilization, seems
+to be a preferable option.
+
+Numerical Experiments
+
+In order to validate the stability analysis presented in the
+previous section and test its effectiveness, we consider three
+numerical experiments. In the first test we study the stability
+of the M-PML for a two-dimensional isotropic elastic med-
+ium with a free surface. For comparison, results of the test
+using the C-PML are also presented. In the other two tests, we
+simulate waves propagating in two-dimensional square mod-
+els representing the orthotropic elastic medium III and zinc.
+The equations in the physical domain and M-PML ter-
+minations were solved in variational form with the spectral
+element method (SEM). For implementation of the split-
+field M-PML in the SEM, the staggered velocity-stress time
+scheme proposed by Festa and Vilotte (2005) was adopted.
+For all simulations, we selected a quadratic damping profile
+of the form
+
+d(cid:2)x(cid:3)
+x (cid:1) d0
+
+(cid:5)
+
+2
+
+;
+
+(cid:4)
+
+x
+H
+
+d(cid:2)y(cid:3)
+y (cid:1) d0
+
+(cid:4)
+
+(cid:5)
+2
+
+;
+
+y
+H
+
+(65)
+
+where H is the thickness of the absorbing termination strip
+and the parameter d0 is the maximum value of the damping
+profile in the strip. Furthermore, the source time variation is
+given by a Ricker wavelet having the following waveform:
+
+R(cid:2)t(cid:3) (cid:1) (cid:4)2π2f2
+
+0(cid:2)T (cid:7) t0(cid:3)2 (cid:7) 1(cid:6) exp(cid:4)(cid:7)π2f2
+
+0(cid:2)T (cid:7) t0(cid:3)2(cid:6);
+
+(66)
+
+where f0 is the dominant frequency of the signal and t0 is its
+onset time.
+
+
+--- Page 15 ---
+Nonconvolutional, Split-Field, Perfectly Matched Layer for Wave Propagation in Elastic Media
+
+1825
+
+Figure 8. M-PML eigenderivatives for an orthotropic elastic medium (model III). (a) Eigenderivatives with respect to d(cid:2)x(cid:3)
+d(cid:2)x(cid:3)
+x (cid:1) 0, for a vertical termination strip with p(cid:2)y=x(cid:3) (cid:1) 0:15. (b) Eigenderivatives with respect to d(cid:2)y(cid:3)
+termination strip with p(cid:2)x=y(cid:3) (cid:1) 0:15. (c) Eigenderivatives with respect to d(cid:2)y(cid:3)
+p(cid:2)x=y(cid:3) (cid:1) 0:30.
+
+evaluated at
+y (cid:1) 0, for a horizontal
+y (cid:1) 0, for a horizontal termination strip with
+
+y evaluated at d(cid:2)y(cid:3)
+
+evaluated at d(cid:2)y(cid:3)
+
+x
+
+y
+
+Finally, in order to illustrate the efficiency of the three
+different PML methods, the evolution of the total energy
+(stored in the physical domain) during the simulations is in-
+vestigated. Thus, the total energy at each time instant is com-
+puted according to the following expression:
+
+Z
+
+1
+2
+
+Ω
+
+E (cid:1)
+
+ρkvk2 dΩ (cid:5)
+
+Z
+
+Ω
+
+1
+2
+
+Tijεij dΩ;
+
+(67)
+
+where Ω is the volume corresponding to the physical
+domain,kvk is magnitude of the velocity vector, and εij
+are the components of the strain tensor E.
+
+Isotropic Medium
+
+An important application of PML media in computa-
+tional seismology is the simulation of propagation of surface
+waves in geological basins, which are modeled as isotropic
+media. If the simulations are performed for long time dura-
+tions, the multiple-zero instability inherent in the classical
+PML might arise and pollute the solution in the physical
+domain. It has been reported (Festa et al., 2005) that imple-
+mentation of the convolutional (or generalized) PML elimi-
+nates the instability. Here, we show that the M-PML is also
+an efficient alternative solution. We know that the equations
+of elastodynamics also admit inhomogeneous plane-wave
+
+
+--- Page 16 ---
+1826
+
+K. C. Meza-Fajardo and A. S. Papageorgiou
+
+x (cid:1) 0, for a vertical termination strip with p(cid:2)y=x(cid:3) (cid:1) 0. (b) Eigenderivatives with respect to d(cid:2)y(cid:3)
+
+Figure 9. M-PML eigenderivatives for an orthotropic elastic medium (model for apatite). (a) Eigenderivatives with respect to d(cid:2)x(cid:3)
+x eval-
+uated at d(cid:2)x(cid:3)
+y (cid:1) 0, for a hori-
+zontal termination strip with p(cid:2)x=y(cid:3) (cid:1) 0. (c) Eigenderivatives with respect to d(cid:2)x(cid:3)
+x (cid:1) 0, for a vertical termination strip with
+p(cid:2)y=x(cid:3) (cid:1) 0:1. (d) Eigenderivatives with respect to d(cid:2)y(cid:3)
+y (cid:1) 0, for a horizontal termination strip with p(cid:2)x=y(cid:3) (cid:1) 0:1. The classical
+PML model for both vertical and horizontal termination strips exhibit the instability related to the polynomial growth as well as the
+exponential growth instability.
+
+x evaluated at d(cid:2)x(cid:3)
+
+y evaluated at d(cid:2)y(cid:3)
+
+y evaluated at d(cid:2)y(cid:3)
+
+solutions. For such type of waves at least one component of
+the wave vector is imaginary (see, e.g., Aki and Richards,
+2002, for a comprehensive discussion of inhomogeneous
+waves). In this case it is the term kx (and/or ky, and/or kz)
+that
+if
+introduces the spatial attenuation. It follows that
+the M-PML medium is asymptotically stable, any combina-
+tion of inhomogeneous waves inside the medium will be also
+damped out. Thus, it is expected that surface waves, which
+consist of a superposition of inhomogeneous waves (see,
+e.g., Aki and Richards, 2002), will be damped out when they
+enter in the M-PML termination. For demonstration purposes
+
+we consider a problem similar to the one studied by Festa
+et al. (2005). Specifically, we consider the two-dimensional
+problem of a line explosive source embedded in a homoge-
+neous isotropic elastic half-space. Thus, the physical domain
+in this case is bounded at the top by a free surface and on
+the other three sides by absorbing layers. The free surface
+condition was also imposed on the top edges of the verti-
+cal termination strips, whereas Dirichlet boundary conditions
+v (cid:1) 0 were specified at all other external boundaries of the
+three termination strips. The explosive source is located close
+to the left absorbing strip. The dimensions and properties of
+
+
+--- Page 17 ---
+Nonconvolutional, Split-Field, Perfectly Matched Layer for Wave Propagation in Elastic Media
+
+1827
+
+x (cid:1) 0, for a vertical termination strip with p(cid:2)y=x(cid:3) (cid:1) 0. (b) Eigenderivatives with respect to d(cid:2)y(cid:3)
+
+Figure 10. M-PML eigenderivatives for an orthotropic elastic medium (model for zinc). (a) Eigenderivatives with respect to d(cid:2)x(cid:3)
+x evaluated
+at d(cid:2)x(cid:3)
+y (cid:1) 0, for a horizontal
+termination strip with p(cid:2)x=y(cid:3) (cid:1) 0:1. (c) Eigenderivatives with respect to d(cid:2)x(cid:3)
+x (cid:1) 0, for a vertical termination strip with
+p(cid:2)y=x(cid:3) (cid:1) 0:15. (d) Eigenderivatives with respect to d(cid:2)y(cid:3)
+y (cid:1) 0, for a horizontal termination strip with p(cid:2)x=y(cid:3) (cid:1) 0:1. For both
+vertical and horizontal termination strips the classical PML model exhibits the instability related to the polynomial growth as well as the
+exponential growth instability.
+
+y evaluated at d(cid:2)y(cid:3)
+
+y evaluated at d(cid:2)y(cid:3)
+
+evaluated at d(cid:2)x(cid:3)
+
+x
+
+the media and discretization parameters are listed in Table 2.
+The damping profiles are given by expressions (65) with a
+maximum value d0 given by the following expression (Festa
+and Vilotte, 2005):
+
+d0 (cid:1) A
+
+vp
+H
+
+(68)
+
+with A (cid:1) 10. We performed the simulations with classical
+PML, M-PML with p(cid:2)y=x(cid:3) (cid:1) p(cid:2)x=y(cid:3) (cid:1) 0:1, and C-PML termi-
+
+nations. For the latter we adopted the same damping profile
+(65) and a cutoff frequency of 1.5 Hz.
+
+In Figure 11 snapshots of the results are displayed for
+different instants of time. The interfaces between the physi-
+cal domain and termination strips are represented by the solid
+lines. It can be observed that the body and surface waves are
+well absorbed by the three termination strips. At t (cid:1) 8:5 sec,
+the late-time instability of the classical PML is visible. If the
+simulation is performed for longer times,
+the instability
+grows and spreads into the physical domain. No instabilities
+are identified in the C-PML and M-PML terminations.
+
+
+--- Page 18 ---
+1828
+
+K. C. Meza-Fajardo and A. S. Papageorgiou
+
+Table 2
+Properties and Discretization Parameters for Simulation in Isotropic
+
+Medium
+
+Parameter
+
+Physical domain dimensions
+Length
+Width
+
+Physical domain properties
+
+Density
+S–wave velocity
+P–wave velocity
+
+From left boundary
+From bottom boundary
+
+Dominant frequency
+Onset time
+
+Source location
+
+Ricker wavelet parameters
+
+Discretization parameters
+
+Polynomial degree
+Element side
+Elements along PML width
+Timestep
+Total duration
+
+Value
+
+11 km
+1 km
+
+2:7E(cid:5)12 kg=km3
+1:87 km= sec
+3:2 km= sec
+
+0.25 km
+3.75 km
+
+2.5 Hz
+0.4 sec
+
+8
+0.1 km
+10
+0.00047 sec
+8.5 sec
+
+Snapshots of propagation of the velocity magnitude in an isotropic elastic medium (width 4 km) at (a) t (cid:1) 0:5 sec,
+Figure 11.
+(b) t (cid:1) 2 sec, (c) t (cid:1) 6 sec, and (d) t (cid:1) 8:5 sec. The panels on the right, center, and left correspond to classical PML, C-PML, and
+M-PML (fp(cid:2)y=x(cid:3) (cid:1) p(cid:2)x=y(cid:3) (cid:1) 0:1g) terminations, respectively. As shown in (d), at t (cid:1) 8:5 sec the late-time instability of the classical
+PML can be observed on the left vertical termination strip. No instabilities are identified in the C-PML and M-PML terminations.
+
+
+--- Page 19 ---
+Nonconvolutional, Split-Field, Perfectly Matched Layer for Wave Propagation in Elastic Media
+
+1829
+
+It has been argued (Festa et al., 2005) that the instability
+observed in the classical PML, for simulations that involve
+surface waves, is the result of the strong interaction of the
+surface wave with the termination lying at the bottom of
+the physical domain. For this reason we repeated the same
+simulation, but this time the depth of the physical domain
+was only 1 km so as to impose strong interaction between
+the generated surface wave and the bottom termination.
+The results are displayed in Figure 12. It is evident from this
+figure that the strong interaction does not change the beha-
+vior of the PML models. For both values of depth of the
+physical domain (i.e., 4 and 1 km), the instability manifests
+itself for the first time in the left classical PML termination,
+while no instabilities are observed in any C-PML or M-PML
+termination.
+
+Figure 13 displays the energy decay in the physical do-
+main for the three PML models under investigation for the
+two different depths that were considered (4 and 1 km).
+As Figure 13b and d indicaes, after the wave field has left
+the physical domain (which occurs at about 6.5 sec) the low-
+est decay rate is observed in the case of the C-PML. The lower
+decay rate is attributed to wave energy, with frequencies
+lower than the specified cutoff frequency, which is not
+absorbed by the C-PML. The absorption in the C-PML could
+be improved by reducing this cutoff frequency. There is no
+such problem when M-PML terminations are implemented.
+Both types of termination strips appear to be stable for
+the isotropic medium under investigation. However,
+let
+us mention that although simple unsplit formulations for
+C-PML can be used for isotropic media (Drossaert and
+
+Giannopolous, 2007; Komatitsch and Martin, 2007), the
+M-PML has the advantage of being nonconvolutional.
+
+Orthotropic Medium-Model III
+
+The second experiment is related to the classical PML
+for the orthotropic model III. We perform simulations to il-
+lustrate the instabilities and to confirm that a stable M-PML
+termination for this model can be constructed. As far as we
+know, a stable PML for this particular orthotropic model has
+not been designed in the past. A square elastic domain is con-
+sidered, surrounded by absorbing layers on its four sides.
+The M-PMLs are in turn terminated with Dirichlet boundary
+conditions v (cid:1) 0. An explosive source is located near the top
+left corner of the domain. The maximum value d0 of the
+damping profiles used for the simulations is 25. More details
+on the properties of the medium and discretization are given
+in Table 3.
+
+Snapshots of the results of the numerical experiments
+using the classical PML and two different M-PML termina-
+tions are given in Figure 14. As stated in the previous section,
+the response of the classical PML for the orthotropic model
+III exhibits the exponential growth. This instability becomes
+visible at t (cid:1) 3:5 sec, early in the simulation, starting in the
+horizontal (top) termination strip and then appearing at other
+locations inside the classical PML. By the time t (cid:1) 6:5 sec
+the spurious signals have already entered the physical do-
+main and the simulation using the classical PML is stopped.
+The snapshots of the simulation using an M-PML with
+p(cid:2)y=x(cid:3) (cid:1) p(cid:2)x=y(cid:3) (cid:1) 0:15 (center column of Fig. 14) show that
+this medium exhibits instabilities as well. The difference
+
+Snapshots of propagation of the velocity magnitude in an isotropic elastic medium (width 1 km) at (a) t (cid:1) 0:5 sec,
+Figure 12.
+(b) t (cid:1) 2 sec, (c) t (cid:1) 6 sec, and (d) t (cid:1) 8:5 sec. The panels on the right, center, and left correspond to classical PML, C-PML, and
+M-PML (fp(cid:2)y=x(cid:3) (cid:1) p(cid:2)x=y(cid:3) (cid:1) 0:1g) terminations, respectively. As shown in (d), at t (cid:1) 8:5 sec the late-time instability of the classical
+PML can be observed on the left vertical termination strip. No instabilities are identified in the C-PML and M-PML terminations.
+
+
+--- Page 20 ---
+1830
+
+K. C. Meza-Fajardo and A. S. Papageorgiou
+
+Figure 13.
+Energy decay in the physical domain for the isotropic medium. The energy is normalized with respect to the value that it
+attains at time t (cid:1) 5 sec. (a) Energy decay in the physical domain of depth equal to 1 km. (b) Energy decay in the physical domain of depth
+equal to 1 km over the time interval 6–8.5 sec. (c) Energy decay in the physical domain of depth equal to 4 km. (d) Energy decay in the
+physical domain of depth equal to 4 km over the time interval 6–8.5 sec.
+
+Table 3
+Properties and Discretization Parameters for Simulation in Model III
+
+Parameter
+
+Physical domain dimensions
+
+Physical domain properties
+
+Length
+Width
+
+Density
+c11
+c22
+c33
+c12
+
+From left boundary
+From bottom boundary
+
+Dominant frequency
+Onset time
+
+Source location
+
+Ricker wavelet parameters
+
+Discretization parameters
+
+Polynomial degree
+Element side
+Elements along PML width
+Timestep
+Total duration
+
+Value
+
+8 m
+8 m
+
+1 kg=m3
+4 N=m2
+20 N=m2
+2 N=m2
+7:5 N=m2
+
+0.15 m
+7.85 m
+
+0.9 Hz
+1.1 sec
+
+5
+0.25 m
+7
+0.0033 sec
+40 sec
+
+
+--- Page 21 ---
+Nonconvolutional, Split-Field, Perfectly Matched Layer for Wave Propagation in Elastic Media
+
+1831
+
+Snapshots of propagation of the velocity magnitude in an orthotropic elastic medium, model III, at (a) t (cid:1) 1:5 sec,
+Figure 14.
+(b) t (cid:1) 3:5 sec, (c) t (cid:1) 6:5 sec, (d) t (cid:1) 18 sec, and (e) t (cid:1) 40 sec. The panels on the left correspond to classical PML termina-
+in the center and on the right correspond to M-PML terminations with fp(cid:2)y=x(cid:3) (cid:1) p(cid:2)x=y(cid:3) (cid:1) 0:15g and
+tions. The panels
+fp(cid:2)y=x(cid:3) (cid:1) 0:30; p(cid:2)x=y(cid:3) (cid:1) 0:25g, respectively. No instability is observed for the M-PML terminations on the right-hand panels.
+
+
+--- Page 22 ---
+1832
+
+K. C. Meza-Fajardo and A. S. Papageorgiou
+
+termination strip appears at
+
+with the classical PML is that the instabilities in this M-PML
+become visible at later times. Thus, the effect of increasing
+the ratios of damping profiles from 0 to 0.15 is the reduction
+of the instabilities rate of growth. The instability in the top
+t (cid:1) 6:5 sec. At
+horizontal
+t (cid:1) 18 sec the instabilities have appeared at other locations
+inside the M-PML, propagated inside the physical domain,
+and eventually the simulation is stopped. It should be noted
+that according to the eigenvalue sensitivity analysis for this
+medium the exponential growth was expected only in the
+horizontal termination strip (see Fig. 8b) and not on the ver-
+tical termination strip (see Fig. 8a). However, as it is evident
+in Figure 14d, instabilities appear in both the horizontal as
+well as in the vertical termination strip. This is an example of
+an M-PML for which the analysis based on the first eigender-
+ivatives fails to predict the optimum stabilizing ratio p(cid:2)x=y(cid:3).
+The reason for this failure is the high value (d0 (cid:1) 25) of the
+damping coefficient d0 that was used. We recall that the pre-
+dictive scheme that we developed in the previous sections
+based on the sign of the first eigenderivative is not valid
+for large values of the damping coefficient. However, the in-
+formation given by this predictive scheme may still be a good
+starting point toward stabilizing the medium. Specifically, by
+increasing the values of the damping ratios p(cid:2)y=x(cid:3) and p(cid:2)x=y(cid:3)
+while keeping the value of d0 the same (i.e., equal to 25), we
+managed to stabilize the medium. The right-hand column
+of Figure 14 displays the results of the simulations using
+an M-PML with p(cid:2)y=x(cid:3) (cid:1) 0:30 and p(cid:2)x=y(cid:3) (cid:1) 0:25. The simu-
+lation was performed up to a time of 40 sec, and no in-
+stability was observed in any of the absorbing layers. An
+alternative way to stabilize the medium using a lower value
+for p(cid:2)x=y(cid:3) is the reduction of the parameter d0 and the in-
+crease of the width of the M-PML layer, if needed. Finally
+the energy decay in the physical domain with the stable
+M-PML terminations is displayed in Figure 15.
+
+Orthotropic Media: Zinc
+
+Komatitsch and Martin (2007) reported the classical
+PML and C-PML are unstable for numerical simulations in-
+volving models of common crystals like zinc. In this nu-
+merical experiment we illustrate again that it is possible
+to construct stable M-PMLs for such orthotropic media.
+The configuration of the test for zinc is similar to that pre-
+sented by Komatitsch and Martin (2007). The physical do-
+main is a square surrounded by M-PMLs on its four sides. The
+M-PMLs are again terminated with Dirichlet boundary con-
+ditions v (cid:1) 0. The source is a concentrated vertical force
+acting at
+the center of the physical domain. The maxi-
+mum value d0 of the damping profile adopted for this test
+is 0.47. Table 4 provides more details on the properties of
+the medium and discretization parameters.
+
+Snapshots of the results of the numerical experiments
+at different times are displayed in Figure 16. It can be ob-
+served that both the qP and qS waves are well absorbed
+
+Figure 15.
+Energy decay in the physical domain for model III.
+The energy is normalized with respect to the value that it attains at
+time t (cid:1) 6 sec.
+
+by both layers, namely, the classical PML and the M-PML
+with p(cid:2)y=x(cid:3) (cid:1) p(cid:2)x=y(cid:3) (cid:1) 0:15. At time instant t (cid:1) 400 μ sec
+(Fig. 16d, left-hand column), the exponential growth is visi-
+ble in both the vertical and the horizontal termination strips.
+On the other hand, no instabilities are detected in the snap-
+shots for the M-PML (Fig. 16, right-hand column). Because
+of the small value of d0 specified for the M-PMLs in this test,
+the results are those anticipated by the eigenvalue sensitivity
+
+Table 4
+Properties and Discretization Parameters for
+Simulation in Zinc
+
+Parameter
+
+Physical domain dimensions
+
+Value
+
+25 cm
+25 cm
+
+Physical domain properties
+
+7100 kg=m3
+1:65E(cid:5)11 N=m2
+6:20E(cid:5)10 N=m2
+3:96E(cid:5)10 N=m2
+5:00E(cid:5)10 N=m2
+
+Length
+Width
+
+Density
+c11
+c22
+c33
+c12
+
+Source location
+
+From left boundary
+From bottom boundary
+
+Ricker wavelet parameters
+
+Dominant frequency
+Onset time
+
+Discretization parameters
+
+Polynomial degree
+Element side
+Elements along PML width
+Timestep
+Total duration
+
+12.5 cm
+12.5 cm
+
+170 kHz
+5:88 μ sec
+
+5
+0.625 cm
+10
+0:04 μ sec
+400 μ sec
+
+
+--- Page 23 ---
+Nonconvolutional, Split-Field, Perfectly Matched Layer for Wave Propagation in Elastic Media
+
+1833
+
+Snapshots of propagation of the velocity magnitude in orthotropic elastic medium, zinc model, at (a) t (cid:1) 35 μ sec,
+Figure 16.
+(b) t (cid:1) 60 μ sec, (c) t (cid:1) 85 μ sec, and (d) t (cid:1) 400 μ sec. The right-hand and left-hand panels correspond to classical PML and M-PML
+(with p(cid:2)y=x(cid:3) (cid:1) p(cid:2)x=y(cid:3) (cid:1) 0:15) terminations, respectively. No instability is observed in the M-PML terminations.
+
+analysis presented in the previous section (see Fig. 10a and
+b). Finally the energy decay in the physical domain with the
+M-PML terminations is displayed in Figure 17.
+
+Conclusions
+
+A nonconvolutional, split-field perfectly matched layer,
+referred to as the multiaxial perfectly matched layer, has been
+presented. The new formulation is the result of the generali-
+zation of the classical PML to a medium in which damping
+
+profiles are specified in more than one direction. Under
+the hypothesis of small damping coefficients, we proposed
+an eigenvalue sensitivity analysis based on first derivatives
+to provide effective criteria to study the stability of the
+M-PML. With such a method we demonstrated that
+the
+stability of the M-PML can be related to the ratios of the
+specified damping profiles, and thus we provided a general
+procedure to construct robust, stable M-PML models for
+anisotropic media.
+It has also been demonstrated that
+for any anisotropic medium the classical PML exhibits
+
+
+--- Page 24 ---
+1834
+
+K. C. Meza-Fajardo and A. S. Papageorgiou
+
+Abarbanel, S., D. Gottlieb, and J. S. Hesthaven (2002). Long time behavior
+of the perfectly matached layer equations in computational electro-
+magnetics, J. Sci. Comput. 17, no. 1–4, 405–422.
+
+Adhikari, S., and M. I. Friswell (2001). Eigenderivative analysis of asym-
+metric non-conservative systems, Int. J. Numer. Methods Eng 51,
+709–733.
+
+Aki, K., and P. G. Richards (2002). Quantitative Seismology, Second Ed.,
+
+University Science Books, California.
+
+Appelö, D., and G. Kreiss (2005). A new absorbing layer for elastic waves,
+
+J. Comput. Phys. 215, 642–660.
+
+Basu, U., and A. K. Chopra (2004). Perfectly matched layers for transient
+elastodynamics of unbounded domains, Int. J. Numer. Methods Eng.
+59, 1039–1074.
+
+Bécache, E., S. Fauqueux, and P. Joly (2003). Stability of perfectly matched
+layers, group velocities and anisotropic waves, J. Comput. Phys. 188,
+399–433.
+
+Bécache, E., P. G. Petropoulos, and S. D. Gedney (2004). On the long-time
+behaviour of unsplit perfectly matched layers, IEEE Trans. Antennas
+Propag. 52, no. 5, 1335–1342.
+
+Bérenger, J. P. (1994). A perfectly matched layer for the absorption of elec-
+
+tromagnetic waves, J. Comput. Phys. 114, 185–200.
+
+Bérenger, J. P. (1996). Three-dimensional perfectly matched layer for the
+absorption of electromagnetic waves, J. Comput. Phys. 127, 363–379.
+Bérenger, J. P. (1998). An effective PML for the absorption of evanescent
+waves in waveguides, Microw. Guided Wave Lett. 8, no. 5, 188.
+Bérenger, J. P. (2002). Numerical Reflection from FDTD-PMLs: a compar-
+ison of the split PML with the unsplit and CFS PMLs, IEEE Trans.
+Antennas Propag. 50, no. 3, 258–265.
+
+Bolotin, V. V., and N. I. Zhinzher (1969). Effects of damping on stability of
+elastic systems subjected to nonconservative forces, Int. J. Solids
+Struct. 5, 965–989.
+
+Chew, W. C., and Q. H. Liu (1996). Perfectly matched layers for elastody-
+namics: a new absorbing boundary condition, J. Comput. Acoust. 4,
+no. 4, 341–359.
+
+Chew, W. C., and W. Weedon (1994). A 3D perfectly matched medium from
+modified Maxwell’s equations with stretched coordinates, Microw.
+Opt. Technol. Lett. 7, no. 13, 559–604.
+
+Chew, W. C., J. M. Jim, and E. Michielssen (1997). Complex coordinate
+stretching as a generalized absorbing boundary condition, Microw.
+Opt. Technol. Lett. 15, no. 6, 363–369.
+
+Collino, F., and P. B. Monk (1998). Optimizing the perfectly matched layer,
+
+Comput. Methods .Appl. Mech. Eng. 164, 157–171.
+
+Collino, F., and C. Tsogka (2001). Application of the perfectly matched
+layer absorbing layer model to the linear elastodynamic problem in
+anisotropic heterogeneous media, Geophysics 66, no. 1, 294–307.
+
+De Moerloose, J., and M. A. Stuchly (1995). Behavior of Bérenger’s
+ABC for evanescent waves, IEEE Microw. Guided Wave Lett. 5,
+344–346.
+
+Drossaert, F. H., and A. Giannopoulos (2007). A nonsplit complex fre-
+quency-shifted PML based on recursive integration for FDTD model-
+ling of elastic waves, Geophysics 72, no. 2, T9–T17.
+
+Festa, G., and S. Nielsen (2003). PML Absorbing Boundaries, Bull. Seismol.
+
+Soc. Am. 93, no. 2, 891–903.
+
+Festa, G., and J. P. Vilotte (2005). The Newmark scheme as velocity-stress
+time staggering: an efficient PML implementation for spectral element
+simulations of elastodynamics, Geophys. J. Int. 161, 798–812.
+Festa, G., E. Delavaud, and J. P. Vilotte (2005). Interaction between surface
+waves and absorbing boundaries for wave propagation in geological
+basins: 2D numerical simulations, Geophys. Res. Lett. 32, L20306,
+doi 10.1029/2005GL024091.
+
+Gallina, P. (2003). Effect of damping on asymmetric systems, J. Vib. Acoust.
+
+125, 359–364.
+
+Gedney, S. D. (1996). An anisotropic perfectly matched layer-absorbing
+medium for the truncation of FDTD lattices, IEEE Trans. Antennas
+Propag. 44, 1630–1639.
+
+Hagstrom, T. (2003). A new construction of perfectly matched layers for
+hyperbolic systems with applications to the linearized Euler equations,
+
+Figure 17.
+Energy decay in the physical domain for zinc. The
+energy is normalized with respect to the value that it attains at time
+t (cid:1) 12 μ sec.
+
+instabilities related to eigenvalues with zero real part of
+multiplicity higher than one. Furthermore, we showed that
+exponential growth due to eigenvalues with positive real part
+can be present in the classical PML for some orthotropic
+media. Stable M-PML models were then constructed, and op-
+timum ratios of damping profiles were proposed. Through
+numerical experiments involving isotropic and orthotropic
+media,
+it was verified that stable absorbing boundaries
+can be constructed with the proposed formulation. The re-
+sulting split-field M-PML models for anisotropic elastody-
+namics remain stable for all frequencies and directions of
+propagation. The generality of the proposed method renders
+it suitable to study the stability of PML models for wave
+propagation problems in other fields such as acoustics and
+electromagnetism. Implementation of the proposed M-PML
+model has been demonstrated for two-dimensional problems,
+and the predictive scheme for investigating its stability has
+been developed for the same kind of problems. Extension
+of this scheme to three-dimensional problems is straight-
+forward and will be reported in a future publication.
+
+Acknowledgments
+
+This research work was conducted thanks to the financial support pro-
+vided to the first author (K. C. M. F.) in the form of a graduate scholarship by
+the European School for Reduction of Seismic Risk (ROSE School), Univer-
+sity of Pavia, Italy.
+
+References
+
+Abarbanel, S., and D. Gottlieb (1997). A Mathematical analysis of the PML
+
+method, J. Comput. Acoust. 134, 357–363.
+
+Abarbanel, S., and D. Gottlieb (1998). On the construction and analysis of
+
+absorbing layer in CEM, Appl. Numer. Math. 27, no. 4, 331–340.
+
+
+--- Page 25 ---
+Nonconvolutional, Split-Field, Perfectly Matched Layer for Wave Propagation in Elastic Media
+
+1835
+
+in G. Cohen, E. Heikkola, P. Joly and P. Neittaanmäki (Editors), Math-
+ematical and Numerical Aspects of Wave Propagation, Springer,
+Berlin, 125–129.
+
+Harari, I., M. Slavutin, and E. Turkel (2000). Analytical and Numerical stu-
+dies of a finite element PML for the Helmholtz equation, J. Comput.
+Acoust. 8, no. 1, 121–137.
+
+Hastings, F. D., J. B. Schneider, and S. L. Broschat (1996). Application of
+the perfecly matched layer (PML) absorbing boundary condition to
+elastic wave propagation, J. Acoust. Soc. Am. 100, 3061–3069.
+Herrmann, G., and I. C. Jong (1966). On nonconservative stability problems
+of elastic systems with slight damping, ASME J. Appl. Mech. 32,
+125–133.
+
+Hesthaven, J. S. (1998). On the analysis and construction of perfectly
+matched layers for the linearized Euler equations, J. Comput. Phys.
+142, 129–147.
+
+Hinrichsen, D., and A. J. Pritchard (2005). Mathematical systems theory
+I. Modelling, state space analysis, stability and robustness, in Applied
+Mathematics, Vol. 4, Springer, Berlin.
+
+Hu, F. Q. (1996). On absorbing boundary conditions for linearized Euler
+equations by a perfectly matched layer J. Comput. Phys. 129,
+201–2019.
+
+Komatitsch, D., and R. Martin (2007). An unsplit convolutional perfectly
+matched layer improved at grazing incidence for the seismic wave
+equation, Geophysics 72, no. 5, SM155–SM167.
+
+Komatitsch, D., and J. Tromp (2003). A perfectly matched layer absorbing
+boundary condition for the second-order seismic wave equation, Geo-
+phys. J. Int. 154, 146–153.
+
+Kreiss, H. O., and J. Lorenz (1989). Initial-boundary value problems and the
+
+Navier-Stokes equations, Pure Appl. Math. 136.
+
+Kuzuoglu, M., and R. Mittra (1996). Frequency dependence of
+
+the
+constitutive parameters of causal perfectly matched anisotropic
+absorbers,
+12,
+447–449.
+
+IEEE Microw. Guided Wave Lett.
+
+no.
+
+6,
+
+Meza-Fajardo, K. C. (2007). Numerical simulation of wave propagation in
+unbounded elastic domains using the spectral element method, Ph.D.
+Thesis, European School for Reduction of Seismic Risk (ROSE
+School), University of Pavia, Italy.
+
+Nataf, F. (2006). A new construction of perfectly matched layers for the lin-
+earized Euler equations, J. Comput. Phys. 214, no. 2, 757–772.
+Roden, J. A., and S. D. Gedney (2000). convolution PML (CPML): an effi-
+cient FDTD implementation of the CFS-PML for arbitrary media,
+Microw. Opt. Technol. Lett. 27, no. 5, 334–339.
+
+Sastry, S. D. (1999). Nonlinear Systems. Analysis, Stability and Control,
+
+Springer, New York.
+
+Semler, C., H. Alighanbari, and M. P. Païdoussis (1998). A physical expla-
+nation of the destabilizing effect of damping, ASME J. Appl. Mech. 65,
+642–648.
+
+Slawinski, M. A. (2003). Seismic Waves and Rays in Elastic Media, Perga-
+
+mon, Amsterdam.
+
+Teixeira, F. L., and W. C. Chew (1998a). Analytical derivation of a confor-
+mal perfectly matched absorber for electromagnetic waves, Microw.
+Opt. Technol. 17, no. 4, 231–236.
+
+Teixeira, F. L., and W. C. Chew (1998b). Extension of the PML absorbing
+boundary condition to 3D spherical coordinates: scalar case, IEEE
+Trans. Magn. 34, no. 5, 2680–2683.
+
+Teixeira, F. L., and W. C. Chew (1999). On causality and dynamic stability
+of perfectly matched layers for FDTD simulations, IEEE Trans.
+Microw. Theory Tech. 47, no. 6, 775–785.
+
+Velhurst, F. (2006). Nonlinear Differential Equations and Dynamical Sys-
+
+tems, Second Ed., Springer, Berlin.
+
+Zhao, L., and A. C. Cangellaris (1996). GT-PML: generalized theory of per-
+fectly matched layers and its application to the reflectionless truncation
+of finite-difference time-domain grids, IEEE Trans. Microw. Theory
+.Tech. 44, 2555–2563.
+
+Ziolkowski, R. W. (1997). Time-derivative Lorenz material model based ab-
+sorbing boundary conditions, IEEE Trans. Antennas Propag. 45,
+1530–1535
+
+Appendix
+
+Stability Definitions
+
+For completeness, in this appendix we provide stability
+definitions. The definitions presented herein and more de-
+tailed accounts on the subject can be found in Sastry
+(1999) or other works on stability of dynamical systems.
+
+Stability in the Sense of Lyapunov
+
+The equilibrium point U(cid:2)t(cid:3) (cid:1) 0 is called a stable equi-
+librium point of (37) if for all t0 ≥ 0 and ε > 0 there exists
+δ(cid:2)t0; ε(cid:3) such that
+
+jU0j < δ(cid:2)t0; ε(cid:3) ⇒ jU(cid:2)t(cid:3)j < ε ∀ t ≥ t0;
+
+(A.1)
+
+where U0 is the vector describing the initial condition at
+t (cid:1) t0. This means that U(cid:2)t(cid:3) (cid:1) 0 is a stable equilibrium
+point if the solutions U(cid:2)t(cid:3) of (37) remain close to the origin
+when the initial condition U0 is close enough to the origin.
+This notion of stability is weak in the sense that it does not
+require trajectories starting close to the origin to asymptoti-
+cally converge to the origin. Such a feature is included in the
+definition of asymptotic stability that follows.
+
+Asymptotic Stability
+
+The equilibrium point U (cid:1) 0 is an asymptotically stable
+
+equilibrium point of (37) if
+
+1. U (cid:1) 0 is a stable equilibrium point of (37),
+2. U (cid:1) 0 is attractive, that is, for all t0 ≥ 0 there exists a
+
+δ(cid:2)t0(cid:3) such that
+
+jU0j < δ ⇒ lim
+t→∞
+
+jU(cid:2)t(cid:3)j (cid:1) 0:
+
+(A.2)
+
+An asymptotically stable equilibrium point is called a
+sink. For linear systems, asymptotic stability of the equili-
+brium at the origin is equivalent to the stability of any other
+solution. Therefore, the stability properties of the solutions
+may be attributed to the system itself. If an equilibrium point
+is stable but not asymptotically stable, it is called marginally
+stable.
+
+Solutions of Autonomous Systems
+
+If the eigenvalues fσig of A in system (37) are distinct
+with corresponding eigenvectors fVig, i (cid:1) 1; …; 10, then
+system (37) has 10 independent solutions of the form
+
+Vi exp(cid:2)σit(cid:3):
+
+(A.3)
+
+
+--- Page 26 ---
+1836
+
+K. C. Meza-Fajardo and A. S. Papageorgiou
+
+If not all eigenvalues are distinct, say eigenvalue σi has
+multiplicity ℓ > 1, then σi generates ℓ independent solutions
+of the form
+
+P0 exp(cid:2)σit(cid:3); P1(cid:2)t(cid:3)exp(cid:2)σit(cid:3); P2(cid:2)t(cid:3)exp(cid:2)σit(cid:3);…; Pℓ(cid:7)1(cid:2)t(cid:3)exp(cid:2)σit(cid:3);
+(A.4)
+
+where Pk(cid:2)t(cid:3), k (cid:1) 1; …; ℓ (cid:7) 1, are vectors whose compon-
+ents are polynomials of degree k or smaller. When studying
+the stability of solution U (cid:1) 0, it is clear from (A.4) that it is
+determined by the real part of the eigenvalues fσig. The fol-
+lowing theorem provides necessary and sufficient conditions
+for the asymptotic stability of a linear system.
+
+Theorem.—System (37) is asymptotically stable if and
+
+only if
+
+Refσig < 0 ∀ i;
+
+(A.5)
+
+where fσig is the set of eigenvalues of the matrix A. There-
+fore, to demonstrate that an autonomous system is asympto-
+tically stable it suffices to demonstrate that the real part of its
+eigenvalues is strictly negative.
+
+There is a strong form of stability that demands an ex-
+ponential rate of convergence. It is referred to as Exponential
+Stability and is defined as follows.
+
+Exponential Stability
+
+The equilibrium point U (cid:1) 0 is an exponentially stable
+equilibrium point of (37) if there are M and r < 0 such that
+
+jU(cid:2)t(cid:3)j ≤ M exp(cid:4)r(cid:2)t (cid:7) t0(cid:3)(cid:6)jU0j
+
+(A.6)
+
+for all U0 and 0 ≤ t0 ≤ t. The constant parameter r is called
+the rate of convergence. Systems that are exponentially stable
+are desirable for applications because they are robust to
+perturbations. In contrast, the stability of a solution that is
+not exponentially stable can be destroyed by arbitrary small
+perturbations, such as numerical errors (Hinrichsen and
+Pritchard, 2005). Fortunately, for linear systems, asymptotic
+and exponential stability are equivalent.
+
+European School for Advanced Studies in Reduction of Seismic Risk
+(ROSE School)
+University of Pavia
+Pavia 27100, Italy
+(K.C.M.)
+
+Department of Civil Engineering
+University of Patras
+GR–26500 Patras, Greece
+
+(A.S.P.)
+
+Manuscript received 4 September 2007
+

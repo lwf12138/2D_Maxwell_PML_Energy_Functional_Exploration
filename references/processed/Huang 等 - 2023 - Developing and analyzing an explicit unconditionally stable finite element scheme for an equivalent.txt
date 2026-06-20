@@ -1,0 +1,10352 @@
+
+--- Page 1 ---
+ESAIM: M2AN 57 (2023) 621–644
+https://doi.org/10.1051/m2an/2022086
+
+ESAIM: Mathematical Modelling and Numerical Analysis
+www.esaim-m2an.org
+
+DEVELOPING AND ANALYZING AN EXPLICIT UNCONDITIONALLY STABLE
+FINITE ELEMENT SCHEME FOR AN EQUIVALENT B´ERENGER’S PML
+MODEL
+
+Yunqing Huang1, Jichun Li2,* and Xin Liu1
+
+Abstract. The original B´erenger’s perfectly matched layer (PML) was quite effective in simulating
+wave propagation problem in unbounded domains. But its stability is very challenging to prove. Later,
+some equivalent PML models were developed by B´ecache and Joly [ESAIM: M2AN 36 (2002) 87–119]
+and their stabilities were established. Hence studying and developing efficicent numerical methods for
+solving those equivalent PML models are needed and interesting. Here we propose a novel explicit
+unconditionally stable finite element scheme to solve an equivalent B´erenger’s PML model. Both the
+stability and convergence analysis are proved for the proposed scheme. Numerical results justifying the
+theoretical analysis are presented. We also demonstrate the effectiveness of this PML in simulating
+wave propagation in the free space. To our best knowledge, this is the first explicit unconditionally
+stable finite element scheme developed for this PML model.
+
+Mathematics Subject Classification. 65N30, 35L15, 78-08.
+
+Received May 31, 2022. Accepted October 3, 2022.
+
+1. Introduction
+
+In 1994, B´erenger [7] introduced the perfectly matched layer (PML) techqniue to develop eﬃcient numerical
+absorbing boundary conditions for solving the time-dependent Maxwell’s equations in unbounded domains. This
+PML technique has been shown to be very eﬀective and can absorb all impinging waves over a wide frequency
+range. Since 1994, many diﬀerent PML models have been developed and applied to solve Maxwell’s equations
+in both time-domain [1, 11, 15, 21, 25, 26, 32] and frequency domain [3, 9, 16]. More details and references can
+be found in the classic computational electromagnetic book [30], a review paper on PMLs [31], and our recent
+book on metamaterials ([22], Chap. 8). Furthermore, the PML technique has been extended to solve other wave
+propagation problems in diﬀerent media, such as acoustics, elastodynamics [2, 14], elasticity [20], anisotropic
+dispersive media [6] and metamaterials [5, 12, 13]. Due to many potential applications of metamaterials such as
+design of invisibility cloaks, recently there has been a growing interest in the study of the Maxwell’s equations
+involving metamaterials (e.g., [8, 23, 24, 33]).
+
+Keywords and phrases. Maxwell’s equations, perfectly matched layer, finite element method.
+
+1 Hunan Key Laboratory for Computation and Simulation in Science and Engineering, Xiangtan University, Xiangtan,
+P.R. China.
+2 Department of Mathematical Sciences, University of Nevada Las Vegas, Las Vegas, NV 89154-4020, USA.
+*Corresponding author: jichun.li@unlv.edu
+
+This is an Open Access article distributed under the terms of the Creative Commons Attribution License (https://creativecommons.org/licenses/by/4.0),
+which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is properly cited.
+
+c○ The authors. Published by EDP Sciences, SMAI 2023
+
+
+--- Page 2 ---
+622
+
+Y. HUANG ET AL.
+
+Even though the original splitted B´erenger PML works very well in practical numerical simulations, the
+mathematical analysis of its energy stability for the general variable damping function case is still an open
+problem. Until 2002, B´ecache and Joly [4] managed to establish a stability result for an equivalent B´erenger
+PML model. Inspired by their work, recently we [17, 18] proposed and analyzed some ﬁnite diﬀence and ﬁnite
+element methods for solving those equivalent PML models. Those schemes we proposed so far are explicit and has
+a time step constraint. In 2021, we [19] discovered a novel technique in constructing an explicit unconditionally
+ﬁnite element method for solving Maxwell’s equations in the free space and in Drude metamaterials. One major
+contribution of this paper is that we successfully extend that technique to construct and prove an explicit
+unconditionally stable scheme for solving this complicated equivalent B´erenger’s PML model. This new scheme
+is not only easy in implementation but also very eﬃcient like other explicit leapfrog type schemes. To the best
+of our knowledge, this is the ﬁrst explicit unconditionally stable ﬁnite element scheme constructed and analyzed
+for this PML model.
+
+The rest of the paper is organized as follows. In Section 2, we ﬁrst present the PML model equations and
+construct a semi-discrete scheme for the PML model. This semi-discrete scheme is a small perturbation of the
+usual leapfrog scheme for this PML model. This small pertubation plays the magic for the construction of an
+explicit unconditionally stable scheme. In Section 3, we ﬁrst develop our fully-discrete ﬁnite element scheme.
+Then we prove the unconditional stability and the optimal error estimate for this scheme. In Section 4, we
+present some numerical results to conﬁrm our theoretical analysis and further apply our scheme to simulate
+some practical wave propagation problem to show the long stability of the scheme and the eﬀective wave
+absorbing property of this equivalent PML model. We conclude the paper in Section 5.
+
+2. The model equations and construction of a semi-discrete scheme
+
+By following the idea of [4], we derived the governing equations of an equivalent B´erenger’s PML model for
+
+the Transverse Electric (TEz) mode given as follows ([17], Eqs. (32)–(36)): for any (𝑥, 𝑡) ∈ Ω × (0, 𝑇 ],
+
+𝜀0𝜕𝑡𝐸 + Σ**𝐸 = ∇ × 𝐻 := (𝜕𝑦𝐻, −𝜕𝑥𝐻)′,
+𝜀0𝜕𝑡 ̃︀𝐸 = 𝜀0𝜕𝑡𝐸 + Σ**𝐸,
+𝜇0𝜕𝑡𝐻 * = −∇ × ̃︀𝐸 := −(𝜕𝑥 ˜𝐸𝑦 − 𝜕𝑦 ˜𝐸𝑥),
+𝜕𝑡 ̃︀𝐻 = 𝐻,
+𝜕𝑡𝐻 + 𝜀−1
+
+0 (𝜎𝑥 + 𝜎𝑦)𝐻 + 𝜀−2
+
+0 𝜎𝑥𝜎𝑦 ̃︀𝐻 = 𝜕𝑡𝐻 *,
+
+(1a)
+
+(1b)
+
+(1c)
+
+(1d)
+
+(1e)
+
+where 𝜀0 and 𝜇0 are the permittivity and permeability in free space, 𝐸 = (𝐸𝑥, 𝐸𝑦)′ and 𝐻 are the electric ﬁeld
+and magnetic ﬁeld, ̃︀𝐸 = ( ̃︀𝐸𝑥, ̃︀𝐸𝑦)′, ̃︀𝐻 and 𝐻 * are auxiliary variables, and
+Σ** = diag(𝜎𝑦, 𝜎𝑥), Σ** = diag(𝜎𝑥, 𝜎𝑦).
+
+Moreover 𝜎𝑥(𝑥), 𝜎𝑦(𝑦) are nonnegative damping functions in the 𝑥, 𝑦 directions, respectively. Here, we assume
+that Ω is an open bounded Lipschitz polygon in ℛ2 with boundary 𝜕Ω and outward unit normal vector 𝑛. To
+complete the model problem (1a)–(1e), we further assume that it satisﬁes the perfect electric conductive (PEC)
+boundary condition:
+
+𝑛 × 𝐸 = 0
+
+on 𝜕Ω,
+
+(2)
+
+and the initial conditions:
+𝐸(𝑥, 0) = 𝐸0(𝑥), ̃︀𝐸(𝑥, 0) = ̃︀𝐸0(𝑥), 𝐻(𝑥, 0) = 𝐻0(𝑥), 𝐻 *(𝑥, 0) = 𝐻 *
+where 𝐸0, ̃︀𝐸0, 𝐻0, 𝐻 *
+
+0 and ̃︀𝐻0 are some given functions.
+
+0 (𝑥), ̃︀𝐻(𝑥, 0) = ̃︀𝐻0(𝑥), ∀ 𝑥 ∈ Ω, (3)
+
+First, let us partition the time interval [0, 𝑇 ] uniformly by points 𝑡𝑖 = 𝑖𝜏, 𝑖 = 0, · · · , 𝑁𝑡, where 𝜏 = 𝑇
+𝑁𝑡
+denotes the time step size. Denote 𝐸𝑛 := 𝐸(·, 𝑡𝑛). Similar notations are used for other unknowns. Before we
+derive an explicit unconditionally stable scheme, we ﬁrst consider a two step scheme of (1a)–(1e):
+
+
+--- Page 3 ---
+FINITE ELEMENT SCHEME FOR AN EQUIVALENT B´ERENGER’S PML MODEL
+
+𝜀0𝐸𝑛+ 3
+
+𝜀0 ̃︀𝐸𝑛+ 3
+
+2 = 𝜀0𝐸𝑛+1 −
+
+𝜏
+2
+2 = 𝜀0 ̃︀𝐸𝑛+1 + 𝜀0
+
+Σ**𝐸𝑛+1 +
+(︁
+
+𝜏
+2
+2 − 𝐸𝑛+1)︁
+
+𝐸𝑛+ 3
+
+∇ × 𝐻 𝑛+1
+
++
+
+𝜏
+2
+
+Σ**𝐸𝑛+1
+
+𝜇0𝐻 *,𝑛+ 3
+
+2 = 𝜇0𝐻 *,𝑛+1 −
+
+∇ × ̃︀𝐸𝑛+1
+
+𝜏
+2
+𝐻 𝑛+ 3
+
+2
+
+̃︀𝐻 𝑛+ 3
+
+2 = ̃︀𝐻 𝑛+1 +
+
+𝐻 𝑛+ 3
+
+2 = 𝐻 𝑛+1 −
+
+𝜏
+2
+𝜏
+2
+
+0 (𝜎𝑥 + 𝜎𝑦)𝐻 𝑛+ 3
+𝜀−1
+
+2 −
+
+0 𝜎𝑥𝜎𝑦 ̃︀𝐻 𝑛+ 3
+𝜀−2
+
+2 +
+
+(︁
+
+𝐻 *,𝑛+ 3
+
+2 − 𝐻 *,𝑛+1)︁
+
+.
+
+𝜏
+2
+
+Step 1.
+
+Step 2.
+
+𝜀0𝐸𝑛+1 = 𝜀0𝐸𝑛+ 1
+
+2 −
+
+𝜏
+2
+
+Σ**𝐸𝑛+1 +
+(︁
+
+𝜏
+2
+
+𝜀0 ̃︀𝐸𝑛+1 = 𝜀0 ̃︀𝐸𝑛+ 1
+
+2 + 𝜀0
+
+𝐸𝑛+1 − 𝐸𝑛+ 1
+
+2
+
+∇ × 𝐻 𝑛+1
+
+)︁
+
++
+
+𝜏
+2
+
+Σ**𝐸𝑛+1
+
+∇ × ̃︀𝐸𝑛+1
+
+2 −
+
+𝜏
+2
+𝐻 𝑛+ 1
+
+2
+
+̃︀𝐻 𝑛+1 = ̃︀𝐻 𝑛+ 1
+
+𝜇0𝐻 *,𝑛+1 = 𝜇0𝐻 *,𝑛+ 1
+𝜏
+2
+𝜏
+2
+
+𝐻 𝑛+1 = 𝐻 𝑛+ 1
+
+2 +
+
+2 −
+
+0 (𝜎𝑥 + 𝜎𝑦)𝐻 𝑛+ 1
+𝜀−1
+
+2 −
+
+0 𝜎𝑥𝜎𝑦 ̃︀𝐻 𝑛+ 1
+𝜀−2
+
+2 +
+
+(︁
+
+𝐻 *,𝑛+1 − 𝐻 *,𝑛+ 1
+
+2
+
+)︁
+
+.
+
+𝜏
+2
+
+Reducing all 𝑛’s in (4) by 1, adding the result with (9), and denoting 𝐸
+
+𝑛+ 1
+
+2 := 𝐸𝑛+1+𝐸𝑛
+
+, we have
+
+2
+
+𝜀0𝐸𝑛+1 = 𝜀0𝐸𝑛 − 𝜏 Σ**𝐸
+
+𝑛+ 1
+
+2 +
+
+𝜏
+2
+
+∇ × (︀𝐻 𝑛 + 𝐻 𝑛+1)︀.
+
+623
+
+(4)
+
+(5)
+
+(6)
+
+(7)
+
+(8)
+
+(9)
+
+(10)
+
+(11)
+
+(12)
+
+(13)
+
+(14)
+
+Reducing all 𝑛’s in (6) and (8) by 1, and subtracting the result from (11) and (13), respectively, we have
+
+and
+
+(︁
+𝐻 *,𝑛+1 + 𝐻 *,𝑛 − 2𝐻 *,𝑛+ 1
+
+2
+
+)︁
+
+= −
+
+𝜇0
+
+∇ ×
+
+̃︀𝐸𝑛+1 − ̃︀𝐸𝑛)︁
+(︁
+
+,
+
+𝜏
+2
+
+𝐻 𝑛+1 + 𝐻 𝑛 − 2𝐻 𝑛+ 1
+
+2 = 𝐻 *,𝑛+1 + 𝐻 *,𝑛 − 2𝐻 *,𝑛+ 1
+2 .
+
+Then substituting (15) and (16) into (14), we have
+
+𝜀0𝐸𝑛+1 = 𝜀0𝐸𝑛 − 𝜏 Σ**𝐸
+
+𝑛+ 1
+
+2 +
+
+𝜏
+2
+
+∇ ×
+
+(︂
+
+2𝐻 𝑛+ 1
+
+2 −
+
+(︁
+
+̃︀𝐸𝑛+1 − ̃︀𝐸𝑛)︁)︂
+
+.
+
+∇ ×
+
+𝜏
+2𝜇0
+
+Reducing all 𝑛′𝑠 of (5) by 1, and adding the result with (10), we obtain
+
+𝜀0 ̃︀𝐸𝑛+1 = 𝜀0 ̃︀𝐸𝑛 + 𝜀0
+
+(︀𝐸𝑛+1 − 𝐸𝑛)︀ + 𝜏 Σ**𝐸
+
+𝑛+ 1
+2 .
+
+Adding (6) and (11) together, adding (7) and (12) together, and adding (8) and (13) together, we have
+
+𝜇0𝐻 *,𝑛+ 3
+2 − ̃︀𝐻 𝑛+ 1
+
+2 = 𝜇0𝐻 *,𝑛+ 1
+(︁
+𝐻 𝑛+ 3
+
+2 =
+
+2 − 𝜏 ∇ × ̃︀𝐸𝑛+1,
+2 + 𝐻 𝑛+ 1
+
+)︁
+
+,
+
+2
+
+̃︀𝐻 𝑛+ 3
+
+𝜏
+2
+
+(15)
+
+(16)
+
+(17)
+
+(18)
+
+(19)
+
+(20)
+
+
+--- Page 4 ---
+624
+
+and
+
+Y. HUANG ET AL.
+
+𝐻 𝑛+ 3
+
+2 = 𝐻 𝑛+ 1
+
+2 −
+
+(︁
+𝜀−1
+0 (𝜎𝑥 + 𝜎𝑦)
+
+𝜏
+2
+
+𝐻 𝑛+ 3
+
+2 + 𝐻 𝑛+ 1
+
+2
+
+)︁
+
+−
+
+𝜏
+2
+
+(︁
+
+𝜀−2
+0 𝜎𝑥𝜎𝑦
+
+̃︀𝐻 𝑛+ 3
+
+2 + ̃︀𝐻 𝑛+ 1
+
+2
+
+)︁
+
+(︁
+
++
+
+𝐻 *,𝑛+ 3
+
+2 − 𝐻 *,𝑛+ 1
+
+2
+
+Using the following average operator and central diﬀerence operator in time:
+
+𝑢𝑛+1 =
+
+(︁
+
+1
+2
+
+𝑢𝑛+ 3
+
+2 + 𝑢𝑛+ 1
+
+2
+
+)︁
+
+,
+
+𝛿𝜏 𝑢𝑛+1 =
+
+(︁
+
+1
+𝜏
+
+𝑢𝑛+ 3
+
+2 − 𝑢𝑛+ 1
+
+2
+
+)︁
+
+,
+
+we can be rewrite (17)–(21) as follows:
+
+𝜀0𝛿𝜏 𝐸𝑛+ 1
+
+2 + Σ**𝐸
+
+𝑛+ 1
+
+2 = ∇ × 𝐻 𝑛+ 1
+
+2 −
+
+𝜏 2
+4𝜇0
+
+∇ × ∇ × 𝛿𝜏 ̃︀𝐸𝑛+ 1
+2 ,
+
+2 + Σ**𝐸
+
+2 = 𝜀0𝛿𝜏 𝐸𝑛+ 1
+
+𝜀0𝛿𝜏 ̃︀𝐸𝑛+ 1
+𝜇0𝛿𝜏 𝐻 *𝑛+1 = −∇ × ̃︀𝐸𝑛+1,
+𝑛+1
+𝛿𝜏 ̃︀𝐻 𝑛+1 = 𝐻
+
+,
+
+𝑛+ 1
+2 ,
+
+𝛿𝜏 𝐻 𝑛+1 + 𝜀−1
+
+0 (𝜎𝑥 + 𝜎𝑦)𝐻
+
+𝑛+1
+
++ 𝜀−2
+
+0 𝜎𝑥𝜎𝑦 ̃︀𝐻
+
+𝑛+1
+
+= 𝛿𝜏 𝐻 *,𝑛+1.
+
+)︁
+
+. (21)
+
+(22a)
+
+(22b)
+
+(22c)
+
+(22d)
+
+(22e)
+
+Remark 1. It is interesting to remark that the semi-discrete scheme (22a)–(22e) can be seen as a small per-
+turbation of a standard explicit leapfrog scheme for solving (1a)–(1e) with the ﬁrst equation added by the last
+𝑂(𝜏 2) term. With this extra term, we can develop and prove an explicit unconditionally stable scheme out of
+(22a)–(22e) in the next section.
+
+3. The fully discrete scheme and its analysis
+
+To solve the problem (1a)–(1e) by a ﬁnite element method, we partition the physical domain Ω by a family
+of regular triangular mesh 𝑇ℎ with maximum mesh size ℎ, and adopt the 𝑙-th (𝑙 ≥ 1) order Raviart–Thomas–
+N´ed´elec (RTN) mixed ﬁnite element spaces 𝑉 ℎ and 𝑈 ℎ [27–29]: For any 𝑙 ≥ 1,
+
+𝑉 ℎ = {︀𝑣ℎ ∈ 𝐿2(Ω) : 𝑣ℎ|𝐾 ∈ 𝑝𝑙−1, ∀ 𝐾 ∈ 𝑇ℎ
+𝑈 ℎ = {︀𝑢ℎ ∈ 𝐻(curl; Ω) : 𝑢ℎ|𝐾 ∈ (𝑝𝑙−1)2 ⊕ 𝑆𝑙, ∀ 𝐾 ∈ 𝑇ℎ
+
+}︀,
+
+}︀, 𝑆𝑙 = {︀⃗𝑝 ∈ (˜𝑝𝑙)2, 𝑥 · ⃗𝑝 = 0}︀,
+
+where ˜𝑝𝑙 denotes the space of homogeneous polynomials of degree 𝑙, and 𝑝𝑙 denotes the space of polynomials
+of degree less than or equal to 𝑙 in variables 𝑥, 𝑦, respectively. To impose the PEC boundary condition (2), we
+denote the subspace 𝑈 0
+
+ℎ = {𝑢 ∈ 𝑈 ℎ : 𝑢 × 𝑛 = 0 on 𝜕Ω}.
+
+Now we construct the following leapfrog type scheme for (1a)–(1e): given initial approximations
+∈ 𝑈 0
+ℎ, ̃︀𝐸0
+(︂
+
+ℎ , ˜𝐻
+ℎ , for any 𝑛 ≥ 0, ﬁnd 𝐸𝑛+1
+)︂
+(︂
+
+, 𝐻 *𝑛+ 3
+ℎ
+)︂
+
+∈ 𝑉ℎ such that
+
+, ̃︀𝐸𝑛+1
+ℎ
+)︂
+
+ℎ, 𝐻 𝑛+ 3
+
+ℎ , 𝐻 * 1
+
+, ̃︀𝐻 𝑛+ 3
+
+ℎ, 𝐻
+
+𝐸0
+
+(︂
+
+1
+2
+
+1
+2
+
+ℎ
+
+ℎ
+
+ℎ
+
+2
+
+2
+
+2
+
+2
+
+𝜀0
+
+𝛿𝜏 𝐸
+
+, 𝜑ℎ
+
++
+
+𝑛+ 1
+2
+ℎ
+
+, 𝜑ℎ
+
+=
+
+𝐻
+
+𝑛+ 1
+2
+ℎ
+
+𝑛+ 1
+2
+ℎ
+
+Σ**𝐸
+(︂
+
+𝑛+ 1
+∇ × 𝛿𝜏 ̃︀𝐸
+2
+ℎ
+)︂
+
+, ∇ × 𝜑ℎ
+(︂
+
+𝑛+ 1
+𝛿𝜏 𝐸
+2
+ℎ
+
+, ̃︀𝜑ℎ
+
++
+
+Σ**𝐸
+
+, ∇ × 𝜑ℎ
+)︂
+,
+
+)︂
+
+, ̃︀𝜑ℎ
+
+,
+
+𝑛+ 1
+2
+ℎ
+
+−
+
+)︂
+
+𝜏 2
+4𝜇0
+(︂
+
+= 𝜀0
+(︁
+
+(︂
+
+𝜀0
+
+𝛿𝜏 ̃︀𝐸
+
+𝑛+ 1
+2
+ℎ
+
+, ̃︀𝜑ℎ
+
+(︀
+𝛿𝜏 𝐻 *𝑛+1
+ℎ
+
+, 𝜓ℎ
+
+)︀
+
+𝜇0
+(︁
+
+𝛿𝜏 ̃︀𝐻 𝑛+1
+ℎ
+
+(︁
+
+𝛿𝜏 𝐻 𝑛+1
+ℎ
+
+, 𝜎𝑥𝜎𝑦 ̃︀𝜓ℎ
+)︁
+
+, ̂︀𝜓ℎ
+
++ 𝜀−1
+0
+
+=
+(︁
+
+= −
+)︁
+
+∇ × ̃︀𝐸𝑛+1
+(︁
+
+ℎ
+
+, 𝜓ℎ
+
+𝐻
+
+𝑛+1
+ℎ
+
+, 𝜎𝑥𝜎𝑦 ̃︀𝜓ℎ
+
+)︁
+
+,
+)︁
+
+,
+
+(𝜎𝑥 + 𝜎𝑦)𝐻
+
+𝑛+1
+ℎ
+
+, ̂︀𝜓ℎ
+
+(︂
+
+)︁
+
++ 𝜀−2
+0
+
+𝜎𝑥𝜎𝑦 ̃︀𝐻
+
+𝑛+1
+
+ℎ
+
+, ̂︀𝜓ℎ
+
+)︂
+
+∀𝜑ℎ ∈ 𝑈 0
+ℎ,
+
+∀ ̃︀𝜑ℎ ∈ 𝑈 0
+ℎ,
+
+∀𝜓ℎ ∈ 𝑉ℎ,
+
+∀ ̃︀𝜓ℎ ∈ 𝑉ℎ,
+
+(23a)
+
+(23b)
+
+(23c)
+
+(23d)
+
+
+--- Page 5 ---
+FINITE ELEMENT SCHEME FOR AN EQUIVALENT B´ERENGER’S PML MODEL
+
+(︁
+
+=
+
+𝛿𝜏 𝐻 *𝑛+1
+ℎ
+
+, ̂︀𝜓ℎ
+
+)︁
+,
+
+∀ ̂︀𝜓ℎ ∈ 𝑉ℎ.
+
+625
+
+(23e)
+
+Note that for theoretical analysis purpose, we multiplied 𝜎𝑥𝜎𝑦 to both sides of (23d).
+
+The initial approximations 𝐸0
+
+1
+ℎ , ˜𝐻
+2
+ℎ
+and be done by a Taylor expansion followed by a standard 𝐿2 projections. More speciﬁcally, we have the following
+approximations:
+
+ℎ can be simply obtained by the N´ed´elec interpolation, while 𝐻
+
+ℎ , 𝐻 * 1
+
+ℎ, ̃︀𝐸0
+
+1
+2
+
+2
+
+𝐸0
+
+ℎ(𝑥) = Π𝑐𝐸0(𝑥), ̃︀𝐸0
+(︁
+𝜏
+2
+
+ℎ (𝑥) = 𝑃ℎ
+
+𝐻0(𝑥) +
+
+1
+2
+
+𝐻
+
+ℎ(𝑥) = Π𝑐 ̃︀𝐸0(𝑥),
+[︃
+
+)︁
+
+𝜕𝑡𝐻(𝑥)
+
+= 𝑃ℎ
+
+𝐻0 −
+
+(︁
+
+𝜏
+2
+
+0 ∇ × ̃︀𝐸0 + 𝜀−1
+𝜇−1
+
+0 (𝜎𝑥 + 𝜎𝑦)𝐻0 + 𝜀−2
+
+0 𝜎𝑥𝜎𝑦 ̃︀𝐻0
+
+𝐻 *, 1
+
+2
+
+ℎ (𝑥) = 𝑃ℎ
+
+˜𝐻
+
+1
+2
+
+ℎ (𝑥) = 𝑃ℎ
+
+)︁
+
+(︁
+
+𝐻 *
+0 (𝑥) +
+(︁ ˜𝐻0(𝑥) +
+
+𝜕𝑡𝐻 *(𝑥)
+
+𝜏
+2
+)︁
+𝜕𝑡 ˜𝐻(𝑥)
+
+(︂
+
+0 −
+
+= 𝑃ℎ
+
+𝐻 *
+(︁ ˜𝐻0 +
+
+𝜏
+2
+
+= 𝑃ℎ
+
+𝜏 𝜇−1
+0
+2
+)︁
+
+𝐻0
+
+,
+
+𝜏
+2
+
+)︂
+
+∇ × ̃︀𝐸0
+
+,
+
+]︃
+
+)︁
+
+,
+
+(24a)
+
+(24b)
+
+(24c)
+
+(24d)
+
+where Π𝑐𝐸0 ∈ 𝑈ℎ denotes the N´ed´elec interpolation operator, and 𝑃ℎ denotes the standard 𝐿2 projection
+operator into the space 𝑉ℎ .
+
+It is known that the following interpolation and projection error estimates hold true [27]:
+
+‖𝐸 − Π𝑐𝐸‖ + ‖∇ × (𝐸 − Π𝑐𝐸)‖ ≤ 𝐶ℎ𝑙‖𝐸‖𝐻 𝑙(curl,Ω),
+‖𝐻 − 𝑃ℎ𝐻‖ ≤ 𝐶ℎ𝑙‖𝐻‖𝐻 𝑙(Ω),
+
+∀𝐸 ∈ 𝐻 𝑙(curl, Ω), 𝑙 ≥ 1,
+
+∀𝐻 ∈ 𝐻 𝑙(Ω), 𝑙 ≥ 1.
+
+(25)
+
+(26)
+
+Here and in the rest of the paper, we denote ‖·‖ for the 𝐿2 norm on Ω.
+
+3.1. The unconditional stability analysis
+
+This subsection is devoted to the unconditional stability analysis of our scheme (23a)–(23e).
+
+Theorem 1. Denote the discrete energy at time 𝑡𝑚 as:
+
+ℰ disc
+𝑡𝑒
+
+(𝑡𝑚) := 𝜀0
+
+(︂⃦
+⃦ ̃︀𝐸𝑚
+⃦
+
+ℎ
+
+⃦
+2
+⃦
+⃦
+
++
+
+⃦
+⃦ ̃︀𝐸𝑚
+⃦
+
+ℎ − 𝐸𝑚
+ℎ
+
+2)︂
+
+⃦
+⃦
+⃦
+
++
+
+⃦
+⃦
+⃦
+⃦
+
+1
+2
+
+0 𝐻 𝑚+ 1
+𝜇
+
+ℎ
+
+2
+
++
+
+𝜏
+√
+𝜇0
+2
+
+∇ × ̃︀𝐸𝑚
+ℎ
+
+⃦
+2
+⃦
+⃦
+⃦
+
++ 𝜀−2
+
+0 𝜇0
+
+⃦
+⃦
+⃦(𝜎𝑥𝜎𝑦)
+
+Then under the time step constraint
+
+𝜏 ≤
+
+𝜀0
+3(︀‖𝜎𝑥‖∞ + ‖𝜎𝑦‖∞
+
+)︀ ,
+
+we have the following stability for the scheme (23a)–(23e): for any 𝑚 ≥ 0,
+
+ℰ disc
+𝑡𝑒
+
+(𝑡𝑚) ≤ exp[︀4(︀‖𝜎𝑥‖∞ + ‖𝜎𝑦‖∞
+
+)︀𝜀−1
+
+0 (𝑚𝜏 )]︀ · ℰ disc
+
+𝑡𝑒
+
+(𝑡0).
+
+1
+
+2 ̃︀𝐻 𝑚+ 1
+
+2
+
+ℎ
+
+⃦
+2
+⃦
+⃦
+
+.
+
+(27)
+
+(28)
+
+Remark 2. We want to remark that the stability (28) is unconditionally stable, since the time step constraint
+(27) is independent of mesh size ℎ. Furthermore, the stability (28) has exactly the same form as the following
+continuous stability established in our previous work ([18], Thm. 1):
+
+ℰ𝑡𝑒(𝑡) ≤ exp[︀4(︀‖𝜎𝑥‖∞ + ‖𝜎𝑦‖∞
+
+)︀𝜀−1
+
+0 𝑡]︀ · ℰ𝑡𝑒(𝑡0),
+
+where the energy is denoted as:
+
+[︃
+
+ℰ𝑡𝑒(𝑡) :=
+
+𝜀0
+
+(︂⃦
+⃦
+⃦ ̃︀𝐸
+
+⃦
+2
+⃦
+⃦
+
++
+
+⃦
+⃦
+⃦ ̃︀𝐸 − 𝐸
+
+2)︂
+
+⃦
+⃦
+⃦
+
++
+
+⃦
+⃦
+⃦
+⃦
+
+1
+2
+
+𝜇
+0 𝐻 +
+
+𝜏
+√
+𝜇0
+
+2
+
+∇ × ̃︀𝐸
+
+⃦
+2
+⃦
+⃦
+⃦
+
++ 𝜀−2
+
+0 𝜇0
+
+⃦
+⃦
+⃦(𝜎𝑥𝜎𝑦)
+
+1
+
+2 ̃︀𝐻
+
+2]︃
+⃦
+⃦
+⃦
+
+(𝑡).
+
+
+--- Page 6 ---
+626
+
+Y. HUANG ET AL.
+
+Proof. Choosing 𝜑ℎ = ̃︀𝐸
+
+𝑛+ 1
+2
+
+ℎ
+
+in (23a) and 𝜓ℎ = 𝐻
+
+𝑛+1
+ℎ
+
+in (23c), and adding the results, we obtain:
+
+(︂
+
+𝜀0
+
+𝛿𝜏 𝐸𝑛+ 1
+
+2
+
+ℎ
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ
+
+(︂
+
++
+
+, ̃︀𝐸
+
+Σ**𝐸
+
+𝑛+ 1
+2
+ℎ
+
+, ̃︀𝐸
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ
+
+(︁
+
++ 𝜇0
+
+𝛿𝜏 𝐻 *,𝑛+1
+ℎ
+
+, 𝐻
+
+𝑛+1
+ℎ
+
+)︁
+
+=
+
+=
+
+(︂
+
+𝐻 𝑛+ 1
+
+2
+
+ℎ
+
+, ∇ × ̃︀𝐸
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ
+
+(︁
+
+−
+
+∇ × ̃︀𝐸𝑛+1
+
+ℎ
+
+, 𝐻
+
+)︁
+
+𝑛+1
+ℎ
+
+−
+
+[︁(︁
+
+1
+2
+
+𝐻 𝑛+ 1
+
+2
+
+ℎ
+
+, ∇ × ̃︀𝐸𝑛
+ℎ
+
+(︁
+
+)︁
+
+−
+
+𝐻 𝑛+ 3
+
+2
+
+ℎ
+
+, ∇ × ̃︀𝐸𝑛+1
+
+ℎ
+
+)︁]︁
+
+−
+
+⃦
+2
+⃦
+⃦
+
+ℎ
+
+(︂⃦
+⃦∇ × ̃︀𝐸𝑛+1
+⃦
+(︂⃦
+⃦∇ × ̃︀𝐸𝑛+1
+⃦
+
+ℎ
+
+⃦
+2
+⃦
+⃦
+
+𝜏
+8𝜇0
+𝜏
+8𝜇0
+
+−
+
+⃦
+⃦
+⃦
+
+ℎ
+
+⃦
+⃦∇ × ̃︀𝐸𝑛
+⃦
+⃦
+⃦∇ × ̃︀𝐸𝑛
+⃦
+
+ℎ
+
+−
+
+2)︂
+
+2)︂
+
+⃦
+⃦
+⃦
+
+.
+
+(29)
+
+Choosing ̃︀𝜑ℎ = ̃︀𝐸
+
+𝑛+ 1
+2
+
+ℎ
+
+in (23b) and ̂︀𝜓ℎ = 𝜇0𝐻
+
+𝑛+1
+ℎ
+
+in (23e), respectively, we have
+
+(︂⃦
+⃦ ̃︀𝐸𝑛+1
+⃦
+
+ℎ
+
+⃦
+2
+⃦
+⃦
+
+−
+
+⃦
+⃦ ̃︀𝐸𝑛
+⃦
+
+ℎ
+
+2)︂
+
+⃦
+⃦
+⃦
+
+𝜀0
+2𝜏
+
+= 𝜀0
+
+(︂
+𝛿𝜏 𝐸𝑛+ 1
+
+2
+
+ℎ
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ
+
+, ̃︀𝐸
+
+(︂
+
++
+
+Σ**𝐸
+
+𝑛+ 1
+2
+ℎ
+
+, ̃︀𝐸
+
+𝑛+ 1
+2
+
+ℎ
+
+)︂
+,
+
+and
+
+𝜇0
+2𝜏
+
+(︂⃦
+⃦𝐻 𝑛+ 3
+⃦
+
+ℎ
+
+2
+
+⃦
+2
+⃦
+⃦
+
+−
+
+⃦
+⃦𝐻 𝑛+ 1
+⃦
+
+ℎ
+
+2
+
+2)︂
+
+⃦
+⃦
+⃦
+
+⃦
+⃦
+⃦(𝜎𝑥 + 𝜎𝑦)
+
+1
+2 𝐻
+
+𝑛+1
+ℎ
+
+⃦
+2
+⃦
+⃦
+
++ 𝜀−2
+
+0 𝜇0
+
+(︂
+
+𝜎𝑥𝜎𝑦 ̃︀𝐻
+
+)︂
+
+𝑛+1
+
+ℎ
+
+, 𝐻
+
+𝑛+1
+ℎ
+
++ 𝜀−1
+
+0 𝜇0
+(︁
+
+= 𝜇0
+
+𝛿𝜏 𝐻 *,𝑛+1
+ℎ
+
+𝑛+1
+ℎ
+
+)︁
+
+.
+
+, 𝐻
+
+(30)
+
+(31)
+
+Adding (29)–(31), we attain
+
+(︂⃦
+⃦ ̃︀𝐸𝑛+1
+⃦
+
+ℎ
+
+⃦
+2
+⃦
+⃦
+
+−
+
+⃦
+⃦ ̃︀𝐸𝑛
+⃦
+
+ℎ
+
+2)︂
+
+⃦
+⃦
+⃦
+
++
+
+𝜀0
+2𝜏
+
+𝜇0
+2𝜏
+
+2
+
+(︂⃦
+⃦𝐻 𝑛+ 3
+⃦
+(︂
+
+ℎ
+
+⃦
+2
+⃦
+⃦
+
+−
+
+⃦
+⃦𝐻 𝑛+ 1
+⃦
+
+ℎ
+
+2
+
++ 𝜀−2
+
+0 𝜇0
+
+𝜎𝑥𝜎𝑦 ̃︀𝐻
+
+𝑛+1
+
+ℎ
+
+, 𝐻
+
+𝑛+1
+ℎ
+
+2)︂
+
+⃦
+⃦
+⃦
+)︂
+
++
+
++ 𝜀−1
+
+⃦
+⃦
+⃦(𝜎𝑥 + 𝜎𝑦)
+⃦
+2
+⃦
+⃦
+
+0 𝜇0
+(︂⃦
+⃦∇ × ̃︀𝐸𝑛+1
+⃦
+
+ℎ
+
+1
+2 𝐻
+
+𝑛+1
+ℎ
+
+⃦
+2
+⃦
+⃦
+
+2)︂
+
+⃦
+⃦
+⃦
+
+−
+
+⃦
+⃦∇ × ̃︀𝐸𝑛
+⃦
+(︁
+)︁
+
+ℎ
+
+(︂
+
+=
+
+(Σ** − Σ**)𝐸
+
+𝑛+ 1
+2
+ℎ
+
+, ̃︀𝐸
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ
+
+[︁(︁
+
+𝐻 𝑛+ 1
+
+2
+
+ℎ
+
+, ∇ × ̃︀𝐸𝑛
+ℎ
+
+−
+
+𝐻 𝑛+ 3
+
+2
+
+ℎ
+
+, ∇ × ̃︀𝐸𝑛+1
+
+ℎ
+
+)︁]︁
+
+. (32)
+
+𝜏
+8𝜇0
+1
+2
+
++
+
+Choosing ̃︀𝜓ℎ = 𝜀−2
+
+0 𝜇0 ̃︀𝐻
+
+𝑛+1
+
+ℎ
+
+in (23d), and using it to replace the fourth term in (32), we have
+
+(︂⃦
+⃦ ̃︀𝐸𝑛+1
+⃦
+
+ℎ
+
+𝜀0
+2𝜏
+
++
+
+2)︂
+
+ℎ
+
++
+
+−
+
+⃦
+2
+⃦
+⃦
+𝜀−2
+0 𝜇0
+2𝜏
+
+⃦
+⃦
+⃦ ̃︀𝐸𝑛
+⃦
+⃦
+⃦
+(︂⃦
+⃦
+⃦(𝜎𝑥𝜎𝑦)
+
+2
+
+ℎ
+
+𝜇0
+2𝜏
+2 ̃︀𝐻 𝑛+ 3
+
+(︂⃦
+⃦𝐻 𝑛+ 3
+⃦
+⃦
+2
+⃦
+⃦
+
+ℎ
+
+2
+
+1
+
+−
+
+⃦
+2
+⃦
+⃦
+
+−
+
+⃦
+⃦𝐻 𝑛+ 1
+⃦
+
+ℎ
+
+2
+
+2)︂
+
+⃦
+⃦
+⃦
+
++ 𝜀−1
+
+0 𝜇0
+
+⃦
+⃦
+⃦(𝜎𝑥 + 𝜎𝑦)
+
+1
+2 𝐻
+
+𝑛+1
+ℎ
+
+1
+
+2 ̃︀𝐻 𝑛+ 1
+
+2
+
+ℎ
+
+2)︂
+
+⃦
+⃦
+⃦
+
++
+
+(︂⃦
+⃦∇ × ̃︀𝐸𝑛+1
+⃦
+
+ℎ
+
+⃦
+2
+⃦
+⃦
+
+⃦
+2
+⃦
+⃦
+
+−
+
+(︂
+
+=
+
+(Σ** − Σ**)𝐸
+
+𝑛+ 1
+2
+ℎ
+
+, ̃︀𝐸
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ
+
++
+
+𝐻 𝑛+ 1
+
+2
+
+ℎ
+
+, ∇ × ̃︀𝐸𝑛
+ℎ
+
+𝐻 𝑛+ 3
+
+2
+
+ℎ
+
+, ∇ × ̃︀𝐸𝑛+1
+
+ℎ
+
+𝜏
+8𝜇0
+)︁
+
+−
+
+(︁
+
+⃦
+⃦
+⃦(𝜎𝑥𝜎𝑦)
+[︁(︁
+
+1
+2
+
+2
+
+ℎ − 𝐸𝑛+ 1
+
+Choosing ̃︀𝜑ℎ = ̃︀𝐸𝑛+ 1
+(︂⃦
+⃦ ̃︀𝐸𝑛+1
+⃦
+
+ℎ
+
+2
+
+𝜀0
+2𝜏
+
+in (23b), we obtain
+
+ℎ − 𝐸𝑛+1
+
+ℎ
+
+⃦
+2
+⃦
+⃦
+
+−
+
+⃦
+⃦ ̃︀𝐸𝑛
+⃦
+
+ℎ − 𝐸𝑛
+ℎ
+
+2)︂
+
+⃦
+⃦
+⃦
+
+(︂
+
+=
+
+Σ**𝐸
+
+𝑛+ 1
+2
+ℎ
+
+, ̃︀𝐸
+
+𝑛+ 1
+2
+ℎ − 𝐸
+
+𝑛+ 1
+2
+ℎ
+
+)︂
+
+.
+
+⃦
+⃦∇ × ̃︀𝐸𝑛
+⃦
+)︁]︁
+
+ℎ
+
+.
+
+2)︂
+
+⃦
+⃦
+⃦
+
+(33)
+
+(34)
+
+Adding (33) and (34) together, then summing up from 𝑛 = 0 to 𝑚, we obtain
+
+(︂⃦
+⃦ ̃︀𝐸𝑚+1
+⃦
+
+ℎ
+
+⃦
+2
+⃦
+⃦
+
+⃦
+⃦ ̃︀𝐸0
+⃦
+
+ℎ
+
+)︂
+
+⃦
+⃦
+⃦
+
+−
+
++
+
+𝜀0
+2
+
+𝜇0
+2
+
+(︂⃦
+⃦𝐻 𝑚+ 3
+⃦
+
+ℎ
+
+2
+
+⃦
+2
+⃦
+⃦
+
+−
+
+⃦
+⃦
+⃦𝐻
+
+1
+2
+ℎ
+
+2)︂
+
+⃦
+⃦
+⃦
+
++ 𝜏 𝜀−1
+
+0 𝜇0
+
+𝑚
+∑︁
+
+𝑛=0
+
+⃦
+⃦
+⃦(𝜎𝑥 + 𝜎𝑦)
+
+1
+
+2 𝐻
+
+𝑛+1
+ℎ
+
+⃦
+2
+⃦
+⃦
+
+
+--- Page 7 ---
+FINITE ELEMENT SCHEME FOR AN EQUIVALENT B´ERENGER’S PML MODEL
+
+627
+
+(︂⃦
+⃦
+⃦(𝜎𝑥𝜎𝑦)
+
+1
+
+2 ̃︀𝐻 𝑚+ 3
+
+2
+
+ℎ
+
+⃦
+2
+⃦
+⃦
+
+−
+
+− 𝐸𝑚+1
+ℎ
+
+⃦
+2
+⃦
+⃦
+
+−
+
+⃦
+⃦ ̃︀𝐸0
+⃦
+
+⃦
+⃦
+⃦(𝜎𝑥𝜎𝑦)
+⃦
+⃦
+⃦
+
+ℎ − 𝐸0
+ℎ
+
+2)︂
+
++
+
++
+
+𝜀−2
+0 𝜇0
+2
+(︂⃦
+⃦ ̃︀𝐸𝑚+1
+⃦
+(︂
+
+𝜀0
+2
+
+ℎ
+
+𝑚
+∑︁
+
+1
+
+1
+2 ̃︀𝐻
+2
+ℎ
+
+2)︂
+
+⃦
+⃦
+⃦
+
++
+
+𝜏 2
+8𝜇0
+
+(︂⃦
+⃦∇ × ̃︀𝐸𝑚+1
+⃦
+
+ℎ
+
+⃦
+2
+⃦
+⃦
+
+−
+
+⃦
+⃦∇ × ̃︀𝐸0
+⃦
+
+ℎ
+
+2)︂
+
+⃦
+⃦
+⃦
+
+= 𝜏
+
+(Σ** − Σ**)𝐸
+
+𝑛+ 1
+2
+ℎ
+
+, ̃︀𝐸
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ
+
+𝑛=0
+
++ 𝜏
+
+𝑚
+∑︁
+
+(︂
+
+𝑛=0
+
+Σ**𝐸
+
+𝑛+ 1
+2
+ℎ
+
+, ̃︀𝐸
+
+𝑛+ 1
+2
+ℎ − 𝐸
+
+𝑛+ 1
+2
+ℎ
+
++
+
+)︂
+
+[︁(︁
+
+𝐻
+
+𝜏
+2
+
+1
+2
+
+ℎ , ∇ × ̃︀𝐸0
+
+ℎ
+
+)︁
+
+(︁
+
+−
+
+:=
+
+3
+∑︁
+
+𝑖=1
+
+Err𝑖.
+
+𝐻 𝑚+ 3
+
+2
+
+ℎ
+
+, ∇ × ̃︀𝐸𝑚+1
+
+ℎ
+
+)︁]︁
+
+(35)
+
+Using inequalities ⃒
+
+⃒ 𝑎+𝑏
+2
+
+2
+
+⃒
+⃒
+
+≤ 1
+
+2 (𝑎2 + 𝑏2) and |𝑎|2 = |𝑎 − 𝑏 + 𝑏|2 ≤ 2(|𝑎 − 𝑏|2 + 𝑏2), we have
+
+(︂
+
+𝜏
+
+(Σ** − Σ**)𝐸
+
+𝑛+ 1
+2
+ℎ
+
+, ̃︀𝐸
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ
+
+≤
+
+𝜏 𝜀−1
+
+0 ‖𝜎𝑥 − 𝜎𝑦‖∞
+2
+
+[︃
+
+⃦
+⃦
+⃦𝐸
+
+𝑛+ 1
+2
+ℎ
+
+⃦
+2
+⃦
+⃦
+
+𝜀0
+
++ 𝜀0
+
+⃦
+⃦
+̃︀𝐸
+⃦
+⃦
+
+𝑛+ 1
+2
+
+ℎ
+
+2]︃
+
+⃦
+⃦
+⃦
+⃦
+
+=
+
+𝜏 𝜀−1
+
+0 ‖𝜎𝑥 − 𝜎𝑦‖∞
+2
+
+[︃
+
+⃦
+⃦
+⃦
+⃦
+
+𝐸
+
+𝜀0
+
+𝑛+ 1
+ℎ − ̃︀𝐸
+2
+
+𝑛+ 1
+2
+ℎ + ̃︀𝐸
+
+𝑛+ 1
+2
+
+⃦
+2
+⃦
+⃦
+⃦
+
++ 𝜀0
+
+𝑛+ 1
+2
+
+ℎ
+
+2]︃
+
+⃦
+⃦
+⃦
+⃦
+
+⃦
+⃦
+̃︀𝐸
+⃦
+⃦
+2]︃
+
+ℎ
+
+3
+2
+
+𝑛+ 1
+2
+
+ℎ
+
+⃦
+2
+⃦
+⃦
+⃦
+
++
+
+⃦
+⃦
+̃︀𝐸
+⃦
+⃦
+
+𝑛+ 1
+2
+
+ℎ
+
+𝜀0
+
+⃦
+⃦
+⃦
+⃦
+
+≤ 𝜏 𝜀−1
+
+0 ‖𝜎𝑥 − 𝜎𝑦‖∞
+
+≤ 𝜏 𝜀−1
+
+0 ‖𝜎𝑥 − 𝜎𝑦‖∞
+
+Similarly, we can obtain
+
+𝑛+ 1
+ℎ − ̃︀𝐸
+2
+
+[︃
+
+𝐸
+
+𝜀0
+
+⃦
+⃦
+⃦
+⃦
+[︂ 𝜀0
+(︂⃦
+⃦𝐸𝑛+1
+⃦
+2
+
+ℎ − ̃︀𝐸𝑛+1
+
+ℎ
+
+⃦
+2
+⃦
+⃦
+
++
+
+⃦
+⃦𝐸𝑛
+⃦
+
+ℎ − ̃︀𝐸𝑛
+ℎ
+
+2)︂
+
+⃦
+⃦
+⃦
+
++
+
+(︂⃦
+⃦ ̃︀𝐸𝑛+1
+⃦
+
+ℎ
+
+⃦
+2
+⃦
+⃦
+
++
+
+⃦
+⃦ ̃︀𝐸𝑛
+⃦
+
+ℎ
+
+2)︂]︂
+
+⃦
+⃦
+⃦
+
+3𝜀0
+4
+
+.
+
+(36)
+
+(︂
+
+𝜏
+
+Σ**𝐸
+
+𝑛+ 1
+2
+ℎ
+
+, ̃︀𝐸
+
+𝑛+ 1
+2
+ℎ − 𝐸
+
+𝑛+ 1
+2
+ℎ
+
+)︂
+
+(︂
+
+(︂
+
+= 𝜏
+
+Σ**
+
+𝑛+ 1
+ℎ − ̃︀𝐸
+2
+
+𝐸
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ
+
++ Σ** ̃︀𝐸
+
+𝑛+ 1
+2
+
+ℎ
+
+𝑛+ 1
+2
+ℎ − 𝐸
+
+𝑛+ 1
+2
+ℎ
+
+, ̃︀𝐸
+
+)︂
+
+≤ 𝜏 𝜀−1
+
+0 max(︀‖𝜎𝑥‖∞, ‖𝜎𝑦‖∞
+
+)︀
+
+≤ 𝜏 𝜀−1
+
+)︀
+
+0 max(︀‖𝜎𝑥‖∞, ‖𝜎𝑦‖∞
+⃦
+2
+⃦
+⃦
+
+(︂⃦
+⃦ ̃︀𝐸𝑛+1
+⃦
+
+ℎ − 𝐸𝑛+1
+
+ℎ
+
+𝜀0
+4
+
++
+
++
+
+[︃
+
+ℎ
+
+⃦
+2
+⃦
+⃦
+⃦
+
+𝑛+ 1
+2
+
+𝜀0
+2
+[︂ 𝜀0
+4
+⃦
+⃦ ̃︀𝐸𝑛
+⃦
+
+⃦
+⃦
+̃︀𝐸
+⃦
+⃦
+(︂⃦
+⃦ ̃︀𝐸𝑛+1
+⃦
+⃦
+⃦
+⃦
+
+ℎ − 𝐸𝑛
+ℎ
+
+ℎ
+
++
+
+𝜀0
+2
+
+⃦
+⃦
+̃︀𝐸
+⃦
+⃦
+
+𝑛+ 1
+2
+ℎ − 𝐸
+
+𝑛+ 1
+2
+ℎ
+
+2]︃
+
+⃦
+⃦
+⃦
+⃦
+
++
+
+⃦
+2
+⃦
+⃦
+2)︂]︂
+
+⃦
+⃦ ̃︀𝐸𝑛
+⃦
+
+ℎ
+
+2)︂
+
+⃦
+⃦
+⃦
+
+(37)
+
+where we used the estimate
+
+(︂
+
+(︂
+
+Σ**
+
+𝐸
+
+𝑛+ 1
+ℎ − ̃︀𝐸
+2
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ
+
+𝑛+ 1
+2
+ℎ − 𝐸
+
+𝑛+ 1
+2
+ℎ
+
+, ̃︀𝐸
+
+)︂
+
+≤ 0
+
+to obtain the ﬁrst inequality.
+
+It is easy to check that the following identity holds true:
+
+√
+
+⃦
+⃦
+⃦
+⃦
+
+𝜇0𝐻 𝑚+ 3
+
+2
+
+ℎ
+
++
+
+𝜏
+√
+𝜇0
+2
+
+∇ × ̃︀𝐸𝑚+1
+
+ℎ
+
+⃦
+2
+⃦
+⃦
+⃦
+
+= 𝜇0
+
+⃦
+⃦𝐻 𝑚+ 3
+⃦
+
+ℎ
+
+2
+
+(︁
+
++ 𝜏
+
+⃦
+2
+⃦
+⃦
+
+𝐻 𝑚+ 3
+
+2
+
+ℎ
+
+, ∇ × ̃︀𝐸𝑚+1
+
+ℎ
+
+)︁
+
++
+
+𝜏 2
+4𝜇0
+
+⃦
+⃦∇ × ̃︀𝐸𝑚+1
+⃦
+
+ℎ
+
+⃦
+2
+⃦
+⃦
+
+.
+
+(38)
+
+Substituting the above estimates (36)–(38) into (35), we have
+
+(︂⃦
+⃦ ̃︀𝐸𝑚+1
+⃦
+
+ℎ
+
+⃦
+2
+⃦
+⃦
+
+−
+
+⃦
+⃦ ̃︀𝐸0
+⃦
+
+ℎ
+
+2)︂
+
+⃦
+⃦
+⃦
+
++
+
+𝜀0
+2
+
+√
+
+⃦
+⃦
+⃦
+⃦
+
+1
+2
+
+𝜇0𝐻 𝑚+ 3
+
+2
+
+ℎ
+
++
+
+𝜏
+√
+𝜇0
+2
+
+∇ × ̃︀𝐸𝑚+1
+
+ℎ
+
+⃦
+2
+⃦
+⃦
+⃦
+
+𝑚
+∑︁
+
++ 𝜏 𝜀−1
+
+0 𝜇0
+
+⃦
+⃦
+⃦(𝜎𝑥 + 𝜎𝑦)
+
+1
+
+2 𝐻
+
+𝑛+1
+ℎ
+
+⃦
+2
+⃦
+⃦
+
+𝑛=0
+
+
+--- Page 8 ---
+𝑚
+∑︁
+
+𝑛=0
+
+ℎ
+
+⃦
+⃦𝐸𝑚+1
+⃦
+[︂
+⃦
+⃦𝐸𝑛
+⃦
+𝜀0
+(︂ 𝜀0
+4
+𝑚
+∑︁
+
+𝑛=0
+
+628
+
+Y. HUANG ET AL.
+
++
+
+𝜀−2
+0 𝜇0
+2
+
+(︂⃦
+⃦
+⃦(𝜎𝑥𝜎𝑦)
+
+≤ 𝜏 𝜀−1
+
+0 ‖𝜎𝑥 − 𝜎𝑦‖∞
+
+2
+
+1
+
+ℎ
+
+2 ̃︀𝐻 𝑚+ 1
+[︂ 𝜀0
+2
+
+⃦
+2
+⃦
+⃦
+
+−
+
+⃦
+⃦
+⃦(𝜎𝑥𝜎𝑦)
+⃦
+2
+⃦
+⃦
+
+− ̃︀𝐸𝑚+1
+ℎ
+
+1
+
+1
+2 ̃︀𝐻
+2
+ℎ
+
+2)︂
+
+⃦
+⃦
+⃦
+
++
+
+𝜀0
+2
+
+ℎ
+
+(︂⃦
+⃦ ̃︀𝐸𝑚+1
+⃦
+2]︂
+⃦
+⃦
+⃦
+
++
+
+3𝜀0
+4
+
+ℎ
+
+⃦
+⃦ ̃︀𝐸𝑚+1
+⃦
+2]︂
+⃦
+⃦
+⃦ ̃︀𝐸𝑛
+⃦
+⃦
+⃦
+
+ℎ
+
+ℎ − ̃︀𝐸𝑛
+ℎ
+
+⃦
+2
+⃦
+⃦
+
++
+
+3𝜀0
+2
+
++ 𝜏 𝜀−1
+
+0 ‖𝜎𝑥 − 𝜎𝑦‖∞
+
+− 𝐸𝑚+1
+ℎ
+
+⃦
+2
+⃦
+⃦
+
+−
+
+⃦
+⃦ ̃︀𝐸0
+⃦
+
+ℎ − 𝐸0
+ℎ
+
+2)︂
+
+⃦
+⃦
+⃦
+
++ 𝜏 𝜀−1
+
+0 max(‖𝜎𝑥‖∞, ‖𝜎𝑦‖∞)
+
++ 𝜏 𝜀−1
+
+0 max(‖𝜎𝑥‖∞, ‖𝜎𝑦‖∞)
+
+− 𝐸𝑚+1
+ℎ
+
+2)︂
+
+⃦
+⃦
+⃦
+
+ℎ
+
+⃦
+⃦ ̃︀𝐸𝑚+1
+⃦
+[︂ 𝜀0
+⃦
+⃦ ̃︀𝐸𝑛
+⃦
+2
+
+ℎ
+
+⃦
+2
+⃦
+⃦
+
++
+
+𝜀0
+4
+
+⃦
+2
+⃦
+⃦
+
++
+
+𝜀0
+2
+
+ℎ
+
+⃦
+⃦ ̃︀𝐸𝑚+1
+⃦
+⃦
+⃦ ̃︀𝐸𝑛
+⃦
+
+ℎ − 𝐸𝑛
+ℎ
+
+2]︂
+
+⃦
+⃦
+⃦
+
++
+
+√
+
+⃦
+⃦
+⃦
+⃦
+
+1
+2
+
+𝜇0𝐻
+
+1
+2
+
+ℎ +
+
+𝜏
+√
+𝜇0
+2
+
+∇ × ̃︀𝐸0
+ℎ
+
+⃦
+2
+⃦
+⃦
+⃦
+
+.
+
+(39)
+
+To get a nice stability result, now we relax the bound for those coeﬃcients on the right hand side of (39) by
+
+the following simple estimates:
+
+‖𝜎𝑥 − 𝜎𝑦‖∞ ≤ ‖𝜎𝑥‖∞ + ‖𝜎𝑦‖∞, max(︀‖𝜎𝑥‖∞, ‖𝜎𝑦‖∞
+
+)︀ ≤ ‖𝜎𝑥‖∞ + ‖𝜎𝑦‖∞.
+
+Using the following time step constraints (equivalent to (27)):
+
+𝜏 𝜀−1
+0
+
+(︀‖𝜎𝑥‖∞ + ‖𝜎𝑦‖∞
+
+)︀ ≤
+
+1
+3
+
+,
+
+dropping the nonnegative term of the left hand side of (39), then using the discrete Gronwall inequality, we
+have
+
+⃦
+⃦ ̃︀𝐸𝑚+1
+⃦
+
+ℎ
+
+⃦
+2
+⃦
+⃦
+
+𝜀0
+
++
+
+⃦
+⃦
+⃦
+⃦
+
+1
+2
+
+0 𝐻 𝑚+ 3
+𝜇
+
+ℎ
+
+2
+
++
+
+𝜏
+√
+𝜇0
+
+2
+
+∇ × ̃︀𝐸𝑚+1
+
++ 𝜀−2
+
+0 𝜇0
+
+⃦
+⃦
+⃦(𝜎𝑥𝜎𝑦)
+
+1
+
+2 ̃︀𝐻 𝑚+ 3
+
+2
+
+ℎ
+
+⃦
+2
+⃦
+⃦
+
++ 𝜀0
+
+⃦
+⃦ ̃︀𝐸𝑚+1
+⃦
+
+ℎ
+
+− 𝐸𝑚+1
+ℎ
+
+⃦
+2
+⃦
+⃦
+
+≤ exp[︀4(︀‖𝜎𝑥‖∞ + ‖𝜎𝑦‖∞
+{︃
+⃦
+2
+⃦
+⃦
+
+(︂⃦
+⃦ ̃︀𝐸0
+⃦
+
+⃦
+⃦ ̃︀𝐸0
+⃦
+
+ℎ − 𝐸0
+ℎ
+
+𝜀0
+
++
+
+ℎ
+
+·
+
+ℎ
+
+⃦
+2
+⃦
+⃦
+⃦
+)︀𝜀−1
+0 (𝑚 + 1)𝜏 ]︀
+⃦
+2)︂
+⃦
+√
+⃦
+⃦
+⃦
+⃦
+⃦
+
++
+
+𝜇0𝐻
+
+1
+2
+
+ℎ +
+
+𝜏
+√
+𝜇0
+2
+
+∇ × ̃︀𝐸0
+ℎ
+
+⃦
+2
+⃦
+⃦
+⃦
+
++ 𝜀−2
+
+0 𝜇0
+
+⃦
+⃦
+⃦(𝜎𝑥𝜎𝑦)
+
+1
+
+2 ̃︀𝐻
+
+1
+2
+ℎ
+
+2}︃
+⃦
+⃦
+,
+⃦
+
+(40)
+
+(cid:3)
+
+which completes the proof of (28).
+
+3.2. The convergence analysis
+
+In this subsection, we will carry out the convergence analysis of our scheme (23a)–(23d). To accomplish that,
+
+we need the following lemma.
+
+Lemma 1 ([22], Chap. 3). Denote 𝑢𝑛 := 𝑢(·, 𝑡𝑛). We have
+
+⃦
+2
+⃦
+⃦
+
+𝑢𝑛+1 − 𝑢𝑛
+𝜏
+
+=
+
+⃦
+⃦
+⃦
+⃦
+∫︁ 𝑡𝑛+1
+
+𝑢(𝑡) d𝑡
+
+≤
+
+(i)
+
+(ii)
+
+2
+
+⃦
+⃦𝛿𝜏 𝑢𝑛+ 1
+⃦
+⃦
+⃦
+𝑢𝑛+ 1
+⃦
+⃦
+⃦
+⃦
+𝑢𝑛+ 1
+⃦
+⃦
+
+2 −
+
+1
+𝜏
+
+1
+𝜏
+
+𝑡𝑛
+∫︁ 𝑡𝑛+1
+
+𝑡𝑛
+
+⃦
+2
+⃦
+⃦
+⃦
+2
+⃦
+⃦
+⃦
+⃦
+2
+⃦
+⃦
+⃦
+⃦
+
+≤
+
+1
+𝜏
+
+𝜏 3
+4
+
+≤
+
+𝜏 3
+4
+
+∫︁ 𝑡𝑛+1
+
+𝑡𝑛
+∫︁ 𝑡𝑛+1
+
+‖𝜕𝑡𝑢(𝑡)‖2 d𝑡,
+
+∀𝑢 ∈ 𝐻 1(0, 𝑇 ; 𝐿2(Ω)),
+
+‖𝜕𝑡𝑡𝑢(𝑡)‖2 d𝑡,
+
+∀𝑢 ∈ 𝐻 2(0, 𝑇 ; 𝐿2(Ω)),
+
+𝑡𝑛
+∫︁ 𝑡𝑛+1
+
+𝑡𝑛
+
+‖𝜕𝑡𝑡𝑢(𝑡)‖2 d𝑡,
+
+∀𝑢 ∈ 𝐻 2(0, 𝑇 ; 𝐿2(Ω)).
+
+(41)
+
+(42)
+
+(43)
+
+(iii)
+
+2 −
+
+𝑢(𝑡) d𝑡
+
+To simplify the analysis, let us introduce the solution errors:
+
+ℰ 𝑛 = 𝐸(𝑡𝑛) − 𝐸𝑛
+
+ℎ = (𝐸(𝑡𝑛) − Π𝑐𝐸𝑛) + (Π𝑐𝐸𝑛 − 𝐸𝑛
+
+ℎ ) := 𝐸𝑛
+
+𝜉 − 𝐸𝑛
+ℎ𝜂
+
+
+--- Page 9 ---
+FINITE ELEMENT SCHEME FOR AN EQUIVALENT B´ERENGER’S PML MODEL
+
+629
+
+𝑛
+
+̃︀ℰ
+
+= ̃︀𝐸(𝑡𝑛) − ̃︀𝐸𝑛
+
+(︁
+
++
+
+Π𝑐 ̃︀𝐸𝑛 − ̃︀𝐸𝑛
+ℎ
+
+)︁
+
+:= ̃︀𝐸𝑛
+
+𝜉 − ̃︀𝐸𝑛
+ℎ𝜂
+
+(︁
+
+̃︀𝐸(𝑡𝑛) − Π𝑐 ̃︀𝐸𝑛)︁
+)︁
+(︁
+(︁
+
+=
+
+𝐻
+
+)︁
+
+ℎ =
+− 𝐻 𝑛+ 1
+)︁
+
+ℎ
+
+2
+
+(︁
+
+𝑡𝑛+ 1
+
+2
+
+ℋ𝑛+ 1
+
+ℋ*,𝑛+ 1
+
+̃︀ℋ𝑛+ 1
+
+2 = 𝐻
+2 = 𝐻 *(︁
+(︁
+
+2 = ̃︀𝐻
+
+𝑡𝑛+ 1
+2
+)︁
+
+𝑡𝑛+ 1
+
+2
+
+2
+
+ℎ
+
+− 𝐻 *,𝑛+ 1
+− ̃︀𝐻 𝑛+ 1
+
+=
+
+2
+
+ℎ
+
+2
+
+𝑡𝑛+ 1
+𝐻 *(︁
+(︁
+
+𝑡𝑛+ 1
+
+2
+
+(︁
+
+=
+
+(︁
+
+̃︀𝐻
+
+− 𝑃ℎ𝐻 𝑛+ 1
+
+2
+
+)︁
+
++
+
+(︁
+
+)︁
+
+𝑡𝑛+ 1
+)︁
+
+2
+
+− 𝑃ℎ𝐻 *,𝑛+ 1
+(︁
+
+)︁
+
+2
+
+− 𝑃ℎ ̃︀𝐻 𝑛+ 1
+
+2
+
++
+
+2 − 𝐻 𝑛+ 1
+
+2
+
+ℎ
+
+)︁
+
+𝑃ℎ𝐻 𝑛+ 1
+(︁
+)︁
+
++
+
+𝑃ℎ𝐻 *,𝑛+ 1
+
+2
+
+:= 𝐻 𝑛+ 1
+)︁
+
+𝜉
+
+2 − 𝐻 *,𝑛+ 1
+)︁
+
+ℎ
+
+2
+
+𝑃ℎ ̃︀𝐻 𝑛+ 1
+
+2 − ̃︀𝐻 𝑛+ 1
+
+2
+
+ℎ
+
+:= ̃︀𝐻 𝑛+ 1
+
+2
+
+𝜉
+
+− 𝐻 𝑛+ 1
+
+2
+
+ℎ𝜂
+
+2
+
+𝜉
+
+:= 𝐻 *,𝑛+ 1
+− ̃︀𝐻 𝑛+ 1
+
+ℎ𝜂
+
+2
+
+,
+
+− 𝐻 *,𝑛+ 1
+
+2
+
+ℎ𝜂
+
+where Π𝑐𝐸 and Π𝑐 ̃︀𝐸 ∈ 𝑈ℎ denote the N´ed´elec interpolations, 𝑃ℎ𝐻, 𝑃ℎ𝐻 *, and 𝑃ℎ ̃︀𝐻 ∈ 𝑉ℎ denote the standard
+𝐿2 projections.
+
+To establish the error estimate for scheme (23a)–(23e), we ﬁrst derive the error equations.
+Integrating (1a), (1b) from 𝑡𝑛 to 𝑡𝑛+1 and integrating (1c)–(1e) from 𝑡𝑛+ 1
+
+to 𝑡𝑛+ 3
+
+2
+
+2
+
+, and multiplying the
+
+corresponding results by 1
+
+𝜏 𝜎𝑥𝜎𝑦 ̃︀𝜓ℎ, ̂︀𝜓ℎ, respectively, and integrating over Ω, we obtain
+
+Σ**𝐸(𝑠) d𝑠, 𝜑ℎ
+
+)︂
+
+=
+
+(︂ 1
+𝜏
+
+∫︁ 𝑡𝑛+1
+
+𝑡𝑛
+
+𝐻(𝑠) d𝑠, ∇ × 𝜑ℎ
+
+,
+
+)︂
+
+𝜏 𝜓ℎ, 1
+
+𝜏 ̃︀𝜑ℎ, 1
+𝜏 𝜑ℎ, 1
+(︂ 1
+𝜏
+
++
+
+)︁
+
+𝑡𝑛
+
+∫︁ 𝑡𝑛+1
+
+𝛿𝜏 𝐸𝑛+ 1
+
+2 , 𝜑ℎ
+
+(︁
+
+(︁
+
+𝜀0
+
+𝜀0
+
+𝛿𝜏 ̃︀𝐸𝑛+ 1
+
+2 , ̃︀𝜑ℎ
+
+)︁
+
+(︁
+
+= 𝜀0
+
+𝛿𝜏 𝐸𝑛+ 1
+
+2 , ̃︀𝜑ℎ
+
+)︁
+
++
+
+(︂ 1
+𝜏
+
+∫︁ 𝑡𝑛+1
+
+Σ**𝐸(𝑠) d𝑠, ̃︀𝜑ℎ
+
+,
+
+)︂
+
+𝑡𝑛
+
+⎞
+
+(︀𝛿𝜏 𝐻 *,𝑛+1, 𝜓ℎ
+
+)︀ = −
+
+𝜇0
+
+⎛
+
+⎝
+
+1
+𝜏
+
+(︁
+
+𝛿𝜏 ̃︀𝐻 𝑛+1, 𝜎𝑥𝜎𝑦 ̃︀𝜓ℎ
+
+)︁
+
+⎛
+
+=
+
+⎝
+
+1
+𝜏
+
+∫︁ 𝑡𝑛+ 3
+
+2
+
+𝑡𝑛+ 1
+2
+
+∫︁ 𝑡𝑛+ 3
+
+2
+
+𝑡𝑛+ 1
+2
+
+∇ × ̃︀𝐸(𝑠) d𝑠, 𝜓ℎ
+
+⎠,
+
+⎞
+
+𝐻(𝑠) d𝑠, 𝜎𝑥𝜎𝑦 ̃︀𝜓ℎ
+
+⎠,
+
+(︁
+𝛿𝜏 𝐻 𝑛+1, ̂︀𝜓ℎ
+
+)︁
+
+⎛
+
++ 𝜀−1
+0
+
+⎝
+
+1
+𝜏
+
+∫︁ 𝑡𝑛+ 3
+
+2
+
+𝑡𝑛+ 1
+2
+
+(𝜎𝑥 + 𝜎𝑦)𝐻(𝑠) d𝑠, ̂︀𝜓ℎ
+
+⎞
+⎠ + 𝜀−2
+0
+
+⎛
+
+⎝
+
+1
+𝜏
+
+∫︁ 𝑡𝑛+ 3
+
+2
+
+𝑡𝑛+ 1
+2
+
+⎞
+
+𝜎𝑥𝜎𝑦 ̃︀𝐻(𝑠) d𝑠, ̂︀𝜓ℎ
+
+⎠
+
+(︁
+
+=
+
+𝛿𝜏 𝐻 *,𝑛+1, ̂︀𝜓ℎ
+
+)︁
+
+.
+
+Subtracting (44) from (23a), we obtain the ﬁrst error equation:
+
+(︁
+
+𝜀0
+
+𝛿𝜏 𝐸𝑛+ 1
+
+2
+
+ℎ𝜂
+
+)︁
+
+(︁
+
++
+
+, 𝜑ℎ
+
+Σ**𝐸
+
+, 𝜑ℎ
+
+)︁
+
+(︁
+
+−
+
+𝐻 𝑛+ 1
+
+2
+
+ℎ𝜂
+
+, ∇ × 𝜑ℎ
+
+)︁
+
++
+
+(︁
+
+𝜏 2
+4𝜇0
+𝑛+ 1
+
+)︁
+
+, ∇ × 𝜑ℎ
+
+2
+
+∇ × 𝛿𝜏 ̃︀𝐸𝑛+ 1
+)︂
+
+ℎ𝜂
+
+Σ**𝐸(𝑠) d𝑠 − Σ**Π𝑐𝐸
+
+2 , 𝜑ℎ
+
+(︁
+
+= 𝜀0
+
+𝛿𝜏 𝐸𝑛+ 1
+
+2
+
+𝜉
+
+, 𝜑ℎ
+
+(︂
+
+𝑃ℎ𝐻 𝑛+ 1
+
+2 −
+
++
+
+)︁
+
+1
+𝜏
+
+𝑛+ 1
+2
+ℎ𝜂
+(︂ 1
+𝜏
+∫︁ 𝑡𝑛+1
+
++
+
+𝑡𝑛
+
+∫︁ 𝑡𝑛+1
+
+𝑡𝑛
+
+𝐻(𝑠) d𝑠, ∇ × 𝜑ℎ
+
+−
+
+)︂
+
+(︁
+
+𝜏 2
+4𝜇0
+
+∇ × 𝛿𝜏 Π𝑐 ̃︀𝐸𝑛+ 1
+
+2 , ∇ × 𝜑ℎ
+
+)︁
+
+.
+
+(49)
+
+Subtracting (45) from (23b), we have the 2nd error equation:
+
+(︁
+
+𝜀0
+
+𝛿𝜏 ̃︀𝐸𝑛+ 1
+
+ℎ𝜂
+
+2
+
+)︁
+
+, ̃︀𝜑ℎ
+
+− 𝜀0
+
+(︁
+
+𝛿𝜏 𝐸𝑛+ 1
+
+2
+
+ℎ𝜂
+
+)︁
+
+(︁
+
+−
+
+, ̃︀𝜑ℎ
+
+Σ**𝐸
+
+𝑛+ 1
+2
+ℎ𝜂
+
+, ̃︀𝜑ℎ
+
+)︁
+
+(︁
+
+= 𝜀0
+
+𝛿𝜏 ̃︀𝐸𝑛+ 1
+
+2
+
+𝜉
+
+)︁
+
+, ̃︀𝜑ℎ
+
+− 𝜀0
+
+(︁
+
+𝛿𝜏 𝐸𝑛+ 1
+
+2
+
+𝜉
+
+)︁
+
+, ̃︀𝜑ℎ
+
+(︂
+
++
+
+Σ**Π𝑐𝐸
+
+𝑛+ 1
+
+2 −
+
+1
+𝜏
+
+∫︁ 𝑡𝑛+1
+
+𝑡𝑛
+
+Σ**𝐸(𝑠) d𝑠, ̃︀𝜑ℎ
+
+.
+
+(50)
+
+)︂
+
+Similarly, subtracting (46) from (23c), we obtain the 3rd error equation:
+
+(︁
+
+𝜇0
+
+𝛿𝜏 𝐻 *,𝑛+1
+ℎ𝜂
+
+, 𝜓ℎ
+
+)︁
+
+(︁
+
++
+
+∇ × ̃︀𝐸𝑛+1
+
+ℎ𝜂 , 𝜓ℎ
+
+)︁
+
+(︁
+
+= 𝜇0
+
+𝛿𝜏 𝐻 *,𝑛+1
+𝜉
+
+, 𝜓ℎ
+
+)︁
+
+(44)
+
+(45)
+
+(46)
+
+(47)
+
+(48)
+
+
+--- Page 10 ---
+630
+
+Y. HUANG ET AL.
+
+⎛
+
++
+
+⎝
+
+1
+𝜏
+
+∫︁ 𝑡𝑛+ 3
+
+2
+
+𝑡𝑛+ 1
+2
+
+∇ × ̃︀𝐸(𝑠) − ∇ × Π𝑐 ̃︀𝐸𝑛+1)︁
+(︁
+
+⎞
+
+d𝑠, 𝜓ℎ
+
+⎠.
+
+(51)
+
+Subtracting (47) from (23d), we obtain the 4th error equation:
+
+(︁
+
+𝛿𝜏 ̃︀𝐻 𝑛+1
+
+ℎ𝜂 , 𝜎𝑥𝜎𝑦 ̃︀𝜓ℎ
+
+)︁
+
+(︁
+
+𝐻
+
+−
+
+𝑛+1
+ℎ𝜂 , 𝜎𝑥𝜎𝑦 ̃︀𝜓ℎ
+
+)︁
+
+(︁
+
+=
+
+𝛿𝜏 ̃︀𝐻 𝑛+1
+𝜉
+
+, 𝜎𝑥𝜎𝑦 ̃︀𝜓ℎ
+
+)︁
+
+⎛
+
++
+
+⎝𝑃ℎ𝐻
+
+𝑛+1
+
+−
+
+1
+𝜏
+
+∫︁ 𝑡𝑛+ 3
+
+2
+
+𝑡𝑛+ 1
+2
+
+⎞
+
+𝐻(𝑠) d𝑠, 𝜎𝑥𝜎𝑦 ̃︀𝜓ℎ
+
+⎠. (52)
+
+Subtracting (48) from (23e), we obtain the 5th error equation:
+
+(︁
+
+𝛿𝜏 𝐻 𝑛+1
+
+ℎ𝜂 , ̂︀𝜓ℎ
+
+)︁
+
+(︁
+
++ 𝜀−1
+0
+
+(𝜎𝑥 + 𝜎𝑦)𝐻
+
+)︁
+
+𝑛+1
+ℎ𝜂 , ̂︀𝜓ℎ
+
++ 𝜀−2
+0
+
+(︂
+
+𝜎𝑥𝜎𝑦 ̃︀𝐻
+
+𝑛+1
+ℎ𝜂 , ̂︀𝜓ℎ
+
+)︂
+
+(︁
+
+−
+
+𝛿𝜏 𝐻 *,𝑛+1
+ℎ𝜂
+
+, ̂︀𝜓ℎ
+
+)︁
+
+⎞
+
+(︁
+
+=
+
+𝛿𝜏 𝐻 𝑛+1
+𝜉
+
+, ̂︀𝜓ℎ
+
+)︁
+
+⎛
+
++ 𝜀−1
+0
+
+⎝
+
+1
+𝜏
+
+∫︁ 𝑡𝑛+ 3
+
+2
+
+𝑡𝑛+ 1
+2
+
+(︁
+
+(𝜎𝑥 + 𝜎𝑦)
+
+𝐻(𝑠) − 𝑃ℎ𝐻
+
+𝑛+1)︁
+
+d𝑠, ̂︀𝜓ℎ
+
+⎠
+
+⎛
+
++ 𝜀−2
+0
+
+⎝
+
+1
+𝜏
+
+∫︁ 𝑡𝑛+ 3
+
+2
+
+𝑡𝑛+ 1
+2
+
+(︂
+
+𝜎𝑥𝜎𝑦
+
+̃︀𝐻(𝑠) − 𝑃ℎ ̃︀𝐻
+
+𝑛+1)︂
+
+d𝑠, ̂︀𝜓ℎ
+
+⎞
+
+⎠ −
+
+(︁
+
+𝛿𝜏 𝐻 *,𝑛+1
+𝜉
+
+, ̂︀𝜓ℎ
+
+)︁
+
+.
+
+(53)
+
+With the above preparations, we can prove the following optimal error estimate for the scheme (23a)–(23e).
+
+Theorem 2. Under the following regularity assumptions:
+
+𝐸, ̃︀𝐸, ∇ × ̃︀𝐸 ∈ 𝐿∞(0, 𝑇 ; 𝐻 𝑙(curl, Ω)), 𝐻, ̃︀𝐻 ∈ 𝐿∞(0, 𝑇 ; 𝐻 𝑙(Ω)),
+𝜕𝑡𝑡𝐸, ∇ × 𝜕𝑡𝑡 ̃︀𝐸, 𝜕𝑡𝑡𝐻, ∇ × 𝜕𝑡𝑡𝐻, 𝜕𝑡𝑡 ̃︀𝐻 ∈ 𝐿2(0, 𝑇 ; 𝐿2(Ω)),
+𝜕𝑡𝐸, 𝜕𝑡 ̃︀𝐸, ∇ × 𝜕𝑡 ̃︀𝐸 ∈ 𝐿2(0, 𝑇 ; 𝐻 𝑙(curl, Ω)),
+
+𝜕𝑡 ̃︀𝐻 ∈ 𝐿2(0, 𝑇 ; 𝐻 𝑙(Ω)),
+
+then we have: for any 0 ≤ 𝑚 ≤ 𝑁𝑡 − 2,
+
+1
+2
+0
+
+𝜀
+
+[︁⃦
+⃦
+⃦̃︀ℰ
+
+𝑚+1⃦
+⃦
+⃦ +
+
+⃦
+⃦
+⃦̃︀ℰ
+
+𝑚+1
+
+− ℰ 𝑚+1⃦
+]︁
+⃦
+⃦
+
++
+
+√
+
+⃦
+⃦
+⃦
+⃦
+
+𝜇0ℋ𝑚+ 3
+
+2 +
+
+𝜏
+√
+𝜇0
+2
+
+∇ × ̃︀ℰ
+
+𝑚+1⃦
+⃦
+⃦
+⃦
+
++ 𝜀−1
+
+1
+0 𝜇
+2
+0
+
+⃦
+⃦
+⃦(𝜎𝑥𝜎𝑦)
+
+≤ 𝐶(︀ℎ𝑙 + 𝜏 2)︀,
+
+1
+
+2 ̃︀ℋ𝑚+ 3
+
+2
+
+(54a)
+
+(54b)
+
+(54c)
+
+⃦
+⃦
+⃦
+
+(55)
+
+where the constant 𝐶 > 0 is independent of ℎ and 𝜏 .
+
+Proof. Choosing 𝜑ℎ = ̃︀𝐸
+
+𝑛+ 1
+2
+
+ℎ𝜂
+
+in (49) and 𝜓ℎ = 𝐻
+
+𝑛+1
+ℎ𝜂
+
+in (51), then adding the results together, we have
+
+(︂
+
+𝜀0
+
+𝛿𝜏 𝐸𝑛+ 1
+
+2
+
+ℎ𝜂
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ𝜂
+
++
+
+(︂
+
+, ̃︀𝐸
+
+Σ**𝐸
+
+𝑛+ 1
+2
+ℎ𝜂
+
+, ̃︀𝐸
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ𝜂
+
+(︁
+
++ 𝜇0
+
+𝛿𝜏 𝐻 *,𝑛+1
+ℎ𝜂
+
+, 𝐻
+
+𝑛+1
+ℎ𝜂
+
+(︂
+
+)︁
+
+− 𝜀0
+
+𝛿𝜏 𝐸𝑛+ 1
+
+2
+
+𝜉
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ𝜂
+
+, ̃︀𝐸
+
+=
+
+1
+2
+
++
+
+−
+
+[︁(︁
+
+𝐻 𝑛+ 1
+
+2
+
+ℎ𝜂
+
+, ∇ × ̃︀𝐸𝑛
+ℎ𝜂
+
+)︁
+
+(︁
+
+−
+
+𝐻 𝑛+ 3
+
+2
+
+ℎ𝜂
+
+, ∇ × ̃︀𝐸𝑛+1
+
+ℎ𝜂
+
+)︁]︁
+
+−
+
+(︂ 1
+𝜏
+
+∫︁ 𝑡𝑛+1
+
+Σ**(︁
+
+𝑡𝑛
+
+𝐸(𝑠) − Π𝑐𝐸
+
+𝑛+ 1
+
+2 )︁
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ𝜂
+
+d𝑠, ̃︀𝐸
+
++
+
+(︂
+
+𝜏 2
+4𝜇0
+
+∇ × 𝛿𝜏 Π𝑐 ̃︀𝐸𝑛+ 1
+
+2 , ∇ × ̃︀𝐸
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ𝜂
+
+⎛
+
++
+
+⎝
+
+1
+𝜏
+
+∫︁ 𝑡𝑛+ 3
+
+2
+
+𝑡𝑛+ 1
+2
+
+(︂⃦
+⃦∇ × ̃︀𝐸𝑛+1
+⃦
+∫︁ 𝑡𝑛+1
+(︁
+
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+
+−
+
+⃦
+⃦∇ × ̃︀𝐸𝑛
+⃦
+)︁
+
+ℎ𝜂
+
+2)︂
+
+⃦
+⃦
+⃦
+
+𝑃ℎ𝐻 𝑛+ 1
+
+2 − 𝐻(𝑠)
+
+d𝑠, ∇ × ̃︀𝐸
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ𝜂
+
+𝜏
+8𝜇0
+(︂ 1
+𝜏
+
+𝑡𝑛
+
+∇ ×
+
+(︁
+
+̃︀𝐸(𝑠) − Π𝑐 ̃︀𝐸𝑛+1)︁
+
+⎞
+
+d𝑠, 𝐻
+
+𝑛+1
+ℎ𝜂
+
+⎠
+
+
+--- Page 11 ---
+FINITE ELEMENT SCHEME FOR AN EQUIVALENT B´ERENGER’S PML MODEL
+
+:=
+
+6
+∑︁
+
+𝑖=1
+
+Est𝑖,
+
+where we use the 𝐿2 projection property
+
+(︁
+
+𝛿𝜏 𝐻 *,𝑛+1
+𝜉
+
+, 𝐻
+
+𝑛+1
+ℎ𝜂
+
+)︁
+
+= 0, and the identity
+
+631
+
+(56)
+
+(︂
+
+𝐻 𝑛+ 1
+
+2
+
+ℎ𝜂
+
+, ∇ × ̃︀𝐸
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ𝜂
+
+(︁
+
+−
+
+∇ × ̃︀𝐸𝑛+1
+
+ℎ𝜂 , 𝐻
+
+)︁
+
+𝑛+1
+ℎ𝜂
+
+=
+
+[︁(︁
+
+1
+2
+
+𝐻 𝑛+ 1
+
+2
+
+ℎ𝜂
+
+, ∇ × ̃︀𝐸𝑛
+ℎ𝜂
+
+)︁
+
+(︁
+
+−
+
+𝐻 𝑛+ 3
+
+2
+
+ℎ𝜂
+
+, ∇ × ̃︀𝐸𝑛+1
+
+ℎ𝜂
+
+)︁]︁
+
+.
+
+Choosing ̃︀𝜑ℎ = ̃︀𝐸
+
+𝑛+ 1
+2
+
+ℎ𝜂
+
+in (50) and ̂︀𝜓ℎ = 𝜇0𝐻
+
+𝑛+1
+ℎ𝜂
+
+in (53), respectively, we have
+
+𝜀0
+2𝜏
+
+(︂⃦
+⃦ ̃︀𝐸𝑛+1
+⃦
+(︂
+
+ℎ𝜂
+
+= 𝜀0
+
+and
+
+⃦
+2
+⃦
+⃦
+
+−
+
+⃦
+⃦ ̃︀𝐸𝑛
+⃦
+
+ℎ𝜂
+
+2)︂
+
+⃦
+⃦
+⃦
+
+− 𝜀0
+
+(︂
+𝛿𝜏 𝐸𝑛+ 1
+
+2
+
+ℎ𝜂
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ𝜂
+
+, ̃︀𝐸
+
+(︂
+
+−
+
+Σ**𝐸
+
+𝑛+ 1
+2
+ℎ𝜂
+
+, ̃︀𝐸
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ𝜂
+
++ 𝜀0
+
+(︂
+𝛿𝜏 𝐸𝑛+ 1
+
+2
+
+𝜉
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ𝜂
+
+, ̃︀𝐸
+
+𝛿𝜏 ̃︀𝐸𝑛+ 1
+
+2
+
+𝜉
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ𝜂
+
++
+
+, ̃︀𝐸
+
+(︂ 1
+𝜏
+
+∫︁ 𝑡𝑛+1
+
+𝑡𝑛
+
+(︁
+
+Σ**
+
+Π𝑐𝐸
+
+𝑛+ 1
+
+2 − 𝐸(𝑠)
+
+)︁
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ𝜂
+
+d𝑠, ̃︀𝐸
+
+:= Est7 + Est8,
+
+(57)
+
+(︂
+
+𝜎𝑥𝜎𝑦 ̃︀𝐻
+
+𝑛+1
+ℎ𝜂 , 𝐻
+
+𝑛+1
+ℎ𝜂
+
+)︂
+
+(︁
+
+− 𝜇0
+
+𝛿𝜏 𝐻 *,𝑛+1
+ℎ𝜂
+
+, 𝐻
+
+𝑛+1
+ℎ𝜂
+
+)︁
+
++ 𝜀−2
+
+0 𝜇0
+⎞
+
+(︂⃦
+⃦𝐻 𝑛+ 3
+⃦
+
+ℎ𝜂
+
+2
+
+⃦
+2
+⃦
+⃦
+
+−
+
+⃦
+⃦𝐻 𝑛+ 1
+⃦
+
+ℎ𝜂
+
+2
+
+2)︂
+
+⃦
+⃦
+⃦
+
++ 𝜀−1
+
+0 𝜇0
+
+⃦
+⃦
+⃦(𝜎𝑥 + 𝜎𝑦)
+
+1
+2 𝐻
+
+𝑛+1
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+
+𝜇0
+2𝜏
+
+⎛
+
+= 𝜀−1
+
+0 𝜇0
+
+⎝
+
+1
+𝜏
+
+⎛
+
++ 𝜀−2
+
+0 𝜇0
+
+⎝
+
+(︁
+
+(𝜎𝑥 + 𝜎𝑦)
+
+𝐻(𝑠) − 𝑃ℎ𝐻
+
+𝑛+1)︁
+
+∫︁ 𝑡𝑛+ 3
+
+2
+
+𝑡𝑛+ 1
+2
+
+1
+𝜏
+
+∫︁ 𝑡𝑛+ 3
+
+2
+
+𝑡𝑛+ 1
+2
+
+(︂
+
+𝜎𝑥𝜎𝑦
+
+̃︀𝐻(𝑠) − 𝑃ℎ ̃︀𝐻
+
+𝑛+1)︂
+
+d𝑠, 𝐻
+
+𝑛+1
+ℎ𝜂
+
+⎠
+
+⎞
+
+d𝑠, 𝐻
+
+𝑛+1
+ℎ𝜂
+
+⎠ := Est9 + Est10,
+
+(58)
+
+where we dropped the following two zero terms by the 𝐿2 projection property:
+
+(︁
+𝛿𝜏 𝐻 𝑛+1
+𝜉
+
+𝜇0
+
+, 𝐻
+
+𝑛+1
+ℎ𝜂
+
+)︁
+
+, 𝜇0
+
+(︁
+
+𝛿𝜏 𝐻 *,𝑛+1
+𝜉
+
+, 𝐻
+
+𝑛+1
+ℎ𝜂
+
+)︁
+
+= 0.
+
+Choosing ̃︀𝜓ℎ = 𝜀−2
+
+0 𝜇0 ̃︀𝐻
+
+𝑛+1
+
+ℎ𝜂
+
+in (52), we have
+
+𝜀−2
+0 𝜇0
+2𝜏
+
+(︂⃦
+⃦
+⃦(𝜎𝑥𝜎𝑦)
+
+1
+
+2 ̃︀𝐻 𝑛+ 3
+
+ℎ𝜂
+
+2
+
+⃦
+2
+⃦
+⃦
+
+−
+
+⃦
+⃦
+⃦(𝜎𝑥𝜎𝑦)
+
+(︂
+
+= 𝜀−2
+
+0 𝜇0
+
+𝛿𝜏 ̃︀𝐻 𝑛+1
+𝜉
+
+, 𝜎𝑥𝜎𝑦 ̃︀𝐻
+
+𝑛+1
+
+)︂
+
+ℎ𝜂
+
+:= Est11 + Est12.
+
+Adding (56)–(59) together, we have
+
+2)︂
+
+⃦
+⃦
+⃦
+⎛
+
+− 𝜀−2
+
+0 𝜇0
+
+⎝
+
+1
+
+2 ̃︀𝐻 𝑛+ 1
+
+ℎ𝜂
+
+2
+
+− 𝜀−2
+
+0 𝜇0
+
+(︂
+
+𝐻
+
+𝑛+1
+ℎ𝜂 , 𝜎𝑥𝜎𝑦 ̃︀𝐻
+
+𝑛+1
+
+)︂
+
+ℎ𝜂
+
+𝐻(𝑠) − 𝑃ℎ𝐻
+
+𝑛+1)︁
+
+d𝑠, 𝜎𝑥𝜎𝑦 ̃︀𝐻
+
+⎞
+
+⎠
+
+𝑛+1
+
+ℎ𝜂
+
+1
+𝜏
+
+∫︁ 𝑡𝑛+ 3
+
+2
+
+(︁
+
+𝑡𝑛+ 1
+2
+
+(59)
+
+𝜀0
+2𝜏
+
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+
+(︂⃦
+⃦ ̃︀𝐸𝑛+1
+⃦
+𝜀−2
+0 𝜇0
+2𝜏
+
++
+
+−
+
+⃦
+⃦ ̃︀𝐸𝑛
+⃦
+
+ℎ𝜂
+
+⃦
+⃦
+⃦
+
+(︂⃦
+⃦
+⃦(𝜎𝑥𝜎𝑦)
+
+2)︂
+
++
+
+𝜇0
+2𝜏
+2 ̃︀𝐻 𝑛+ 3
+
+ℎ𝜂
+
+2
+
+1
+
+2
+
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+
+(︂⃦
+⃦𝐻 𝑛+ 3
+⃦
+⃦
+⃦
+⃦(𝜎𝑥𝜎𝑦)
+
+−
+
+⃦
+2
+⃦
+⃦
+
+−
+
+2
+
+ℎ𝜂
+
+⃦
+⃦𝐻 𝑛+ 1
+⃦
+⃦
+⃦
+⃦
+
+2 ̃︀𝐻 𝑛+ 1
+
+ℎ𝜂
+
+1
+
+2
+
+2)︂
+
+⃦
+⃦
+⃦
+2)︂
+
++ 𝜀−1
+
+0 𝜇0
+
+⃦
+⃦
+⃦(𝜎𝑥 + 𝜎𝑦)
+⃦
+2
+⃦
+⃦
+
+(︂⃦
+⃦∇ × ̃︀𝐸𝑛+1
+⃦
+
+ℎ𝜂
+
++
+
+𝜏
+8𝜇0
+
+1
+2 𝐻
+
+𝑛+1
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+
+−
+
+⃦
+⃦∇ × ̃︀𝐸𝑛
+⃦
+
+ℎ𝜂
+
+2)︂
+
+⃦
+⃦
+⃦
+
+(︂
+
+=
+
+(Σ** − Σ**)𝐸
+
+𝑛+ 1
+2
+ℎ𝜂
+
+, ̃︀𝐸
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ𝜂
+
++
+
+[︁(︁
+
+1
+2
+
+𝐻 𝑛+ 1
+
+2
+
+ℎ𝜂
+
+, ∇ × ̃︀𝐸𝑛
+ℎ𝜂
+
+)︁
+
+(︁
+
+−
+
+𝐻 𝑛+ 3
+
+2
+
+ℎ𝜂
+
+, ∇ × ̃︀𝐸𝑛+1
+
+ℎ𝜂
+
+)︁]︁
+
++
+
+12
+∑︁
+
+𝑖=3
+
+Est𝑖.
+
+(60)
+
+
+--- Page 12 ---
+632
+
+Y. HUANG ET AL.
+
+Choosing ̃︀𝜑 = ̃︀𝐸
+
+𝑛+ 1
+2
+ℎ𝜂 − 𝐸
+
+𝑛+ 1
+2
+ℎ𝜂
+
+in (50), we obtain
+
+𝜀0
+2𝜏
+
+(︂⃦
+⃦ ̃︀𝐸𝑛+1
+⃦
+(︂
+
+= 𝜀0
+
++
+
+2
+
+𝜉
+
+𝛿𝜏 ( ̃︀𝐸𝑛+ 1
+(︂ 1
+∫︁ 𝑡𝑛+1
+𝜏
+
+𝑡𝑛
+
+ℎ𝜂 − 𝐸𝑛+1
+
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+
+−
+
+⃦
+⃦ ̃︀𝐸𝑛
+⃦
+
+ℎ𝜂 − 𝐸𝑛
+ℎ𝜂
+
+2)︂
+
+⃦
+⃦
+⃦
+
+(︂
+
+−
+
+Σ**𝐸
+
+𝑛+ 1
+2
+ℎ𝜂
+
+, ̃︀𝐸
+
+𝑛+ 1
+2
+ℎ𝜂 − 𝐸
+
+𝑛+ 1
+2
+ℎ𝜂
+
+)︂
+
+− 𝐸𝑛+ 1
+
+2
+
+𝜉
+
+𝑛+ 1
+2
+ℎ𝜂 − 𝐸
+
+𝑛+ 1
+2
+ℎ𝜂
+
+), ̃︀𝐸
+
+)︂
+
+(︁
+
+Σ**
+
+Π𝑐𝐸
+
+𝑛+ 1
+
+2 − 𝐸(𝑠)
+
+)︁
+
+d𝑠, ̃︀𝐸
+
+𝑛+ 1
+2
+ℎ𝜂 − 𝐸
+
+𝑛+ 1
+2
+ℎ𝜂
+
+)︂
+
+:= Est13 + Est14.
+
+(61)
+
+Adding (60) and (61) together, then summing up the result from 𝑛 = 0 to 𝑚, we obtain
+
+(︂⃦
+⃦ ̃︀𝐸𝑚+1
+⃦
+
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+
+−
+
+⃦
+⃦ ̃︀𝐸0
+⃦
+
+ℎ𝜂
+
+2)︂
+
+⃦
+⃦
+⃦
+
++
+
+𝜀0
+2
+
+𝜇0
+2
+
+(︂⃦
+⃦𝐻 𝑚+ 3
+⃦
+
+ℎ𝜂
+
+2
+
+⃦
+2
+⃦
+⃦
+
+−
+
+⃦
+⃦
+⃦𝐻
+
+1
+2
+ℎ𝜂
+
+2)︂
+
+⃦
+⃦
+⃦
+
++ 𝜏 𝜀−1
+
+0 𝜇0
+
+𝑚
+∑︁
+
+𝑛=0
+
+⃦
+⃦
+⃦(𝜎𝑥 + 𝜎𝑦)
+
+1
+2 𝐻
+
+𝑛+1
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+
+(︂⃦
+⃦
+⃦(𝜎𝑥𝜎𝑦)
+
+1
+
+2 ̃︀𝐻 𝑚+ 3
+
+ℎ𝜂
+
+2
+
+⃦
+2
+⃦
+⃦
+
+−
+
+⃦
+⃦
+⃦(𝜎𝑥𝜎𝑦)
+
+1
+
+2 ̃︀𝐻
+
+1
+2
+ℎ𝜂
+
+2)︂
+
+⃦
+⃦
+⃦
+
++
+
+𝜏 2
+8𝜇0
+
+(︂⃦
+⃦∇ × ̃︀𝐸𝑚+1
+⃦
+
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+
+−
+
+⃦
+⃦∇ × ̃︀𝐸0
+⃦
+
+ℎ𝜂
+
+2)︂
+
+⃦
+⃦
+⃦
+
++
+
++
+
+𝜀−2
+0 𝜇0
+2
+(︂⃦
+⃦ ̃︀𝐸𝑚+1
+⃦
+(︂
+
+𝜀0
+2
+
+𝑚
+∑︁
+
+ℎ𝜂 − 𝐸𝑚+1
+
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+
+−
+
+⃦
+⃦ ̃︀𝐸0
+⃦
+
+ℎ𝜂 − 𝐸0
+ℎ𝜂
+
+2)︂
+
+⃦
+⃦
+⃦
+
+= 𝜏
+
+(Σ** − Σ**)𝐸
+
+𝑛+ 1
+2
+ℎ𝜂
+
+, ̃︀𝐸
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ𝜂
+
+𝑛=0
+
++ 𝜏
+
+𝑚
+∑︁
+
+(︂
+
+𝑛=0
+
+Σ**𝐸
+
+𝑛+ 1
+2
+ℎ𝜂
+
+, ̃︀𝐸
+
+𝑛+ 1
+2
+ℎ𝜂 − 𝐸
+
+𝑛+ 1
+2
+ℎ𝜂
+
++
+
+)︂
+
+[︁(︁
+
+𝜏
+2
+
+1
+2
+
+𝐻
+
+ℎ𝜂, ∇ × ̃︀𝐸0
+
+ℎ𝜂
+
++ 𝜏
+
+𝑚
+∑︁
+
+14
+∑︁
+
+𝑛=0
+
+𝑖=3
+
+Est𝑖.
+
+(︁
+
+)︁
+
+−
+
+𝐻 𝑚+ 3
+
+2
+
+ℎ𝜂
+
+, ∇ × ̃︀𝐸𝑚+1
+
+ℎ𝜂
+
+)︁]︁
+
+(62)
+
+Now we need to bound those right hand side terms of (62). First, similar to (36) and (37) in the stability
+
+analysis, respectively, we have
+
+𝑚
+∑︁
+
+(︂
+
+𝜏
+
+𝑛=0
+
+(Σ** − Σ**)𝐸
+
+𝑛+ 1
+2
+ℎ𝜂
+
+, ̃︀𝐸
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ𝜂
+
+≤ 𝜏 𝜀−1
+
+0
+
++
+
+𝜀0
+2
+
+(︀‖𝜎𝑥‖∞ + ‖𝜎𝑦‖∞
+(︂⃦
+⃦𝐸𝑛+1
+⃦
+
+ℎ𝜂 − ̃︀𝐸𝑛+1
+
+ℎ𝜂
+
+𝑚
+∑︁
+
+)︀
+
+𝑛=0
+⃦
+2
+⃦
+⃦
+
++
+
+[︂ 3𝜀0
+4
+
+(︂⃦
+⃦ ̃︀𝐸𝑛+1
+⃦
+
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+
++
+
+⃦
+⃦ ̃︀𝐸𝑛
+⃦
+
+ℎ𝜂
+
+2)︂
+
+⃦
+⃦
+⃦
+
+⃦
+⃦𝐸𝑛
+⃦
+
+ℎ𝜂 − ̃︀𝐸𝑛
+ℎ𝜂
+
+2)︂]︂
+
+⃦
+⃦
+⃦
+
+,
+
+and
+
+𝑚
+∑︁
+
+(︂
+
+𝜏
+
+𝑛=0
+
+Σ**𝐸
+
+𝑛+ 1
+2
+ℎ𝜂
+
+, ̃︀𝐸
+
+𝑛+ 1
+2
+ℎ𝜂 − 𝐸
+
+𝑛+ 1
+2
+ℎ𝜂
+
+)︂
+
+≤ 𝜏 𝜀−1
+
+0
+
++
+
+𝜀0
+4
+
+(︀‖𝜎𝑥‖∞ + ‖𝜎𝑦‖∞
+(︂⃦
+⃦ ̃︀𝐸𝑛+1
+⃦
+
+ℎ𝜂 − 𝐸𝑛+1
+
+ℎ
+
+𝑚
+∑︁
+
+)︀
+
+𝑛=0
+⃦
+2
+⃦
+⃦
+
++
+
+[︂ 𝜀0
+4
+
+(︂⃦
+⃦ ̃︀𝐸𝑛+1
+⃦
+
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+
++
+
+⃦
+⃦ ̃︀𝐸𝑛
+⃦
+
+ℎ𝜂
+
+2)︂
+
+⃦
+⃦
+⃦
+
+⃦
+⃦ ̃︀𝐸𝑛
+⃦
+
+ℎ𝜂 − 𝐸𝑛
+ℎ𝜂
+
+2)︂]︂
+
+⃦
+⃦
+⃦
+
+.
+
+(63)
+
+(64)
+
+Moving the second right hand side term of (62) to combine with some left hand side terms, we have
+
+𝜇0
+2
+
+⃦
+⃦𝐻 𝑚+ 3
+⃦
+
+ℎ𝜂
+
+2
+
+⃦
+2
+⃦
+⃦
+
++
+
+(︁
+
+𝜏
+2
+
+𝐻 𝑚+ 3
+
+2
+
+ℎ𝜂
+
+, ∇ × ̃︀𝐸𝑚+1
+
+ℎ𝜂
+
+)︁
+
++
+
+𝜏 2
+8𝜇0
+
+⃦
+⃦∇ × ̃︀𝐸𝑚+1
+⃦
+
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+
+=
+
+√
+
+⃦
+⃦
+⃦
+⃦
+
+1
+2
+
+𝜇0𝐻 𝑚+ 3
+
+ℎ𝜂 +
+
+2
+
+𝜏
+√
+𝜇0
+2
+
+∇ × ̃︀𝐸𝑚+1
+
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+⃦
+
+.
+
+(65)
+
+Now we need to estimate the rest right hand side items in (62). Using the arithmetic-geometric mean inequality
+
+(𝑎, 𝑏) ≤ 𝛿‖𝑎‖2 +
+
+1
+4𝛿
+
+‖𝑏‖2,
+
+∀ 𝛿 > 0,
+
+(66)
+
+
+--- Page 13 ---
+FINITE ELEMENT SCHEME FOR AN EQUIVALENT B´ERENGER’S PML MODEL
+
+633
+
+the inequality ⃦
+
+⃦ 𝑎+𝑏
+2
+
+⃦
+2
+⃦
+
+≤ 1
+
+2 (‖𝑎‖2 + ‖𝑏‖2), Lemma 1 and the interpolation error estimate, we have
+
+𝜏
+
+𝑚
+∑︁
+
+𝑛=0
+
+𝑚
+∑︁
+
+Est3 = 𝜏
+
+(︂(︂ 1
+𝜏
+
+∫︁ 𝑡𝑛+1
+
+𝑡𝑛
+
+𝐸(𝑠)d𝑠 − 𝐸𝑛+ 1
+
+2 + 𝐸𝑛+ 1
+
+2 − Π𝑐𝐸𝑛+ 1
+
+2
+
+)︂
+
+, Σ** ̃︀𝐸
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ𝜂
+
+𝑛=0
+𝑚
+∑︁
+
+≤ 𝜏
+
+≤ 𝜏
+
+(︀‖𝜎𝑥‖∞ + ‖𝜎𝑦‖∞
+
+𝑛=0
+𝑚
+∑︁
+
+(︀‖𝜎𝑥‖∞ + ‖𝜎𝑦‖∞
+
+𝑛=0
+
++
+
+1
+2𝛿3
+
+(︂ 𝜏 3
+4
+
+∫︁ 𝑡𝑛+1
+
+𝑡𝑛
+
+∫︁ 𝑡𝑛+1
+
+𝐸(𝑠)d𝑠 − 𝐸𝑛+ 1
+
+2
+
+[︃
+
+)︀
+
+[︃
+
+)︀
+
+⃦
+⃦
+̃︀𝐸
+⃦
+⃦
+
+𝑛+ 1
+2
+
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+⃦
+
+𝛿3
+
++
+
+(︃⃦
+⃦
+⃦
+⃦
+
+1
+𝜏
+
+1
+2𝛿3
+
+(︂⃦
+⃦ ̃︀𝐸𝑛+1
+⃦
+
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+
++
+
+⃦
+⃦ ̃︀𝐸𝑛
+⃦
+
+ℎ𝜂
+
+𝛿3
+2
+
+⃦
+⃦
+⃦
+
+𝑡𝑛
+2)︂
+
+‖𝜕𝑡𝑡𝐸‖2 d𝑡 + 𝐶ℎ2𝑙⃦
+⃦𝐸𝑛+ 1
+⃦
+
+2
+
+⃦
+2
+⃦
+⃦
+
+𝐻 𝑙(curl;Ω)
+
+)︂]︃
+
+.
+
+2
+⃦
+⃦
+⃦
+⃦
+
++
+
+⃦
+⃦𝐸𝑛+ 1
+⃦
+
+𝜉
+
+2
+
+2)︃]︃
+⃦
+⃦
+⃦
+
+(67)
+
+Let us introduce the wave propagation speed notation 𝐶𝑣 = 1√
+
+𝜀0𝜇0
+
+. Using the fact that
+
+(︂
+
+𝑃ℎ𝐻 𝑛+ 1
+
+2 − 𝐻 𝑛+ 1
+
+2 , ∇ × ̃︀𝐸
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ𝜂
+
+= 0,
+
+integration by parts and Lemma 1, we have
+
+𝑚
+∑︁
+
+Est4 = 𝜏
+
+𝜏
+
+𝑚
+∑︁
+
+𝑛=0
+
+(︂ 1
+𝜏
+(︂ 1
+𝜏
+[︃
+
+𝑛=0
+𝑚
+∑︁
+
+𝑛=0
+
+𝑡𝑛
+
+= 𝜏
+
+∫︁ 𝑡𝑛+1
+
+𝑡𝑛
+∫︁ 𝑡𝑛+1
+
+(︁
+
+𝐻 𝑛+ 1
+
+2 − 𝐻(𝑠)
+
+)︁
+
+d𝑠, ∇ × ̃︀𝐸
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ𝜂
+
+(︁
+
+∇ ×
+
+𝐻 𝑛+ 1
+
+2 − 𝐻(𝑠)
+
+)︁
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ𝜂
+
+d𝑠, ̃︀𝐸
+
+≤ 𝜏 𝐶𝑣
+
+≤ 𝜏 𝐶𝑣
+
+𝑚
+∑︁
+
+𝑛=0
+𝑚
+∑︁
+
+𝑛=0
+
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+⃦
+
+𝑛+ 1
+2
+
+𝜀0𝛿4
+
+⃦
+⃦
+̃︀𝐸
+⃦
+⃦
+(︂⃦
+[︂ 𝛿4𝜀0
+⃦ ̃︀𝐸𝑛+1
+⃦
+2
+
+ℎ𝜂
+
++
+
+𝜇0
+4𝛿4
+
+·
+
+𝜏 3
+4
+
+⃦
+2
+⃦
+⃦
+
++
+
+⃦
+⃦ ̃︀𝐸𝑛
+⃦
+
+ℎ𝜂
+
+⃦
+⃦
+⃦
+
+𝑡𝑛
+2)︂
+
+∫︁ 𝑡𝑛+1
+
+]︃
+‖∇ × 𝜕𝑡𝑡𝐻‖2 d𝑡
+
++
+
+𝜇0
+4𝛿4
+
+·
+
+𝜏 3
+4
+
+∫︁ 𝑡𝑛+1
+
+]︂
+‖∇ × 𝜕𝑡𝑡𝐻‖2 d𝑡
+.
+
+𝑡𝑛
+
+(68)
+
+Using integration by parts, Lemma 1 and the interpolation error estimate, we obtain
+
+𝜏
+
+𝑚
+∑︁
+
+𝑛=0
+
+Est5 = −
+
+𝜏 3
+4𝜇0
+
+𝜏 3𝐶 2
+𝑣
+4
+
+=
+
+≤
+
+𝑚
+∑︁
+
+(︂
+
+∇ × 𝛿𝜏 Π𝑐 ̃︀𝐸𝑛+ 1
+
+2 , ∇ × ̃︀𝐸
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ𝜂
+
+𝑛=0
+𝑚
+∑︁
+
+𝑛=0
+
+[︂(︂
+
+𝜀0
+
+𝛿𝜏 ∇ ×
+
+(︁
+
+̃︀𝐸𝑛+ 1
+
+2 − Π𝑐 ̃︀𝐸𝑛+ 1
+
+2
+
+)︁
+
+, ∇ × ̃︀𝐸
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ𝜂
+
+−
+
+(︂
+
+𝛿𝜏 ∇ × ∇ × ̃︀𝐸𝑛+ 1
+
+2 , ̃︀𝐸
+
+𝑛+ 1
+2
+
+)︂]︂
+
+ℎ𝜂
+
+𝑚
+∑︁
+
+𝑛=0
+
+1
+4𝛿5
+
+(︂ 𝜏 2𝐶 2
+𝑣
+4
+
+)︂2 ∫︁ 𝑡𝑛+1
+
+𝑡𝑛
+
+𝜀0ℎ−2⃦
+⃦
+⃦𝜕𝑡∇ ×
+
+(︁
+
+̃︀𝐸 − Π𝑐 ̃︀𝐸
+
+)︁⃦
+2
+⃦
+⃦
+
+d𝑡 + 𝜏
+
++
+
+𝑚
+∑︁
+
+𝑛=0
+
+1
+4𝛿5
+
+(︂ 𝜏 2𝐶 2
+𝑣
+4
+
+)︂2 ∫︁ 𝑡𝑛+1
+
+𝑡𝑛
+
+⃦
+⃦
+⃦𝜕𝑡∇ × ∇ × ̃︀𝐸
+
+⃦
+2
+⃦
+⃦
+
+𝜀0
+
+𝑚
+∑︁
+
+d𝑡 + 𝜏
+
+𝛿5𝜀0
+
+𝑚
+∑︁
+
+𝛿5𝜀0ℎ2
+
+𝑛=0
+⃦
+⃦
+̃︀𝐸
+⃦
+⃦
+
+𝑛+ 1
+2
+
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+⃦
+
+⃦
+⃦
+∇ × ̃︀𝐸
+⃦
+⃦
+
+𝑛+ 1
+2
+
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+⃦
+
+≤
+
+𝑚
+∑︁
+
+𝑛=0
+
+𝜏 4𝐶 4
+𝑣
+32𝛿5
+
+∫︁ 𝑡𝑛+1
+
+𝑡𝑛
+
+(︂
+
+𝜀0
+
+𝐶ℎ2(𝑙−1)⃦
+⃦
+⃦∇ × 𝜕𝑡 ̃︀𝐸
+
+⃦
+2
+⃦
+⃦
+
+𝐻 𝑙(curl,Ω)
+
++
+
++ 𝜏 (𝐶 2
+
+inv + 1)
+
+𝑚
+∑︁
+
+𝑛=0
+
+𝛿5𝜀0
+2
+
+(︂⃦
+⃦ ̃︀𝐸𝑛+1
+⃦
+
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+
+⃦
+⃦ ̃︀𝐸𝑛
+⃦
+
+ℎ𝜂
+
+2)︂
+,
+
+⃦
+⃦
+⃦
+
++
+
+𝑛=0
+⃦
+⃦
+⃦∇ × ∇ × 𝜕𝑡 ̃︀𝐸
+
+2)︂
+
+⃦
+⃦
+⃦
+
+d𝑡
+
+(69)
+
+
+--- Page 14 ---
+634
+
+Y. HUANG ET AL.
+
+where in the last step we used the standard inverse estimate ([22], Chap. 3): ‖∇ × ̃︀𝐸
+
+𝑛+ 1
+2
+ℎ𝜂 ‖ ≤ 𝐶invℎ−1‖ ̃︀𝐸
+
+𝑛+ 1
+2
+ℎ𝜂 ‖.
+
+Similarly, we have
+
+𝜏
+
+𝑚
+∑︁
+
+𝑛=0
+
+Est6 = 𝜏
+
+𝑚
+∑︁
+
+⎛
+
+⎝
+
+𝑛=0
+
+1
+𝜏
+
+∫︁ 𝑡𝑛+ 3
+
+2
+
+∇ ×
+
+(︁
+
+̃︀𝐸(𝑠) − Π𝑐 ̃︀𝐸𝑛+1)︁
+
+⎞
+
+d𝑠, 𝐻
+
+𝑛+1
+ℎ𝜂
+
+⎠
+
+𝑚
+∑︁
+
+≤ 𝜏 𝐶𝑣
+
+𝑛=0
+
+⎡
+
+⎢
+⎣
+
+𝑡𝑛+ 1
+2
+⃦
+⃦
+⃦
+⃦
+⃦
+⃦
+⎛
+
+𝜀0
+4𝛿6
+
+1
+𝜏
+
+≤ 𝜏 𝐶𝑣
+
+𝑚
+∑︁
+
+𝑛=0
+
+𝜀0
+2𝛿6
+
+𝜏 3
+4
+
+⎝
+
+𝑡𝑛+ 1
+2
+
+∫︁ 𝑡𝑛+ 3
+
+2
+
+𝑡𝑛+ 1
+2
+
+⃦
+⃦
+⃦∇ × 𝜕𝑡𝑡 ̃︀𝐸
+
+⃦
+2
+⃦
+⃦
+
+∫︁ 𝑡𝑛+ 3
+
+2
+
+(︁
+
+∇ ×
+
+̃︀𝐸(𝑠) − ̃︀𝐸𝑛+1)︁
+
+d𝑠 + ∇ ×
+
+(︁
+
+̃︀𝐸𝑛+1 − Π𝑐 ̃︀𝐸𝑛+1)︁
+
++ 𝜇0𝛿6
+
+⃦
+⃦
+⃦𝐻
+
+𝑛+1
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+
+⎤
+
+⎥
+⎦
+
+⃦
+2
+⃦
+⃦
+⃦
+⃦
+⃦
+
+d𝑡 + 𝐶ℎ2𝑙⃦
+⃦
+
+⃦ ̃︀𝐸𝑛+1⃦
+
+2
+⃦
+⃦
+
+𝐻 𝑙(curl;Ω)
+
+⎞
+
+⎠ + 𝜏 𝐶𝑣𝛿6
+
+𝑚
+∑︁
+
+𝑛=0
+
+⃦
+⃦
+⃦𝐻
+
+𝑛+1
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+
+𝜇0
+
+. (70)
+
+By Lemma 1 and the interpolation error estimate, we have
+
+𝜏
+
+𝑚
+∑︁
+
+𝑛=0
+
+Est7 = 𝜏
+
+≤ 𝜏
+
+𝑚
+∑︁
+
+𝑛=0
+𝑚
+∑︁
+
+𝑛=0
+
+(︂
+
+𝜀0
+
+𝛿𝜏 ̃︀𝐸𝑛+ 1
+
+2
+
+𝜉
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ𝜂
+
+, ̃︀𝐸
+
+𝛿7𝜀0
+2
+
+(︂⃦
+⃦ ̃︀𝐸𝑛+1
+⃦
+
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+
++
+
+⃦
+⃦ ̃︀𝐸𝑛
+⃦
+
+ℎ𝜂
+
+2)︂
+
+⃦
+⃦
+⃦
+
++
+
+𝜀0
+4𝛿7
+
+∫︁ 𝑡𝑚+1
+
+0
+
+𝐶ℎ2𝑙⃦
+⃦
+⃦𝜕𝑡 ̃︀𝐸
+
+⃦
+2
+⃦
+⃦
+
+𝐻 𝑙(curl,Ω)
+
+d𝑡.
+
+(71)
+
+Similar to the analysis of Est3, we easily obtain
+
+𝜏
+
+𝑚
+∑︁
+
+𝑛=0
+
+𝑚
+∑︁
+
+Est8 = 𝜏
+
+(︂ 1
+𝜏
+
+∫︁ 𝑡𝑛+1
+
+[︁(︁
+
+𝑡𝑛
+
+𝑛+ 1
+
+2 − 𝐸
+
+𝑛+ 1
+
+2 )︁
+
+(︁
+
+𝐸
+
++
+
+Π𝑐𝐸
+
+𝑛+ 1
+
+2 − 𝐸(𝑠)
+
+)︁]︁
+
+d𝑠, Σ** ̃︀𝐸
+
+𝑛+ 1
+2
+
+)︂
+
+ℎ𝜂
+
+𝑛=0
+𝑚
+∑︁
+
+≤ 𝜏
+
+[︃
+(‖𝜎𝑥‖∞ + ‖𝜎𝑦‖∞)
+
+(︂⃦
+⃦ ̃︀𝐸𝑛+1
+⃦
+
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+
++
+
+⃦
+⃦ ̃︀𝐸𝑛
+⃦
+
+ℎ𝜂
+
+2)︂
+
+⃦
+⃦
+⃦
+
+𝛿8
+2
+
+𝑛=0
+
++
+
+1
+2𝛿8
+
+(︂ 𝜏 3
+4
+
+∫︁ 𝑡𝑛+1
+
+𝑡𝑛
+
+‖𝜕𝑡𝑡𝐸‖2 d𝑡 + 𝐶ℎ2𝑙⃦
+⃦
+⃦𝐸
+
+𝑛+ 1
+
+2 ⃦
+2
+⃦
+⃦
+
+𝐻 𝑙(curl;Ω)
+
+)︂]︃
+.
+
+(72)
+
+Similarly, we can obtain
+
+𝜏
+
+𝑚
+∑︁
+
+𝑛=0
+
+Est9 = 𝜏
+
+⎛
+
+𝜀−1
+0 𝜇0
+
+⎝
+
+𝑚
+∑︁
+
+𝑛=0
+
+1
+𝜏
+
+∫︁ 𝑡𝑛+ 3
+
+2
+
+𝑡𝑛+ 1
+2
+
+(︁
+
+(𝜎𝑥 + 𝜎𝑦)
+
+𝐻(𝑠) − 𝑃ℎ𝐻
+
+𝑛+1)︁
+
+⎞
+
+d𝑠, 𝐻
+
+𝑛+1
+ℎ𝜂
+
+⎠
+
+≤
+
+𝜏 𝜀−1
+0 𝜇0
+2
+
+𝑚
+∑︁
+
+𝑛=0
+
+⃦
+⃦
+⃦(𝜎𝑥 + 𝜎𝑦)
+
+1
+2 𝐻
+
+𝑛+1
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+
++
+
+1
+2
+
+𝜏 (︀‖𝜎𝑥‖∞ + ‖𝜎𝑦‖∞
+
+)︀𝜀−1
+
+0 𝜇0
+
+𝑚
+∑︁
+
+𝑛=0
+
+≤
+
+𝜏 𝜀−1
+0 𝜇0
+2
+
+𝑚
+∑︁
+
+𝑛=0
+
+⃦
+⃦
+⃦(𝜎𝑥 + 𝜎𝑦)
+
+1
+2 𝐻
+
+𝑛+1
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+
+⎛
+
+⎝
+
+⃦
+⃦
+⃦
+⃦
+⃦
+⃦
+
+1
+𝜏
+
+∫︁ 𝑡𝑛+ 3
+
+2
+
+𝑡𝑛+ 1
+2
+
+𝐻(𝑠)d𝑠 − 𝐻
+
+𝑛+1
+
+⎞
+
+⎠ +
+
+(︁
+
+𝐻
+
+𝑛+1
+
+− 𝑃ℎ𝐻
+
+𝑛+1)︁
+
+⃦
+2
+⃦
+⃦
+⃦
+⃦
+⃦
+
++ 𝜏 (︀‖𝜎𝑥‖∞ + ‖𝜎𝑦‖∞
+
+)︀𝜀−1
+
+0 𝜇0
+
+[︃
+
+𝑚
+∑︁
+
+𝑛=0
+
+𝜏 3
+4
+
+∫︁ 𝑡𝑛+ 3
+
+2
+
+𝑡𝑛+ 1
+2
+
+‖𝜕𝑡𝑡𝐻‖2 d𝑡 + 𝐶ℎ2𝑙⃦
+⃦
+⃦𝐻
+
+𝑛+1⃦
+2
+⃦
+⃦
+
+𝐻 𝑙(Ω)
+
+]︃
+
+,
+
+(73)
+
+
+--- Page 15 ---
+FINITE ELEMENT SCHEME FOR AN EQUIVALENT B´ERENGER’S PML MODEL
+
+635
+
+and
+
+𝜏
+
+𝑚
+∑︁
+
+𝑛=0
+
+Est10 = 𝜏
+
+⎛
+
+𝜀−2
+0 𝜇0
+
+⎝
+
+𝑚
+∑︁
+
+𝑛=0
+
+1
+𝜏
+
+∫︁ 𝑡𝑛+ 3
+
+2
+
+𝑡𝑛+ 1
+2
+
+(︂
+
+𝜎𝑥𝜎𝑦
+
+̃︀𝐻(𝑠) − 𝑃ℎ ̃︀𝐻
+
+𝑛+1)︂
+
+d𝑠, 𝐻
+
+⎞
+
+𝑛+1
+ℎ𝜂
+
+⎠
+
+≤ 𝜏 ‖𝜎𝑥‖∞‖𝜎𝑦‖∞𝜀−2
+
+0
+
+𝑚
+∑︁
+
+⎡
+
+⎣𝛿10𝜇0
+
+𝑛=0
+
+⃦
+⃦
+⃦𝐻
+
+𝑛+1
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+
++
+
+𝜇0
+2𝛿10
+
+⎛
+
+⎝
+
+𝜏 3
+4
+
+∫︁ 𝑡𝑛+ 3
+
+2
+
+𝑡𝑛+ 1
+2
+
+⃦
+⃦
+⃦𝜕𝑡𝑡 ̃︀𝐻
+
+⃦
+2
+⃦
+⃦
+
+d𝑡 + 𝐶ℎ2𝑙⃦
+⃦
+
+⃦ ̃︀𝐻 𝑛+1⃦
+
+2
+⃦
+⃦
+
+𝐻 𝑙(Ω)
+
+⎞
+
+⎤
+
+⎠
+
+⎦.
+
+By Lemma 1 and the projection error estimate, we have
+
+𝜏
+
+𝑚
+∑︁
+
+𝑛=0
+
+Est11 = 𝜏
+
+𝑚
+∑︁
+
+𝑛=0
+
+𝜀−2
+0 𝜇0
+
+(︂
+
+𝛿𝜏 ̃︀𝐻 𝑛+1
+𝜉
+
+, 𝜎𝑥𝜎𝑦 ̃︀𝐻
+
+𝑛+1
+
+)︂
+
+ℎ𝜂
+
+≤ 𝜏 𝜀−2
+
+0 𝜇0
+
+𝑚
+∑︁
+
+𝑛=0
+
+(︂⃦
+⃦
+⃦(𝜎𝑥𝜎𝑦)
+
+𝛿11
+2
+
+1
+
+2 ̃︀𝐻 𝑛+ 3
+
+ℎ𝜂
+
+2
+
+⃦
+2
+⃦
+⃦
+
++
+
+⃦
+⃦
+⃦(𝜎𝑥𝜎𝑦)
+
+1
+
+2 ̃︀𝐻 𝑛+ 1
+
+ℎ𝜂
+
+2
+
+2)︂
+
+⃦
+⃦
+⃦
+
++ 𝜀−2
+
+0 ‖𝜎𝑥‖∞‖𝜎𝑦‖∞
+
+1
+4𝛿11
+
+∫︁ 𝑡𝑚+ 3
+
+2
+
+𝑡 1
+2
+
+𝐶ℎ2𝑙𝜇0
+
+⃦
+⃦
+⃦𝜕𝑡 ̃︀𝐻
+
+⃦
+2
+⃦
+⃦
+
+𝐻 𝑙(Ω)
+
+d𝑡.
+
+Similar to Est10, we obtain
+
+𝜏
+
+𝑚
+∑︁
+
+𝑛=0
+
+Est12 = 𝜏
+
+⎛
+
+𝜀−2
+0 𝜇0
+
+⎝
+
+1
+𝜏
+
+𝑚
+∑︁
+
+𝑛=0
+
+∫︁ 𝑡𝑛+ 3
+
+2
+
+(︁
+
+𝑡𝑛+ 1
+2
+
+𝐻(𝑠) − 𝑃ℎ𝐻
+
+𝑛+1)︁
+
+d𝑠, 𝜎𝑥𝜎𝑦 ̃︀𝐻
+
+⎞
+
+⎠
+
+𝑛+1
+
+ℎ𝜂
+
+≤ 𝜏 𝜀−2
+
+0 𝜇0
+
+𝑚
+∑︁
+
+𝑛=0
+
+(︂⃦
+⃦
+⃦(𝜎𝑥𝜎𝑦)
+
+𝛿12
+2
+
+1
+
+2 ̃︀𝐻 𝑛+ 3
+
+ℎ𝜂
+
+2
+
+⃦
+2
+⃦
+⃦
+
++
+
+⃦
+⃦
+⃦(𝜎𝑥𝜎𝑦)
+
+1
+
+2 ̃︀𝐻 𝑛+ 1
+
+ℎ𝜂
+
+2
+
+2)︂
+
+⃦
+⃦
+⃦
+
+(74)
+
+(75)
+
++ 𝜏 𝜀−2
+
+0 ‖𝜎𝑥‖∞‖𝜎𝑦‖∞
+
+1
+2𝛿12
+
+[︃
+
+𝑚
+∑︁
+
+𝑛=0
+
+𝜏 3
+4
+
+∫︁ 𝑡𝑛+ 3
+
+2
+
+𝑡𝑛+ 1
+2
+
+𝜇0‖𝜕𝑡𝑡𝐻‖2 d𝑡 + 𝐶ℎ2𝑙𝜇0
+
+⃦
+⃦
+⃦𝐻
+
+𝑛+1⃦
+2
+⃦
+⃦
+
+𝐻 𝑙(Ω)
+
+]︃
+.
+
+(76)
+
+Finally, by Lemma 1 and the interpolation error estimate, we have
+
+(︂
+𝛿𝜏 ( ̃︀𝐸𝑛+ 1
+
+2
+
+𝜉
+
+𝜀0
+
+− 𝐸𝑛+ 1
+
+2
+
+𝜉
+
+𝑛+ 1
+2
+ℎ𝜂 − 𝐸
+
+𝑛+ 1
+2
+ℎ𝜂
+
+), ̃︀𝐸
+
+)︂
+
+𝛿13𝜀0
+2
+
+(︂⃦
+⃦ ̃︀𝐸𝑛+1
+⃦
+
+ℎ𝜂 − 𝐸𝑛+1
+
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+
++
+
+⃦
+⃦ ̃︀𝐸𝑛
+⃦
+
+ℎ𝜂 − 𝐸𝑛
+ℎ𝜂
+
+2)︂
+
+⃦
+⃦
+⃦
+
+𝜏
+
+𝑚
+∑︁
+
+𝑛=0
+
+𝐸𝑠𝑡13 = 𝜏
+
+≤ 𝜏
+
++
+
+𝑚
+∑︁
+
+𝑛=0
+𝑚
+∑︁
+
+𝑛=0
+1
+4𝛿13
+
+∫︁ 𝑡𝑚+1
+
+0
+
+𝐶ℎ2𝑙 · 𝜀0
+
+⃦
+⃦
+2
+⃦
+⃦
+⃦𝜕𝑡( ̃︀𝐸 − 𝐸)
+⃦
+
+𝐻 𝑙(curl,Ω)
+
+d𝑡,
+
+(77)
+
+and
+
+𝜏
+
+𝑚
+∑︁
+
+𝑛=0
+
+𝑚
+∑︁
+
+Est14 = 𝜏
+
+(︂ 1
+𝜏
+
+∫︁ 𝑡𝑛+1
+
+𝑡𝑛
+
+(︁
+
+Σ**
+
+Π𝑐𝐸
+
+𝑛=0
+
+𝑛+ 1
+
+2 − 𝐸(𝑠)
+
+)︁
+
+d𝑠, ̃︀𝐸
+
+𝑛+ 1
+2
+ℎ𝜂 − 𝐸
+
+𝑛+ 1
+2
+ℎ𝜂
+
+)︂
+
+≤ 𝜏 (‖𝜎𝑥‖∞ + ‖𝜎𝑦‖∞)
+
+[︃
+
+𝑚
+∑︁
+
+𝑛=0
+
+𝛿14
+2
+
+(︂⃦
+⃦ ̃︀𝐸𝑛+1
+⃦
+
+ℎ𝜂 − 𝐸𝑛+1
+
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+
++
+
+⃦
+⃦ ̃︀𝐸𝑛
+⃦
+
+ℎ𝜂 − 𝐸𝑛
+ℎ𝜂
+
+2)︂
+
+⃦
+⃦
+⃦
+
+
+--- Page 16 ---
+636
+
+Y. HUANG ET AL.
+
++
+
+1
+2𝛿14
+
+(︂ 𝜏 3
+4
+
+∫︁ 𝑡𝑛+1
+
+𝑡𝑛
+
+‖𝜕𝑡𝑡𝐸‖2 d𝑡 + 𝐶ℎ2𝑙⃦
+⃦
+⃦𝐸
+
+𝑛+ 1
+
+2 ⃦
+2
+⃦
+⃦
+
+𝐻 𝑙(curl;Ω)
+
+)︂]︃
+.
+
+(78)
+
+Substituting the estimates (63)–(78) into (62), and combining many like terms, we obtain
+
+(︂⃦
+⃦ ̃︀𝐸𝑚+1
+⃦
+
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+
+−
+
+⃦
+⃦ ̃︀𝐸0
+⃦
+
+ℎ𝜂
+
+2)︂
+
+⃦
+⃦
+⃦
+
++
+
+𝜀0
+2
+
+√
+
+(︃⃦
+⃦
+⃦
+⃦
+
+1
+2
+
+𝜇0𝐻 𝑚+ 3
+
+ℎ𝜂 +
+
+2
+
+∇ × ̃︀𝐸𝑚+1
+
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+⃦
+
+−
+
+√
+
+⃦
+⃦
+⃦
+⃦
+
+1
+2
+
+𝜇0𝐻
+
+ℎ𝜂 +
+
+𝜏
+√
+𝜇0
+2
+
+∇ × ̃︀𝐸0
+ℎ𝜂
+
+2)︃
+
+⃦
+⃦
+⃦
+⃦
+
+𝜏
+√
+𝜇0
+
+2
+(︂⃦
+⃦
+⃦(𝜎𝑥𝜎𝑦)
+
+1
+
+2 ̃︀𝐻 𝑚+ 3
+
+ℎ𝜂
+
+2
+
+⃦
+2
+⃦
+⃦
+
+−
+
+⃦
+⃦
+⃦(𝜎𝑥𝜎𝑦)
+
+1
+
+2 ̃︀𝐻
+
+1
+2
+ℎ𝜂
+
+2)︂
+
+⃦
+⃦
+⃦
+
++ 𝜏 𝜀−1
+
+0 𝜇0
+
+𝑚
+∑︁
+
+𝑛=0
+
+⃦
+⃦
+⃦(𝜎𝑥 + 𝜎𝑦)
+
+1
+2 𝐻
+
+𝑛+1
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+
++
+
+𝜀−2
+0 𝜇0
+2
+
+(︂⃦
+⃦ ̃︀𝐸𝑚+1
+⃦
+
+ℎ𝜂 − 𝐸𝑚+1
+
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+
+⃦
+⃦ ̃︀𝐸0
+⃦
+
+ℎ𝜂 − 𝐸0
+ℎ𝜂
+
+2)︂
+
+⃦
+⃦
+⃦
+
+−
+
+(︂
+
+𝜀0
+2
+[︂
+𝜀−1
+0
+
++
+
+≤
+
+(︀‖𝜎𝑥‖∞ + ‖𝜎𝑦‖∞
+
+)︀
+
+1 +
+
+𝛿3 + 𝛿8
+2
+
+)︂
+
++
+
+1
+2
+
+(𝐶𝑣𝛿4 + 𝛿7) +
+
+1
+2
+
+(︀𝐶 2
+
+inv + 1)︀𝛿5
+
+]︂
+
+· 𝜏
+
+𝑚
+∑︁
+
+𝜀0
+
+(︂⃦
+⃦ ̃︀𝐸𝑛+1
+⃦
+
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+
++
+
+⃦
+⃦ ̃︀𝐸𝑛
+⃦
+
+ℎ𝜂
+
+2)︂
+
+⃦
+⃦
+⃦
+
+[︂
+𝜀−1
+0
+
++
+
+(︀‖𝜎𝑥‖∞ + ‖𝜎𝑦‖∞
+
+)︀
+
+(︂
+
+1 +
+
+)︂
+
++
+
+𝛿14
+2
+
+]︂
+
+𝛿13
+2
+
+· 𝜏
+
+𝑚
+∑︁
+
+𝑛=0
+
+𝜀0
+
+(︂⃦
+⃦𝐸𝑛+1
+⃦
+
+ℎ𝜂 − ̃︀𝐸𝑛+1
+
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+
++
+
+{︃
+
++
+
+(︀𝐶𝑣𝜀0𝛿6 + 𝜀−1
+
+0 ‖𝜎𝑥‖∞‖𝜎𝑦‖∞𝛿10
+
+)︀ · 𝜏 𝜀−1
+
+0 𝜇0
+
+𝑚
+∑︁
+
++ (𝛿11 + 𝛿12)𝜏
+
+𝑚
+∑︁
+
+𝑛=0
+
+𝜀−2
+0 𝜇0
+2
+
+(︂⃦
+⃦
+⃦(𝜎𝑥𝜎𝑦)
+
+1
+
+2 ̃︀𝐻 𝑛+ 3
+
+ℎ𝜂
+
+2
+
+⃦
+2
+⃦
+⃦
+
+⃦
+⃦
+⃦𝐻
+
+𝑛+1
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+
++
+
+𝜏 𝜀−1
+0 𝜇0
+2
+
+𝑛=0
+⃦
+⃦
+⃦(𝜎𝑥𝜎𝑦)
+
++
+
+1
+
+2 ̃︀𝐻 𝑛+ 1
+
+ℎ𝜂
+
+2
+
+2)︂
+
+⃦
+⃦
+⃦
+
+𝑛=0
+⃦
+⃦𝐸𝑛
+⃦
+
+ℎ𝜂 − ̃︀𝐸𝑛
+ℎ𝜂
+
+2)︂
+
+⃦
+⃦
+⃦
+
+𝑚
+∑︁
+
+𝑛=0
+
+⃦
+⃦
+⃦(𝜎𝑥 + 𝜎𝑦)
+
+1
+2 𝐻
+
+𝑛+1
+ℎ𝜂
+
+2}︃
+⃦
+⃦
+⃦
+
+(︀‖𝜎𝑥‖∞ + ‖𝜎𝑦‖∞
+
+)︀
+
+(︂ 1
+8𝛿3
+
++
+
+1
+8𝛿8
+
++
+
+1
+8𝛿14
+
+)︂ ∫︁ 𝑡𝑚+1
+
+‖𝜕𝑡𝑡𝐸‖2 d𝑡 +
+
+𝐶𝑣𝜇0
+16𝛿4
+
+∫︁ 𝑡𝑚+1
+
+0
+
+‖∇ × 𝜕𝑡𝑡𝐻‖2 d𝑡
+
+0
+
++
+
+∫︁ 𝑡𝑚+1
+
+(︂
+
+𝜀0
+
+𝐶 4
+𝑣
+32𝛿5
+
+𝐶𝑣
+8𝛿6
+
+0
+∫︁ 𝑡𝑚+ 3
+
+2
+
+𝑡 1
+2
+
+𝐶ℎ2(𝑙−1)⃦
+⃦
+⃦∇ × 𝜕𝑡 ̃︀𝐸
+(︃
+
+⃦
+2
+⃦
+⃦
+
+𝐻 𝑙(curl,Ω)
+
+⃦
+⃦
+⃦∇ × ∇ × 𝜕𝑡 ̃︀𝐸
+)︀
+
+2)︂
+
+⃦
+⃦
+⃦
+
+d𝑡
+
+⃦
+⃦
+⃦∇ × 𝜕𝑡𝑡 ̃︀𝐸
+
+⃦
+2
+⃦
+⃦
+
+𝜀0
+
+d𝑡 +
+
+𝜀−1
+0
+
+(︀‖𝜎𝑥‖∞ + ‖𝜎𝑦‖∞
+4
+
++
+
+𝜀−2
+0 ‖𝜎𝑥‖∞‖𝜎𝑦‖∞
+8𝛿12
+
+)︃ ∫︁ 𝑡𝑚+ 3
+
+2
+
+𝜇0‖𝜕𝑡𝑡𝐻‖2 d𝑡
+
+𝜀−2
+0 ‖𝜎𝑥‖∞‖𝜎𝑦‖∞
+8𝛿10
+
+∫︁ 𝑡𝑚+ 3
+
+2
+
+𝑡 1
+2
+
+⃦
+⃦
+⃦𝜕𝑡𝑡 ̃︀𝐻
+
+⃦
+2
+⃦
+⃦
+
+𝜇0
+
+∫︁ 𝑡𝑚+1
+
+0
+
+(︁
+
+⃦
+⃦
+⃦𝜕𝑡
+
+𝜀0
+
+̃︀𝐸 − 𝐸
+
+)︁⃦
+2
+⃦
+⃦
+
+𝐻 𝑙(curl,Ω)
+
+⎫
+⎬
+
+d𝑡
+
++ 𝐶ℎ2𝑙
+
+⎭
+}︂
+
+d𝑡
+
++ 𝐶ℎ2𝑙(𝑚 + 1)𝜏
+
+{︂ 1
+𝛿7
+
+∫︁ 𝑡𝑚+1
+
+0
+
+⃦
+⃦
+⃦𝜕𝑡 ̃︀𝐸
+
+𝜀0
+
+⃦
+2
+⃦
+⃦
+
+𝐻 𝑙(curl,Ω)
+
+𝑡 1
+2
+
+d𝑡
+
+(︀‖𝜎𝑥‖∞ + ‖𝜎𝑦‖∞
+
+)︀
+
+(︂ 1
+𝛿3
+
++
+
+1
+𝛿8
+
+)︂
+
++
+
+1
+𝛿14
+
+)︂
+
+‖𝐸‖2
+
+𝐿∞(0,𝑇 ;𝐻 𝑙(curl,Ω)) +
+
+𝐶𝑣
+𝛿6
+
+⃦
+⃦
+⃦∇ × ̃︀𝐸
+
+⃦
+2
+⃦
+⃦
+
+𝐿∞(0,𝑇 ;𝐻 𝑙(curl,Ω))
+
++
+
+1 +
+
+)︂
+
+1
+𝛿12
+
+‖𝐻‖2
+
+𝐿∞(0,𝑇 ;𝐻 𝑙(Ω)) +
+
+1
+𝛿10
+
+⃦
+⃦
+⃦ ̃︀𝐻
+
+⃦
+2
+⃦
+⃦
+
+𝐿∞(0,𝑇 ;𝐻 𝑙(Ω))
+
++
+
+1
+𝛿11
+
+∫︁ 𝑡𝑚+ 3
+
+2
+
+𝑡 1
+2
+
+⃦
+⃦
+⃦𝜕𝑡 ̃︀𝐻
+
+⃦
+2
+⃦
+⃦
+
+𝐻 𝑙(Ω)
+
+⎫
+⎬
+.
+⎭
+
+d𝑡
+
+(79)
+
++ 𝜏 4
+
+⎧
+⎨
+
+⎩
+
++
+
++
+
++
+
++
+
+×
+
+1
+𝛿13
+⎧
+⎨
+
+(︂
+
+⎩
+
+(︂
+
+Now ﬁrst choosing those 𝛿𝑖 small enough, then choosing 𝜏 small enough (but independent of mesh size ℎ),
+𝑛+1
+ℎ𝜂 ‖2, and using the discrete Gronwall inequality and the fact that
+
+𝑛=0 ‖(𝜎𝑥 + 𝜎𝑦) 1
+
+dropping term 𝜏 𝜀−1
+
+0 𝜇0
+
+∑︀𝑚
+
+2 𝐻
+
+
+--- Page 17 ---
+FINITE ELEMENT SCHEME FOR AN EQUIVALENT B´ERENGER’S PML MODEL
+
+637
+
+(𝑚 + 1)𝜏 ≤ 𝑇 , we have
+
+𝜀0
+2
+
+[︂⃦
+⃦ ̃︀𝐸𝑚+1
+⃦
+{︃
+
+ℎ𝜂
+
+≤ 𝐶
+
+⃦
+2
+⃦
+⃦
+
++
+
+⃦
+⃦ ̃︀𝐸𝑚+1
+⃦
+
+ℎ𝜂 − 𝐸𝑚+1
+
+ℎ𝜂
+
+2]︂
+
+⃦
+⃦
+⃦
+
++
+
+√
+
+𝜇0𝐻 𝑚+ 3
+
+ℎ𝜂 +
+
+2
+
+𝜏
+√
+𝜇0
+
+2
+
+∇ × ̃︀𝐸𝑚+1
+
+ℎ𝜂
+
++
+
+𝜀−2
+0 𝜇0
+2
+
+⃦
+⃦
+⃦(𝜎𝑥𝜎𝑦)
+
+1
+
+2 ̃︀𝐻 𝑚+ 3
+
+ℎ𝜂
+
+2
+
+[︂⃦
+⃦ ̃︀𝐸0
+⃦
+
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+
+𝜀0
+2
+
++
+
+⃦
+⃦ ̃︀𝐸0
+⃦
+
+ℎ𝜂 − 𝐸0
+ℎ𝜂
+
+⃦
+⃦
+⃦
+
++
+
+√
+
+⃦
+⃦
+⃦
+⃦
+
+1
+2
+
+1
+2
+
+𝜇0𝐻
+
+ℎ𝜂 +
+
+𝜏
+√
+𝜇0
+2
+
+∇ × ̃︀𝐸0
+ℎ𝜂
+
++
+
+𝜀−2
+0 𝜇0
+2
+
+⃦
+⃦
+⃦(𝜎𝑥𝜎𝑦)
+
+1
+
+2 ̃︀𝐻
+
+1
+2
+ℎ𝜂
+
+⃦
+2
+⃦
+⃦
+⃦
+⃦
+2
+⃦
+⃦
+⃦
+
+⃦
+1
+⃦
+⃦
+2
+⃦
+2]︂
+
+⃦
+2
+⃦
+⃦
+2}︃
+⃦
+⃦
+⃦
+
++ 𝐶ℎ2𝑙 + 𝐶𝜏 4 ≤ 𝐶(ℎ𝑙 + 𝜏 2)2,
+
+(80)
+
+where in the last step, we used the initial approximations (24a)–(24d). Then by the triangular inequality, and
+the interpolation and projection error estimates, we immediately have
+
+1
+2
+0
+
+𝜀
+
+[︁⃦
+⃦
+⃦̃︀ℰ
+
+𝑚+1⃦
+⃦
+⃦ +
+
+⃦
+⃦
+⃦̃︀ℰ
+
+𝑚+1
+
+− ℰ 𝑚+1⃦
+]︁
+⃦
+⃦
+
++
+
+√
+
+⃦
+⃦
+⃦
+⃦
+
+𝜇0ℋ𝑚+ 3
+
+2 +
+
+𝜏
+√
+𝜇0
+2
+
+∇ × ̃︀ℰ
+
+𝑚+1⃦
+⃦
+⃦
+⃦
+
++ 𝜀−1
+
+1
+0 𝜇
+2
+0
+
+⃦
+⃦
+⃦(𝜎𝑥𝜎𝑦)
+
+≤ 𝐶(︀ℎ𝑙 + 𝜏 2)︀,
+
+which completes the proof of (55).
+
+4. Numerical results
+
+1
+
+2 ̃︀ℋ𝑚+ 3
+
+2
+
+⃦
+⃦
+⃦
+
+(81)
+
+(cid:3)
+
+In this section, we present some numerical results to demonstrate the performance of our proposed leapfrog
+scheme. For simplity, we only implement the lowest order RTN mixed ﬁnite element spaces (𝑙 = 1) on triangular
+elements:
+
+𝑉ℎ = {︀𝜓ℎ ∈ 𝐿2(Ω) : 𝜓ℎ|𝐾 = constant, ∀𝐾 ∈ 𝑇ℎ
+𝑈ℎ = {𝜑ℎ ∈ 𝐻(curl; Ω) : 𝜑ℎ|𝐾 = span{𝜆𝑖∇𝜆𝑗 − 𝜆𝑗∇𝜆𝑖}, ∀𝐾 ∈ 𝑇ℎ},
+
+}︀,
+
+where 𝜆𝑖 are the barycentric coordinate functions.
+
+Example 1. This example is used to justify the convergence rate of our scheme. For this example, we choose
+the physical domain Ω = [0, 1]2 and
+
+𝜀0 = 𝜇0 = 1,
+
+𝜎𝑥(𝑥) = 𝜋(1 + sin(𝜋𝑥)),
+
+𝜎𝑦(𝑦) = 𝜋(1 + sin(𝜋𝑦)).
+
+To construct an analytical solution, we add extra source terms to the model equations (1a)–(1e). More
+
+speciﬁcally, we solve the following governing equations:
+
+𝜀0𝜕𝑡𝐸 + Σ**𝐸 = ∇ × 𝐻 + 𝑔,
+𝜀0𝜕𝑡 ̃︀𝐸 = 𝜀0𝜕𝑡𝐸 + Σ**𝐸,
+𝜇0𝜕𝑡𝐻 * = −∇ × ̃︀𝐸,
+𝜕𝑡 ̃︀𝐻 = 𝐻,
+𝜕𝑡𝐻 + 𝜀−1
+
+0 (𝜎𝑥 + 𝜎𝑦)𝐻 + 𝜀−2
+
+0 𝜎𝑥𝜎𝑦 ̃︀𝐻 = 𝜕𝑡𝐻 * + 𝑓,
+
+(82a)
+
+(82b)
+
+(82c)
+
+(82d)
+
+(82e)
+
+with exact solutions given as follows:
+
+𝐸 =
+
+)︂
+
+(︂𝐸𝑥
+𝐸𝑦
+
+(︂ 𝑒−𝜋𝑡 cos(𝜋𝑥) sin(𝜋𝑦)
+−𝑒−𝜋𝑡 sin(𝜋𝑥) cos(𝜋𝑦)
+
+)︂
+
+,
+
+=
+
+⎛
+
+(︁
+
+̃︀𝐸 =
+
+⎜
+⎝
+
+(︁
+
+𝐻 = 𝑒−𝜋𝑡 cos(𝜋𝑥) cos(𝜋𝑦),
+
+̃︀𝐻 = −
+
+1
+𝜋
+
+𝐻, 𝐻 * = −
+
+1
+𝜇0
+
+⎞
+
+⎟
+⎠,
+
+)︁
+
+𝐸𝑥
+
+)︁
+
+𝐸𝑦
+
+1 − 𝜎𝑥
+𝜀0𝜋
+
+1 − 𝜎𝑦
+𝜀0𝜋
+(︂
+
+2 −
+
+𝜎𝑥 + 𝜎𝑦
+𝜀0𝜋
+
+)︂
+
+𝐻.
+
+
+--- Page 18 ---
+638
+
+Y. HUANG ET AL.
+
+Table 1. The 𝐿2 errors obtained at 𝑇 = 1 with 𝜏 = 4ℎ, 𝜏 = 2ℎ, 𝜏 = ℎ, 𝜏 = 1
+mesh sizes ℎ.
+
+2 ℎ and various
+
+ℎ
+
+1
+24
+1
+48
+1
+96
+1
+192
+1
+384
+
+1
+24
+1
+48
+1
+96
+1
+192
+1
+384
+
+‖𝐸 − 𝐸ℎ‖
+
+Rate
+
+‖𝐻 − 𝐻ℎ‖
+
+Rate
+
+‖𝐸 − 𝐸ℎ‖
+
+Rate
+
+‖𝐻 − 𝐻ℎ‖
+
+Rate
+
+𝜏 = 4ℎ
+
+𝜏 = 2ℎ
+
+1.7078E−03
+
+1.8238E−03
+
+1.2047E−03
+
+1.0173E−03
+
+6.5253E−04
+
+1.38800
+
+6.1859E−04
+
+1.55988
+
+5.8366E−04
+
+1.04554
+
+4.8137E−04
+
+1.07954
+
+2.9831E−04
+
+1.12923
+
+2.5680E−04
+
+1.26835
+
+2.8946E−04
+
+1.01175
+
+2.3698E−04
+
+1.02239
+
+1.4555E−04
+
+1.03534
+
+1.2062E−04
+
+1.09013
+
+1.4443E−04
+
+1.00297
+
+1.1801E−04
+
+1.00584
+
+7.2318E−05
+
+1.00904
+
+5.9277E−05
+
+1.02496
+
+7.2179E−05
+
+1.00075
+
+5.8944E−05
+
+1.00148
+
+𝜏 = ℎ
+
+1.1648E−03
+
+9.4594E−04
+
+1.1613E−03
+
+𝜏 = 1
+
+2 ℎ
+9.4250E−04
+
+5.7869E−04
+
+1.00919
+
+4.7179E−04
+
+1.00360
+
+5.7826E−04
+
+1.00599
+
+4.7136E−04
+
+0.99968
+
+2.8884E−04
+
+1.00251
+
+2.3575E−04
+
+1.00092
+
+2.8879E−04
+
+1.00171
+
+2.3569E−04
+
+0.99992
+
+1.4436E−04
+
+1.00065
+
+1.1785E−04
+
+1.00023
+
+1.4435E−04
+
+1.00045
+
+1.1785E−04
+
+0.99998
+
+7.2169E−05
+
+1.00017
+
+5.8925E−05
+
+1.00006
+
+7.2169E−05
+
+1.00012
+
+5.8924E−05
+
+0.99999
+
+While the corresponding source terms are given as
+
+𝑔 =
+
+)︂
+
+(︂𝑔𝑥
+𝑔𝑦
+
+=
+
+(︂ (−𝜋𝜀0 + 𝜎𝑦 + 𝜋)𝑒−𝜋𝑡 cos(𝜋𝑥) sin(𝜋𝑦)
+−(−𝜋𝜀0 + 𝜎𝑥 + 𝜋)𝑒−𝜋𝑡 sin(𝜋𝑥) cos(𝜋𝑦)
+)︂
+
+[︂(︂
+
+)︂
+
+𝑓 = 𝑒−𝜋𝑡 cos(𝜋𝑥) cos(𝜋𝑦)
+
+−𝜋 +
+
+𝜎𝑥 + 𝜎𝑦
+𝜀0
+
+−
+
+𝜎𝑥𝜎𝑦
+𝜋𝜀2
+0
+
+−
+
+,
+
+1
+𝜇0
+
+(︂
+
+2𝜋 −
+
+𝜎𝑥 + 𝜎𝑦
+𝜀0
+
+)︂]︂
+
+.
+
+In this case, we have the following leapfrog type scheme: given initial approximations 𝐸0
+
+for any 𝑛 ≥ 0, ﬁnd 𝐸𝑛+1
+
+ℎ
+
+, ̃︀𝐸𝑛+1
+ℎ
+
+∈ 𝑈 0
+
+ℎ, 𝐻 𝑛+ 3
+
+ℎ
+
+2
+
+, 𝐻 *𝑛+ 3
+
+2
+
+ℎ
+
+, ̃︀𝐻 𝑛+ 3
+
+2
+
+ℎ
+
+∈ 𝑉ℎ such that
+
+ℎ, ̃︀𝐸0
+
+ℎ, 𝐻
+
+1
+2
+
+ℎ , 𝐻 * 1
+
+ℎ , ˜𝐻
+
+2
+
+1
+2
+
+ℎ ,
+
+(︁
+
+Σ**𝐸
+
+𝑛+ 1
+2
+ℎ
+
+, 𝜑ℎ
+
+)︁
+
+=
+
+(︁
+
+𝐻 𝑛+ 1
+
+2
+
+ℎ
+
+)︁
+
+, ∇ × 𝜑ℎ
+
+(︁
+
+𝜀0
+
+𝛿𝜏 𝐸𝑛+ 1
+
+2
+
+ℎ
+
+)︁
+
+, 𝜑ℎ
+
++
+
+−
+
+(︁
+
+2
+
+ℎ
+
+𝛿𝜏 ̃︀𝐸𝑛+ 1
+(︀𝛿𝜏 𝐻 *𝑛+1
+
+ℎ
+
+)︁
+
+, ̃︀𝜑ℎ
+
+= 𝜀0
+
+, 𝜓ℎ
+
+(︁
+
+)︀ = −
+)︁
+
+𝜀0
+
+𝜇0
+(︁
+
+𝛿𝜏 ̃︀𝐻 𝑛+1
+ℎ
+
+(︁
+
+𝛿𝜏 𝐻 𝑛+1
+ℎ
+
+, 𝜎𝑥𝜎𝑦 ̃︀𝜓ℎ
+)︁
+
+, ̂︀𝜓ℎ
+
+=
+(︁
+
+𝜏 2
+4𝜇0
+(︁
+
+(︁
+
+2
+
+∇ × 𝛿𝜏 ̃︀𝐸𝑛+ 1
+)︁
+
+ℎ
+
+𝛿𝜏 𝐸𝑛+ 1
+
+2
+
+ℎ
+
+, ̃︀𝜑ℎ
+
+, 𝜓ℎ
+
+ℎ
+
+∇ × ̃︀𝐸𝑛+1
+(︁
+𝑛+1
+ℎ
+
+𝐻
+
+, 𝜎𝑥𝜎𝑦 ̃︀𝜓ℎ
+
+, ∇ × 𝜑ℎ
+
+)︁
+
+(︁
+
++
+
+𝑔𝑛+ 1
+
+2 , 𝜑ℎ
+
+)︁
+
+,
+
++
+)︁
+
+,
+)︁
+
+(︁
+
+Σ**𝐸
+
+𝑛+ 1
+2
+ℎ
+
+, ̃︀𝜑ℎ
+
+)︁
+
+,
+
+,
+
++ 𝜀−1
+0
+(︁
+
+=
+
+(𝜎𝑥 + 𝜎𝑦)𝐻
+)︁
+
+𝛿𝜏 𝐻 *𝑛+1
+ℎ
+
+, ̂︀𝜓ℎ
+
+)︁
+
+𝑛+1
+ℎ
+
+, ̂︀𝜓ℎ
+
++ 𝜀−2
+0
+)︁
+
+(︁
+
++
+
+𝑓 𝑛+1, ̂︀𝜓ℎ
+
+,
+
+(︁
+
+𝜎𝑥𝜎𝑦 ̃︀𝐻 𝑛+1
+
+ℎ
+
+, ̂︀𝜓ℎ
+
+)︁
+
+∀𝜑ℎ ∈ 𝑈 0
+ℎ,
+
+∀ ̃︀𝜑ℎ ∈ 𝑈 0
+ℎ,
+
+∀𝜓ℎ ∈ 𝑉ℎ,
+
+∀ ̃︀𝜓ℎ ∈ 𝑉ℎ,
+
+(83a)
+
+(83b)
+
+(83c)
+
+(83d)
+
+∀ ̂︀𝜓ℎ ∈ 𝑉ℎ.
+
+(83e)
+
+We implement this scheme with diﬀerent time step sizes 𝜏 = 1
+
+2 ℎ, 𝜏 = ℎ, 𝜏 = 2ℎ, 𝜏 = 4ℎ and varying mesh
+sizes ℎ from 1
+384 . The obtained convergence rates of the 𝐿2 errors at ﬁnal time 𝑇 = 1 are presented in
+Table 1, which shows that 𝒪(ℎ) convergence can be obtained for both the electric ﬁeld 𝐸 and the magnetic
+ﬁeld 𝐻 without satisfying the CFL constraint.
+
+24 to 1
+
+
+--- Page 19 ---
+FINITE ELEMENT SCHEME FOR AN EQUIVALENT B´ERENGER’S PML MODEL
+
+639
+
+Table 2. The 𝐿2 errors obtained at 𝑇 = 1 with 𝜏 =
+
+√
+
+ℎ and various mesh sizes ℎ.
+
+ℎ
+
+‖𝐸 − 𝐸ℎ‖
+
+Rate
+
+‖𝐻 − 𝐻ℎ‖
+
+Rate
+
+1/4
+1/16
+1/64
+1/256
+
+2.7006E−02
+3.4491E−03
+8.0591E−04
+1.9775E−04
+
+1.48450
+1.04875
+1.01347
+
+8.3175E−02
+3.9255E−03
+9.6349E−04
+2.4668E−04
+
+2.20259
+1.01327
+0.98281
+
+To test the time convergence rate, we solve this example again by ﬁxing 𝜏 =
+
+ℎ and varying mesh sizes ℎ
+256 . The convergence rates of 𝐿2 errors obtained at 𝑇 = 1 are presented in Table 2, which justiﬁes
+
+from 1
+the theoretical convergence rate 𝑂(𝜏 2 + ℎ) for the lowest order RTN spaces.
+
+4 to 1
+
+√
+
+Example 2. This example is used to test the long time stability of our scheme and the wave absorb-
+ing capability of this equivalent B´erenger’s PML model. For this example, we choose the physical domain
+Ω = [0, 0.5] m×[0, 0.5] m, which is partitioned by a uniform triangular mesh with mesh size ℎ = 2.5 × 10−3 m.
+We surround the physical domain by 20-layer PML cells with thickness 𝑑𝑑 = 20 h. In our simulation, the
+damping function 𝜎𝑥 is chosen as a fourth-order polynomial function given as:
+
+𝜎𝑥(𝑥) =
+
+⎧
+
+⎪⎪⎪⎪⎪⎨
+⎪⎪⎪⎪⎪⎩
+
+𝜎max
+
+𝜎max
+
+0
+
+)︂4
+
+(︂ 𝑥 − 0.5
+𝑑𝑑
+)︁4
+
+(︁ 𝑥
+𝑑𝑑
+
+if 𝑥 ≥ 0.5,
+
+if 𝑥 ≤ 0,
+
+otherwise,
+
+where 𝜎max = − log(𝑒𝑟𝑟) * 5 * 𝜀0 * 𝐶𝑣/(2 * 𝑑𝑑) with 𝑒𝑟𝑟 = 10−7 and 𝐶𝑣 being the wave propagation speed in
+vacuum. The damping function 𝜎𝑦 has exactly the same form but in 𝑦 variable.
+
+This example is solved by the scheme (23a)–(23e) with zero initial ﬁelds and a point source wave located at
+(0.25, 0.25), the center of the domain. The source wave is imposed on the 𝐻 ﬁeld given as 𝐻 = 0.1 sin(2𝜋𝑓 𝑡)
+with frequency 𝑓 = 3 GHz.
+
+Snapshots of the computed magnetic ﬁeld 𝐻 obtained with time step size 𝜏 = 2.5 × 10−12 s and up to 10 000
+time steps are plotted in Figure 1, which shows a long time stability of the scheme without obvious reﬂection
+from the surrounding PML cells.
+
+To see more clearly the performance of the PML model, we solve this example again by stopping the source
+wave after 200 time steps so that we can see how large the residual wave magnitude can be. Some snapshots
+of the magnetic ﬁelds 𝐻 are plotted in Figure 2, which shows that the original source wave exits the domain
+without obvious reﬂections. The magnitude of the residual wave after 1500 time steps is about 2 × 10−4, which
+is basically the numerical scheme error.
+
+Example 3. This example is used to show the wave absorbing performance of our equivalent B´erenger’s PML
+model with a line source wave. For this example, we choose Ω = [0, 2] m×[0, 2] m, which is surrounded by 8-layer
+PML cells with thickness 𝑑𝑑 = 8 h. The incident source is imposed on the 𝐻 ﬁeld given as 𝐻 = sin(2𝜋𝑓 𝑡) with
+frequency 𝑓 = 1.5 GHz. To make a line source wave, the wave is placed on a line segment located at 𝑥 = 0.1 m
+with 𝑦 ranging from 𝑦 = 0.5 m to 𝑦 = 1.5 m. We use ℎ = 0.02 m and 𝜏 = 10−12 s for this simulation.
+
+Some snapshots of |𝐻| up to 20 000 time steps are presented in Figure 3, which shows that out scheme enjoys
+a long stability and the wave propagates in the free space without obvious wave reﬂection from the truncated
+PML layers.
+
+
+--- Page 20 ---
+640
+
+Y. HUANG ET AL.
+
+Figure 1. Magnetic ﬁeld 𝐻 at various time steps: (top left) 300 steps; (top right) 400 steps;
+(bottom left) 500 steps; (bottom right) 10 000 steps.
+
+Figure 2. Snapshots of the magnetic ﬁeld 𝐻: (top left) 200 steps; (top right) 500 steps; (bottom
+left) 700 steps; (bottom right) 1500 steps.
+
+
+--- Page 21 ---
+FINITE ELEMENT SCHEME FOR AN EQUIVALENT B´ERENGER’S PML MODEL
+
+641
+
+Figure 3. Snapshots of |𝐻| ﬁeld obtained with 𝜏 = 10−12 s at 1000, 2000, 4000, 8000, 15 000,
+20 000 time steps. (a) |𝐻| at time step 1000. (b) |𝐻| at time step 2000. (c) |𝐻| at time step
+4000. (d) |𝐻| at time step 8000. (e) |𝐻| at time step 15 000. (f) |𝐻| at time step 20 000.
+
+Example 4. This example is used to illustrate the dependence of the PML absorption capacity on the damping
+functions, especially on the PML thickness. By adopting a popular numerical strategy (e.g., [34]), we impose
+the same source wave given as Example 2 at the center of the physical domain Ω𝐿 = [0.125, 0.375]2 m, which is
+discretized by a 100×100 cells. We surround the domain Ω𝐿 by the equivalent Berenger’s PML, whose damping
+functions and related parameters are the same as Example 2.
+
+
+--- Page 22 ---
+642
+
+Y. HUANG ET AL.
+
+Table 3. The discrete 𝑙2 errors for 𝐻𝑧 of all points in Ω𝐿 obtained with diﬀerent layers PML
+at several time nodes.
+
+TN
+
+ℎ
+𝜏 = 𝜏0
+
+5-cell PML
+
+ℎ/2
+𝜏 = 𝜏0/2
+
+Rate
+
+ℎ
+𝜏 = 𝜏0
+
+10-cell PML
+
+ℎ/2
+𝜏 = 𝜏0/2
+
+Rate
+
+ℎ
+𝜏 = 𝜏0
+
+20-cell PML
+
+ℎ/2
+𝜏 = 𝜏0/2
+
+Rate
+
+100 2.9873E−04 7.3744E−05 4.0509 2.6715E−05 5.6447E−06 4.7327 7.3547E−07 1.2557E−07 4.9777
+105 3.8987E−04 9.9276E−05 3.9271 4.1648E−05 9.0136E−06 4.6205 1.3442E−06 2.7420E−07 4.9022
+110 4.7247E−04 1.2282E−04 3.8469 5.7237E−05 1.2644E−05 4.5267 2.5325E−06 5.2451E−07 4.8283
+115 5.5195E−04 1.4489E−04 3.8094 7.2170E−05 1.6214E−05 4.4511 4.1668E−06 8.7479E−07 4.7632
+120 6.3073E−04 1.6659E−04 3.7862 8.6263E−05 1.9632E−05 4.3940 6.0986E−06 1.2955E−06 4.7077
+
+Figure 4. Example 4: The global errors obtained on a 100×100 mesh with a point wave source.
+(a) Illustration of domains Ω𝐺 and Ω𝐿. (b) The global errors obtained with three diﬀerent PML
+thicknesses.
+
+To measure the PML absorption performance, we solve the same problem in a very larger domain Ω𝐺 =
+[−0.125, 0.625]2 m, which is imposed by the PEC boundary condition and is discretized by a ﬁnite element mesh
+with the same mesh size in Ω𝐿. Then we calculate the errors of magnetic ﬁeld 𝐻 at element centers inside Ω𝐿
+by subtracting the corresponding solutions from those obtained on Ω𝐺. The global error energy is deﬁned by
+the sum of the squares of those errors at element centers in Ω𝐿. To satisfy the CFL condition, we choose an
+initial time step 𝜏0 = 6.25 × 10−13 s and denote one time node (shortened as TN in Tab. 3) as 10 steps of 𝜏0,
+i.e., 1 time node = 10 𝜏 . We carried out three experiments with PML thicknesses of 𝑑𝑑 = 5 h, 10 h and 20 h to
+observe the PML absorption capacity.
+
+In Figure 4a, the whole domain plotted is Ω𝐺, while the central square subdomain marked by the red color is
+Ω𝐿. The Figure 4b compares the global errors versus time for the 5-cell, 10-cell, and 20-cell PMLs. As shown in
+Figure 4b, the global reﬂection error is decreasing with the increasing of the PML’s thickness, which is consistent
+with the common performance of PML [34]. For each ﬁxed PML thickness, we tested two diﬀerent mesh sizes:
+one with ℎ = 2.5 × 10−3 m plotted by the solid line; and the other one with ℎ/2 = 1.25 × 10−3 m plotted by the
+dashed line in Figure 4b. Due to the dominance of the numerical error, we did not achieve the ideal reﬂection
+error 10−7 as chosen in 𝜎max. But we did observe the convergence rate 𝑂(𝜏 2 + ℎ2) in the discrete 𝑙2 norm in
+
+
+--- Page 23 ---
+FINITE ELEMENT SCHEME FOR AN EQUIVALENT B´ERENGER’S PML MODEL
+
+643
+
+Table 3. The 𝑂(ℎ2) is a superconvergence phenomenon often happend for the lowest-order edge elements ([22],
+Chap. 5).
+
+5. Conclusion
+
+In this paper, we developed a novel explicit unconditionally stable ﬁnite element scheme to solve an equivalent
+B´erenger’s TEz PML model. We rigorously established both the stability and convergence analysis for the
+proposed scheme. Numerical results are presented to justify the theoretical analysis. We also demonstrated the
+eﬀectiveness of this PML in simulating wave propagation in the free space. In the future, we will explore the
+possibility of extending similar idea to develop other explicit unconditionally stable schemes for other PML
+models [10].
+
+Acknowledgements. The authors are very grateful to those two anonymous referees for their careful reading and insightful
+comments on improving our paper. This work was partially supported by NSFC project 11971410 and NSF grant DMS-
+2011943.
+
+References
+
+[1] S. Abarbanel, D. Gottlieb and J.S. Hesthaven, Non-linear PML equations for time dependent electromagnetics in three dimen-
+
+sions, J. Sci. Comput. 28 (2006) 125–137.
+
+[2] D. Appel¨o, T. Hagstrom and G. Kreiss, Perfectly matched layers for hyperbolic systems: general formulation, well-posedness,
+
+and stability. SIAM J. Appl. Math. 67 (2006) 1–23.
+
+[3] G. Bao, P. Li and H. Wu, An adaptive edge element method with perfectly matched absorbing layers for wave scattering by
+
+biperiodic structures. Math. Comp. 79 (2010) 1–34.
+
+[4] E. B´ecache and P. Joly, On the analysis of B´erenger’s perfectly matched layers for maxwell’s equations. ESAIM: M2AN 36
+
+(2002) 87–119.
+
+[5] E. B´ecache, P. Joly, M. Kachanovska and V. Vinoles, Perfectly matched layers in negative index metamaterials and plasmas.
+
+ESAIM: Proc. Surv. 50 (2015) 113–132.
+
+[6] E. B´ecache and M. Kachanovska, Stable perfectly matched layers for a class of anisotropic dispersive models. Part I: necessary
+
+and sufficient conditions of stability. ESAIM: M2AN 51 (2017) 2399–2434.
+
+[7] J.P. B´erenger, A perfectly matched layer for the absorbing EM waves. J. Comput. Phys. 114 (1994) 185–200.
+[8] A.-S. Bonnet-Ben Dhia, L. Chesnel and P. Ciarlet, T-coercivity for scalar interface problems between dielectrics and metama-
+
+terials. ESAIM: M2AN 46 (2012) 1363–1387.
+
+[9] J.H. Bramble and J.E. Pasciak, Analysis of a finite element PML approximation for the three dimensional time-harmonic
+
+Maxwell problem. Math. Comp. 77 (2008) 1–10.
+
+[10] M. Chen, Y. Huang and J. Li, Development and analysis of a new finite element method for the Cohen-Monk PML model.
+
+Numer. Math. 147 (2021) 127–155.
+
+[11] G.C. Cohen and P. Monk, Mur-N´ed´elec finite element schemes for Maxwell’s equations. Comput. Methods Appl. Mech. Eng.
+
+169 (1999) 197–217.
+
+[12] D. Correia and J.-M. Jin, 3D-FDTD-PML analysis of left-handed metamaterials. Microwave Opt. Technol. Lett. 40 (2004)
+
+201–205.
+
+[13] S.A. Cummer, Perfectly matched layer behavior in negative refractive index materials. IEEE Antennas Wireless Propag. Lett.
+
+3 (2004) 172–175.
+
+[14] K. Duru, L. Rannabauer, A.-A. Gabriel, G. Kreiss and M. Bader, A stable discontinuous Galerkin method for the perfectly
+
+matched layer for elastodynamics in first order form. Numer. Math. 146 (2020) 729–782.
+
+[15] J.L. Hong, L.H. Ji and L.H. Kong, Energy-dissipation splitting finite-difference time- domain method for Maxwell equations
+
+with perfectly matched layers. J. Comput. Phys. 269 (2014) 201–214.
+
+[16] Q. Hu, C. Liu, S. Shu and J. Zou, An effective preconditioner for a PML system for electromagnetic scattering problem.
+
+ESAIM: M2AN 49 (2015) 839–854.
+
+[17] Y. Huang, H. Jia and J. Li, Analysis and application of an equivalent Berenger’s PML model. J. Comp. Appl. Math. 333
+
+(2018) 157–169.
+
+[18] Y. Huang, M. Chen and J. Li, Development and analysis of both finite element and fourth-order in space finite difference
+
+methods for an equivalent Berenger’s PML model. J. Comput. Phys. 405 (2020) 109154.
+
+[19] Y. Huang, M. Chen and J. Li, Developing and analyzing new unconditionally stable leapfrog schemes for Maxwell’s equations
+
+in complex media. J. Sci. Comput. 86 (2021) 35.
+
+[20] X. Jiang, P. Li, J. Lv and W. Zheng, An adaptive finite element PML method for the elastic wave scattering problem in
+
+periodic structures. ESAIM: M2AN 51 (2016) 2017–2047.
+
+
+--- Page 24 ---
+644
+
+Y. HUANG ET AL.
+
+[21] J. Li and J.S. Hesthaven, Analysis and application of the nodal discontinuous Galerkin method for wave propagation in
+
+metamaterials. J. Comput. Phys. 258 (2014) 915–930.
+
+[22] J. Li and Y. Huang, Time-domain finite element methods for Maxwell’s equations in metamaterials, in Springer Series in
+
+Computational Mathematics. Vol. 43. Springer (2013).
+
+[23] J. Li, C. Shi and C.-W. Shu, Optimal non-dissipative discontinuous Galerkin methods for Maxwell’s equations in Drude
+
+metamaterials. Comput. Math. Appl. 73 (2017) 1768–1780.
+
+[24] J. Li, C.-W. Shu and W. Yang, Development and analysis of two new finite element schemes for a time-domain carpet cloak
+
+model. Adv. Comput. Math. 48 (2022) 1–30.
+
+[25] Y. Lin, K. Zhang and J. Zou, Studies on some perfectly matched layers for one-dimensional time-dependent systems. Adv.
+
+Comput. Math. 30 (2009) 1–35.
+
+[26] T. Lu, P. Zhang and W. Cai, Discontinuous Galerkin methods for dispersive and lossy Maxwell’s equations and PML boundary
+
+conditions. J. Comput. Phys. 200 (2004) 549–580.
+
+[27] P. Monk, Finite Element Methods for Maxwell’s Equations. Oxford University Press (2003).
+[28] J.-C. N´ed´elec, Mixed finite elements in ℛ3. Numer. Math. 35 (1980) 315–341.
+[29] P.A. Raviart and J.M. Thomas, A mixed finite element method for 2nd order elliptic problems, in Mathematical Aspects
+of the Finite Element Method. Lecture Notes in Mathematics, edited by I. Galligani and E. Magenes. Vol. 606. Springer,
+Berlin-Heidelberg-New York (1977) 292–315.
+
+[30] A. Taflove and S.C. Haguess, Computational Electrodynamics: The Finite-Difference Time-Domain Method, 3rd edition. Artech
+
+House, Norwood (2005).
+
+[31] F.L. Teixeira and W.C. Chew, Advances in the theory of perfectly matched layers, in Fast and Efficient Algorithms in Com-
+
+putational Electromagnetics edited by W.C. Chew et al. Artech House, Boston (2001) 283–346.
+
+[32] C. Wei, J. Yang and B. Zhang, Convergence of the uniaxial PML method for time-domain electromagnetic scattering problems.
+
+ESAIM: M2AN 55 (2021) 2421–2443.
+
+[33] Z. Xie, J. Wang, B. Wang and C. Chen, Solving Maxwell’s equation in meta-materials by a CG-DG method. Commun. Comput.
+
+Phys. 19 (2016) 1242–1264.
+
+[34] L. Zhao and A.C. Cangellaris, A general approach for the development of unsplit-field time-domain implementations of perfectly
+
+matched layers for FDTD grid truncation. IEEE Microwave Guided Wave Lett. 6 (1996) 209–211.
+
+Please help to maintain this journal in open access!
+
+This
+journal
+(S2O). We are
+publish this
+readers.
+
+is currently published in open access under
+
+thankful
+
+to our
+
+subscribers and supporters
+
+journal
+
+in open access
+
+in the current year,
+
+the Subscribe to Open model
+to
+for making it possible
+free of charge for authors and
+
+Check with your library that it subscribes to the journal, or consider making a personal donation to
+the S2O programme by contacting subscribers@edpsciences.org.
+
+information,
+
+More
+and
+is available at https://edpsciences.org/en/subscribe-to-open-s2o.
+
+supporters
+
+including
+
+list
+
+of
+
+a
+
+financial
+
+transparency
+
+reports,
+

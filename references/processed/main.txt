@@ -1,0 +1,12477 @@
+
+--- Page 1 ---
+Maxwell Equation in Dielectric Materials
+
+黎威辰 2101110040
+
+2026 年 4 月 26 日
+
+1 The Maxwell Equation
+
+在 [14] 中，处理了带有周期边界条件下的分数阶 Maxwell 方程组，相应的方程为：
+
+,
+
+=
+
+µ0
+
+∂H
+∂t
+∂E
+∂t
+
+∂E
+∂x
+∂H
+ϵ0ϵ∞
+∂x
+∂αP
+∂tα + P = ε0 (εs (cid:0) ε∞) E,
+
+(cid:0) ∂P
+∂t
+
+=
+
+,
+
+τ α
+0
+
+in Ω (cid:2) (0, T ]
+
+in Ω (cid:2) (0, T ]
+
+in Ω (cid:2) (0, T ]
+
+(1.1)
+
+old maxwell equation
+
+这里给出的是 1 维情况下，不带 UPML 层的方程。这个方程的好处就是将电极化强度
+
+P 直接入了方程组中，而我们之前做的方法是在原有的简单 Maxwell 方程中带入电极化强
+
+度，然后再在化简的过程中分理处分数阶的方程，较为麻烦。
+
+转而使用这样的方程形式，在这个方程组的基础上添加 UPML 层。
+
+但这个方程在归一化后等价于卢老师文章中所写的 Maxwell Equation
+
+1.1 dielectric response
+
+对于一般的媒质，本构关系为：
+
+D = ϵ0ϵr,∞E + P
+
+B = µ0µr,∞H + M
+
+(1.2)
+
+其中 ε0, µ0 分别表示真空下的电容率，导磁率；εr,∞, µr,∞ 分别表示无穷频率下的相对
+
+电容率，相对导磁率。B 为磁感应强度，D 为电位移，P 为电极化强度，M 为磁极化强度。
+
+1
+
+
+--- Page 2 ---
+一般来说, 在色散介质中，电极化强度 P 的分量 Pi 和电场强度 E 的分量的关系在频
+
+域 (用˘表示) 可以表示幂级数的形式,
+
+˘Pi = ϵ0
+
+X
+
+j
+
+χij(ω) ˘Ej + ϵ2
+0
+
+X
+
+j,k
+
+χijk(ω) ˘Ej ˘Ek + O
+
+˘E3
+
+.
+
+(cid:16)
+
+(cid:17)
+
+对于线性，各向同性的介质，可以只保留首项：
+
+￿P = ϵ0χ(ω) ￿E
+
+(1.3)
+
+其中 χ(ω) 为矩阵，称作这个媒质上的频域极化率。
+
+频域中实验介电响应的精确表示通常不能用具有单个弛豫时间的简单指数表达式（De-
+
+bye 模型）来描述。对于 Debye 介质，其在频域上的极化率为：
+
+χ(ω) =
+
+ϵr,s (cid:0) ϵr,∞
+1 + jωτ
+
+(1.4)
+
+其中 εr,s 为静态相对电容率（静态电场下的 ε，在静态或者低频的条件下，物质的极化
+
+能够充分响应电场的变化），τ 为弛豫时间（用来描述系统达到热动平衡所需的时间）。
+
+而这种模型的精确度较低，有许多其他的经验关系，包括 Cole–Cole（C–C）、Cole–
+
+Davidson（C–D）和 Havriliak–Negami（H–N）方程，用来拟合 dielectric spectra。
+
+这样使得介电响应的模型更加灵活，使得能够更好地参数化色散介质特性。
+
+对于频域上 H-N 方程描述的复介电常数为：
+
+εr(ω) = εr,∞ +
+
+εr,s (cid:0) εr,∞
+[1 + (jωτ )1−α]1−β
+
+(1.5)
+
+其中 εrs, εr∞ 分别表示 static and infinite relative permittivity，τ 表示弛豫时间，α, β 2
+
+[0, 1] 表示介电常数的形状和宽度。
+
+当 α = β = 0 时，描述的就是 Debye 介质；当 α 2 [0, 1], β = 0 时，描述的是 C-C 方程；
+
+当 α = 0, β 2 [0, 1] 时，描述的是 C-D 方程。
+
+更一般的，有 Raicu 方程进行描述，即上述的 H-N 方程的分母为 [(jωτ )v + (jωτ )α]β
+则电极化强度 P 和电场强度 E 之间的关系式可以写做：
+
+P = ϵ0(ϵr (cid:0) ϵr,∞)E.
+
+(1.6)
+
+通过 Laplace 逆变换后，对应式(1.1) 的第三式。
+
+2
+
+
+--- Page 3 ---
+1.2 Usual Maxwell Equation
+
+一般的 Maxwell 旋度方程为
+
+∂D
+r (cid:2) H =
+∂t
+r (cid:2) E = (cid:0) ∂B
+∂t
+其中：E 为电场强度，单位为伏特 / 米 (V/m) ；D 为电通量密度, 单位为库仑 / 米
+
+(cid:0) Jm
+
+(1.7)
+
++ J
+
+；H 为磁场强度，单位为安培 / 米 (A/m) ；B 为磁通量密度，单位为韦伯 / 米
+(cid:1)
+；Jm 为磁流密度, 单位为伏特 /
+
+A/m2
+
+(cid:0)
+
+(cid:1)
+
+(cid:1)
+
+(cid:0)
+
+(cid:0)
+
+2
+
+2
+
+C/m2
+Wb/m2
+(cid:0)
+V/m2
+
+米 2
+
+；J 为电流密度, 单位为安培/ 米 2
+(cid:1)
+。
+对于 1 维情形下， ∂
+
+∂z = 0，带入三维情况下的方程计算，使得其方程两端的符
+号确实和 3 维情况下不同。（TEM 波分为两组表达形式，仅仅是空间导数项存在一个 (cid:6) 的
+差别，影响不大）
+
+∂y = 0, ∂
+
+1.3 一些介质
+
+[2, 4] 中提到了一些介质的模型。我们称一些介质是色散的，如果他们在频域空间中，
+
+不是简单的依赖于介电常数 ε 和磁导率 µ。特别的，如果 µ(s) = ϵ(s) = 1, s 2 C+，那么
+就称这个介质是非色散的。我们考虑的介质都需要满足以下假设。假设 η : C+
+! C 表示 ε
+⋆
+或者 µ，那么我们称一个 C+
+
+⋆ 上的解析函数是
+
+• 实值 (time-real)，如果 η(¯s) = ¯η(s), s 2 C+
+
+⋆ . 这个条件是为了说明 L−1η(s) 是实值
+
+的因果分布 (causal distribution)。
+
+• 被动 (passive)，如果 Re(sη(s)) > 0, s 2 C+
+
+⋆ 。这个条件和问题的稳定性相关 [4]。
+
+• 在高频下非色散 (non-dispersive at high frequencies)，如果对于所有的 α 2
+
+((cid:0) π
+
+2 , π
+
+2 ), limR→+∞ η(Reiα) = 1.
+
+上述的这些定理都已经 [4] 中出现过，只是在最后一点高频下的非色散的表述不太一
+
+样。
+
+Definition 1.1. 称一个函数 η : C+
+⋆
+析的，并且满足上述的三个条件。
+
+! C 是 相容的 (admissible)，如果 η 在 C+
+
+⋆ 上是解
+
+接下的所有讨论的介质都是相容的。
+
+3
+
+
+--- Page 4 ---
+Assumption 1.1. 假设函数 s 7! ε(s) 和 s 7! µ(s) 是相容的。
+
+The Maxwell Equation with UPML
+
+2 The Maxwell Equation with UPML
+
+在前面的章节中给出了周期边界条件下分数阶 Maxwell 方程组的表示形式，现在要给
+
+出在 UPML 吸收边界条件下的分数阶 Maxwell 方程组。
+
+卢老师论文中，构造的 Maxwell 方程将电极化强度 P 这项用 E 这项表示，写入整体之
+
+中，现在不做合并，将 P 保留，得到：
+
+r (cid:2) ˘H =
+
+(cid:16)
+
+(cid:17)
+jωϵ0ϵr,∞ ˘E + jω ˘P + σ ˘E
+
+¯ϵ,
+
+r (cid:2) ˘E = (cid:0)jωµ0µr ¯µ ˘H,
+
+[1 + (jwτ )α] ˘P = ϵ0(ϵr,s (cid:0) ϵr,∞)˘E.
+
+¯ϵ = ¯µ =
+
+2
+
+6
+6
+4
+
+sysz
+sx
+0
+
+0
+
+3
+
+7
+7
+5
+
+0
+sxsz
+sy
+0
+
+0
+
+0
+sxsy
+sz
+
+si = 1 +
+
+σi
+jωϵ0
+
+,
+
+i = x, y, z
+
+其中
+
+且
+
+(2.1)
+
+Maxwell in C-C in frequency
+
+(2.2)
+
+(2.3)
+
+εr 表示色散介质的相对电容率，其中 σi 作为 UPML 层的相关参数，当 σi = 0 对应于
+
+物理的色散介质区域，先考虑 Cole-Cole 介质作为相对电容率。
+
+2.1 parameter settings for UPML
+
+先给出反射系数，再推导 σmax 的取值。
+在连续空间下，如果一个波以角度 θ 入射 PML 层，法线方向为 w，其吸收因子记为：
+
+R(θ) = e−2σwηd cos θ,
+
+其中 η 为阻抗，σw 为 w 方向的衰减系数。
+
+一般的，将 UPML 层中的电导 σi 设计为随多项式变化的形式：
+
+σi(x) = (l/d)mσi,max
+
+4
+
+(2.4)
+
+(2.5)
+
+
+--- Page 5 ---
+其中 l 是到计算区域和 PML 之间的交界面的距离, d 是 PML 层的厚度。从上式中可以看
+出, σi 在 UPML 层的内边界 l = 0 是零, 在 PML 的外边界 l = d 增加到最大值 σi,max 。在
+PML 外边界上使用 PEC 边界条件,UPML 层的反射因子取做：
+
+R(θ) = e−2η cos θ
+
+∫
+
+d
+
+0 σi(x)dx,
+
+(2.6)
+
+再进行积分得到：
+
+R(θ) = e−2ησi,maxdεr,∞ cos θ/(m+1) = e−2σi,maxd cos θ/v(m+1)￿
+
+(2.7)
+
+−1 =
+−1/2 是光在该物质中的速度。我们可以选取适当的 PML 参数来满足对于给定的
+
+标红的部分与 Taflove 中不同 其中 η 是 PML 的阻抗, θ 是入射角, v = (ηϵr,∞)
+(ϵr,∞µr)
+垂直反射射因子。例如, 已知 m, d 和垂直反射因子 R(0), σi,max 可以用如下公式计算
+
+σi,max = (cid:0) v(m + 1) ln(R(0))
+
+2d
+
+σi,max = (cid:0) (m + 1) ln(R(0))
+
+2ηd
+
+(2.8)
+
+而 Taflove 中取法为
+
+其中
+
+r
+
+r
+
+r
+
+µ0µr
+ϵ0ϵr
+归一化后，η 取值始终为有限值。对于 10 层 PML 网格，一般取反射因子 R(0) = e−16.
+在数值算例中 [13, 14]，参数的选取为
+
+µr
+ϵr,∞
+
+η =
+
+µ
+ϵ
+
+=
+
+=
+
+8
+<
+
+:
+
+µ0 = τ0 = ϵ0 = ϵ∞ = 1, ϵs = 2,
+
+µ0 = τ0 = ϵ0ϵ∞ = ϵ0 (ϵs (cid:0) ϵ∞) = 1
+
+5
+
+
+--- Page 6 ---
+2.2 2-D Maxwell Equation with UPML in Cole-Cole dispersive medium
+
+简单起见，先考虑 2 维 TM 波的情况 (σz = 0) ，在频域下的的 Maxwell Equation 在
+
+Cole-Cole 介质下写做：
+
+jωϵ0ϵr,∞ ˘Ez + jω ˘P + σ ˘Ez
+
+(cid:16)
+
+=
+
+∂ ˘Hy
+∂x
+
+= (cid:0)jωµ0µr
+
+(cid:0) ∂ ˘Hx
+∂y
+∂ ˘Ez
+∂y
+(cid:0) ∂ ˘Ez
+∂x
+P + τ α ∂αP
+∂tα = ϵ0(ϵr,s (cid:0) ϵr,∞) ˘Ez.
+
+= (cid:0)jωµ0µr
+
+sy
+sx
+sx
+sy
+
+˘Hx,
+
+˘Hy,
+
+(cid:17)
+
+sxsy,
+
+(2.9a)
+
+primal Maxwell in C-C first
+
+(2.9b)
+
+primal Maxwell in C-C second
+
+(2.9c)
+
+primal Maxwell in C-C third
+
+(2.9d)
+
+primal Maxwell in C-C fourth
+
+将方程 (2.9a)写做：
+
+∂ ˘Hy
+∂x
+
+(cid:0) ∂ ˘Hx
+∂y
+
+其中
+
+= jωϵ0ϵr,∞ ˘Ez + σ ˘Ez + jω ˘P + ˘Jz,1(ω) + ˘Jz,2(ω) + ˘Jz,3(ω)
+
+(2.10)
+
+J style Maxwell in C-C first
+
+(2.11)
+
+(2.12)
+
+˘Jz,1(ω) = jωϵ0ϵr,∞(sxsy (cid:0) 1) ˘Ez
+˘Jz,2(ω) = jω(sxsy (cid:0) 1) ˘P
+˘Jz,3(ω) =
+
+˘Jz,1(ω)
+
+σ
+jωϵ0ϵr,∞
+
+带入 sx, sy 的表达式，对于 ˘Jz,1, ˘Jz,2 得到
+
+˘Jz,1(ω) = jωϵ0ϵr,∞
+
+1 +
+
+(cid:18)
+
+= jωϵ0ϵr,∞
+
+(cid:18)(cid:18)
+
+(cid:19) (cid:18)
+
+1 +
+
+σx
+jωϵ0
+
+σx + σy
+jωϵ0
+
++
+
+σxσy
+(jωϵ0)2
+
+(cid:19)
+
+(cid:19)
+
+(cid:0) 1
+
+˘Ez
+
+σy
+jωϵ0
+(cid:19)
+
+˘Ez
+
+= ϵr,∞ (σx + σy) ˘Ez +
+(cid:18)(cid:18)
+
+ϵr,∞
+jωϵ0
+(cid:19) (cid:18)
+
+σxσy ˘Ez,
+(cid:19)
+
+˘Jz,2(ω) = jω
+
+1 +
+
+σx
+jωϵ0
+
+1 +
+
+σy
+jωϵ0
+(cid:19)
+
+(cid:19)
+
+(cid:0) 1
+
+˘P
+
+(cid:18)
+
+= jω
+
+σx + σy
+jωϵ0
+
++
+
+=
+
+σx + σy
+ϵ0
+
+˘P +
+
+σxσy
+jωϵ2
+0
+
+σxσy
+(jωϵ0)2
+˘P ,
+
+通过 Laplace 逆变换的方式，给出对于 Jz,1, Jz,2, Jz,3 的控制方程。
+
+6
+
+˘P
+
+(2.13)
+
+
+--- Page 7 ---
+对于 ˘Jz,1，两边同乘 jω，Laplace 逆变换得到：
+
+ϵr,∞
+ϵ0
+引入变量 Pz,1 = (cid:0)Jz,1 + ϵr,∞(σx + σy)Ez，上式化简为：
+
+∂Jz,1(t)
+∂t
+
+= ϵr,∞(σx + σy)
+
+∂Ez
+∂t
+
++
+
+σxσyEz,
+
+(2.14)
+
+∂Pz,1
+∂t
+
+= (cid:0) ϵr,∞
+ϵ0
+
+σxσyEz.
+
+对于 ˘Jz,2，两边同乘 jω，Laplace 逆变换得到：
+
+∂Jz,2(t)
+∂t
+
+=
+
+σx + σy
+ϵ0
+
+∂P
+∂t
+
++
+
+σxσy
+ϵ2
+0
+
+P,
+
+引入变量 Pz,2 = (cid:0)Jz,2 + σx+σy
+
+ϵ0
+
+P ，上式化简为：
+
+∂Pz,2
+∂t
+
+= (cid:0) σxσy
+ϵ2
+0
+
+P.
+
+对于 ˘Jz,3，两边同乘 jω，Laplace 逆变换得到：
+
+∂Jz,3(t)
+∂t
+
+=
+
+σ
+ϵ0ϵr,∞
+
+Jz,1,
+
+带入 Jz,1 的表达式，并为了方便起见，令 Pz,3 = (cid:0)Jz,3，上式化简为：
+
+∂Pz,3(t)
+∂t
+
+=
+
+σ
+ϵ0ϵr,∞
+
+Pz,1 (cid:0) σ(σx + σy)
+
+ϵ0
+
+Ez.
+
+对方程(2.10)采用 Laplace 逆变化，得到等价的时域上的方程：
+
+(2.15)
+
+(2.16)
+
+(2.17)
+
+(2.18)
+
+(2.19)
+
+∂Hy
+∂x
+
+(cid:0) ∂Hx
+∂y
+
+= ϵ0ϵr,∞
+
+∂Ez
+∂t
+
++ σEz +
+
+∂P
+∂t
+
++ Jz,1(t) + Jz,2(t) + Jz,3(t).
+
+(2.20)
+
+带入 Jz,1, Jz,2, Jz,3 的表达式，得到：
+
+∂Hy
+∂x
+
+(cid:0) ∂Hx
+∂y
+
+= ϵ0ϵr,∞
+
+∂Ez
+∂t
+
++ σEz +
+
+∂P
+∂t
+
+(cid:0) Pz,1 + ϵr,∞(σx + σy)Ez (cid:0) Pz,2 +
+
+σx + σy
+ϵ0
+
+P (cid:0) Pz,3.
+(2.21)
+
+对于方程 (2.9b)，通过同样的方式，可以得到如下的推导：
+
+7
+
+
+--- Page 8 ---
+∂ ˘Ez
+∂y
+
+= (cid:0)jωµ0µr
+
+= (cid:0)jωµ0µr(1 +
+
+jωϵ0 + σy
+jωϵ0 + σx
+
+˘Hx
+σy (cid:0) σx
+jωϵ0 + σx
+
+= (cid:0)jωµ0µr ˘Hx (cid:0) jωµ0µr
+
+= (cid:0)jωµ0µr ˘Hx (cid:0) jωµ0µr(
+
+) ˘Hx
+σy (cid:0) σx
+jωϵ0 + σx
+σy (cid:0) σx
+jωϵ0
+
+˘Hx
+(cid:0) (σy (cid:0) σx)σx
+
+jωϵ0(jωϵ0 + σx)
+
+令
+
+那么上式可以得到：
+
+˘Qx = µ0µr
+
+(σy (cid:0) σx)σx
+ϵ0(jωϵ0 + σx)
+
+˘Hx
+
+∂ ˘Ez
+∂y
+
+= (cid:0)jωµ0µr ˘Hx (cid:0) µ0µr
+
+σy (cid:0) σx
+ϵ0
+
+˘Hx + ˘Qx
+
+再通过 Fourier 逆变换，得到：
+
+∂Ez
+∂y
+
+= (cid:0)µ0µr
+
+∂Hx
+∂t
+
+(cid:0) µ0µr
+
+σy (cid:0) σx
+ϵ0
+
+Hx + Qx
+
+通过方程(2.23) 可以得到 Qx 的控制方程：
+
+jωϵ0 + σx
+ϵ0
+
+˘Qx = µ0µr
+
+jω ˘Qx = (cid:0) σx
+ϵ0
+
+˘Hx
+
+(σy (cid:0) σx)σx
+ϵ2
+0
+˘Qx + µ0µr
+
+(σy (cid:0) σx)σx
+ϵ2
+0
+
+˘Hx
+
+通过 Fourier 逆变换得到：
+
+∂Qx
+∂t
+
+= (cid:0) σx
+ϵ0
+
+Qx + µ0µr
+
+(σy (cid:0) σx)σx
+ϵ2
+0
+
+Hx
+
+那么对于 Faraday 定律的方程组 (2.9b),(2.9c)，得到如下的表达:
+
+∂Ez
+∂y
+(cid:0) ∂Ez
+∂x
+∂Qx
+∂t
+∂Qy
+∂t
+
+= (cid:0)µ0µr
+
+= (cid:0)µ0µr
+
+∂Hx
+∂t
+∂Hy
+∂t
+
+(cid:0) µ0µr
+
+(cid:0) µ0µr
+
+σy (cid:0) σx
+ϵ0
+σx (cid:0) σy
+ϵ0
+
+Hx + Qx,
+
+Hy + Qy,
+
+= (cid:0) σx
+ϵ0
+= (cid:0) σy
+ϵ0
+
+Qx +
+
+Qy +
+
+µ0µrσx (σy (cid:0) σx)
+ϵ2
+0
+µ0µrσy (σx (cid:0) σy)
+ϵ2
+0
+
+Hx,
+
+Hy.
+
+8
+
+(2.22)
+
+) ˘Hx
+
+(2.23)
+
+Q_x definition
+
+(2.24)
+
+(2.25)
+
+(2.26)
+
+(2.27)
+
+
+--- Page 9 ---
+对上述的推导我们可以得到对于 Hx, Hy, Ez, P, Pz,1, Pz,2, Pz,3, Qx, Qy 为变量的方程组：
+
+ϵ0ϵr,∞
+
+∂Ez
+∂t
+
+=
+
+∂Hy
+∂x
+
+(cid:0) ∂Hx
+∂y
+
+(cid:0) [σ + ϵr,∞(σx + σy)] Ez (cid:0) ∂P
+∂t
+
+(cid:0) σx + σy
+ϵ0
+
+P + Pz,1 + Pz,2 + Pz,3,
+
+Hx + Qx,
+
+Hy + Qy,
+
+=
+
+µ0µr
+
+(cid:0) µ0µr
+
+(cid:0) µ0µr
+
+σxσyEz,
+
+= (cid:0) ∂Ez
+∂y
+∂Ez
+∂x
+
+σy (cid:0) σx
+∂Hx
+∂t
+ϵ0
+σx (cid:0) σy
+∂Hy
+µ0µr
+∂t
+ϵ0
+P + τ α ∂αP
+∂tα = ϵ0(ϵr,s (cid:0) ϵr,∞)Ez,
+∂Pz,1
+∂t
+∂Pz,2
+∂t
+∂Pz,3
+∂t
+∂Qx
+∂t
+∂Qy
+∂t
+
+= (cid:0) ϵr,∞
+ϵ0
+= (cid:0) σxσy
+ϵ2
+0
+σ
+ϵ0ϵr,∞
+= (cid:0) σx
+ϵ0
+= (cid:0) σy
+ϵ0
+
+Qx +
+
+Qy +
+
+P,
+
+=
+
+Pz,1 (cid:0) σ(σx + σy)
+
+Ez,
+
+ϵ0
+µ0µrσx (σy (cid:0) σx)
+ϵ2
+0
+µ0µrσy (σx (cid:0) σy)
+ϵ2
+0
+
+Hx,
+
+Hy,
+
+(2.28a)
+
+(2.28b)
+
+(2.28c)
+
+(2.28d)
+
+(2.28e)
+
+(2.28f)
+
+(2.28g)
+
+(2.28h)
+
+(2.28i)
+
+在方程中标红的部分，与卢老师论文中不相同的部分，注意 Pz,2, Pz,3 与原论文中定义不同。
+
+9
+
+
+--- Page 10 ---
+将上述方程无量纲化后得到：
+
+ϵr,∞
+
+∂Ez
+∂t
+
+=
+
+∂Hy
+∂x
+
+(cid:0) ∂Hx
+∂y
+
+(cid:0) [σ + ϵr,∞(σx + σy)] Ez (cid:0) ∂P
+∂t
+
+(cid:0) (σx + σy)P + Pz,1 + Pz,2 + Pz,3,
+
+(cid:0) µr(σy (cid:0) σx)Hx + Qx
+
+(cid:0) µr(σx (cid:0) σy)Hy + Qy
+
+=
+
+µr
+
+∂Hx
+= (cid:0) ∂Ez
+∂t
+∂y
+∂Hy
+∂Ez
+µr
+∂t
+∂x
+P + τ α ∂αP
+∂tα = (ϵr,s (cid:0) ϵr,∞)Ez,
+∂Pz,1
+= (cid:0)ϵr,∞σxσyEz,
+∂t
+∂Pz,2
+∂t
+∂Pz,3
+∂t
+∂Qx
+∂t
+∂Qy
+∂t
+
+= (cid:0)σxσyP,
+
+σ
+ϵr,∞
+
+=
+
+Pz,1 (cid:0) σ(σx + σy)Ez,
+
+= (cid:0)σxQx + µrσx (σy (cid:0) σx) Hx,
+
+= (cid:0)σyQy + µrσy (σx (cid:0) σy) Hy,
+
+(2.29a)
+
+(2.29b)
+
+(2.29c)
+
+(2.29d)
+
+(2.29e)
+
+total P_{z,1} without dimension
+
+(2.29f)
+
+total P_{z,2} without dimension
+
+(2.29g)
+
+total P_{z,3} without dimension
+
+(2.29h)
+
+total Q_x without dimension
+
+(2.29i)
+
+total Q_y without dimension
+
+Stability Analysis in 1D
+
+3 Stability Analysis in 1D
+
+基于文章 [14] 所分析的在 Cole-Cole 介质中带有 Dirichlet 边界条件的 Maxwell 方程组
+
+的稳定性，将所研究的问题拓展到带有 UPML 吸收层情形。
+
+首先给出频域下，带有 UPML 吸收边界层的 Cole-Cole 介质下的有关 E, H, P 的方程
+
+组，并假定P 2 H 1
+
+0, T ; L2(Ω)
+
+(这个假设可能过于强)：
+
+(cid:0)
+
+(cid:1)
+
+(cid:17)
+
+(cid:16)
+
+= jω
+
+ε0ε∞ ˆE + ˆP
+
+∂ ˆH
+∂x
+∂ ˆE
+∂x
+ˆP = ε0 (εr (cid:0) ε∞) ˆE = ε0
+
+= jωµ0 ˆHsz
+
+sz
+
+εs (cid:0) ε∞
+1 + (jωτ )α
+
+ˆE
+
+(3.1)
+
+Maxwell Equation 1D frequency
+
+其中，sz = 1 + σz
+jωϵ0
+
+是有关 UPML 层的取值，具体的取值方法在 section 2中提及。
+
+10
+
+
+--- Page 11 ---
+将方程组(3.1)转化为时域下的方程组：
+
+(cid:0) σzε∞E (cid:0) σz
+ε0
+
+=
+
+ε0ε∞
+
+∂E
+∂H
+∂t
+∂x
+∂H
+∂E
+µ0
+∂t
+∂x
+P + τ α ∂αP
+∂tα = ε0 (εs (cid:0) ε∞) E
+
+(cid:0) ∂P
+∂t
+(cid:0) µ0
+ε0
+
+σzH
+
+=
+
+P
+
+(3.2)
+
+Maxwell Equation 1D time
+
+边界条件取做 perfectly conducting boundary condition:
+
+bn (cid:2) E = 0
+
+on ∂Ω,
+
+(3.3)
+
+其中 ˆn 为 ∂Ω 上的外法向量，初值条件为：
+
+E(x, 0) = E0(x), H(x, 0) = H0(x), P (x, 0) = P0(x)
+
+(3.4)
+
+将 ∂αP
+
+∂tα 用辅助变量进行表示：
+
+∂αP (x, t)
+∂tα
+
+=
+
+Z ∞
+
+0
+
+其中辅助变量 φ 由下述 ODE 方程进行描述
+
+φ(x, t; λ)dλ,
+
+(3.5)
+
+= (cid:0)λφ +
+
+∂φ
+∂t
+φ(x, 0; λ) = 0,
+
+λ > 0.
+
+sin(πα)
+π
+
+λα−1 ∂P
+∂t
+
+,
+
+λ > 0,
+
+(3.6)
+
+Auxiliary Equation
+
+也可以将上述 ODE 的解直接写做：
+
+φ(x, t; λ) :=
+
+sin(πα)
+π
+
+λα−1
+
+Z
+
+t
+
+0
+
+e−(t−τ )λ ∂P (x, τ )
+
+∂τ
+
+dτ.
+
+(3.7)
+
+3.1 Energy Function
+
+对方程组(3.2)和辅助方程(3.6)设计相应的能量函数，定义如下：
+Z ∞
+
+Z ∞
+
+(cid:18)
+
+Z
+
+(cid:19)
+
+W =
+
+Ω
+
+a1
+2
+
+ε0ε∞E2 +
+
+µ0H 2 +
+
+P 2 +
+
+a3
+2
+
+1
+2
+
+a2
+2
+
+a4φ2dλ +
+
+0
+
+0
+
+b1φP dλ
+
+dx,
+
+(3.8)
+
+1-D energy function
+
+其中 E, H, P, φ, λ 分别为电场强度、磁场强度、电极化强度、电极化强度的辅助变量，辅助
+变量的参数。并且其中 a1, a2 为标量，a3(x) 是关于空间变量 x 的函数,a4(x, λ), b1(x, λ) 是关
+于空间变量 x 和 λ 的函数。
+
+11
+
+
+--- Page 12 ---
+需要证明这个能量函数本身非负，且是随着时间衰减的，即可说明这个系统是稳定的。
+
+将能量函数 W 对时间做导数：
+
+Z
+
+(cid:20)
+
+Ω
+
+Z
+
+(cid:20)
+
+dW
+dt
+
+=
+
+=
+
+a1ε0ε∞E
+
+∂E
+∂t
+
++ a2µ0H
+
+∂H
+∂t
+
++ a3P
+
+∂P
+∂t
+
+a1
+Ω
+Z ∞
+
++
+
+0
+
+∂H
+∂x
+
+E (cid:0) a1
+
+∂P
+∂t
+Z ∞
+
+E (cid:0) a1σzε∞E2 (cid:0) a1
+Z ∞
+
+a4φ
+
+∂φ
+∂t
+
+dλ +
+
+b1φ
+
+0
+
+dλ +
+
+0
+
+∂P
+∂t
+
+(cid:19)
+
+(cid:21)
+
+dλ
+
+dx
+
+φ
+
+Z ∞
+
+0
+
+a4φ
+
+P E + a2
+(cid:18)
+
+∂φ
+∂t
+∂E
+∂x
+
+(cid:0)λφP +
+
++
+
+σz
+ε0
+
+b1
+
+dλ +
+
+Z ∞
+
+(cid:18)
+
+b1
+
+0
+
+∂φ
+∂t
+
+P +
+
+H (cid:0) a2
+
+σzH 2 + a3P
+(cid:21)
+(cid:19)
+
+µ0
+ε0
+λα−1 ∂P
+∂t
+
+sin πα
+π
+
+∂P
+∂t
+∂P
+∂t
+
+P
+
+dλ
+
+dx.
+
+(3.9)
+
+再经过一系列化简，得到如下的表达：
+
+dW
+dt
+
+=
+
+(cid:0) a1σzε∞E2 (cid:0) a2
+
+µ0
+ε0
+
+σzH 2 (cid:0) a1
+
+σz
+ε0
+
+1
+ε0 (εs (cid:0) ε0)
+
+P 2
+
+(cid:19)
+
+E + a2
+
+H
+
+∂E
+∂x
+τ α
+ε0 (εs (cid:0) ε∞)
+
+Z
+
+(cid:20)(cid:18)
+
+∂H
+∂x
+
+a1
+(cid:18)
+
+Ω
+Z ∞
+
+(cid:0)
+
++
+
++
+
+(cid:0)
+
+a1
+
+σz
+ε0
+a1
+ϵ0(ϵs (cid:0) ϵ∞)
+(cid:20)
+
+0
+(cid:18)
+
+(cid:0)
+Z ∞
+
+a4 + b1
+
+0
+Z ∞
+
+(cid:20)
+
+0
+
+(cid:0) π
+
+sin πα
+
+(cid:19)
+
+φP dλ
+
++ b1λ
+Z ∞
+
+(cid:19)
+
++ a3 +
+
+b1
+
+π
+sin πα
+
+0
+λ1−α (cid:0) τ α
+(cid:18)
+
+λ2−αb1 + τ α
+
+sin πα
+π
+
+(cid:18)
+
+λα−1dλ
+Z ∞
+
+ϵ0(ϵs (cid:0) ϵ∞)E
+(cid:19)
+
+a3 +
+Z ∞
+
+a3 +
+
+0
+
+sα−1ds
+(cid:19)
+
+b1
+
+sin πα
+π
+sin πα
+π
+
+0
+
+b1
+
+sα−1ds
+
+∂P
+∂t
+π
+sin πα
+π
+sin πα
+
+λ2−α
+
+(cid:21)
+
+λ1−α
+(cid:21)
+
+φ
+
+∂φ
+∂t
+(cid:21)
+
+dλ
+
+φ2dλ
+
+dx.
+
+(3.10)
+
+dW/dt
+
+对于空间导数项，由分部积分可知：
+
+Z
+
+E
+
+∂H
+∂x
+
+Ω
+
+dx = EHj
+
+(cid:0)
+
+∂Ω
+
+Z
+
+H
+
+∂E
+∂x
+
+Ω
+
+dx,
+
+UPML 吸收层的外层边界条件为 perfectly conducting boundary condition，对应于一维情
+
+形，则有：
+
+Z
+
+E
+
+∂H
+∂x
+
+Ω
+
++ H
+
+∂E
+∂x
+
+dx = EHj
+
+∂Ω = 0.
+
+想要能量函数的导数是非正的，需要将 ∂W
+
+∂t 凑出非正的形式。不妨对式(3.10)提出如下
+
+的假设
+
+8
+
+>>>>><
+>>>>>:
+
+Z ∞
+
+b1
+
+0
+
+a4 = (
+
+λα−1dλ =
+
+sin πα
+π
+
+τ α
+ϵ0(ϵs (cid:0) ϵ∞)
+
+a1 (cid:0) b1)
+
+(cid:0) a3
+
+a1
+ϵ0(ϵs (cid:0) ϵ∞)
+π
+sin πα
+
+λ1−α
+
+a1 = a2
+
+12
+
+(3.11)
+
+
+--- Page 13 ---
+∂t , φ ∂φ
+
+∂t 以及空间导数项对应的系数为 0。将 dW /dt 剩下的项配方形
+
+这样式(3.10)中 E ∂P
+成负的平方项的形式。
+定义 M ≜ σz
+1
+ϵ0
+
+ϵ0(ϵs−ϵ∞) ，其中 σz 为 UPML 层参数
+jx (cid:0) x0jm
+dm
+
+σz = σmax
+
+= (cid:0) (m + 1)ln(R(0))
+
+2ηd
+
+jx (cid:0) x0jm
+dm
+
+则式(3.10)在上述假设条件下化简为：
+
+dW
+dt
+
+=
+
+Z
+
+(cid:20)
+
+Ω
+
+(cid:0)a1σzϵ∞E2 (cid:0) a2
+
+(cid:0)a1M P 2 (cid:0)
+Z
+
+(cid:20)
+
+Z ∞
+
+0
+
+=
+
+=
+
+(cid:0)a1σzϵ∞E2 (cid:0) a2
+
+µ0
+ε0
+(a1τ αM + b1λ)2
+4λa4
+
+Ω
+Z ∞
+
+(cid:0)
+Z
+
+0
+(cid:20)
+
+(cid:0)a1σzϵ∞E2 (cid:0) a2
+
+µ0
+ε0
+(a1τ αM + b1λ)
+p
+
+Ω
+Z ∞
+
+(cid:18)
+
+(cid:0)
+
+0
+
+2
+
+λa4
+
+µ0
+ε0
+
+σzH 2
+
+Z ∞
+
+(cid:21)
+
+(a1τ αM + b1λ)φP dλ (cid:0)
+
+λa4φ2dλ
+
+dx
+
+P 2dλ (cid:0)
+
+(a1τ αM + b1λ)φP dλ (cid:0)
+
+0
+Z ∞
+
+0
+
+(a1τ αM + b1λ)2
+4λa4
+
+dλ)P 2
+
+Z ∞
+
+Z ∞
+
+0
+(a1τ αM + b1λ)2
+4λa4
+
+λa4φ2dλ
+(cid:19)
+
+dλ
+
+P 2
+
+σzH 2 (cid:0) (a1M (cid:0)
+
+Z ∞
+
+0
+(cid:18)
+
+σzH 2 (cid:0)
+
+p
+
+a1M (cid:0)
+(cid:19)
+
+2
+
+0
+#
+
+P +
+
+λa4φ
+
+dλ
+
+dx
+
+(cid:21)
+
+dx
+
+(3.12)
+
+故满足如下不等式时：
+
+a1M (cid:0)
+
+Z ∞
+
+0
+
+(a1τ αM + b1λ)2
+4λa4
+
+dλ (cid:21) 0,
+
+(3.13)
+
+inequality 3
+
+能量函数的随时间递减，即 dW /dt (cid:20) 0
+同时需要验证能量函数 W (cid:21) 0，即
+Z
+
+(cid:18)
+
+W =
+
+=
+
+Ω
+
+Z
+
+(cid:18)
+
+1
+2
+
+Ω
+
++
+
+Z
+
+=
+
+Ω
+
+ε0ε∞E2 +
+
+a1
+2
+a1
+ε0ε∞E2 +
+2
+Z ∞
+
+a2
+2
+a2
+2
+
+b2
+1
+a4
+
+0
+
+P 2dλ +
+
+a1
+2
+
+ε0ε∞E2 +
+
+a2
+2
+
+µ0H 2 +
+
+P 2 +
+
+µ0H 2 +
+Z ∞
+
+1
+2
+
+0
+
+µ0H 2 +
+
+a4φ2dλ +
+(cid:18)
+
+a3
+2
+
+(cid:0) 1
+2
+
+Z ∞
+
+a3
+2
+(cid:18)
+
+a3
+2
+
+1
+2
+0
+Z ∞
+(cid:0) 1
+2
+
+0
+Z ∞
+
+a4φ2dλ +
+(cid:19)
+
+b2
+1
+a4
+
+dλ
+
+P 2
+(cid:19)
+
+(cid:19)
+
+b1φP dλ
+
+dx
+
+Z ∞
+
+0
+
+dx
+
+b1φP dλ
+(cid:19)
+
+dλ
+
+P 2 +
+
+b2
+1
+a4
+
+0
+Z ∞
+
+0
+
+13
+
+Z ∞
+
+(cid:18)
+
+0
+
+1
+2
+
+p
+
+P +
+
+b1p
+a4
+
+!
+
+(cid:19)
+
+2
+
+a4φ
+
+dλ
+
+dx
+
+(3.14)
+
+ 
+
+--- Page 14 ---
+故满足如下不等式时：
+
+a3 (cid:0)
+
+Z ∞
+
+0
+
+b2
+1
+a4
+
+dλ (cid:21) 0,
+
+能量函数是正的，即 W (cid:21) 0。将对能量函数所提的要求合并在一起：
+
+(3.15)
+
+inequality 4
+
+(cid:0) a3 ineq:1
+
+a1
+ϵ0(ϵs (cid:0) ϵ∞)
+π
+sin πα
+
+a1 (cid:0) b1)
+
+λ1−α ineq:2
+
+8
+
+>>>>>>>>>>>>>><
+>>>>>>>>>>>>>>:
+
+Z ∞
+
+0
+
+b1
+
+sin πα
+π
+
+λα−1dλ =
+
+a4 = (
+
+τ α
+ϵ0(ϵs (cid:0) ϵ∞)
+
+a1 = a2 ineq:3
+Z ∞
+
+a3 (cid:0)
+
+0
+
+a1M (cid:0)
+
+b2
+1
+a4
+Z ∞
+
+0
+
+dλ (cid:21) 0 ineq:4
+
+(a1τ αM + b1λ)2
+4λa4
+
+dλ (cid:21) 0 ineq:5
+
+(3.16a)
+
+(3.16b)
+
+(3.16c)
+
+(3.16d)
+
+(3.16e)
+
+定义 C ≜ π
+
+sin πα ，对 a3(x), a4(x, λ), b1(x, λ) 取做如下的形式：
+
+a3(x) = s(x)a1,
+
+(3.17)
+
+a_3
+
+(cid:18)
+
+(cid:18)
+
+8
+>><
+
+>>:
+
+a4(x, λ) =
+
++ kM λβ
+
+(cid:19)
+
+Cλ1−αa1,
+(cid:19)
+
+λ 2 (0, δ0]
+
++ τ αM λ−1
+
+Cλ1−αa1,
+
+λ 2 (δ0, +1)
+
+τ α
+ϵ0(ϵs (cid:0) ϵ∞)
+τ α
+ϵ0(ϵs (cid:0) ϵ∞)
+8
+<
+
+b1(x, λ) =
+
+:
+
+(cid:0)kM λβa1,
+(cid:0)τ αM λ−1a1,
+
+λ 2 (0, δ0]
+
+λ 2 (δ0, +1)
+
+(3.18)
+
+a_4
+
+(3.19)
+
+b_1
+
+其中要求 s(x) (cid:21) 0, (cid:0)α < β < α (cid:0) 1，且 k, β, δ0 为可变参数。
+
+上述 a4, b1 的取法是自然满足式(3.16b)的，将具体形式带入式(3.16a)中：
+
+Z
+
+δ0
+
+0
+
+(cid:0)kM λβ 1
+C
+
+Z ∞
+
+λα−1dλ +
+
+δ0
+(cid:0) kM
+C
+
+(cid:0)τ αM λ−1 1
+C
+(cid:0) τ αM
+C
+
+δα+β
+0
+α + β
+
+λα−1dλ =
+
+δα−1
+0
+1 (cid:0) α
+
+=
+
+在 α < 1 时，满足 s > 0.
+
+s =
+
+1
+ϵ0(ϵs (cid:0) ϵ∞)
+
++
+
+kM
+C
+
+14
+
+(cid:0) s
+
+(cid:0) s
+
+(3.20)
+
+1
+ϵ0(ϵs (cid:0) ϵ∞)
+1
+ϵ0(ϵs (cid:0) ϵ∞)
+τ αM
+C
+
++
+
+δα−1
+0
+1 (cid:0) α
+
+δα+β
+0
+α + β
+
+
+--- Page 15 ---
+验证不等式(3.16d)，带入 a4, b1 表达式：
+
+k2M 2λ2β
+ϵ0(ϵs−ϵ∞) + kM λβ)Cλ1−α
+
+τ α
+
+(
+
+a1dλ +
+
+Z ∞
+
+δ0
+
+(cid:16)
+
+τ 2αM 2λ−2
+ϵ0(ϵs−ϵ∞) + τ αM λ−1
+
+τ α
+
+(cid:17)
+
+a1dλ
+
+Cλ1−α
+
+Z ∞
+
+0
+
+b2
+1
+a4
+
+dλ =
+
+(cid:20)
+
+Z
+
+δ0
+
+0
+
+Z
+
+δ0
+
+0
+
+Z ∞
+
+λα+β−1a1dλ +
+
+δ0
+δα−1
+0
+1 (cid:0) α
+
+τ αM
+C
+
+a1 +
+
+a1
+
+kM
+C
+δα+β
+0
+α + β
+
+=
+
+kM
+C
+(cid:20) sa1 = a3
+
+τ αM
+C
+
+λα−2a1dλ
+
+Z ∞
+
+4(
+
+δ0
+
+(τ αM a1 (cid:0) τ αM λ−1λa1)2
+ϵ0(ϵs−ϵ∞) + τ αM λ−1)Cλ2−αa1
+
+τ α
+
+dλ
+
+dλ +
+
+dλ
+
+验证不等式(3.16e)，同样带入 a4, b1 表达式：
+Z ∞
+
+(a1τ αM + b1λ)2
+4λa4
+
+dλ
+
+τ α
+
+(a1τ αM (cid:0) kM λβ+1a1)2
+ϵ0(ϵs−ϵ∞) + kM λβ)Cλ2−αa1
+(a1τ αM (cid:0) kM λβ+1a1)2
+ϵ0(ϵs−ϵ∞) + kM λβ)Cλ2−αa1
+
+τ α
+
+4(
+
+4(
+
+τ 2αM 2 (cid:0) 2τ αkM 2λβ+1 + k2M 2λ2β+2
+4kM Cλβ+2−α
+
+(cid:18)
+
+a1dλ
+(cid:19)
+
+τ 2αM
+4kC
+
+λα−β−2 (cid:0) τ αM
+2C
+(cid:0) τ αM
+2C
+
+δα−β−1
+0
+α (cid:0) β (cid:0) 1
+
+0
+τ 2αM
+4kC
+
+λα−1 +
+
+kM
+4C
+
+λα+β
+
+δα
+0
+α
+
++
+
+kM
+4C
+
+δα+β+1
+0
+α + β + 1
+
+a1dλ
+!
+
+a1
+
+0
+
+Z
+
+δ0
+
+0
+
+Z
+
+δ0
+
+0
+
+Z
+
+δ0
+
+0
+
+Z
+
+δ0
+
+=
+
+=
+
+(cid:20)
+
+=
+
+=
+
+则只需证：
+
+τ 2αM
+4kC
+
+δα−β−1
+0
+α (cid:0) β (cid:0) 1
+
+(cid:0) τ αM
+2C
+
+δα
+0
+α
+
++
+
+kM
+4C
+
+τ 2α
+4kC
+
+δα−β−1
+0
+α (cid:0) β (cid:0) 1
+
++
+
+k
+4C
+
+q
+
+当 k = τ α
+
+α+β+1
+α−β−1 δ
+
+−β−1
+0 时，
+ s
+
+δα+β+1
+0
+α + β + 1
+(cid:0) τ α
+2C
+
+δα
+0
+α
+
+δα+β+1
+0
+α + β + 1
+
+!
+
+a1 (cid:20) a1M
+
+(cid:0) 1 (cid:20) 0
+
+!
+
+τ αδα
+0
+2C
+
+1
+(α (cid:0) β (cid:0) 1)(α + β + 1)
+
+(cid:0) 1
+α
+
+(cid:20) 1
+
+15
+
+(3.21)
+
+(3.22)
+
+(3.23)
+
+(3.24)
+
+ 
+ 
+
+--- Page 16 ---
+则
+
+0
+
+1
+α
+
+@
+
+q
+
+δ0 (cid:20) (2C)
+τ
+
+1
+α
+
+1
+
+A
+
+1
+
+1
+(α−β−1)(α+β+1)
+
+(cid:0) 1
+α
+
+(3.25)
+
+delta_0 inequality
+
+8
+
+>>>>>>>>>>>>>>>>>>>>>><
+>>>>>>>>>>>>>>>>>>>>>>:
+
+总结下来，各个参数的取法为
+
+a1 = a2 = 1
+
+s
+
+Cϵ2
+
+τ ασz
+0(ϵs (cid:0) ϵ∞)
+τ ασz
+0(ϵs (cid:0) ϵ∞)
+ϵ2
+
++
+
++ τ α
+s
+
+σz
+0(ϵs (cid:0) ϵ∞)
+ϵ2
+α + β + 1
+−β−1
+α (cid:0) β (cid:0) 1
+0
+
+δ
+
+a3 =
+
+a4 =
+
+b1 =
+
+(cid:18)
+
++
+
+τ α
+ϵ0(ϵs (cid:0) ϵ∞)
+τ α
+ϵ0(ϵs (cid:0) ϵ∞)
+
+1
+ϵ0(ϵs (cid:0) ϵ∞)
+8
+>>><
+>>>:
+8
+>>><
+>>>:
+
+(cid:0) τ ασz
+
+0(ϵs (cid:0) ϵ∞)
+ϵ2
+
+(cid:0)τ α
+
+σz
+0(ϵs (cid:0) ϵ∞)
+ϵ2
+
+α + β + 1
+α (cid:0) β (cid:0) 1
+s
+
+δα−1
+0
+α + β
+
++
+
+τ ασz
+0(ϵs (cid:0) ϵ∞)
+Cϵ2
+!
+
+δα−1
+0
+1 (cid:0) α
+
+α + β + 1
+α (cid:0) β (cid:0) 1
+(cid:19)
+
+−β−1
+0
+
+δ
+
+λβ
+
+Cλ1−αa1,
+
+λ 2 (0, δ0]
+
+λ−1
+
+Cλ1−αa1,
+
+λ 2 (δ0, +1)
+
+λβa1,
+
+λ 2 (0, δ0]
+
+λ−1a1,
+
+λ 2 (δ0, +1)
+
+(3.26)
+
+其中 0.5 < α < 1, (cid:0)α < β < α (cid:0) 1，δ0 的取法由式(3.25)给出。
+当 σz = 0 时，即解算的 Maxwell 方程组对应于计算色散媒质中的 Maxwell 方程组，能
+
+量函数 W 也退化为 [14] 中所提出的形式。
+
+回到能量函数定义式，还需要说明按照所取的 a1, a2, a3(x), a4(x, λ), b1(x, λ) 能量函
+
+数(3.8)是 well-defined .
+
+带入 a4(x, λ), φ 的定义，对于能量函数的 λ 积分项
+Z ∞
+
+(cid:18)
+
+(cid:19)
+
+Z
+
+R ∞
+0 a4φ2dλ，需要验证其是否收敛。
+
+a4φ2dλ =
+
+0
+
+0
+
++
+
+δ0
+
+Z ∞
+
+τ α
+ϵ0(ϵs (cid:0) ϵ∞)
+(cid:18)
+
+τ α
+ϵ0(ϵs (cid:0) ϵ∞)
+δ0
+
+Z
+
+δ0
+τ α
+ϵ0(ϵs (cid:0) ϵ∞)
+
+=
+
++
+
+τ α
+ϵ0(ϵs (cid:0) ϵ∞)
+
++ kM λβ
+
+Cλ1−αa1φ2dλ
+
+(cid:19)
+
++ τ αM λ−1
+
+Cλ1−αa1φ2dλ
+Z
+
+δ0
+
+Ca1
+
+λ1−αφ2dλ + kM Ca1
+Z ∞
+
+0
+λ1−αφ2dλ + τ αM Ca1
+
+0
+
+Ca1
+
+λβ−α+1φ2dλ
+Z ∞
+
+λ−αφ2dλ
+
+δ0
+
+(3.27)
+
+δ0
+
+16
+
+ 
+
+--- Page 17 ---
+由于 P 2 H 1
+
+(cid:0)
+
+0, T ; L2(Ω)
+
+(cid:1)
+
+(cid:18)Z
+
+t
+
+0
+
+e−(t−τ )λ ∂P (x, τ )
+
+∂τ
+
+dτ
+
+由
+
+，则由 Cauchy-Schwartz 不等式：
+(cid:19)2
+
+(cid:19)  Z
+
+(cid:18)Z
+
+2
+
+dτ
+
+(cid:20)
+
+=
+
+t
+
+(cid:12)
+(cid:12)
+(cid:12)
+
+(cid:12)
+(cid:12)
+(cid:12)e−(t−τ )λ
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12)
+
+Z
+
+t
+
+0
+1 (cid:0) e−2tλ
+2λ
+
+0
+
+2
+
+0
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12)
+
+∂P (x, τ )
+∂τ
+
+dτ
+
+t
+
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12)
+
+∂P (x, τ )
+∂τ
+
+!
+
+2
+
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12)
+
+dτ
+
+(3.28)
+
+1 (cid:0) e−2tλ
+2λ
+R
+
+(cid:20) t
+
+对于第一项，带入 φ(x, t; λ) := 1
+
+Z
+
+δ0
+
+0
+
+λ1−αφ2dλ =
+
+1
+C2
+(cid:20) 1
+C2
+
+=
+
+1
+C2
+
+C λα−1
+Z
+
+δ0
+
+λα−1
+
+t
+
+0 e−(t−τ )λ ∂P (x,τ )
+(cid:18)Z
+
+∂τ
+
+dτ
+
+Z
+
+0
+t
+
+t
+
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12)
+
+∂τ
+
+e−(t−τ )λ ∂P (x, τ )
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12)
+
+dτ dλ
+
+∂P (x, τ )
+∂τ
+2
+
+2
+
+λα−1t
+(cid:12)
+Z
+(cid:12)
+(cid:12)
+(cid:12)
+
+t
+
+0
+
+0
+∂P (x, τ )
+∂τ
+
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12)
+
+dτ
+
+(cid:19)2
+
+dτ
+
+dλ
+
+由 α, δ0 的取值范围可知其是收敛的，同理对于第二项积分
+
+Z
+
+δ0
+
+0
+
+λβ−α+1φ2dλ =
+
+1
+C2
+(cid:20) 1
+C2
+
+=
+
+1
+C2
+
+(cid:18)Z
+
+λβ−α+1
+
+λβ−α+1t
+Z
+
+0
+δβ−α+2
+0
+β (cid:0) α + 2
+
+t
+
+0
+
+t
+
+0
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12)
+
+Z
+
+0
+t
+
+t
+
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12)
+
+e−(t−τ )λ ∂P (x, τ )
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12)
+
+∂P (x, τ )
+∂τ
+
+dτ dλ
+
+∂τ
+
+2
+
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12)
+
+2
+
+dτ
+
+∂P (x, τ )
+∂τ
+
+(cid:19)2
+
+dτ
+
+dλ
+
+0
+
+Z
+
+δ0
+
+0
+δα
+0
+α
+
+t
+
+Z
+
+δ0
+
+0
+
+Z
+
+δ0
+
+由 α, β, δ0 的取值范围可知其是收敛的，对于第三项积分
+
+Z ∞
+
+δ0
+
+λ1−αψ2dλ =
+
+λα−1
+
+(cid:18)Z
+
+t
+
+0
+
+Z ∞
+
+δ0
+Z ∞
+
+1
+C2
+(cid:20) 1
+C2
+(cid:20) 1
+2C2
+
+=
+
+1
+2C2
+
+∂τ
+
+e−(t−τ )λ ∂P (x, τ )
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12)
+
+∂P (x, τ )
+∂τ
+
+Z
+
+t
+
+dτ
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12)
+
+2
+
+0
+
+(cid:19)2
+
+dλ
+
+dτ dλ
+
+λα−1 1 (cid:0) e−2tλ
+Z
+
+2λ
+(cid:12)
+(cid:12)
+t
+(cid:12)
+(cid:12)
+
+λα−2
+Z
+
+t
+
+∂P (x, τ )
+∂τ
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12)
+
+0
+∂P (x, τ )
+∂τ
+
+2
+
+dτ
+
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12)
+
+δ0
+Z ∞
+
+δ0
+δα−1
+0
+1 (cid:0) α
+
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12)
+
+2
+
+dτ dλ
+
+0
+
+17
+
+(3.29)
+
+(3.30)
+
+(3.31)
+
+
+--- Page 18 ---
+由 α 的取值范围可知其是收敛的，对于第四项积分
+
+Z ∞
+
+δ0
+
+λ−αφ2dλ =
+
+(cid:19)2
+
+dλ
+
+dτ dλ
+
+(3.32)
+
+1
+C2
+(cid:20) 1
+C2
+(cid:20) 1
+2C2
+
+=
+
+1
+2C2
+
+λα−2
+
+(cid:18)Z
+
+t
+
+0
+
+Z ∞
+
+δ0
+Z ∞
+
+∂τ
+
+e−(t−τ )λ ∂P (x, τ )
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12)
+
+∂P (x, τ )
+∂τ
+
+Z
+
+t
+
+dτ
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12)
+
+2
+
+0
+
+δ0
+Z ∞
+
+δ0
+δα−2
+0
+2 (cid:0) α
+
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12)
+
+2
+
+dτ dλ
+
+λα−2 1 (cid:0) e−2tλ
+Z
+
+2λ
+(cid:12)
+(cid:12)
+t
+(cid:12)
+(cid:12)
+
+λα−3
+Z
+
+t
+
+∂P (x, τ )
+∂τ
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12)
+
+0
+∂P (x, τ )
+∂τ
+
+2
+
+dτ
+
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12)
+
+0
+R ∞
+) a4φ2dλ 是收敛的。
+
+由 α 的取值范围可知其是收敛的。故
+
+R ∞
+0 b1φdλ，同样需要验证其是否收敛
+
+对于
+
+Z ∞
+
+Z
+
+b1φdλ = (cid:0)
+
+0
+
+对于第一项积分
+
+δ0
+
+0
+
+kM λβa1φdλ (cid:0)
+
+Z ∞
+
+δ0
+
+τ αM λ−1a1φdλ
+
+(3.33)
+
+0
+
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12)
+
+Z
+
+δ0
+
+0
+
+δ0
+
+1
+C
+Z
+
+0
+
+Z
+
+δ0
+
+0
+
+ Z
+
+Z
+
+δ0
+
+0
+
+(cid:0) 1
+C
+
+λβ+α−1
+
+Z
+
+0
+
+(cid:0) 1
+C
+
+δα+β
+0
+α + β
+
+t
+
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12)
+Z
+
+Z
+
+δ0
+
+0
+
+λβφdλ =
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12) dτ dλ (cid:20)
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12) dτ (cid:20)
+
+∂P (x, τ )
+∂τ
+
+t
+
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12)
+
+∂P (x, τ )
+∂τ
+
+Z
+
+t
+
+λβ+α−1
+
+e−(t−τ )λ ∂P (x, τ )
+
+dτ dλ
+
+∂τ
+Z
+t
+
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12)
+
+0
+Z
+
+δ0
+
+λβφdλ (cid:20) 1
+C
+λβφdλ (cid:20) 1
+C
+
+λβ+α−1
+(cid:12)
+Z
+(cid:12)
+(cid:12)
+(cid:12)
+
+t
+
+0
+
+0
+δα+β
+0
+α + β
+
+∂P (x, τ )
+∂τ
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12) dτ
+
+0
+∂P (x, τ )
+∂τ
+
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12) dτ dλ
+
+(3.34)
+
+而
+
+(cid:18)Z
+
+t
+
+0
+
+∂P (x, τ )
+∂τ
+
+(cid:19)2
+
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12) dτ
+(cid:0)
+
+(cid:20)
+
+0
+
+∂P (x, τ )
+∂τ
+
+t
+
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12)
+
+(cid:1)
+
+! (cid:18)Z
+
+2
+
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12)
+
+dτ
+
+(cid:19)
+
+t
+
+0
+
+1dτ
+
+则由 α, β 取值范围和 P 2 H 1
+
+0, T ; L2(Ω)
+
+可知第一项积分是收敛的，同理对于第二
+
+项积分
+
+(cid:0) 1
+C
+
+Z ∞
+
+Z
+
+λα−2
+
+δ0
+(cid:0) 1
+C
+
+0
+δα−1
+0
+1 (cid:0) α
+
+Z ∞
+
+λ−1φdλ =
+
+δ0
+∂P (x, τ )
+∂τ
+
+t
+
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12)
+Z
+
+t
+
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12)
+
+0
+
+∂P (x, τ )
+∂τ
+
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12) dτ dλ (cid:20)
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12) dτ (cid:20)
+
+Z ∞
+
+1
+C
+δ0
+Z ∞
+
+λα−2
+
+Z
+
+t
+
+0
+
+λ−1φdλ (cid:20) 1
+C
+λ−1φdλ (cid:20) 1
+C
+
+δ0
+Z ∞
+
+δ0
+
+dτ dλ
+
+e−(t−τ )λ ∂P (x, τ )
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12)
+
+Z ∞
+
+∂τ
+Z
+
+t
+
+λα−2
+Z
+
+t
+
+0
+
+∂P (x, τ )
+∂τ
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12) dτ
+
+0
+∂P (x, τ )
+∂τ
+
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12)
+
+δ0
+δα−1
+0
+1 (cid:0) α
+
+(cid:12)
+(cid:12)
+(cid:12)
+(cid:12) dτ dλ
+
+(3.35)
+
+18
+
+
+--- Page 19 ---
+则由 α 的取值范围可知其是收敛的。故
+至此，我们证明完成了能量函数 W (cid:21) 0 是良定的，并且 dW /dt (cid:20) 0 恒成立，故对带有
+
+R ∞
+0 b1φdλ 是收敛的。
+
+UPML 吸收层的一维 Cole-Cole 介质中的 Maxwell 方程组是稳定的。
+
+并且我们的一个特点是，吸收参数 σ 不是常数。参见 [2]
+
+3.2 Semi-discrete DG Scheme
+
+We divide the interval Ω = [x−, x+] into M subintervals:x− = x 1
+
+< x 3
+2
+
+< (cid:1) (cid:1) (cid:1) <
+
+2
+
+2
+
+= x+, and the mesh size is denoted by hj = xj+ 1
+
+with h = maxj hj, ρ =
+xM + 1
+minj hj. We assume that the mesh is regular, namely, 9γ, γh (cid:20) ρ (cid:20) h. The j-th cell is
+)/2. The
+denoted by Ij = [xj− 1
+piecewise polynomial space is defined as
+
+], and the center of each cell is xj = (xj− 1
+
++ xj+ 1
+
+, xj+ 1
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+(cid:0) xj− 1
+
+n
+
+o
+
+Vh =
+
+v : vjIj
+
+2 Pk,
+
+j = 1, (cid:1) (cid:1) (cid:1) , M
+
+, k 2 N, k (cid:21) 1,
+
+(3.36)
+
+where Pk is the space of polynomials of degree up to k in each cell Ij. For any function
+v 2 Vh, we denote by v+
+the limit values of v at xj+1/2 from the right cell Ij+1
+and the left cell Ij, respectively. The jump and average at xj+1/2 are defined as
+
+and v−
+
+j+ 1
+2
+
+j+ 1
+2
+
+JvK
+
+j+ 1
+2
+
+= v+
+
+j+ 1
+2
+
+(cid:0) v−
+
+j+ 1
+2
+
+,
+
+ffvgg
+
+j+ 1
+2
+
+=
+
+(cid:18)
+
+1
+2
+
+v+
+j+ 1
+2
+
++ v−
+
+j+ 1
+2
+
+(cid:19)
+
+.
+
+For the average and jump functions, the following identity holds:
+
+ffaggJbK + ffbggJaK = JabK.
+
+(3.37)
+
+eq:jump average identity
+
+The DG scheme for (3.2) is to find for any time t 2 (0, T ] the unique Uh((cid:1), t) 2 Vh
+
+19
+
+
+--- Page 20 ---
+with U = E, H, P, φ such that for all v 2 Vh, the following holds:
+Z
+
+Z
+
+∂Hh
+∂t
+
+µ0
+
+Ij
+
+Z
+
+Ij
+
+ϵ0ϵr,∞
+
+∂Eh
+∂t
+
+vdx = cEhv−jxj+1/2
+
+(cid:0) cEhv+jxj−1/2
+
+(cid:0)
+
+Ij
+
+Z
+
+vdx = cHhv−jxj+1/2
+Z
+
+(cid:0) cHhv+jxj−1/2
+Z
+
+(cid:0)
+
+Hh
+
+Ij
+
+dx
+
+∂v
+∂x
+Z
+
+∂Ph
+∂t
+
+Ij
+
+vdx (cid:0)
+
+σxϵr,∞Ehvdx (cid:0)
+
+Ij
+
+Ij
+
+Eh
+
+∂v
+∂x
+
+dx (cid:0)
+
+Z
+
+µ0
+ϵ0
+
+Ij
+
+σxHhvdx,
+
+(3.38a)
+
+semi H
+
+σx
+ϵ0
+
+Phvdx,
+
+(3.38b)
+
+semi E
+
+(3.38c)
+
+semi P
+
+Z
+
+Ij
+
+Phvdx +
+
+Z
+
+Z ∞
+
+Ij
+
+0
+
+(cid:0)
+
+Z
+
+Ij
+
+τ αφhvdλdx =
+Z
+
+ϵ0 (ϵr,s (cid:0) ϵr,∞) Ehvdx,
+Z
+
+∂φh
+∂t
+
+Ij
+
+vdx = (cid:0) λ
+
+φhvdx +
+
+Ij
+
+sin(πα)
+π
+
+λα−1
+
+Z
+
+∂Ph
+∂t
+
+Ij
+
+vdx,
+
+(3.38d)
+
+semi varphi
+
+where ˆ(cid:1) indicates the cell boundary terms obtained deom integration by parts, and they
+
+are so called numerical fluxes. The numerical fluxes are single-valued functions defined on
+
+the cell boundaries. We use the up wind numerical fluxes on the interior faces, which are
+
+given by
+
+cEh = ffEhgg +
+
+r
+
+1
+2
+
+µ0
+ϵ0ϵr,∞
+
+JHhK, cHh = ffHhgg +
+
+r
+
+1
+2
+
+ϵ0ϵr,∞
+µ0
+
+JEhK,
+
+and we choose the fluxes on the boundaries of Ω, Eh
++
+(cid:0)Eh
+M +1/2 = Hh
+
+−
+M +1/2, Hh
+
+−
+1/2 = Hh
+
++
+1/2, Hh
+
+−
+M +1/2, and taking them into (3.39)
+
+1/2 = (cid:0)Eh
+
++
+1/2, Eh
+
+−
+
+(3.39)
+
+eq:upwind flux
+
++
+M +1/2 =
+
+cEh1/2 = cEhM +1/2 = 0,
+cHh1/2 = Hh
+
++
+1/2 +
+
+r
+
+ϵ0ϵr,∞
+µ0
+r
+
+cHhM +1/2 = Hh
+
+−
+M +1/2
+
+(cid:0)
+
+ϵ0ϵr,∞
+µ0
+
+Eh
+
+−
+M +1/2.
+
+Eh
+
++
+1/2,
+
+(3.40)
+
+也可以采用别的数值通量，如 20250412.md 中所提的
+
+Now we can show the energy decreasing property of the semi-discrete DG scheme.
+
+Theorem 3.1. Under the PEC boundary condition, the initial condition, and the upwind
+
+numerical flux, the solution of semi-discrete DG scheme statisfies the following stability
+
+d
+dt
+
+E (Eh(t), Hh(t), Ph(t), φh(t)) (cid:20) 0,
+
+(3.41)
+
+20
+
+
+--- Page 21 ---
+thm:semi energy decreasing
+
+where E is given above.
+
+证明. Setting v = Hh in (3.38a) and v = Eh in (3.38b), and summing up over all elements,
+because of a1 = a2, we have
+
+Z
+
+Ω
+
+a1ϵ0ϵr,∞
+Z
+
+MX
+
+Z
+
+Ehdx +
+
+a2µ0
+
+Ω
+
+∂Eh
+∂t
+
+∂Hh
+∂t
+
+Hhdx
+
+a1∂x (EhHh) dx
+
+= (cid:0)
+
++
+
+(cid:0)
+
+where
+
+Ij
+
+(cid:16)
+
+a1
+
+cEhH −
+
+h
+
+j=1
+MX
+
+j=1
+Z
+
+µ0
+ϵ0
+
+a1
+
+Ω
+
+cEhH +
+
+h
+
+jj+1/2 (cid:0) a1
+Z
+
+jj−1/2 + a1
+Z
+
+cHhE−
+
+h
+
+cHhE+
+jj+1/2 (cid:0) a1
+Z
+
+h
+
+σxH 2
+
+hdx (cid:0)
+
+Ω
+
+a1σxϵr,∞E2
+
+hdx (cid:0)
+
+Ω
+
+a1
+
+σx
+ϵ0
+
+PhEhdx (cid:0)
+
+a1
+
+Ω
+
+∂Ph
+∂t
+
+Ehdx,
+
+(3.42)
+
+eq:semi H E
+
+(cid:17)
+
+jj−1/2
+
+MX
+
+j=1
+MX
+
+j=1
+
+cEhH −
+
+h
+
+jj+1/2 (cid:0) cEhH +
+
+h
+
+jj−1/2 = (cid:0)
+
+cHhE−
+
+h
+
+jj+1/2 (cid:0) cHhE+
+
+h
+
+jj−1/2 = (cid:0)
+
+M −1X
+
+j=1
+M −1X
+
+j=1
+
+cEh [[Hh]] jj+1/2 (cid:0) cEh1/2Hh
+
++
+
+1/2 + cEhM +1/2Hh
+
+−
+M +1/2,
+
+cHh [[Eh]] jj+1/2 (cid:0) cHh1/2Eh
+
++
+
+1/2 + cHhM +1/2Eh
+
+−
+M +1/2.
+
+(3.43)
+
+According to (3.37), we have
+
+(cid:16)
+
+(cid:17)
+cEhJHhK + cHhJEhK
+
+jj+1/2 = JEhHhKjj+1/2 + Mj+1/2(Eh, Hh),
+
+(3.44)
+
+where
+
+Mj+1/2(Eh, Hh) =
+
+(cid:18)r
+
+1
+2
+
+µ0
+ϵ0ϵr,∞
+
+JHhK2 +
+
+r
+
+ϵ0ϵr,∞
+µ0
+
+(cid:19)
+
+2
+
+JEhK
+
+.
+
+j+1/2
+
+Meanwhile
+Z
+
+MX
+
+j=1
+
+Ij
+
+∂x (EhHh) dx =
+
+MX
+
+j=1
+
+(EhHh) j−
+
+j+1/2
+
+(cid:0) (EhHh) j+
+
+j−1/2
+
+= (EhHh) j−
+
+M +1/2
+
+(cid:0) (EhHh) j+
+1/2
+
+(cid:0)
+
+M −1X
+
+j=1
+
+[[EhHh]] jj+1/2.
+
+(3.45)
+
+(3.46)
+
+21
+
+
+--- Page 22 ---
+As a result, the spatial part of the semi-discrete energy function i.e. the first two lines of
+
+(3.42) is reduced to
+
+Es = (cid:0)
+
+M −1X
+
+j=1
+
+Mj+1/2(Eh, Hh) (cid:0) cEh1/2Hh
+
++
+1/2
+
+(cid:0) cHh1/2Eh
+
++
+
+1/2 + (EhHh)+
+
+1/2
+
+(3.47)
+
++ cEhM +1/2Hh
+
+−
+
+M +1/2 + cHhM +1/2Eh
+
+−
+M +1/2
+
+(cid:0) (EhHh)
+
+−
+M +1/2 ,
+
+taking the fluxes we choose above into the equation, we have
+
+Es = (cid:0)
+
+M −1X
+
+j=1
+
+Mj+1/2(Eh, Hh) (cid:0)
+
+r
+
+ϵ0ϵr,∞
+µ0
+
+(cid:16)
+
+Eh
+
++
+1/2
+
+r
+
+(cid:17)
+
+2
+
+(cid:0)
+
+(cid:16)
+
+ϵ0ϵr,∞
+µ0
+
+(cid:17)
+
+2
+
+Eh
+
+−
+M +1/2
+
+(cid:20) 0.
+
+(3.48)
+
+Now for equations (3.38c), (3.38d), we do the same in the continuous case, the time
+
+derivative of the energy function. We recall the definition of the energy function in semi-
+
+discrete case
+(cid:18)
+
+Z
+
+Eh =
+
+Ω
+
+a1
+2
+
+ϵ0ϵr,∞E2
+
+h +
+
+a2
+2
+
+µ0H 2
+
+h +
+
+a3
+2
+
+P 2
+
+h +
+
+1
+2
+
+Z ∞
+
+0
+
+a4φ2
+
+hdλ +
+
+Z ∞
+
+0
+
+In order to keep the positiveness of the energy, it’s obviously that
+
+(cid:19)
+
+b1φhPhdλ
+
+dx,
+
+(3.49)
+
+eq: definition of semi energy function
+
+(cid:19)
+
+dλ
+
+P 2
+h
+
+b2
+1
+a4
+
+(3.50)
+
+(3.51)
+
+Z
+
+(cid:18)
+
+Eh =
+
+Ω
+
+a1
+2
+
+a2
+2
+
+µ0H 2
+
+h +
+
+ε0ε∞E2
+h +
+(cid:18)
+Z ∞
+
+1
+2
+
+0
+
+p
+
+Ph +
+
+b1p
+a4
+
+(cid:18)
+
+a3
+2
+(cid:19)
+
+2
+
+Z ∞
+
+(cid:0) 1
+2
+!
+
+0
+
+a4φh
+
+dλ
+
+dx,
+
++
+
+so Eh (cid:21) 0 is equivalent to
+
+a3 (cid:0)
+
+Z ∞
+
+0
+
+b2
+1
+a4
+
+dλ (cid:21) 0.
+
+22
+
+
+--- Page 23 ---
+∂Eh
+∂t
+
++ a2µ0Hh
+
+∂Hh
+∂t
+
++ a3Ph
+
+∂Ph
+∂t
+
++
+
+Z ∞
+
+0
+
+a4φh
+
+∂φh
+∂t
+
+Z ∞
+
+(cid:18)
+
+dλ +
+
+b1
+
+∂φh
+∂t
+
+Ph +
+
+∂Ph
+∂t
+
+(cid:19)
+
+(cid:21)
+
+φh
+
+dλ
+
+dx
+
+dEh
+dt
+
+Z
+
+(cid:20)
+
+so
+
+=
+
+Ω
+
+=Es +
+
+a1ϵ0ϵr,∞Eh
+Z
+
+(cid:20)
+
+µ0
+ϵ0
+∂φh
+∂t
+
+Ω
+Z ∞
+
++
+
+a4φh
+(cid:20)
+
+0
+
+Z
+
+0
+∂Ph
+∂t
+λα−1 ∂Ph
+∂t
+
+Eh + a3Ph
+
+sin πα
+π
+
+(cid:19)
+
+(cid:21)
+
+Ph
+
+dλ
+
+dx
+
+(cid:0)a1
+
+σxH 2
+h
+
+(cid:0) a1σxϵr,∞E2
+h
+Z ∞
+
+(cid:0) a1
+
+σx
+ϵ0
+Z ∞
+
+PhEh (cid:0) a1
+(cid:18)
+
+∂Ph
+∂t
+
+dλ +
+
+b1φh
+
+0
+
+∂Ph
+∂t
+
+dλ +
+
+b1
+
+(cid:0)λφhPh +
+
+µ0
+ϵ0
+
+(cid:0) a1
+
+σxH 2
+h
+(cid:19)
+
+0
+σx
+ϵ0
+
+1
+ϵ0 (ϵr,s (cid:0) ϵ0)
+
+P 2
+h
+
+=Es +
+
+(cid:0)a1σxϵr,∞E2
+h
+
+(cid:0) a2
+
+τ α
+ϵ0 (ϵr,s (cid:0) ϵr,∞)
+
++ a3 +
+
+Ω
+(cid:18)
+Z ∞
+
+(cid:0)
+
++
+
++
+
+(cid:0)
+
+0
+(cid:18)
+
+(cid:0)
+Z ∞
+
+a1
+
+σx
+ϵ0
+a1
+ϵ0(ϵr,s (cid:0) ϵr,∞)
+(cid:20)
+π
+sin πα
+
+a4 + b1
+
+0
+Z ∞
+
+(cid:20)
+
+0
+
+(cid:0) π
+
+sin πα
+
++ b1λ
+Z ∞
+
+b1
+(cid:18)
+
+0
+
+φhPhdλ
+
+(cid:19)
+
+λα−1dλ
+
+sin πα
+π
+
+Z ∞
+
+ϵ0(ϵr,s (cid:0) ϵr,∞)Eh
+(cid:19)
+
+∂Ph
+∂t
+
+λ1−α (cid:0) τ α
+(cid:18)
+
+a3 +
+Z ∞
+
+λ2−αb1 + τ α
+
+a3 +
+
+0
+
+sα−1ds
+(cid:19)
+
+b1
+
+sin πα
+π
+sin πα
+π
+
+0
+
+b1
+
+sα−1ds
+
+λ1−α
+(cid:21)
+
+π
+sin πα
+π
+sin πα
+
+λ2−α
+
+(cid:21)
+
+∂φh
+∂t
+
+φh
+(cid:21)
+
+dλ
+
+φ2
+
+hdλ
+
+dx
+
+(3.52)
+As Es (cid:20) 0 under the assumption a1 = a2, we can take the same supposition as in the
+continuous case,
+
+8
+
+>>>>>>>>>>>>>><
+>>>>>>>>>>>>>>:
+
+Z ∞
+
+0
+
+b1
+
+sin πα
+π
+
+λα−1dλ =
+
+a4 = (
+
+τ α
+ϵ0(ϵr,s (cid:0) ϵr,∞)
+
+a1
+ϵ0(ϵr,s (cid:0) ϵr,∞)
+π
+sin πα
+
+λ1−α,
+
+a1 (cid:0) b1)
+
+(cid:0) a3,
+
+a1 = a2,
+Z ∞
+
+a3 (cid:0)
+
+0
+
+a1M (cid:0)
+
+b2
+1
+a4
+Z ∞
+
+0
+
+dλ (cid:21) 0,
+
+(a1τ αM + b1λ)2
+4λa4
+
+dλ (cid:21) 0.
+
+(3.53a)
+
+(3.53b)
+
+(3.53c)
+
+(3.53d)
+
+(3.53e)
+
+As a result, we can choose the parameters a1, a2, a3, a4, b1 same as in the continuous
+(cid:20) 0, so we complete the proof of the theorem.
+
+case, which statisfies dE
+dt
+
+Remark 3.1. We can use different kinds of numerical flux, such as [11], we can get the
+
+same result as above by similar calculations.
+
+23
+
+eq: semi energy d/dt
+
+
+--- Page 24 ---
+3.3 The error analysis of semi-discrete DG scheme
+
+The Gauss-Radau projections P ±
+
+h play an important role in deriving optimal error
+estimates of DG methods using upwind fluxes. Taking the definition of P −
+h in [5]. For any
+given function u 2 H 1(Ij) and an arbitrary cell Ij = (xj−1/2, xj+1/2), the restriction of
+P ±
+h u to Ij is the unique polynomial in V k
+h satisfying
+Z
+Z
+
+P ±
+h u(x)vhdx =
+
+Ij
+P ±
+h u
+
+(cid:17)
+
+(cid:16)
+
+x±
+j+1/2
+
+= u
+
+Ij
+(cid:16)
+
+8vh 2 V k−1
+
+h
+
+,
+
+u(x)vhdx,
+
+(cid:17)
+
+,
+
+x±
+j+1/2
+
+(3.54)
+
+when k = 0, we set P −1(Ij) = 0. From the above definition, we can see that the projection
+P ±
+h can be solved explicitly on each element.
+
+The projection described above satisfies the following approximation error estimates.
+Let u 2 W k+1,p(Ij)(p = 2, 1), and according to the standard approximation theory [3],
+we have
+
+ku (cid:0) P −
+
+h ukLp(Ij ) (cid:20) Chk+1
+
+j
+
+kuk
+
+W k+1,p(Ij ),
+
+(3.55)
+
+where C is independent of hj.
+
+Remark 3.2. The variable u is just a scalar, so we can’t use P −
+model, but we can define a new projection based on P −
+h .
+
+h directly in Cole-Cole
+
+When using the upwind flux, we introduce the following coupled projection as in [6]
+
+(P 1,⋆
+
+h E, P 2,⋆
+
+h H) 2 V k
+
+h
+
+(cid:2) V k
+
+h , which satisfies
+
+Z
+
+P 1,⋆
+
+h E(x)vhdx =
+
+P 2,⋆
+
+h H(x)vhdx =
+
+(cid:19)
+
+Ij
+
+Z
+
+Ij
+
+Z
+
+Ij
+
+Z
+
+Ij
+
+E(x)vhdx,
+
+8vh 2 P k−1(Ij),
+
+H(x)vhdx,
+
+8vh 2 P k−1(Ij),
+
+(3.56)
+
+eq:coupled projections
+
+(cid:18)
+
+(cid:18)
+
+ffP 1,⋆
+
+h Egg +
+
+ffP 2,⋆
+
+h Hgg +
+
+r
+
+r
+
+1
+2
+1
+2
+
+µ0
+ϵ0ϵr,∞
+ϵ0ϵr,∞
+µ0
+
+JP 2,⋆
+
+h HK
+
+(cid:19)
+
+jj−1/2 = E(xj−1/2),
+
+JP 1,⋆
+
+h EK
+
+jj−1/2 = H(xj−1/2),
+
+as a consequence, the following lemma plays an important role in the error analysis of the
+
+DG scheme [6]
+
+24
+
+
+--- Page 25 ---
+Lemma 3.1. The projection (3.56) is well-defined and satisfies
+(cid:18)
+r
+
+r
+
+(cid:26)
+
+(cid:19)
+
+(cid:18)
+
+P 1,⋆
+
+h E =
+
+P 2,⋆
+
+h H =
+
+1
+2
+1
+2
+
+E +
+
+P +
+h
+
+(cid:26)
+
+(cid:18)
+
+P +
+h
+
+H +
+
+r
+
+µ0
+ϵ0ϵr,∞
+ϵ0ϵr,∞
+µ0
+
+(cid:19)
+
+H
+
+E
+
++ P −
+h
+
+E (cid:0)
+
+(cid:18)
+
++ P −
+h
+
+H (cid:0)
+
+r
+
+µ0
+ϵ0ϵr,∞
+ϵ0ϵr,∞
+µ0
+
+(cid:19)(cid:27)
+
+(cid:19)(cid:27)
+
+,
+
+,
+
+H
+
+E
+
+(3.57)
+
+and in particular, it satisfies
+
+kP 1,⋆
+
+h E (cid:0) EkIj
+
+(cid:20) Chk+1,
+
+kP 2,⋆
+
+h H (cid:0) HkIj
+
+(cid:20) Chk+1,
+
+(3.58)
+
+lemma: new projection
+
+where C is independent of h.
+
+Remark 3.3. The proof of the lemma is similar to the proof in [6], and it figures out the
+
+reason why we choose this kind of projection in [14].
+
+Remark 3.4. In the proof of optimal error, we use P 1,⋆
+magnetic field H respectively, and we use L2 projection P 2
+
+h
+
+and P 2,⋆
+for electric field E and
+h for the polarization P and the
+
+h
+
+auxiliary variable φ for fractional derivative.
+
+Theorem 3.2. Let (E, H, P, φ) 2 H 1(0, T ; L2(Ω)) be the exact solutions of (3.2), and
+
+(Eh, Hh, Ph, φh) be the numerical solutions of semi-discrete DG scheme (3.38a)-(3.38d).
+The following optimal error estimate holds true:
+
+kE(t)(cid:0)Eh(t)k2
+
+L2(Ω)+kH(t)(cid:0)Hh(t)k2
+
+L2(Ω)+kP (t)(cid:0)Ph(t)k2
+
+L2(Ω)
+
+(cid:20) Ch2k+2,
+
+8t (cid:21) 0, (3.59)
+
+where C depends on Ω, k, t, ϵr,s, ϵr,∞, σmax.
+
+证明. Using the definition of projections, we can decompose the errors as follows:
+
+E (cid:0) Eh = ξE (cid:0) δE,
+H (cid:0) Hh = ξH (cid:0) δH ,
+P (cid:0) Ph = ξP (cid:0) δP ,
+φ (cid:0) φh = ξφ (cid:0) δφ,
+
+ξE ≜ P 1,⋆
+ξH ≜ P 2,⋆
+ξP ≜ P 2
+ξφ ≜ P 2
+
+h E (cid:0) Eh,
+h H (cid:0) Hh,
+h P (cid:0) Ph,
+h φ (cid:0) φh,
+
+δE ≜ P 1,⋆
+δH ≜ P 2,⋆
+
+h E (cid:0) E,
+h H (cid:0) H,
+
+δP ≜ P 2
+δφ ≜ P 2
+
+h P (cid:0) P,
+h φ (cid:0) φ.
+
+(3.60)
+
+eq:error decomposition
+
+the exact solutions (E, H, P, φ) also satisfy the semi-discrete scheme (3.38a)-(3.38d) with
+
+the same numerical fluxes. As a consequence, we use the semi-scheme for numerical solu-
+
+25
+
+
+--- Page 26 ---
+tions and exact solutions, besides (3.60), we have
+
+Z
+
+(cid:20)
+
+Ij
+
+Z
+
+(cid:20)
+
+µ0∂tξH vh + ξE∂xvh +
+
+=
+
+µ0∂tδH vh + δE∂xvh +
+
+Ij
+
+µ0
+ϵ0
+µ0
+ϵ0
+
+σxξH vh
+
+(cid:21)
+
+(cid:21)
+
+dx (cid:0) cξEv−
+
+h
+
+jj+1/2 + cξEv+
+
+h
+
+jj−1/2
+
+σxδH vh
+
+dx (cid:0) cδEv−
+
+h
+
+jj+1/2 + cδEv+
+
+h
+
+jj−1/2
+
+(3.61)
+
+Z
+
+(cid:20)
+
+Ij
+
+Z
+
+(cid:20)
+
+ϵ0ϵr,∞∂tξEvh + ξH ∂xvh + ∂tξP vh + σxϵr,∞ξEvh +
+
+=
+
+ϵ0ϵr,∞∂tδEvh + δH ∂xvh + ∂tδP vh + σxϵr,∞δEvh +
+
+Ij
+
+ξP vh
+
+(cid:21)
+
+(cid:21)
+
+dx (cid:0) cξH v−
+
+h
+
+jj+1/2 + cξH v+
+
+h
+
+jj−1/2
+
+δP vh
+
+dx (cid:0) cδH v−
+
+h
+
+jj+1/2 + cδH v+
+
+h
+
+jj−1/2
+
+σx
+ϵ0
+σx
+ϵ0
+
+Z
+
+(cid:20)
+
+Ij
+
+Z
+
+(cid:20)
+
+ξP vh +
+
+=
+
+Ij
+
+δP vh +
+(cid:20)
+
+Z
+
+Z ∞
+
+0
+Z ∞
+
+0
+
+τ αξφvhdλ (cid:0) ϵ0(ϵr,s (cid:0) ϵr,∞)ξEvh
+
+(cid:21)
+
+(cid:21)
+
+dx
+
+τ αδφvhdλ (cid:0) ϵ0(ϵr,s (cid:0) ϵr,∞)δEvh
+
+dx
+
+∂tξφvh + λξφvh (cid:0) sin πα
+
+π
+
+∂tδφvh + λδφvh (cid:0) sin πα
+
+π
+
+Ij
+
+Z
+
+(cid:20)
+
+=
+
+Ij
+
+λα−1∂tξP vh
+
+(cid:21)
+
+(cid:21)
+
+dx
+
+λα−1∂tδP vh
+
+dx
+
+(3.62)
+
+(3.63)
+
+(3.64)
+
+For energy we defined in last section, we can derive the similar steps as following
+
+d
+dt
+
+E (ξE, ξH , ξP , ξφ) = Eξ,1 + Eξ,2,
+
+(3.65)
+
+eq: energy for xi
+
+26
+
+
+--- Page 27 ---
+Z
+
+a2
+
+µ0
+ϵ0
+
+Ω
+
+H dx (cid:0)
+
+σxξ2
+Z ∞
+
+Z
+
+a1
+
+Ω
+sin πα
+π
+
+(cid:19)
+
+Z
+
+Ω
+
+Z
+
+Ω
+
+Z
+
+Ω
+
+Z
+
+a1σxϵr,∞ξ2
+(cid:18)
+
+Edx (cid:0)
+
+(cid:0)
+Z ∞
+
+a1
+ϵ0(ϵr,s (cid:0) ϵr,∞)
+(cid:18)
+σx
+ϵ0
+
+a1
+
+0
+Z ∞
+
+(cid:20)
+
+(cid:0)b1
+
+Ω
+
+Z
+
+0
+Z ∞
+
+(cid:20)
+
+a4 + b1
+
+Ω
+MX
+
+0
+Z
+
+0
+
++ b1λ
+(cid:18)
+
+τ α
+ϵ0(ϵr,s (cid:0) ϵr,∞)
+π
+sin πα
+π
+sin πα
+
+λ2−α + τ α
+
+λ1−α (cid:0) τ α
+
+σx
+ϵ0
+
+1
+ϵ0(ϵr,s (cid:0) ϵr,∞)
+
+(cid:19)
+
+ξ2
+P dx
+
++ a3 +
+
+b1
+
+λα−1dλ
+
+ϵ0(ϵr,s (cid:0) ϵr,∞)ξE∂tξP dx
+
+ξφξP dλdx
+Z ∞
+
+(cid:19)
+
+a3 +
+(cid:18)
+
+0
+
+b1
+Z ∞
+
+a3 +
+
+0
+
+sα−1ds
+
+sin πα
+π
+sin πα
+π
+
+b1
+
+sα−1ds
+
+λ2−α
+
+π
+sin πα
+(cid:19)
+π
+sin πα
+
+(cid:21)
+
+ξ2
+φdλdx
+(cid:21)
+
+where
+
+Eξ,1 = (cid:0)
+
++
+
+(cid:0)
+
+(cid:0)
+
++
+
+(cid:0)
+
++
+
+λ1−α
+
+ξφ∂tξφdλdx
+
+(3.66)
+
+eq: E_{xi,1}
+
+(a1ξH ∂xξE + a2ξE∂xξH ) dx
+
+Ω
+
+a1
+
+cξH ξ−
+
+E
+
+jj+1/2 (cid:0) a1
+
+cξH ξ+
+
+E
+
+jj−1/2 + a2
+
+cξEξ−
+
+H
+
+jj+1/2 (cid:0) a2
+
+cξEξ+
+
+H
+
+jj−1/2,
+
+j=1
+MX
+
+j=1
+
+27
+
+
+--- Page 28 ---
+and
+
+Eξ,2 =
+
+Z
+
+(cid:18)
+
+MX
+
+a1ϵ0ϵr,∞∂tδEξE + a1∂tδP ξE + a1σxϵr,∞δEξE + a1
+
+(cid:19)
+
+δP ξE
+
+dx
+
+σx
+ϵ0
+
+Ij
+
+a1δH ∂xξEdx (cid:0) a1
+(cid:18)
+
+Ij
+Z
+
+j=1
+Z
+
++
+
+MX
+
+a2µ0∂tδH ξH + a2
+
+cδH ξ−
+
+E
+
+jj+1/2 + a1
+(cid:19)
+
+cδH ξ+
+jj−1/2
+Z
+
+E
+
+σxδH ξH
+
+dx +
+
+Ij
+
+a2δE∂xξH dx (cid:0) a2
+
+cδEξ−
+
+H
+
+jj+1/2 + a2
+
+cδEξ+
+
+H
+
+jj−1/2
+
+µ0
+ϵ0
+
+∂tδφξP + λδφξP (cid:0) sin πα
+
+π
+
+(cid:19)
+
+λα−1∂tδP ξP
+
+dλdx
+
+(cid:18)
+
+b1
+
+π
+sin πα
+
+λ1−α
+
+(cid:0)∂tδφξφ (cid:0) λδφξφ +
+
+(cid:19)
+
+λα−1∂tδP ξφ
+
+dλdx
+
+sin πα
+π
+
+a1
+
+σx
+ϵ0
+
+1
+ϵ0(ϵr,s (cid:0) ϵr,∞)
+
+(cid:18)
+
+a1
+ϵ0(ϵr,s (cid:0) ϵr,∞)
+
+(cid:18)
+
+Z ∞
+
+(cid:19)
+
+δP ξP + τ α
+
+δφξP dλ (cid:0) ϵ0(ϵr,s (cid:0) ϵr,∞)δEξP
+
+dx
+
+0
+
+Z ∞
+
+(cid:19)
+
+δP ∂tξP + τ α
+
+δφ∂tξP dλ (cid:0) ϵ0(ϵr,s (cid:0) ϵr,∞)δE∂tξP
+
+dx
+
+0
+
+Ij
+
+j=1
+MX
+
+Z
+
+Z ∞
+
+(cid:18)
+
+b1
+
+j=1
+MX
+
+Z
+
+Ij
+
+0
+Z ∞
+
+Ij
+
+0
+
+j=1
+MX
+
+Z
+
++
+
++
+
++
+
++
+
++
+
++
+
+Ij
+
+j=1
+MX
+
+Z
+
+Ij
+
+j=1
+MX
+
+Z
+
+j=1
+
+Ij
+
+a1
+ϵ0(ϵr,s (cid:0) ϵr,∞)
+
+(cid:18)
+
+Z ∞
+
+(cid:0)
+
+0
+
+τ α
+
+π
+sin πα
+
+λ1−α
+
+(cid:18)
+
+(cid:0)∂tδφξφ (cid:0) λδφξφ +
+
+(cid:19)
+
+(cid:19)
+
+λα−1∂tδP ξφ
+
+dλ
+
+dx
+
+sin πα
+π
+
+(3.67)
+As the projections we defined in (3.56) are linear operator, thus cξE, cξH have the same form
+of cEh, cHh respectively. As a consequence, we can handle (3.66) in the same way of Theorem
+3.1 and then get the following
+
+eq: E_{xi,2}
+
+Eξ,1 = Es (ξE, ξH , ξP , ξφ) + Esn,
+
+(3.68)
+
+where Es (ξE, ξH , ξP , ξφ) has the same form of Es we defined above, and Esn is the terms
+in (3.52) except Es and the variables are replaced by ξE, ξH , ξP , ξφ, which is keeping semi-
+negative definite with choosing the same a1, a2, a3, a4, b1 as above. So it’s obviously that
+Eξ,1 (cid:20) 0.
+
+For terms in Eξ,2, the PML parameter is bounded, i.e. 0 (cid:20) σx (cid:20) σmax by definition.
+
+We depart Eξ,2 as following
+
+Eξ,2 =
+
+4X
+
+i=1
+
+Gi,
+
+28
+
+(3.69)
+
+
+--- Page 29 ---
+where
+
+Z
+
+(cid:18)
+
+G1 =
+
+a1ϵ0ϵr,∞∂tδEξE + a1∂tδP ξE + a1σxϵr,∞δEξE + a1
+
+(cid:19)
+
+δP ξE
+
+dx
+
+σx
+ϵ0
+
+a2µ0∂tδH ξH + a2
+Z
+
+(cid:19)
+
+σxδH ξH
+
+dx
+
+µ0
+ϵ0
+
+a1δH ∂xξEdx (cid:0) a1
+
+cδH ξ−
+
+E
+
+jj+1/2 + a1
+
+cδH ξ+
+
+E
+
+jj−1/2
+
+a2δE∂xξH dx (cid:0) a2
+
+cδEξ−
+
+H
+
+jj+1/2 + a2
+
+cδEξ+
+
+H
+
+jj−1/2
+
+(3.70)
+
+Z
+
+Ω
+
+(cid:18)
+
++
+
+Ω
+MX
+
+G2 =
+
+Ij
+
+j=1
+MX
+
+Z
+
++
+
+Ij
+
+j=1
+Z
+
+a1
+
+G3 = (cid:0)
+
+σx
+ϵ0
+G4 = Eξ,2 (cid:0) G1 (cid:0) G2 (cid:0) G3.
+
+Ω
+
+δEξP + a1δE∂tξP dx
+
+Using the Young’s inequality, and the estimate in Lemma 3.1
+(cid:18)
+
+Z
+
+Z
+
+G1 (cid:20)
+
+ϵ0ϵr,∞ξ2
+
+E +
+
+µ0ξ2
+
+H dx +
+
+a2µ0(∂tδH )2 + a2µ0
+
+a2
+2
+
+(cid:19)
+
+2
+
+δ2
+H dx
+
+σx
+ϵ0
+
+a1
+2
+
+Z
+Ω
+
++
+Z
+
+Ω
+
+(cid:20)
+
+2a1ϵ0ϵr,∞(∂tδE)2 +
+
+Ω
+(cid:16)
+a1
+2
+
+ϵ0ϵr,∞ξ2
+
+E +
+
+a2
+2
+
+Ω
+(∂tδP )2 +
+
+2a1
+ϵ0ϵr,∞
+(cid:17)
+
+µ0ξ2
+H
+
+dx + C1h2k+2
+
+2a1ϵr,∞
+ϵ0
+
+xδ2
+σ2
+
+E +
+
+2a1
+ϵ3
+0ϵr,∞
+
+δ2
+P dx
+
+(3.71)
+
+where C1 depends on Ω, k, t, ϵr,∞, σmax, a1, a2.
+
+For G2, by the continuity of E, H, we have cδE = cδH = 0. And ξE, ξH 2 Vh, so
+
+∂xξE, ∂xξH 2 P k−1, and by the definition of projecitons (3.56), G2 = 0.
+
+Integrating G3 in [0, t], and ξP (x, 0) = 0 from the initial condition, we have
+Z
+Z
+t
+
+Z
+
+Z
+
+Z
+
+Z
+
+t
+
+t
+
+a1∂tδEξP dxdτ (cid:0)
+
+k1ξ2
+
+P +
+
+0
+
+a2
+1
+2k1
+
+(∂tδE)2 +
+Z
+
+a1
+
+σx
+ϵ0
+Ω
+1σ2
+a2
+x
+2ϵ2
+0k1
+
+δEξP dxdτ (cid:0)
+
+a1δEξP dx
+
+δ2
+Edxdτ +
+
+Z
+
+Ω
+
+k1ξ2
+
+P +
+
+Ω
+
+a2
+1
+2k1
+
+δ2
+Edx
+
+(3.72)
+
+k1ξ2
+
+P dxdτ +
+
+Ω
+
+k1ξ2
+
+P dx + C2h2k+2
+
+Ω
+
+G3dτ =
+
+0
+
+(cid:20)
+
+(cid:20)
+
+0
+
+Z
+
+0
+
+Z
+
+t
+
+t
+
+Ω
+
+Z
+
+Ω
+
+Z
+
+0
+a1
+
+where k1 =
+
+4ϵ0(ϵr,s−ϵr,∞) , and C2 depends on Ω, k, t, ϵr,s, ϵr,∞, σmax, a1.
+
+We notice that the terms in G4 only contain the cross terms of δP , δϕ, ξP , ξφ and their
+h and the domain of ξP , ξφ, we
+
+time derivatives, thus by the definition of L2 projection P 2
+
+have G4 = 0 immediately.
+
+29
+
+
+--- Page 30 ---
+Now integrating (3.65) in [0, t], and combing the above estimates, we have
+
+E (ξE(t), ξH (t), ξP (t), ξφ(t)) (cid:20) E (ξE(0), ξH (0), ξP (0), ξφ(0)) + C3h2k+2
+Z
+(cid:17)
+
+(cid:16)
+
+Z
+
+t
+
+Z
+
+P dx,
+(3.73)
+where C3 depends on Ω, k, t, ϵr,s, ϵr,∞, σmax, a1, a2, and by the form of E and k1, we have
+
+dxdτ +
+
+E +
+
++
+
+Ω
+
+Ω
+
+0
+
+µ0ξ2
+
+H + k1ξ2
+P
+
+ϵ0ϵr,∞ξ2
+
+k1ξ2
+
+a2
+2
+
+a1
+2
+
+eq: energy estimate after integration
+
+˜E (ξE(t), ξH (t), ξP (t)) (cid:20) E (ξE(0), ξH (0), ξP (0), ξφ(0)) + C3h2k+2
+
+Z
+
++
+
+t
+
+0
+
+˜E (ξE(τ ), ξH (τ ), ξP (τ ))dτ,
+
+(3.74)
+
+where
+
+˜E (ξE(t), ξH (t), ξP (t)) =
+
+Z
+
+(cid:18)
+
+Ω
+
+a1
+2
+
+ϵ0ϵr,∞ξ2
+
+E +
+
+a2
+2
+
+µ0ξ2
+
+H +
+
+a1
+4ϵ0(ϵr,s (cid:0) ϵr,∞)
+
+ξ2
+P
+
+(cid:19)
+
+dx,
+
+(3.75)
+
+and for simplicity, we choose O(hk+1) initial approximation:
+
+Eh(0) = P 1,⋆
+
+h E(0), Hh(0) = P 2,⋆
+
+h H(0), Ph(0) = P 2
+
+h P (0), φh(0) = P 2
+
+h φ(0),
+
+(3.76)
+
+so we have
+
+˜E (ξE(t), ξH (t), ξP (t)) (cid:20) Ch2k+2 +
+
+Z
+
+t
+
+0
+
+and by the Grönwall’s inequality
+
+˜E (ξE(τ ), ξH (τ ), ξP (τ ))dτ,
+
+(3.77)
+
+˜E (ξE(t), ξH (t), ξP (t)) (cid:20) Ch2k+2,
+
+(3.78)
+
+where C depends on Ω, k, t, ϵr,s, ϵr,∞, σmax, a1, a2. And by the triangle inequality and the
+estimates of δE, δH , δP , we complete the proof.
+
+Remark 3.5. In (3.73), we move the last term in the right to the left, we can write as
+
+following
+Z
+
+a1
+2
+
+Ω
+
+ϵ0ϵr,∞ξ2
+
+E +
+
+(cid:18)
+
+a2
+2
+
+µ0ξ2
+
+H +
+
+a3
+2
+
+(cid:0) k1 (cid:0) 1
+2
+
+Z ∞
+
+0
+
+b2
+1
+a4
+
+(cid:19)
+
+dλ
+
+ξ2
+P +
+
+1
+2
+
+Z ∞
+
+(cid:18)
+
+0
+
+p
+
+ξP +
+
+b1p
+a4
+
+(cid:19)
+
+2
+
+a4ξφ
+
+dλdx,
+
+(3.79)
+
+which is greater than
+
+Z
+
+a1
+2
+
+Ω
+
+ϵ0ϵr,∞ξ2
+
+E +
+
+a2
+2
+
+µ0ξ2
+
+H +
+
+(cid:18)
+
+a3
+2
+
+(cid:0) k1 (cid:0) 1
+2
+
+Z ∞
+
+0
+
+b2
+1
+a4
+
+(cid:19)
+
+dλ
+
+ξ2
+P dx.
+
+(3.80)
+
+30
+
+
+--- Page 31 ---
+From the choice of a1, a2, a3, a4, b1, we can see that
+
+a3
+2
+
+(cid:0) 1
+2
+
+Z ∞
+
+0
+
+b2
+1
+a4
+
+dλ =
+
+a1
+2ϵ0(ϵr,s (cid:0) ϵr,∞)
+
+,
+
+(3.81)
+
+to ensure the consistency of the integrand in the spatial integrals over Ω at both ends, we
+
+choose k1 =
+
+a1
+4ϵ0(ϵr,s−ϵr,∞) .
+
+4 Fully discrete scheme in 1D
+
+Since the Cole-Cole model is characterized by the fractional derivative, its solution
+
+generally exhibits weak regularity at initial time t = 0, which always deteriorates the
+
+convergence accuracy [12, 15].
+
+4.1 Fully discrete scheme for energy dissipation
+
+We already have the semi-discrete energy dissipation in the previous section. To con-
+
+struct the fully discrete scheme, we divide the time interval [0, T ] into uniform subintervals
+using points 0 = t0 < t1 < (cid:1) (cid:1) (cid:1) < tM = T , where tm = mτ0. Futhermore, we denote
+um = u((cid:1), mτ0) and the following finite difference operators:
+
+δτ0um =
+
+um (cid:0) um−1
+τ0
+
+,
+
+um =
+
+um + um−1
+2
+
+.
+
+We can formulate a Crank-Nickolson type difference scheme for the semi-discrete
+h = 0, for all
+
+scheme(3.38a)-(3.38d): given the initial approximations E0
+
+h = 0, φ0
+
+h, H 0
+
+h, P 0
+
+31
+
+
+--- Page 32 ---
+k (cid:21) 1 find Ek
+
+h, H k
+
+h , P k
+h , φk
+h
+Z
+
+2 Vh, and test function v 2 Vh such that
+
+µ0δτ0H k
+
+h v =
+
+Ij
+
+c
+k
+hv−jj+1/2 (cid:0)
+E
+
+c
+k
+hv+jj−1/2 (cid:0)
+E
+
+Z
+
+Ij
+
+ϵ0ϵr,∞δτ0Ek
+
+hvdx =
+
+c
+k
+hv−jj+1/2 (cid:0)
+H
+Z
+
+c
+k
+hv+jj−1/2 (cid:0)
+H
+
+H
+
+k
+h
+
+∂v
+dx
+∂x
+Z
+
+δτ0P k
+
+h vdx (cid:0)
+
+Ij
+
+σxϵr,∞E
+
+k
+hvdx (cid:0)
+
+Ij
+
+Z
+
+Ij
+
+Z
+
+Ij
+
+P
+
+k
+hvdx +
+
+Z
+
+Z ∞
+
+hvdλdx =
+
+τ αφk
+Z
+
+Ij
+
+0
+
+(cid:0)
+
+Z
+
+Ij
+
+E
+
+k
+h
+
+∂v
+∂x
+
+dx (cid:0)
+
+Z
+
+µ0
+ϵ0
+
+Ij
+
+σxH
+
+k
+hvdx,
+
+(4.1a)
+
+fully H
+
+Z
+
+Ij
+
+Z
+
+Ij
+
+σx
+ϵ0
+
+P
+
+k
+hvdx,
+
+(4.1b)
+
+fully E
+
+(4.1c)
+
+fully P
+
+ϵ0(ϵr,s (cid:0) ϵr,∞)E
+Z
+
+k
+hvdx,
+
+δτ0φk
+
+hvdx = (cid:0) λ
+
+Ij
+
+φk
+
+hvdx +
+
+Ij
+
+sin(πα)
+π
+
+λα−1
+
+Z
+
+Ij
+
+δτ0P k
+
+h vdx,
+
+(4.1d)
+
+fully varphi
+
+where the numerical fluxes keep the same form as in the semi-discrete scheme. In practical
+
+implementation, the scheme (4.1a)-(4.1d) can be realized as follows: First, from (4.1c),
+we represent P k
+h; then substitute P k
+h using Ek
+h to solve
+h, and taking back to (4.1c) to get P k
+φk
+h ; finally, substitute P k
+h into (4.1b) and solving the
+resulting equation along with (4.1a) for both Ek
+h and H k
+h . The solvability of the system for
+both Ek
+h can be proved in the same way as in our previous work [8]. Why need to
+
+h into (4.1d), and using Ek
+
+h and φk
+
+h and H k
+explain the solvability?
+
+Theorem 4.1. For the solutions Ek
+
+h, H k
+
+h , P k
+
+h , φk
+
+h(k (cid:21) 1) of the scheme (4.1a)-(4.1d), we
+
+have the fully discrete stability:
+
+E (Ek
+
+h, H k
+
+h , P k
+
+h , φk
+
+h) (cid:20) E (Ek−1
+
+h
+
+, H k−1
+h
+
+, P k−1
+h
+
+, φk−1
+h
+
+),
+
+(4.2)
+
+where E has the same definition as in (3.49),
+E (Ek
+
+h, H k
+
+h , P k
+
+h , φk
+
+h).
+
+证明. Choosing v = τ0
+2
+
+H k
+
+h + H k−1
+
+h
+
+(cid:16)
+
+for simplicity we denote E k
+h
+
+:=
+
+(cid:17)
+
+in (4.1a), v = τ0
+2
+
+(cid:16)
+
+h + Ek−1
+Ek
+
+h
+
+(cid:17)
+
+in (4.1b), then the
+
+32
+
+
+--- Page 33 ---
+resulting equation for H k
+
+h becomes to
+
+(cid:16)
+
+Z
+
+Ij
+
+H k
+h
+
+µ0
+
+τ0
+
+(cid:0) H k−1
+h
+τ0
+
+H k
+
+h + H k−1
+
+h
+
+2
+
+(cid:17)
+
+dx =τ0
+
+c
+k
+hH
+E
+
+k,+
+h
+
+jj−1/2 (cid:0)
+
+Z
+
+Ij
+
+τ0E
+
+k
+h
+
+k
+∂H
+h
+∂x
+
+dx
+
+k,−
+h
+
+c
+k
+E
+hH
+Z
+
+(cid:0)
+
+Ij
+
+µ0
+ϵ0
+
+jj+1/2 (cid:0) τ0
+(cid:17)
+(cid:16)
+
+σxτ0
+
+H
+
+2
+
+dx,
+
+k
+h
+
+and the resulting equation for Ek
+
+h becomes to
+
+(cid:16)
+
+Z
+
+Ij
+
+ϵ0ϵr,∞
+
+Ek
+h
+
+τ0
+
+(cid:0) Ek−1
+h
+τ0
+
+h + Ek−1
+Ek
+
+h
+
+2
+
+(cid:17)
+
+(4.3)
+
+Z
+
+Ij
+
+τ0H
+
+k
+h
+
+k
+∂E
+h
+∂x
+
+dx
+
+dx =τ0
+
+c
+k
+hE
+H
+
+k,−
+h
+
+c
+k
+jj+1/2 (cid:0) τ0
+H
+hE
+(cid:16)
+
+k,+
+h
+
+jj−1/2 (cid:0)
+(cid:17)
+
+(cid:0)
+
+(cid:0)
+
+Z
+
+Ij
+
+Z
+
+Ij
+
+τ0
+
+h + Ek−1
+Ek
+
+h
+
+P k
+h
+
+(cid:0) P k−1
+h
+τ0
+
+(cid:16)
+
+σxϵr,∞τ0
+
+E
+
+k
+h
+
+(cid:17)
+
+2
+
+2
+
+Z
+
+dx (cid:0)
+
+dx
+
+σx
+ϵ0
+
+Ij
+
+τ0P
+
+k
+hE
+
+k
+hdx.
+
+(4.4)
+
+Firstly, we consider the spatial part of the fully discrete scheme, which is similar to
+
+the semi-discrete scheme. We can get the similar equation, because the spatial part is
+
+independent of the time discretization. As a result the spatial part of the fully discrete
+
+energy function is reduced to
+
+M −1X
+
+E k
+s = (cid:0)
+
+Mj+1/2(E
+
+k
+h, H
+
+k
+h) (cid:0)
+
+[
+k
+1/2H
+E
+
+k,+
+1/2
+
+(cid:0)
+
+[
+k
+1/2E
+H
+
+k,+
+1/2 + E
+
+k,+
+1/2 H
+
+k,+
+1/2
+
+j=1
+\
+k
+M +1/2H
+
+E
+
++
+
+k,−
+M +1/2 +
+
+\
+k
+M +1/2E
+
+H
+
+k,−
+M +1/2
+
+(cid:0) E
+
+k,−
+M +1/2H
+
+k,−
+M +1/2,
+
+(4.5)
+
+with the same choice of the numerical fluxes as in the semi-discrete scheme.
+
+E k
+s = (cid:0)
+
+M −1X
+
+j=1
+
+Mj+1/2(E
+
+k
+h, H
+
+k
+h) (cid:0)
+
+r
+
+ϵ0ϵr,∞
+µ0
+
+(cid:16)
+
+E
+
+k,+
+1/2
+
+r
+
+(cid:17)
+
+2
+
+(cid:0)
+
+ϵ0ϵr,∞
+µ0
+
+(cid:16)
+
+k,−
+M +1/2
+
+H
+
+(cid:17)
+
+2
+
+(cid:20) 0.
+
+(4.6)
+
+Now, we do time difference instead of the time derivative for the energy function. We recall
+
+the definition of the energy function in fully-discrete scheme
+
+Z
+
+(cid:18)
+
+E k
+h =
+
+Ω
+
+(cid:16)
+
+ϵ0ϵr,∞
+
+Ek
+h
+
+(cid:17)
+
+2
+
++
+
+a2
+2
+
+(cid:17)
+
+2
+
+(cid:16)
+
+µ0
+
+H k
+h
+
++
+
+a3
+2
+
+(cid:17)
+
+2
+
+(cid:16)
+
+P k
+h
+
++
+
+1
+2
+
+a1
+2
+
+Z ∞
+
+(cid:16)
+
+a4
+
+φk
+h
+
+0
+
+(cid:17)
+
+2
+
+dλ +
+
+Z ∞
+
+0
+
+33
+
+h dλ
+
+b1φk
+
+hP k
+(4.7)
+
+(cid:19)
+
+dx,
+
+eq: definition of fully energy function
+
+
+--- Page 34 ---
+(4.8)
+
+(cid:17)
+
+2
+
+in order to keep the positiveness of the energy, it’s the same with the semi-discrete scheme,
+where E k
+h
+
+(cid:21) 0 is equivalent to
+
+a3 (cid:0)
+
+dλ (cid:21) 0.
+
+Z ∞
+
+b2
+1
+a4
+
+0
+The time difference of the energy function in the fully discrete scheme is
+(cid:16)
+(cid:16)
+
+(cid:17)
+
+(cid:16)
+
+(cid:17)
+
+(cid:16)
+
+(cid:17)
+
+(cid:16)
+
+(cid:17)
+
+(cid:16)
+
+(cid:17)
+
+2
+
+H k
+h
+
+2
+
+H k−1
+h
+
+(cid:0)
+
+τ0
+
+P k
+h
+
++
+
+a3
+2
+
+2
+
+(cid:0)
+
+τ0
+
+P k−1
+h
+
+Ek
+h
+
+2
+
+(cid:0)
+
+2
+
+Ek−1
+h
+
+(cid:17)
+
+2
+
+(cid:0)
+
+τ0
+(cid:16)
+φk−1
+h
+
+(cid:17)
+
+2
+
++
+
+µ0
+
+a2
+2
+Z ∞
+
+Z
+
+a1
+2
+Ω
+Z ∞
+
+ϵ0ϵr,∞
+(cid:16)
+
+φk
+h
+
+a4
+2
+
++
+Z
+
+0
+
+τ0
+k
+h
+
+=
+
+E k
+s
+
+(cid:0) a1δτ0P k
+
+h E
+
+(cid:0) a1σxϵr,∞
+
+Ω
++ a3ϵ0 (ϵr,s (cid:0) ϵr,∞) E
+(cid:16)
+
+Z ∞
+
+k
+hδτ0P k
+h
+
+(cid:0)
+
+b1
+
+P
+
+k
+h + δτ0P k
+hδτ0φk
+(cid:17)
+(cid:16)
+
+h φk
+h
+
+(cid:0) a1σxϵr,∞
+(cid:20)
+
+(cid:0) ϵ0 (ϵr,s (cid:0) ϵr,∞)
+(cid:18)
+
+Z ∞
+
+E
+
+k
+h
+
+2
+
+(cid:0) a2
+
+µ0
+ϵ0
+
+a1
+ϵ0(ϵr,s (cid:0) ϵr,∞)
+
++
+Z
+
+=
+
+Ω
+
+0
+
+E k
+s
+
+dλ +
+(cid:16)
+
+h φk
+P k
+h
+
+b1
+
+0
+
+k
+E
+h
+Z ∞
+
+(cid:17)
+
+2
+
+(cid:0) a1
+(cid:16)
+
+σx
+ϵ0
+(cid:17)
+2
+
+a4λ
+
+φk
+h
+
+0
+
+(cid:17)
+
+h
+
+(cid:0) P k−1
+h φk−1
+τ0
+k
+hE
+
+(cid:0) a2
+
+k
+h
+
+P
+
++ a4
+
+sin πα
+π
+
+dλ dx
+(cid:16)
+
+k
+h
+
+H
+
+σx
+
+µ0
+ϵ0
+λα−1δτ0P k
+
+h φk
+
+hdλ
+
+dλ dx
+(cid:16)
+
+σx
+
+H
+
+k
+h
+
+(cid:17)
+
+2
+
+(cid:0) a1
+
+Z ∞
+
+(cid:0) a3 (cid:0)
+(cid:19)
+
+0
+
+b1
+
+σx
+ϵ0
+sin πα
+π
+
+1
+ϵ0(ϵr,s (cid:0) ϵr,∞)
+
+(cid:21)
+
+(cid:17)
+
+2
+
+(cid:16)
+
+P
+
+k
+h
+
+λα−1dλ
+
+δτ0P k
+
+h E
+
+k
+h
+
+(cid:0)
+
++
+
+(cid:0)
+
+0
+Z ∞
+
+(cid:20)
+
+0
+Z ∞
+
+(cid:20)
+
+a1
+
+σx
+ϵ0
+
+τ0
+ϵ0(ϵr,s (cid:0) ϵr,∞)
+
+P
+
++ b1λ
+(cid:18)
+
+k
+hφk
+hdλ
+Z ∞
+
+a4 + b1
+
+π
+sin πα
+
+λ1−α (cid:0) τ α
+(cid:18)
+
+(cid:0) π
+
+sin πα
+
+b1λ2−α + τ α
+
+a3 +
+
+a3 +
+Z ∞
+
+0
+
+b1
+
+sin πα
+π
+sin πα
+π
+
+0
+
+b1
+
+λα−1dλ
+
+λα−1dλ
+(cid:19)
+
+(cid:21)
+
+(cid:19)
+
+λ1−α
+(cid:21) (cid:16)
+
+π
+sin πα
+π
+sin πα
+
+λ2−α
+
+hφk
+
+hdλ
+
+δτ0φk
+(cid:17)
+
+2
+
+φk
+h
+
+dλ dx.
+
+(4.9)
+(cid:20) 0 under the assumption a1 = a2, we can take the same supposition as in the
+
+0
+
+As E k
+s
+
+(cid:17)
+
+2
+
+(cid:0) a3τ α
+
+Z ∞
+
+0
+
+hδτ0P k
+φk
+
+h dλ
+
+34
+
+
+--- Page 35 ---
+semi-discrete scheme,
+
+8
+
+>>>>>>>>>>>>>><
+>>>>>>>>>>>>>>:
+
+Z ∞
+
+0
+
+b1
+
+sin πα
+π
+
+λα−1dλ =
+
+a4 = (
+
+τ α
+ϵ0(ϵr,s (cid:0) ϵr,∞)
+
+a1
+ϵ0(ϵr,s (cid:0) ϵr,∞)
+π
+sin πα
+
+λ1−α,
+
+a1 (cid:0) b1)
+
+(cid:0) a3,
+
+a1 = a2,
+Z ∞
+
+a3 (cid:0)
+
+0
+
+a1M (cid:0)
+
+b2
+1
+a4
+Z ∞
+
+0
+
+dλ (cid:21) 0,
+
+(a1τ αM + b1λ)2
+4λa4
+
+dλ (cid:21) 0.
+
+(4.10a)
+
+(4.10b)
+
+(4.10c)
+
+(4.10d)
+
+(4.10e)
+
+As a result, we can choose the parameters a1, a2, a3, a4, b1 same as in the semi-discrete
+scheme, which is also the same as in continuous case. Hence, the time difference of the
+
+energy function is decreasing, which completes the proof.
+
+Remark 4.1. Not as in [10], where fully discrete scheme is stable with a summation term
+P
+
+jj2
+0. The term contains the time difference of the induced polarization in the
+whole time interval, which is obviously nonlocal, so it’s diﬀicult to show the monotonically
+
+(cid:0)P k−1
+h
+
+jjP k
+h
+
+n
+k=1
+
+decreasing of the fully discrete energy function.
+
+term. Instead, we directly analyze a new fully discrete energy function E k
+
+However, the stability analysis presented here does not rely on such a summation
+h and its time
+difference, ensuring that the energy dissipation property holds at each time step. This
+
+approach simplifies the proof and avoids the need for additional assumptions on the time
+
+difference of the induced polarization.
+
+And to our knowledge, this is the first time that the fully discrete scheme for the Cole-
+
+Cole model is proved to be stable with the monotonical dissipation of the energy function.
+
+And the scheme is unconditionally stable.
+
+4.2 The error analysis of fully discrete scheme
+
+Now we consider the same Crank-Nickolson type
+
+35
+
+
+--- Page 36 ---
+5 Stability Analysis in 2D
+
+需要分析二维 Cole-Cole 介质中带有 UPML 吸收边界层的 Maxwell 方程组的稳定性，
+
+首先需要对这个方程组引入能量函数。
+
+先将上一小节中方程写做两个方程组，一个关于变量 ϵr,∞Ez, µrHx, µrHy 的守恒形，一
+个关于变量 P, Pz,1, Pz,2, Pz,3, Qx, Qy 的广义状态方程 (带有分数阶导数，故称其为广义)。
+
+对于守恒形部分，满足方程
+
+∂U(1)
+∂t
+
++ r (cid:1) (AU(1)) = S(1),
+
+(5.1)
+
+conserve part for maxwell equation
+
+其中 U(1) = (ϵr,sEz, µrHx, µrHy)T ，U(2) = (P, Pz,1, Pz,2, Pz,3, Qx, Qy)T ,A = (Ax, Ay)
+1
+
+1
+
+0
+
+0
+
+0
+
+0 (cid:0)1/µr
+0
+(cid:0)1/ϵr,∞ 0
+
+0
+
+0
+
+0
+
+C
+C
+A , Ay =
+
+B
+B
+@
+
+0
+
+1/ϵr,∞
+0
+
+1/µr 0
+0
+
+0
+
+C
+C
+A .
+
+0
+
+0
+
+B
+B
+@
+
+Ax =
+
+源项 S(1) 为：
+
+0
+
+B
+B
+@
+
+S(1) =
+
+(cid:0) [σ + ϵr,∞ (σx + σy)] Ez (cid:0) ∂P
+∂t
+
+(cid:0) (σx + σy)P + Pz,1 + Pz,2 + Pz,3
+
+(cid:0)µr (σy (cid:0) σx) Hx + Qx
+(cid:0)µr (σx (cid:0) σy) Hy + Qy
+
+1
+
+C
+C
+A ,
+
+对方程(5.1) 两边同乘 Ez，得到：
+
+Ez
+
+∂U(1)
+∂t
+
++ Ezr (cid:1) (AU(1)) = EzS(1),
+
+(cid:16)
+
+U(1),−
+N
+
+(cid:17)
+
+, U(1),+
+N
+!
+
+，上式在积分下的表
+
+采用求解一维 Riemann 问题得到的数值通量 hD
+
+示为：
+
+Z
+
+D
+Z
+
++
+
+∂U(1)
+∂t
+
+hD
+
+∂D
+
+Ez (cid:0) S(1)Ez (cid:0) AU(1) (cid:1) rEz
+(cid:17)
+(cid:16)
+
+U(1),−, U(1),+
+
+Ezds = 0,
+
+dx
+
+(5.2)
+
+只需考虑上式中的第一分量，不将数值通量 hD 展开，SEz 为源项的第一分量：
+
+Z
+
+(cid:18)
+
+D
+
+ϵr,∞Ez
+
+∂Ez
+∂t
+
+(cid:0) SEz Ez + Hy
+
+∂Ez
+∂x
+
+(cid:0) Hx
+
+∂Ez
+∂y
+
+(cid:19)
+
+Z
+
+dx +
+
+hD,1Ezds = 0,
+
+(5.3)
+
+∂D
+
+36
+
+ 
+
+--- Page 37 ---
+同样的，将方程(5.1)两边同乘 Hx, Hy，并取对应的第二分量，第三分量，得到：
+
+Z
+
+(cid:18)
+
+µrHx
+
+D
+Z
+
+(cid:18)
+
+µrHy
+
+D
+
+∂Hx
+∂t
+∂Hy
+∂t
+
+(cid:0) SHxHx (cid:0) Ez
+
+(cid:0) SHy Hy + Ez
+
+(cid:19)
+
+(cid:19)
+
+∂Hx
+∂y
+∂Hy
+∂x
+
+Z
+
+dx +
+
+hD,2Hxds = 0,
+
+∂D
+
+Z
+
+dx +
+
+hD,3Hyds = 0,
+
+∂D
+
+先对数值通量不做展开，将 SEz , SHx, SHy 展开，得到：
+(cid:18)
+
+(cid:19)
+
+Z
+
+Z
+
+ϵr,∞Ez
+
++ Hy
+
+∂Ez
+∂t
+
+∂Ez
+∂x
+
+(cid:0) Hx
+
+dx +
+
+hD,1Ezds =
+
+∂D
+
+∂Ez
+∂y
+(cid:0) ∂P
+∂t
+
+D
+
+Z
+
+(cid:18)
+
+D
+
+(cid:0) [σ + ϵr,∞ (σx + σy)] E2
+z
+
+Ez (cid:0) (σx + σy)P Ez + Pz,1Ez + Pz,2Ez + Pz,3Ez
+
+Z
+
+(cid:18)
+
+D
+
+µrHx
+
+∂Hx
+∂t
+
+(cid:0) Ez
+
+∂Hx
+∂y
+
+Z
+
+(cid:18)
+
+D
+
+µrHy
+
+∂Hy
+∂t
+
++ Ez
+
+∂Hy
+∂x
+
+(cid:19)
+
+Z
+
+dx +
+Z
+
+(cid:19)
+
+D
+Z
+
+hD,2Hxds =
+
+∂D
+(cid:0)
+(cid:0)µr (σy (cid:0) σx) H 2
+
+x + QxHx
+
+(cid:1)
+
+dx,
+
+dx +
+Z
+
+D
+
+hD,3Hyds =
+
+∂D
+(cid:0)
+(cid:0)µr (σx (cid:0) σy) H 2
+
+y + QyHy
+
+(cid:1)
+
+dx,
+
+(5.4)
+
+(cid:19)
+
+dx,
+
+(5.5)
+
+E_z part
+
+(5.6)
+
+H_x part
+
+(5.7)
+
+H_y part
+
+对于广义状态方程部分，同样两端乘上相应的项，得到如下的结果：
+
+P
+
+∂P
+∂t
+
++ τ α ∂αP
+∂tα
+
+∂P
+∂t
+∂Pz,1
+∂t
+∂Pz,2
+∂t
+∂Pz,3
+∂t
+∂Qx
+∂t
+∂Qy
+∂t
+
+Pz,1
+
+Pz,2
+
+Pz,3
+
+Qx
+
+Qy
+
+= (ϵr,s (cid:0) ϵr,∞)Ez
+
+∂P
+∂t
+= (cid:0)ϵr,∞σxσyEzPz,1,
+
+,
+
+= (cid:0)σxσyP Pz,2,
+
+(5.8a)
+
+P part
+
+(5.8b)
+
+P_{z,1} part
+
+(5.8c)
+
+P_{z,2} part
+
+=
+
+σ
+ϵr,∞
+
+Pz,1Pz,3 (cid:0) σ(σx + σy)EzPz,3,
+
+(5.8d)
+
+P_{z,3} part
+
+= (cid:0)σxQ2
+
+x + µrσx (σy (cid:0) σx) HxQx,
+
+= (cid:0)σyQ2
+
+y + µrσy (σx (cid:0) σy) HyQy,
+
+(5.8e)
+
+Q_x part
+
+(5.8f)
+
+Q_y part
+
+基于第3节所分析的一维情况下对于 Cole-Cole 介质中带有 UPML 吸收层的 Maxwell
+
+方程组的稳定性，我们研究其在二维情况下，能量函数应该如何给出。
+
+37
+
+
+--- Page 38 ---
+5.1 usual 2D rectangular area
+
+目前对 2 维矩形计算区域设计其四边的 UPML 吸收边界层。
+
+仍然先给出频域下，带有 UPML 吸收边界层的二维 Maxwell 方程组的形式，在做分数
+
+阶 Maxwell 相关的论文 [10, 13, 14] 中都没有考虑 J = σE 电流强度项，暂时也不做考虑：
+
+∂ ˘Hy
+∂x
+
+(cid:0) ∂ ˘Hx
+∂y
+∂ ˘Ez
+∂y
+(cid:0) ∂ ˘Ez
+∂x
+
+(cid:16)
+
+(cid:17)
+
+=
+
+jωϵ0ϵr,∞ ˘Ez + jω ˘P
+
+sxsy,
+
+= (cid:0)jωµ0µr
+
+= (cid:0)jωµ0µr
+
+sy
+sx
+sx
+sy
+
+˘Hx,
+
+˘Hy,
+
+(5.9a)
+
+2D Maxwell in C-C with UPML first
+
+(5.9b)
+
+2D Maxwell in C-C with UPML second
+
+(5.9c)
+
+2D Maxwell in C-C with UPML third
+
+˘P + (jωτ )α ˘P = ϵ0(ϵr,s (cid:0) ϵr,∞) ˘Ez.
+
+(5.9d)
+
+2D Maxwell in C-C with UPML fourth
+
+Maxwell Equation 2D frequency
+
+其中 si = 1 + σi
+jωϵ0
+
+,
+
+i = x, y 是有关 UPML 层的取值，具体的取值方法在 section 2中提及。
+
+化简后的方程组为：
+
+=
+
+=
+
+µ0µr
+
+ϵ0ϵr,∞
+
+(cid:0) µ0µr
+
+(cid:0) µ0µr
+
+Hy + Qy,
+
+Hx + Qx,
+
+(cid:0) ∂Hx
+∂y
+
+∂Hy
+∂x
+= (cid:0) ∂Ez
+∂y
+∂Ez
+∂x
+
+∂Ez
+(cid:0) ϵr,∞(σx + σy)Ez (cid:0) ∂P
+∂t
+∂t
+σy (cid:0) σx
+∂Hx
+∂t
+ϵ0
+σx (cid:0) σy
+∂Hy
+µ0µr
+∂t
+ϵ0
+P + τ α ∂αP
+∂tα = ϵ0(ϵr,s (cid:0) ϵr,∞)Ez,
+∂Pz,1
+∂t
+∂Pz,2
+∂t
+∂Qx
+∂t
+∂Qy
+∂t
+
+= (cid:0) ϵr,∞
+ϵ0
+= (cid:0) σxσy
+ϵ2
+0
+= (cid:0) σx
+ϵ0
+= (cid:0) σy
+ϵ0
+
+µ0µrσx (σy (cid:0) σx)
+ϵ2
+0
+µ0µrσy (σx (cid:0) σy)
+ϵ2
+0
+
+σxσyEz,
+
+Qx +
+
+Qy +
+
+Hx,
+
+Hy,
+
+P,
+
+(cid:0) σx + σy
+ϵ0
+
+P + Pz,1 + Pz,2, (5.10a)
+
+(5.10b)
+
+(5.10c)
+
+(5.10d)
+
+(5.10e)
+
+(5.10f)
+
+(5.10g)
+
+(5.10h)
+
+fractional order Maxwell Equation with C-C in 2d
+
+边界条件取做 perfectly conducting boundary condition:
+
+ˆn (cid:2) E = 0
+
+on ∂Ω,
+
+(5.11)
+
+38
+
+
+--- Page 39 ---
+其中 ˆn 为 ∂Ω 上的外法向量，初值条件为：
+
+Ez(x, y, 0) = E0(x, y), P (x, y, 0) = P0(x, y),
+
+Hy(x, y, 0) = Hy,0(x, y), Hx(x, y, 0) = Hx,0(x, y),
+
+Pz,1(x, y, 0) = Pz,1,0(x, y), Pz,2(x, y, 0) = Pz,2,0(x, y),
+
+Qx(x, y, 0) = Qx,0(x, y), Qy(x, y, 0) = Qy,0(x, y).
+
+(5.12)
+
+将 ∂αP
+
+∂tα 用辅助变量进行表示：
+
+∂αP (x, t)
+∂tα
+
+=
+
+Z ∞
+
+0
+
+φ(x, t; λ)dλ,
+
+(5.13)
+
+其中辅助变量 φ 由下述 ODE 方程进行描述
+
+= (cid:0)λφ +
+
+∂φ
+∂t
+φ(x, 0; λ) = 0,
+
+λ > 0.
+
+sin(πα)
+π
+
+λα−1 ∂P
+∂t
+
+,
+
+λ > 0,
+
+(5.14)
+
+Auxiliary Equation 2d
+
+也可以将上述 ODE 的解直接写做：
+
+φ(x, t; λ) :=
+
+sin(πα)
+π
+
+λα−1
+
+Z
+
+t
+
+0
+
+e−(t−τ )λ ∂P (x, τ )
+
+∂τ
+
+dτ.
+
+(5.15)
+
+5.1.1 2D rectangular energy function
+
+对方程组(5.10)和辅助方程(5.14)构造能量函数：
+Z ∞
+Z
+
+(cid:18)
+
+W =
+
+Ω
+
+E2
+
+z +
+
+a1
+2
+
+P 2 +
+
+ϵ0ϵ∞
+2
+
+1
+2
+(5.16)
+其中 Ez 表示电场强度，P 表示电极化强度，Hx, Hy 为磁场强度，Pz,1, Pz,2, φ, Qx, Qy
+
+b3φ2dλ +
+
+µ0µr
+2
+
+µ0µr
+2
+
+z,1 +
+
+z,2 +
+
+b2
+2
+
+b1
+2
+
+y +
+
+x +
+
+H 2
+
+H 2
+
+P 2
+
+P 2
+
+1
+2
+
+0
+
+Q2
+
+x +
+
+(cid:19)
+
+dS
+
+1
+2
+
+Q2
+y
+
+均为辅助变量。并且其中 a1, b1, b2, b3 均为标量。
+
+39
+
+
+--- Page 40 ---
+显然这个能量函数 W (cid:21) 0，将其对时间 t 做导数：
+
++ b1Pz,1
+
+∂Pz,1
+∂t
+
+∂Qx
+∂t
+
++ b2Pz,2
+(cid:19)
+
+∂Qy
+∂t
+
++ Hy
+
+) + Qx
+
++ Qy
+
+dS
+
+∂Pz,2
+∂t
+
++
+
+Z ∞
+
+0
+
+b3φ
+
+∂φ
+∂t
+
+dλ
+
+(cid:18)
+
+dW
+dt
+
+=
+
+Z
+
+Ω
+
+ϵ0ϵ∞Ez
+
++ a1P
+
+∂Ez
+∂t
+∂Hx
+∂t
+
+∂P
+∂t
+∂Hy
+∂t
+
++µ0µr(Hx
+Z
+
+(cid:18)
+
+=
+
+Ω
+
+(cid:0)
+
+∂Ez
+∂x
+Z ∞
+
+(cid:18)
+
++ Hy
+
+Ez
+
+∂Hy
+∂x
+τ α
+ϵ0(ϵr,s (cid:0) ϵr,∞)
+
+0
+
+(cid:0) Ez
+
+∂Hx
+∂y
+
+(cid:0) Hx
+
+∂Ez
+∂y
+
+(cid:0) ϵr,∞(σx + σy)E2
+
+z +
+
+(cid:19)
+
+(cid:20)
+
+a1 (cid:0)
+
+1
+ϵ0(ϵr,s (cid:0) ϵr,∞)
+
+(cid:21)
+
+P
+
+∂P
+∂t
+
+π
+sin πα
+
+λ1−αφ
+
++
+
+λ2−αφ2
+Z ∞
+
+π
+sin πα
+
+∂φ
+∂t
+σxσy
+ϵ2
+0
+(cid:0) µr(σx (cid:0) σy)H 2
+
+P Pz,2 +
+
+0
+
+b3φ
+
+dλ (cid:0) σx + σy
+
+ϵ0
+
+EzP
+
+∂φ
+∂t
+
+dλ (cid:0) µr(σy (cid:0) σx)H 2
+x
+
+y + [1 + µrσy(σx (cid:0) σy)] HyQy (cid:0) σyQ2
+y
+
+(cid:1)
+
+dS
+
++ (1 (cid:0) b1
+
+ϵr,∞
+ϵ0
+
+)EzPz,1 + EzPz,2 (cid:0) b2
+
++ [1 + µrσx(σy (cid:0) σx)] HxQx (cid:0) σxQ2
+x
+
+可以证明得到
+
+Theorem 5.1. 能量函数 W 是有界的，i.e. W (t) (cid:20) CW (0) 对任意 t 2 [0, T ] 成立，其中
+常数 C 依赖于 T .
+
+(5.17)
+
+dW /dt in 2D rectangle
+
+Remark 5.1. 这个定理说明了能量函数 W 是 well-posed，但是对于 Maxwell’s 方程组而言，
+其解 u(t) 并不能说是 stable 的。stable 的定义是指上界 C(t) = 1 + tp，也就是被一个多项
+式限制住
+
+证明. 与 [9] 中分析的结果一致，只需证明 dW
+dt
+得到：
+
+(cid:20) cW ，其中 c > 0，再利用 Gronwall 不等式
+
+W (t) (cid:20) ectW (0) (cid:20) ecT W (0)
+
+对于空间导数项，利用完全导电边界条件 (PEC) ，Ez 在边界上的取值为 0，得到：
+
+(cid:18)
+
+Z
+
+Ω
+
+Ez
+
+∂Hy
+∂x
+
++ Hy
+
+∂Ez
+∂x
+
+(cid:0) Ez
+
+∂Hx
+∂y
+
+(cid:0) Hx
+
+∂Ez
+∂y
+
+(cid:19)
+
+dS = 0.
+
+(5.18)
+
+(cid:20) cW 的相关项整理完成之后，得到：
+
+对于 Qx, Hx, Qy, Hy 的项，将 dW
+dt
+h
+
+i
+
+c
+2
+c
+2
+
+h
+
++
+
+µ0µr + µr(σy (cid:0) σx)
+
+µ0µr + µr(σx (cid:0) σy)
+
+i
+
+H 2
+x
+
+H 2
+y
+
+(cid:0) [1 + µrσx(σy (cid:0) σx)] HxQx +
+
+(cid:0) [1 + µrσy(σx (cid:0) σy)] HyQy +
+
+40
+
+(cid:17)
+
++ σx
+(cid:17)
+
++ σy
+
+(cid:16)
+
+(cid:16)
+
+c
+2
+c
+2
+
+Q2
+x
+
+Q2
+y
+
+(cid:21) 0
+
+(5.19)
+
+
+--- Page 41 ---
+关于 Q2
+
+x, Q2
+
+y 项的系数大于 0，需要考虑上述不等式关于 Qx, Qy 的判别式：
+
+i (cid:16)
+
+(cid:17)
+
+∆1 = [1 + µrσx(σy (cid:0) σx)]2 (cid:0) 4
+
+∆2 = [1 + µrσy(σx (cid:0) σy)]2 (cid:0) 4
+
+h
+
+µ0µr + µr(σy (cid:0) σx)
+
+µ0µr + µr(σx (cid:0) σy)
+
+i (cid:16)
+
++ σx
+
+(cid:17)
+
++ σy
+
+(cid:20) 0
+
+(cid:20) 0
+
+(5.20)
+
+h
+
+c
+2
+c
+2
+
+(cid:16)
+
+c
+2
+c
+2
+
+(cid:17)
+
+2
+
+g
+
+由章节2中 σx, σy 的取法可知 σx, σy 都是有限值，且 c > 0，则当
+
+c (cid:21) maxf 4σmax
+
+ϵ0
+
+3
+
+,
+
+σ2
+max
+
+1 + 2 µ0µr
+ϵ2
+p
+0
+µ0µr
+
+时，∆1,2 (cid:20) 0 成立。
+
+对于 Ez, P, Pz,1, Pz,2, φ 项，将 dW
+dt
+
+(cid:20) cW 的相关项整理完成之后取 a1 =
+
+1
+ϵ0(ϵr,s−ϵr,∞) ，
+
+b3 =
+
+τ α
+0
+ϵ0(ϵr,s−ϵr,∞)
+h
+
+π
+
+sin πα λ1−α，得到：
+
+i
+
+c
+ϵ0ϵr,∞ + ϵr,∞(σx + σy)
+2
+(cid:18)
+
+(cid:19)
+
+E2
+
+z +
+
+c
+2
+
+a1P 2 +
+
+1 (cid:0) b1
+(cid:18)
+
+Z ∞
+
+(cid:0)
+
++
+
+0
+
+ϵr,∞
+ϵ0
+
+σxσy
+
+EzPz,1 (cid:0) EzPz,2 + b2
+(cid:19)
+
+cb3
+2
+
++
+
+τ α
+ϵ0(ϵr,s (cid:0) ϵr,∞)
+
+π
+sin πα
+
+b1P 2
+
+c
+2
+σxσy
+ϵ2
+0
+
+λ2−α
+
+φ2dλ (cid:21) 0,
+
+z,1 +
+
+c
+2
+
+b2P 2
+
+z,2 +
+
+σx + σy
+ϵ0
+
+EzP
+
+P Pz,2
+
+(5.21)
+
+注意到能量函数的取法，a1, b1, b2, b3 (cid:21) 0，则关于 φ2 的系数大于 0，对于剩下的项，整理
+为：
+
+(cid:20)
+
+ϵr,∞(σx + σy)E2
+
+z +
+(cid:18)
+
+c
+6
+
+ϵ0ϵr,∞E2
+
+z +
+
+σx + σy
+ϵ0
+
+(cid:19)
+
+EzP +
+
+(cid:21)
+
+c
+4
+
+a1P 2
+(cid:21)
+
+(cid:20)
+
+h
+
+c
+6
+c
+6
+
++
+
++
+
+ϵ0ϵr,∞E2
+z
+
+(cid:0)
+
+1 (cid:0) b1
+
+ϵ0ϵr,∞E2
+z
+
+(cid:0) EzPz,2 +
+
+b2P 2
+z,2
+
+EzPz,1 +
+
+b1P 2
+z,1
+
+c
+2
+
+σxσy
+i
+
+ϵr,∞
+ϵ0
+c
+4
+
+(cid:20)
+
+c
+4
+
++
+
+a1P 2 + b2
+
+σxσy
+ϵ2
+0
+
+P Pz,2 +
+
+c
+4
+
+(5.22)
+
+(cid:21)
+
+b2P 2
+z,2
+
+(cid:21) 0,
+
+同样需要考虑其判别式：
+
+∆3 =
+
+(cid:18)
+
+(cid:18)
+
+(cid:19)
+
+2
+
+σx + σy
+ϵ0
+
+1 (cid:0) b1
+∆4 =
+∆5 = 1 (cid:0) c2
+6
+(cid:18)
+σxσy
+ϵ2
+0
+
+∆6 = b2
+2
+
+(cid:0) c2
+ϵ0ϵr,∞a1 (cid:20) 0,
+6
+(cid:19)
+
+ϵr,∞
+ϵ0
+
+σxσy
+
+2
+
+(cid:0) c2
+3
+
+ϵ0ϵr,∞b2 (cid:20) 0,
+2
+
+(cid:19)
+
+a1b2 (cid:20) 0,
+
+(cid:0) c2
+4
+
+41
+
+ϵ0ϵr,∞b1 (cid:20) 0,
+
+(5.23)
+
+
+--- Page 42 ---
+同样由于 σx, σy 的取值是有限值，则当
+
+c (cid:21) maxfc3, c4, c5, c6g
+
+时，∆3,4,5,6 (cid:20) 0 成立。那么取 c (cid:21) maxfc1, c2, c3, c4, c5, c6g 时，有 dW
+dt
+理中的结果。
+
+(cid:20) cW 成立，得到定
+
+Remark 5.2. 这样的能量函数 W 与论文 [9] 中的证明结果匹配，但只能满足在有限时间
+T 内是有限的，但其不是递减的函数，甚至有可能存在某个时刻 t，W (t) (cid:21) W (0) 成立。
+
+5.2 2D rectangular area with UPML in x-axis
+
+对 2 维矩形计算区域只考虑在 x 方向上匹配上吸收边界层，使在吸收边界层中不出现
+
+现 corner 区域。如图1所示
+
+图 1: 在 x 轴方向上的吸收边界层 [1]
+
+UPML_x_axis
+
+42
+
+
+--- Page 43 ---
+对应为方程组(5.9a)-(5.9d)中 sy = 1，即 σy = 0 的情形。即：
+
+∂ ˘Hy
+∂x
+
+(cid:0) ∂ ˘Hx
+∂y
+∂ ˘Ez
+∂y
+(cid:0) ∂ ˘Ez
+∂x
+
+(cid:16)
+
+(cid:17)
+
+=
+
+jωϵ0ϵr,∞ ˘Ez + jω ˘P
+
+sx,
+
+= (cid:0)jωµ0µr
+
+1
+sx
+
+˘Hx,
+
+= (cid:0)jωµ0µrsx ˘Hy,
+
+˘P + (jωτ )α ˘P = ϵ0(ϵr,s (cid:0) ϵr,∞) ˘Ez.
+
+将其化简至时域中，即为：
+
+(5.24)
+
+frequency Maxwell in 2D with s_y = 1
+
+(cid:0) ϵr,∞σxEz (cid:0) ∂P
+∂t
+
+Hx + Qx,
+
+=
+
+∂Hy
+∂x
+
+(cid:0) ∂Hx
+∂y
+
+∂Ez
+ϵ0ϵr,∞
+∂t
+P + τ α ∂αP
+∂tα = ϵ0(ϵr,s (cid:0) ϵr,∞)Ez,
+σx
+∂Hx
+∂t
+ϵ0
+∂Hy
+∂t
+∂Qx
+∂t
+
+= (cid:0) ∂Ez
+∂y
+∂Ez
+∂x
+= (cid:0) σx
+ϵ0
+
+Qx (cid:0) µ0µr
+
+(cid:0) µ0µr
+
++ µ0µr
+
+σx
+ϵ0
+
+µ0µr
+
+µ0µr
+
+=
+
+Hy,
+
+σ2
+x
+ϵ2
+0
+
+(cid:0) σx
+ϵ0
+
+P,
+
+(5.25a)
+
+2D maxwell x-axis 1
+
+(5.25b)
+
+2D maxwell x-axis 2
+
+(5.25c)
+
+2D maxwell x-axis 3
+
+(5.25d)
+
+2D maxwell x-axis 4
+
+Hx
+
+(5.25e)
+
+2D maxwell x-axis 5
+
+time Maxwell in 2D with s_y = 1
+
+期望找到一个能量函数 W (t) 使得其随着时间 t 递减，或至少满足 W (t) (cid:20) W (0)。
+假设 2 维 TM 平面波入射到界面，入射面是 xOy，磁场位于 (x, y) 平面上，电场只有垂
+
+直于该平面的分量，即 H = Hx(x, y, t)ex + Hy(x, y, t)ey, E = Ez(x, y, t)ez
+
+假设电磁波在 xOy 平面中沿着一个特定的方向传播，对于任意一种场变量 F ，假定其
+
+具备形式：
+
+F (x, y, t) = eF (t)e−jkxx−jkyy
+
+将 y 方向上的依赖性固定用 e−jkyy 表示，对 x 方向上的依赖性固定用 e−jkxx 表示。在
+
+y 方向上是均匀的，并且具有周期性或无限长度的系统。
+
+在进行计算时，需要考虑所有方向上波的解，对于每一个 kx, ky，都存在一个 (cid:0)ky 与之
+
+43
+
+
+--- Page 44 ---
+对应，所以对于 2 维 TM 波中，各个变量在频率下设置为：
+
+˘Hx(x, y, ω) = ˘Hx0(ω)e−jkxx−jkyy
+˘Hy(x, y, ω) = ˘Hy0(ω)e−jkxx−jkyy
+˘Ez(x, y, ω) = ˘Ez0(ω)e−jkxx−jkyy
+˘P (x, y, ω) = ˘P0(ω)e−jkxx−jkyy
+˘Q(x, y, ω) = ˘Q0(ω)e−jkxx−jkyy
+
+带入方程组(5.24)中化简得到：
+
+= (cid:0)jkxHy0 + jkyHx0 (cid:0) ϵr,∞σxEz0 (cid:0) ∂P0
+∂t
+
+∂Ez0
+ϵ0ϵr,∞
+∂t
+P0 + τ α ∂αP0
+∂tα = ϵ0(ϵr,s (cid:0) ϵr,∞)Ez0,
+σx
+∂Hx0
+= jkyEz0 + µ0µr
+ϵ0
+∂t
+∂Hy0
+= (cid:0)jkxEz0 (cid:0) µ0µr
+∂t
+∂Qx0
+∂t
+
+Qx0 (cid:0) µ0µr
+
+= (cid:0) σx
+ϵ0
+
+µ0µr
+
+µ0µr
+
+σx
+ϵ0
+σ2
+x
+ϵ2
+0
+
+Hx0 + Qx0,
+
+Hy0,
+
+Hx0,
+
+(cid:0) σx
+ϵ0
+
+P0,
+
+(5.26)
+
+(5.27a)
+
+(5.27b)
+
+(5.27c)
+
+(5.27d)
+
+(5.27e)
+
+time Maxwell in 2D with s_y = 1 with specific wave direction
+
+与方程组(5.25)不同的是，原方程中变量 Hx, Hy, Ez, P, Qx 均为实数，但在方程组(5.27)中，
+变量 Hx0, Hy0, Ez0, P0, Qx0 均为复数。
+
+将能量函数取做
+
+Z
+
+(cid:2)
+
+W =
+
+Ω
++ b2µ0µr
+
+a1µ0µrH ∗
+(cid:0)
+
+x0Hx0 + a2µ0µrH ∗
+
+y0Hy0 + a3Q∗
+(cid:0)
+
+(cid:1)
+
+H ∗
+
+x0Hy0 + H ∗
+
+y0Hx0
+
++ b3µ0µr
+Z ∞
+
+Q∗
+
+x0Hy0 + H ∗
+Z ∞
+
+y0Qx0
+
+(cid:1)
+
+x0Qx0 + b1µ0µr (Q∗
+
+x0Hx0 + H ∗
+
+x0Qx0)
+
++a4ϵ0ϵr,∞E∗
+
+z0Ez0 + a5P ∗
+
+0 P0 +
+
+a6φ∗
+
+0φ0dλ +
+
+b4 (φ∗
+
+0P0 + P ∗
+
+0 φ0) dλ
+
+0
+
+0
+
+(5.28)
+但对于这类型的能量函数，需要其满足 W (cid:21) 0, dW /dt (cid:20) 0，其中电场强度 Ez0 与电极
+化强度 P0 和一维中处理的方法相同，剩下对磁场强度 Hx0, Hy0，以及相应的辅助变量 Qx0
+满足的条件等价于
+
+0
+
+1
+
+(cid:21)
+
+dx
+
+C
+C
+A (cid:21) 0
+
+B
+B
+@
+
+a1
+b2
+b1
+
+b2
+a2
+b3
+
+b1
+b3
+
+a3
+µ0µr
+
+44
+
+(5.29)
+
+
+--- Page 45 ---
+0
+
+B
+B
+B
+B
+B
+@
+
+2a4ϵr,∞σx
+
+(cid:0) (a1jky (cid:0) b2jkx (cid:0) a4jky) 2µ0µr
+
+a2jkx (cid:0) b2jky (cid:0) a4jkx
+(cid:0) (b1jky (cid:0) b3jkx)
+
+(cid:16)
+
+σx
+ϵ0
+
+a1jky (cid:0) b2jkx (cid:0) a4jky
+(cid:0) a1
+b1µ0µr
+σ2
+0µ2
+x
+r
+ϵ2
+0
+σ2
+(cid:0) a1
+x
+ϵ2
+0
+
+a3µ0µr
+
+b3µ2
+
+σx
+ϵ0
+
+(cid:17)
+
+b3µ2
+
+(cid:0) (a2jkx (cid:0) b2jky (cid:0) a4jkx)
+0µ2
+r
+2a2µ0µr
+σx
+ϵ0
+
+σ2
+x
+ϵ2
+0
+σx
+ϵ0
+(cid:0) b2
+
+2b3µ0µr
+
+1
+
+C
+C
+C
+C
+C
+A
+
+(cid:21) 0
+
+b1jky (cid:0) b3jkx
+σ2
+(cid:0) a1
+a3µ0µr
+x
+ϵ2
+0
+(cid:0) b2
+σx
+ϵ0
+(cid:0) 2b1
+
+2b3µ0µr
+σx
+ϵ0
+
+2a3
+
+(5.30)
+
+一般的，可以取 µ0 = µr = ϵ0 = ϵr,∞ = 1 相当于无量纲化后的结果。再不妨取 a4 = 1，
+
+上述的两种不等式条件在数值上不成立。
+
+在数值上的取法为：ai = 0 : 1 : 10, bi = 0 : 1 : 10, σx = 0 : 0.1 : 10,
+
+i = 1, 2, 3
+
+5.3 2D rectangular area with stretched coordinate PML in x-axis
+
+考虑 stretched coordinate PML, 在 MIT 的课程 note：Coordinate Transformation In-
+
+variance in Electromagnetism 中证明到了 stretched coordinate PML 的表达形式和 UPML
+
+在形式上具备相似性。
+
+取非奇异的变换 x ! x′，用 J 表示对应的 Jacobian 矩阵，即
+
+Jij =
+
+∂x′
+i
+∂xj
+
+利用链式法则，对应的变量在新的坐标下表示为：
+
+E′ =
+H′ =
+
+(cid:0)
+
+(cid:0)
+
+J T
+
+J T
+
+(cid:1)−1
+(cid:1)−1
+
+E,
+
+H,
+
+ϵ′ =
+
+µ′ =
+
+J ϵJ T
+det J ,
+J µJ T
+det J ,
+
+(5.31)
+
+(5.32)
+
+特别的，尽管在坐标变换前是各向同性的介质（ϵ, µ 是标量），但在坐标变换后通常会
+
+获得各向异性的介质（ϵ, µ 是张量）。
+
+对于原 Maxwell’s Equation
+
+r (cid:2) H = ϵ
+
+∂E
+∂t
+r (cid:2) E = (cid:0)µ
+
+,
+
+∂H
+∂t
+
+45
+
+,
+
+(5.33)
+
+
+--- Page 46 ---
+转换为
+
+当取
+
+r′ (cid:2) H′ = ϵ′ ∂E′
+=
+∂t
+r′ (cid:2) E′ = (cid:0)µ′ ∂H′
+∂t
+
+J ϵJ T
+det J
+
+= (cid:0)
+
+,
+
+∂E′
+∂t
+J µJ T
+det J
+
+∂H′
+∂t
+
+,
+
+(5.34)
+
+Maxwell's Equation in stretched coordinate
+
+! 1
+sx
+Specifically, for a PML designed to absorb waves propagating in the x direc-
+
+∂
+∂x′
+
+∂
+∂x
+
+(5.35)
+
+tion, the following transformation is included in the wave equation. Wherever
+
+an x derivative ∂/∂x appears in the wave equation, it is replaced by:
+
+∂
+∂x
+
+0
+1
+sy
+0
+
+2
+
+6
+6
+4
+
+1
+sx
+0
+
+0
+
+J =
+
+! 1
+
+1 + iσ(x)
+3
+
+ω
+
+∂
+∂x
+
+(5.36)
+
+7
+7
+5 , ϵ = ϵaI, µ = µaI
+
+(5.37)
+
+0
+
+0
+1
+sz
+
+时，stretched coordinate PML 的表达形式和 UPML 在形式上具备相似性。都是在 Maxwell’s
+
+Equations 方程的基础上，空间导数项和时间导数项保持不变，对介电系数 ϵ 和磁导系数 µ
+
+进行变换。
+
+J J T
+det J =
+
+2
+
+6
+6
+4
+
+sysz
+sx
+0
+
+0
+
+0
+sxsz
+sy
+0
+
+0
+
+0
+sxsy
+sz
+
+3
+
+7
+7
+5 = ¯¯ϵ = ¯¯µ
+
+注意到，频率下 1 维 Cole-Cole 介质中 Maxwell 方程组表达为
+
+(cid:16)
+
+(cid:17)
+
+∂ ˆH
+∂x
+∂ ˆE
+∂x
+其中电极化强度 P 和电场强度 E 的关系和方程(3.1)中的表达式一致
+
+ε0ε∞ ˆE + ˆP
+
+= jωµ0 ˆH
+
+= jω
+
+在 UPML 的吸收边界下，1 维 Maxwell’s Equations 变为
+∂ ˆHy
+∂x
+∂ ˆEz
+∂x
+
+ε0ε∞ ˆEz + ˆPz
+
+= jωµ0 ˆHysx
+
+= jω
+
+sx
+
+(cid:17)
+
+(cid:16)
+
+46
+
+(5.38)
+
+(5.39)
+
+(5.40)
+
+
+--- Page 47 ---
+而在 stretched coordinate PML 下，1 维 Maxwell’s Equations 变为
+
+ε0ε∞ ˆE′ + ˆP ′
+
+(cid:16)
+
+∂ ˆH ′
+∂x′ = jω
+∂ ˆE′
+∂x′ = jωµ0 ˆH ′sx
+
+(cid:17)
+
+sx
+
+(5.41)
+
+故此这两种吸收边界层的表达形式在形式上具备相似性。在之后我们均采用 stretched
+
+coordinate PML 进行描述。
+
+在二维的特殊情况中，即 σx 6= 0, σy = 0，假定某个波的传播方向为 (kx, ky)，如图所
+
+示
+
+图 2: 不同传播方向在 x 轴方向上的吸收边界层 [1]
+
+UPML_x_axis_2
+
+定义 3 维情形下的旋转算子 R(θ)
+
+2
+
+6
+6
+4
+
+R(θ) =
+
+3
+
+7
+7
+5
+
+cos θ (cid:0) sin θ 0
+
+sin θ
+
+cos θ
+
+0
+
+0
+
+0
+
+1
+
+(5.42)
+
+其中 tan θ = ky/kx
+
+表达在 3 维情形下，stretched coordinate PML 中对应的将任意一个倾斜方向转换至水
+
+47
+
+
+--- Page 48 ---
+平 x 轴方向的 transformer matrix 为
+
+Q = J R((cid:0)θ)
+
+or R((cid:0)θ)J
+
+(5.43)
+
+在这个坐标变换下，仍然取介电常数参数及磁导率参数为 ϵaI, µaI，则在 Q 坐标变换
+
+下的 Maxwell’s Equations 为
+
+r′ (cid:2) H′ =
+
+r′ (cid:2) E′ = (cid:0)
+
+,
+
+QϵQT
+det Q
+
+∂E′
+∂t
+QµQT
+det Q
+
+∂H′
+∂t
+
+,
+
+(5.44)
+
+Maxwell's Equation in stretched and rotate coordinate
+
+若是先旋转再伸缩，即 Q = J R((cid:0)θ)，那么
+
+QϵQT
+det Q =
+
+J R((cid:0)θ)ϵaIR((cid:0)θ)T J T
+det (J R((cid:0)θ))
+
+= ϵa
+
+J J T
+det J
+
+但若是先伸缩再旋转，即 Q = R((cid:0)θ)J ，那么
+
+QϵQT
+det Q =
+
+R((cid:0)θ)J ϵaIJ T R((cid:0)θ)T
+det (R((cid:0)θ)J )
+
+= ϵa
+
+R((cid:0)θ)J J T R((cid:0)θ)T
+det J
+
+(5.45)
+
+(5.46)
+
+对于算子 Q 是先旋转再伸缩，还是先伸缩再旋转，会导致作用后的 Maxwell’s equations
+
+具有不同的形式，两者相等当且仅当 J J T = ΛI 时成立。
+
+作用完算子 Q = J R((cid:0)θ) 后，(kx, ky) 方向的波已经旋转到了 x 轴方向，即 k′
+
+y = 0，则
+
+只用考虑方程组(5.44)中关于 x 方向的方程即可。这样与一维情形保持一致。
+
+需要说明的是在旋转后的吸收层参数 σx 和一维中的表达可能不一样。一维中的吸收参
+数 σx 是在 x 方向上的，而在二维中，旋转后的吸收参数 σx 是在旋转后的 x 方向上的，即在
+(kx, ky) 方向上的。这样在旋转后的吸收层中，σx 描述的是在 (kx, ky) 方向上的伸缩尺度，而
+不是在原来 x 方向上的。
+
+或者考虑在圆的计算区域中，如图3所示
+但在圆中给的吸收层参数需要沿着径向 r 方向上给出，而不是在 (kx, ky) 方向上的。可
+以将极坐标形式下的 Maxwell’s Equations 转换到笛卡尔坐标系下，对应的 Jacobian 矩阵为
+2
+
+2
+
+3
+
+3
+
+P =
+
+6
+6
+4
+
+∂x
+∂r
+∂y
+∂r
+0
+
+∂x
+∂θ
+∂y
+∂θ
+0
+
+0
+
+0
+
+1
+
+7
+7
+5 =
+
+6
+6
+4
+
+cos θ (cid:0)r sin θ 0
+
+sin θ
+
+r cos θ
+
+0
+
+0
+
+0
+
+1
+
+7
+7
+5
+
+(5.47)
+
+48
+
+
+--- Page 49 ---
+图 3: 在圆的情形下吸收边界层
+
+PML_circle
+
+(5.48)
+
+(5.49)
+
+(5.50)
+
+在此基础上做一个伸缩的旋转变换
+
+2
+
+6
+6
+4
+
+R =
+
+(cid:0) 1
+
+cos θ
+r sin θ
+0
+
+sin θ
+0
+1
+r cos θ 0
+1
+
+0
+
+3
+
+7
+7
+5
+
+将这些变换拼凑起来
+
+Q = J RP
+
+这样便有
+
+注意其中
+
+2
+
+6
+6
+4
+
+1
+sr
+0
+
+0
+
+J =
+
+QϵQT
+det Q = ϵa
+3
+
+J J T
+det J
+
+7
+7
+5 =
+
+0
+1
+sθ
+0
+
+0
+
+0
+
+1
+
+2
+
+6
+6
+4
+
+1
+sr
+0
+
+0
+
+3
+
+7
+7
+5
+
+0 0
+
+1 0
+
+0 1
+
+在坐标变换之后，还是使用 sr 吗？对应于之前所说的问题。
+
+49
+
+
+--- Page 50 ---
+6 Stability Analysis in 3D
+
+在文章 [7] 中处理了 3-d second order wave equaiton，也同样发现了不稳定的因素，也
+
+是在处理 pml 的吸收参数中遇到了负值，可能可以模仿其方法进行处理。
+
+由于散度算子在二维情形下可能有些关系不太明显，直接从三维的情形进行考虑，
+
+(cid:16)
+
+(cid:17)
+
+r (cid:2) ˘H =
+
+jωϵ0ϵr,∞ ˘E + jω ˘P
+
+¯¯s,
+
+r (cid:2) ˘E = (cid:0)jωµ0µr ¯¯s ˘H,
+
+[1 + (jwτ )α] ˘P = ϵ0(ϵr,s (cid:0) ϵr,∞)˘E.
+
+2
+
+6
+6
+4
+
+¯¯s =
+
+sysz
+sx
+0
+
+0
+
+0
+sxsz
+sy
+0
+
+3
+
+7
+7
+5
+
+0
+
+0
+sxsy
+sz
+
+si = 1 +
+
+σi
+jωϵ0
+
+,
+
+i = x, y, z
+
+其中
+
+且
+
+sysz
+sx
+
+(cid:0) 1 =
+
+=
+
+=
+
+)(1 + σz
+jωϵ0
+
+)
+
+(cid:0) 1
+
+(1 + σy
+jωϵ0
+1 + σx
+jωϵ0
+(jωϵ0)2 + σy
+
+σyσz
+
++ σz
+jωϵ0
+
+(cid:0) σx
+jωϵ0
+
+jωϵ0
+1 + σx
+jωϵ0
+σyσz + jωϵ0(σy + σz (cid:0) σx)
+(jωϵ0)2 + jωϵ0σx
+
+(6.1)
+
+3D Maxwell in C-C in frequency
+
+(6.2)
+
+(6.3)
+
+(6.4)
+
+对于方程组(6.1) 的第一个式子，写作分量的形式：
+sysz
+sx
+
+= jωϵ0ϵr,∞Ex + jωPx + jω(
+
+(cid:0) ∂Hy
+∂z
+
+∂Hz
+∂y
+
+(cid:0) 1)(ϵ0ϵr,∞Ex + Px)
+
+(6.5)
+
+不妨记
+
+(
+
+sysz
+sx
+sysz
+sx
+
+(
+
+(cid:0) 1)Ex =
+
+(cid:0) 1)Px =
+
+σyσz + jωϵ0(σy + σz (cid:0) σx)
+(jωϵ)2 + jωϵσx
+σyσz + jωϵ0(σy + σz (cid:0) σx)
+(jωϵ)2 + jωϵσx
+
+Ex = ux,
+
+Px = vx.
+
+将辅助变量对应的方程，转化到时域中，满足
+
+ϵ2
+0
+
+ϵ2
+0
+
+∂2ux
+∂t2 + ϵ0σx
+∂2vx
+∂t2 + ϵ0σx
+
+∂ux
+∂t
+∂vx
+∂t
+
+= σyσzEx + ϵ0(σy + σz (cid:0) σx)
+
+= σyσzPx + ϵ0(σy + σz (cid:0) σx)
+
+,
+
+∂Ex
+∂t
+∂Px
+∂t
+
+(6.6)
+
+50
+
+
+--- Page 51 ---
+再引入 ux, vx 对应的辅助变量 Jx, Qx 将上述的二阶导数方程转化为一阶导数方程组。
+令
+
+Jx =
+
+Qx =
+
+∂ux
+∂t
+∂vx
+∂t
+
+(cid:0) 1
+ϵ0
+(cid:0) 1
+ϵ0
+
+(σy + σz (cid:0) σx)Ex,
+
+(σy + σz (cid:0) σx)Px.
+
+相应的 Jx, Qx 对应的方程为：
+
+∂Jx
+∂t
+∂Qx
+∂t
+
+= (cid:0) σx
+ϵ0
+= (cid:0) σx
+ϵ0
+
+Jx +
+
+Qx +
+
+(σy (cid:0) σx)(σz (cid:0) σx)
+ϵ2
+0
+(σy (cid:0) σx)(σz (cid:0) σx)
+ϵ2
+0
+
+Ex,
+
+Px.
+
+(6.7)
+
+同理，对于方程组(6.1) 的第二个式子，写做分量的形式，
+
+∂Ez
+∂y
+
+(cid:0) ∂Ey
+∂z
+
+= (cid:0)jωµ0µr(
+
+sxsy
+sz
+
+(cid:0) 1)Hx (cid:0) jωµ0µrHx,
+
+(6.8)
+
+对于每一个分量，我们仍采用辅助变量的方式进行描述，设
+
+(6.9)
+
+(6.10)
+
+(6.11)
+
+(
+
+sxsy
+sz
+
+(cid:0) 1)Hx = wx,
+
+wx 满足的方程在时域下为
+
+∂wx
+∂t
+
+= σyσzHx + ϵ0(σy + σz (cid:0) σx)
+
+∂Hx
+∂t
+
+.
+
+ϵ2
+0
+
+∂2wx
+∂t2 + ϵ0σx
+∂wx
+∂t
+
+(cid:0) 1
+ϵ0
+
+引入辅助变量 Rx =
+
+(σy + σz (cid:0) σx)wx，其对应的状态方程为
+
+∂Rx
+∂t
+
+= (cid:0) σx
+ϵ0
+
+Rx +
+
+(σy (cid:0) σx)(σz (cid:0) σx)
+ϵ2
+0
+
+Hx.
+
+51
+
+
+--- Page 52 ---
+总结下来，3 维 Maxwell 方程组在 Cole-Cole 介质下表达式为
+
+(cid:16)
+
+∂
+
+(cid:17)
+
+ϵ0ϵr,∞ ⃗E + ⃗P
+∂t
+
+= r (cid:2) ⃗H (cid:0) 1
+ϵ0
+
+(cid:16)
+
+(cid:17)
+
+(cid:1) D1
+
+ϵ0ϵr,∞ ⃗E + ⃗P
+
+(cid:0) ϵ0ϵr,∞ ⃗J (cid:0) ⃗Q,
+
+D3 ⃗E,
+
+D3 ⃗P ,
+
+(6.12)
+
+D1 ⃗H (cid:0) µ0µr ⃗R,
+
+∂ ⃗J
+∂t
+∂ ⃗Q
+∂t
+∂ ⃗H
+∂t
+∂ ⃗R
+∂t
+⃗P + τ α ∂α ⃗P
+
+µ0µr
+
+D2 ⃗J +
+
+D2 ⃗Q +
+
+= (cid:0) 1
+ϵ0
+= (cid:0) 1
+ϵ0
+
+1
+ϵ2
+0
+1
+ϵ2
+0
+= (cid:0)r (cid:2) ⃗E (cid:0) 1
+ϵ0
+1
+ϵ2
+0
+
+D2 ⃗R +
+
+D3 ⃗H,
+
+= (cid:0) 1
+ϵ0
+∂tα = ϵ0 (ϵr,s (cid:0) ϵr,∞) ⃗E,
+
+其中
+
+0
+
+B
+B
+@
+
+D1 =
+
+σy + σz (cid:0) σx
+
+σx + σz (cid:0) σy
+
+1
+
+0
+
+C
+C
+A , D2 =
+
+B
+B
+@
+
+σx
+
+σy
+
+0
+
+B
+B
+@
+
+D3 =
+
+(σy (cid:0) σx)(σz (cid:0) σx)
+
+σx + σy (cid:0) σz
+
+(σx (cid:0) σy)(σz (cid:0) σy)
+
+1
+
+C
+C
+A
+
+σz
+
+1
+
+C
+C
+A .
+
+(6.13)
+
+(σx (cid:0) σz)(σy (cid:0) σz)
+
+按照此中系数矩阵的取法，仍然会存在非正的情况，按照 wave equation 中的处理方式
+
+还是存在着问题。
+
+在三维情形下，可以用 coordinate 变换的方式来写 PML 系统的表示方式，参考 [7] 的
+
+形式，在 PML 层中的表示为
+
+∂
+∂ ˜x
+
+=
+
+1
+sx
+
+∂
+∂x
+
+,
+
+∂
+∂ ˜y
+
+=
+
+1
+sy
+
+∂
+∂y
+
+,
+
+∂
+∂ ˜z
+
+=
+
+1
+sz
+
+∂
+∂z
+
+.
+
+52
+
+
+--- Page 53 ---
+按照这样的方式推导出来的系统为
+(cid:17)
+
+(cid:16)
+
+∂
+
+ϵ0ϵr,∞ ⃗E + ⃗P
+∂t
+
+= r (cid:2) ⃗H +
+
+1
+ϵ0
+
+r (cid:2) (D1⃗v) (cid:0) 1
+ϵ0
+
+(cid:16)
+
+D2
+
+ϵ0ϵr,∞ ⃗E + ⃗P
+
+(cid:17)
+
+(cid:0) 1
+ϵ2
+0
+
+D3 (ϵ0ϵr,∞⃗u + ⃗w) ,
+
+µ0µr
+
+⃗P + τ α
+0
+
+Z ∞
+
+0
+
+其中，
+0
+
+B
+B
+@
+
+D1 =
+
+σx
+
+r (cid:2) (D1⃗u) (cid:0) µ0µr
+ϵ0
+
+= ⃗E,
+
+= (cid:0)r (cid:2) ⃗E (cid:0) 1
+ϵ0
+
+∂ ⃗H
+∂t
+∂⃗u
+∂t
+∂⃗v
+∂t
+∂ ⃗w
+∂t
+⃗φdλ = ϵ0(ϵr,s (cid:0) ϵr,∞) ⃗E,
+
+= ⃗H,
+
+= ⃗P ,
+
+∂ ⃗φ
+∂t
+
+= (cid:0)λ⃗φ +
+
+sin πα
+π
+
+λα−1 ∂ ⃗P
+∂t
+
+,
+
+D2 ⃗H (cid:0) µ0µr
+ϵ2
+0
+
+D3⃗v,
+
+(6.14)
+
+(6.15)
+
+(6.16)
+
+(6.17)
+
+(6.18)
+
+(6.19)
+
+(6.20)
+
+1
+
+0
+
+C
+C
+A , D2 =
+
+B
+B
+@
+
+σy + σz
+
+σy
+
+σz
+
+σz + σx
+
+σx + σy
+
+1
+
+0
+
+C
+C
+A , D3 =
+
+B
+B
+@
+
+σyσz
+
+1
+
+C
+C
+A .
+
+σzσx
+
+σxσy
+
+(6.21)
+
+首先看空间导数项：记
+
+⃗E∗ = ⃗E +
+
+1
+ϵ0
+
+D1⃗u,
+
+⃗H ∗ = ⃗H +
+
+1
+ϵ0
+
+D1⃗v,
+
+第一个方程，乘上 ⃗E∗，第二个方程组，乘上 ⃗H ∗，两式相加，则关于空间导数的部分：
+
+Z
+
+(cid:16)
+
+⃗E∗ (cid:1)
+Z
+Ω
+(cid:16)
+= (cid:0)
+
+(cid:17)
+
+(cid:16)
+
+(cid:0) ⃗H ∗ (cid:1)
+
+r (cid:2) ⃗H ∗
+(cid:17)
+
+⃗E∗ (cid:2) ⃗H ∗
+
+(cid:1) ⃗ndS = (cid:0)
+
+dV = (cid:0)
+
+r (cid:2) ⃗E∗
+Z
+(cid:16)
+⃗n (cid:2) ⃗E∗
+
+(cid:17)
+
+Ω
+(cid:1) ⃗H ∗dS.
+
+(cid:17)
+
+Z
+
+(cid:16)
+
+r (cid:1)
+
+⃗E∗ (cid:2) ⃗H ∗
+
+(cid:17)
+
+dV
+
+(6.22)
+
+(6.23)
+
+∂Ω
+
+∂Ω
+
+在完美导电边界条件下 ⃗n (cid:2) ⃗E = 0，初值条件 ⃗u(x, 0) = 0，则 ⃗n (cid:2) ⃗E = ⃗n (cid:2) ∂t⃗u =
+
+∂t (⃗n (cid:2) ⃗u) = 0，则 ⃗n (cid:2) ⃗u = 0。
+
+53
+
+
+--- Page 54 ---
+当计算区域的单位外法向量 ⃗n 平行与坐标轴时，即只有一个分量，如 ⃗n = (1, 0, 0)T ，
+
+则
+
+⃗n (cid:2) ⃗u =
+
+1
+
+C
+C
+A = 0
+
+0
+
+B
+B
+@
+
+0
+
+uz
+(cid:0)uy
+
+则 D1⃗u = (σxux, 0, 0)T ，则 ⃗n (cid:2) (D1⃗u) = 0。那么
+
+(cid:18)
+
+⃗n (cid:2) ⃗E∗ = ⃗n (cid:2)
+
+⃗E +
+
+(cid:19)
+
+D1⃗u
+
+= ⃗n (cid:2) ⃗E +
+
+1
+ϵ0
+
+1
+ϵ0
+
+⃗n (cid:2) (D1⃗u) = 0,
+
+所以在此种测试函数和初值条件的选取方法下，完美导电边界条件使得空间导数项的贡献
+
+为零。
+
+6.1 CFS-PML 尝试
+
+在三维情形下，如果采用 CFS-PML 进行建模的话会是怎么样的结果。CFS 表示复频
+
+移的坐标伸缩，coordinate 的变换形式仍然写做
+
+其中
+
+∂
+∂ ˜x
+
+=
+
+1
+sx
+
+∂
+∂x
+
+,
+
+∂
+∂ ˜y
+
+=
+
+1
+sy
+
+∂
+∂y
+
+,
+
+∂
+∂ ˜z
+
+=
+
+1
+sz
+
+∂
+∂z
+
+,
+
+si = κi +
+
+σi
+αi + jwϵ0
+
+,
+
+i = x, y, z.
+
+一般的 κi = 1, αi (cid:21) 0.
+
+考虑二维情形，频域下的 Maxwell 方程组为：
+
+∂ ˘Hy
+∂x
+
+(cid:0) ∂ ˘Hx
+∂y
+∂ ˘Ez
+∂y
+(cid:0) ∂ ˘Ez
+∂x
+
+= jωϵ0ϵr,∞ ˘Ez + jω ˘P ,
+
+= (cid:0)jωµ0µr ˘Hx,
+
+= (cid:0)jωµ0µr ˘Hy,
+
+˘P + (jωτ0)α ˘P = ϵ0(ϵr,s (cid:0) ϵr,∞) ˘Ez.
+
+54
+
+(6.24)
+
+(6.25a)
+
+(6.25b)
+
+(6.25c)
+
+(6.25d)
+
+
+--- Page 55 ---
+那么在这样的坐标伸缩变换下，相应的含有 PML 的方程组写做：
+
+1
+sx
+
+∂ ˘Hy
+∂x
+
+(cid:0) 1
+sy
+1
+sy
+(cid:0) 1
+sx
+
+∂ ˘Hx
+∂y
+∂ ˘Ez
+∂y
+∂ ˘Ez
+∂x
+
+= jωϵ0ϵr,∞ ˘Ez + jω ˘Pz,
+
+(6.26a)
+
+2D Maxwell in C-C with CFS-PML first
+
+= (cid:0)jωµ0µr ˘Hx,
+
+= (cid:0)jωµ0µr ˘Hy,
+
+(6.26b)
+
+2D Maxwell in C-C with CFS-PML second
+
+(6.26c)
+
+2D Maxwell in C-C with CFS-PML third
+
+˘Pz + (jωτ0)α ˘Pz = ϵ0(ϵr,s (cid:0) ϵr,∞) ˘Ez.
+
+(6.26d)
+
+2D Maxwell in C-C with CFS-PML fourth
+
+Maxwell Equation 2D frequency CFS-PML
+
+在
+
+6.2 长时间稳定性
+
+考虑在静默状态下的系统稳定性。即当空间导数项均为 0 ，参见 [1]，同时也考虑最简
+
+单的 Debye 色散介质，系统变为
+
+(cid:16)
+
+(cid:17)
+
+∂
+
+ϵ0ϵr,∞ ⃗E + ⃗P
+∂t
+
+µ0µr
+
+⃗P +
+(cid:17)
+
+(cid:16)
+
+∂ ⃗H
+∂t
+∂⃗u
+∂t
+∂⃗v
+∂t
+∂ ⃗w
+∂t
+∂ ⃗P
+∂t
+
+D2
+
+= (cid:0) 1
+ϵ0
+= (cid:0) µ0µr
+ϵ0
+
+(cid:16)
+
+ϵ0ϵr,∞ ⃗E + ⃗P
+
+(cid:17)
+
+(cid:0) 1
+ϵ2
+0
+
+D2 ⃗H (cid:0) µ0µr
+ϵ2
+0
+
+D3⃗v,
+
+= ⃗E,
+
+= ⃗H,
+
+= ⃗P ,
+
+= ϵ0(ϵr,s (cid:0) ϵr,∞) ⃗E,
+
+D3 (ϵ0ϵr,∞⃗u + ⃗w) ,
+
+(6.27)
+
+(6.28)
+
+(6.29)
+
+(6.30)
+
+(6.31)
+
+(6.32)
+
+首先对于
+
+⃗H, ⃗v
+
+构成的系统，归一化后，写做
+
+(cid:19)
+
+(cid:18)
+
+⃗H
+⃗v
+
+∂
+∂t
+
+=
+
+(cid:0)D2 (cid:0)D3
+
+I
+
+0
+
+! (cid:18)
+
+(cid:19)
+
+,
+
+⃗H
+⃗v
+
+(6.33)
+
+eq: eigen H v
+
+如果假设 C 和 D 可交换（CD = DC）：
+
+!  
+
+!
+
+A B
+
+C D
+
+D 0
+(cid:0)C I
+
+=
+
+!
+
+=
+
+!
+
+AD (cid:0) BC B
+
+0
+
+D
+
+AD (cid:0) BC B
+CD (cid:0) DC D
+
+55
+
+ 
+ 
+ 
+ 
+
+--- Page 56 ---
+现在两边取行列式：
+
+det(M ) (cid:1) det(D) = det(AD (cid:0) BC) (cid:1) det(D)
+
+如果 det(D) 6= 0，消去 det(D) 即得证。如果 det(D) = 0，可以通过连续性参数微扰证明。
+当 C, D 可交换时，则有
+
+!
+
+det
+
+A B
+
+C D
+
+= det(AD (cid:0) CB).
+
+对于方程组 (6.33) 的系数矩阵，对应的特征值方程为
+
+det
+
+(cid:0)D2 (cid:0) ΛI (cid:0)D3
+(cid:0)ΛI
+
+I
+
+!
+
+= 0,
+
+因为 D2 和 D3 均为对角矩阵，所以有
+
+det(((cid:0)ΛI)((cid:0)D2 (cid:0) ΛI) (cid:0) (I)((cid:0)D3)) = det(ΛD2 + Λ2I + D3) = 0,
+
+带入 D2, D3 的表达式，相应的特征根为
+
+f(cid:0)σx, (cid:0)σx, (cid:0)σy, (cid:0)σy, (cid:0)σz, (cid:0)σzg .
+
+当 σx = σz = 0 时，系统对应的系数矩阵为
+0
+
+1
+
+0
+
+∂
+∂t
+
+C
+C
+C
+C
+C
+C
+C
+C
+C
+C
+A
+
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+@
+
+Hx
+Hy
+Hz
+vx
+vy
+vz
+
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+@
+
+=
+
+(cid:0)σy
+
+1
+
+0
+
+1
+
+0
+
+0
+
+(cid:0)σy
+
+0
+
+1
+
+1
+
+0
+
+C
+C
+C
+C
+C
+C
+C
+C
+C
+C
+A
+
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+@
+
+1
+
+C
+C
+C
+C
+C
+C
+C
+C
+C
+C
+A
+
+,
+
+Hx
+Hy
+Hz
+vx
+vy
+vz
+
+由于矩阵是稀疏且分块解耦的，我们可以针对 x, y, z 三对分量 (Hi, vi) 分别看：
+
+对于 x 分量 (Hx, vx) 和 z 分量 (Hz, vz)：子矩阵为：
+
+!
+
+(cid:0)σy 0
+0
+
+1
+
+特征方程：λ((cid:0)σy (cid:0) λ) = 0 =) λ1 = 0, λ2 = (cid:0)σy。那么：这是两个互异的特征值（假设
+σy 6= 0），矩阵可对角化，解是有界的。
+
+56
+
+ 
+ 
+ 
+
+--- Page 57 ---
+对于 y 分量 (Hy, vy)：子矩阵为：
+
+!
+
+0 0
+
+1 0
+
+特征方程：λ2 = 0 =) λ1 = λ2 = 0。此为二重 0 特征根，且对应一个非零的 Jordan 块
+（右上角为 0，左下角为 1，具有幂零性质）。
+
+!
+
+由于 y 分量对应的子矩阵是 Jordan 块
+
+0 0
+
+1 0
+
+，其动力学方程为：
+
+解的表达式：
+
+∂Hy
+∂t
+
+= 0
+
+∂vy
+∂t
+
+= Hy
+
+Hy(t) = Hy(0)
+
+vy(t) = Hy(0) (cid:1) t + vy(0)
+
+注：这是该子系统的不稳定（线性增长）来源。
+
+综上所述，在 σx = σz = 0 的条件下，系统解的显式表达为：
+
+⃗H(t) =
+
+0
+
+B
+B
+@
+
+Hx(0)e−σyt
+Hy(0)
+Hz(0)e−σyt
+
+1
+
+C
+C
+A ,
+
+0
+
+B
+B
+@
+
+⃗v(t) =
+
+vx(0) + Hx(0)
+σy
+
+(1 (cid:0) e−σyt)
+
+Hy(0) (cid:1) t + vy(0)
+
+vz(0) + Hz(0)
+σz
+
+(1 (cid:0) e−σyt)
+
+1
+
+C
+C
+A ,
+
+这导致了不稳定现象。而且 ⃗v(t) 的第二项随着时间的发展，增长到正无穷，这导致无法取
+
+到相应的能量泛函
+
+类似的，对于
+
+(cid:16)
+
+(cid:17)
+
+⃗E, ⃗P , ⃗u, ⃗w
+
+57
+
+ 
+ 
+
+--- Page 58 ---
+构成的系统，归一化后，写做
+1
+
+0
+
+∂
+∂t
+
+C
+C
+C
+C
+C
+A
+
+B
+B
+B
+B
+B
+@
+
+⃗E
+⃗P
+⃗u
+
+⃗w
+
+0
+
+B
+B
+B
+B
+B
+@
+
+=
+
+(cid:0)D2 (cid:0)D2 (cid:0)D3 (cid:0)D3
+
+I
+
+I
+
+0
+
+(cid:0)I
+
+0
+
+I
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+1
+
+0
+
+C
+C
+C
+C
+C
+A
+
+B
+B
+B
+B
+B
+@
+
+1
+
+C
+C
+C
+C
+C
+A
+
+⃗E
+⃗P
+⃗u
+
+⃗w
+
+(6.34)
+
+eq: eigen E u P w phi
+
+对应的特征矩阵为
+
+M (cid:0) ΛI =
+
+0
+
+B
+B
+B
+B
+B
+@
+
+(cid:0)D2 (cid:0) Λ (cid:0)D2 (cid:0)D3 (cid:0)D3
+(cid:0)I (cid:0) Λ
+
+0
+
+I
+
+I
+
+0
+
+0
+
+I
+
+0
+(cid:0)Λ
+
+0
+
+0
+(cid:0)Λ
+
+1
+
+C
+C
+C
+C
+C
+A
+
+!
+
+,
+
+=
+
+A B
+
+C D
+
+由上面证明到的性质，C 是单位矩阵，和任意的矩阵 D 都是可交换的。所以有
+
+det(M (cid:0) ΛI) = det(AD (cid:0) BC).
+
+其中
+
+AD (cid:0) BC =
+
+((cid:0)D2 (cid:0) Λ)((cid:0)Λ) (cid:0) ((cid:0)D3)
+I((cid:0)Λ) (cid:0) 0
+
+((cid:0)D2)((cid:0)Λ) (cid:0) ((cid:0)D3)
+((cid:0)I (cid:0) Λ)((cid:0)Λ) (cid:0) 0
+
+!
+
+=
+
+ΛD2 + Λ2I + D3 ΛD2 + D3
+ΛI + Λ2I
+
+(cid:0)ΛI
+
+,
+
+!
+
+则由于 ΛI 是对角矩阵，那么
+
+det(M (cid:0) ΛI) = det((ΛI + Λ2I)(ΛD2 + Λ2I + D3) (cid:0) ((cid:0)ΛI)(ΛD2 + D3))
+
+(cid:0)
+
+(cid:1)
+
+= det(Λ
+
+Λ3I + Λ2 (I + D2) + Λ (2D2 + D3) + 2D3
+
+).
+
+则对应的一个特征根为 Λ = 0，其他的特征根满足
+
+(cid:0)
+
+det
+
+Λ3I + Λ2 (I + D2) + Λ (2D2 + D3) + 2D3
+
+(cid:1)
+
+= 0.
+
+由于 D2, D3 均为对角矩阵，所以有
+
+λ3 + (1 + σy + σz)λ2 + (2σy + 2σz + σyσz)λ + 2σyσz = 0,
+λ3 + (1 + σz + σx)λ2 + (2σz + 2σx + σzσx)λ + 2σzσx = 0,
+λ3 + (1 + σx + σy)λ2 + (2σx + 2σy + σxσy)λ + 2σxσy = 0.
+
+判断这样的特征方程是否有负的实部。利用 Routh-Hurwitz 判据：
+
+58
+
+ 
+ 
+ 
+
+--- Page 59 ---
+• 每一项的系数 an > 0 均为正。若有 σy = 0，则第一个式子退化为
+
+λ3 + (1 + σz)λ2 + 2σzλ = 0,
+
+对应的根为
+
+λ = 0, λ =
+
+(cid:0)(1 + σz) (cid:6)
+
+p
+
+(1 + σz)2 (cid:0) 8σz
+2
+
+,
+
+根的实部必然是小于 0 的。若 σz = 0，则
+
+λ1,2 = 0,
+
+λ3 = (cid:0)1,
+
+• 每一项的系数 a3 = 1, a2 = 1 + σy + σz, a1 = 2σy + 2σz + σyσz, a0 = 2σyσz, 需要满
+
+足 a2a1 > a3a0 (根据上一点分析，就只需要考虑 σy,z > 0 的情形)
+
+a2a1 (cid:0) a3a0 = 2(σy + σz) + 2(σy + σz)2 + σyσz(σy + σz) (cid:0) σyσz
+
+> 2(σy + σz) + 2(σy (cid:0) σz)2 + σyσz(σy + σz) > 0,
+
+故根据判定准则，此三阶方程的根的实部均为非正的。综上所述，对于长时间的行为，有
+
+如下的结论：
+
+当位于 σy = σz = 0 的区域中，0 特征值为三重根，其他的特征值实部均为负值；对应
+
+的系统矩阵为：
+
+0
+
+B
+B
+B
+B
+B
+@
+
+0
+
+0
+0 0
+I (cid:0)I 0 0
+
+I
+
+0
+
+0
+
+I
+
+0 0
+
+0 0
+
+1
+
+C
+C
+C
+C
+C
+A
+
+.
+
+M =
+
+6.3 T 时间内单调递减，超过这个时间不稳定？
+
+参考文献
+
+abarbanel2002long
+
+[1] Saul Abarbanel, David Gottlieb, and Jan S Hesthaven. Long time behavior of the per-
+
+fectly matched layer equations in computational electromagnetics. Journal of scientific
+
+Computing, 17:405–422, 2002.
+
+59
+
+
+--- Page 60 ---
+becache2023convergence
+
+[2] Éliane Bécache, Maryna Kachanovska, and Markus Wess. Convergence analysis of
+
+time-domain pmls for 2d electromagnetic wave propagation in dispersive waveguides.
+
+ESAIM: Mathematical Modelling and Numerical Analysis, 57(4):2451–2491, 2023.
+
+brenner2008mathematical
+
+[3] Susanne C Brenner. The mathematical theory of finite element methods. Springer,
+
+2008.
+
+cassier2017mathematical
+
+[4] Maxence Cassier, Patrick Joly, and Maryna Kachanovska. Mathematical models for
+
+dispersive electromagnetic waves: an overview. Computers & Mathematics with Ap-
+
+plications, 74(11):2792–2830, 2017.
+
+Castillo2002optimal
+
+[5] Paul Castillo, Bernardo Cockburn, Dominik Schötzau, and Christoph Schwab. Op-
+
+timal a priori error estimates for the hp-version of the local discontinuous galerkin
+
+method for convection-diffusion problems. Math. Comput., 71(238):455–478, April
+
+2002.
+
+fu2019optimal
+
+[6] Guosheng Fu and Chi-Wang Shu. Optimal energy-conserving discontinuous galerkin
+
+methods for linear symmetric hyperbolic systems. Journal of Computational Physics,
+
+394:329–363, 2019.
+
+kaltenbacher2013modified
+
+[7] Barbara Kaltenbacher, Manfred Kaltenbacher, and Imbo Sim. A modified and stable
+
+version of a perfectly matched layer technique for the 3-d second order wave equation
+
+in time domain with an application to aeroacoustics. Journal of computational physics,
+
+235:407–422, 2013.
+
+li2011unified
+
+[8] Jichun Li. Unified analysis of leap-frog methods for solving time-domain maxwell’s
+
+equations in dispersive media. Journal of Scientific Computing, 47(1):1–26, 2011.
+
+li2014analysis
+
+[9] Jichun Li and Jan S Hesthaven. Analysis and application of the nodal discontinuous
+
+galerkin method for wave propagation in metamaterials. Journal of Computational
+
+Physics, 258:915–930, 2014.
+
+li2011developing
+
+[10] Jichun Li, Yunqing Huang, and Yanping Lin. Developing finite element methods for
+
+maxwell’s equations in a cole–cole dispersive medium. SIAM Journal on scientific
+
+computing, 33(6):3153–3174, 2011.
+
+60
+
+
+--- Page 61 ---
+li2017optimal
+
+[11] Jichun Li, Cengke Shi, and Chi-Wang Shu. Optimal non-dissipative discontinuous
+
+galerkin methods for maxwell’s equations in drude metamaterials. Computers & Math-
+
+ematics with Applications, 73(8):1760–1780, 2017.
+
+SAKAMOTO2011426
+
+[12] Kenichi Sakamoto and Masahiro Yamamoto. Initial value/boundary value problems
+
+for fractional diffusion-wave equations and applications to some inverse problems.
+
+Journal of Mathematical Analysis and Applications, 382(1):426–447, 2011.
+
+wang2021cg
+
+[13] Jiangxing Wang, Jiwei Zhang, and Zhimin Zhang. A cg–dg method for maxwell’
+
+s equations in cole–cole dispersive media. Journal of Computational and Applied
+
+Mathematics, 393:113480, 2021.
+
+xie2022efficient
+
+[14] Jiangming Xie, Maojun Li, and Miao-Jung Yvonne Ou. An eﬀicient and energy decay-
+
+ing discontinuous galerkin method for maxwell’s equations for the cole-cole dispersive
+
+medium. arXiv preprint arXiv:2208.11157, 2022.
+
+yin2023discrete
+
+[15] Baoli Yin, Yang Liu, Hong Li, and Zhimin Zhang. On discrete energy dissipation of
+
+maxwell’s equations in a cole-cole dispersive medium. J. Comput. Math, 41:980–1002,
+
+2023.
+
+61
+

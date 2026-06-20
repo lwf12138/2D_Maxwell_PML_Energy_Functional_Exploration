@@ -1,0 +1,5059 @@
+
+--- Page 1 ---
+S(cid:2)eMA Journal
+no57(2012),5–48
+
+AN ELEMENTARY INTRODUCTION TO THE CONSTRUCTION AND THE
+ANALYSIS OF PERFECTLY MATCHED LAYERS FOR TIME DOMAIN
+WAVE PROPAGATION
+
+PATRICK JOLY
+
+POEMS, UMR CNRS/ENSTA/INRIA
+INRIA, Domaine de Voluceau-Rocquencourt, BP 105, F-78153 Le Chesnay C´edex
+
+Patrick.Joly@inria.fr
+
+As soon as people have been interested in the numerical simulation of wave propa-
+gation phenomena, particularly in the time domain, they had to face the delicate ques-
+tion of realizing “transparent” artiﬁcial boundaries. Indeed, many problems of this type
+are posed in a unbounded domain (or in a domain which is very large with respect to
+a zone of interest in which one wishes to observe the solution) : one thus has to bound
+artiﬁcially the computational domain in such a way that the non physical boundaries
+are “transparent” for the solution. Due to the crucial importance of this subject, but
+also because of its difﬁculty, this question has aroused the curiosity from many re-
+searchers, ﬁrst from engineers, next from applied mathematicians. It would be much
+too ambitious to give a complete panorama of a research that began almost forty years
+ago (see however the article by T. Hagstrm [20] which constitutes a quite complete
+review of the domain) but one can now measure how much the many ingenious ideas
+proposed by the one or the others have permitted to accomplish impressive progress
+in this matter. Nowadays, if one restricts oneself to linear wave propagation problems,
+one can consider that, even though some questions remain open, satisfactory solutions
+are available for a large number of applications, in particular in the “canonical case” I
+will have in mind throughout this paper, namely the case where one wishes to reduce
+numerical computations to a convex bounded domain, assuming that the exterior do-
+main is homogeneous and source free.
+
+Recently, in particular for the applications in acoustics and electromagnetism, impor-
+tant progress has been achieved in the use of “exact” boundary conditions associated
+to homogeneous exterior domains. One usually introduces a boundary operator called
+“Dirichlet to Neumann” (DtN) operator that can be represented by using separation of
+variables in the exterior domain (in 3D, one will use typically spherical harmonics [19],
+which requires a spherical artiﬁcial boundary) or through the coupling with an integral
+representation formula of the exterior solution (which relies on the explicit knowledge
+of the Green’s function of the problem) [4].
+
+Received: May 13, 2011. Accepted: July 19, 2011.
+
+5
+
+
+--- Page 2 ---
+6
+
+Patrick Joly
+
+However, these techniques, beyond the fact that they remain restricted to a relatively
+limited ﬁeld of applications, have the disadvantage to be nonlocal in space and time
+: they remain quite difﬁcult to implement and rather costly in terms of computational
+time and storage, despite of the recent progress accomplished is fast algorithms for the
+evaluation of such nonlocal operators, such as the multipole method [18]. That is why,
+in many computational codes, one prefers to use solutions involving local operators,
+typically differential operators, which lead to a much simpler implementation. Such
+solutions, except in 1D, can not provide transparent boundary conditions : one speaks
+of ”approximate” or ”absorbing” boundary conditions. Of course, these conditions in-
+volve approximation parameters (devoted to tend to 0 or +∞) and will provide the true
+solution only when ”passing to the limit”. In this class of methods, two large families
+of methods can be opposed:
+
+• Absorbing boundary conditions (ABC’s): The idea is to complete the interior
+mathematical model (namely the interior PDE’s) with one or several boundary
+conditions that can be seen as partial differential equations along the boundary.
+Such conditions are supposed to minimize the spurious reﬂections that they
+generate. The pioneering works of Engquist and Majda [15], [16] on the wave
+equation (in the half space, i. e. with a ﬂat artiﬁcial boundary) are in this spirit.
+They proposed a hierarchy of boundary conditions that are classiﬁed with an
+integer N , namely the order of the boundary condition that I will not precisely
+deﬁne here. Let us simply explain that the greater is N , the higher is the order of
+the differential operators (which means that the boundary condition is more and
+more costly in terms of computational time) and the better is the accuracy of the
+approximate solution, as it has been recently proven in [14] for instance. These
+initial works have led to an intensive research in applied mathematics aiming
+at extending this type of techniques to other equations, the treatment of curved
+boundaries, the treatment of corners,...
+
+• Absorbing layers : the idea here is that the absorption of the waves that ”want”
+to leave the computational domain is not achieved through a boundary condition
+but inside a (hopefully small) layer surrounding this computational domain. This
+layer will be made of an ”absorbing material” whose behavior remains described
+with the help of partial differential equations and inside which the waves are
+damped (hopefully exponentially fast) during their propagation. In such a case,
+the boundary condition that has to be prescribed at the external boundary of the
+absorbing layer has no particular importance as soon as it leads to a well posed
+problem...
+
+The idea, physically rather natural, of absorbing layers has ﬁrst been introduced by
+engineers at the beginning of the 70’s. The idea was to join the physical non absorbing
+domain to an absorbing medium of physical nature (typically, in electromagnetism one
+will use a conductive material, in mechanics a visco-elastic material, ...). This approach
+has been progressively abandoned - during the 80’s - at the beneﬁt of absorbing
+boundary conditions for various reasons, in particular because it was not supported
+- contrary to ABC’s - by a solid and precise theoretical background but also because
+its practical use required what I will cal some ”engineer intuition”. In the mid 90’s, the
+
+
+--- Page 3 ---
+Construction and analysis of Perfectly Matched Layers
+
+7
+
+works of J. P. B´erenger [8], [9], who, for Maxwell’s equations, invented the concept
+of Perfectly Matched Layers (PMLs), have revolutionized the domain and replaced the
+methods of absorbing layers as a very attractive and powerful alternative to absorbing
+boundary conditions. The success of PMLs, whose principle is based on a simple but
+very clever idea, can be explained by several good reasons among which
+
+• the fact that PML’s are particularly simple to implement (in particular by
+
+comparison with higher order absorbing boundary conditions),
+
+• the fact that they provide in many applications remarkable performances (even
+
+when the theory does not completely predict it),
+
+• the fact that they can be applied without extreme additional complexity to a great
+number of equations (including acoustics, electromagnetism, elastodynamics,...)
+
+However, to temperate any excessive enthusiasm, I will add that
+
+• although substantial progress have been accomplished during the past ten years
+(which I will try to show later) the mathematical analysis of these methods is
+still not sufﬁciently well understood (at least from my point of view).
+
+• there exist physical models for which they do not work because they lead to
+
+unstable mathematical models.
+
+• the winner of the competition PMLs agains ABCs is not clearly designated yet
+
+and a fair comparison remains to be done.
+
+As many (really many) things have already been written on PML’s, I will choose to
+insist in this text on a particular point of view, which I hope to be well adapted to a
+reader who is an applied mathematician. More precisely, I will pursue a double goal:
+
+• Give a very introductory exposition of the construction of PML’s, which is
+not the one originally the one of B´erenger but better corresponds to my
+understanding of the method,
+
+• Give a kind of state of the art in the matter of mathematical results about PML’s,
+with a particular emphasis on the works done by my collaborators and myself at
+INRIA.
+
+In this spirit, I have chosen to organize the content as follows. Chapter 1 concerns
+the 1D case and has essentially a pedagogical motivation. After a brief introduction
+on classical absorbing layers, I will present - starting from the classical concept of
+impedance adaptation - the construction of PML’s for the 1D wave equation. In this
+very simple case, everything becomes quite simple and can be analyzed ”by hand”.
+Chapter 2 is devoted to B´erenger’s PML’s for a general hyperbolic system in dimension
+2 (once one has understood the two-dimensional case, the extension to higher space
+dimensions does not pose any problem). I will show how, from a very mathematical
+and formal idea - the use of a ”complex” (in the sense of imaginary numbers) change
+of variable - one can derive PML’s that generalize the ones proposed by B´erenger for
+Maxwell’s equations. In a second step, I will restrict myself to the 2D acoustic wave
+
+
+--- Page 4 ---
+8
+
+Patrick Joly
+
+equation on which I will explain in detail the absorption mechanism for plane waves,
+the treatment of corners, the interest of a variable (in space) absorption coefﬁcient,...
+The chapter 3, which concerns the mathematical analysis of PML models, will report
+more of some of my recent research. After having recalled the concepts of well-
+posedness and stability, I will present some results from the literature. These results are
+incomplete. Some of them enlighten some instability for certain classes of equations
+which are however of real interest for applications. Finally, some open problems will
+be mentionned.
+
+1 Perfectly Matched Layers in dimension 1
+
+Let us consider the 1D wave equation on the real line, with velocity 1:
+− ∂2u
+
+x ∈ IR,
+
+t > 0
+
+∂2u
+∂t2
+
+∂x2 = 0,
+
+(1)
+
+The Cauchy problem for this equation models in particular the small amplitude
+movements of a string submitted for instance to an initial deformation:
+such
+deformations propagate with velocity 1 without any modiﬁcation of their shape or
+amplitude.
+In what follows, our objective is to characterize, for computational
+purpose, the restriction of the solution to the half-line x < 0 by introducing an artiﬁcial
+boundary at x = 0, assuming that the initial data are supported in this half-line. In this
+case, there is a very simple transparent condition, which is local (but this is no longer
+true in dimension > 1):
+
+∂u
+∂t
+
++
+
+∂u
+∂x
+
+= 0,
+
+x = 0,
+
+t > 0.
+
+(2)
+
+The (very academic) question that we address in this section is the following : how is
+it possible to realize a “quasi”-transparent condition via an absorbing layer occupying
+the interval [0, L] ?
+
+1.1 Classical absorbing layers
+
+It is well known physically that one introduces some mechanisms of dissipation of
+energy, and thus wave damping, if one adds to the equation (1):
+
+• a ﬂuid friction term:
+
++ ν
+
+• a viscous friction term:
+
+ν ≥ 0,
+
+,
+
+∂u
+∂t
+(cid:2)
+ν∗ ∂2u
+∂x∂t
+
+− ∂
+∂x
+
+(cid:3)
+
+,
+
+ν∗ ≥ 0,
+
+which leads to the equation (where ν and ν∗ may vary in x):
+(cid:3)
+
+(cid:2)
+
+∂2u
+∂t2 + ν
+
+∂u
+∂t
+
+− ∂2u
+∂x2
+
+− ∂
+∂x
+
+ν∗ ∂2u
+∂x∂t
+
+= 0.
+
+The most visible effect ( see ﬁgure 1, left picture) is the (exponential) decay of the
+amplitude of the wave during its propagation, a decay which increases when the
+
+
+--- Page 5 ---
+Construction and analysis of Perfectly Matched Layers
+
+9
+
+absorption coefﬁcients ν and ν∗ increase. The second one is wave dispersion which
+affects the propagation velocity of the waves. Analytically, looking for time oscillating
+solutions of the form:
+
+u(x) exp iωt, ω > 0,
+
+(given)
+
+leads, assuming that ν et ν∗ are constant, to:
+
+u(x) = A exp ik(ω)x + B exp −ik(ω)x,
+
+where k(ω) is the complex wave number characterized by:
+
+k(ω)2 =
+
+ω2 + iων
+1 + iων∗ ,
+
+Im k(ω) ≤ 0.
+
+(3)
+
+(4)
+
+As Im k(ω) < 0 as soon ν or ν∗ is nonzero, we have evanescent waves, namely
+solutions that decay exponentially in one direction. A natural idea for creating an
+(inﬁnite in a ﬁrst step) absorbing layer consists in taking:
+
+⎧
+⎨
+
+⎩
+
+ν(x) = 0,
+
+ν∗(x) = 0,
+
+for x < 0,
+
+ν(x) =ν > 0,
+
+ν∗(x) = ν∗ > 0,
+
+for x ∈ [0, L],
+
+and impose for example (this should be unessential) a homogeneous Neumann
+condition at x = L. In practice, one is faced to the following dilemma that we illustrate
+on ﬁgure 1 (center and right pictures):
+
+• When ν et ν∗ increase, one improves the absorption phenomenon, which should
+
+a priori allow to diminish the length L of the layer.
+
+• On the other hand, the two media being more and more different, the amplitude
+of the reﬂected wave increases and very few energy penetrates the absorbing
+layer.
+
+5
+
+4.5
+
+4
+
+3.5
+
+3
+
+2.5
+
+2
+
+1.5
+
+1
+
+0.5
+
+0
+−8
+
+5
+
+4.5
+
+4
+
+3.5
+
+3
+
+2.5
+
+2
+
+1.5
+
+1
+
+0.5
+
+0
+−8
+
+−6
+
+−4
+
+−2
+
+0
+
+2
+
+4
+
+6
+
+8
+
+−6
+
+−4
+
+−2
+
+0
+
+2
+
+4
+
+6
+
+8
+
+Figure 1: Left: Propagation in a ”visco-elastic” (In blue : no absorption, in black weak
+absorption, in red strong absorption). Right and center: reﬂection by a visco-elastic
+layer. The absorption is stronger on the right. The horizontal axis corresponds to the
+space variables. One represents snapshots of the solution at equidistant instants.
+
+
+--- Page 6 ---
+10
+
+Patrick Joly
+
+As a consequence, in some sense, “the more absorbing is the medium, the less
+absorbing it is” ! By the way, this corresponds to a real technological difﬁculty met
+by physicists and engineers who want to build real absorbing coatings, for stealth
+technology for instance. This can be emphasized by the analysis. Let us consider
+the case of two semi-inﬁnite media x < 0 and x > 0 with ν = ν∗ = 0 for x <0 but
+are strictly positive for x >0 . Let us consider particular solutions of the form (this is
+the reﬂection-transmission analysis of an incident harmonic wave):
+
+⎧
+⎨
+
+u(x) = exp iω(t − x) +R (ω) exp iω(t + x),
+
+for x < 0,
+
+⎩
+
+u(x) = T (ω) exp −ik(ω)x exp iωt,
+
+for x > 0.
+
+where by deﬁnition
+
+• exp iω(t − x) is the incident wave (of amplitude 1),
+
+• R(ω) exp iω(t + x) is the reﬂected wave and R(ω) is the relection coefﬁcient,
+
+• T (ω) exp− ik(ω)x exp iωt is the transmitted wave and T (ω) is the transmission
+
+coefﬁcient.
+
+One obtains the expression of the coefﬁcients R(ω) et T (ω) writing the transmission
+conditions at the interface x = 0. Introducing k∗(ω) = (1 + iων∗) k(ω), k(ω) being
+given by (4), we get:
+
+R(ω) =
+
+k∗(ω) − ω
+k∗(ω) − ω
+
+, T (ω) = 1 + R(ω).
+
+As
+
+lim
+ν→+∞
+
+|k∗(ω)| = lim
+
+ν∗→+∞
+
+|k∗(ω)| = +∞, we deduce that
+
+lim
+ν→+∞
+
+|R(ω)| = lim
+
+ν∗→+∞
+
+|R(ω)| = 1.
+
+To overcome this phenomenon, an intuitive idea consists in increasing progressively ν
+et ν∗ inside the layer, in order to dilute the reﬂections et permit that the wave penetrates
+better in the absorbing layer. This type of strategy has been studied for instance in [23].
+However the choice of good proﬁles μ(x) et ν(x) as well as the determination of L are
+not completely clear and that is why the practical and robust use of such layers remains
+quite delicate.
+
+1.2 The Perfectly Matched Layers in 1D.
+
+The main drawback of the layers studied in the previous section is the reﬂection of
+waves at the interface between the real medium and the absorbing one. This raises
+the natural question: can one conceive an absorbing layer which would be ”perfectly
+matched”, that is to say that would generate no reﬂection at the interface with the
+physical medium ? If we restrict ourselves to the type of absorbing layer considered in
+the previous paragraph, the answer is no, even if ν et ν∗ are authorized to vary in x.
+However, we shall see that the answer becomes positive if one authorizes non physical
+absorption mechanisms.
+
+
+--- Page 7 ---
+Construction and analysis of Perfectly Matched Layers
+
+11
+
+Construction of PML’s by adaptation of impedance. As a starting point, let us
+recall what is the adaptation of impedance. For this, let us come back to the wave
+equation with variable coefﬁcients
+
+ρ(x)
+
+(cid:2)
+
+∂2u
+∂t2
+
+− ∂
+∂x
+
+μ(x)
+
+(cid:3)
+
+∂u
+∂x
+
+= 0,
+
+(5)
+
+where coefﬁcients ρ et μ are bounded and strictly positive functions. Let us introduce
+
+• the propagation velocity c(x) =
+
+• the impedance z(x) =
+
+(cid:7)
+
+μ(x)ρ(x)
+
+(cid:8)1/2
+
+,
+
+(cid:7)
+
+μ(x)/ρ(x)
+(cid:8)1/2
+
+.
+
+Let us now consider a medium with two homogeneous layers:
+
+⎧
+⎨
+
+⎩
+
+c(x) = c,
+
+z(x) = z,
+
+pour x < 0,
+
+c(x) = c∗,
+
+z(x) = z∗,
+
+pour x > 0.
+
+One analyzes the reﬂection and transmission of a time harmonic incident wave in the
+medium {x < 0} by studying the solutions of the form
+⎧
+⎨
+
+u(x) = exp i(ωt − kx) +R (ω) exp i(ωt + kx),
+
+(k = ω/c)
+
+pour x < 0,
+
+⎩
+
+u(x) = T (ω) exp(ωt − k∗x)
+
+pour x > 0,
+
+(k∗ = ω/c∗).
+
+The traduction of the transmission conditions at x = 0 provides the expression of the
+reﬂection and transmission coefﬁcients:
+z − z∗
+z + z∗
+
+2z
+z + z∗
+
+, T =
+
+R =
+
+.
+
+In particular, one observes that if the two impedances z et z∗ are equal (one says then
+that there is adaptation of impedance) the reﬂection coefﬁcient vanishes.
+In other
+words, the medium {x > 0} is transparent for the medium {x < 0} - or equiva-
+lently perfectly matched. Nevertheless, the medium {x >0} being non absorbing,
+we simply have postponed the problem of the transparent condition. In fact, we shall
+overcome this difﬁculty by considering (unphysical) media in which “the velocity of
+waves may become complex” as in a visco-elastic medium !
+
+Which follows is rather formal from the mathematical point of view but provides in
+my opinion a good intuitive understanding of the construction of PML’s.
+
+We ﬁrst place ourselves in the frequency domain : in other words we look at solu-
+tions of the form (3). This is not restrictive since we treat a linear equation whose
+coefﬁcients do not depend on time. The equation (5) becomes
+
+−ρ(x) ω2u − ∂
+∂x
+
+(μ(x)
+
+∂u
+∂x
+
+) = 0.
+
+(6)
+
+
+--- Page 8 ---
+12
+
+Patrick Joly
+
+Let us now consider d(ω) ∈ C and,
+
+⎧
+⎪⎨
+
+ρ(x) =ρ,
+
+μ( x) = μ,
+
+for x < 0,
+
+⎪⎩
+
+ρ(x) =
+
+ρ
+d(ω)
+
+,
+
+μ(x) = μ d(ω),
+
+for x > 0,
+
+By construction, the product ρ(x)μ(x) is constant; in other words, the impedance in the
+medium {x >0} in the same than the impedance in the medium {x <0} (z =
+ρμ).
+We thus have adaptation of impedance. However, the velocity c =
+μ/ρ becomes
+complex : it is equal to c d(ω), which allows us to make the medium {x > 0} absorb-
+ing if one chooses d(ω) adequately. To build this function, we have to keep in mind
+that, for the applications to time domain, coming back to the time domain should lead
+to differential operators in time. This means to impose that :
+
+(cid:10)
+
+√
+
+d(ω) is a rational fraction with real coefﬁcients in the variable iω.
+
+(7)
+
+In the medium {x >0 }, harmonic solutions are of the form (I reincorporate on purpose
+the time dependency)
+
+(cid:7)
+
+exp i
+
+ωt − k∗(ω) x
+
+(cid:8)
+
+,
+
+k∗(ω) = ± ω
+c
+
+d(ω)−1.
+
+(8)
+
+2
+Let us set d−1 = a + ib, (a, b) ∈ IR
+. We impose to the real part a to be positive. It is
+the presence of the imaginary part b which will govern the absorption of waves. Indeed
+
+k∗(ω) = kR(ω) +ik I (ω),
+
+kR(ω) =a
+
+ω
+c
+
+,
+
+kR(ω) = b
+
+ω
+c
+
+,
+
+and the solution (8) can be rewritten:
+
+exp iω
+
+(cid:2)
+
+t ± ax
+c
+
+(cid:3)
+
+(cid:2)
+
+exp
+
+∓ ω
+
+(cid:3)
+
+,
+
+bx
+c
+
+(9)
+
+This corresponds to a wave which propagates with the velocity c/a in the direction
+± x >0 et decays exponentially in the direction ± ωbx > 0 with a penetration length
+(or skin depth)
+
+(cid:7)(ω) = |kI (ω)|−1 =
+
+c
+|ω b|
+
+.
+
+At least intuitively, one realizes an absorbing medium if the amplitude decays in the
+same direction than the one in which it propagates (doing so, one absorbs the waves
+that propagate “to the right” as well as those that propagate “to the left”) which imposes
+a priori:
+
+A simple choice, coherent with condition (7) consists in taking:
+
+ω b < 0 .
+
+a = 1,
+
+b = − σ
+ω
+
+,
+
+(10)
+
+(11)
+
+where σ > 0 is called the absorption coefﬁcient. With this choice, we observe in
+particular that:
+
+
+--- Page 9 ---
+Construction and analysis of Perfectly Matched Layers
+
+13
+
+• the absorption is uniform with respect to the frequency, the penetration length
+
+being :
+
+(cid:7)(ω) =
+
+c
+σ
+
+,
+
+• the propagation velocity of harmonic waves remains equal to c in the absorbing
+
+layer.
+
+To reinterpret in time the propagation equation in the layer we remark that the choice
+(11) corresponds to
+
+d(ω) =
+
+iω
+iω + σ
+
+.
+
+The equation (6) in the medium {x > 0} can thus be rewritten as
+
+(cid:11)
+
+ρ (σ + iω) u − ∂
+∂x
+
+μ (σ + iω)−1 ∂u
+∂x
+
+(cid:12)
+
+= 0,
+
+(12)
+
+(13)
+
+which it is useful to rewrite as a ﬁrst order system (introducing the new unknown v)
+ρ (σ + iω) u − ∂v
+∂x
+μ−1(σ + iω) v − ∂u
+∂x
+
+⎧
+⎪⎪⎨
+⎪⎪⎩
+
+= 0,
+
+= 0,
+
+which corresponds 1D time domain PML system
+
+⎧
+⎪⎪⎨
+
+⎪⎪⎩
+
+∂u
+∂t
+(cid:2)
+
+(cid:2)
+
+ρ
+
+μ−1
+
+(cid:3)
+
++ σu
+
+∂v
+∂t
+
++ σv
+
+= 0,
+
+− ∂v
+∂x
+− ∂u
+∂x
+
+(cid:3)
+
+= 0.
+
+(14)
+
+Remark 1 If one eliminates v in (14), one gets the equation (in the case ρ = μ = 1)
+
+∂2u
+∂t2 + 2σ
+
+∂u
+∂t
+
++ σ2u − c2 ∂2u
+
+∂x2 = 0.
+
+(15)
+
+By comparison with the classical layers presented in the previous section, we see that
+we do not have to add a viscous friction term but that we need (at least this is sufﬁcient)
+to add the purely dispersive 0 order term σ2u.
+
+To understand correctly how this equation is coupled to the equation (1) through the
+interface x = 0, we need to make precise the transmission conditions, which are some-
+what non classical :
+⎧
+⎪⎪⎨
+
+u(0−, t) = u(0+, t),
+(cid:11)
+
+(cid:12)
+
+⎪⎪⎩
+
+∂2u
+∂x∂t
+
++ σ
+
+∂u
+∂x
+
+(0−, t) =
+
+∂2u
+∂x∂t
+
+(0+, t) .
+
+(16)
+
+These conditions correspond in fact to the continuity of u and v in the ﬁrst order
+formulation.
+
+
+--- Page 10 ---
+14
+
+Patrick Joly
+
+Remark 2 The choice (11) (or (12)) is the one that gives the original PMLs initially
+proposed by B´erenger. It is one choice among many other possible ones, compatible
+with the conditions (7) and (10) (there is thus a lot of room for the construction of “new
+PML’s”...), for instance:
+
+d(ω) = 1 + iωσ,
+
+σ > 0.
+
+It is easy to see that the resulting PML equation is also dissipative, remains of
+“hyperbolic nature” (one still has propagation with ﬁnite velocity) and yields an
+exponential absorption of harmonic waves. However, this absorption is no longer
+uniform : the penetration length of plane waves depends on the frequency.
+
+Construction of PML’s through a complex change of variable. One can recover
+the system (14) by another method whose physical meaning is not obvious but which is
+more directly generalizable to higher space dimensions. First we remark that, at least
+when the coefﬁcients ρ et μ are constant, the general solution of the Helmholtz equation
+(6), namely a linear combination of two exponentials, can be extended analytically to
+the complex plane (with respect to the space variable x). This extension still satisﬁes
+(6) in C (the differentiation being understood in the sense of functions of the complex
+variable). In some sense, one can imagine the existence of a “super-reality” in which
+the space variable X (the notation I use for the ”extended” space variable) would vary
+in the complex plane and whose the “physical world” that we observe every day would
+only be the ”trace” on the real axis. An idea, which is then natural, is to observe the
+solution along a new path ((cid:8)= IR) in the complex plane, such that
+
+(i) this path can be easily parameterized with the true physical variable x
+
+X =
+, in such a way that the new ”computational domain” can be identiﬁed to
+
+(cid:8)
+
+X(x)
+the physical one,
+
+(cid:7)
+
+(ii) this path coincides with the real axis for x < 0, so that the observed solution
+coincides with the physical one for x < 0 (a way to ensure that the new medium
+is perfectly matched),
+
+(iii) the solution decays exponentially along this path when x describes the half-line
+
+x > 0 by increasing values, so that an absorbing medium is realized,
+
+(iv) After come-back to the “time domain”, the variations of the “new solution” can
+
+be described with partial differential equations (this is criterion (7)).
+
+One realizes that all these criteria are satisﬁes with the change of variable :
+
+X(x) = x +
+
+(cid:13)
+
+x
+
+0
+
+1
+iω
+
+σ(ξ) dξ,
+
+where σ(x) is a damping function satisfying typically
+
+σ(x) = 0 for x < 0,
+
+σ(x) > 0 for x > 0.
+
+
+--- Page 11 ---
+Construction and analysis of Perfectly Matched Layers
+
+15
+
+(cid:7)
+Remarking that, if u and (cid:14)u are related by (cid:14)u(x) = u
+
+X(x)
+
+(cid:8)
+
+then
+
+∂(cid:14)u
+∂x
+
+(x) =
+
+iω
+iω + σ(x)
+
+∂u
+∂x
+
+(cid:7)
+
+(cid:8)
+
+,
+
+X(x)
+
+one sees that if u is solution of (6), then (cid:14)u satisﬁes
+(cid:3)
+
+(cid:2)
+
+− iω
+
+iω + σ
+
+∂
+∂x
+
+iω
+iω + σ
+
+μ
+
+∂(cid:14)u
+∂x
+
+− ρ ω2(cid:14)u = 0.
+
+that is to say (13). This approach shows that one still gets a ”perfectly matched” layer
+even with a varying absorption proﬁle. Moreover, if ρ and μ are constant, a basis of
+solutions of (13) is given by:
+
+(cid:11)
+
+(cid:13)
+
+exp iωx exp
+
+−
+
+x
+
+0
+
+(cid:12)
+
+(cid:11)
+
+(cid:13)
+
+σ(ξ) dξ
+
+,
+
+exp −iωx exp
+
++
+
+(cid:12)
+
+σ(ξ) dξ
+
+.
+
+x
+
+0
+
+Remark 3 It is easy to see that :
+
+• to satisfy the exponential decay criterion (iii), it sufﬁces that the path X(x) be
+
+included in the complex half-plane Im(X) > 0,
+
+• the criterion (iv) corresponds to the fact that the change of variable must depend
+
+on the iω as a rational function with real coefﬁcients.
+
+Analysis of 1D PML’s. The well-posedness, even more the dissipative nature, of the
+problem (14) is trivial. It sufﬁces for instance to remark that one has the energy identity
+(cid:13)
+
+(cid:15)
+
+(cid:16)
+
+(cid:13)
+
+(cid:8)
+
+(cid:7)
+
+(cid:8)
+
+ρ |u|2 + μ−1|v|2
+
+dx
+
++
+
+σ
+
+ρ |u|2 + μ−1|v|2
+
+dx = 0 .
+
+(17)
+
+(cid:7)
+
+d
+dt
+
+1
+2
+
+The ”perfect matching” property that we looked for can be expressed mathematically
+with the following result that, for simplicity, we state in the case μ = ρ = 1:
+
+Theorem 1 Let (u, v) the solution of the Cauchy problem on the real line IR associated
+to the system (the 1D wave equation written as a ﬁrst order system)
+
+∂u
+∂t
+
+− ∂v
+∂x
+
+= 0,
+
+∂v
+∂t
+
+− ∂u
+∂x
+
+= 0,
+
+(18)
+
+and initial data u0 et v0 with support in the half-space x < 0. Let (u∗, v∗) be the
+corresponding “PML solution”, namely the solution of the Cauchy problem associated
+with the system (14) (with ρ = μ = 1) for the same initial data. One then has the
+following relation
+
+⎧
+⎨
+
+u∗(x, t) = u(x, t) e−
+
+(cid:2) x
+0 σ(ξ) dξ,
+
+⎩
+
+v∗(x, t) = v(x, t) e−
+
+(cid:2) x
+0 σ(ξ) dξ .
+
+(19)
+
+
+--- Page 12 ---
+16
+
+Patrick Joly
+
+Proof :. The proof is elementary. The Cauchy problem for (14) being well posed, it
+sufﬁces to check that the pair (u∗, v∗) given by formulas (19) satisﬁes the equations
+(14). As
+
+∂u
+∂x
+
+=
+
+(cid:2)
+
+∂u∗
+∂x
+
+(cid:3)
+
+(cid:2) x
+0 σ(ξ) dξ,
+
+e
+
++ σ u∗
+
+∂v
+∂x
+
+=
+
+(cid:2)
+
+∂v∗
+∂x
+
+(cid:3)
+
+(cid:2) x
+0 σ(ξ) dξ,
+
+e
+
++ σ v∗
+
+(u∗, v∗) satisﬁes the system of equations:
+
+∂u∗
+∂t
+
+− ∂v∗
+∂x
+
+− σ v∗ = 0,
+
+∂v∗
+∂t
+
+− ∂u∗
+∂x
+
+− σ u∗ = 0,
+
+To conclude, it sufﬁces to remark that (see below):
+
+σ(u∗ + v∗) = 0,
+
+(20)
+
+(21)
+
+and to replace σu∗ (respectively σv∗) by −σv∗ (respectively −σu∗) in the ﬁrst (re-
+spectively second) equation of (20) to get (14).
+
+To get (21), we remark that for x < 0, σ = 0 while for x >0 , u∗ = −v∗. Indeed, from
+(18) we deduce in particular that:
+
+(
+
+− ∂
+∂x
+
+) [u+v] = 0 which yields
+
+∂
+∂t
+The initial data being supported in {x < 0}, u = −v, thus u∗ = −v∗ for x > 0.
+
+[ u+v ] (x, t) = [ u0+v0 ] (x+ct),
+
+x > 0,
+
+t > 0.
+
+We illustrate (19) with numerical results for two different proﬁles σ(x) (see ﬁgures
+2 et 3).
+
+1
+
+0.9
+
+0.8
+
+0.7
+
+0.6
+
+0.5
+
+0.4
+
+0.3
+
+0.2
+
+0.1
+
+0
+−8
+
+−6
+
+−4
+
+−2
+
+0
+
+2
+
+4
+
+6
+
+8
+
+700
+
+600
+
+500
+
+400
+
+300
+
+200
+
+100
+
+0
+−8
+
+−6
+
+−4
+
+−2
+
+0
+
+2
+
+4
+
+6
+
+8
+
+Figure 2: The proﬁles σ(x)
+
+Remark 4 If one simply follows the above proof, on could think that the system (20)
+(simply obtained by the change of function (19)) provides a PML. It is not the case or,
+more precisely, only true as long as an inﬁnite layer in considered. Indeed, bounding
+the layer at x = L one will generate a reﬂected wave propagating in the direction
+x < 0 : however, if the system, (20) attenuates exponentially the waves propagating in
+the direction x > 0, it ampliﬁes exponentially the waves propagating in the direction
+x < 0.
+
+
+--- Page 13 ---
+Construction and analysis of Perfectly Matched Layers
+
+17
+
+9
+
+8
+
+7
+
+6
+
+5
+
+4
+
+3
+
+2
+
+1
+
+0
+−8
+
+−6
+
+−4
+
+−2
+
+0
+
+2
+
+4
+
+6
+
+8
+
+9
+
+8
+
+7
+
+6
+
+5
+
+4
+
+3
+
+2
+
+1
+
+0
+−8
+
+−6
+
+−4
+
+−2
+
+0
+
+2
+
+4
+
+6
+
+8
+
+Figure 3: The solution of the Cauchy problem (inﬁnite PML). Left: constant proﬁle.
+Right: variable proﬁle
+
+Let us come now to the case of the ﬁnite layer. We impose, as an example, the
+homogeneous Neumann condition at x = L:
+
+∂u
+∂x
+
+(L, t) = 0.
+
+(22)
+
+Let us denote by (u, v) the solution of (14) in the domain {x < L} (with ρ = μ = 1)
+associated with the boundary condition (22) and initial data (u0, v0) with support
+in {x <0 }. To compute explicitly the solution, we remark the system (14) is
+(cid:7)
+“invariant by changing x into −x”:
+is a solution of (14) then
+(cid:7)
+u(−x, t), −v(−x, t)
+is also a solution. As a consequence, one has a principle of
+images, as for the usual wave equation. It is then easy to see that, if (u∗, v∗) is the
+solution of the Cauchy associated with (14) (still with ρ = μ = 1) for the same initial
+data, one simply has
+
+u(x, t), v(x, t)
+
+if
+
+(cid:8)
+
+(cid:8)
+
+⎧
+⎨
+
+u(x, t) = u∗(x, t) + u∗(2L − x, t)
+
+⎩
+
+v(x, t) = v∗(x, t) − v∗(2L − x, t).
+
+(23)
+
+The wave u∗(2L − x, t) is the wave reﬂected by the absorbing layer. It is clear on
+formula (19) that this wave is exponentially attenuated in time inside the absorbing
+layer as it is illustrated by numerical experiments (see ﬁgure 4)
+
+More precisely, combining (23) with (19), it is straightforward to get the following
+error estimate, that emphasizes the ”exponential accuracy” of the PML model:
+
+Theorem 2 Let (uσ,L, vσ,L) the solution of the Cauchy problem with PML of width
+L made of (14) in the domain {x < L} completed with the homogeneous Neumann
+condition at x = L and initial data u0 et v0 with support in the half-space x < 0. If
+(u, v) denotes the solution of the corresponding Cauchy problem on the real line, one
+have the error estimate:
+(cid:17)
+(cid:7)
+(cid:8)
+(cid:17)
+
+(cid:2) L
+0 σ(x) dx
+
+(cid:17)
+(cid:17)
+
+(cid:8)
+
+(cid:7)
+
+(cid:7)
+
+(cid:8)
+
+∀ t >0 ,
+
+u − uσ,L
+
+(·, t)
+
+v − vσ,L
+
+(·, t)
+
+(cid:10)u0(cid:10) + (cid:10)v0(cid:10)
+
+,
+
+(cid:17)
+(cid:17) +
+
+(cid:17)
+(cid:17) ≤ 1
+2
+
+e−
+
+(24)
+
+where (cid:10) · (cid:10) denotes any Lp- norm (1 ≤ p ≤ +∞) in the half-line x < 0.
+
+
+--- Page 14 ---
+18
+
+9
+
+8
+
+7
+
+6
+
+5
+
+4
+
+3
+
+2
+
+1
+
+0
+−8
+
+−7
+
+−6
+
+−5
+
+−4
+
+−3
+
+−2
+
+−1
+
+0
+
+1
+
+2
+
+Patrick Joly
+
+9
+
+8
+
+7
+
+6
+
+5
+
+4
+
+3
+
+2
+
+1
+
+0
+−8
+
+−7
+
+−6
+
+−5
+
+−4
+
+−3
+
+−2
+
+−1
+
+0
+
+1
+
+2
+
+Figure 4: Finite PML layer. Left: constant proﬁle . Right: variable proﬁle
+
+Remark 5 The existence of an image principle is particularly clear on the second
+order equation (15) which only involves second order derivatives in x. The invariance
+by x into −x is no longer satisﬁed by (20): indeed, if one eliminates u∗ in (20), one
+gets an equation involving a ﬁrst order derivative in x:
++ σ2u − c2 ∂2u
+
+− 2σ
+
+(25)
+
+∂2u
+∂t2
+
+∂u
+∂x
+
+∂x2 = 0.
+
+2 Perfectly Matched Layers in dimension 2
+
+We present in this section the generalization of the PML layers introduced in the
+previous section to the case of problems posed in two space dimensions. The
+generalization to higher space dimension does not pose any additional conceptual
+difﬁculty. In the following, we shall denote x and y the two space variables and we
+shall be interested in constructing an absorbing layer “in the x direction”, that is to say
+a layer that aims at reducing the computational domain to a half-space x < L. We
+shall treat the question of reducing the computational domain to a bounded region in
+section 2.2.
+
+2.1 B´erenger’s PML layers for a general ﬁrst order hyperbolic system.
+
+2
+We consider a general wave propagation problem posed in IR
+and governed by a ﬁrst
+order hyperbolic system (most of the more relevant physical wave phenomena fall into
+this category)
+
+∂U
+∂t
+
++ Ax
+
++ Ay
+
+∂U
+∂x
+
+∂U
+∂y
+
+= 0.
+
+(26)
+
+In (26), the function U (x, y, t) takes values in IRm, m ≥ 1, Ax and Ay are matrices
+m × m with real entries. To simplify our presentation, we shall assume that the prop-
+agation medium is homogeneous, i.e. that the matrices Ax and Ay are constant and
+that the system (26) is hyperbolic (see section 3.1).
+
+As in the 1D case, the idea consists in concatenating the physical medium in the
+half-space x < 0 with a medium that will perfectly match and in which the waves
+
+
+--- Page 15 ---
+Construction and analysis of Perfectly Matched Layers
+
+19
+
+will be damped during their propagation. Let me introduce without any particular
+justiﬁcation the system of equations that I will consider in the domain x > 0.
+The formal construction of these equations, that mimics the original construction of
+B´erenger for Maxwell’s equations, can be decomposed in two steps:
+
+(i) One splits the ﬁeld U into:
+
+U = U x + U y,
+
+where (U x, U y) is solution of the system:
+⎧
+⎪⎪⎨
+
++ Ax
+
+∂
+∂x
+
+∂U x
+∂t
+∂U y
+∂t
+
+⎪⎪⎩
+
+(U x + U y) = 0,
+
++ Ay
+
+∂
+∂y
+
+(U x + U y) = 0.
+
+(27)
+
+(28)
+
+In this ﬁrst step, we “do not change anything” : if (U x, U y) is solution of (28),
+U = U x + U y is solution de (26) (simply add the two equations). Reciprocally,
+the solution U can be decomposed as (27) where (U x, U y) is solution of (28) if
+one splits the initial data U0 in a compatible way.
+
+(ii) We add an absorption term σ U x with σ = σ(x) ≥ 0 in the ﬁrst equation de
+
+(28), the one which involves x derivatives, which leads to:
+
+⎧
+⎪⎪⎨
+⎪⎪⎩
+
+∂U x
+∂t
+∂U y
+∂t
+
++ σ U x + Ax
+
+∂
+∂x
+
+(U x + U y) = 0,
+
++ Ay
+
+∂
+∂y
+
+(U x + U y) = 0.
+
+(29)
+
+The reader will notice that:
+
+• One re-obtains the system (14) in the case of the 1D wave equation.
+
+• The system (29) extends to the general system (26) the PML initially introduced
+
+by B´erenger for Maxwell’s equations.
+
+• In practice one will choose of course σ = 0 for x < 0 and σ > 0 for x > 0.
+Moreover, we shall not apply the decomposition (27) in the “physical” half-space
+x <0 which means that one doubles the dimension of the unknown functions
+(and one can even do better for some equations, see section 2.2) only in the
+PML region. The two “physical” et “non physical” media will be coupled at the
+artiﬁcial interface x = 0 by the transmission condition:
+
+U = U x + U y,
+
+at x = 0.
+
+(30)
+
+• In the system (29), we see that the two space directions x and y are not treated in
+the same way. In some sense, one applies an anisotropic absorption. If we had
+simply added a term σ U to the system (29) (which we did in 1-D), we would
+have created an absorbing medium (this is clear at least for symmetric systems,
+namely when the matrices Ax et Ay are symmetric) but this medium would not
+be perfectly matched (except for 1D y-independent solutions).
+
+
+--- Page 16 ---
+20
+
+Patrick Joly
+
+• Of course, to realize a PML layer in the direction y, it sufﬁces this time to add
+the term σ U y to the second equation de (28), the one which involves the y
+derivative, the absorption coefﬁcient σ depending this time on y.
+
+Let us know explain how one can derive formally the equation (29) by generalizing the
+approach of the complex change of variable introduced in section 1.
+
+We start from the system (26) that we rewrite in the frequency domain (formally, we
+apply the time Fourier transform). This gives the “ generalized Helmholtz equation”:
+∂ (cid:18)U
+∂x
+
+iω (cid:18)U + Ax
+
+∂ (cid:18)U
+∂y
+
++ Ay
+
+= 0,
+
+(31)
+
+Assume that the (cid:18)U can be extended to x ∈ C (this can be justiﬁed in many cases) into
+an analytic function. Of course, this function still satisﬁes (31) for x in C. Then, let us
+look at the function:
+
+(cid:11)
+
+(cid:14)U (x) = (cid:18)U
+
+x +
+
+(cid:13)
+
+x
+
+0
+
+1
+iω
+
+(cid:12)
+
+σ(ξ) dξ
+
+,
+
+x ∈ IR
+
+where the function σ(x) has the properties that we indicated previously. Clearly, (cid:14)U
+coincides with (cid:18)U for x < 0 (which guarantees perfect matching) and satisﬁes
+(cid:2)
+
+(cid:3)
+
+iω (cid:14)U + Ax
+
+∂ (cid:14)U
+∂x
+
+iω
+iω + σ
+
++ Ay
+
+= 0,
+
+∂ (cid:14)U
+∂y
+
+which can be rewritten, after division by iω:
+∂ (cid:14)U
+∂x
+
+(cid:14)U = (− 1
+
+iω + σ
+
+Ax
+
+) + (− 1
+iω
+
+Ay
+
+∂ (cid:14)U
+∂y
+
+)
+
+=
+
+(cid:14)Ux
+
++
+
+(cid:14)Uy
+
+(cid:19)
+(cid:19)
+(cid:19)
+(cid:19)
+(cid:19)
+(cid:19)
+(cid:19)
+(cid:19)
+
+,
+
+,
+
+where by construction
+
+(iω + σ) (cid:14)Ux + Ax
+
+∂ (cid:14)U
+∂x
+
+= 0,
+
+iω (cid:14)Uy + Ay
+
+∂ (cid:14)U
+∂y
+
+= 0.
+
+We obtain the system (29) by going back to the time variable.
+
+At least formally, our construction allows us to understand why we realized a perfectly
+matched medium with the system (29). The “absorbing” nature of the new medium is
+much less obvious: one does not have the equivalent of theorem 1 which makes the 1D
+case particularly clear. One can have an intuition that this is the case (but this intuition
+in misleading in the general case - see remark 6), by looking at harmonic plane waves.
+i.e. particular solutions of (26) of the form (we assume that we are in an homogeneous
+medium occupying the whole space)
+
+U0 exp i(ωt − kxx − kyy),
+
+(kx, ky, ω) ∈ IR
+
+3.
+
+(32)
+
+
+--- Page 17 ---
+Construction and analysis of Perfectly Matched Layers
+
+21
+
+The hyperbolic character of the system (26) ensures the existence of such solutions,
+(kx, ky, ω) being necessarily related by the dispersion relation of (26) (of the form
+P ((kx, ky, ω) = 0 where P is a homogeneous polynomial in (kx, ky, ω)). We shall
+come back to this in more detail in section 3.1. For the Cauchy problem, the use of the
+space Fourier transform even shows that such solutions form an (inﬁnite) “fundamen-
+tal system” for (26).
+
+If one adopts a physical point of view, (32) represents a plane wave with frequency
+ω that propagates in the direction of the wave vector k = (kx, ky) with phase velocity:
+
+c =
+
+ω
+|k|
+
+· k
+|k|
+
+.
+
+(33)
+
+This wave thus propagates “in the direction” x >0 if kx/ω > 0 and ”in the direction”
+x < 0 if kx/ω < 0. For the PML system (29), taking into account the change of
+(cid:13)
+variable:
+
+x → x +
+
+the plane wave (32) “becomes”:
+
+1
+iω
+
+x
+
+σ(ξ) dξ,
+
+0
+
+U0 exp i(ωt − kxx − kyy) e− kx
+
+ω
+
+(cid:2) x
+0 σ(ξ) dξ.
+
+(34)
+
+The function σ being positive, one observes then that if kx/ω > 0 (resp. kx/ω < 0),
+that is to say if the wave (32) propagates “in the direction” x > 0 (resp. x <0 ),
+the wave (34) is evanescent, i. e. exponentially damped, in the direction x >0
+(resp. x < 0). In other words, the amplitude of the wave decreases in its direction of
+propagation. In this sense, one could say that one has realized an absorbing medium.
+
+Remark 6 The previous reasoning, based one the phase velocity of a single plane
+wave, is in fact misleading. In the 1D case, the dissipative character of the PML system,
+traduced in particular by the energy identity (17), went together with the absorbing
+nature of the medium ”in the sense of plane waves”, which we identify by a decay in
+space of such solutions inside the layer. In dimension 2, this is not always the case.
+In fact, when one considers a (continuous) superposition of plane waves (for instance
+any ﬁnite energy solution), one must reason with the group velocity (see section 3).
+
+Remark 7 There is another noticeable difference with the 1D case: the absorption
+rate in (34) is not only proportional to σ but also kx/ω. this means that the absorption
+of waves also depends on their propagation direction, which was expected from the
+anisotropic nature of the absorption term in (29). We shall come back to this point
+with the acoustic wave equation (section 2.2).
+
+2.2 The case of the 2D acoustic wave equation.
+
+We start from the wave equation (which generalizes the equation (5) to the dimension
+2):
+
+ρ
+
+∂2u
+∂t2
+
+− div (μ∇u) = 0,
+
+(35)
+
+
+--- Page 18 ---
+22
+
+Patrick Joly
+
+that we rewrite in the form of a ﬁrst order system
+
+− ∂vy
+∂y
+
+= 0,
+
+⎧
+
+⎪⎪⎪⎪⎪⎪⎪⎨
+⎪⎪⎪⎪⎪⎪⎪⎩
+
+ρ
+
+∂u
+∂t
+μ−1 ∂vx
+∂t
+μ−1 ∂vy
+∂t
+
+− ∂vx
+∂x
+− ∂u
+∂x
+− ∂u
+∂y
+
+= 0,
+
+= 0 .
+
+(36)
+
+The PML system. Due to the particular structure of system (36) (two of the
+equations involve derivatives in only one space variable), by applying the approach
+of the previous paragraph, one realizes that one can avoid to split the unknowns vx and
+vy. One then obtains the following PML system :
+(cid:2)
+
+⎧
+
+(cid:3)
+
+ρ
+
++ σ ux
+
+= 0,
+
+− ∂vx
+∂x
+− ∂
+∂x
+
+(cid:3)
+
+⎪⎪⎪⎪⎪⎪⎪⎪⎪⎪⎪⎪⎨
+⎪⎪⎪⎪⎪⎪⎪⎪⎪⎪⎪⎪⎩
+
+∂ux
+∂t
+(cid:2)
+
++ σ vx
+
+μ−1
+
+∂vx
+∂t
+− ∂vy
+∂y
+− ∂
+∂y
+
+ρ
+
+∂uy
+∂t
+μ−1 ∂vy
+∂t
+
+= 0,
+
+(cid:7)
+
+ux + uy
+
+(cid:8)
+
+= 0 .
+
+(cid:7)
+
+ux + uy
+
+(cid:8)
+
+= 0,
+
+(37)
+
+The reader will notice that
+
+• Contrary to the 1D case, the dissipative character of this system, even the well-
+
+posedness of the corresponding Cauchy problem, is no longer obvious.
+
+• When σ, ρ and μ are constant, one can eliminate the unknowns vx and vy and
+
+get an equation for the scalar unknown u,
+
+(cid:2)
+
+∂
+∂t
+
+(cid:3)2(cid:2)
+
+∂2u
+∂t2
+
+ρ
+
+− μ
+
+(cid:3)
+
+∂2u
+∂y2
+
++ σ
+
+− μ
+
+∂4u
+∂x2∂t2 = 0.
+
+(38)
+
+Compared to (35), this equation becomes fourth order, which was not the case
+in 1D. In some sense, we have added unphysical modes.
+
+• One can remark that the equation (38) remains invariant under the change of
+
+variable : x → −x. This means that an image principle is preserved.
+
+Absorption and reﬂection of plane waves. We can describe in more detail the
+phenomenon of absorption of plane waves already evoked in the previous section
+for general systems.Let us consider a homogeneous acoustic medium with velocity
+c =
+
+μ/ρ. For the equation (35) (or for system (36)),the dispersion relation reads
+
+(cid:10)
+
+x + k2
+k2
+
+y =
+
+ω2
+c2 .
+
+(39)
+
+
+--- Page 19 ---
+Construction and analysis of Perfectly Matched Layers
+
+23
+
+If we denote by θ ∈ [−π, π] the angle between the wave vector k = (kx, ky) and
+the direction (0, 1), which we shall ”angle of incidence” since the vector (0, 1) also
+represents the unit normal vector to the artiﬁcial boundary x = 0, we thus have
+
+kx =
+
+ω
+c
+
+cos θ,
+
+ky =
+
+ω
+c
+
+sin θ.
+
+The corresponding propagative plane (solution of (35)) writes
+
+u(x, t) = exp i
+
+(cid:20)
+
+(cid:7)
+
+ω
+c
+
+c t − x cos θ − y sin θ
+
+(cid:8) (cid:21)
+
+.
+
+For the system (37), this wave becomes an evanescent wave
+ω
+c
+
+c t − x cos θ − y sin θ
+
+u(x, t) = exp i
+
+(cid:8)(cid:21)
+
+(cid:20)
+
+(cid:7)
+
+e− cos θ
+
+c
+
+(cid:2) x
+0 σ(ξ) dξ .
+
+(40)
+
+(41)
+
+(42)
+
+One sees that the absorption rate in the x direction (the factor of x inside the real ex-
+ponential) varies proportionally cos θ. If we restrict ourselves to |θ| ≤π/ 2 (waves
+propagating in the direction x >0), this rate is maximal for θ = 0, that is to say at
+“normal incidence”, and tends to 0 when θ goes to π/2, namely when one approaches
+the ”grazing” incidence.
+
+If one bounds the P M L layer with a Neumann boundary at x = L, through a sim-
+ple reﬂection principle, one can construct, for each θ, a particular solution of the form
+
+(cid:19)
+(cid:19)
+(cid:19)
+(cid:19)
+(cid:19)
+(cid:19)
+(cid:19)
+
+u(x, t) = exp i
+
++ exp i
+
+(cid:20)
+
+(cid:20)
+
+ω
+c
+ω
+c
+
+(ct − x cos θ − y sin θ)
+
+(ct − (2L − x) cos θ − y sin θ)
+
+(cid:2) x
+0 σ(ξ) dξ
+
+(cid:21)
+
+e−cosθ
+(cid:21)
+
+e−cosθ
+
+(cid:2) 2L−x
+0
+
+σ(ξ) dξ.
+
+(43)
+
+Inside the physical medium x < 0, this solution takes the form
+ω
+c
+
+(ct − x cos θ − y sin θ)
+
++Rσ(θ) exp i
+
+u(x, t) = exp i
+
+ω
+c
+
+(cid:20)
+
+(cid:21)
+
+(cid:20)
+
+(ct + x cos θ − y sin θ)
+(44)
+
+(cid:21)
+
+,
+
+where we have set
+
+Rσ(θ) = exp
+
+(cid:22)
+
+− 2 cos θ
+c
+
+(cid:13)
+
+L
+
+0
+
+(cid:23)
+
+(cid:24)
+
+σ(ξ) dξ
+
+exp
+
+−2i
+
+(cid:25)
+
+.
+
+ωL
+c
+
+(45)
+
+This can be interpreted in the following way : the incident wave (41) gives rise on the
+boundary x = 0 to a reﬂected wave which obeys the standard Snell-Descartes’ law for
+the propagation direction, butis affected with a phase shift 2ωL/c (corresponding to a
+time delay due to the back and forth propagation inside the layer) and has an amplitude
+given by the reﬂection coefﬁcient:
+
+|Rσ(θ)| = exp
+
+−2
+
+σ(ξ) dξ
+
+.
+
+(46)
+
+(cid:22)
+
+(cid:13)
+
+L
+
+0
+
+cos θ
+c
+
+(cid:23)
+
+One sees that this reﬂection coefﬁcient diminishes exponentially with respect to the
+absorption coefﬁcient σ, the width L of the layer, and the cosine of the angle of
+incidence θ.
+
+
+--- Page 20 ---
+24
+
+Patrick Joly
+
+Remark 8 The expression (45) can be compared with the one obtained with Engquist-
+Majda absorbing boundary conditions of order N (an integer greater or equal than
+1),
+
+|RN (θ)| =
+
+(cid:12)N
+
+(cid:11)
+
+1 − cos θ
+1 + cos θ
+
+.
+
+(47)
+
+Why choosing a σ that varies with x ?
+In practice, after discretization of the
+problem for numerical computation, if one considers a ﬁxed space step in the direction
+x inside the layer, the additional computational cost due to the PML layer is directly
+proportional to the width L : one thus have interest to reduce L as much as possible.
+If one refers to the expression (45) of the reﬂection coefﬁcient, this gives the feeling
+that it sufﬁces to choose σ > 0 constant and arbitrarily large to be able to take L
+arbitrarily small ! In practice, this is not true because one has to work with a numerical
+approximation of the wave equation. As a consequence, if the layer is effectively
+perfectly matched for the continuous problem, this is no longer the case for the discrete
+problem. This has been analyzed [11] when one considers the standard leap-frog
+scheme with centered second order ﬁnite differences. It is not my objective to come
+back here in detail the results of this analysis and I will simply describe qualitatively
+the main conclusions :
+
+• As the layer is no longer perfectly matched at the discrete level, for the numerical
+scheme an incident plane wave will give rise to two reﬂected waves (see ﬁgure
+5):
+
+– a wave reﬂected at x = L, which I will call the PML reﬂected wave,
+– a wave reﬂected at the interface x = 0, which I will call the numerical
+
+reﬂected wave.
+
+R
+
+disc
+
+R
+
+PML
+
+Figure 5: Discrete reﬂections : the case of a constant proﬁle.
+
+• The PML reﬂected wave, of amplitude RP M L, is of the same nature que than
+the continuous reﬂected wave.
+It results from the back and forth travel of a
+wave that propagates inside the layer and is exponentially attenuated during
+its propagation. More precisely, Δx denoting the space step, as the numerical
+scheme is second order accurate
+
+RP M L = e−2 σL
+
+c cos θ
+
+(cid:7)
+
+1 + O(Δx2)
+
+(cid:8)
+
+.
+
+
+--- Page 21 ---
+Construction and analysis of Perfectly Matched Layers
+
+25
+
+• The amplitude Rdisc of the numerical reﬂected wave satisﬁes
+
+Rdisc ∼ Cte × σ2Δx2,
+
+(Δx → 0).
+
+In some sense, one goes back to the dilemma encountered with classical
+absorbing layers:
+
+– as expected, the amplitude of the numerical reﬂected tends to 0 with Δx
+(proportionnally to Δx2 because the scheme is second order accurate),
+– this amplitude increases quadratically with σ: in other words, the greater
+
+is σ, the less adapted is the absorbing layer at the discrete level.
+
+There is a rather natural idea to overcome this difﬁculty. This consists is choosing
+a (sufﬁciently smooth) proﬁle σ(x) that progressively increases with x starting from
+σ(0) = 0. It is easy to get some intuition about what will happen at the numerical
+level, which we try to illustrate of ﬁgure 6. In practice the discretization processs is
+equivalent to create successive thin (i. e. of width Δx) homogeneous layers with ab-
+sorption σj inside the jth layer. As a consequence, to the ”continuous” usual PML
+reﬂected wave, one adds the superposition of small (and purely numerical) reﬂected
+waves at each interface, whose amplitudes will be proportional to the successive jumps
+σj+1 − σj. Moreover, the amplitude of these numerical reﬂected waves will be smaller
+and smaller when j increases because of the exponential decay phenomenon. Because
+of this observation, it is natural and a priori not penalizing to chooze a proﬁle σ such
+that the jumps σj+1 − σj are increasing with j, which corresponds to take σ(a) as an
+increasing and convex function. As a matter of fact, many authors suggest to chooze a
+quadratic proﬁle.
+
+R
+
+1
+
+R
+
+j
+
+R
+
+PML
+
+R1 ∼ (σ1Δx)2, Rj ∼ (σj+1 − σj)2Δx2ρj,
+
+ρj = exp(− 2
+c
+
+(cid:13)
+
+xj
+
+0
+
+σ(ξ) dξ).
+
+Figure 6: Discrete reﬂections : the case of a vaiable proﬁle
+
+
+--- Page 22 ---
+26
+
+Patrick Joly
+
+Let us try to illustrate this with three numerical experiments. In the ﬁgure 7 we compare
+three computations. The ﬁrst two computations are realized with the same constant σ,
+the second corresponding to a twice ﬁner mesh than the ﬁrst one. The reﬂected waves
+that one ”sees” on the pictures ‘correspond to the numerical reﬂected wave (observe
+for instance that there is no phase shift at the interface): the amplitude of this wave
+diminishes when one reﬁnes the mesh. The third computation is done with a quadratic
+proﬁle σquad(x) such that
+
+(cid:13)
+
+L
+
+0
+
+σquad(x) dx = σ L
+
+so that the continuous coefﬁcient reﬂection is the same as for the constant proﬁle (see
+(46)) : the numerical reﬂected wave has disappeared, even though the coarse mesh has
+been used. These observations are conﬁrmed on the ﬁgure 8 where one looks at the
+evolution of the solution at a given point (inside the physical domain) as a function of
+time. The red and blue curves correspond to the constant proﬁle, respectively for the
+coarse and the ﬁne mesh. On the other hand, one can check that the green curve ﬁts
+perfectly with the exact solution. Once again, one clearly sees the numerical reﬂected
+wave that decays when one reﬁnes the mesh.
+
+Figure 7: Top : constant proﬁle and ”coarse” mesh. Middle : constant proﬁle and
+”coarse” mesh. Bottom : quadratic proﬁle and ”coarse” mesh. The level lines of the
+solution are represented at three consecutive instants (left to right)
+
+Remark 9 One can of course, for a given length L (chosen proportionally to Δx to
+reason at constant computational cost) and a given numerical scheme, try to optimize
+
+
+--- Page 23 ---
+Construction and analysis of Perfectly Matched Layers
+
+27
+
+0.15
+
+0.1
+
+0.05
+
+0
+
+−0.05
+
+σ constant, h=0.05
+σ constant, h=0.025
+σ variable, h=0.05
+
+x 10−3
+
+5
+
+0
+
+−5
+
+−10
+
+0
+
+50
+
+100
+
+150
+
+200
+
+250
+
+300
+
+350
+
+400
+
+450
+
+500
+
+280
+
+300
+
+320
+
+340
+
+360
+
+380
+
+400
+
+420
+
+440
+
+460
+
+Figure 8: The solution at a given point as a function of time. Blue: constant proﬁle and
+”coarse” mesh. Red: constant proﬁle and ”ﬁne” mesh. Green: quadratic proﬁle and
+”coarse” mesh.
+
+the proﬁle σ(x) in order to minimize the reﬂections (typically for a given range of
+frequencies). This has been done for instance in [11]. In practice, implementing such
+a process is quite constraining and one will prefer so impose a proﬁle σ(x) given a
+priori (possibly depending on Δx and on the numerical scheme). We refer the reader
+to the abundant literature for more concrete information.
+
+How to reduce the computational domain to a rectangle ? To reduce effective
+calculations to a bounded domain, it may be sufﬁcient in some cases (in a waveguide
+for instance) to use only straight boundaries (the other boundaries being of physical
+nature). However in most cases, exterior problems for instance, this is no longer
+sufﬁcient, ”all the boundaries” of the computational domain needing to be absorbing.
+The method of PML’s that we have presented easily allows us to reduce ”easily” the
+reduction to a rectangle. Let us assume that the physical domain of interest is the
+rectangle [−a, a] × [−b, b]. We are going to introduce an absorbing layer of width L
+and pose a problem in the rectangle [−a−L, a+L]×[−b−L, b+L] with the following
+system of equations:
+
+⎧
+
+⎪⎪⎪⎪⎪⎪⎪⎪⎪⎪⎪⎪⎨
+⎪⎪⎪⎪⎪⎪⎪⎪⎪⎪⎪⎪⎩
+
+∂ux
+∂t
+(cid:2)
+
+∂uy
+∂t
+(cid:2)
+
+(cid:2)
+
+ρ
+
+μ−1
+(cid:2)
+
+ρ
+
+μ−1
+
+(cid:3)
+
++ σx(x) ux
+
+∂vx
+∂t
+
++ σx(x) vx
+(cid:3)
+
++ σy(y) uy
+
+∂vy
+∂t
+
++ σy(y) vy
+
+= 0,
+
+= 0,
+
+− ∂vx
+∂x
+− ∂
+∂x
+
+(cid:3)
+
+− ∂vy
+∂y
+− ∂
+∂y
+
+(cid:3)
+
+(cid:7)
+
+ux + uy
+
+(cid:8)
+
+= 0.
+
+(cid:7)
+
+ux + uy
+
+(cid:8)
+
+= 0,
+
+(48)
+
+where the positive function σx (resp. σy) only depends on x (resp. y), has support
+in {|x − a| > L} (resp. {|y − b| > L}) and ensures the absorption in the x (resp.
+y) direction. The equations (48) can easily be obtained by repeating the process
+described in section 2.1, ﬁrst in the x direction, next in the y direction. This process
+
+
+--- Page 24 ---
+28
+
+Patrick Joly
+
+provides an automatic and particularly simple ( in comparison with what one needs to
+do with absorbing boundary conditions) treatment of the corners of the computational
+domain. We illustrate in ﬁgure 9 the type of result that can be obtained :
+in the
+corresponding experiment, the acoustic wave is emitted by a point source located at
+the center of the computational domain, which is a square in this case (the physical
+domain corresponding to the ”interior” square).
+
+t=6s
+
+t=11s
+
+t=14s
+
+t=20s
+
+Figure 9: Propagation of a 2-D acoustic wave with PMLs.
+
+Remark 10 PML’s are thus well adapted to rectangular boundaries which is
+particularly useful in one uses ﬁnite difference methods for the discretization. F.
+Collino et P. Monk have treated a circular boundary in [12]. The case of ”arbitrary”
+curved boundaries is considered in [30].
+
+3 Mathematical questions
+
+Up to now, we did not attack the purely theoretical questions linked to PMLs. As
+soon as these techniques have appeared, many researchers have been interested in
+their mathematical analysis. A ﬁrst article by Abarbanel and Gottlieb [1] (claiming
+the the PML model in electromagnetism was ”ill-posed”, I will come back on this)
+provoked many interrogations (in particular because their statement seemed to be in
+contradiction with numerical observations). Since then, much progress has been made
+in understanding the theoretical properties of PMLs. This chapter will treat some
+aspects of this topic.
+
+The ﬁrst natural question is : does the PML model give rise to a well-posed evolution
+problem ? The same question was posed of course for absorbing boundary conditions
+and the answer was far from obvious (see remark 11). In what follows, we shall be
+interested in the Cauchy problem associated the system (29) (for simplicity, we restrict
+ourselves to the PML model ”in the x direction”). At least, we would like to investigate
+the well-posedness issue in the very simple situation where σ is constant and non zero
+in all IR2
+. This question will be addressed in most of this section. More precisely, two
+distinct aspects (I insist on this because the distinction is not always done properly in
+the literature, where one there is sometimes confusion between the words ”ill-posed”
+and ”unstable”) deserve to be treated the one after the other :
+
+
+--- Page 25 ---
+Construction and analysis of Perfectly Matched Layers
+
+29
+
+• the well-posedness : obtain an existence an uniqueness result for the solution,
+
+with continuous dependence with respect to the data of the problem,
+
+• the stability, which consists essentially in studying the long time behaviour of
+
+the solution.
+
+As the system (29) appears as a perturbation of order zero of a ﬁrst order homogeneous
+system, it is useful to recall in a ﬁrst step some classical results from the theory of this
+type of system.
+
+Remark 11 In the case of the absorbing boundary conditions, one has to analyze
+what one usually calls a ”mixed” hyperbolic problem, namely an initial boundary
+problem for an hyperbolic system, which is a more difﬁcult problem than the pure
+Cauchy problem that we investigate here. The most ”standard” approach consists is
+applying the Kreiss theory ()[26], [21]), or “Normal Mode Analysis”, which appears
+as a generalization (rather complex in its most technical details) of the Fourier analysis
+(that we shall present in the next section) for the Cauchy problem. The application
+of this theory shows that the problem under consideration is ill-posed when the
+absorbing boundary condition is not constructed properly [16] and leads to rather
+simple algebraic criteria, in the case of the wave equation for instance [31], that
+guarantee well-posedness. An alternative is the use of energy methods ([24, 25]),
+which are quite tricky in this context.
+
+3.1 A recap of some classical results.
+
+We consider a Cauchy problem in IR
+
+2
+
+of the form:
+
+∂V
+∂t
+
++ Ax
+
+∂V
+∂x
+
++ Ay
+
+∂V
+∂y
+
++ BV = 0,
+
+(x, y) ∈ IR
+
+2,
+
+t > 0,
+
+V (x, y, 0) = V0(x, y),
+
+(x, y) ∈ IR
+
+2,
+
+(49)
+
+V ∈ IRd, (Ax, Ay, B) ∈ L(IRd)3.
+
+Note that (29) enters this framework with d = 2m and:
+
+(cid:11)
+
+(cid:12)
+
+(cid:11)
+
+(cid:12)
+
+(cid:11)
+
+V =
+
+, Ax =
+
+, Ay =
+
+Ax Ax
+0
+0
+
+0
+0
+Ay Ay
+
+(cid:12)
+
+(cid:11)
+
+, B =
+
+(cid:12)
+
+.
+
+σI
+0
+
+0
+0
+
+The natural framework for this type of problem is the L2 framework and related
+2
+, which shall be denoted H s, s ∈ IR. Most of what follows is
+Sobolev spaces in IR
+quite classical and we refer the reader to [27] for more details.
+
+In what follows, I will make the distinction between the problem (49) (the Cauchy
+problem) and the system (49) (namely the ﬁrst line of (49) only).
+
+Deﬁnition 1 (Well-posedness) We shall say that the problem (49) is well posed if and
+only if there exists s ≥ 0 such that for any V0 in H s, (49) admits a unique solution:
+
+V ∈ C 0(IR
+
++, L2)
+
+(50)
+
+⎧
+
+⎪⎪⎪⎪⎪⎨
+⎪⎪⎪⎪⎪⎩
+
+U x
+U y
+
+
+--- Page 26 ---
+30
+
+Patrick Joly
+
+and satisﬁes an estimate of the form (where C(t) denotes a positive function of t,
+independent of V0, whose behavior for large t is not prescribed) :
+
+∀ t > 0,
+
+(cid:10)V (t)(cid:10)L2 ≤ C(t) (cid:10)V0(cid:10)H s .
+
+(51)
+
+More precisely:
+
+• One says that (49) is strongly well-posed if s = 0. In this case, there is no loss
+
+of (space) regularity with respect to the initial condition.
+
+• One says that (49) is weakly well-posed if one can obtain (51) only for some
+
+s > 0.
+
+Finally, we shall say that the problem is ill-posed if it is not well posed.
+
+In the case of constant coefﬁcients, the simplest method to
+
+The Fourier analysis.
+study (49) consists in using the Fourier transform in space
+V (x, y, t) −→ (cid:18)V (kx, ky, t),
+
+which immediately provides the expression (k := (kx, ky)):
+
+(cid:18)V (k, t) = exp
+
+(cid:26)
+
+(cid:7)
+
+− i
+
+A(k) − iB
+
+(cid:8)
+
+(cid:27)
+
+t
+
+(cid:18)V0(k),
+
+where the “symbol” matrix A(k) is given by:
+
+A(k) =k xAx + kyAy.
+
+Obtaining estimates of the type (51) relies of Plancherel-Parceval’s theorem and
+estimates of the exponentials of matrices:
+(cid:7)
+
+(cid:8)
+
+(cid:26)
+
+(cid:27)
+
+exp
+
+− i
+
+A(k) − iB
+
+t
+
+(52)
+
+of which we need in particular to control the behavior for large values of |k| (which
+will determine the value of s in (51)). One can show that the study of (52) amounts
+to the study of particular solutions of (49) which are harmonic plane waves or normal
+modes:
+
+V (x, y, t) = V exp i(kxx+kyy) eiωt,
+
+k = (kx, ky) ∈ IR
+
+2, ω(k) ∈ C,
+
+Substituting (53) into (49) gives :
+
+(cid:7)
+
+A(k) − iB + ω
+
+(cid:8)
+
+V = 0,
+
+V ∈ Cm.
+(53)
+
+(54)
+
+In other words, to get a non trivial solution, −ω must be an eigenvalue of A(k) − iB,
+V being the corresponding eigenvector. This leads to the dispersion relation
+
+det (A(k) − iB + ωI) = 0,
+
+(55)
+
+
+--- Page 27 ---
+Construction and analysis of Perfectly Matched Layers
+
+31
+
+that is considered here as an equation in ω, k being a parameter. Denoting by
+
+{ ωj(k), 1 ≤ j ≤ d }
+
+the set of branches of solutions de (55) (namely the eigenvalues of iB − A(k), which
+gives d branches of solution - if one takes into account the possible multiplicity of these
+eigenvalues), it is easy to see that (49) is (weakly or strongly) well posed (in the sense
+of deﬁnition 1) if and only if, for all j
+
+Im ωj(k) remains bounded from below,
+
+∀ k ∈ IR
+
+2.
+
+(56)
+
+Geometrically, this means that all the curves in the complex plane (they form a family
+2, |K| = 1, which represents
+of curves parameterized by j and the unit vector K ∈ IR
+a direction ) :
+
+(cid:7)
+
+(cid:8)
+
+|k| (cid:14)→ ωj
+
+|k| · K
+
+, K = k/|k|,
+
+(57)
+
+are located above some complex half-space. As the functions ωj(k) are continuous
+(from classical results from perturbation analysis in spectral theory), in order to ensure
+(56), it is sufﬁcient to study what happens when |k| tends to +∞.
+
+The case of the unperturbed system (B = 0). The results for the problem (49)
+can be obtain by perturbation techniques with respect to the case B = 0, which
+corresponds to the ﬁrst order homogeneous part of the system (49), that we shall call
+the unperturbed system (this is rather intuitive, note for instance that, for large |k|,
+A(k) − iB behaves as A(k)). Let us recall below the standard terminology for such
+systems.
+
+Deﬁnition 2 (Hyperbolicity) The unperturbed system (B = 0), denoted (49)0, is said
+to be hyperbolic if and only if :
+
+• ∀ k ∈ IR
+
+2,
+
+the eigenvalues of A(k) are real.
+
+It is said strongly hyperbolic if in addition (in the opposite case, it is said weakly
+hyperbolic):
+
+• ∀ k ∈ IR
+
+2, A(k) is diagonalizable.
+
+Remark 12 An important class of strongly hyperbolic systems is provided by
+symmetric hyperbolic systems that correspond to the case where
+
+Ax and Ay are real symmetric matrices.
+
+This class of systems includes most of the classical wave propagation models from the
+physics.
+
+When B = 0, (54) simply means that −ω must be an eigenvalue of A(k). Thus, the
+functions ω(k) are homogeneous functions of degree 1 with respect to k and the curves
+(57) are simply half-lines. Moreover, A(k) being real, its non real eigenvalues can be
+regrouped by conjugated pairs. The half-lines corresponding to the real eigenvalues are
+
+
+--- Page 28 ---
+32
+
+Patrick Joly
+
+on the real axis while the other ones can be regrouped by pairs in which each half-line
+is not included in the real axis and deduced from the other by symmetry with respect to
+the real axis, which means that for one of them the imaginary part goes to −∞, making
+(56) impossible. As a consequence, we get a well-posed problem if and only if all the
+half-lines are on the real axis, which is equivalent to the hyperbolicity of (49)0. One
+has in fact the following more precise result:
+
+(E1) ∀ t > 0,
+
+(49)0 is strongly hyperbolic ⇒ (49) is strongly well-posed and
+
+Theorem 3 When B = 0, the Cauchy problem (49) is well-posed if and only if the
+system (49)0 is hyperbolic. Moreover
+(cid:19)
+(cid:19)
+(cid:19)
+(cid:19)
+(cid:19)
+(cid:19)
+(cid:19)
+(cid:19)
+(cid:19)
+(cid:19)
+(cid:19)
+(cid:19)
+(cid:19)
+(cid:19)
+(cid:19)
+(cid:19)
+(cid:19)
+(cid:19)
+(cid:19)
+
+(49)0 is weakly hyperbolic ⇒ (49) is weakly well-posed and
+
+max {Sizes of Jordan blocks of A(k)}.
+
+(cid:10)U (t)(cid:10)L2 ≤ C (1 + t)s (cid:10)U0(cid:10)H s,
+
+(cid:10)U (t)(cid:10)L2 ≤ C (cid:10)U0(cid:10)L2
+
+(E2) ∀ t > 0,
+
+s + 1 = sup
+
+s ∈ N,
+
+s ≥ 1
+
+where
+
+k
+
+Im(ω)
+
+Im(ω)
+
+Re(ω)
+
+Re(ω)
+
+Figure 10: The branches ω(k). Left, the hyperbolic unperturbed system. Right, the
+perturbed case ( in red, a ”strongly unstable” mode)
+
+The case of the perturbed system. Obviously, we assume (this is a necessary
+condition for well-posedness) that the unperturbed system is hyperbolic. Intuitively,
+one understand that the half-lines corresponding to the unperturbed case are asymptotic
+branches, when |k| →+ ∞, for the curves |k| (cid:14)→ ω
+. This is the basic idea for
+proving the following theorem.
+
+|k| · K
+
+(cid:7)
+
+(cid:8)
+
+Theorem 4 If the unperturbed system (49)0 is strongly hyperbolic, the (49) is strongly
+well-posed and there exists a positive constant M ≥ 0 such that:
+
+∀ t > 0,
+
+(cid:10)V (t)(cid:10)L2 ≤ C eM t (cid:10)V0(cid:10)L2 .
+
+(58)
+
+If the unperturbed system (49)0 is weakly hyperbolic, then, for certain matrices B, the
+problem (49) is ill posed.
+
+
+--- Page 29 ---
+Construction and analysis of Perfectly Matched Layers
+
+33
+
+If the unperturbed system (49)0 is only weakly well posed, the perturbed problem (49)
+is not necessarily ill-posed : this will depend on the perturbation matrix B (see the
+simple 1D example treated at the end of this section). The case where (49) is ill-posed
+corresponds to the existence of branches of solutions of (55) satisfying, at least for
+certain directions K,
+
+Im ω
+
+(cid:8)
+
+(cid:7)
+
+|k| K
+
+∼ − γ(K) |k| 1
+
+s+1 ,
+
+γ(K) > 0,
+
+(59)
+
+where the integer s is deﬁned as in Theorem 3. These are what I will call ”strongly
+unstable” modes. Geometrically, they correspond to the existence of curves (57)
+admitting a “parabolic branch” which goes to inﬁnity in the complex half-space
+Im ω < 0 (see ﬁgure 10).
+
+The notion of well-posed problem does not exclude solutions that are exponentially
+increasing in time. This notion is thus not sufﬁcient to represent the behavior that one
+expects for an absorbing medium : a PML layer generating exponentially increasing
+solutions would be useless ! That is why it is useful to introduce the notion of stability
+which expresses that the solution of the perturbed problem can be controlled for large
+time as the solution of the corresponding unperturbed hyperbolic problem.
+
+Deﬁnition 3 (Stability) We assume here that the Cauchy problem (49) is well posed.
+One says then that (49) is strongly stable if the solution satisﬁes the estimate (E1) and
+weakly stable if it satisﬁes the estimate (E2) (see theorem 3). Otherwise, we say that
+(49) is unstable.
+
+Using Fourier analysis, it is easy to see that, for all j:
+
+(49) is (weakly or strongly) stable ⇐⇒ Im ωj(k) ≥ 0,
+
+∀ k ∈ IR
+
+2.
+
+(60)
+
+Let us conclude this section of recaps by an example in dimension 1 (x is the only
+space variable) with d = 3, which illustrates what we said in a simple way:
+
+⎛
+
+⎝
+
+∂
+∂t
+
+u
+v
+w
+
+⎞
+
+⎠ + A
+
+∂
+∂x
+
+⎛
+
+⎝
+
+u
+v
+w
+
+⎞
+
+⎛
+
+⎠ + B
+
+⎝
+
+⎞
+
+⎠ = 0.
+
+u
+v
+w
+
+(61)
+
+where the matrix A is given by :
+
+⎛
+
+⎝
+
+A =
+
+⎞
+
+⎠ ,
+
+0
+0
+0
+2
+0 −1
+
+0
+1
+0
+
+One easily checks that A, whose eigenvalues are 0 (simple) et 1 (double), is not
+diagonalizable. Let us consider successively (a ∈ IR):
+
+B = B1 =
+
+⎛
+
+⎝
+
+0 −1 0
+0
+0
+a
+0
+0
+0
+
+⎞
+
+⎠ , B = B2 =
+
+⎛
+
+⎝
+
+0 −1
+0
+0
+0
+0
+
+0
+a
+0
+
+⎞
+
+⎠ .
+
+
+--- Page 30 ---
+34
+
+Patrick Joly
+
+With B = B1, (61) is ill-posed. To be convinced, it sufﬁces for instance to remark
+that, if one eliminates v et w, one gets the following scalar equation for u
+
+(cid:11)
+
+∂
+∂t
+
+∂2u
+∂t2 + 2
+
+∂2u
+∂x∂t
+
++
+
+∂2u
+∂x2 + a
+
+∂u
+∂x
+
+(cid:12)
+
+= 0.
+
+The solutions of the dispersion equation are
+
+ω = 0, ω = −k ± |ak| 1
+
+2
+
+1 + i√
+2
+
+.
+
+The imaginary part of one of them goes to −∞ (in |k| 1
+
+2 ) when |k| tends to +∞.
+
+With B = B1, (61) is well-posed. Indeed, the scalar equation for u writes:
+
+(cid:11)
+
+∂
+∂t
+
+∂2u
+∂t2 + 2
+
+∂2u
+∂x∂t
+
++
+
+∂2u
+∂x2 + au
+
+(cid:12)
+
+= 0.
+
+The solutions of the dispersion equation are thus
+
+ω = 0, ω = −k ±
+
+√
+
+a.
+
+(62)
+
+(63)
+
+(64)
+
+(65)
+
+Their imaginary part is constant (independent of k) thus bounded when k varies. More-
+over, one also sees that the system is stable if a ≥ 0 and unstable if a < 0 (one of the
+ω’s has a negative imaginary part).
+
+Remark 13 The well-posedness and stability of (64) can also be studied with energy
+techniques.
+
+3.2 On the well-posedness of PML models
+
+As I already said, the article by Abarbanel and Gottlieb [1] gave a “warning statement”
+by remarking that B´erenger’s PML model for Maxwell’s equations was a perturbation
+of a weakly hyperbolic system (this observation is in fact valid for ”all equations” , see
+[6]). At the same time, many engineers and computer scientists were able to use this
+technique without meeting any particular problem with their computations. The reason
+is that the 0-order perturbation proposed by the PML model is not one of those which
+make the problem ill-posed.
+
+The case of the wave equation. Let us consider the system (37) with constant σ and
+ρ = μ = 1. As one easily sees on equation (38), the dispersion relation of (37) is
+simply
+
+(cid:7)
+
+det
+
+A(k) − iB + ωI
+
+= (ω2 − k2
+
+y)(iω + σ)2 + ω2k2
+
+x = 0,
+
+(66)
+
+and the one of the unperturbed system, i. e. for σ = 0 (the equations for the eigenvalues
+of A(k)), reads
+
+(cid:8)
+
+ω2
+
+ω2 − k2
+x
+
+− k2
+y
+
+= 0.
+
+(67)
+
+(cid:8)
+
+(cid:7)
+
+
+--- Page 31 ---
+Construction and analysis of Perfectly Matched Layers
+
+35
+
+One sees in particular that ω = 0 is a double eigenvalue of A(k) and one easily checks
+that A(k) is not diagonalizable. To be sure that the PML system (37) is nevertheless
+well-posed, it sufﬁces to make an asymptotic expansion for large values of |k| of the
+four branches of solutions ω(k) of (66). One easily obtains
+
+⎧
+⎪⎪⎨
+
+ω(k) = ± |k| + iσ k2
+
+x/|k|2 + O
+
+|k|−1
+
+(cid:7)
+
+(cid:8)
+
+⎪⎪⎩
+
+ω(k) = σ
+
+±kxky + ik2
+y
+|k|2
+
+(cid:7)
+
+|k|−1
+
+(cid:8)
+
+,
+
++ O
+
+,
+
+(68)
+
+which shows that the imaginary part of each ω(k) remains bounded (in particular
+bounded from below) when |k| goes to inﬁnity, whatever is the sign of σ, implying the
+(weak) well-posedness of the Cauchy problem. Moreover, the imaginary part has the
+same sign than σ which means that, as expected, the stability of the Cauchy problem
+depends on the sign of σ. In fact, it is not too difﬁcult to prove that
+2,
+
+σ ≥ 0 =⇒ 0 ≤ Im ω(k) ≤ σ,
+
+∀ k ∈ IR
+
+(69)
+
+and establish, with some more technical work, the following theorem
+
+Theorem 5 [10] The Cauchy problem associated with (37) with constant coefﬁcients
+for any given initial data V0 =
+is weakly well-posed.
+(ux
+
+More precisely,
+
+0 , uy
+
+0, vx,0, vy,0) in H 1, there exists a unique solution:
+(u = ux + uy, vx, vy) ∈ C 0(IR
+
++, H 1),
+
+e = ux − uy ∈ C 0(IR
+
++, L2),
+
+and, when σ > 0, one has the following estimates (that show the (weak) stability of the
+problem)
+
+⎧
+⎨
+
+(cid:10)u(., t)(cid:10)L2 + (cid:10)vx(., t)(cid:10)L2 + (cid:10)vx(., t)(cid:10)L2 ≤ C (cid:10)V0(cid:10)L2,
+
+⎩
+
+(cid:10)e(., t)(cid:10)L2 ≤ C (cid:10)V0(cid:10)H 1 .
+
+(70)
+
+Remark 14 Let us notice that the loss of one order of regularity (for the solution with
+respect to the initial data) and the corresponding linear increase of the solution only
+affects the ”unphysical” ﬁeld e. From this point of view, the problem (37) is “almost”
+strongly well-posed.
+
+When σ is negative, one obtains analogous estimates with C exp |σ|t instead of C. As
+a matter of fact, in this case, the medium is no longer absorbing and the solutions are
+exponentially increasing (in other words the estimate is sharp).
+
+The proof of theorem 5 given in [10] is a direct application of Fourier analysis. Other
+authors showed the weak well-posedness of the Cauchy problem by ”rewriting” as
+a zero order perturbation of a strongly hyperpolic system, via a change of unknown
+functions (see remark 1). This is for instance the case of the Zhao-Cangellaris
+formulation on which I will come back later. However, this type of approach, alone,
+does not permit to put in evidence the role of the sign of σ in the analysis (see remark
+14). We are now going to see that the stability of the Cauchy problem, emphasized by
+the estimates (70), is also the consequence of an energy dissipation result.
+
+
+--- Page 32 ---
+36
+
+Patrick Joly
+
+Remark 1 Once the problem is written as a perturbation of a strongly hyperbolic
+problem, one can apply theorem 4 and deduce the existence of estimates of the type
+(58). The “new PML system” (the articles often evoke new PMLs, with respect to
+they are in my opinion the “same” PMLs formulated differently)
+B´erenger ones:
+appears as the coupling between a ﬁrst order strongly hyperbolic system, whose
+dimension (I mean here the number of scalar equations) is the same that the one of
+the original physical system, and several additional ordinary differential equations
+corresponding to the introduction of new unknowns. The new system is a priori
+better adapted, in terms of robustness, to numerical approximation (which is another
+important motivation). Such an approach has been derived ﬁrst for the Maxwell’s
+system in [32], [28] et systematized in [29]. From one formulation to the other, some
+mathematical properties of the system may change but this will affect only the behavior
+of the “non physical” unknowns (see for instance [3] or [7] for the questions related
+to long time behavior).
+
+For symmetric hyperbolic systems, of which (36) is an example, the alternative
+technique to analyze the evolution problem in the energy method. For (36), one has the
+well known energy conservation result:
+
+(cid:13)
+
+(cid:7)
+
+d
+dt
+
+1
+2
+
+ρ |u|2 + μ−1|v|2
+
+(cid:8)
+
+!
+
+dx
+
+= 0.
+
+(71)
+
+It is thus natural to wonder whether analogous energy estimates are available for the
+perturbed system (37).
+
+Remark 2 The same question is investigated [24], [25] for absorbing boundary
+conditions. One shows that the well-posedness of the mixed hyperbolic problem ”wave
+equation + absorbing boundary conditions” always corresponds to a dissipation result
+for a certain energy.
+
+We are going to see that this is effectively the case by using the Zhao-Cangellaris
+formulation of (37). We introduce the change of unknowns:
+
+(ux, uy, vx, vy) → (u, vx, vy, v∗
+y)
+
+where u et v∗
+
+y are characterized by:
+
+u = ux + uy,
+
+∂v∗
+y
+∂t
+
+=
+
+∂vy
+∂t
+
++ σvy .
+
+(72)
+
+To obtain the new system in (u, vx, vy, v∗
+y), one ﬁrst keeps the equations 2 and 4 of
+(37) (which can directly be written in terms of the new unknowns). Next, from the the
+equations 1 and 3 of (37), we deduce
+
+⎧
+
+⎪⎪⎪⎪⎨
+⎪⎪⎪⎪⎩
+
+(cid:24)
+
+ρ (
+
+∂
+∂t
+
+(cid:2)
+
+∂
+∂t
+
+∂ux
+∂t
+(cid:3) (cid:24)
+
++ σux) − ∂vx
+∂x
+(cid:25)
+
+∂uy
+∂t
+
+− ∂vy
+∂y
+
++ σ
+
+ρ
+
+(cid:25)
+
+= 0,
+
+= 0.
+
+ 
+
+--- Page 33 ---
+Construction and analysis of Perfectly Matched Layers
+
+37
+
+Adding these two equations, we get
+
+(cid:11)
+
+(cid:2)
+
+ρ
+
+∂
+∂t
+
+(cid:3)
+
+∂
+∂t
+
++ σ
+
+u − ∂vx
+∂x
+
+(cid:12)
+
+− ∂
+∂y
+
+(cid:2)
+
+∂
+∂t
+
+(cid:3)
+
++ σ
+
+vy = 0.
+
+Using the equation:
+
+∂v∗
+y
+∂t
+
+=
+
+∂vy
+∂t
+
++ σvy,
+
+(73)
+
+one eliminates vy for v∗
+conditions have to be taken into account, see remark 15), we get:
+
+y and, after time integration (we omit the details, initial
+
+ρ
+
+∂u
+∂t
+
++ σu +
+
+∂vx
+∂x
+
++
+
+∂v∗
+y
+∂y
+
+= 0.
+
+(74)
+
+One ﬁnally obtains the new system by joining (74) and (73) to the equations 2 and 4 of
+(37):
+
+⎧
+
+⎪⎪⎪⎪⎪⎪⎪⎪⎪⎪⎪⎪⎨
+⎪⎪⎪⎪⎪⎪⎪⎪⎪⎪⎪⎪⎩
+
++
+
+(cid:3)
+
+∂v∗
+y
+∂y
+− ∂u
+∂x
+
+ρ
+
+∂u
+∂t
+
++ σu +
+
+∂vx
+∂x
+
+(cid:2)
+
+μ−1
+
+∂vx
+∂t
+μ−1 ∂vy
+∂t
+
++ σvx
+
+− ∂u
+∂y
+
+= 0,
+
+∂v∗
+y
+∂t
+
+=
+
+∂vy
+∂t
+
++ σ vy.
+
+= 0,
+
+= 0,
+
+(75)
+
+One sees that one has coupled a system of three partial differential equations (that looks
+like (36)) with one ordinary differential equation.
+
+Remark 15 The equivalence between the Cauchy problems associated to (37) and
+(75) requires compatibility conditions between the initial data (see [10]).
+
+Theorem 6 The solution of the Cauchy problem associated with (75) satisﬁes the
+identity:
+
+(cid:19)
+(cid:19)
+(cid:19)
+(cid:19)
+(cid:19)
+(cid:19)
+(cid:19)
+(cid:19)
+(cid:19)
+
+(cid:15)(cid:13)
+
+1
+2
+
+d
+dt
+
+ρ
+
+(cid:19)
+(cid:19) ∂u
+∂t
+(cid:15)(cid:13)
+
++
+
+d
+dt
+
+(cid:19)
+(cid:19)2
+
++ σu
+
+dx +
+
+(cid:13)
+
+(cid:11)
+
+μ−1
+(cid:16)
+
+(cid:13)
+
+(cid:19)
+(cid:19) ∂vx
+∂t
+
+|2 + |
+
+(cid:19)
+(cid:19)2
+
+∂v∗
+y
+∂t
+
+(cid:12)
+
+(cid:16)
+
+dx
+
+σ2μ−1|vx|2 dx
+
++ 2
+
+σ μ−1
+
+(cid:19)
+(cid:19)2
+
+(cid:19)
+(cid:19) ∂vx
+∂t
+
+dx = 0.
+
+(76)
+
+Proof. It is quite simple. Let us apply the operator ∂/∂t to the ﬁrst equation of (75)
+and the operator ∂/∂t+σ to the next two equations. Then, one uses the fourth equation
+or (75) to eliminate (as already done above) vy for v∗
+y. We get :
+(cid:2)
+∂v∗
+y
+∂t
+(cid:2)
+
+∂vx
+∂t
+
+∂
+∂x
+
+∂
+∂t
+
++ σu
+
+= 0,
+
+⎧
+
++
+
++
+
+(cid:2)
+
+(cid:3)
+
+(cid:2)
+
+(cid:3)
+
+(cid:3)
+
+(cid:2)
+
+(cid:3)
+
+(cid:3)
+
+ρ
+
+⎪⎪⎪⎪⎪⎪⎪⎪⎨
+⎪⎪⎪⎪⎪⎪⎪⎪⎩
+
+∂u
+∂t
+∂2vx
+∂t2 + 2σ
+(cid:2)
+− ∂
+∂y
+
+μ−1
+
+μ−1 ∂2v∗
+y
+∂t2
+
+∂vx
+∂t
+
++ σ2vx
+
+(cid:3)
+
++ σu
+
+= 0.
+
+∂u
+∂t
+
+∂
+∂y
+− ∂
+∂x
+
+∂u
+∂t
+
++ σu
+
+= 0,
+
+(77)
+
+
+--- Page 34 ---
+38
+
+Patrick Joly
+
+Next, we multiply the ﬁrst equation of (77) by ∂u/∂t +σu, the seconde one by ∂vx/∂t
+and the third one by ∂v∗
+y/∂t. We add the three resulting equalities and integrate in
+2
+space over IR
+. After integration by parts, space derivatives disappear and one obtains
+(76).
+
+The identity (76) does emphasize the dissipative character of the PML system when
+σ > 0 (and its anti-dissipative character when σ < 0 !). Of course, it also leads to
+stability estimates.
+
+Remark 16 The result of theorem is no longer valid when σ varies in space (however
+ρ and μ can vary !). Indeed, if the system (75) is still valid, the system (77) is not
+because I have implicitly used the commutation between the operators:
+
+∂
+∂t
+
++ σ et
+
+∂
+∂x
+
+.
+
+It is still possible to derive a priori estimates with a variable σ by energy techniques
+([10]) but these estimates authorize the exponential increase of the solution with a rate
+proportional to the L∞ norm of σ. Obtaining an explicit energy dissipation result with
+σ(x) variable (which I conjecture to hold) remains to my knowledge an open question.
+
+The general case. Let us come back to the general system (29). The fact that this
+system is a perturbation of a weakly hyperbolic system remains true : passing from
+(26) to (29) one doubles ( from d to 2d) the size of the system and doing so, one has
+added unphysical modes: the associated matrices A(k) have 0 as an eigenvalue with
+multiplicity d and are not diagonalizable (there is a Jordan block associated with this
+eigenvalue 0). However, one shows in [6] that, under rather general hypotheses, (29)
+is weakly well-posed. On the other hand, there is no general stability result and it can
+not be the case, as we are going to see in the next section.
+
+3.3 On the stability of PML models.
+
+We are going to see in this section that the PML models that we have presented
+are not always stable. More precisely, we are going to give a condition on the
+original propagation model which is necessary for the stability of the PML model .This
+condition is related to the shape of the ”wavefronts” in the original system. It is not
+my purpose to give here the rigorous deﬁnition of a wavefront. Roughly speaking,
+in 2D, the wavefronts are curves which describe the ”shape” of a wave emitted from
+a point source. More rigorously, these curves permit to describe the location of the
+singularities of this solution, at a given time. Which is important for what follows is
+that wavefronts can be characterized geometrically in terms of the so-called slowness
+curves which are themselves deduced from the dispersion relation of the propagation
+model.
+
+An example : elastic waves in anisotropic media. We consider now the application
+of PML’s to the propagation of elastic waves in a orthotropic medium.The propagation
+
+
+--- Page 35 ---
+Construction and analysis of Perfectly Matched Layers
+
+39
+
+2
+equations are given by (u ∈ IR
+written in second order form, see remark 17)
+
+denotes the displacement ﬁeld and the equations are
+
+(cid:2)
+
+− P
+
+∂2u
+∂t2
+
+ρ
+
+i
+
+∂
+∂x
+
+, i
+
+∂
+∂y
+
+(cid:3)
+
+u = 0,
+
+where ρ > 0 is the density of the medium and where we have set:
+
+⎛
+
+⎝
+
+P (Kx, Ky) =
+
+c11K 2
+
+x + c33K 2
+
+y
+
+(c12 + c33)KxKy
+
+(c12 + c33)KxKy
+
+c33K 2
+
+x + c22K 2
+
+y
+
+(78)
+
+(79)
+
+⎞
+
+⎠ .
+
+Remark 17 The system can be put in ﬁrst order form (26) with d = 5 by taking as
+unknowns the two components of the velocity ﬁeld (the time ) and the three constraints
+σxx, σyy and σxy.
+This system is hyperbolic and symmetric under appropriate
+conditions (see below).
+
+In order to guarantee the hyperbolicity de (78), the coefﬁcients cij must satisfy
+c11 > 0,
+12 > 0. Isotropic media correspond to
+:
+
+c11c22 − c2
+
+c33 > 0,
+
+c22 > 0,
+
+c11 = c22 = λ+2μ, c12 = λ, c33 = μ,
+
+λ > 0, μ > 0 (the Lam´e coefﬁcients).
+
+The dispersion relation of (78) is:
+
+F (ω, k) ≡ det
+
+(cid:7)
+
+P (kx, ky) − ρ ω2I
+
+(cid:8)
+
+= 0.
+
+(80)
+
+Note that F is a homogeneous function of degree 4 in (ω, k). For each k, the equation
+(80) has four solutions of the form ω(k) = |k| ω(K), K = k/|k|, which can be
+regrouped in two pairs of two opposite real values. The equation (80) can be rewritten
+as:
+
+(cid:2)
+
+F
+
+1,
+
+(cid:3)
+
+kx
+ω
+
+,
+
+ky
+ω
+
+= 0.
+
+(81)
+
+By deﬁnition, the slowness curve of (78) is the curve of equation (81) in the slowness
+plane (kx/ω, ky/ω). On obtains in fact the union of two closed curves (that is why
+we shall speak of two slowness curves), symmetric with respect to the coordinate axes
+and with respect to the origin. In the isotropic case, these are two circles centered
+at the origin. Each line passing by the origin, parallel to K, crosses the slowness
+curves at four points (2 by 2 symmetric with respect to the origin) which are the four
+K/ω(|K|)’s. The two solutions of smaller modulus correspond to the rapid waves
+and are called quasi-longitudinal modes (these are the usual longitudinal modes in the
+isotropic case) and the two solutions of larger modulus correspond to the slow waves
+and are called quasi-shear modes (these are the usual shear modes in the isotropic case).
+A rather simple geometrical transformation, that I will not describe here, allows us to
+pass from one ”slowness” curve to the corresponding ”wavefront” : one curve is the
+polar reciprocal of the other [5]. We present below the slowness curves and related
+wave fronts for three particular orthotropic media corresponding to density ρ = 1 and
+
+• Medium I : c11 = 4,
+
+c22 = 20,
+
+c33 = 2,
+
+c44 = 3.8
+
+
+--- Page 36 ---
+40
+
+Patrick Joly
+
+• Medium II : c11 = 20,
+
+c22 = 20,
+
+c33 = 2,
+
+c44 = 3.8
+
+• Medium III : c11 = 4,
+
+c22 = 20,
+
+c33 = 2,
+
+c44 = 7.5
+
+Figure 11: Slowness curves (left) and wavefronts (right) for medium I.
+
+Figure 12: Slowness curves (left) and wavefronts (right) for medium II.
+
+Figure 13: Slowness curves (left) and wavefronts (right) for medium III.
+
+in ﬁgures 14 to 17, we present
+
+the results of numerical computations
+Next,
+corresponding to the propagation of an elastic wave emitted from a point source for
+four elastic media with density 1 : an isotropic medium with λ = 16 and μ = 2 and
+the three above orthotropic media. The physical computational domain (delimited by
+the dotted line in the pictures) is a square and is surrounded by a PML. The source
+is located close to the left upper corner of the physical domain. The modulus of the
+
+
+--- Page 37 ---
+Construction and analysis of Perfectly Matched Layers
+
+41
+
+displacement ﬁeld is represented at several instants. One observes that everything goes
+well with the isotropic medium and with the media I and II, while an instability is
+developing with the medium III. We are going to see that this phenomenon, which is
+due to the continuous model and not to the numerical scheme that has been used, can
+be explained by the analysis.
+
+Figure 14: The isotropic medium.
+
+Figure 15: The anisotropic medium I.
+
+Figure 16: The anisotropic medium II.
+
+A necessary condition for stability. Let us come back to the general system (26).
+The dispersion relation is written
+
+F (ω, k) := det (A(k) +ωI ) = 0, A(k) = kx Ax + ky Ay.
+
+(82)
+
+
+--- Page 38 ---
+42
+
+Patrick Joly
+
+Figure 17: The anisotropic medium III.
+
+where F (ω, k) is a homogeneous function of degree d. Therefore, the notions of slow-
+ness curves introduced in the previous paragraph can easily be generalized to the sys-
+tem (26).
+
+One calls the group velocity associated to the mode ω(k) (one of the solutions of (82),
+that is a homogeneous function of degree 1) the quantity
+
+Vg(k) = ∇k ω(k)
+
+=
+
+Vx(k), Vy(k)
+
+.
+
+(83)
+
+(cid:7)
+
+(cid:7)
+
+(cid:8) (cid:8)
+
+It is clearly a homogeneous function of degree 0, that is to say a function of the
+direction vector K = k/|k| only. Differentiating (82) with respect to k, one sees
+that one also have the formula
+
+Vg(k) =−
+
+(cid:3)−1
+
+(cid:2)
+
+∂F
+∂ω
+
+(ω, k)
+
+∇kF (ω, k),
+
+(cid:7)
+
+with ω = ω(k)
+
+(cid:8)
+
+.
+
+(84)
+
+This formula demonstrates that “the group velocities are orthogonal to the slowness
+curves”. More exactly, the direction of Vg(k) is given by the normal to the slowness
+curve at the point k/ω(k). Let us now state the main result of this section:
+
+Theorem 7 In order that the PML model (in the x-direction) (29) be stable, it is
+necessary that, for any mode solution of (82),
+
+∀ K = (Kx, Ky), Kx · Vx(K) ≥ 0.
+
+(85)
+
+Proof : From the construction of the PML model (see section 2), it is easy to deduce
+that the dispersion relation of the perturbed system (29) can be obtained by simply
+(cid:8)
+replacing in (82) kx by kx ×
+
+(cid:7)
+
+:
+
+iω/(iω + σ)
+(cid:2)
+
+(cid:7)
+
+(cid:8)
+
+(cid:3)
+
+, ky
+
+= 0.
+
+iω
+iω + σ
+
+F
+
+ω, kx
+
+Let us introduce the variables
+
+c =
+
+ω
+|k|
+
+, K =
+
+k
+|k|
+
+,
+
+ε =
+
+σ
+|k|
+
+.
+
+The relation (86) can be rewritten, thanks to homogeneity,
+
+(cid:2)
+
+F
+
+c, Kx
+
+(cid:7)
+
+1 − i
+
+(cid:8)
+
+ε
+c
+
+(cid:3)
+
+, Ky
+
+= 0,
+
+(86)
+
+(87)
+
+(88)
+
+
+--- Page 39 ---
+Construction and analysis of Perfectly Matched Layers
+
+43
+
+which we consider as an equation in c. For ε = 0, (i. e. σ = 0 ou |k| →+ ∞)
+we obtain as particular real solutions c = c(K) :=ω (K) ( ≡ ω(k)/|k| ), namely the
+phase velocities of the ”physical modes” (let us remind that the fact that ω(k) is real
+is the consequence of the hyperbolicity of (26)). Let us ﬁx the direction K. By the
+implicit function theorem, it is easy to show that, in the neighborhood of each c(K),
+the equation (88) has a branch of solutions ε → c(K, ε) which admits the following
+Taylor expansion for small ε
+
+c(K, ε) = c(K) + α(K) ε + O(ε2).
+
+Substituting this equality into (88), we obtain
+
+(cid:7)
+
+F
+
+c(K), K
+
+(cid:8)
+
++ ε α(K)
+
+(cid:7)
+
+∂F
+∂ω
+
+c(K), K
+
+(cid:8)
+
++ iε
+
+(cid:7)
+
+Kx
+c(K)
+
+∂F
+∂kx
+
+(cid:8)
+
+c(K), K
+
++ O(ε2) = 0,
+
+from which we deduce, taking into account (84) ( with ω = ω(k))),
+(cid:12)−1 (cid:11)
+
+(cid:12)
+
+(cid:11)
+
+α(K) = − i
+
+(ω, k)
+
+∂F
+∂ω
+
+Kx
+c(K)
+
+∂F
+∂Kx
+
+(ω, k)
+
+= i
+
+.
+
+(89)
+
+Kx · Vx(K)
+c(K)
+
+Going back to original variables (ω, k) and σ, we have shown that for k large enough,
+the equation in ω (86) admits, “at the neighborhood of each physical mode ω(k)”, a
+branch of solution k → ω(k, σ) such that
+
+ω(k, σ) = ω(k) +i
+
+Kx · Vx(K)
+c(K)
+
+σ + O
+
+(cid:2)
+
+(cid:3)
+
+,
+
+1
+|k|
+
+(|k| →+ ∞).
+
+(90)
+
+One then concludes easily: if Kx · Vx(K) < 0, for sufﬁcient large |k|, ω(k, σ) belongs
+to the lower complex half plane, which contradicts stability (cf. (60)) .
+
+Remark 18 Obviously,to obtain a necessary condition for the PML model in the y
+direction, it sufﬁces to replace Vx by Vy in (85). Moreover, the condition (85) might
+be non sufﬁcient. We refer for instance to [6] for a more complete study in the case of
+elastodynamics equations.
+
+The property (85) can be interpreted geometrically in the following way.
+If one
+draws the vector that joins (in the K = (Kx, Ky)-plane) the origin to any point
+S(K) = K/c(K) of the slowness curve and if from this point one draws a second
+vector which has the same direction than the corresponding group velocity vector, the
+resulting ” broken vector” must cross the vertical line (I mean the line parallel to the
+Ky direction) passing by the point S(K) (cf. ﬁgure (18)). In the contrary, one says
+that the model admits “backward propagative modes” (or ”inverse modes”). Thus, the
+condition (85) corresponds to the absence of ”backward propagative modes”.
+
+With this geometrical interpretation, it is easy to ” explain” the numerical results of
+ﬁgures 14 to 17. First, unstable modes as the one of ﬁgure (85) can not exist when the
+slowness curve ”is convex” (more precisely when the bounded domain delimited by
+this curve is convex) which is the case for an isotropic medium or for the medium II.
+
+
+--- Page 40 ---
+44
+
+Patrick Joly
+
+Figure 18: Left : stable mode. Right : unstable mode
+
+Figure 19: Left : medium II. Right : medium III
+
+Next, to understand the difference between the media II and III (for which the above
+convexity property is lost for the quasi-shear waves), it sufﬁces to have a look to the
+ﬁgure 19. Contrary to the medium II, the medium III admits unstable modes that
+correspond to the thicker part of the slowness curve. One also understands easily the
+the system of elastodynamics is not the only one, among physically relevant wave
+propagation models, for which the PML model (29) is unstable. This is for instance
+the case of the anisotropic wave equation
+
+∂2u
+∂t2
+
+− div (A∇u) = 0, A =
+
+⎛
+
+⎝
+
+a b
+
+b
+
+c
+
+⎞
+
+⎠ ,
+
+a c − b2 > 0,
+
+b (cid:8)= 0.
+
+(91)
+
+or linearized Euler equations (one linearizes Euler equations in a compressible ﬂuid
+around a particular solution corresponding to a uniform stationary ﬂow propagating in
+the x direction with Mach number M - the equations are expressed in a coordinate
+
+
+--- Page 41 ---
+Construction and analysis of Perfectly Matched Layers
+
+45
+
+system such that the speed of sound in the same ﬂuid at rest):
+
+⎧
+
+⎪⎪⎪⎪⎪⎪⎪⎨
+⎪⎪⎪⎪⎪⎪⎪⎩
+
+∂u
+∂t
+
++ M
+
+∂u
+∂x
+
+∂vx
+∂t
+
+∂vy
+∂t
+
++ M
+
++ M
+
+− ∂vx
+∂x
+− ∂u
+∂x
+− ∂u
+∂y
+
+∂vx
+∂x
+
+∂vy
+∂x
+
+− ∂vy
+∂y
+
+= 0,
+
+= 0 .
+
+= 0,
+
+(92)
+
+We visualize in the ﬁgure 20 the slowness curves and the back propagative modes in
+each case.
+
+Of course, in the unstable situations, one needs to construct a new PML model, really
+different from the model (29) of B´erenger’s type in the sense that it would not be only a
+reformulation ”`a la Zhao-Cangellaris” (see section 3). As a matter of fact, satisfactory
+solution have been proposed for the anisotropic wave equation (91) (see [17]) or for
+the linearized Euler equations (see [2], [22] or [13]). The case of the anisotropic elastic
+waves remains, to my knowledge a challenging open problem.
+
+ky ω
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+0
+
+−0.2
+
+−0.4
+
+−0.6
+
+−0.8
+
+−0.8
+
+−0.6
+
+−0.4
+
+−0.2
+
+0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+-1/(1+M)
+
+2
+M/(1-M  )
+
+1/(1-M)
+
+kx ω
+
+Figure 20: Slowness curves and unstable modes for (91) (left) and (92) (right).
+
+About error estimates. Much less has been done in this direction for time dependent
+problem. Let us mention however [13], where one has been able to compute explicitly
+the Green’s function of the 2D acoustic wave equation with a ﬁnite PML, even in the
+case of a variable proﬁle σ. This computation is based on the Cagniard-De Hoop
+method and exploits in some sense the construction of the PML model via a complex
+change of variable. As a by product, this computation shows in this case the stability of
+the PML model even in the case of a variable σ. Using this Green’s function, one can
+derive sharp error estimates which constitute a 2D equivalent of theorem 2 and show
+that PML are ”exponentionnally accurate”. These estimates also emphasize the role of
+the time in the error estimates, as well as the distance between the support of the data
+of the problem and the artiﬁcial boundary.
+
+
+--- Page 42 ---
+46
+
+4 Conclusion
+
+Patrick Joly
+
+In this text, we have given an elementary introduction to the technique of Perfectly
+Matched Layers for realizing almost transparent boundary conditions for the numerical
+simulation of linear wave propagation in unbounded media. Various aspects, from the
+construction of the method to the theory via more practical and numerical aspects have
+been overviewed and various open questions have been mentioned : the method of
+Perfectly Matched Layers s still an active ﬁeld of research for applied mathematicians.
+
+I want to thank my collaborators Eliane B´ecache and Francis
+Acknowledgments.
+Collino for many fruitful discussions, and more especially Julien Diaz, Abdelaaziz
+Ezziani, Sandrine Fauqueux and S´ebastien Imp´eriale for their valuable help in the
+preparation of this text.
+
+References
+
+[1] S. Abarbanel and D. Gottlieb. A mathematical analysis of the PML method. J.
+
+Comput. Phys, 134(2):357–363, 1997.
+
+[2] S. Abarbanel, D. Gottlieb, and J. S. Hesthaven. Well-posed perfectly matched
+
+layers for advective acoustics. J. Comput. Phys., 154(2):266–283, 1999.
+
+[3] S. Abarbanel, D. Gottlieb, and J.S. Hesthaven. Long time behavior of the
+perfectly matched layer equations in computational elactromagnetics. SIAM J.
+Scientiﬁc Comp., 17(1-4):405–422, 2002.
+
+[4] B. Alpert, L. Greengard, and T. Hagstrom. Nonreﬂecting boundary conditions
+for the time-dependent wave equation. J. Comput. Phys., 180:270–296, 2002.
+
+[5] B.A. Auld. Acoustic ﬁelds and elastic waves in solids. volume I et II. Wiley,
+
+1973.
+
+[6] E. B´ecache, S. Fauqueux, and P. Joly. Stability of perfectly matched layers, group
+
+velocities and anisotropic waves. to appear.
+
+[7] E. B´ecache, P. G. Petropoulos, and S. Gedney. On the long-time behavior of
+
+unsplit perfectly matched layers. Technical Report 4538, INRIA, 2002.
+
+[8] J. P. B´erenger. A Perfectly Matched Layer for the Absorption of Electromagnetic
+
+Waves. J. of Comp. Phys., 114:185–200, 1994.
+
+[9] J.P. B´erenger. Three-dimensional perfectly matched layer for the absorption of
+
+electromagnetic waves. J. of Comp. Phys.,, 127:363–379, 1996.
+
+[10] E. B´ecache and P. Joly. On the analysis of B´erenger’s perfectly matched layers for
+
+Maxwell’s equations. M2AN Math. Model. Numer. Anal., 36(1):87–119, 2002.
+
+[11] F. Collino and P. Monk. Optimizing the Perfectly Matched Layer. Comp. Meth.
+
+Appl. Mech. Engrg, 164:157–171, 1998.
+
+
+--- Page 43 ---
+Construction and analysis of Perfectly Matched Layers
+
+47
+
+[12] F. Collino and P. Monk. The Perfectly Matched Layer in curvilinear coordinates.
+
+SIAM J. Scient. Comp., 164:157–171, 1998.
+
+[13] J. Diaz and P. Joly. A time domain analysis of PML models in acoustics. Comput.
+
+Methods Appl. Mech. Engrg., 195(29-32):3820–3853, 2006.
+
+[14] Julien Diaz and Patrick Joly. An analysis of higher order boundary conditions for
+the wave equation. SIAM J. Appl. Math., 65(5):1547–1575 (electronic), 2005.
+
+[15] B. Engquist and A. Majda. Absorbing boundary conditions for the numerical
+
+simulation of waves. Math. Comp, 31:629–651, 1977.
+
+[16] B. Engquist and A. Majda. Radiation boundary conditions for acoustic and elastic
+
+wave calculations. Comm. Pure Appl. Math., 32:314–358, 1979.
+
+[17] S. Fauqueux.
+
+El´ements ﬁnis mixtes spectraux et couches absorbantes
+parfaitement adapt´ees pour la propagation d’ ondes ´elastiques en r´egime
+transitoire. PhD thesis, Universit´e Paris IX, 2003.
+
+[18] Leslie Greengard and Vladimir Rokhlin. A new version of the fast multipole
+method for the Laplace equation in three dimensions. In Acta numerica, 1997,
+volume 6 of Acta Numer., pages 229–269. Cambridge Univ. Press, Cambridge,
+1997.
+
+[19] M. J. Grote and J. B. Keller. Exact nonreﬂecting boundary conditions for the time
+
+dependent wave equation. SIAM J. Appl. Math., 55:280–297, 1995.
+
+[20] T. Hagstr¨om. Radiation boundary conditions for the numerical simulation of
+
+waves. cta Numerica, 8, 1999.
+
+[21] R. L. Higdon.
+
+Initial-boundary value problems for linear hyperbolic systems.
+
+SIAM Review, 28(2):177–217, 1986.
+
+[22] F. Q. Hu. A stable, perfectly matched layer for linearized Euler equations in
+
+unsplit physical variables. J. Comp. Phys., 173:455–480, 2001.
+
+[23] M. Israeli and S. Orszag. Approximation of radiation boundary conditions. J.
+
+Comput. Phys., 41(1):115–135, 1981.
+
+[24] T. Ha Duong P. Joly. On the stability analysis of boundary conditions for the wave
+equation by energy methods; Part I : The homogeneous case . Math. of Comp.,
+62(206):539–563, 1994.
+
+[25] T. Ha Duong P. Joly. The energy method for the heterogeneous wave equation
+with high order boundary conditions. . Southeast Asian Bull., 19(2):67–75, 1995.
+
+[26] H. O. Kreiss. Initial boundary value problems for hyperbolic systems. Comm.
+
+Pure Appl. Math., 23:277–298, 1970.
+
+[27] H-O. Kreiss and J. Lorenz.
+
+Initial-Boundary Value Problems and the Navier-
+In Pure and Appl. Math., volume 136. Academic Press,
+
+Stokes Equations.
+Boston, USA, 1989.
+
+
+--- Page 44 ---
+48
+
+Patrick Joly
+
+[28] P. G. Petropoulos, L. Zhao, and A. C. Cangellaris. A reﬂectionless sponge layer
+absorbing boundary condition for the solution of Maxwell’s equations with high-
+order staggered ﬁnite difference schemes. J. Comput. Phys., 139(1):184–208,
+1998.
+
+[29] A. N. Rahmouni. Des mod`eles PML bien pos´es pour divers probl`emes
+
+hyperboliques. PhD thesis, Universit´e Paris Nord-Paris XIII, 2000.
+
+[30] F. L. Teixeira and W. C. Chew. Uniﬁed analysis of perfectly matched layers using
+
+differential forms. Microw. Optical Technol. Lett., 20(2):124–126, 1999.
+
+[31] L. N. Trefethen and L. Halpern. Well-posedness of one-way wave equations and
+
+absorbing boundary conditions. Math. Comp., 47, 1986.
+
+[32] L. Zhao and A. C. Cangellaris. A General Approach for the Deveopment of
+Unsplit-Field Time-Domain Implementations of Perfectly Matched Layers for
+FDTD Grid Truncation. IEEE Microwave and Guided Letters, 6(5), May 1996.
+

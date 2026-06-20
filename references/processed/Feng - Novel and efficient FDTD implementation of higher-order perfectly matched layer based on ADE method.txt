@@ -1,0 +1,1263 @@
+
+--- Page 1 ---
+Journal of Computational Physics 232 (2013) 318–326
+
+Contents lists available at SciVerse ScienceDirect
+
+Journal of Computational Physics
+
+j o u r n a l h o m e p a g e : w w w . e l s e v i e r . c o m / l o c a t e / j c p
+
+Novel and efﬁcient FDTD implementation of higher-order perfectly
+matched layer based on ADE method
+
+Naixing Feng
+
+⇑
+, Jianxiong Li
+
+School of Electronics and Information Engineering, Tianjin Polytechnic University, 399 Binshui West Road, Tianjin 300387, China
+
+a r t i c l e
+
+i n f o
+
+a b s t r a c t
+
+Article history:
+Received 13 October 2011
+Received in revised form 11 August 2012
+Accepted 13 August 2012
+Available online 27 August 2012
+
+Keywords:
+Finite-difference time-domain
+Perfectly matched layer
+Auxiliary differential equation method
+
+Based on the stretched coordinate perfectly matched layer (SC-PML) formulations and the
+auxiliary differential equation (ADE) method, an efﬁcient and unsplit-ﬁeld implementation
+of the higher-order PML scheme with more than one pole is proposed to truncate the ﬁnite-
+difference time-domain (FDTD) lattices. The higher-order PML has the advantages of both
+the conventional PML and the complex frequency shifted PML (CFS-PML) in terms of
+absorbing performances. The proposed algorithm is validated through two numerical tests
+carried out in three dimensional and two dimensional domains. It is shown in the numer-
+ical simulations that the proposed PML formulations with the higher-order scheme are efﬁ-
+cient in terms of attenuating both the low-frequency propagating waves and evanescent
+waves and reducing late-time reﬂections, and also hold much better absorbing perfor-
+mances than the conventional SC-PML and the convolutional PML (CPML) with the CFS
+scheme.
+
+(cid:2) 2012 Elsevier Inc. All rights reserved.
+
+1. Introduction
+
+Since the introduction of the perfectly matched layer (PML) absorbing boundary condition by Bérenger [1], various mod-
+iﬁed PMLs have been presented to terminate the ﬁnite-difference time-domain (FDTD) lattices. With the advantage of simple
+implementation in the corners and the edges of the PML regions, the stretched coordinate PML (SC-PML) [2] was proposed
+through mapping Maxwell’s equations into a complex stretched coordinate space. As original Bérenger’s PML, the SC-PML
+formulations in [2] are ineffective at absorbing the evanescent waves. Recently, the complex frequency shifted PML (CFS-
+PML) [3], implemented by simply shifting the frequency dependent pole off the real axis and into the negative-imaginary
+half of the complex plane, has drawn considerable attention due to the fact that this PML is efﬁcient in attenuating the
+low-frequency evanescent waves and reducing late-time reﬂections [4]. In [4], the convolutional PML (CPML), based on
+the SC-PML formulations and the convolution theorem, was presented in detail to efﬁciently implement the CFS-PML. How-
+ever, the CFS-PML would have a poor absorption of low-frequency propagating waves as shown in [5–7]. In [7], the perfor-
+mance of regular PML, complex frequency shifted PML, and second-order PML is studied for the numerical stimulation of
+waveguide problems. The limitation of each PML is clearly demonstrated. The regular PML is the best choice when only prop-
+agating waves are present. The CFS-PML is the best choice if strong evanescent waves are present but low-propagating waves
+are absent. In more general case, where both low-propagating waves and strong evanescent waves are present, the second-
+order PML is the best choice. It is shown in the numerical stimulations that the second-order PML can attenuate both
+low-propagating waves and strong evanescent waves. To overcome the limitations of both the conventional PML and the
+CFS-PML, the higher-order PML was proposed by Correia, which retains the advantages of both the CFS-PML and
+
+⇑ Corresponding author. Tel.: +86 13803065717.
+
+E-mail addresses: fengnaixing@gmail.com (N. Feng), lijianxiong@tjpu.edu.cn (J. Li).
+
+0021-9991/$ - see front matter (cid:2) 2012 Elsevier Inc. All rights reserved.
+http://dx.doi.org/10.1016/j.jcp.2012.08.012
+
+
+--- Page 2 ---
+N. Feng, J. Li / Journal of Computational Physics 232 (2013) 318–326
+
+319
+
+conventional PML in [7]. It has shown that the second-order PML is highly effective in absorbing both evanescent and low-
+frequency propagating waves in both open-region and periodic problems in [8]. In [8], the concept of a higher-order PML is
+proposed, and a split-ﬁeld implementation of higher-order PML is proposed based on SC-PML and ADE method to truncate
+FDTD lattices. The proposed higher-order PML in [8] has the advantages of both the conventional PML and the complex fre-
+quency shifted PML in terms of absorbing performances. However, besides the drawback of more requirements of the mem-
+ory and the computational time, the higher-order PML implementation proposed in [8] was difﬁcult to be extended to the
+case with more than two poles because the polynomial expansion was employed.
+
+In this paper, an efﬁcient implementation of the higher-order PML based on unsplit-ﬁeld SC-PML formulations and the
+auxiliary differential equation (ADE) method is proposed. For convenience, this PML is referred to here as the LYYADE
+PML. Consequently, the proposed higher-order PML scheme requires less memory and computational time as compared with
+that in [8]. Only the second-order case is described in this paper, but this approach is easy to be applied to any number of
+poles. Due to using unsplit-ﬁeld, the proposed formulations can save more auxiliary variables than [8]. Besides, due to apply-
+ing D-B formulations, referring to [12], Consequently, this PML can be applied to truncate arbitrary media, such as lossy, dis-
+persive, anisotropic, inhomogeneous or nonlinear without any modiﬁcation and all that is needed is to modify (8) and (9)
+under consideration. The method is available in [12] to obtain E from D using (8) [and H from B using (9)]. It must be noted
+that if er (x) [or lr (x)] are not frequency-dependent, E (or H) formulation should be adopted to reduce memory requirement
+and save computational time. Finally, in [8], the second-order PML based on the SC-PML was implemented by using the split-
+ﬁeld PML formulations. However, besides the drawback of more requirements of the memory and the computational time,
+the higher-order PML implementation proposed in [8] was difﬁcult to be extended to the case with more than two poles
+because the polynomial expansion was employed.
+
+2. Formulation
+
+In three-dimensional (3-D) SC-PML regions, the normalized frequency-domain modiﬁed Maxwell’s curl equations can be
+
+written as
+
+jxerðxÞEðxÞ ¼ c0rs (cid:2) HðxÞ
+
+jxlrðxÞHðxÞ ¼ (cid:3)c0rs (cid:2) EðxÞ
+
+ð1Þ
+
+ð2Þ
+
+where c0 is the speed of light in free space, er(x) and lr(x) are, respectively, the relative permittivity and permeability of the
+FDTD computational domain and the operator rs is expressed as
+
+^
+rs ¼ x
+
+^
+S(cid:3)1
+x @x þ y
+
+^
+S(cid:3)1
+y @y þ z
+
+S(cid:3)1
+z @z
+
+ð3Þ
+
+where ox, oy and oz are the partial derivatives with respect to x, y and z and Sg (g = x, y, z) are the complex stretched coordi-
+nate metrics, which was originally proposed [1] to be
+
+Sg ¼ 1 þ rg=jxe0;
+
+ðg ¼ x; y; zÞ
+
+with the CFS scheme and Sg (g = x, y, z) are deﬁned as
+
+Sg ¼ jg þ rg=ðag þ jxe0Þ
+
+ð4Þ
+
+ð5Þ
+
+where ag and rg are assumed to be positive real and jg is real and P 1. To make the PML completely independent of the
+material properties of the FDTD computational domain, both (1) and (2) can be written in terms of the electric ﬂux density
+D and the magnetic ﬂux density B as
+
+jxDðxÞ ¼ c0rs (cid:2) ðxÞ
+
+jxBðxÞ ¼ (cid:3)c0rs (cid:2) ðxÞ
+
+where D and B are given by
+
+DðxÞ ¼ erðxÞEðxÞ
+
+BðxÞ ¼ lrðxÞHðxÞ
+
+ð6Þ
+
+ð7Þ
+
+ð8Þ
+
+ð9Þ
+
+Consequently, this PML can be applied to truncate arbitrary media, such as lossy, dispersive, anisotropic, inhomogeneous or
+nonlinear without any modiﬁcation and all that is needed is to modify (8) and (9) under consideration. The method is avail-
+able in [12] to obtain E from D using (8) [and H from B using (9)]. It must be noted that if er (x) [or lr (x)] are not frequency-
+dependent, E (or H) formulation should be adopted to reduce memory requirement and save computational time.The idea of
+the higher-order PML was proposed in [8] by generalizing this metric for the case where more than one pole was present. For
+the second-order PML, Sg is deﬁned as
+
+Sg ¼ S1g (cid:4) S2g ¼ ðj1g þ r1g=ða1g þ jxe0ÞÞ (cid:4) ðj2g þ r2g=ða2g þ jxe0ÞÞ
+
+ð10Þ
+
+
+--- Page 3 ---
+320
+
+N. Feng, J. Li / Journal of Computational Physics 232 (2013) 318–326
+
+As an example, consider the discretization of the x component of (6) in all corners and the edges of the PML regions which
+
+are run parallel with the x direction (i.e. Sg = jg + rg/(ag + jxe0), (g = y, z), are chosen.):
+
+jxDx ¼ S(cid:3)1
+
+y @yHz (cid:3) S(cid:3)1
+
+z @zHy
+
+Using the partial fraction expansion, S(cid:3)1
+
+g , (g = y, z) can be written as
+
+1g (cid:4) S(cid:3)1
+g ¼ S(cid:3)1
+S(cid:3)1
+And arranging, S(cid:3)1
+
+g can be rewritten as
+
+2g ¼ ðj1g þ r1g=ða1g þ jxe0ÞÞ(cid:3)1 (cid:4) ðj2g þ r2g=ða2g þ jxe0ÞÞ(cid:3)1
+
+S(cid:3)1
+g ¼ ð1=j1gj2gÞðj1gða1g þ jxe0Þ=ðj1gða1g þ jxe0Þ þ r1gÞÞðj2gða2g þ jxe0Þ=ðj2gða2g þ jxe0Þ þ r2gÞÞ
+
+Numerator and denominator multiply by (j1ge0)(cid:3)1 (cid:4) (j2ge0)(cid:3)1, respectively, we can obtain
+
+S(cid:3)1
+g ¼ ð1=j1gj2gÞðða1g=e0 þ jxÞ=ða1g=e0 þ r1g=j1ge0 þ jxÞÞðða2g=e0 þ jxÞ=ða2g=e0 þ r2g=j2ge0 þ jxÞÞ
+
+And rearranging, S(cid:3)1
+
+g can be rewritten as
+1=Sg ¼ cgðða1g þ jxÞ=ðb1g þ jxÞÞðða2g þ jxÞ=ðb2g þ jxÞÞ
+
+where cg = 1/(j1gj2g), bmg = (amg/e0) + (rmg/jmge0) and amg ¼ amg=e0; m ¼ 1; 2.
+
+Substituting (15) into (11), we can obtain
+
+jxDx ¼ cyðða1y þ jxÞ=ðb1y þ jxÞÞðða2y þ jxÞ=ðb2y þ jxÞÞ@yHz (cid:3) czðða1z þ jxÞ=ðb1z þ jxÞÞðða2z þ jxÞ=b2z
+
+þ jxÞ@zHy
+
+Introducing four auxiliary variables Un
+
+xy; Un
+
+xz; Wn
+
+xy, and Wn
+xz.
+
+Uxy ¼ cyð1=ðb1y þ jxÞÞ@Hz=@y
+
+Wxy ¼ ðða2y þ jxÞ=ðb2y þ jxÞÞUxy
+
+Uxz ¼ czð1=ðb1z þ jxÞÞ@Hy=@z
+
+Wxz ¼ ðða2z þ jxÞ=ðb2z þ jxÞÞUxz
+
+Simplifying (16), we can obtain
+
+jxDx ¼ ða1y þ jxÞWxy (cid:3) ða1z þ jxÞWxz
+
+Discretizing (17)–(21) at the time step n + 1/2, we obtain
+
+(cid:2)
+
+i þ
+
+Unþ1
+xy
+
+(cid:2)
+
+i þ
+
+Wnþ1
+xy
+
+(cid:2)
+
+i þ
+
+Unþ1
+xz
+
+(cid:2)
+
+i þ
+
+Wnþ1
+xz
+
+(cid:3)
+
+; j; k
+
+(cid:3)
+
+; j; k
+
+(cid:3)
+
+; j; k
+
+(cid:3)
+
+; j; k
+
+1
+2
+
+1
+2
+
+1
+2
+
+1
+2
+
+¼ gy1ðjÞ (cid:4) Un
+
+xy
+
+¼ fy1ðjÞ (cid:4) Wn
+xy
+
+(cid:2)
+
+i þ
+
+(cid:2)
+
+i þ
+
+¼ gz1ðkÞ (cid:4) Un
+
+xz
+
+¼ fz1ðkÞ (cid:4) Wn
+xz
+
+(cid:2)
+
+i þ
+
+(cid:2)
+
+i þ
+
+(cid:3)
+
+; j; k
+
+(cid:3)
+
+; j; k
+
+(cid:3)
+
+; j; k
+
+(cid:3)
+
+; j; k
+
+1
+2
+
+1
+2
+
+1
+2
+
+1
+2
+
+þ gy2ðjÞ (cid:4)
+
+(cid:2)
+
+(cid:2)
+
+Hnþ1=2
+z
+
+(cid:2)
+
+i þ
+
+1
+2
+
+; j þ
+
+(cid:3)
+
+; k
+
+1
+2
+
+(cid:3) Hnþ1=2
+z
+
+(cid:2)
+
+i þ
+
+1
+2
+
+; j (cid:3)
+
+1
+2
+
+; k
+
+þ fy2ðjÞ (cid:4) Unþ1
+xy
+
+(cid:2)
+
+i þ
+
+1
+2
+
+(cid:3)
+
+; j; k
+
+(cid:3) fy3ðjÞ (cid:4) Un
+xy
+
+(cid:2)
+
+i þ
+
+1
+2
+
+(cid:3)
+
+; j; k
+
+(cid:3)(cid:3)
+
+(cid:4)
+
+(cid:3)
+
+Dy
+
+þ gz2ðkÞ (cid:4)
+
+(cid:2)
+
+(cid:2)
+
+Hnþ1=2
+y
+
+(cid:2)
+
+i þ
+
+1
+2
+
+; j; k þ
+
+(cid:3)
+
+1
+2
+
+(cid:3) Hnþ1=2
+y
+
+(cid:2)
+
+i þ
+
+1
+2
+
+; j; k (cid:3)
+
+1
+2
+
+(cid:3)(cid:3)
+
+(cid:4)
+
+Dz
+
+(cid:3)
+
+þ fz2ðkÞ (cid:4) Unþ1
+xz
+
+(cid:2)
+
+i þ
+
+1
+2
+
+(cid:3)
+
+; j; k
+
+(cid:3) fz3ðkÞ (cid:4) Un
+xz
+
+(cid:2)
+
+i þ
+
+1
+2
+
+(cid:3)
+
+; j; k
+
+x ¼ Dn
+Dnþ1
+
+x þ wy1Wnþ1
+
+xy (cid:3) wy2Wn
+
+xy (cid:3) ðwz1Wnþ1
+
+xz (cid:3) wz2Wn
+xzÞ
+
+ð11Þ
+
+ð12Þ
+
+ð13Þ
+
+ð14Þ
+
+ð15Þ
+
+ð16Þ
+
+ð17Þ
+
+ð18Þ
+
+ð19Þ
+
+ð20Þ
+
+ð21Þ
+
+ð22Þ
+
+ð23Þ
+
+ð24Þ
+
+ð25Þ
+
+ð26Þ
+
+fz3 ¼ ð2 (cid:3) a2zDtÞ=ð2 þ b2zDtÞ,
+
+where fy1 ¼ ð2 (cid:3) b2yDtÞ=ð2 þ b2yDtÞ, fy2 ¼ ð2 þ a2yDtÞ=ð2 þ b2yDtÞ, fy3 ¼ ð2 (cid:3) a2yDtÞ=ð2 þ b2yDtÞ, gy1 ¼ ð2 (cid:3) b1yDtÞ=ð2 þ b1yDtÞ,
+gy2 ¼ ð2cyDtÞ=ð2 þ b1yDtÞ, wy1 ¼ c0ð1 þ a1yDt=2Þ, wy2 ¼ c0ð1 (cid:3) a1yDt=2Þ,
+fz2 ¼ ð2 þ a2zDtÞ=
+gz2 ¼ ð2czDtÞ=ð2 þ b1zDtÞ, wz1 ¼ c0ð1 þ a1zDt=2Þ,
+ð2 þ b2zDtÞ,
+wz2 ¼ c0ð1 (cid:3) a1zDt=2Þ where Dy and Dz are space step. All coefﬁcients, which are calculated once prior to the ﬁeld
+computation, are stored in one-dimensional vector arrays, auxiliary variables and ﬁeld components are evaluated at the cor-
+responding Yee grid position. In order to make an equal comparison between the proposed higher-order formulations and
+reference [8], we assume that the proposed higher-order formulations and reference [8] use the temporary storage variables
+iþ1=2;j;k; Uxzjn
+technique, without exception. Note that storage of Uxyjn
+iþ1=2;j;k can be avoided by means
+
+gz1 ¼ ð2 (cid:3) b1zDtÞ=ð2 þ b1zDtÞ,
+
+fz1 ¼ ð2 (cid:3) b2zDtÞ=ð2 þ b2zDtÞ,
+
+iþ1=2;j;k and Wxzjn
+
+iþ1=2;j;k, Wxyjn
+
+
+--- Page 4 ---
+N. Feng, J. Li / Journal of Computational Physics 232 (2013) 318–326
+
+321
+
+of temporary storage variables [9]. Consequently, the FDTD implementation of (1) by using (18)–(22) requires only the stor-
+age of four auxiliary variables per ﬁeld component per cell in the SC-PML region.
+
+The above formulations are applied to the corner PML regions and the edge PML regions which run parallel with x direc-
+tion (i.e. both Sy – 1 and Sz – 1 are chosen as in (10)). In the faces of the PML regions which are normal to y direction and the
+edge PML regions which run parallel with z direction (i.e. Sy – 1 as in (10) and Sz = 1 are chosen), Dx can be obtained by using
+only two auxiliary variables, Uxy and Wxy. Likewise, in the faces of the PML regions which are normal to z direction and the
+edge PML regions which run parallel with y direction (i.e. Sy = 1 and Sz – 1 as in (10) are chosen), Ex can be obtained by using
+only two auxiliary variables, Uxz and Wxz. For the face PML regions which are perpendicular to x direction (i.e. both Sy = 1
+and Sz = 1 are chosen), no auxiliary variable is required. Similar formulations can be obtained for other ﬁeld components
+of D (and B).
+
+In order to perform a comparison of the proposed formulations and the formulations in [8] in terms of memory, we
+assume a vacuum 3D FDTD computational domain with L (cid:2) M (cid:2) N cells. A W-cell thick PML is used to truncate the FDTD
+computational domain on all directions. To obtain Ex,
+the proposed formulations require 4 (cid:2) (L + 2W) (cid:2) W (cid:2)
+W (cid:2) 4 = 32W3 + 16LW2 auxiliary variables in the corner PML regions and the edge PML regions which run parallel with x
+direction (i.e. both Sy – 1 and Sz – 1 are chosen, and Pxy, Qxy, Pxz and Qxz are required.), 2(cid:2)(L + 2W) (cid:2) W (cid:2) N (cid:2) 2 = 8NW2 +
+4LNW auxiliary variables in the faces of the PML regions which are normal to y direction and the edge PML regions which
+run parallel with z direction (i.e. Sy – 1 and Sz = 1 are chosen, and Pxy and Qxy are required.), 2 (cid:2) (L + 2W) (cid:2)
+M (cid:2) W (cid:2) 2 = 8MW2 + 4LMW auxiliary variables in the faces of the PML regions which are normal to z direction and the edge
+PML regions which run parallel with y direction (i.e. Sy = 1 and Sz – 1 are chosen, and Pxz and Qxz are required.), and 0
+auxiliary variables in the face PML regions which are perpendicular to x direction (i.e. both Sy = 1 and Sz = 1 are chosen).
+By using the same means, auxiliary variables to obtain Ey, Ez, Hx, Hy, and Hz can be computed. In consequence, the proposed
+formulations require 192W3 + 64(LW2 + MW2 + NW2)+16(LMW + LNW + MNW) auxiliary variables in total to obtain 6 ﬁeld
+components. However, the formulations in [8] require 288W3 + 112(LW2 + MW2 + NW2) + 32(LMW + LNW + MNW) auxiliary
+variables. Therefore, the proposed formulations require 96W3 + 48(LW2 + MW2 + NW2) + 16(LMW + LNW + MNW) auxiliary
+variables less than the formulations in [8] in the PML regions.
+
+As compared with [8], savings in the computation time can be achieved by the proposed algorithm due to the fact that the
+decrease of the auxiliary variables leads to the reduction of the calculation steps. The more the cells in the PML regions, the
+more the savings in memory and computation time.
+
+It is obvious that, because of no polynomial expansion, the proposed implementation of the higher-order PML is easier
+
+than that in [8] to be extended to the case with more than two poles.
+
+3. Numerical result
+
+Two numerical tests are provided to validate the proposed method. In the ﬁrst test, to validate the proposed methods, we
+implement the FDTD simulation for an inhomogeneous, dispersive, and conductive soil half-space problem in a highly elon-
+gated FDTD grid. It is shown in Fig. 1. The dielectric constant of soil is speciﬁed as the second-order Debye model with an
+added conductivity term (cid:2)rðxÞ ¼ (cid:2)1 þ r=jx þ (cid:2)0
+p¼1Ap=ð1 þ jxspÞ, where e1 = 4.15 is the inﬁnite frequency permittivity,
+A1 = 1.8 and A2 = 0.6 are the pole amplitudes, s1 = 3.79 ns and s2 = 0.151 ns are the relaxation time and r = 1.11 ms/m is
+the conductivity [10]. The half-space occupies 50% of the vertical height of the horizontally elongated simulation region.
+The simulation is done with a 126 (cid:2) 46 (cid:2) 26 grid including 10-cell-thick PML layers on all sides with the space steps
+Dx = Dy = Dz = 0.05 m and the time step Dt = 77 ps. Assuming that the origin is at a corner of FDTD grid, a vertically polarized
+point source located at (13, 13, 13) (just above the soil) is excited by a differentiated Gaussian pulse with a half pulse band-
+width = 1155 ps. Within the PML, rg and jg are scaled using a fourth-order polynomial scaling [11] and ag is a constant. The
+relative reﬂection error (in decibel) versus time is computed at an observation point located at (113, 33, 12) (at the opposing
+corner of FDTD grid from the source and just below the interface of free space and soil) by using
+
+P2
+
+RdBðtÞ ¼ 20log10ðjEzðtÞ (cid:3) Ezref ðtÞj=Ezref maxÞ
+
+ð27Þ
+
+Z
+
+Excite source
+
+ PML 
+
+Soil
+
+PML 
+
+Observation P
+
+X
+
+Fig. 1. An inhomogeneous, dispersive, and conductive soil half-space problem in a highly elongated FDTD grid.
+
+
+--- Page 5 ---
+322
+
+N. Feng, J. Li / Journal of Computational Physics 232 (2013) 318–326
+
+)
+
+B
+d
+(
+
+r
+o
+r
+r
+E
+
+n
+o
+i
+t
+c
+e
+l
+f
+e
+R
+e
+v
+i
+t
+a
+l
+e
+R
+
+-10
+
+-30
+
+-50
+
+-70
+
+-90
+
+-110
+
+-130
+
+-150
+
+Conventional SC-PML
+CPML
+Correia 2nd-PML
+LYYADE 2nd-PML
+
+100 200 300 400 500 600 700 800 900 1000
+
+Time Steps
+
+Fig. 2. Relative reﬂection error versus time steps: Conventional SC-PML (PML layers = 10), CPML (PML layers = 10), Correia 2nd-PML (PML layers = 10),
+LYYADE 2nd-PML (PML layers = 10).
+
+Table 1
+Memory requirements (bytes) for the different PML implementations.
+
+Correia 2nd-PML
+LYYADE 2nd-PML
+CPML
+SC-PML
+
+PML layers = X
+
+49,506 K (X = 10)
+30,604 K (X = 10)
+24,084 K (X = 10)
+24,084 K (X = 10)
+
+Table 2
+Computational time (s) for the different PML implementations.
+
+Correia 2nd-PML
+LYYADE 2nd-PML
+CPML
+SC-PML
+
+Time steps = 1000, (PML layers = X)
+
+667.60 (X = 10)
+412.70 (X = 10)
+285.84 (X = 10)
+303.62 (X = 10)
+
+-10
+
+-30
+
+-50
+
+-70
+
+-90
+
+-110
+
+-130
+
+-150
+
+)
+
+B
+d
+(
+
+r
+o
+r
+r
+E
+
+n
+o
+i
+t
+c
+e
+l
+f
+e
+R
+e
+v
+i
+t
+a
+l
+e
+R
+
+Conventional SC-PML
+CPML
+Correia 2nd-PML
+LYYADE 2nd-PML
+
+100 200 300 400 500 600 700 800 900 1000
+
+Time Steps
+
+Fig. 3. Relative reﬂection error versus time steps: Conventional SC-PML (PML layers = 10), CPML (PML layers = 13), Correia 2nd-PML (PML layers = 10),
+LYYADE 2nd-PML (PML layers = 10).
+
+where Ez(t) represents the time-dependent discrete electric ﬁeld of the observation point, Ezref(t) is a reference solution based
+on a large 206 (cid:2) 126 (cid:2) 106-cell grid, and Ezref_max represents the maximum value of the reference solution over the full-time
+simulation. The relative reﬂection error is ﬁrst computed over 1000 time iterations. This same example is repeated with
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- Page 6 ---
+N. Feng, J. Li / Journal of Computational Physics 232 (2013) 318–326
+
+323
+
+Table 3
+Memory requirements (bytes) for the different PML implementations.
+
+Correia 2nd-PML
+LYYADE 2nd-PML
+CPML
+SC-PML
+
+PML layers = X
+
+49,506 K (X = 10)
+30,604 K (X = 10)
+35.436 K (X = 13)
+24,084 K (X = 10)
+
+Table 4
+Computational time (s) for the different PML implementations.
+
+Correia 2nd-PML
+LYYADE 2nd-PML
+CPML
+SC-PML
+
+Time steps = 1000, (PML layers = X)
+
+667.60 (X = 10)
+412.70 (X = 10)
+434.73 (X = 13)
+303.62 (X = 10)
+
+Table 5
+Memory requirements (bytes) for the different PML implementations.
+
+Correia 2nd-PML
+LYYADE 2nd-PML
+CPML
+SC-PML
+
+PML layers = X
+
+2056 K (X = 10)
+1376 K (X = 10)
+1160 K (X = 10)
+1252 K (X = 10)
+
+Table 6
+Computational time (s) for the different PML implementations.
+
+Correia 2nd-PML
+LYYADE 2nd-PML
+CPML
+SC-PML
+
+Time steps = 20,000, (PML layers = X)
+
+132.47 (X = 10)
+88.31 (X = 10)
+66.54 (X = 10)
+66.75 (X = 10)
+
+Table 7
+Memory requirements (bytes) for the different PML implementations.
+
+Correia 2nd-PML
+LYYADE 2nd-PML
+CPML
+SC-PML
+
+PML layers = X
+
+2056 K (X = 10)
+1376 K (X = 10)
+1316 K (X = 13)
+1252 K (X = 10)
+
+SC-PML (ag = 0, jmax = 11, and rmax = 0.18 S/m) and the convolutional PML (CPML) [4] (ag = 0.0015, jmax = 7, and
+rmax = 0.24 S/m). For the second-order PML including the formulations in [8] and the proposed formulations, the following
+parameters are chosen:
+
+j1g = 1, a1g = 0, r1gopt = 0.175/150pDx, r1g = r1goptq4, j2gopt = 9, j2g = 1 + j2goptq2, a2g = 0.0023 + r1g, r2gopt = 4/150pDx,
+and r2g = r2goptq2, where q is zero at the interface of the PML and the FDTD computational domains and 1 at the end. In all
+computations of this paper, r and j are evaluated as the average value in the cell around the index location [1]. These opti-
+mum parameters are chosen empirically to obtain the lowest reﬂection. The difference of the optimum parameters of LYY-
+ADE PML and CPML results from different scheme (i.e., the coefﬁcients of (22)–(26) are different from the counterpart of
+CPML).
+
+These results are illustrated from Fig. 2. It is shown in Fig. 2 that the LYYADE PML and the proposed PML in [8] are similar
+and both have improvement near 400 time steps and much lower reﬂection error for the late-time region, whereas SC-PML
+has a comparatively high reﬂection error over the entire time simulation due to the oblique incidence of the waves and low-
+frequency evanescent ﬁelds that are interacting with the PML interface. Tables 1 and 2 are using different perfectly matched
+layer algorithm procedures which occupy of memory and different time steps occupy computational time, respectively.
+
+
+--- Page 7 ---
+324
+
+N. Feng, J. Li / Journal of Computational Physics 232 (2013) 318–326
+
+Table 8
+Computational time (s) for the different PML implementations.
+
+Correia 2nd-PML
+LYYADE 2nd-PML
+CPML
+SC-PML
+
+Time steps = 20,000, (PML layers = X)
+
+132.47 (X = 10)
+88.31 (X = 10)
+80.48 (X = 13)
+66.75 (X = 10)
+
+Obviously, when FDTD computational domain is invariant, saving memory will increase with the increase of PML layers and
+saving time will increase with the increase of time steps.
+
+In order to demonstrate the absorbing properties of the high order PML as compared to more conventional PML imple-
+mentations, the number of PML of the CPML is increased to 13-cell-thick. It is clearly shown in Fig. 3 that the CPML
+(PML = 13) hold the comparatively good absorbing performance compared with the CPML (PML = 10), especially much lower
+reﬂection error for the late-time region. Whereas, it can be shown in Table 3 that the requirement of memory of the CPML
+has increased from 24,086 K (PML = 10) to 35,436 K (PML = 13) which is more than 30,604 K of the LYYADE PML (PML = 10).
+Besides, it is shown in Table 8 the LYYADE PML (PML = 10) requires less computational time compared with the CPML
+(PML = 13).
+
+In the second test, to simplify the problem, but without loss of generality, we model a 2D TE-polarized electromagnetic
+wave interaction with an inﬁnitely long perfectly electric conductor (PEC) sheet with the ﬁnite width to validate the pro-
+posed formulations. Fig. 4 shows the FDTD grid geometry used in this simulation. The space is discretized with the FDTD
+lattice with Dx = Dy = 1 mm and time step is Dt = 1.1785 ps. The FDTD computational domains consist of a 100-cell wide
+PEC sheet surrounded by free space. 10-cell thick PML layers terminate the grid and are placed only 3 cells away from
+the PEC sheet in all directions.
+
+A y-polarized line electric current source, inﬁnitely long in the z direction, is placed at the center and excited with a dif-
+
+ferentiated Gaussian pulse given by
+
+JyðtÞ ¼ (cid:3)2ðt (cid:3) t0Þ=tw exp½(cid:3)ððt (cid:3) t0Þ=twÞ2(cid:5)
+
+ð28Þ
+
+where tw = 26.53 ps and t0 = 4tw. The y-component of the electric ﬁeld is measured at the point P, where we expect very
+strong evanescent waves to appear. The relative reﬂection error (in dB) versus time is computed at the observation point
+P by using
+
+RdBðtÞ ¼ 20log10ððjER
+
+y ðtÞ (cid:3) ET
+
+y ðtÞjÞ=jER
+
+y maxjÞ
+
+ð29Þ
+
+y ðtÞ represents the time-dependent discrete electric ﬁeld of the observation point , ER
+
+where ET
+y ðtÞ is a reference solution based
+on a large 1, 200 (cid:2) 1, 200-cell grid, and ER
+y max represents the maximum value of the reference solution over the full time
+simulation. The reference grid is sufﬁciently large such that there are no reﬂections from its outer boundaries during
+1500 time steps which are well past the steady-state response. The same example is repeated with the conventional SC-
+PML (which is equivalent to the CPML with ag = 0), the CPML and the 2nd-order PML in [8]. Within the conventional SC-
+PML and the CPML, jg and rg are scaled by using a fourth-order polynomial scaling (m = 4) and ag is a constant, as in [4].
+The ropt is chosen as
+
+ropt ¼ ðm þ 1Þ=150pDx
+
+ð30Þ
+
+For the conventional SC-PML, jmax = 9 and rmax = 0.5ropt are chosen. In the CPML simulation,jmax = 9, rmax = 0.9ropt and
+ag = 0.06 are chosen. For the 2nd-order PML including the formulations in [8] and the proposed formulations, the following
+parameters are chosen: j1g = 1, a1g = 0, r1gopt = 0.075/150pDx, r1g = r1goptq4, j2gopt = 8, j2g = 1 + j2goptq2, a2g = 0.09 + r1g,
+r2gopt = 4/150pDx, and r2g = r2goptq2. These optimum parameters are chosen empirically to obtain the lowest reﬂection (See
+Table 4.).
+
+The results are illustrated in Fig. 5. The maximum relative errors of the conventional SC-PML, the CPML, the second-order
+PML in [8] and LYYADE PML are (cid:3)49 dB, (cid:3)75 dB, (cid:3)90 dB and (cid:3)90 dB, respectively. It can be concluded from ﬁgures that the
+
+Y
+
+PML 
+
+Jy
+
+ PML 
+
+P
+
+X
+
+Fig. 4. Shows the FDTD grid geometry in this simulation.
+
+
+--- Page 8 ---
+N. Feng, J. Li / Journal of Computational Physics 232 (2013) 318–326
+
+325
+
+)
+
+B
+d
+(
+
+r
+o
+r
+r
+E
+n
+o
+i
+t
+c
+e
+l
+f
+e
+R
+e
+v
+i
+t
+a
+l
+e
+R
+
+-20
+
+-40
+
+-60
+
+-80
+
+-100
+
+-120
+
+-140
+
+-160
+
+-180
+
+Conventional SC-PML
+CPML
+Correia 2nd-PML
+LYYADE 2nd-PML
+
+100
+
+300
+
+500
+
+700
+900
+Time Steps
+
+1100 1300 1500
+
+Fig. 5. Relative reﬂection error versus time steps: Conventional SC-PML (PML layers = 10), CPML (PML layers = 10), Correia 2nd-PML (PML layers = 10),
+LYYADE 2nd-PML (PML layers = 10).
+
+)
+
+B
+d
+(
+
+r
+o
+r
+r
+E
+n
+o
+i
+t
+c
+e
+l
+f
+e
+R
+e
+v
+i
+t
+a
+
+l
+
+e
+R
+
+-20
+
+-40
+
+-60
+
+-80
+
+-100
+
+-120
+
+-140
+
+-160
+
+-180
+
+Conventional SC-PML
+CPML
+Correia 2nd-PML
+LYYADE 2nd-PML
+
+100
+
+300
+
+500
+
+700
+
+900
+Time Steps
+
+1100 1300 1500
+
+Fig. 6. Relative reﬂection error versus time steps: Conventional SC-PML (PML layers = 10), CPML (PML layers = 13), Correia 2nd-PML (PML layers = 10),
+LYYADE 2nd-PML (PML layers = 10).
+
+absorbing performance of the proposed 2nd-order formulations is similar to that in [8] and has 15 dB and 41 dB improve-
+ment in terms of the maximum relative error as compared with the CPML and the SC-PML. Tables 5 and 6 are as the same
+with ﬁrst test by using different perfectly matched layer algorithm procedures which occupy of memory and different time
+steps occupy computational time, respectively. Obviously, when FDTD computational domain is invariant, saving memory
+will increase with the increase of PML layers and saving time will increase with the increase of time steps.
+
+In order to demonstrate the absorbing properties of the high order PML as compared to more conventional PML imple-
+mentations, the number of PML of the CPML is increased to 13-cell-thick. It is clearly shown in Fig. 6 that the CPML
+(PML = 13) hold the comparatively good absorbing performance compared with the CPML (PML = 10). And then, the maxi-
+mum relative error of the CPML (PML = 13) declines to (cid:3)90 dB and has 15 dB improvement compared with (cid:3)75 dB of the
+CPML (PML = 10). Whereas, it can be shown in Table 7 that the requirement of memory of the CPML has increased from
+1160 K (PML = 10) to 1316 K (PML = 13). Besides, it is shown in Table 8 that the CPML (PML = 13) requires more computa-
+tional time than the CPML (PML = 10). It can be concluded in Fig. 6 that the maximum relative error of the CPML (PML = 13) is
+similar to that of the LYYADE PML (PML = 10), whereas the LYYADE PML has lower reﬂection error for the late-time region
+than the CPML.
+
+4. Conclusions
+
+An efﬁcient and unsplit-ﬁeld implementation of the higher-order PML based on the SC-PML and the auxiliary differential
+equation method has been presented. It has been shown in the numerical tests that this novel high-order PML implemen-
+tation yields the same results as the initial and more computationally demanding implementation in [7,8].
+
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- Page 9 ---
+326
+
+N. Feng, J. Li / Journal of Computational Physics 232 (2013) 318–326
+
+Acknowledgments
+
+We like to thank anonymous referees for their insightful comments that improved the paper. This work has been partially
+supported by the Higher Education Institutions Science & Technology Development Fund Planning Project of Tianjin (Grant
+No. 20090711).
+
+References
+
+[1] J.P. Bérenger, A perfectly matched layer for the absorption of electromagnetic waves, J. Comput. Phys. 114 (1994) 185–200.
+[2] W.C. Chew, W.H. Weedon, A 3-D perfectly matched medium from modiﬁed Maxwell’s equations with stretched coordinates, Microw. Opt. Technol.
+
+Lett. 7 (1994) 599–603.
+
+[3] M. Kuzuoglu, R. Mittra, Frequency dependence of the constitutive parameters of causal perfectly matched anisotropic absorbers, IEEE Microw. Guided
+
+Wave Lett. 6 (1996) 447–449.
+
+[4] J.A. Roden, S.D. Gedney, Convolution PML (CPML): an efﬁcient FDTD implementation of the CFS-PML for arbitrary media, Microw. Opt. Technol. Lett. 27
+
+(2000) 334–339.
+
+[5] E. Bécache, P.G. Petropoulus, S.D. Gedney, On the long-time behavior of unsplit perfectly matched layers, IEEE Trans. Anten. Propag. 52 (2004) 1335–
+
+1342.
+
+[6] J.P. Bérenger, Numerical reﬂection from FDTD-PMLs: a comparison of the split PML with the unsplit CFS PML, IEEE Trans. Anten. Propag. 50 (2002) 258–
+
+265.
+
+[7] D. Correia, J.M. Jin, Performance of regular PML, CFS-PML, and second-order PML for waveguide problems, Microw. Opt. Technol. Lett. 48 (2006) 2121–
+
+2126.
+
+[8] D. Correia, J.M. Jin, On the development of a higher-order PML, IEEE Trans. Anten. Propag. 53 (2005) 4157–4163.
+[9] D.F. Kelley, R.J. Luebbers, Piecewise linear recursive convolution for dispersive media using FDTD, IEEE Trans. Anten. Propag. 44 (1996) 792–797.
+[10] F.L. Teixeira, W.C. Chew, M. Straka, M.L. Oristaglio, T. Wang, Finite-difference time-domain simulation of ground penetrating radar on dispersive,
+
+inhomogeneous, and conductive soils, IEEE Trans. Geosci. Remote Sens. 36 (1998) 1928–1937.
+
+[11] S.D. Gedney, The perfectly matched layer absorbing medium, in: A. Taﬂove (Ed.), Advance in Computational Electrodynamics: The Finite Difference
+
+Time Domain, Artech House, Boston, MA, 1998, pp. 263–340.
+
+[12] D.M. Sullivan, Frequency-dependent FDTD methods using Z transforms, IEEE Trans. Anten. Propag. 40 (1992) 1223–1230.
+

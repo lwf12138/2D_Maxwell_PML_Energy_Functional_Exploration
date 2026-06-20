@@ -1,0 +1,5723 @@
+
+--- Page 1 ---
+Vol. 22, No. 2                          EARTHQUAKE ENGINEERING AND ENGINEERING VIBRATION                          April, 2023
+
+Earthq Eng & Eng Vib (2023) 22: 407-421                                                                   DOI: https://doi.org/10.1007/s11803-023-2170-3
+
+Multi-axial unsplit frequency-shifted perfectly matched layer for 
+displacement-based anisotropic wave simulation in inﬁ nite domain
+
+Xie Zhinan1, 2†, Zheng Yonglu1, 2‡, Paul Cristini3§ and Zhang Xubin1, 2*
+
+              1. Key Laboratory of Earthquake Engineering and Engineering Vibration, Institute of Engineering Mechanics, 
+
+                  China Earthquake Administration, Harbin 150080, China 
+
+              2. Key Laboratory of Earthquake Disaster Mitigation, Ministry of Emergency Management, Harbin 150080, China
+
+              3. Aix Marseille University, CNRS, Centrale Marseille, LMA, Marseille F-13353, France
+
+Abstract:  Multi-axial  perfectly  matched  layer  (M-PML),  known  to  have  lost  the  perfect-matching  property  owing  to 
+multi-axial coordinate stretching, has been numerically validated to be long-time stable and it is thus used extensively in 
+linear  anisotropic  wave  simulation  and  in  isotropic  cases  where  the  PML  becomes  unstable.  We  are  concerned  with  the 
+construction of the M-PML for anisotropic wave simulation based on a second order wave equation implemented with the 
+displacement-based numerical method. We address the beneﬁ t of the incorrect chain rule, which is implicitly adopted in the 
+previous derivation of the M-PML. We show that using the frequency-shifted stretching function improves the absorbing 
+eﬃ  ciency  of  the  M-PML  for  near-grazing  incident  waves.  Then,  through  multi-axial  complex-coordinate  stretching  the 
+second  order  anisotropic  wave  equation  in  a  weak  form,  we  derive  a  time-domain  multi-axial  unsplit  frequency-shifted 
+PML (M-UFSPML) using the frequency-shifted stretching function and the incorrect chain rule. A new approach is provided 
+to  reduce  the  number  of  memory  variables  needed  for  computing  convolution  terms  in  the  M-UFSPML.  The  obtained 
+M-UFSPML is well suited for implementation with a ﬁ nite element or the spectral element method. By providing several 
+typical examples, we numerically verify the accuracy and long-time stability of the implementation of our M-UFSPML by 
+utilizing the Legendre spectral element method.
+
+Keywords: computational seismology; seismic anisotropy; wave propagation; elastodynamics
+
+ 1  Introduction
+
+Linear  elastic  anisotropy  is  common  to  wave 
+propagation  in  the  Earth′s  interior  (Babuška  and  Cara, 
+1991;  Savage,  1999;  Deuss  et  al.,  2010; Almqvist  and 
+Mainprice,  2017)  and  its  ice  cover  (Diez  and  Eisen, 
+2015; Sayers, 2018). Such anisotropy can be caused by 
+factors such as a preferred orientation of crystals, aligned 
+inclusions, or regular sequences of thin layers (Cerveny, 
+2005). In anisotropic media, seismic wave speeds depend 
+
+Correspondence  to:  Xie  Zhinan,  Institute  of  Engineering 
+Mechanics,  China  Earthquake  Administration,  29  Xuefu 
+Road, Harbin 150080, China
+Tel: +86-15114557253 
+E-mail: wla_2012@163.com
+
+†Professor;  ‡Master; §Research Associate; *Associate Professor
+Supported  by:  Scientiﬁ c  Research  Fund  of  Institute  of 
+Engineering  Mechanics,  China  Earthquake  Administration 
+under  Grant  No.  2021EEEVL0102,  National  Natural 
+Science  Foundation  of  China  under  Grant  Nos.  U2039209 
+and  51808516,  the  National  Key  R&D  Program  of  China 
+under  Grant  No.  2018YFC1504004,  and  Distinguished 
+Young  Scholars  Program  of  the  Natural  Science  Foundation 
+of Heilongjiang province, China under Grant No. YQ2020E005
+
+Received August 28, 2021; Accepted April 19, 2022
+
+on  the  local  directions  of  wave  propagation  and  wave 
+polarization. In recent years, wave simulation integrated 
+as  part  of  adjoint  seismic  full-waveform  tomography 
+has increasingly been used in investigating the regional-
+scale anisotropic structure of the Earth (Zhu et al., 2017).
+In  wave  simulation,  taking  anisotropy  into  account 
+makes  it  diﬃ  cult  to  establish  stable  techniques  for 
+inﬁ nite domain truncation (Komatitsch et al., 2000). It is 
+now well-known that the Perfectly Matched Layer (PML 
+Bérenger,  1994)  is  intrinsically  unstable  for  certain 
+types of anisotropic media (Bécache et al. 2003). Such 
+instability is irrelevant to the type of complex coordinate 
+stretching  functions  used  in  deriving  the  PML  and  the 
+PML  formulation,  such  as  a  split,  unsplit  or  auxiliary 
+diﬀ erential  PML  formulation  derived  from  either  the 
+velocity-stress-based  wave  equation  in  the  ﬁ rst-order 
+form  or  the  displacement-based  wave  equation  in  the 
+second-order form (Komatitsch and Martin, 2007; Ping 
+et al., 2014).
+In 
+
+and 
+Papageorgiou (2008) proposed an approach to stabilize 
+the  split  PML  and  produce  what  is  referred  to  as  a 
+multi-axial  PML  (M-PML)  in  the  anisotropic-wave 
+simulation. Zeng et al. (2011) showed that the M-PML 
+can stabilize a wave simulation for a horizontally layered 
+
+case,  Meza-Fajardo 
+
+the  ﬁ rst-order 
+
+
+--- Page 2 ---
+408                                               EARTHQUAKE ENGINEERING AND ENGINEERING VIBRATION                                            Vol. 22
+
+isotropic  solid  medium  that  has  a  high  Poisson  ratio. 
+In  the  M-PML,  aside  from  damping  in  the  direction 
+that  is  customary  for  interfaces  situated  between  the 
+M-PML  and  the  truncated  domain,  additional  nonzero 
+damping in tangential directions is introduced. Although 
+tangential  damping  is  usually  set  to  be  much  smaller 
+than that of normal damping, an important drawback is 
+that the M-PML is not perfectly matched (Dmitriev and 
+Lisitsa, 2011). Therefore, the M-PML can be interpreted 
+as a compromise between the PML and absorbing layers, 
+with  the  same  level  of  tangential  and  normal  damping 
+(Cerjan  et  al.,  1985;  Sochacki  et  al.,  1987;  Semblat  et 
+al.,  1987;  Halpern  et  al.,  2011).  To  achieve  the  same 
+level of accuracy, M-PML is often more computationally 
+eﬃ  cient than is the case with standard absorbing layers, 
+but  less  eﬃ  cient  than  PML.  Gao  and  Huang  (2017) 
+developed  a  numerical  algorithm  to  determine  the 
+optimal level of tangential damping. 
+
+First-order  M-PML  cannot  be  directly  used  in 
+the  second-order  wave  equation  simulation  with 
+displacement-based numerical simulation methods, such 
+as the ﬁ nite element (FE) method (e.g., Bao et al., 1998), 
+the spectral element (SE) method (e.g., Komatitsch and 
+Tromp,  1999),  or  some  ﬁ nite  diﬀ erence  methods  (e.g., 
+Moczo  et  al.,  2002).   Festa  and  Vilotte  (2005)  showed 
+how  to  couple  the  ﬁ rst-order  split  PML,  which  was 
+implemented  by  using  the  staggered  ﬁ nite  diﬀ erence 
+method.  The  ﬁ rst-order  split  PML  was  implanted  into 
+the second-order wave equation, implemented with the 
+FE/SE  method  and  the  Newmark-beta  time-stepping 
+scheme, by using the equivalence between the Newmark 
+time-stepping scheme and the midpoint diﬀ erence rule. 
+Following Festa and Vilotte′s observation, Martin et al. 
+(2008) extended the ﬁ rst-order convolutional frequency-
+shifted  PML  to  the  multi-axial  case  and  then  coupled 
+it  with  the  second-order  wave  equation  simulation, 
+employing the SE method and the Newmark-beta time-
+stepping  scheme.  Such  a  coupling  remains  an  open 
+problem  in  the  sense  that  other  time-stepping  schemes 
+are used (Liu and Zhang, 2019).
+
+the 
+
+Following 
+
+idea  of  Meza-Fajardo 
+
+and 
+Papageorgiou  (2008),  several  second-order  M-PMLs 
+have  been  derived  by  using  multi-axial  coordinate 
+stretching  for  the  second-order  wave  equation.  Li  and 
+Bou  (2010)  developed  a  second-order  convolutional 
+frequency-shifted M-PML in the frequency domain. In 
+principle, Li and Bou’s formulation is not ﬁ t for layered 
+heterogenous  inﬁ nite-domain  truncation  because  they 
+treated the gradient of all convolutional terms in stress as 
+additional body forces. Ping et al. (2014, 2016) extended 
+the second-order split PML proposed by Komatitsch and 
+Tromp (2003) for the multi-axial case. The formulation 
+of   Ping  et  al.  (2014,  2016)  inherited  the  shortcomings 
+of  the  PML  of  Komatitsch  and  Tromp  (2003),  arising 
+from the introduced hybrid second-order and third-order 
+ordinary  diﬀ erential  equations.  The  number  of  split 
+displacement variables is at least ﬁ ve times that of the 
+original variables (Ma and Liu, 2006). Moreover, Ping 
+
+et al. (2014, 2016) obtained an inconsistent result that, 
+unlike the obtained M-PML with a damping parameter 
+deﬁ ned in the high-order polynomial proﬁ le, the M-PML 
+with a damping parameter deﬁ ned in the commonly used 
+second-order  polynomial  proﬁ le  loses  its  stability  in  a 
+long-term simulation. Fathi et al. (2015) showed without 
+theoretical  justiﬁ cation  that  although  the  chain  rule 
+prevalently used in the M-PML derivation is incorrect, 
+the resulting M-PML performed better than the M-PML 
+derived by utilizing the corrected chain rule.
+
+In this paper, we develop a second-order multi-axial 
+unsplit  frequency-shifted  PML  (M-UFSPML). We  ﬁ rst 
+show  the  importance  of  introducing  the  non-rigorous 
+chain  rule  to  stabilize  M-UFSPML.  Additionally,  the 
+introduction  of  frequency-shifted  coordinate  stretching 
+also  can  improve  the  absorbing  eﬃ  ciency  of  the 
+M-PML.  We  then  derive  the  M-UFSPML  by  multi-
+axial  complex-coordinate  stretching  the  second-order 
+wave  equation  in  its  weak  form—rather  than  using 
+the  strong  wave  equation—to  avoid  possible  improper 
+matching between the obtained PML wave equation and 
+boundary or interface conditions. Improper matching is 
+an important mechanism because it leads to an unstable 
+PML (Duru and Kreiss, 2014). We introduce a new way 
+to  reduce  the  number  of  memory  variables  needed  for 
+dealing  with  the  computation  of  convolution  terms. 
+The obtained M-UFSPML is in a weak form and thus is 
+ready for implementation using the FE/SE method. We 
+numerically verify the accuracy and long-time stability 
+of  the  M-UFSPML  through  theoretical  and  practical 
+applications  in  wave  simulation  with  the  high-order 
+Legendre spectral element method and the explicit time-
+stepping scheme.
+
+2    Notes on the choice of multi-axial coordinate 
+    stretching
+
+Dmitriev and Lisitsa (2011) showed that the loss of 
+the perfectly matched property of M-the PML is due to 
+multi-axial coordinate stretching. Based on their work, 
+ we  investigate  the  eﬀ ects  of  multi-axial  coordinate 
+stretching, 
+frequency-shifted  coordinate  stretching, 
+and  the  implicitly  adopted  incorrect  chain  rule  on  the 
+absorbing  eﬃ  ciency  of  the  M-PML,  which  leads  to  a 
+useful remark regarding our late M-PML derivation.
+
+For  the  simplest  wave  simulation  in 
+R
+, 
+
+y R
+ . 
+
+
+we  specify  the  computation  domain  as  
+Within this domain, the wave equation is:
+
+,x y
+0,
+
+x
+
+x
+
+ˆˆ
+u
+i
+
+ˆˆ
+u
+i
+
+y
+ˆˆ
+p
+i
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0
+0
+c
+
+
+
+
+
+
+
+
+
+
+2
+
+0
+0
+0
+
+
+
+1
+0
+0
+
+0
+                0
+0
+
+
+
+
+
+
+
+0
+0
+c
+
+
+
+
+2
+
+
+
+0
+1
+0
+
+x
+
+x
+
+
+
+
+
+
+
+
+
+x
+
+
+
+ 
+
+
+
+
+
+
+
+
+y
+
+
+
+ 
+
+y
+
+x
+
+u
+u
+y
+p
+
+x
+
+ˆ
+u
+ˆ
+u
+y
+ˆ
+p
+
+y
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(1)
+
+ 
+           
+
+--- Page 3 ---
+No. 2    Xie Zhinan et al.: Multi-axial unsplit frequency-shifted PML for displacement-based anisotropic wave simulation in inﬁ nite domain    409
+
+where   is the density;  c  is acoustic wave speed; 
+xu
+yu   are the displacements in the x and y directions, 
+and 
+respectively; and p is pressure. A caret above a variable 
+   and   
+denotes a Fourier transformation. And  i
+are the circular frequency. Following Meza-Fajardo and 
+Papageorgiou (2008), we introduce complex coordinates 
+in
+
+
+y R
+  as:
+
+0,
+
+
+
+1
+
+x
+
+
+
+x x y
+,
+
+
+
+x
+ 
+
+
+
+y x y
+,
+
+
+
+
+
+
+1
+
+
+
+
+
+x
+
+0
+
+
+
+
+y x
+/
+
+p
+
+ 
+d x
+
+
+
+
+ 
+d x
+
+ 
+x
+
++i
+
+
+
+
+
+
+
+
+
+d ,
+x
+
+
+
+
+
+ 
+x
+
++i
+
+
+
+
+
+
+
+
+y
+
+(2)
+
+ 
+
+/y xp
+
+d x   is  the  damping  proﬁ le  in  the  x  direction, 
+where 
+ refers to the level of additionally 
+and the constant 
+ x  
+introduced  damping  in  the  y  direction.  Also, 
+serves  to  enhance  the  attenuation  of  evanescent  and 
+near-grazing waves and was set to zero by Meza-Fajardo 
+and Papageorgiou (2008). With the incorrect chain rules 
+provided by Meza-Fajardo and Papageorgiou (2008), we 
+obtain:
+
+x
+
+ˆ
+u
+i
+
+ˆ
+u
+i
+
+y
+ˆ
+p
+i
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0
+
+0
+
+2
+
+
+
+c
+
+
+
+
+s
+
+y
+
+
+
+s
+
+x
+
+
+
+s s
+x
+
+y
+
+0
+
+0
+
+0
+
+x
+
+
+
+x
+
+
+x
+
+ˆˆ
+u
+ˆˆ
+u
+y
+ˆˆ
+p
+
+x
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0
+
+0
+
+0
+
+
+
+
+
+
+
+
+0
+
+0
+
+2
+
+
+
+c
+
+
+s
+
+y
+
+
+
+
+
+
+
+
+1
+
+
+
+x
+
+s
+
+
+
+
+s
+
+
+
+
+x
+
+s s
+x
+
+
+
+y
+
+0
+
+
+
+1
+
+0
+
+0
+
+s
+
+
+
+
+y
+
+ 
+ 
+ 
+ 
+
+
+
+
+y
+
+
+
+y
+
+
+x
+
+u
+u
+y
+p
+
+y
+
+
+
+
+
+
+
+(6)
+
+Following 
+
+the  plane-wave   analysis  presented 
+by  Dmitriev  and  Lisitsa  (2011),  we  obtain  the  same 
+reﬂ ection coeﬃ  cient along the interface of the M-PML, 
+as presented in Eq. (4):
+
+R
+
+
+,
+
+
+s
+
+y
+
+
+
+
+
+cos
+
+
+
+
+
+1 sin
+
+
+2
+
+
+
+/
+
+cos
+
+
+
+
+
+1 sin
+
+
+2
+
+
+
+/
+
+s
+
+2
+y
+
+s
+
+2
+y
+
+(7)
+
+where 
+denotes  the  absolute  norm.  The  reﬂ ection 
+coeﬃ  cient along the interface of the M-PML presented 
+in Eq. (6) is:
+
+x
+
+d
+
+
+d , d
+
+ 
+
+d , d d
+x = s x    y = s y   x y = s s x y
+d d ,
+
+1 /
+
+ 
+
+y
+
+
+1 /
+
+,  
+
+
+
+
+
+
+
+ 
+
+x
+
+
+
+s
+
+s
+
+y
+
+x
+
+y
+
+x
+
+x
+
+y
+
+y
+
+(3)
+
+R
+
+
+,
+
+
+s
+
+y
+
+,
+
+s
+
+x
+
+
+
+
+
+where 
+
+xs
+ys
+
+1
+ 
+
+1
+ 
+
+ 
+d x
+y x
+/
+p
+
+ 
+  and 
++i
+x
+
+
+
+
+ 
+ 
+ , 
+x
++i
+d x
+
+
+
+
+
+denoting the coordinate stretching factor. We obtain the 
+frequency-shifted  M-PML  by  ﬁ rst  mapping  Eq.  (1)  to 
+complex  coordinates  and  then  transforming  to  it  real 
+coordinates using Eq. (3): 
+
+sin
+
+s
+
+
+x
+
+cos
+
+
+
+
+
+sin
+
+s
+
+
+x
+
+cos
+
+
+
+
+
+
++ sin
+
+2
+
+ 
+
+
+
++ sin
+
+2
+
+ 
+
+
+s
+
+2
+x
+
+2
+
+s
+
+s
+
+2
+x
+
+2
+
+s
+
+y
+
+
+
+
+
+
+4
+
+s s
+y
+
+x
+
+s
+
+y
+
+
+
+s
+
+4
+
+s s
+y
+
+x
+
+s
+
+y
+
+
+
+s
+
+x
+
+
+
+
+
+
+x
+
+y
+
+4
+
+s
+
+2
+y
+
+
+
+
+
+4
+
+s
+
+3
+y
+
+
+
+s
+
+y
+
+
+
+s
+
+x
+
+4
+
+s
+
+2
+y
+
+
+
+
+
+4
+
+s
+
+3
+y
+
+
+
+s
+
+y
+
+
+
+s
+
+x
+
+
+
+
+
+(8)
+
+x
+
+ˆˆ
+u
+i
+
+ˆˆ
+u
+i
+
+y
+ˆˆ
+p
+i
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+0
+0
+2
+c
+
+
+0
+0
+0
+
+
+
+1
+
+
+
+x
+
+
+s
+
+0
+0
+
+
+
+0
+
+
+
+
+
+
+
+
+
+
+
+
+
+s
+
+x
+
+0
+
+0
+
+x
+
+u
+u
+y
+p
+
+
+
+
+
+
+
+
+
+x
+
+x
+
+
+
+ 
+
+ 
+x
+ 
+
+
+
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+y
+
+
+y
+
+
+
+x
+
+ˆ
+u
+ˆ
+u
+y
+ˆ
+p
+
+y
+
+
+
+
+
+
+
+(4)
+
+
+
+1
+
+0
+
+0
+
+s
+
+
+y
+
+                0
+
+0
+
+2
+
+
+
+c
+
+
+s
+
+y
+
+However, because 
+
+ys  depends on the variable x, in 
+the corrected sense, the chain rule should be written as:
+
+d
+
+
+x = s x
+x
+
+
+d ,  d
+y = s x + s y
+d
+
+ 
+d ,  d d
+x y = s s x y
+d d ,
+x
+
+y
+
+x
+
+y
+
+ 
+
+x
+
+1
+s
+
+x
+
+
+
+,  
+
+  
+
+
+y
+
+x
+
+s
+x
+s s
+x
+
+y
+
+ 
+x
+
+1
+s
+
+y
+
+
+
+y
+
+(5)
+
+
+where 
+the M-PML derived with Eq. (5) can be written as:
+
+.  Following  the  same  process, 
+
+y
+ 
+
+x y
+,
+
+
+
+s
+
+s
+
+x
+
+x
+
+y
+
+x
+
+y
+
+y
+
+0
+
+,
+
+s
+
+s
+
+
+
+2
+
+c 
+
+x L
+
+  evaluated  at 
+
+the  commonly  used  proﬁ le 
+
+1500 m / s
+R
+x L
+
+
+with 
+, Fig. 1 shows the distributions of 
+
+R
+,
+
+
+  0
+x  ,
+Taking 
+
+ 
+and 
+d x
+3 2
+c L
+
+
+
+c
+/
+10
+f
+L
+
+
+s  
+,
+y
+
+
+and
+and 
+R
+s
+,
+/ 2
+
+y L
+/ 2
+. The results show the clear loss of the perfect-
+matching  property  in  the  M-PML,  particularly  for  a 
+near-grazing incident wave. The M-PML derived using 
+the  incorrect  chain  rule  performs  almost  the  same  as 
+that derived with the corrected chain rule but performs 
+0 . Moreover, we present 
+better in the region around 
+
+s  with the same set 
+in Fig. 2 the distribution of 
+of  parameters  considering  commonly  used  nonzero 
+
+ 
+.  The  ﬁ gure  clearly  shows 
+f
+03
+x
+1
+  
+
+ x   serves  to  improve  the  absorbing 
+that  nonzero 
+eﬃ  ciency  of  the  near-grazing  incident  wave.  Thus,  in 
+the  later  construction  of  the  second-order  M-PML,  we 
+reuse the non-rigorous chain rule but take into account 
+the nonzero 
+
+x L
+
+R
+
+
+
+
+
+ x .
+
+,
+
+y
+
+3  The second-order M-UFSPML
+
+By multi-axial complex stretching the se cond-order 
+anisotropic wave equation in its weak form, we derive the 
+
+       
+          
+           
+     
+   
+               
+             
+ 
+ 
+ 
+ 
+
+--- Page 4 ---
+410                                               EARTHQUAKE ENGINEERING AND ENGINEERING VIBRATION                                            Vol. 22
+
+second-order M-UFSPML with the incorrect chain rule 
+and  frequency-shifted  coordinate  stretching  function. 
+Moreover,  we  introduce  a  new  way  to  approximately 
+halve the memory cost in handling the computation of 
+convolution terms via memory variables. At the end of 
+the  section,  we  summarize  M-PML  formulations,  and 
+the number of additional memory variables needed for 
+their implementation.
+
+3.1  Second-order anisotropic wave equation
+
+Following  the  matrix  notation  used  by  Carcione 
+(2015), the sec ond-order anisotropic wave equation can 
+be written as:
+
+
+
+2
+
+u
+
+2t
+
+
+  
+
++ f
+
+(9)
+
+where 
+
+u
+
+
+
+u
+[
+
+x
+
+u
+
+y
+
+u
+
+z
+
+T
+]
+
+
+
+u
+[
+1
+
+u
+
+2
+
+u
+3
+
+T
+]
+
+ and 
+
+2
+
+f
+
+f
+
+[
+
+f
+1
+
+T
+f
+]
+3
+displacement and body force and 
+
+
+[
+     
+xy
+
+
+
+xx
+
+yy
+
+xz
+
+yz
+
+zz
+
+T
+]
+
+  are  respe ctively  vectors  of  the 
+
+
+
+[
+     
+6
+
+1
+
+2
+
+3
+
+4
+
+5
+
+T
+] ,
+
+Fig.  1  Distributions  of 
+
+              (c = 1500 m/s), 
+
+L
+
+R
+
+
+s
+,
+= 10
+
+
+
+y
+
+
+c f0
+
+(left)  and 
+
+s
+
+R
+
+
+,
+
+
+
+
+
+y
+= 0.1 , x = L/2 and y = L/2
+
+
+,
+
+
+
+R
+
+s
+
+s
+
+,
+
+x
+
+y
+
+,
+
+y / xp
+
+
+
+
+
+
+C e C
+ 
+
+
+
+
+
+T
+
+
+
+u
+
+
+
+
+
+
+1
+0
+0
+
+
+
+
+
+
+
+0
+
+2
+0
+
+0
+0
+
+
+3
+
+0
+
+
+
+3
+
+2
+
+
+3
+0
+
+1
+
+2
+
+
+
+1
+0
+
+
+
+
+
+
+
+(10)
+
+Here, 
+
+e
+
+
+
+[
+
+e
+xx
+
+e
+
+yy
+
+e
+zz
+
+e
+
+yz
+
+e
+xz
+
+e
+xy
+
+T
+]
+
+T
+]
+
+[
+
+
+
+e
+1
+
+e
+3
+
+e
+5
+
+e
+6
+
+e
+2
+
+e
+4
+and  C  is  the  elasticity  matrix.  Let  us  restrict  ourselves 
+to the anisotropic medium with orthorhombic symmetry, 
+which plays the most important role in seismology and 
+seismic exploration. It covers the isotropic medium and 
+the  anisotropic  medium  of  vertical  transverse  isotropy 
+(VTI)  symmetry,  horizontal  transverse  isotropy  (HTI) 
+symmetry  and  hexagonal  symmetry.  The  elasticity 
+matrix of an orthorhombic medium reads:
+
+C
+
+
+
+
+
+ 
+
+
+
+
+
+
+c
+11
+c
+12
+c
+13
+0
+0
+0
+
+c
+12
+c
+22
+c
+23
+0
+0
+0
+
+c
+13
+c
+23
+c
+33
+0
+0
+0
+
+0
+0
+0
+c
+44
+0
+0
+
+0
+0
+0
+0
+c
+55
+0
+
+0
+0
+0
+0
+0
+c
+66
+
+
+
+
+
+
+
+
+
+
+
+
+(11)
+
+  (right)  computed  with 
+
+
+
+
+x = 0
+
+,
+
+(
+d x
+
+)
+
+
+
+
+
+
+c L x L 2
+)
+(
+3 2
+
+Fig. 2  Distributions of 
+
+R
+
+           the distribution of 
+
+
+s  (left) computed with the same set of parameters as in Fig. 1, except for 
+,
+y
+
+,
+R
+
+
+
+(right)
+
+
+,
+
+
+
+
+s
+
+R
+
+
+
+
+
+
+
+s
+
+y
+
+y
+
+
+
+
+
+
+0
+
+
+
+
+
+
+0
+
+(
+
+
+x
+
+) = 3
+
+f
+
+
+
+
+0
+
+1
+
+
+
+x L
+
+
+
+ and 
+
+                        
+   
+            
+ 
+               
+ 
+ 
+
+--- Page 5 ---
+No. 2    Xie Zhinan et al.: Multi-axial unsplit frequency-shifted PML for displacement-based anisotropic wave simulation in inﬁ nite domain    411
+
+In  the  two-dimensional  case  (having  x–y   Cartesian 
+coordinates), the in-plane wave equation can be obtained 
+by simply omitting the variables and the spatial variation 
+, 
+related to the z coordinate. We then have 
+, 
+
+
+
+  
+2
+6
+
+u
+
+e
+
+T
+
+T
+
+u
+1
+
+e
+2
+
+e
+6
+
+e
+1
+
+u
+
+
+
+
+
+1
+
+2
+
+
+
+
+
+
+1
+0
+
+
+
+
+
+0
+
+
+2
+
+2
+
+
+
+1
+
+
+
+
+
+, an
+
+d
+
+C
+
+
+
+c
+11
+c
+12
+0
+
+
+
+
+
+
+
+
+
+0
+0
+c
+66
+
+
+
+
+
+
+
+(12)
+
+, 
+
+T
+c
+12
+c
+22
+0
+
+3.2  Derivation of the second-order M-UFSPML
+
+The PML is derived classically through the complex 
+coordinate  stretching  of  the  wave  equation  written  in 
+strong form. Recently, the weak-form approach for the 
+PML derivation has been introduced. In the weak-form 
+approach,  the  PML  is  derived  through  the  complex 
+coordinate stretching of the wave equation written in the 
+weak form (Bindel and Govindjee, 2005; Matuszyk and 
+Demkowicz, 2013; Xie and Zhang, 2017). In the classical 
+way,  the  derivation  of  the  wave  equation  in  the  PML 
+and that of the boundary and/or interface conditions are 
+independent, and the two may be improperly matched, 
+which  can  lead  to  numerical  instability  and  reduced 
+numerical accuracy, as shown by Duru and Kreiss (2014). 
+However,  in  taking  the  weak-form  approach,  such  a 
+mismatch can be naturally avoided because the free and 
+interface  conditions  are  simultaneously  stretched  in  a 
+consistent way. In the following sections, we derive the 
+second-order M-UFSPM using the weak-form approach. 
+We  start  from  the  second-order  wave  equation  in  the 
+weak form speciﬁ ed in the inﬁ nite domain 
+, 
+which is written as:
+
+
+0
+
+0,
+
+
+
+
+
+x
+
+y
+
+
+
+
+
+
+
+
+
+
+2
+
+ 
+
+
+
+ˆˆˆˆ
+w
+
+x
+xx
+
+
+ˆˆˆˆ
+w
+
+x
+xx
+
+
+
+
+
+
+
+
+x
+
+
+
+ 
+
+w
+
+x
+xy
+
+y
+
+ 
+
+x
+
+
+
+w
+
+
+y
+yx
+
+
+
+d
+
+y
+
+
+
+w
+
+
+
+y
+yx
+
+ 
+
+w
+
+y
+
+w
+
+x
+xy
+
+
+
+w
+
+
+y
+yy
+
+
+y
+yy
+
+
+
+
+x y
+d d
+
+x
+d
+
+
+
+
+  (13)
+
+where     denotes  the  whole  domain  in  
+
+0
+and    represents the boundary of   . We map Eq. (13) 
+into complex coordinates deﬁ ned by:
+
+0,
+
+
+
+
+
+y
+
+x
+
+
+
+x x y
+,
+
+
+
+x
+ 
+
+x
+
+
+
+0
+
+
+
+
+
+
+x
+ 
+
+x
+
+
+
+0
+
+
+
+d
+
+m
+x
+
+
+
+ 
+d x
+
+] d
+
+x
+
+
+
+[ +i
+ 
+x
+
+x y
+/
+
+p
+
+
+d y
+
+
+
+
+
+
+
+
+
+
+ 
+x
+
++i
+
+
+
+x
+
+d
+
+
+
+
+
+(14)  
+
+
+
+
+
+
+
+
+
+
+
+ˆˆ
+u w u w
++
+x
+x
+
+
+
+y
+
+y
+
+
+
+x y
+d d
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ˆˆˆˆ
+w
+
+x
+xx
+
+
+
+x
+
+ 
+
+
+
+w
+
+x
+xy
+
+y
+
+ 
+
+w
+
+x
+
+
+
+
+y
+yx
+
+ 
+
+w
+
+y
+
+
+
+
+y
+yy
+
+
+
+d d
+x y
+
+
+
+ˆˆˆˆ
+w
+
+x
+xx
+
+
+
+w
+
+
+
+
+y
+yx
+
+
+
+
+
+
+
+
+
+d
+
+y
+
+
+
+
+
+
+
+w
+
+x
+xy
+
+
+
+w
+
+
+
+
+y
+yy
+
+
+
+x
+d
+
+
+
+
+
+
+
+ˆˆˆˆ
+u
+x
+
+
+ 
+
+2
+
+
+
+
+s s u
+x
+y
+
+x
+
+
+
+u
+,  
+y
+
+
+ 
+
+2
+
+
+
+
+s s u
+x
+y
+
+y
+
+(16)
+
+(17)
+
+
+ˆˆˆ
+
+xx
+
+ˆˆˆ
+
+xy
+
+
+
+c
+11
+
+
+
+c
+66
+
+
+
+
+s
+
+s
+
+x
+
+y
+
+s
+
+x
+
+s
+
+y
+
+
+
+
+
+
+u
+
+x
+
+x
+
+
+
+c
+12
+
+
+
+y
+
+u
+
+y
+
+,
+
+
+
+u
+
+x
+
+y
+
+
+
+c
+66
+
+
+
+x
+
+u
+
+y
+
+(18)
+
+
+ˆˆˆ
+
+yx
+
+ˆˆˆ
+
+yy
+
+
+
+c
+66
+
+
+
+y
+
+u
+
+x
+
+
+
+c
+66
+
+
+
+c
+12
+
+
+
+x
+
+u
+
+x
+
+
+
+c
+22
+
+
+
+
+s
+
+y
+
+s
+
+x
+
+s
+
+x
+
+s
+
+y
+
+
+
+
+
+
+u
+
+x
+
+y
+
+,
+
+
+
+u
+
+y
+
+y
+
+(19)
+
+x
+
+s
+
+m
+x
+
+1
+ 
+
+
+
+d  
++i
+where 
+x
+The  inverse  Fourier  transformations  of  
+s  can be formally written as:
+s
+y
+
+s , and 
+y
+
+  and 
+
+1
+ 
+
+s
+
+s
+
+x
+
+x
+
+y
+
+m
+y
+
+
+
++i
+d  
+y
+2
+s s
+x
+
+y
+
+. 
+
+, 
+
+
+
+1
+
+2
+
+
+
+s s
+x
+
+
+
+
+
+
+ 
+t
+
+
+
+
+a
+
+0
+
+ 
+t
+
+
+
+
+
+
+y
+
+a
+
+1
+
+
+
+a
+2
+
+
+
+x
+
+t
+
+ 
+H t
+
+
+
+a
+3
+
+t
+
+
+
+e y
+
+ 
+H t
+
+
+
+
+ 
+t
+
+
+e
+
+1
+ 
+
+
+s
+
+x
+
+s
+
+y
+
+ 
+
+
+
+
+ 
+t
+
+
+
+a
+4
+
+e
+
+
+
+x
+
+t
+
+ 
+H t
+
+
+
+a
+5
+
+e
+
+
+
+
+
+y
+
+
+
+d
+
+m
+y
+
+
+
+t
+
+(20)
+
+ 
+H t
+(21)
+
+ 
+H t
+(22)
+
+The  detailed  expression  of 
+
+i     can  be 
+,  7
+found in Appendix B of the study of Xie et al. (2014). 
+Substituting  Eqs.  (20)–(22)  with  Eqs.  (17)–(19),  we 
+obtain the time-domain M-UFSPML in its weak form:
+
+ia , 
+
+1 ,
+
+
+
+x y
+d d
+
+
+
+
+w
+
+x
+xy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+x
+
+
+
+
+
+u w u w
++
+x
+x
+
+
+
+y
+
+y
+
+ 
+
+y
+
+
+
+w
+
+x
+xx
+
+
+
+
+w
+
+x
+xx
+
+w
+
+
+
+
+w
+
+
+
+
+y
+yx
+
+
+
+d
+
+y
+
+
+
+
+
+w
+
+x
+xy
+
+
+
+w
+
+ 
+
+x
+
+
+
+
+y
+yx
+
+ 
+
+w
+
+y
+
+
+
+
+y
+yy
+
+
+
+
+
+y
+yy
+
+
+
+x y
+d d
+
+x
+d
+
+
+
+
+(23)
+
+Taking 
+
+xu  as an example, we ﬁ nd
+
+ˆˆ
+u w u w
++
+x
+
+x
+
+y
+
+
+
+y
+
+x y
+d d
+
+
+
+1
+ 
+
+
+s
+
+y
+
+s
+
+x
+
+ 
+
+
+
+
+ 
+t
+
+
+
+a
+6
+
+e
+
+
+
+y
+
+t
+
+ 
+H t
+
+
+
+a
+7
+
+e
+
+
+
+
+
+x
+
+
+
+d
+
+m
+x
+
+
+
+t
+
+
+
+y x y
+,
+
+
+
+y
+ 
+
+y
+ 
+
+d
+
+m
+y
+
+y
+
+
+
+0
+
+y
+
+
+
+0
+
+y x
+/
+
+p
+
+
+
+
+ 
+
+d x
+
+
+
++i
+ 
+
+
+
+d
+
+y
+
+
+
+y
+
+
+
+
+d y
+
+
+
+
+
+
+
+
+
+
+
+y
+
+
+
++i
+
+
+
+y
+d
+
+
+
+
+
+(15)
+
+
+
+u
+x
+
+a
+2
+
+
+ˆ
+s s u
+x
+y
+
+x
+
+
+ 
+e
+
+
+
+x
+
+2
+
+
+
+ 
+H t
+
+t
+
+
+
+
+
+
+
+u
+x
+
+
+
+
+a u
+0
+
+x
+
+
+
+a u
+1
+
+x
+
+
+
+ 
+
+
+u
+
+x
+
+
+
+a
+3
+
+
+
+
+t
+
+
+
+e y
+
+ 
+H t
+
+
+
+
+
+
+u
+
+x
+
+(24)
+
+and transformed into real coordinates using the incorrect 
+chain rule Eq. (3), thereby obtaining:
+
+within which two convolution terms exist. To compute 
+convolution  terms,  we  need  to  introduce  a  memory 
+
+ 
+ 
+       
+ 
+ 
+ 
+           
+               
+             
+   
+               
+   
+   
+  
+            
+
+--- Page 6 ---
+412                                               EARTHQUAKE ENGINEERING AND ENGINEERING VIBRATION                                            Vol. 22
+
+
+
+
+
+
+ 
+g t
+n , 
+
+ 
+H t
+n t
+    by 
+
+ 
+e bt
+
+t
+
+
+.  Denoting 
+variable  such  as 
+
+ t   at 
+nt
+1n    can 
+the  evaluation  of 
+be  updated  using  the  recursive  convolution  technique 
+summarized  by  Xie  et  al.  (2014).  Thus,  12  memory 
+variables  are  needed  to  deal  with  all  the  convolution 
+terms  in  the  time-domain  M-UFSPML.  To  reduce 
+the  number  of  memory  variables,  we  restructure  the 
+M-UFSPML as:
+
+
+
+x y
+d d
+
+
+
+
+w
+
+x
+xy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+x
+
+
+
+
+
+u w u w
++
+x
+x
+
+
+
+y
+
+y
+
+ 
+
+y
+
+
+
+w
+
+x
+xx
+
+
+
+
+w
+
+x
+xx
+
+w
+
+
+
+
+w
+
+
+
+
+y
+yx
+
+
+
+d
+
+y
+
+
+
+
+
+w
+
+x
+xy
+
+
+
+w
+
+ 
+
+x
+
+
+
+
+y
+yx
+
+ 
+
+w
+
+y
+
+
+
+
+y
+yy
+
+
+
+
+
+y
+yy
+
+
+
+x y
+d d
+
+x
+d
+
+
+
+
+(25)
+
+
+
+u
+x
+
+
+u
+y
+
+
+
+
+u
+x
+
+
+
+
+a u
+0
+
+x
+
+
+
+a u
+1
+
+x
+
+
+
+a u
+2
+
+
+x
+x
+
+
+
+a u
+3
+
+
+,y
+x
+
+
+
+
+u
+y
+
+
+
+
+a u
+0
+
+y
+
+
+
+a u
+1
+
+y
+
+
+
+a u
+2
+
+
+x
+y
+
+
+
+a u
+3
+
+
+y
+y
+
+(26)
+
+
+ 
+
+ij
+
+ij
+
+
+
+d
+
+m
+j
+
+dm
+ 
+ij
+j
+
+
+j
+
+i
+,   ,
+
+j
+
+
+
+x y
+,
+
+(27)
+
+
+
+
+u
+
+
+
+m
+d u
+y
+
+
+y
+x
+
+x
+
+u
+
+x
+
+
+
+m
+d u
+x
+
+
+x
+x
+
+
+
+
+
+
+c
+12
+
+
+
+y
+
+
+
+c
+66
+
+
+
+x
+
+
+u
+
+
+u
+
+
+
+m
+d u
+x
+
+
+x
+y
+
+y
+
+
+
+m
+d u
+y
+
+
+y
+y
+
+y
+
+
+,
+
+
+(28)
+
+
+xx
+
+
+
+c
+11
+
+
+
+x
+
+
+xy
+
+
+
+c
+66
+
+
+
+y
+
+
+ 
+xy
+
+yx
+
+,
+
+
+yy
+
+
+
+c
+12
+
+
+
+x
+
+
+
+u
+
+x
+
+
+
+m
+d u
+y
+
+
+y
+x
+
+
+
+
+
+c
+22
+
+
+
+y
+
+
+
+u
+
+y
+
+
+
+m
+d u
+x
+
+
+x
+y
+
+
+
+(29)
+
+where 
+
+
+u
+j
+i
+
+
+
+jt
+
+e
+
+
+ 
+H t
+
+
+
+
+
+
+ 
+u t
+i
+
+, 
+
+presented in Eqs. (16)–(19), which comprises four in the 
+two-dimensional case.
+
+in 
+
+their 
+
+For  comparison,  we  summarize 
+
+the  M-PML 
+formulations  and  the  number  of  additional  variables 
+needed  for 
+time-domain 
+implementation 
+elastodynamics,  as  shown  in  Table  1.  The  number 
+listed in the table is the number of additional variables 
+introduced in the M-PML relative to the wave equation 
+in the computational domain. Notably, in the ﬁ rst-order 
+case,  there  are  ﬁ ve  wave  equations  (two  for  velocities 
+and three for stresses), whereas in the second-order case 
+there  are  two  wave  equations  (two  for  displacements). 
+The table thus shows that the memory cost is lowest for 
+our formulation. Moreover, in their M-USFPML, Li and 
+Bou  (2010)  treated  the  convolutional  terms  involving 
+the  divergence  of  stress  and  containing  second-order 
+space partial diﬀ erentials as body force terms. The direct 
+computation  of  second-order  space  partial  diﬀ erentials 
+in the FE or SE method requires a dense grid in a case 
+in which high-order ( 2 ) element interpolant functions 
+are used, and such computation could be wrong in the 
+case  of  low-order  ( 2 )  element  interpolant  functions 
+(Zhebel  et  al.,  2014).  The  same  problem  exists  for 
+the  ﬁ rst-order  M-UFSPML  given  by  Martin  et  al. 
+(2008).  Thus,  the  M-UFSPML  presented  here  is  more 
+suitable  for  implementation  using  FE/SE  methods, 
+irrespective  of  the  order  of  element  interpolants.  The 
+weak-form  M-UFSPML  shares  the  same  structure  as 
+the weak-form wave equation, and the implementation 
+of  the  M-UFSPML  can  thus  use  the  same  code  as  the 
+wave  equation,  except  for  the  additional  treatment  of 
+convolution  within  the  element-wise  stress  and  strain 
+computation. A detailed implementation of the second-
+order wave equation was described by Komatitsch and 
+Tromp (1999), and we do not repeat it in this paper.
+
+m
+j
+
+
+
+
+
+d
+ij
+
+j
+
+
+
+
+
+d
+
+m
+j
+
+
+
+j
+
+
+
+t
+
+
+
+e
+
+
+
+
+
+ 
+H t
+
+
+
+
+
+
+
+
+ij
+
+ 
+t
+
+i
+,   ,
+
+j
+
+
+
+x y
+,
+
+4  Numerical experiments
+
+the 
+
+Through  simple  counting,  we  see  that  only  eight 
+memory  variables  are  needed  in  the  restructured 
+M-UFSPML.  In 
+three-dimensional  case,  only 
+18  memory  variables  are  needed  in  the  restructured 
+M-UFSPML,  whereas  in  the  original  formulation, 
+39  memory  variables  were  needed.  However,  in  the 
+i  ,  the  number  of  additionally  required 
+case  that 
+memory  variables  in  the  M-UFSPML,  as  presented  in 
+Eqs.  (25)–(29)  is  greater  than  that  in  the  M-UFSPML 
+
+0
+
+We present three numerical experiments  to  test the 
+accuracy  and  long-term  stability  of  our  M-UFSPML 
+formulation. The ﬁ rst example involves isotropic wave 
+simulation  in  a  homogeneous  semi-inﬁ nite  model. 
+The  second  involves  anisotropic  wave  simulations 
+in  a  homogeneous  inﬁ nite  model.  The  third  involves 
+simulation using a horizontally layered model ﬁ lled with 
+coupled  isotropic  and  anisotropic  media.  We  compare 
+the  accuracy  of  our  M-UFSPML  against  that  of  the 
+
+Table 1  M-PML formulations and a number of additional variables necessary for their implementation in 
+
+                                  time-domain elastodynamics (in-plane wave)
+
+Split
+
+Unsplit
+
+First order
+Meza-Fajardo and Papageorgiou (2008)#; 10#
+Gao and Huang (2017)#; 10
+Martin et al. (2008)*; 8*
+Gao and Huang (2017)*; 8*
+
+Second order
+Ping et al. (2014, 2016)#; 10#
+
+Li and Bou (2010)#*; 8#(8*)
+ Fathi et al. (2015)#; 6#
+This paper#*; 4#(8*)
+
+                 (# or * denotes the use of a frequency-shifted or classical coordinate stretching function)
+
+ 
+         
+                
+  
+    
+         
+
+--- Page 7 ---
+No. 2    Xie Zhinan et al.: Multi-axial unsplit frequency-shifted PML for displacement-based anisotropic wave simulation in inﬁ nite domain    413
+
+extended-domain  solution  obtained  by  enlarging  the 
+truncated  domain,  in  addition  to  other  results  obtained 
+using  diﬀ erent  inﬁ nite-domain  truncation  techniques. 
+A  ﬁ xed-boundary  condition  (setting  the  displacement 
+to  zero)  is  applied  along  the  outside  boundary  of  the 
+M-UFSPML.
+
+Unless otherwise speciﬁ ed, in all experiments we use 
+a polynomial degree N = 5 for the Lagrange interpolants 
+within  each  Legendre  spectral  element.  For  time-
+stepping,  we  use  the  second-order  explicit  Newmark 
+),  combined  with  a  recursive 
+scheme  (
+convolution technique as given in Eq. (73) of the paper 
+published by Xie et al. (2014). According to Collino and 
+Tsogka (2001), the damping proﬁ le that is normal for the 
+M-UFSPML interface is
+
+0  , 
+
+1 / 2
+
+ 
+
+
+d x
+i
+
+
+
+
+
+V
+3
+P
+2
+
+,max
+L
+
+
+
+x L
+i
+
+2
+
+                     (30)
+
+where  L  is  the  thickness  of  the  M-UFSPML,  xi    is  the 
+distance along the normal direction measured from the 
+  is  the  maximum  velocity  of  the 
+interface,  and 
+primary  arriving  wave  in  the  media.  Following  Zhang 
+and Shen (2010), we set
+
+PV
+
+,max
+
+
+f
+03
+x
+  
+i
+
+
+
+
+1
+
+
+
+x L
+i
+
+
+
+ (31)
+
+where 
+function,
+
+0f  is the dominant frequency of the source time 
+
+ 
+R t
+
+
+
+
+1 2
+
+
+
+
+
+
+f
+
+
+0
+
+
+
+t
+
+
+
+t
+
+0
+
+
+
+
+
+e
+
+2
+
+
+
+
+
+
+
+
+
+
+f
+ 
+
+0
+
+
+
+t
+
+
+
+t
+
+0
+
+2
+
+
+
+
+
+
+
+ (32)
+
+and  t0  is  its  onset  time.  We  study  the  decay  of  energy 
+with time throughout the domain to check the long-term 
+stability  of  our  formulation  by  evaluating  total  energy, 
+which is the sum of the kinetic and potential energies:
+
+E
+
+
+
+
+
+U
+
+1
+2
+
++
+
+2
+
+1
+2
+
+
+
+,
+e j
+,
+e j
+ 
+lk
+lk
+
+e
+
+j
+
+(33)
+
+U
+
+,
+e j
+where 
+lk
+are respectively the stress and strain components.
+
+ is the norm of the velocity vector and 
+
+2
+
+,
+lk   
+
+e j
+,
+
+4.1  Isotropic  wave  simulation  in  a  semi-inﬁ nite 
+       domain
+
+We consider a homogeneous isotropic semi-inﬁ nite 
+
+Table 2  Geometrical and discretization parameters for the homogeneous isotropic semi-inﬁ nite model 
+
+                                       and the anisotropic inﬁ nite model
+
+Length
+
+Width
+
+Density
+
+ Elastic coeﬃ  cients
+
+  Isotropic
+
+Anisotropic medium Ⅲ, IⅤ
+
+Apatite
+
+                            Physical domain dimension             
+
+11 km
+
+4 km
+
+8 m
+
+8 m
+
+25 cm
+
+25 cm
+
+                           Physical domain properties
+
+2700 kg/m3
+
+VP =3200 m/s, 
+VS =1870 m/s.
+
+1 kg/m3
+
+3200 kg/m3 
+
+Given by Table 3 
+
+Given by Table 3
+
+                  Source location
+
+From left boundary
+
+From bottom boundary
+
+0.25 km
+
+3.75 km
+
+4 m
+
+4 m
+
+12.5 cm
+
+12.5 cm
+
+                    Receiver location                                               
+
+From left boundary
+
+From bottom boundary
+
+9.8 km
+
+4 km
+
+5 m
+
+6 m
+
+                            Ricker wavelet parameters  
+
+Dominant frequency
+
+Onset time
+
+2.5 Hz
+
+0.4 s
+
+1 Hz
+
+0.5 s
+
+22.5 cm
+
+20.5 cm
+
+170 kHz
+
+5.88 μs
+
+                           Discretization parameters                                       
+
+Element size
+
+Layer of elements used in PML
+
+Time step
+
+Total duration
+
+0.1 km
+
+3, 9, 15
+
+0.0004 s
+
+20 s
+
+0.25 m
+
+9
+
+0.001 s
+
+100 s
+
+0.25 cm
+
+9
+
+0.02 μs
+
+2000 μs
+
+                      
+         
+                 
+
+--- Page 8 ---
+414                                               EARTHQUAKE ENGINEERING AND ENGINEERING VIBRATION                                            Vol. 22
+
+|x yp
+
+|y xp
+
+ and 
+
+model  with  a  traction-free  bound ary  at  its  top.  The 
+M-UFSPML  is  applied  for  inﬁ nite-domain  truncation 
+along the other three sides. The elastic properties of the 
+medium  and  geometrical  and  discretization  parameters 
+of the model are listed in the second column of Table 2. 
+ equal to 
+Within the M-UFSPML, we set 
+0.1. Owing to the loss of the perfect-matching property 
+of  the  M-UFSPML,  we  ﬁ rst  compare  the  accuracy  of 
+the  normalized  displacement  of  the  USFPML,  with 
+a  thickness  of  300  m,  with  that  of  the  M-UFSPML, 
+which  has  diﬀ erent  thicknesses,  namely  300,  900 
+and  1500  m,  corresponding  to  3,  9  and  15  elements, 
+respectively.  For  the  P  wave,  the  respective  ratios  of 
+the M-UFSPML thickness to the dominant wavelength 
+are approximately 0.23, 0.70 and 1.17. For the S wave, 
+the  ratios  are  approximately  equal  to  0.40,  1.20  and 
+2.00. Figure 3 shows snapshots of the waveﬁ eld at 2, 4, 
+and  8  s,  computed  with  the  nine-element  M-UFSPML 
+and  three-element  UFSPML.  Owing  to  the  uniﬁ ed 
+scale  used  for  all  snapshots,  we  do  not  see  a  clear 
+diﬀ erence between the snapshots obtained with the nine-
+element  M-UFSPML  and  the  three-element  UFSPML. 
+However, as seen in Fig. 4, we see the time history of 
+the  normalized  displacement  at  the  receiver,  revealing 
+that the accuracy of the M-UFSPML increases with the 
+thickness of the M-UFSPML and is always lower than 
+that of the UFSPML. Only in the case of a thickness of 
+15 elements is the accuracy of the M-UFSPML close to 
+that of the UFSPML. The accuracy of the nine-element 
+M-UFSPML is suﬃ  ciently ﬁ ne for practical application. 
+
+The M-UFSPML has no clear diﬀ erence in its absorbing 
+eﬃ  ciency  between  body  waves  and  Rayleigh  waves. 
+We  compare  the  accuracy  of  the  M-UFSPML  in  our 
+paper  with  that  of  the  M-UFSPML  obtained  by  Li 
+and  Bou  (2010),  both  having  a  thickness  set  of  nine 
+elements.  Figure  5,  comparing  the  time  history  of  the 
+displacement  at  the  receiver,  shows  that  the  accuracy 
+of  the  M-UFSPML  is  slightly  better  than  that  of  the 
+M-UFSPML obtained by Li and Bou (2010), referred to 
+as the M-UFSPML-Li. Additionally, the accuracy of the 
+M-UFSPML is better than that of the M-UPML, within 
+ix   and the widely used ﬁ rst-order Stacey 
+which 
+absorbing boundary condition is present (Stacey, 1988). 
+To ensure a fair comparison, in the event that the Stacey 
+absorbing boundary condition is used, the computation 
+domain is extended to include the space occupied by the 
+M-UFSPML.
+
+ 0
+
+
+
+4.2  Anisotropic wave simulation in inﬁ nite domain
+
+We  now  consider  the  anisotropic  wave  simulation 
+in  the  homogeneous  inﬁ nite  domain.  Three  types  of 
+anisotropic  medium  are  consid ered. The  geometry  and 
+discretization  parameters  are  given  in  the  second  and 
+third  columns  of Table  2. The  elastic  properties  of  the 
+anisotropic  medium  are  given  in  Table  3.  In  all  cases, 
+  of  the  M-UFSPML  equal  to  0.1, 
+we  set 
+except  for  anisotropic  medium  Ⅲ,  for  which  we  use
+p
+.  For  each  case,  we  compare  the 
+absorbing  eﬃ  ciency  of  the  M-UFSPML,  of  which  the 
+
+  and 
+
+0.25
+
+|y xp
+
+|x yp
+
+p
+
+
+
+x y
+|
+
+y x
+|
+
+y
+
+y
+
+y
+
+x
+
+x
+
+x
+
+y
+
+y
+
+y
+
+x
+
+x
+
+x
+
+2 taken at 2, 4, and 8 s, computed with diﬀ erent inﬁ nite-domain truncation 
+Fig. 3   Snapshots of the normalized displacement
+y
+          techniques: (left column) M-UFSPML with a thickness of nine elements and (right column) U FSPML with a thickness of
+            three elements (isotropic medium, semi-inﬁ nite model, vertical excitation)
+
+u2
+x
+
+u
+
+
+--- Page 9 ---
+No. 2    Xie Zhinan et al.: Multi-axial unsplit frequency-shifted PML for displacement-based anisotropic wave simulation in inﬁ nite domain    415
+
+l
+a
+t
+n
+o
+z
+i
+r
+o
+h
+
+d
+e
+z
+i
+l
+a
+m
+r
+o
+N
+
+t
+n
+e
+m
+e
+c
+a
+l
+p
+s
+i
+d
+
+l
+a
+t
+n
+o
+z
+i
+r
+o
+h
+
+d
+e
+z
+i
+l
+a
+m
+r
+o
+N
+
+t
+n
+e
+m
+e
+c
+a
+l
+p
+s
+i
+d
+
+Fig.  4    Comparison  of  time  histories  of  the  normalized  horizontal  and  vertical  displacements  at  the  receiver,  computed  with 
+            M-UFSPMLs having thicknesses of 3, 9, and 15 elements and an UFSPML having a thickness of three elements (isotropic 
+             medium, semi-inﬁ nite model, vertical excitation)
+
+l
+a
+t
+n
+o
+z
+i
+r
+o
+h
+
+d
+e
+z
+i
+l
+a
+m
+r
+o
+N
+
+t
+n
+e
+m
+e
+c
+a
+l
+p
+s
+i
+d
+
+l
+a
+t
+n
+o
+z
+i
+r
+o
+h
+
+d
+e
+z
+i
+l
+a
+m
+r
+o
+N
+
+t
+n
+e
+m
+e
+c
+a
+l
+p
+s
+i
+d
+
+Fig. 5  Comparison of time histories of the normalized horizontal and vertical displacements at the receiver, computed with an 
+             M-UFSPML,  an  M-UPML,  and  an  M-UFSPML-Li  having  a  thickness  of  nine  elements  and  an  UFSPML  having  a 
+            thickness of three elements. M-UFSPML-Li refers to the result obtained with the M-UFSPML used by Li and Bou (2010) 
+             (isotro pic medium, semi-inﬁ nite model, vertical excitation )
+
+thickness is set uniformly as nine times the element size, 
+with  the  eﬃ  ciency  of  the  standard  Stacey  ABC.  The 
+wave  speed  in  the  anisotropic  medium  depends  on  the 
+azimuth, and the ratios of the M-UFSPML thickness to 
+the  dominate  wavelength  are  thus  diﬀ erent  for  waves 
+having  a  diﬀ erent  azimuth—that  is,  approximately 
+0.7  for  primary  arriving  waves  and  1.2  for  secondary 
+arriving waves. To ensure a fair comparison, in the case 
+of the Stacey ABC, the computation domain is extended 
+to  include  the  space  occupied  by  the  M-UFSPML.  In 
+all  cases,  we  ﬁ rst  present  snapshots  of  the  normalized 
+displacement  at  three  diﬀ erent  times  for  a  vertical 
+excitation. The  left  panel  of  Fig.  7  shows  waves  at  an 
+evolving stage, whereas the center and right panels show 
+the  absorption  of  waves  in  the  M-UFSPML  region.  In 
+Figs.  7,  9,  and  11  there  are  no  discernible  reﬂ ections 
+from  the  M-UFSPML  interface,  indicating  satisfactory 
+performance of the nine-element M-UFSPML. Figures 
+10,  12,  and  14  compare  the  normalized  horizontal  and 
+vertical  displacement  time  histories  at  the  receiver, 
+computed  with  the  M-UFSPML,  Stacey  ABC,  and 
+inﬁ nitely  extended  domain,  the  solution  for  which  is 
+referred  to  as  an  extended  solution.  We  observe  that 
+relatively good absorbing eﬃ  ciency is achieved with the 
+
+nine-element M-UFSPML, which is less than 2% in the 
+case of medium Ⅲ and less than 1% in other cases. The 
+excellent  performance  of  the  M-UFSPML  is  partially 
+attributable to the non-grazing incident waves in all cases. 
+
+Fig. 6   Total decay of energy throughout the domain, computed 
+          with the M-UFSPML, M-UPML, and M-UFSPML-Li, 
+          having a thickness of nine elements and the UFSPML,
+               having  a  thickness  of  three  elements.  M-UFSPML-Li 
+         refers to the result obtained by using the M-UFSPML 
+         by Li and Bou (2010) (isotropic medium, semi-inﬁ nite 
+            model, vertical excitation)
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- Page 10 ---
+416                                               EARTHQUAKE ENGINEERING AND ENGINEERING VIBRATION                                            Vol. 22
+
+Table 3  Elasticity coeﬃ  cients of an anisotropic medium
+
+Elasticity coeﬃ  cients (N/m2)
+
+c11
+
+c22
+
+c66
+
+c12
+
+Ⅲ
+
+4
+
+20
+
+2
+
+7.5
+
+Ⅳ
+
+10
+
+20
+
+6
+
+2
+
+Apatite
+
+1.65×1011
+
+6.20×1010
+
+3.96×1010
+
+5.00×1010
+
+y
+
+y
+
+y
+
+x
+
+x
+
+x
+
+2  taken at 3, 6, 9 s and computed with diﬀ erent inﬁ nite-
+Fig. 7  Comparison of snapshots of the normalized displacement 
+y
+         domain truncation techniques: M-UFSPML having a thickness of nine elements (anisotropic medium III, inﬁ nite model, 
+            vertical excitation)
+
+u2
+x
+
+u
+
+l
+a
+t
+n
+o
+z
+i
+r
+o
+h
+
+d
+e
+z
+i
+l
+a
+m
+r
+o
+N
+
+t
+n
+e
+m
+e
+c
+a
+l
+p
+s
+i
+d
+
+l
+a
+t
+n
+o
+z
+i
+r
+o
+h
+
+d
+e
+z
+i
+l
+a
+m
+r
+o
+N
+
+t
+n
+e
+m
+e
+c
+a
+l
+p
+s
+i
+d
+
+Fig. 8   Comparison of time histories of the normalized horizontal and vertical displacements at the receiver, computed with the 
+            M-UFSPML having a thickness of nine elements, Stacey ABC and the extended domain (anisotropic medium III, inﬁ nite
+             model, vertical excitation)
+
+y
+
+y
+
+y
+
+x
+
+x
+
+x
+
+taken at 3.0, 4.6, and 6.0 s and computed with diﬀ erent 
+Fig. 9   Comparison of snapshots of the normalized displacement 
+          inﬁ nite-domain truncation techniques: M-UFSPML having a thickness of nine elements (anisotropic medium IV, inﬁ nite 
+            model, vertical excitation)
+
+u
+
+u2
+x
+
+2
+y
+
+ 
+ 
+ 
+ 
+ 
+
+--- Page 11 ---
+No. 2    Xie Zhinan et al.: Multi-axial unsplit frequency-shifted PML for displacement-based anisotropic wave simulation in inﬁ nite domain    417
+
+Reﬂ ection can also be observed owing to the imperfect 
+interface of the M-UFSPML. We therefore recommend 
+using  the  UFSPML  for  an  anisotropic  medium  with 
+elastic properties, satisfying the suﬃ  cient conditions for 
+PML stability given by Bécache et al. (2003).
+
+4.3  Coupled isotropic and anisotropic wave simulation 
+        in a layered model
+
+We present the performance of the M-UFSPML in a 
+
+heterogeneous medium. We consider a two-dimensional, 
+four-layer model adapted from the work of Zhu (2017), 
+with the medium properties given in Table 4. The media 
+in the ﬁ rst and fourth layers are isotropic. In the second 
+layer,  a  medium  having  vertical  transverse  isotropy  is 
+considered.  To  consider  the  main  anisotropic  medium 
+used  in  seismology,  the  medium  in  the  third  layer  is 
+set as a single set of vertical fractures embedded in an 
+isotropic  medium,  resulting  in  horizontal  transverse 
+isotropy.  The  discretization  parameters  are  given  in 
+
+l
+a
+t
+n
+o
+z
+i
+r
+o
+h
+
+d
+e
+z
+i
+l
+a
+m
+r
+o
+N
+
+t
+n
+e
+m
+e
+c
+a
+l
+p
+s
+i
+d
+
+l
+a
+c
+i
+t
+r
+e
+v
+
+d
+e
+z
+i
+l
+a
+m
+r
+o
+N
+
+t
+n
+e
+m
+e
+c
+a
+l
+p
+s
+i
+d
+
+Fig.  10    Comparison  of  time  histories  of  normalized  horizontal  and  vertical  displacements  at  the  receiver,  computed  with 
+                M-UFSPML having a thickness of nine elements, Stacey ABC and the extended domain (anisotropic medium IV, inﬁ nite 
+                model, vertical excitation)
+
+y
+
+y
+
+y
+
+x
+
+x
+
+x
+
+2  taken at 32, 60, and 90 μs and computed with diﬀ erent 
+Fig. 11  Comparison of snapshots of the normalized displacement
+y
+                inﬁ nite-domain  truncation  techniques:  M-UFSPML  having  a  thickness  of  nine  elements  (anisotropic  medium Apatite, 
+             inﬁ nite model, vertical excitation)
+
+u2
+x
+
+u
+
+l
+a
+t
+n
+o
+z
+i
+r
+o
+h
+
+d
+e
+z
+i
+l
+a
+m
+r
+o
+N
+
+t
+n
+e
+m
+e
+c
+a
+l
+p
+s
+i
+d
+
+l
+a
+c
+i
+t
+r
+e
+v
+
+d
+e
+z
+i
+l
+a
+m
+r
+o
+N
+
+t
+n
+e
+m
+e
+c
+a
+l
+p
+s
+i
+d
+
+Fig. 12   Comparison of normalized horizontal and vertical displacement time histories at the receiver, computed with M-UFSPML, 
+            having a thickness size of 9 elements, Stacey ABC and the extended domain (anisotropic medium apatite, inﬁ nite model, 
+              vertical excitation)
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- Page 12 ---
+418                                               EARTHQUAKE ENGINEERING AND ENGINEERING VIBRATION                                            Vol. 22
+
+|x yp
+
+ and 
+
+|y xp
+Table 5. We set 
+ of the M-UFSPML at 0.1 
+and  the  M-UFSPML  thickness  as  nine  elements.  The 
+wave  speed  in  an  anisotropic  medium  depends  on  the 
+azimuth,  and  the  ratios  of  the  M-UFSPML  thickness 
+to  the  dominate  wavelength  thus  diﬀ er  between  waves 
+with  diﬀ erent  azimuth—that  is,  approximately  0.7  for 
+primary  arriving  waves  and  1.2  for  secondary  arriving 
+waves. As shown in Fig. 13, the M-UFSPML performs 
+well in absorbing complex waves in the layered model. A 
+long-time numerically stable simulation can be conducted. 
+Figure 14  shows  the  energy  decay  curve  for  the  entire 
+domain, containing the truncated computational domain 
+and M-UFSPML. Additionally, we compare the energy 
+decay  curve,  computed  with  Stacey  ABC  and  the 
+M-UFSPML given by Li and Bou (2010), in which the 
+
+thickness is set to nine elements. The energy decay is more 
+rapid when our M-UFSPML is used, owing to its better 
+absorbing eﬃ  ciency. However, from the time history of 
+the two components of the normalized displacement at 
+the  receiver  100  m  from  the  right  of  the  M-UFSPML, 
+as shown in Fig. 15, clear spurious reﬂ ections returning 
+to  the  physical  domain  could  be  observed  in  all  cases 
+owing  to  near-grazing  waves  generated  by  multiple 
+reﬂ ections and transmission. Finally, it is worth noting 
+that the long penetration depth associated  with surface 
+waves  must  be  considered  to  avoid  their  interference 
+with the M-UFSPML. The same problem exists for PML 
+application.  Xie  et  al.  (2016)  illustrated  that  for  PML 
+application in wave simulation within an elastic Pekeris 
+waveguide, when surface waves interfere with the PML, 
+
+y
+
+y
+
+x
+
+x
+
+x
+
+2  taken at 0.6 s (left), 1.2 s (center), and 1.8 s (right), 
+Fig. 13  Comparison of snapshots of the normalized displacement 
+                computed with diﬀ erent inﬁ nite-domain truncation techniques: M-UFSPML having a thickness of nine elements (coupled
+               isotropic and anisotropic medium, layered model, vertical excitation)
+
+u2
+x
+
+u
+
+y
+
+Table 4  Media properties of the adapted layered model, taken from Zhu (2017)
+
+Layers
+
+Thickness
+
+VP
+(m/s)
+
+1900
+
+‒
+
+‒
+
+VS
+(m/s)
+
+1200
+
+‒
+
+‒
+
+300 m
+
+250 m
+
+150 m
+
+‒
+
+3200
+
+1500
+
+ρ
+(kg/m3)
+
+1800
+
+2300
+
+2200
+
+2500
+
+c11
+(N/m2)
+
+‒
+
+c22
+(N/m2)
+
+‒
+
+c66
+(N/m2)
+
+‒
+
+c12
+(N/m2)
+
+‒
+
+2.33×1010
+
+1.32×1010
+
+2.78×109
+
+6.56×109
+
+1.35×1010
+
+1.98×1010
+
+8.8×109
+
+1.04×1010
+
+‒
+
+‒
+
+‒
+
+‒
+
+1
+
+2
+
+3
+
+4
+
+Table 5  Geometrical and discretization parameters for the adapted layered model, taken from Zhu (2017)
+
+Truncated computational 
+domain dimension
+
+Length
+
+1000 m
+
+Width
+
+1000 m
+
+Receiver location                                               
+
+   Discretization parameters                                       
+
+From left 
+boundary
+
+From bottom 
+boundary
+
+900 m
+
+100 m
+
+Polynomial degree of SE
+
+Element size
+
+5
+
+10 m
+
+Source location
+
+   Ricker wavelet parameters  
+
+Layer of elements used in PML
+
+9
+
+From left 
+boundary
+
+From bottom 
+boundary
+
+300 m
+
+900 m
+
+Dominant 
+frequency
+
+Onset time
+
+10 Hz
+
+0 
+
+Timestep
+
+0.0002 s
+
+Total duration
+
+20 s
+
+
+--- Page 13 ---
+No. 2    Xie Zhinan et al.: Multi-axial unsplit frequency-shifted PML for displacement-based anisotropic wave simulation in inﬁ nite domain    419
+
+the  absorbing  eﬃ  ciency  of  the  PML  decreases  and 
+cannot be improved by simply increasing the thickness 
+of the PML.
+
+5  Conclusions
+
+We  developed  a  second-order  M-UFSPML  for 
+inﬁ nite-domain truncation in the simulation of a linear 
+anisotropic wave. Using plane wave analysis, we validate 
+the  importance  of  the  usage  of  the  non-rigorous  chain 
+rules in Meza-Fajardo and Papageorgiou (2008), which 
+
+)
+J
+(
+
+y
+g
+r
+e
+n
+E
+
+Fig.  14  Total  decay  of  energy  throughout  the  domain, 
+               computed  with  the  M-UFSPM L,  M-UFSPML-Li, 
+              having a thickness of nine elements and Stacy ABC
+              (coupled isotropic and anisotropic medium, layered 
+               model, vertical excitation). M-UFSPML-Li refers to 
+             the result obtained with the M-UFSPML by Li and 
+                Bou (2010)
+
+had  not  previously  been  addressed.  The  non-rigorous 
+chain  rules,  rather  than  the  rigorous  ones,  improve  the 
+absorbing  eﬃ  ciency  of  M-PML  for  low-frequency 
+incident  waves,  which  is  important  for  low-frequency 
+seismic  wave  simulation  adopted  in  seismic  hazard 
+analysis.  Moreover,  we  show  the  importance  of  the 
+complex frequency-shifted stretching function also can 
+improve  the  absorbing  eﬃ  ciency  of  M-PML  for  near-
+grazing incident waves. Based on the above inspection, 
+our  M-UFSPML  is  derived  through  the  multi-axial 
+complex  stretching  of  the  second-order  anisotropic 
+wave equation written in its weak form. The formulation 
+readily works with standard displacement-based FE and 
+SE  wave  simulation,  with  only  minor  modiﬁ cation  of 
+the  code  in  the  computational  domain.  It  is  simple  to 
+implement and allows for a natural application of traction-
+free boundary or interface conditions. The accuracy and 
+long-time stability of the formulation was demonstrated 
+using high-order SE discretization with a second-order 
+explicit  Newmark  time  integrator,  which  showed  the 
+accuracy  of  the  method  and  its  ability  to  solve  wave 
+propagation  in  anisotropic  media  having  orthorhombic 
+symmetry. Although the interface of the M-PML is not 
+perfectly matched, it remains more eﬃ  cient at absorbing 
+both body waves and interface waves than do low-order 
+absorbing boundary conditions, such as the widely used 
+Stacey  ABC  in  the  ﬁ eld  of  engineering.  One  topic  of 
+interest  for  future  study  would  be  to  extend  this  work 
+to  forward  and  adjoint  wave  simulation  in  anisotropic 
+viscoelastic  media  (Carcione,  2015).  Another  topic  of 
+
+l
+a
+t
+n
+o
+z
+i
+r
+o
+h
+
+d
+e
+z
+i
+l
+a
+m
+r
+o
+N
+
+t
+n
+e
+m
+e
+c
+a
+l
+p
+s
+i
+d
+
+l
+a
+c
+i
+t
+r
+e
+v
+
+d
+e
+z
+i
+l
+a
+m
+r
+o
+N
+
+t
+n
+e
+m
+e
+c
+a
+l
+p
+s
+i
+d
+
+Fig.  15    Comparison  of  time  histories  of  normalized  horizontal  and  vertical  displacements  at  the  receiver,  computed  with  the 
+               M-UFSPML, M-UFSPML-Li with a thickness of nine elements, Stacey ABC and the extended solution (coupled isotropic 
+               and  anisotropic  medium,  layered  model,  vertical  excitation).  M-UFSPML-Li  refers  to  the  result  obtained  with  the 
+               M-UFSPM by Li and Bou (2010)
+
+ 
+ 
+ 
+ 
+ 
+
+--- Page 14 ---
+420                                               EARTHQUAKE ENGINEERING AND ENGINEERING VIBRATION                                            Vol. 22
+
+interest for future studies would be to set up a community 
+model for an accurate comparison of the computational 
+truncation 
+eﬃ  ciency  of  diﬀ erent 
+technologies (e.g., Liao et al., 1984; Panji et al., 2014; 
+Zhao et al., 2018).
+
+inﬁ nite-domain 
+
+Acknowledgement
+
+This  study  was  funded  by  the  Scientiﬁ c  Research 
+Fund of the Institute of Engineering Mechanics, China 
+Earthquake  Administration  (No.  2021EEEVL0102); 
+the  National  Natural  Science  Foundation  of  China 
+(Nos.  U2039209;  51808516); 
+the  National  Key 
+RandD  Program  of  China  (No.  2018YFC1504004); 
+and  the  Distinguished Young  Scholars  Program  of  the 
+Natural  Science  Foundation  of  Heilongjiang  province, 
+China  (No. YQ2020E005).  Zhinan  mourns  for  Dimitri 
+Komatitsch, a visionary computational geophysicist and 
+a great teacher.
+
+References
+
+Almqvist BS and Mainprice D (2017), “Seismic Properties 
+and  Anisotropy  of  the  Continental  Crust:  Predictions 
+Based  on  Mineral  Texture  and  Rock  Microstructure,” 
+Reviews of Geophysics, 55(2): 367‒433.
+Babuška  V  and  Cara  M  (1991),  Seismic  Anisotropy 
+in  the  Earth  (Vol.  10),  Springer  Science  and  Business 
+Media, Germany.
+Bao H, Bielak J, Ghattas O, Kallivokas LF, O′Hallaron DR, 
+Shewchuk JR and Xu J (1998), “Large-Scale Simulation 
+of  Elastic  Wave  Propagation  in  Heterogeneous  Media 
+on Parallel Computers,” Computer Methods in Applied 
+Mechanics and Engineering, 152(1-2): 85‒102.
+Bécache  E,  Fauqueux  S  and  Joly  P  (2003),  “Stability 
+of  Perfectly  Matched  Layers,  Group  Velocities  and 
+Anisotropic Waves,” Journal of Computational Physics, 
+188(2): 399‒433.
+Bérenger  JP  (1994)  “A  Perfectly  Matched  Layer  for 
+the Absorption  of  Electromagnetic Waves,”  Journal  of 
+Computational Physics, 114(2): 185‒200.
+Bindel  DS  and  Govindjee  S  (2005),  “Elastic  PMLs 
+for  Resonator Anchor  Loss  Simulation,”  International 
+Journal for Numerical Methods in Engineering, 64(6): 
+789‒818.
+Carcione JM (2015), Wave Fields in Real Media: Wave 
+Propagation  in  Anisotropic,  Anelastic,  Porous  and 
+Electromagnetic Media, Elsevier, Netherlands.
+Cerjan  C,  Kosloﬀ   D,  Kosloﬀ   R  and  Reshef  M  (1985),  
+“A  Nonreﬂ ecting  Boundary  Condition  for  Discrete 
+Acoustic  and  Elastic  Wave  Equations,”  Geophysics, 
+50(4): 705‒708.
+Cerveny  V  (2005),  Seismic  Ray  Theory,  Cambridge 
+University Press, UK.
+
+Collino  F  and  Tsogka  C  (2001),  “Application  of  the 
+Perfectly Matched Absorbing Layer Model to the Linear 
+Elastodynamic  Problem  in  Anisotropic  Heterogeneous 
+Media,” Geophysics, 66(1): 294‒307.
+Deuss A, Irving JC and Woodhouse JH (2010), “Regional 
+Variation of Inner Core Anisotropy from Seismic Normal 
+Mode Observations,” Science, 328(5981): 1018‒1020.
+Diez A and Eisen O (2015), “Seismic Wave Propagation 
+in Anisotropic Ice-Part 1: Elasticity Tensor and Derived 
+Quantities  from  Ice-Core  Properties,”  The  Cryosphere, 
+9(1): 367‒384.
+Dmitriev  MN  and  Lisitsa  VV  (2011),  “Application 
+of  M-PML  Reﬂ ectionless  Boundary  Conditions  to 
+the  Numerical  Simulation  of  Wave  Propagation  in 
+Anisotropic  Media,  Part  I:  Reﬂ ectivity,”  Numerical 
+Analysis and Applications, 4(4): 271‒280.
+Duru K and Kreiss G (2014), “Numerical Interaction of 
+Boundary Waves with Perfectly Matched Layers in Two 
+Space Dimensional Elastic Waveguides,” Wave Motion, 
+51(3): 445‒465.
+Fathi A, Poursartip B and Kallivokas LF (2015), “Time-
+Domain Hybrid Formulations for Wave  Simulations  in 
+Three-Dimensional  PML-Truncated  Heterogeneous 
+Media,”  International  Journal  for  Numerical  Methods 
+in Engineering, 101: 165‒198.
+Festa G and Vilotte JP (2005), “The Newmark Scheme 
+as  Velocity–Stress  Time-Staggering:  an  Eﬃ  cient  PML 
+Implementation  for  Spectral  Element  Simulations  of 
+Elastodynamics,”  Geophysical  Journal  International, 
+161(3): 789‒812.
+Gao K and Huang L (2017), “Optimal Damping Proﬁ le 
+Ratios for Stabilization of Perfectly Matched Layers in 
+General Anisotropic  Media,”  Geophysics,  83(1):  T15‒
+T30.
+Halpern  L,  Petit-Bergez  S  and  Rauch  J  (2011),  “The 
+Analysis of Matched Layers,” Conﬂ uentes Mathematici, 
+3(02): 159‒236.
+Komatitsch D, Barnes C and Tromp J (2000), “Simulation 
+of Anisotropic Wave Propagation Based upon a Spectral 
+Element Method,” Geophysics, 65(4): 1251‒1260.
+Komatitsch  D  and  Martin  R  (2007),  “An  Unsplit 
+Convolutional  Perfectly  Matched  Layer  Improved  at 
+Grazing  Incidence  for  the  Seismic  Wave  Equation,”  
+Geophysics, 72(5): SM155‒SM167.
+Komatitsch  D  and  Tromp  J  (1999),  “Introduction  to 
+the  Spectral  Element  Method  for  Three-Dimensional 
+Seismic  Wave  Propagation,”  Geophysical  Journal 
+International, 139(3): 806‒822.
+Komatitsch D and Tromp J (2003), “A Perfectly Matched 
+Layer  Absorbing  Boundary  Condition  for  the  Second 
+Order  Seismic  Wave  Equation,”  Geophysical  Journal 
+International, 154(1): 146‒153.
+Li Y and Bou Matar O (2010), “Convolutional Perfectly 
+Matched  Layer  for  Elastic  Second  Order  Wave 
+Equation,”  The  Journal  of  the  Acoustical  Society  of 
+America, 127(3): 1318‒1327.
+
+
+--- Page 15 ---
+No. 2    Xie Zhinan et al.: Multi-axial unsplit frequency-shifted PML for displacement-based anisotropic wave simulation in inﬁ nite domain    421
+
+Liao ZP, Wong HL, Yang BP and Yuan YF (1984), “A 
+Transmitting  Boundary  for  Transient  Wave  Analysis,”  
+in  China  Series  A-Mathematics  Physics 
+Science 
+Astronomy  and  Technological  Science,  27(10):  1063–
+1076.
+Liu H and Zhang H (2019), “Reducing Computation Cost 
+by Lax-Wendroﬀ  Methods with Fourth Order Temporal 
+Accuracy,” Geophysics, 84(3): T109‒T119.
+Ma  S  and  Liu  P  (2006),  “Modeling  of  the  Perfectly 
+Matched  Layer  Absorbing  Boundaries  and  Intrinsic 
+in  Explicit  Finite-Element  Methods,” 
+Attenuation 
+Bulletin of the Seismological Society of America, 96(5):  
+1779‒1794.
+Martin  R,  Komatitsch  D  and  Gedney  SD  (2008), 
+“A  Variational  Formulation  of  a  Stabilized  Unsplit 
+Convolutional Perfectly Matched Layer for the Isotropic 
+or  Anisotropic  Seismic  Wave  Equation,”  Comput. 
+Model. Eng. Sci, 37(3): 274‒304.
+Matuszyk  PJ  and  Demkowicz  LF  (2013),  “Parametric 
+Finite Elements, Exact Sequences and Perfectly Matched 
+Layers,” Computational Mechanics, 51(1): 35‒45.
+Meza-Fajardo  KC  and  Papageorgiou  AS  (2008),  “A 
+Nonconvolutional, Split-Field, Perfectly Matched Layer 
+for Wave Propagation in Isotropic and Anisotropic Elastic 
+Media: Stability Analysis,” Bulletin of the Seismological 
+Society of America, 98(4): 1811‒1836.
+Moczo  P,  Kristek  J,  Vavrycuk  V,  Archuleta  RJ  and 
+Halada  L  (2002),  “3D  Heterogeneous  Staggered-Grid 
+Finite-Diﬀ erence  Modeling  of  Seismic  Motion  with 
+Volume Harmonic and Arithmetic Averaging of Elastic 
+Moduli  and  Densities,”  Bulletin  of  the  Seismological 
+Society of America, 92(8): 3042‒3066.
+Panji M, Kamalian M, Asgari MJ and Jafari MK (2014), 
+“Analysing  Seismic  Convex  Topographies  by  a  Half-
+Plane  Time-Domain  BEM,”  Geophysical  Journal 
+International, 197(1): 591‒607.
+Ping  P,  Zhang  Y  and  Xu  Y  (2014),  “A  Multiaxial 
+Perfectly  Matched  Layer  (M-PML)  for  the  Long-Time 
+Simulation  of  Elastic Wave  Propagation  in  the  Second 
+Order Equations,” Journal of Applied Geophysics, 101: 
+124‒135.
+Ping P, Zhang Y, Xu Y and Chu R (2016), “Eﬃ  ciency of 
+Perfectly  Matched  Layers  for  Seismic Wave  Modeling 
+in  Second  Order  Viscoelastic  Equations,”  Geophysical 
+Journal International, 207(3): 1367‒1386.
+Savage  MK  (1999),  “Seismic  Anisotropy  and  Mantle 
+Deformation: What Have We Learned from Shear Wave 
+Splitting?” Reviews of Geophysics, 37(1): 65‒106.
+Sayers CM (2018), “Elastic Anisotropy of Polycrystalline 
+Ice  with  Transversely 
+Isotropic  and  Orthotropic 
+Symmetry,” Geophysical Journal International, 215(1):  
+155‒164.
+
+Semblat  JF,  Lenti  L  and  Gandomzadeh  A  (2011),  “A 
+Simple  Multi‐Directional  Absorbing  Layer  Method 
+to  Simulate  Elastic  Wave  Propagation  in  Unbounded 
+Domains,” International Journal for Numerical Methods 
+in Engineering, 85(12): 1543‒1563.
+Stacey  R  (1988),  “Improved  Transparent  Boundary 
+Formulations for the Elastic-Wave Equation,” Bulletin of 
+the Seismological Society of America, 78(6): 2089‒2097.
+Sochacki  J,  Kubichek  R,  George  J,  Fletcher  WR  and 
+Smithson  S  (1987),  “Absorbing  Boundary  Conditions 
+and Surface Waves,” Geophysics, 52(1): 60‒71.
+Xie  ZN,  Komatitsch  D,  Martin  R  and  Matzen  R 
+(2014),  “Improved  Forward  Wave  Propagation  and 
+Adjoint-Based  Sensitivity  Kernel  Calculations  Using  a 
+Numerically Stable Finite-Element PML,” Geophysical 
+Journal International, 198(3): 1714‒1747.
+Xie ZN, Matzen R, Cristini P, Komatitsch D and Martin 
+R  (2016),  “A  Perfectly  Matched  Layer  for  Fluid-Solid 
+Problems: Application to Ocean-Acoustics Simulations 
+with  Solid  Ocean  Bottoms,”  The  Journal  of  the 
+Acoustical Society of America, 140(1): 165‒175.
+Xie  ZN  and  Zhang  XB  (2017),  “Weak-Form  Time-
+Domain Perfectly Matched Layer,” Chinese Journal of 
+Geophysics, 60(10): 3823‒3831.
+Zeng  C,  Xia  J,  Miller  RD  and  Tsoﬂ ias  GP  (2011), 
+“Application of the Multiaxial Perfectly Matched Layer 
+(M-PML)  to  Near-Surface  Seismic  Modeling  with 
+Rayleigh Waves,” Geophysics, 76(3): T43‒T52.
+Zhang  W  and  Shen  Y  (2010),  “Unsplit  Complex 
+Frequency-Shifted 
+Implementation  Using 
+Auxiliary  Diﬀ erential  Equations  for  Seismic  Wave 
+Modeling,” Geophysics, 75(4): T141‒T154.
+Zhao M, Wu L, Du X, Zhong Z, Xu C and Li L (2018), 
+“Stable  High-Order  Absorbing  Boundary  Condition 
+Based  on  New  Continued  Fraction  for  Scalar  Wave 
+Propagation in Unbounded Multilayer Media,” Computer 
+Methods  in  Applied  Mechanics  and  Engineering,  334: 
+111‒137.
+Zhebel  E,  Minisini  S,  Kononov  A  and  Mulder  WA 
+(2014),  “A  Comparison  of  Continuous  Mass-Lumped 
+Finite  Elements  with  Finite  Diﬀ erences  for  3-D 
+Wave  Propagation,”  Geophysical  Prospecting,  62(5): 
+1111‒1125.
+Zhu  H,  Komatitsch  D  and  Tromp  J  (2017),  “Radial 
+Anisotropy of the North American Upper Mantle Based 
+on  Adjoint  Tomography  with  USArray,”  Geophysical 
+Journal International, 211(1): 349‒377.
+Zhu  T  (2017)  “Numerical  Simulation  of  Seismic 
+Wave 
+in  Viscoelastic-Anisotropic 
+Media  Using  Frequency-Independent  Q  Wave 
+Equation,” Geophysics, 82(4): WA1‒WA10.
+
+Propagation 
+
+PML 
+

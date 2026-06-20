@@ -1,7 +1,7 @@
 {
   "schema_version": "iteris.task_pool.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-06-20T04:12:20.338561Z",
+  "updated_at": "2026-06-20T04:19:00.432880Z",
   "active_frontier": "",
   "tasks": [
     {
@@ -149,7 +149,7 @@
       "task_id": "task-stage3-literature-and-sources",
       "mode": "foundation",
       "objective": "Read required source reports and local references for stage-3 perfect-matching analysis.",
-      "status": "ready",
+      "status": "done",
       "priority": 160,
       "dependencies": [],
       "inputs": [
@@ -163,10 +163,13 @@
       ],
       "assigned_agent_run": null,
       "notes": [
-        "Stage-3 task required by .iteris/goal_prompt.txt."
+        "Stage-3 task required by .iteris/goal_prompt.txt.",
+        "Started inline reading of required source reports and local PDFs.",
+        "Heartbeat: completed targeted reading of required reports, references.bib, and formula/stability pages from local PDFs; preparing literature reading record artifact.",
+        "Completed artifacts/references/stage3_literature_reading_record.md after reading required source reports, references.bib, and local PDF formula/stability pages."
       ],
       "created_at": "2026-06-20T04:12:02.401905Z",
-      "updated_at": "2026-06-20T04:12:02.401905Z"
+      "updated_at": "2026-06-20T04:19:00.432872Z"
     },
     {
       "schema_version": "iteris.task_pool_task.v0",
