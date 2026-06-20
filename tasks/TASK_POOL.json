@@ -1,7 +1,7 @@
 {
   "schema_version": "iteris.task_pool.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-06-20T14:45:16.831499Z",
+  "updated_at": "2026-06-20T14:49:10.829066Z",
   "active_frontier": "",
   "tasks": [
     {
@@ -275,10 +275,11 @@
       ],
       "assigned_agent_run": null,
       "notes": [
-        "Started inline by Codex after reading the new goal_prompt terminal-artifact contract."
+        "Started inline by Codex after reading the new goal_prompt terminal-artifact contract.",
+        "SymPy verification file created and passed; Lean file created, but local command failed with 'lean: command not found'."
       ],
       "created_at": "2026-06-20T14:45:16.831494Z",
-      "updated_at": "2026-06-20T14:45:16.831494Z"
+      "updated_at": "2026-06-20T14:49:10.829058Z"
     }
   ]
 }
