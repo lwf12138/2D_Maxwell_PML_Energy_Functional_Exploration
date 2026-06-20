@@ -1,0 +1,22 @@
+{
+  "schema_version": "iteris.verification_request.v0",
+  "request_id": "verify-20260620T065810059861Z-fact-strict-decay-of-total-electromagnet",
+  "backend": "agent",
+  "executor": "codex",
+  "mode": "fact",
+  "claim": "Strict decay of total electromagnetic-Debye energy on the whole computational domain is impossible without a nullspace, because nonzero stationary gradient magnetic fields can live in an undamped physical subregion with E=P=0 and zero dissipation.",
+  "artifacts": [
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-whole-domain-strict-decay-nullspace-obstruction.md",
+    "artifacts/proofs/stage3_repaired_model_energy.md"
+  ],
+  "fact_ids": [
+    "fact:2d_maxwell_pml_energy_functional_exploration:whole-domain-strict-decay-nullspace-obstruction"
+  ],
+  "target_artifact": null,
+  "created_at": "2026-06-20T06:58:10.060115Z",
+  "prompt_path": "verification/agent_runs/verify-20260620T065810059861Z-fact-strict-decay-of-total-electromagnet/prompt.md",
+  "codex_log": "verification/agent_runs/verify-20260620T065810059861Z-fact-strict-decay-of-total-electromagnet/codex.log",
+  "codex_events": "verification/agent_runs/verify-20260620T065810059861Z-fact-strict-decay-of-total-electromagnet/codex.events.jsonl",
+  "codex_stderr": "verification/agent_runs/verify-20260620T065810059861Z-fact-strict-decay-of-total-electromagnet/codex.stderr.log",
+  "codex_log_manifest": "verification/agent_runs/verify-20260620T065810059861Z-fact-strict-decay-of-total-electromagnet/log_manifest.json"
+}

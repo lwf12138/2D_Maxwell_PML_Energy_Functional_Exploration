@@ -1,0 +1,2348 @@
+started_at: 2026-06-20T06:48:08.297840Z
+command: /Users/wcli/.local/bin/codex exec --json -C '/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration' -m gpt-5.5 --config model_reasoning_effort=xhigh --dangerously-bypass-approvals-and-sandbox -
+prompt_file: verification/agent_runs/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m/prompt.md
+events_log: verification/agent_runs/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m/codex.events.jsonl
+stderr_log: verification/agent_runs/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m/codex.stderr.log
+
+--- rendered codex exec events ---
+
+[1] thread.started
+  thread_id: 019ee3c9-6997-78d3-94ec-53d164a0af28
+
+[2] turn.started
+
+[?] error: null
+
+[?] error: null
+
+[?] error: null
+
+[?] error: null
+
+[7] item.completed:error
+  id: item_0
+  message: Falling back from WebSockets to HTTPS transport. request timed out
+
+[8] item.completed:agent_message
+  I’ll read the verification request first, then trace every cited artifact and predecessor fact before deciding the verdict. If an external mathematical reference is load-bearing, I’ll locate and check the precise statement rather than accepting it by name.
+
+[9] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '1,240p' verification/agent_runs/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m/request.json"
+  status: in_progress
+  exit_code: None
+
+[10] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '1,240p' verification/agent_runs/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m/request.json"
+  status: completed
+  exit_code: 0
+  {
+    "schema_version": "iteris.verification_request.v0",
+    "request_id": "verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m",
+    "backend": "agent",
+    "executor": "codex",
+    "mode": "fact",
+    "claim": "The standard stretched-coordinate Maxwell-Debye PML restores planar-interface perfect matching and, in the reduced normal-incidence constant-coefficient case, has the dissipative energy identity stated in the fact file.",
+    "artifacts": [
+      "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-standard-stretched-pml-matching-and-1d-energy.md",
+      "artifacts/proofs/stage3_repaired_model_energy.md",
+      "artifacts/proofs/stage3_v2_perfect_matching_test.md"
+    ],
+    "fact_ids": [
+      "fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy"
+    ],
+    "target_artifact": null,
+    "created_at": "2026-06-20T06:48:08.297107Z",
+    "prompt_path": "verification/agent_runs/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m/prompt.md",
+    "codex_log": "verification/agent_runs/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m/codex.log",
+    "codex_events": "verification/agent_runs/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m/codex.events.jsonl",
+    "codex_stderr": "verification/agent_runs/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m/codex.stderr.log",
+    "codex_log_manifest": "verification/agent_runs/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m/log_manifest.json"
+  }
+
+[11] item.started:command_execution
+  command: /bin/zsh -lc 'rg --files'
+  status: in_progress
+  exit_code: None
+
+[12] item.completed:command_execution
+  command: /bin/zsh -lc 'rg --files'
+  status: completed
+  exit_code: 0
+  build/render/v2_cn_page-1.png
+  build/render/v2_cn_page-4.png
+  build/render/updated_problem_page-4.png
+  build/render/problem_page-1.png
+  build/render/updated_problem_page-2.png
+  build/render/problem_page-3.png
+  build/render/cn_report_page-2.png
+  build/render/cn_report_page-1.png
+  build/energy_ansatz_notes_build.log
+  build/energy_functional_problem_build.log
+  sources/energy_ansatz_notes.pdf
+  sources/energy_functional_problem.blg
+  sources/energy_functional_problem.log
+  sources/energy_functional_problem.aux
+  sources/energy_ansatz_notes.out
+  sources/energy_ansatz_notes.tex
+  sources/energy_functional_problem.pdf
+  sources/energy_functional_problem.bbl
+  sources/macros.tex
+  sources/energy_functional_problem.out
+  sources/energy_ansatz_notes.aux
+  sources/energy_ansatz_notes.log
+  sources/energy_functional_problem.tex
+  prompts/run_energy_design_v2.sh
+  prompts/run_energy_design_v4_new_functional.sh
+  prompts/run_iteris_energy_goal.sh
+  prompts/run_energy_design_v3_perfect_matching.sh
+  ROADMAP.md
+  ITERIS_INPUT_GUIDE.md
+  verification/results/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d.json
+  verification/results/verify-20260619T182724786704Z-assembly-assemble-verified-facts-to-answ.json
+  verification/results/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json
+  verification/results/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e.json
+  verification/results/verify-20260620T043300709633Z-assembly-stage-3-report-assembles-the-pe.json
+  verification/results/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw.json
+  verification/results/verify-20260620T023007094217Z-assembly-assemble-verified-facts-to-answ.json
+  verification/results/verify-20260620T043309704737Z-assembly-stage-3-terminal-report-results.json
+  verification/results/verify-20260619T173930697319Z-source-the-bootstrap-run-correctly-extra.json
+  verification/results/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ.json
+  verification/results/verify-20260619T183134018854Z-goal_success-analyze-sources-energy_func.json
+  verification/results/verify-20260620T023507094543Z-goal_success-read-.iteris-goal_prompt.tx.json
+  verification/results/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-.json
+  verification/requests/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d.json
+  verification/requests/verify-20260619T182724786704Z-assembly-assemble-verified-facts-to-answ.json
+  verification/requests/verify-20260620T042228780266Z-fact-the-v2-covariantly-damped-maxwell-d.json
+  verification/requests/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json
+  verification/requests/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e.json
+  verification/requests/verify-20260620T044113290188Z-fact-the-v2-covariantly-damped-maxwell-d.json
+  verification/requests/verify-20260620T043300709633Z-assembly-stage-3-report-assembles-the-pe.json
+  verification/requests/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw.json
+  verification/requests/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m.json
+  verification/requests/verify-20260620T023007094217Z-assembly-assemble-verified-facts-to-answ.json
+  verification/requests/verify-20260620T043606452654Z-fact-the-v2-covariantly-damped-maxwell-d.json
+  verification/requests/verify-20260620T043309704737Z-assembly-stage-3-terminal-report-results.json
+  verification/requests/verify-20260620T042134131118Z-fact-the-v2-covariantly-damped-maxwell-d.json
+  verification/requests/verify-20260620T043308157721Z-fact-the-v2-covariantly-damped-maxwell-d.json
+  verification/requests/verify-20260619T173930697319Z-source-the-bootstrap-run-correctly-extra.json
+  verification/requests/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ.json
+  verification/requests/verify-20260619T183134018854Z-goal_success-analyze-sources-energy_func.json
+  verification/requests/verify-20260620T043846315949Z-fact-the-v2-covariantly-damped-maxwell-d.json
+  verification/requests/verify-20260620T023507094543Z-goal_success-read-.iteris-goal_prompt.tx.json
+  verification/requests/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-.json
+  verification/agent_runs/verify-20260620T042228780266Z-fact-the-v2-covariantly-damped-maxwell-d/log_manifest.json
+  verification/agent_runs/verify-20260620T042228780266Z-fact-the-v2-covariantly-damped-maxwell-d/codex.events.jsonl
+  verification/agent_runs/verify-20260620T042228780266Z-fact-the-v2-covariantly-damped-maxwell-d/prompt.md
+  verification/agent_runs/verify-20260620T042228780266Z-fact-the-v2-covariantly-damped-maxwell-d/codex.log
+  verification/agent_runs/verify-20260620T042228780266Z-fact-the-v2-covariantly-damped-maxwell-d/codex.stderr.log
+  verification/agent_runs/verify-20260620T042228780266Z-fact-the-v2-covariantly-damped-maxwell-d/request.json
+  verification/agent_runs/verify-20260619T182724786704Z-assembly-assemble-verified-facts-to-answ/log_manifest.json
+  verification/agent_runs/verify-20260619T182724786704Z-assembly-assemble-verified-facts-to-answ/verification.json
+  verification/agent_runs/verify-20260619T182724786704Z-assembly-assemble-verified-facts-to-answ/codex.events.jsonl
+  verification/agent_runs/verify-20260619T182724786704Z-assembly-assemble-verified-facts-to-answ/prompt.md
+  verification/agent_runs/verify-20260619T182724786704Z-assembly-assemble-verified-facts-to-answ/codex.log
+  verification/agent_runs/verify-20260619T182724786704Z-assembly-assemble-verified-facts-to-answ/codex.stderr.log
+  verification/agent_runs/verify-20260619T182724786704Z-assembly-assemble-verified-facts-to-answ/request.json
+  verification/agent_runs/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw/log_manifest.json
+  verification/agent_runs/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw/verification.json
+  verification/agent_runs/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw/codex.events.jsonl
+  verification/agent_runs/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw/prompt.md
+  verification/agent_runs/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw/codex.log
+  verification/agent_runs/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw/codex.stderr.log
+  verification/agent_runs/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw/request.json
+  verification/agent_runs/verify-20260620T023507094543Z-goal_success-read-.iteris-goal_prompt.tx/log_manifest.json
+  verification/agent_runs/verify-20260620T023507094543Z-goal_success-read-.iteris-goal_prompt.tx/verification.json
+  verification/agent_runs/verify-20260620T023507094543Z-goal_success-read-.iteris-goal_prompt.tx/codex.events.jsonl
+  verification/agent_runs/verify-20260620T023507094543Z-goal_success-read-.iteris-goal_prompt.tx/prompt.md
+  verification/agent_runs/verify-20260620T023507094543Z-goal_success-read-.iteris-goal_prompt.tx/codex.log
+  verification/agent_runs/verify-20260620T023507094543Z-goal_success-read-.iteris-goal_prompt.tx/codex.stderr.log
+  verification/agent_runs/verify-20260620T023507094543Z-goal_success-read-.iteris-goal_prompt.tx/request.json
+  verification/agent_runs/verify-20260620T043606452654Z-fact-the-v2-covariantly-damped-maxwell-d/log_manifest.json
+  verification/agent_runs/verify-20260620T043606452654Z-fact-the-v2-covariantly-damped-maxwell-d/codex.events.jsonl
+  verification/agent_runs/verify-20260620T043606452654Z-fact-the-v2-covariantly-damped-maxwell-d/prompt.md
+  verification/agent_runs/verify-20260620T043606452654Z-fact-the-v2-covariantly-damped-maxwell-d/codex.log
+  verification/agent_runs/verify-20260620T043606452654Z-fact-the-v2-covariantly-damped-maxwell-d/codex.stderr.log
+  verification/agent_runs/verify-20260620T043606452654Z-fact-the-v2-covariantly-damped-maxwell-d/request.json
+  verification/agent_runs/verify-20260620T042134131118Z-fact-the-v2-covariantly-damped-maxwell-d/log_manifest.json
+  verification/agent_runs/verify-20260620T042134131118Z-fact-the-v2-covariantly-damped-maxwell-d/codex.events.jsonl
+  verification/agent_runs/verify-20260620T042134131118Z-fact-the-v2-covariantly-damped-maxwell-d/prompt.md
+  verification/agent_runs/verify-20260620T042134131118Z-fact-the-v2-covariantly-damped-maxwell-d/codex.log
+  verification/agent_runs/verify-20260620T042134131118Z-fact-the-v2-covariantly-damped-maxwell-d/codex.stderr.log
+  verification/agent_runs/verify-20260620T042134131118Z-fact-the-v2-covariantly-damped-maxwell-d/request.json
+  verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/log_manifest.json
+  verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/verification.json
+  verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/codex.events.jsonl
+  verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/prompt.md
+  verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/codex.log
+  verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/codex.stderr.log
+  verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/request.json
+  verification/agent_runs/verify-20260620T023007094217Z-assembly-assemble-verified-facts-to-answ/log_manifest.json
+  verification/agent_runs/verify-20260620T023007094217Z-assembly-assemble-verified-facts-to-answ/verification.json
+  verification/agent_runs/verify-20260620T023007094217Z-assembly-assemble-verified-facts-to-answ/codex.events.jsonl
+  verification/agent_runs/verify-20260620T023007094217Z-assembly-assemble-verified-facts-to-answ/prompt.md
+  verification/agent_runs/verify-20260620T023007094217Z-assembly-assemble-verified-facts-to-answ/codex.log
+  verification/agent_runs/verify-20260620T023007094217Z-assembly-assemble-verified-facts-to-answ/codex.stderr.log
+  verification/agent_runs/verify-20260620T023007094217Z-assembly-assemble-verified-facts-to-answ/request.json
+  verification/agent_runs/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d/log_manifest.json
+  verification/agent_runs/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d/verification.json
+  verification/agent_runs/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d/codex.events.jsonl
+  verification/agent_runs/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d/prompt.md
+  verification/agent_runs/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d/codex.log
+  verification/agent_runs/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d/codex.stderr.log
+  verification/agent_runs/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d/request.json
+  README.md
+  verification/VERIFICATION_INDEX.jsonl
+  verification/agent_runs/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e/log_manifest.json
+  verification/agent_runs/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e/verification.json
+  verification/agent_runs/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e/codex.events.jsonl
+  verification/agent_runs/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e/prompt.md
+  verification/agent_runs/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e/codex.log
+  verification/agent_runs/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e/codex.stderr.log
+  verification/agent_runs/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e/request.json
+  docs/OPERATOR.md
+  PROJECT.md
+  STATUS.md
+  verification/agent_runs/verify-20260619T183134018854Z-goal_success-analyze-sources-energy_func/log_manifest.json
+  results/VERIFICATION_STATUS.json
+  results/energy_functional_report_verified.md
+  results/energy_design_v2_report_verified.md
+  results/energy_functional_report_cn_build.log
+  verification/agent_runs/verify-20260619T183134018854Z-goal_su
+  ...[truncated 13522 chars; see raw codex.events.jsonl]
+
+[13] item.completed:agent_message
+  The request is `mode: fact` for one fact ID. I’m going to inspect the fact file and the two proof artifacts now, then I’ll check the algebra behind the matching and energy identity directly.
+
+[14] item.started:command_execution
+  command: /bin/zsh -lc "nl -ba memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-standard-stretched-pml-matching-and-1d-energy.md | sed -n '1,260p'"
+  status: in_progress
+  exit_code: None
+
+[15] item.completed:command_execution
+  command: /bin/zsh -lc "nl -ba memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-standard-stretched-pml-matching-and-1d-energy.md | sed -n '1,260p'"
+  status: completed
+  exit_code: 0
+       1	---
+       2	fact_id: fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy
+       3	problem_id: 2d_maxwell_pml_energy_functional_exploration
+       4	source_project: 2d_maxwell_pml_energy_functional_exploration
+       5	source_task: task-stage3-repaired-model-energy
+       6	predecessors: []
+       7	status: submitted
+       8	fact_type: energy_identity
+       9	review_level: none
+      10	claim_policy: stable_claim
+      11	claim_summary: "The standard stretched-coordinate Maxwell-Debye PML restores perfect matching and has a reduced normal-incidence dissipative energy identity."
+      12	verification: null
+      13	---
+      14	
+      15	## statement
+      16	
+      17	For Maxwell-Debye with A(s)=epsilon0 epsilon_infty+chi/(1+tau s), the standard stretched-coordinate PML keeps A(s) and replaces partial_i by S_i(s)^{-1} partial_i, S_i=1+sigma_i/s.  At a planar x-interface with S_x=(s+rho)/s, S_y=1, the transmitted normal number is kappa_sc=S_x kappa_0 and the admittance is Y_sc=-kappa_sc/(mu s S_x)=-kappa_0/(mu s), hence the reflection coefficient is zero for every outgoing physical mode.  In the one-dimensional x-PML normal-incidence block, the exact stretched system (partial_t+rho)(epsilon0 epsilon_infty E+P)=partial_x H_y, mu(partial_t+rho)H_y=partial_xE, P+tau P_t=chi E has the positive energy integral 1/2 int (epsilon0 epsilon_infty E^2+mu H_y^2+(1+rho tau)chi^{-1}P^2) dx and derivative -int (rho epsilon0 epsilon_infty E^2+mu rho H_y^2+rho chi^{-1}P^2+tau chi^{-1}P_t^2) dx, up to the usual boundary flux.  Full derivation and full 2D classification: artifacts/proofs/stage3_repaired_model_energy.md.
+      18	
+      19	## notes
+      20	
+      21	Generated by Iteris bootstrap workflow.
+
+[16] item.started:command_execution
+  command: /bin/zsh -lc "nl -ba artifacts/proofs/stage3_repaired_model_energy.md | sed -n '1,320p'"
+  status: in_progress
+  exit_code: None
+
+[17] item.completed:command_execution
+  command: /bin/zsh -lc "nl -ba artifacts/proofs/stage3_repaired_model_energy.md | sed -n '1,320p'"
+  status: completed
+  exit_code: 0
+       1	# Stage-3 proof: repaired PML candidates and dissipative-energy classification
+       2	
+       3	Problem id: `2d_maxwell_pml_energy_functional_exploration`
+       4	
+       5	Task: `task-stage3-repaired-model-energy`
+       6	
+       7	## Input fact from the matching test
+       8	
+       9	The v2 covariantly damped Maxwell--Debye model has the verified stage-2 monotone
+      10	energy identity, but the stage-3 interface calculation shows that it is not a
+      11	perfectly matched layer.  In an \(x\)-layer with \(\rho_x=\rho>0,\rho_y=0\),
+      12	\[
+      13	Y_{v2}^2-Y_0^2
+      14	=-\frac{\rho}{\mu^2}\left[
+      15	\frac{\mu\chi\tau}{(1+\tau s)(1+\tau(s+\rho))}
+      16	+\frac{k_y^2}{s^2(s+\rho)}
+      17	\right],
+      18	\]
+      19	so the v2 reflection coefficient is not identically zero.
+      20	
+      21	Therefore a repaired model must keep the physical Debye law as a function of the
+      22	Laplace variable \(s\), not \(s+\rho\), and must implement damping through
+      23	coordinate stretching or an equivalent split/ADE system.
+      24	
+      25	## Candidate 1: classical stretched-coordinate Maxwell--Debye PML
+      26	
+      27	Let
+      28	\[
+      29	\varepsilon_D(s)=\epsilon_0\epsilon_\infty+\frac{\chi}{1+\tau s},
+      30	\qquad
+      31	S_i(s)=1+\frac{\sigma_i}{s},\quad i=x,y.
+      32	\]
+      33	In the physical region \(\sigma_x=\sigma_y=0\).  In the PML the coefficients are
+      34	nonnegative and are first analyzed as piecewise constant near each planar
+      35	interface.
+      36	
+      37	The Laplace-domain repaired model is
+      38	\[
+      39	\boxed{
+      40	s\varepsilon_D(s)\widehat E
+      41	=S_x^{-1}\partial_x\widehat H_y
+      42	-S_y^{-1}\partial_y\widehat H_x,}
+      43	\]
+      44	\[
+      45	\boxed{
+      46	\mu s\widehat H_x=-S_y^{-1}\partial_y\widehat E,\qquad
+      47	\mu s\widehat H_y=S_x^{-1}\partial_x\widehat E,}
+      48	\]
+      49	\[
+      50	\boxed{(1+\tau s)\widehat P=\chi\widehat E.}
+      51	\]
+      52	Equivalently, the Debye law is not damped:
+      53	\[
+      54	P+\tau P_t=\chi E.
+      55	\]
+      56	
+      57	### Perfect matching
+      58	
+      59	At an \(x\)-interface, \(S_y=1\).  With tangential Fourier number \(k_y\),
+      60	the physical normal symbol satisfies
+      61	\[
+      62	\nu_0^2=k_y^2+\mu s^2\varepsilon_D(s),\qquad
+      63	Y_0=\frac{\nu_0}{\mu s}.
+      64	\]
+      65	In the PML,
+      66	\[
+      67	s\varepsilon_D E=S_x^{-1}\nu H_y-ik_yH_x,\qquad
+      68	\mu sH_x=-ik_yE,\qquad
+      69	\mu sH_y=S_x^{-1}\nu E.
+      70	\]
+      71	The dispersion relation gives
+      72	\[
+      73	\left(S_x^{-1}\nu\right)^2=k_y^2+\mu s^2\varepsilon_D(s),
+      74	\]
+      75	hence \(\nu=S_x\nu_0\) and
+      76	\[
+      77	Y_+=\frac{S_x^{-1}\nu}{\mu s}=\frac{\nu_0}{\mu s}=Y_0.
+      78	\]
+      79	Thus the planar-interface reflection coefficient is \(R=0\) for every
+      80	\((s,k_y)\) in the Laplace half-plane.  The same argument applies to a
+      81	\(y\)-interface with \(x,y\) interchanged.
+      82	
+      83	### Time-domain ADE realization
+      84	
+      85	Define the causal operator
+      86	\[
+      87	\mathcal A_i=S_i^{-1}=\frac{s}{s+\sigma_i}
+      88	\]
+      89	in the Laplace domain.  Equivalently,
+      90	\[
+      91	\mathcal A_i f=f+\psi_i,\qquad
+      92	(\partial_t+\sigma_i)\psi_i=-\sigma_i f.
+      93	\]
+      94	Then a time-domain unsplit ADE form is
+      95	\[
+      96	\epsilon_0\epsilon_\infty E_t+P_t
+      97	=\partial_xH_y-\partial_yH_x
+      98	+\psi_{E,x}-\psi_{E,y},
+      99	\]
+     100	\[
+     101	\mu H_{x,t}=-\partial_yE-\psi_{H_x,y},\qquad
+     102	\mu H_{y,t}=\partial_xE+\psi_{H_y,x},
+     103	\]
+     104	\[
+     105	P+\tau P_t=\chi E,
+     106	\]
+     107	with
+     108	\[
+     109	(\partial_t+\sigma_x)\psi_{E,x}=-\sigma_x\partial_xH_y,\qquad
+     110	(\partial_t+\sigma_y)\psi_{E,y}=-\sigma_y\partial_yH_x,
+     111	\]
+     112	\[
+     113	(\partial_t+\sigma_y)\psi_{H_x,y}=-\sigma_y\partial_yE,\qquad
+     114	(\partial_t+\sigma_x)\psi_{H_y,x}=-\sigma_x\partial_xE.
+     115	\]
+     116	Interface conditions are continuity of the physical tangential traces.  For an
+     117	\(x\)-interface these are \(E\) and \(H_y\).  The auxiliary variables vanish in the
+     118	physical region and are initialized consistently with the causal convolution.
+     119	
+     120	### Naive energy calculation
+     121	
+     122	The natural physical Debye energy is
+     123	\[
+     124	\mathcal E_{\rm phys}
+     125	=\frac12\int_\Omega
+     126	\left(\epsilon_0\epsilon_\infty E^2+\mu H_x^2+\mu H_y^2+\chi^{-1}P^2\right)\,dxdy.
+     127	\]
+     128	It is positive because
+     129	\(\epsilon_0,\epsilon_\infty,\mu,\chi>0\).  Using
+     130	\[
+     131	E P_t=\frac{1}{2\chi}\partial_t(P^2)+\frac{\tau}{\chi}P_t^2
+     132	\]
+     133	and the PEC boundary condition \(E=0\) on the outer boundary gives
+     134	\[
+     135	\frac{d}{dt}\mathcal E_{\rm phys}
+     136	=-\int_\Omega\frac{\tau}{\chi}P_t^2\,dxdy
+     137	+\int_\Omega
+     138	\left[
+     139	E(\psi_{E,x}-\psi_{E,y})
+     140	-H_x\psi_{H_x,y}
+     141	+H_y\psi_{H_y,x}
+     142	\right]\,dxdy .
+     143	\]
+     144	The Maxwell principal part contributes only the boundary flux
+     145	\[
+     146	\int_{\partial\Omega}E(H_y n_x-H_x n_y)\,ds,
+     147	\]
+     148	which vanishes under PEC at the outer boundary and cancels by transmission at
+     149	internal material/PML interfaces when the tangential traces are continuous.
+     150	
+     151	The remaining auxiliary terms are not sign-definite in this naive energy.
+     152	Therefore the positive physical Debye energy alone is not a monotone energy for
+     153	the exact stretched-coordinate PML.
+     154	
+     155	### Classification
+     156	
+     157	This candidate is the formula-level perfect-matching repair.  A local monotone
+     158	energy for the full 2D Maxwell--Debye ADE system is not certified here.  The
+     159	calculation above identifies the exact terms that a Baffet-type augmented energy
+     160	would have to absorb:
+     161	\[
+     162	E\psi_{E,x},\quad E\psi_{E,y},\quad
+     163	H_x\psi_{H_x,y},\quad H_y\psi_{H_y,x}.
+     164	\]
+     165	The literature record supports that such augmented energies are non-naive and
+     166	that constant-coefficient damping is the natural first scope for a sharp identity.
+     167	
+     168	### Reduced normal-incidence 1D energy identity
+     169	
+     170	There is one important positive result for the exact stretched-coordinate model.
+     171	In the \(x\)-layer normal-incidence block \(k_y=0\), the standard stretch gives
+     172	\[
+     173	(\partial_t+\rho)(\epsilon_0\epsilon_\infty E+P)=\partial_xH_y,
+     174	\qquad
+     175	\mu(\partial_t+\rho)H_y=\partial_xE,
+     176	\]
+     177	\[
+     178	P+\tau P_t=\chi E.
+     179	\]
+     180	This is exactly the \(k_y=0\) restriction of the perfectly matched stretched
+     181	model, not the v2 model, because the Debye law still uses \(\partial_t\) rather
+     182	than \(\partial_t+\rho\).
+     183	
+     184	Multiply the first equation by \(E\), the second by \(H_y\), and use
+     185	\[
+     186	E=\frac{P+\tau P_t}{\chi}.
+     187	\]
+     188	Then
+     189	\[
+     190	E P_t=\frac{1}{2\chi}\partial_t(P^2)+\frac{\tau}{\chi}P_t^2,
+     191	\]
+     192	and
+     193	\[
+     194	\rho E P
+     195	=\frac{\rho}{\chi}P^2+\frac{\rho\tau}{2\chi}\partial_t(P^2).
+     196	\]
+     197	After integrating by parts, the principal terms give only the boundary flux
+     198	\(\int_{\partial I}EH_y n_x\,ds\).  Hence
+     199	\[
+     200	\boxed{
+     201	\frac{d}{dt}\mathcal E_{1d,sc}
+     202	=-\int_I\left(
+     203	\rho\epsilon_0\epsilon_\infty E^2+\mu\rho H_y^2
+     204	+\frac{\rho}{\chi}P^2+\frac{\tau}{\chi}P_t^2
+     205	\right)\,dx
+     206	+\int_{\partial I}EH_y n_x\,ds,}
+     207	\]
+     208	where
+     209	\[
+     210	\boxed{
+     211	\mathcal E_{1d,sc}
+     212	=\frac12\int_I\left(
+     213	\epsilon_0\epsilon_\infty E^2+\mu H_y^2
+     214	+\frac{1+\rho\tau}{\chi}P^2
+     215	\right)\,dx.}
+     216	\]
+     217	This energy is positive for \(\rho,\tau,\chi>0\), and it is dissipative under
+     218	PEC or otherwise nonpositive boundary flux.  It explains why the v2 idea is
+     219	close to a useful construction in normal incidence, but it does not solve the
+     220	full 2D oblique problem: as soon as \(k_y\ne0\), the exact stretched model
+     221	contains the ADE memory couplings displayed above.
+     222	
+     223	## Candidate 2: generalized CFS/ADE stretched-coordinate PML
+     224	
+     225	Let
+     226	\[
+     227	S_i(s)=\kappa_i+\frac{\sigma_i}{s+\alpha_i},
+     228	\qquad
+     229	\kappa_i\ge1,\quad \sigma_i\ge0,\quad \alpha_i\ge0.
+     230	\]
+     231	The repaired Laplace-domain equations are the same as Candidate 1, with these
+     232	\(S_i\).  In particular the Debye law remains
+     233	\[
+     234	(1+\tau s)\widehat P=\chi\widehat E.
+     235	\]
+     236	
+     237	For a planar \(x\)-interface with \(S_y=1\), the same calculation gives
+     238	\[
+     239	\nu=S_x\nu_0,\qquad Y_+=Y_0,
+     240	\]
+     241	so the continuous model is perfectly matched whenever the stretch is applied to
+     242	the spatial derivatives and the physical material law is left unchanged.
+     243	
+     244	If \(S_i^{-1}\) is rational with poles in \(\Re s<0\), it can be implemented by
+     245	ADE variables.  The CFS shift \(\alpha_i>0\) is a standard way to improve
+     246	low-frequency/evanescent and late-time behavior, but a monotone time-domain
+     247	energy requires an explicit positive realization of the memory kernel.  No such
+     248	positive memory theorem is claimed here for the full 2D Maxwell--Debye system.
+     249	
+     250	Classification: perfectly matched at the continuous planar-interface level;
+     251	recommended if long-time CFS behavior is needed; energy status is boundedness or
+     252	passive-memory proof pending, not a completed monotone identity.
+     253	
+     254	## Candidate 3: MPML-type extra damping
+     255	
+     256	An MPML-type repair adds damping in more than the normal coordinate direction.
+     257	For example, in an \(x\)-layer one may replace a scalar stretch by a multiaxial
+     258	stretch depending also on tangential damping parameters.  This is useful for
+     259	removing long-time instabilities or Jordan-block behavior in some systems.
+     260	
+     261	However, if the tangential stretch is nontrivial at the physical/PML interface,
+     262	the planar admittance generally changes.  The MPML literature inspected for this
+     263	run explicitly treats MPML as a stability-oriented absorbing layer and records
+     264	that exact perfect matching may be lost in multiaxial variants.
+     265	
+     266	Classification: absorbing/stability repair, not the primary exact-matching
+     267	repair for the present Maxwell--Debye interface theorem.
+     268	
+     269	## Complete dissipative identity that is currently verified
+     270	
+     271	The only complete positive monotone identity verified in the existing Iteris
+     272	memory is for the v2 covariantly damped absorbing layer:
+     273	\[
+     274	\epsilon_0\epsilon_\infty D_\rho E
+     275	=\partial_xH_y-\partial_yH_x-D_\rho P,
+     276	\]
+     277	\[
+     278	\mu(\partial_t+\rho_y)H_x=-\partial_yE,\qquad
+     279	\mu(\partial_t+\rho_x)H_y=\partial_xE,
+     280	\]
+     281	\[
+     282	P+\tau D_\rho P=\chi E,\qquad D_\rho=\partial_t+\rho_x+\rho_y.
+     283	\]
+     284	Its energy is
+     285	\[
+     286	\mathcal E_\rho(t)=\frac12\int_\Omega
+     287	\left(\epsilon_0\epsilon_\infty E^2+\mu H_x^2+\mu H_y^2+\chi^{-1}P^2\right)\,dxdy
+     288	\]
+     289	and the verified identity is
+     290	\[
+     291	\frac{d}{dt}\mathcal E_\rho(t)
+     292	=-\int_\Omega\left(
+     293	\epsilon_0\epsilon_\infty\rho E^2
+     294	+\mu\rho_yH_x^2
+     295	+\mu\rho_xH_y^2
+     296	+\frac{\rho}{\chi}P^2
+     297	+\frac{\tau}{\chi}|D_\rho P|^2
+     298	\right)\,dxdy.
+     299	\]
+     300	This identity is genuinely dissipative, but the model is not perfectly matched.
+     301	It should therefore be described as a stable absorbing-layer model, not as a
+     302	standard PML.
+     303	
+     304	## Formula-level obstruction to strict decay on the whole domain
+     305	
+     306	Even for a perfectly matched repair, strict decay of a total energy controlling
+     307	all fields on the whole computational domain cannot hold without a nullspace.
+     308	Assume a physical subregion where \(\sigma_x=\sigma_y=0\) and choose
+     309	\[
+     310	E=0,\qquad P=0,\qquad H_x=\partial_x\phi,\qquad H_y=\partial_y\phi,
+     311	\]
+     312	with \(\phi\) smooth and compactly supported insi
+  ...[truncated 378 chars; see raw codex.events.jsonl]
+
+[18] item.started:command_execution
+  command: /bin/zsh -lc "nl -ba artifacts/proofs/stage3_v2_perfect_matching_test.md | sed -n '1,320p'"
+  status: in_progress
+  exit_code: None
+
+[19] item.completed:command_execution
+  command: /bin/zsh -lc "nl -ba artifacts/proofs/stage3_v2_perfect_matching_test.md | sed -n '1,320p'"
+  status: completed
+  exit_code: 0
+       1	# Stage-3 proof: perfect-matching test for the v2 covariantly damped model
+       2	
+       3	Problem id: `2d_maxwell_pml_energy_functional_exploration`
+       4	
+       5	Task: `task-stage3-perfect-matching-test`
+       6	
+       7	## Assumptions and notation
+       8	
+       9	Use the alpha \(=1\) Maxwell--Debye material law in the physical region:
+      10	\[
+      11	P+\tau \partial_t P=\chi E,\qquad
+      12	\varepsilon_D(s)=\epsilon_0\epsilon_\infty+\frac{\chi}{1+\tau s}.
+      13	\]
+      14	Here \(s\in\mathbb C\), \(\Re s>0\), is the Laplace frequency, and all initial
+      15	data are taken zero for the interface symbol calculation.
+      16	
+      17	Consider a planar interface \(x=0\).  The physical half-space is \(x<0\).
+      18	The PML half-space is \(x>0\), with constant \(x\)-layer coefficient
+      19	\[
+      20	\rho_x=\rho>0,\qquad \rho_y=0 .
+      21	\]
+      22	Use the tangential Fourier ansatz \(e^{s t+i k y+\nu x}\), so
+      23	\(\partial_y\mapsto i k\), \(\partial_x\mapsto \nu\).  The square-root branch is
+      24	chosen by outgoing/decaying continuation from \(\Re s>0\).
+      25	
+      26	For an \(x\)-interface the continuous tangential traces are \(E\) and \(H_y\).
+      27	For incident and reflected physical modes,
+      28	\[
+      29	E=E_i+E_r,\qquad H_y=Y_0(E_i-E_r),
+      30	\]
+      31	and for the transmitted PML mode \(H_y=Y_+E_t\).  Hence
+      32	\[
+      33	R=\frac{E_r}{E_i}=\frac{Y_0-Y_+}{Y_0+Y_+}.
+      34	\]
+      35	The model is perfectly matched at this interface iff \(Y_+=Y_0\) for every
+      36	\(s\) and \(k\).
+      37	
+      38	## Physical Maxwell--Debye admittance
+      39	
+      40	The Laplace-domain physical equations are
+      41	\[
+      42	s\varepsilon_D(s)E=\partial_xH_y-\partial_yH_x,
+      43	\qquad
+      44	\mu sH_x=-\partial_yE,\qquad
+      45	\mu sH_y=\partial_xE .
+      46	\]
+      47	With \(\partial_x=\nu_0\), \(\partial_y=ik\),
+      48	\[
+      49	H_x=-\frac{ik}{\mu s}E,\qquad
+      50	H_y=\frac{\nu_0}{\mu s}E .
+      51	\]
+      52	Substitution gives
+      53	\[
+      54	\nu_0^2=k^2+\mu s^2\varepsilon_D(s).
+      55	\]
+      56	Therefore the physical admittance is
+      57	\[
+      58	Y_0(s,k)=\frac{\nu_0}{\mu s},\qquad
+      59	Y_0(s,k)^2=\frac{1}{\mu^2}\left(\mu\varepsilon_D(s)+\frac{k^2}{s^2}\right).
+      60	\]
+      61	
+      62	## Standard stretched-coordinate check
+      63	
+      64	A classical \(x\)-PML has stretch factor
+      65	\[
+      66	S_x(s)=1+\frac{\sigma_x}{s}
+      67	\]
+      68	and replaces \(\partial_x\) by \(S_x^{-1}\partial_x\), while leaving the
+      69	physical material law \(\varepsilon_D(s)\) unchanged:
+      70	\[
+      71	s\varepsilon_D(s)E=S_x^{-1}\partial_xH_y-\partial_yH_x,
+      72	\quad
+      73	\mu sH_x=-\partial_yE,\quad
+      74	\mu sH_y=S_x^{-1}\partial_xE.
+      75	\]
+      76	For a transmitted mode,
+      77	\[
+      78	\nu_+=S_x\nu_0,\qquad
+      79	Y_+=\frac{S_x^{-1}\nu_+}{\mu s}=\frac{\nu_0}{\mu s}=Y_0.
+      80	\]
+      81	Thus the stretched-coordinate model has \(R=0\) at the continuous planar
+      82	interface.
+      83	
+      84	## v2 covariantly damped model
+      85	
+      86	The v2 model is
+      87	\[
+      88	\epsilon_0\epsilon_\infty D_\rho E
+      89	=\partial_xH_y-\partial_yH_x-D_\rho P,
+      90	\]
+      91	\[
+      92	\mu(\partial_t+\rho_y)H_x=-\partial_yE,\qquad
+      93	\mu(\partial_t+\rho_x)H_y=\partial_xE,
+      94	\]
+      95	\[
+      96	P+\tau D_\rho P=\chi E,\qquad
+      97	D_\rho=\partial_t+\rho_x+\rho_y.
+      98	\]
+      99	In the \(x\)-layer \(\rho_x=\rho,\rho_y=0\), so
+     100	\[
+     101	P=\frac{\chi}{1+\tau(s+\rho)}E,\qquad
+     102	\varepsilon_\rho(s)=
+     103	\epsilon_0\epsilon_\infty+\frac{\chi}{1+\tau(s+\rho)} .
+     104	\]
+     105	The transformed equations are
+     106	\[
+     107	(s+\rho)\varepsilon_\rho(s)E=\nu H_y-ikH_x,
+     108	\]
+     109	\[
+     110	\mu sH_x=-ikE,\qquad
+     111	\mu(s+\rho)H_y=\nu E.
+     112	\]
+     113	Thus
+     114	\[
+     115	H_x=-\frac{ik}{\mu s}E,\qquad
+     116	H_y=\frac{\nu}{\mu(s+\rho)}E
+     117	\]
+     118	and
+     119	\[
+     120	\nu^2=\mu(s+\rho)^2\varepsilon_\rho(s)
+     121	      +k^2\frac{s+\rho}{s}.
+     122	\]
+     123	The v2 PML admittance is therefore
+     124	\[
+     125	Y_{v2}(s,k)=\frac{\nu}{\mu(s+\rho)},\qquad
+     126	Y_{v2}(s,k)^2
+     127	=\frac{1}{\mu^2}
+     128	\left(\mu\varepsilon_\rho(s)+\frac{k^2}{s(s+\rho)}\right).
+     129	\]
+     130	
+     131	Comparing with the physical admittance,
+     132	\[
+     133	Y_{v2}^2-Y_0^2
+     134	=\frac{1}{\mu^2}\left[
+     135	\mu(\varepsilon_\rho(s)-\varepsilon_D(s))
+     136	+\frac{k^2}{s(s+\rho)}-\frac{k^2}{s^2}\right].
+     137	\]
+     138	Since
+     139	\[
+     140	\varepsilon_\rho(s)-\varepsilon_D(s)
+     141	=-\frac{\chi\tau\rho}{(1+\tau s)(1+\tau(s+\rho))}
+     142	\]
+     143	and
+     144	\[
+     145	\frac{1}{s(s+\rho)}-\frac{1}{s^2}
+     146	=-\frac{\rho}{s^2(s+\rho)},
+     147	\]
+     148	the exact mismatch is
+     149	\[
+     150	\boxed{
+     151	Y_{v2}^2-Y_0^2
+     152	=-\frac{\rho}{\mu^2}\left[
+     153	\frac{\mu\chi\tau}{(1+\tau s)(1+\tau(s+\rho))}
+     154	+\frac{k^2}{s^2(s+\rho)}
+     155	\right].}
+     156	\]
+     157	This expression is not identically zero for \(\rho>0\).  Hence the v2 model is
+     158	not perfectly matched.
+     159	
+     160	The corresponding reflection coefficient is
+     161	\[
+     162	\boxed{
+     163	R_{v2}(s,k)=
+     164	\frac{
+     165	\sqrt{\mu\varepsilon_D(s)+k^2/s^2}
+     166	-\sqrt{\mu\varepsilon_\rho(s)+k^2/[s(s+\rho)]}
+     167	}{
+     168	\sqrt{\mu\varepsilon_D(s)+k^2/s^2}
+     169	+\sqrt{\mu\varepsilon_\rho(s)+k^2/[s(s+\rho)]}
+     170	}.}
+     171	\]
+     172	The square-root branches are those inherited from the outgoing physical and
+     173	decaying PML modes.
+     174	
+     175	## Interpretation of the mismatch
+     176	
+     177	There are two independent formula-level defects.
+     178	
+     179	1. The Debye susceptibility is shifted from
+     180	\[
+     181	\frac{\chi}{1+\tau s}
+     182	\quad\text{to}\quad
+     183	\frac{\chi}{1+\tau(s+\rho)}.
+     184	\]
+     185	This changes the material impedance even at normal incidence \(k=0\), unless
+     186	\(\chi=0\), \(\tau=0\), or \(\rho=0\).
+     187	
+     188	2. The oblique tangential part changes from \(k^2/s^2\) to
+     189	\[
+     190	\frac{k^2}{s(s+\rho)}.
+     191	\]
+     192	This remains a mismatch for \(k\ne0\) even in the nondispersive limit
+     193	\(\chi=0\).
+     194	
+     195	Thus applying the same covariant derivative \(D_\rho\) to the Debye law is good
+     196	for the v2 monotone energy identity, but it is not the Laplace-domain
+     197	stretched-coordinate continuation of the physical Maxwell--Debye system.
+     198	
+     199	## Durable fact candidate
+     200	
+     201	Claim summary:
+     202	The covariantly damped v2 Maxwell--Debye absorbing-layer model is not perfectly
+     203	matched at a planar constant-coefficient \(x\)-PML interface; its squared
+     204	admittance differs from the physical Maxwell--Debye admittance by the boxed
+     205	formula above.
+     206	
+     207	Dependencies:
+     208	
+     209	- `fact:2d_maxwell_pml_energy_functional_exploration:covariantly-damped-debye-energy`
+     210	  for the v2 model definition and verified energy identity.
+
+[20] item.completed:agent_message
+  The cited proof separates two claims: continuous planar perfect matching for the stretched-coordinate equations, and a reduced one-dimensional energy identity. I’m checking both formulas line by line, including signs and boundary flux conventions.
+
+[21] item.started:command_execution
+  command: /bin/zsh -lc "nl -ba artifacts/proofs/stage3_repaired_model_energy.md | sed -n '320,520p'"
+  status: in_progress
+  exit_code: None
+
+[22] item.completed:command_execution
+  command: /bin/zsh -lc "nl -ba artifacts/proofs/stage3_repaired_model_energy.md | sed -n '320,520p'"
+  status: completed
+  exit_code: 0
+     320	but every damping term in the PML vanishes.
+     321	
+     322	Therefore no theorem can honestly state that the total energy is strictly
+     323	decreasing for every nonzero state on the whole computational domain.  The sharp
+     324	possible statement is a dissipative identity or inequality whose nullspace
+     325	contains undamped physical-region stationary/curl-free magnetic modes and, more
+     326	generally, states not seen by the layer damping.
+     327	
+     328	## Recommended theorem split
+     329	
+     330	The next manuscript should separate two theorems.
+     331	
+     332	1. Perfect matching theorem: use Candidate 1 or Candidate 2 in the Laplace
+     333	   domain and prove \(Y_+=Y_0\) for every planar outgoing mode.  This theorem
+     334	   must keep the Debye law as \((1+\tau s)P=\chi E\).
+     335	
+     336	2. Energy theorem: either keep the v2 covariantly damped absorbing model and
+     337	   state it is not perfectly matched, or build a new Baffet/passive-memory
+     338	   augmented energy for the exact stretched-coordinate ADE model.  The latter is
+     339	   open in this artifact; the naive positive energy calculation above shows the
+     340	   exact auxiliary couplings that must be controlled.
+     341	
+     342	## Durable fact candidate
+     343	
+     344	Claim summary:
+     345	The standard stretched-coordinate Maxwell--Debye PML, with the physical Debye
+     346	law left as \((1+\tau s)P=\chi E\), is perfectly matched at a constant
+     347	planar interface; its naive physical Debye energy is positive but has
+     348	sign-indefinite ADE memory couplings, so the v2 monotone energy identity cannot
+     349	be transferred to it without a new augmented energy.
+     350	
+     351	Dependencies:
+     352	
+     353	- `fact:2d_maxwell_pml_energy_functional_exploration:v2-covariant-model-not-perfectly-matched`
+     354	- `fact:2d_maxwell_pml_energy_functional_exploration:covariantly-damped-debye-energy`
+
+[23] item.started:command_execution
+  command: /bin/zsh -lc "rg -n \"standard-stretched|stretched-coordinate|matching-and-1d|stage3_repaired|stage3_v2|Baffet|Joly|perfect matching|S_i|S_x\" memory artifacts references results sources verification -g '*.md' -g '*.tex' -g '*.txt' -g '*.jsonl' -g '*.json'"
+  status: in_progress
+  exit_code: None
+
+[24] item.completed:command_execution
+  command: /bin/zsh -lc "rg -n \"standard-stretched|stretched-coordinate|matching-and-1d|stage3_repaired|stage3_v2|Baffet|Joly|perfect matching|S_i|S_x\" memory artifacts references results sources verification -g '*.md' -g '*.tex' -g '*.txt' -g '*.jsonl' -g '*.json'"
+  status: completed
+  exit_code: 0
+  verification/results/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d.json:17:    "artifacts/proofs/stage3_v2_perfect_matching_test.md",
+  memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-v2-covariant-model-not-perfectly-matched.md:18:For a planar x-interface with constant layer coefficient rho_x=rho>0, rho_y=0, Laplace parameter Re s>0, and tangential Fourier number k_y, the physical Maxwell-Debye admittance is Y0^2=A(s)/mu+k_y^2/(mu^2 s^2), where A(s)=epsilon0 epsilon_infty+chi/(1+tau s).  The v2 covariantly damped model has Yrho^2=A_rho(s)/mu+k_y^2/(mu^2 s(s+rho)), where A_rho(s)=epsilon0 epsilon_infty+chi/(1+tau(s+rho)).  Hence Yrho^2-Y0^2=-rho[chi tau/(mu(1+tau(s+rho))(1+tau s))+k_y^2/(mu^2 s^2(s+rho))], which is generically nonzero.  Therefore the interface reflection coefficient (Y0-Yrho)/(Y0+Yrho) is generically nonzero: the model is dissipative but not perfectly matched.  Full derivation: artifacts/proofs/stage3_v2_perfect_matching_test.md.
+  results/energy_functional_report_verified.md:232:derivative, nonlocal, or Baffet-type time-integrated structure not closed by the
+  memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-whole-domain-strict-decay-nullspace-obstruction.md:17:If a physical subregion has zero PML damping, then E=0, P=0, all PML auxiliary variables zero, and H=(H_x,H_y)=grad phi with phi smooth and compactly supported in that undamped physical subregion gives an exact stationary Maxwell-Debye solution whenever curl H=partial_x H_y-partial_y H_x=0. The magnetic energy is positive for grad phi nonzero while all layer and Debye damping terms vanish. Hence no positive total energy controlling the magnetic field can be strictly decreasing for every nonzero state on the whole computational domain; any dissipative identity must have a characterized nullspace containing such undamped stationary modes. See artifacts/proofs/stage3_repaired_model_energy.md.
+  verification/results/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw.json:10:  "summary": "Correct within the stated claim scope. The cited fact and proof define a modified covariantly damped alpha=1 Maxwell-Debye absorbing-layer model with variables E, H_x, H_y, P, nonnegative time-independent rho_x,rho_y, rho=rho_x+rho_y, and D_rho=partial_t+rho. Multiplying the field equations by E,H_x,H_y gives the energy derivative plus the nonnegative electric and magnetic damping terms; the Maxwell principal part integrates to the boundary flux int_dOmega E(H_y n_x - H_x n_y) ds, which vanishes under PEC E=0. The covariant Debye law P+tau D_rho P=chi E gives E D_rho P=(2 chi)^{-1} partial_t(P^2)+rho chi^{-1}P^2+tau chi^{-1}|D_rho P|^2, so the proposed positive energy has exactly the displayed monotone identity. The predecessor facts about the original source model are verified and are used only as context/motivation for the repair; the artifact clearly states that the covariantly damped model is a modified absorbing model, not an algebraically identical proof for the old eight-variable unsplit PML and not a proof of exact perfect matching.",
+  sources/energy_functional_problem.tex:233:\section{Baffet-Type Energy Design Clue}
+  sources/energy_functional_problem.tex:235:Baffet--Grote--Imperiale--Kachanovska proved monotone energy decay for a second-order wave-equation PML with constant damping coefficients\cite{baffetGroteImperialeKachanovska2019}.  Their main lesson is methodological: do not start from the naive energy alone.  In two dimensions they introduce
+  sources/energy_functional_problem.tex:249:\begin{task}[Translate the Baffet idea to \eqref{eq:main-model}]
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:5:Daniel Henri Baffet, Marcus J. Grote, Sébastien Imperiale, Maryna
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:11:Daniel Henri Baffet, Marcus J. Grote, Sébastien Imperiale, Maryna Kachanovska. Energy Decay and
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:108:B´ecache, Fauqueux and Joly derived a necessary condition for the stability of
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:130:By using the Cagniard-De Hoop technique, Diaz and Joly [21] proved the expo-
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:171:(rPML) formulation which, however, ”will not achieve perfect matching” [32].
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:5533:damping functions are not necessary to achieve perfect matching at the discrete
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:5566:6. B´ecache, E., Fauqueux, S., Joly, P.: Stability of perfectly matched layers, group velocities
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:5570:7. B´ecache, E., Joly, P.: On the analysis of B´erenger’s perfectly matched layers for Maxwell’s
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:5574:8. B´ecache, E., Joly, P., Kachanovska, M.: Stable perfectly matched layers for a cold plasma
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:5578:9. B´ecache, ´E., Joly, P., Kachanovska, M., Vinoles, V.: Perfectly matched layers in negative
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:5581:10. B´ecache, E., Joly, P., Vinoles, V.: On the analysis of perfectly matched layers for a class
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:5626:21. Diaz, J., Joly, P.: A time domain analysis of PML models in acoustics. Comput. Methods
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:5668:30. Joly, P.: An elementary introduction to the construction and the analysis of perfectly
+  verification/VERIFICATION_INDEX.jsonl:8:{"schema_version":"iteris.verification_result.v0","request_id":"verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw","backend":"agent","mode":"fact","claim":"The covariantly damped alpha=1 Maxwell-Debye absorbing-layer model has a positive monotone energy identity.","verdict":"accepted","passed":true,"strict_verdict":"correct","summary":"Correct within the stated claim scope. The cited fact and proof define a modified covariantly damped alpha=1 Maxwell-Debye absorbing-layer model with variables E, H_x, H_y, P, nonnegative time-independent rho_x,rho_y, rho=rho_x+rho_y, and D_rho=partial_t+rho. Multiplying the field equations by E,H_x,H_y gives the energy derivative plus the nonnegative electric and magnetic damping terms; the Maxwell principal part integrates to the boundary flux int_dOmega E(H_y n_x - H_x n_y) ds, which vanishes under PEC E=0. The covariant Debye law P+tau D_rho P=chi E gives E D_rho P=(2 chi)^{-1} partial_t(P^2)+rho chi^{-1}P^2+tau chi^{-1}|D_rho P|^2, so the proposed positive energy has exactly the displayed monotone identity. The predecessor facts about the original source model are verified and are used only as context/motivation for the repair; the artifact clearly states that the covariantly damped model is a modified absorbing model, not an algebraically identical proof for the old eight-variable unsplit PML and not a proof of exact perfect matching.","critical_errors":[],"gaps":[],"repair_hints":"","checked_artifacts":["verification/agent_runs/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw/request.json","memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-covariantly-damped-debye-energy.md","artifacts/proofs/stage2_repair_design.md","sources/energy_functional_problem.tex","memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md","memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-edge-pml-linear-obstruction.md","memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-augmented-gronwall-energy.md","verification/results/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag.json","verification/results/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-.json","verification/results/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e.json"],"checked_fact_ids":["fact:2d_maxwell_pml_energy_functional_exploration:covariantly-damped-debye-energy","fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance","fact:2d_maxwell_pml_energy_functional_exploration:edge-pml-linear-obstruction","fact:2d_maxwell_pml_energy_functional_exploration:augmented-gronwall-energy","fact:2d_maxwell_pml_energy_functional_exploration:run-20260619T173930696222Z:source-problem"],"primary_fact_ids":[],"target_artifact":null,"executor":"codex","verification_scope":"codex_agent","claim_ceiling_after_verification":"verified","agent_run_dir":"verification/agent_runs/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw","agent_log":"verification/agent_runs/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw/codex.log","agent_events_log":"verification/agent_runs/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw/codex.events.jsonl","agent_stderr_log":"verification/agent_runs/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw/codex.stderr.log","agent_log_manifest":"verification/agent_runs/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw/log_manifest.json","created_at":"2026-06-20T02:27:38.310502Z","verifier":"iteris.codex_verification_agent"}
+  verification/VERIFICATION_INDEX.jsonl:9:{"schema_version":"iteris.verification_result.v0","request_id":"verify-20260620T023007094217Z-assembly-assemble-verified-facts-to-answ","backend":"agent","mode":"assembly","claim":"Assemble verified facts to answer the second-stage 2D Maxwell-PML energy design goal: identify the old edge-PML obstruction, compare compatibility/shifted/modified repairs, and present a verified repaired absorbing model with a monotone energy identity.","verdict":"accepted","passed":true,"strict_verdict":"correct","summary":"Correct. The target report is supported at assembly scope. The old-model shifted-variable identities and exact edge-PML linear-growth obstruction are backed by the verified alpha1 algebra and edge-obstruction facts. The compatibility and shifted-MPML repair discussions are presented only as partial or edge-subsystem repairs, matching the stage-2 proof artifact and not overclaiming a full 2D monotone theorem for the old eight-variable model. The selected covariantly damped Maxwell-Debye absorbing-layer model is backed by the verified covariantly-damped-debye-energy fact: under nonnegative time-independent layer profiles and PEC boundary condition, its positive energy has the displayed monotone identity. The report explicitly states that exact perfect matching and a full old-model monotone result remain open.","critical_errors":[],"gaps":[],"repair_hints":"No repair needed.","checked_artifacts":["verification/agent_runs/verify-20260620T023007094217Z-assembly-assemble-verified-facts-to-answ/request.json","results/energy_design_v2_report.md","artifacts/proofs/stage2_repair_design.md","sources/energy_functional_problem.tex","memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-alpha1-algebra-balance.md","memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-edge-pml-linear-obstruction.md","memory/facts/
+  ...[truncated 1030392 chars; see raw codex.events.jsonl]
+
+[25] item.completed:agent_message
+  So far the internal derivations are coherent: the stretch leaves the Debye susceptibility as a function of `s`, and the normal derivative rescales by `S_x`, which cancels in the admittance. I’m doing one more pass for hidden scope issues, especially whether the fact overclaims a full two-dimensional monotone energy.
+
+[26] item.started:command_execution
+  command: /bin/zsh -lc 'rg -n "standard-stretched-pml-matching-and-1d-energy|stage3_repaired_model_energy|stage3_v2_perfect_matching_test|stretched-coordinate Maxwell" memory/facts/FACT_INDEX.jsonl artifacts/ARTIFACT_INDEX.jsonl results/energy_design_v3_perfect_matching_report.md results/VERIFICATION_STATUS.json verification/results verification/requests'
+  status: in_progress
+  exit_code: None
+
+[27] item.completed:command_execution
+  command: /bin/zsh -lc 'rg -n "standard-stretched-pml-matching-and-1d-energy|stage3_repaired_model_energy|stage3_v2_perfect_matching_test|stretched-coordinate Maxwell" memory/facts/FACT_INDEX.jsonl artifacts/ARTIFACT_INDEX.jsonl results/energy_design_v3_perfect_matching_report.md results/VERIFICATION_STATUS.json verification/results verification/requests'
+  status: completed
+  exit_code: 0
+  memory/facts/FACT_INDEX.jsonl:6:{"claim_policy": "stable_claim", "claim_summary": "The standard stretched-coordinate Maxwell-Debye PML restores perfect matching and has a reduced normal-incidence dissipative energy identity.", "fact_id": "fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy", "fact_type": "energy_identity", "origin_fact_id": "fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy", "path": "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-standard-stretched-pml-matching-and-1d-energy.md", "predecessors": [], "project_id": "2d_maxwell_pml_energy_functional_exploration", "review_level": "none", "schema_version": "iteris.fact_index_line.v0", "source_project": "2d_maxwell_pml_energy_functional_exploration", "source_task": "task-stage3-repaired-model-energy", "status": "submitted", "updated_at": "2026-06-20T06:47:56.819988Z", "verification": null}
+  memory/facts/FACT_INDEX.jsonl:7:{"claim_policy": "stable_claim", "claim_summary": "The standard stretched-coordinate Maxwell-Debye PML is perfectly matched but the naive physical Debye energy has sign-indefinite ADE memory couplings.", "fact_id": "fact:2d_maxwell_pml_energy_functional_exploration:stretched-coordinate-debye-pml-matching-and-energy-gap", "fact_type": "energy_obstruction", "origin_fact_id": "fact:2d_maxwell_pml_energy_functional_exploration:stretched-coordinate-debye-pml-matching-and-energy-gap", "path": "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-stretched-coordinate-debye-pml-matching-and-energy-gap.md", "predecessors": ["fact:2d_maxwell_pml_energy_functional_exploration:v2-covariant-model-not-perfectly-matched", "fact:2d_maxwell_pml_energy_functional_exploration:covariantly-damped-debye-energy"], "project_id": "2d_maxwell_pml_energy_functional_exploration", "review_level": "none", "schema_version": "iteris.fact_index_line.v0", "source_project": "2d_maxwell_pml_energy_functional_exploration", "source_task": "task-stage3-repaired-model-energy", "status": "submitted", "updated_at": "2026-06-20T06:47:56.819988Z", "verification": null}
+  verification/results/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d.json:17:    "artifacts/proofs/stage3_v2_perfect_matching_test.md",
+  verification/requests/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d.json:10:    "artifacts/proofs/stage3_v2_perfect_matching_test.md",
+  results/energy_design_v3_perfect_matching_report.md:35:2. 一个更接近标准 PML 的修复模型是 stretched-coordinate Maxwell--Debye
+  results/energy_design_v3_perfect_matching_report.md:71:| `fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy` | submitted | pending |
+  results/energy_design_v3_perfect_matching_report.md:78:- `artifacts/proofs/stage3_v2_perfect_matching_test.md`
+  results/energy_design_v3_perfect_matching_report.md:79:- `artifacts/proofs/stage3_repaired_model_energy.md`
+  results/energy_design_v3_perfect_matching_report.md:244:### 5.1 标准 stretched-coordinate Maxwell--Debye PML
+  results/energy_design_v3_perfect_matching_report.md:531:- 标准 stretched-coordinate Maxwell--Debye PML 保持 \(\varepsilon_D(s)\) 并只拉伸空间导数，
+  verification/requests/verify-20260620T043606452654Z-fact-the-v2-covariantly-damped-maxwell-d.json:10:    "artifacts/proofs/stage3_v2_perfect_matching_test.md",
+  verification/requests/verify-20260620T044113290188Z-fact-the-v2-covariantly-damped-maxwell-d.json:10:    "artifacts/proofs/stage3_v2_perfect_matching_test.md"
+  verification/requests/verify-20260620T043300709633Z-assembly-stage-3-report-assembles-the-pe.json:8:    "artifacts/proofs/stage3_v2_perfect_matching_test.md",
+  verification/requests/verify-20260620T043300709633Z-assembly-stage-3-report-assembles-the-pe.json:9:    "artifacts/proofs/stage3_repaired_model_energy.md",
+  verification/requests/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m.json:7:  "claim": "The standard stretched-coordinate Maxwell-Debye PML restores planar-interface perfect matching and, in the reduced normal-incidence constant-coefficient case, has the dissipative energy identity stated in the fact file.",
+  verification/requests/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m.json:9:    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-standard-stretched-pml-matching-and-1d-energy.md",
+  verification/requests/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m.json:10:    "artifacts/proofs/stage3_repaired_model_energy.md",
+  verification/requests/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m.json:11:    "artifacts/proofs/stage3_v2_perfect_matching_test.md"
+  verification/requests/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m.json:14:    "fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy"
+  verification/requests/verify-20260620T042228780266Z-fact-the-v2-covariantly-damped-maxwell-d.json:10:    "artifacts/proofs/stage3_v2_perfect_matching_test.md"
+  verification/results/verify-20260620T043300709633Z-assembly-stage-3-report-assembles-the-pe.json:32:    "artifacts/proofs/stage3_v2_perfect_matching_test.md",
+  verification/results/verify-20260620T043300709633Z-assembly-stage-3-report-assembles-the-pe.json:33:    "artifacts/proofs/stage3_repaired_model_energy.md",
+  verification/results/verify-20260620T043309704737Z-assembly-stage-3-terminal-report-results.json:13:      "location": "fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy",
+  verification/results/verify-20260620T043309704737Z-assembly-stage-3-terminal-report-results.json:17:      "location": "fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy",
+  verification/results/verify-20260620T043309704737Z-assembly-stage-3-terminal-report-results.json:46:    "fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy: referenced fact status is 'submitted', not 'verified'",
+  verification/results/verify-20260620T043309704737Z-assembly-stage-3-terminal-report-results.json:47:    "fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy: referenced fact lacks a verification link",
+  verification/results/verify-20260620T043309704737Z-assembly-stage-3-terminal-report-results.json:63:    "fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy",
+  verification/requests/verify-20260620T043308157721Z-fact-the-v2-covariantly-damped-maxwell-d.json:10:    "artifacts/proofs/stage3_v2_perfect_matching_test.md"
+  verification/requests/verify-20260620T043846315949Z-fact-the-v2-covariantly-damped-maxwell-d.json:10:    "artifacts/proofs/stage3_v2_perfect_matching_test.md",
+  verification/requests/verify-20260620T042134131118Z-fact-the-v2-covariantly-damped-maxwell-d.json:10:    "artifacts/proofs/stage3_v2_perfect_matching_test.md"
+
+[28] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '1,220p' artifacts/references/stage3_literature_reading_record.md"
+  status: in_progress
+  exit_code: None
+
+[29] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '1,220p' artifacts/references/stage3_literature_reading_record.md"
+  status: completed
+  exit_code: 0
+  # Stage-3 Literature Reading Record
+  
+  Problem id: `2d_maxwell_pml_energy_functional_exploration`
+  
+  Scope: readings used for the stage-3 perfect-matching and dissipative-energy
+  analysis.  Page numbers for PDFs are the extractor/PDF page numbers unless an
+  internal printed page number is explicitly visible.  Some mathematical displays
+  in the local PDFs are only partially represented by `pdfminer`; in those cases I
+  use the surrounding prose and section labels only, and derive the algebra in the
+  stage-3 proof artifacts rather than quoting unreadable formulas.
+  
+  | Source | Inspected location | Relevant result observed | Use in stage 3 |
+  |---|---|---|---|
+  | `sources/energy_functional_problem.tex` | Full source, especially Sections 2--7 and deliverables | Defines the original eight-variable Maxwell--PML/Cole--Cole problem, PEC boundary condition, alpha \(=1\) Debye reduction, shifted \(M_x,M_y\) identities to check, and requested obstruction/fallback structure. | Establishes the baseline old model and the verified edge-mode obstruction that any repaired model must address. |
+  | `results/energy_functional_report_verified.md` | Full verified report | Verified alpha \(=1\) algebra, old-model edge PML linear growth \(M_x=\mathrm{const}\), and augmented Gronwall estimate. | Reused only as verified old-model context, not as a substitute for the new matching derivation. |
+  | `results/energy_design_v2_report.md` and `_verified.md` | Full stage-2 report | The covariantly damped Maxwell--Debye layer has a positive monotone energy, but exact perfect matching was explicitly left open. | Supplies the model to test and the previously verified energy identity. |
+  | `references/references.bib` | Full file | Bibliographic map for Berenger, Joly/Becache, Baffet, dispersive PML, CFS/ADE, MPML, and local manuscripts. | Used to avoid inventing references and to align local PDFs with citation keys. |
+  | Joly (2012), elementary PML introduction | PDF pp. 6--7, 9--11, 14--17, 19--20 | PML is characterized by impedance matching/zero reflection; construction via complex coordinate change \(x\mapsto x+(i\omega)^{-1}\int\sigma\); in 2D only the derivative in the PML direction is stretched; adding isotropic damping to all components is not generally perfectly matched. | Defines the planar-interface/stretched-coordinate test used in the v2 mismatch proof. |
+  | Baffet--Grote--Imperiale--Kachanovska (2019) | PDF pp. 4--11 and 35 | For the second-order wave PML, a non-naive augmented energy with shifted variables and time integrals decays for constant damping; variable/piecewise damping introduces gradient/interface remainders, so monotone decay is not automatic. | Provides the model for what a genuine dissipative PML energy must contain and justifies constant-coefficient scope for sharp identities. |
+  | Bécache--Fliss--Kachanovska--Kazakova (2021) | PDF pp. 2--8 | Classical Cartesian PML for Maxwell can become unstable in some anisotropic 3D diagonal media; stability is model-dependent and tied to backward waves/group velocity. | Used as a caution that perfect matching and stability are distinct properties. |
+  | Bécache--Kachanovska--Wess (2023) | PDF pp. 4--10 and references pp. 39--40 | For dispersive waveguides, the PML is derived in the Laplace domain after eliminating polarization; the stretch uses \(1+\sigma/(s\zeta(s))\). Material passivity/admissibility and the choice of \(\zeta\) matter for stability; the paper gives a time-domain auxiliary-variable PML and exponential truncation error theorem. | Supports using the physical material law \(A(s)\) in the stretched-coordinate derivation, rather than replacing it by \(A(s+\rho)\). |
+  | Huang--Li--Liu (2023) | PDF pp. 1--6 | Equivalent Berenger PML models have nontrivial stability analysis; an explicit unconditionally stable finite-element scheme is built for an equivalent model, while variable-damping energy stability remains difficult. | Used to classify equivalent Berenger/ADE systems as plausible but not automatically monotone in the simple \(L^2\) energy. |
+  | Meza-Fajardo--Papageorgiou (2008), local `A_Nonconvolutional...pdf` | PDF pp. 1--6, 8--10, 19, 23, 26 | M-PML adds damping in multiple coordinate directions; stability can improve, but it is a modified absorbing layer with parameters chosen for spectral stability. | Used for the MPML repair option and for the statement that stabilizing modifications can sacrifice exact perfect matching. |
+  | Correia--Jin (2006) | PDF pp. 1--5 | Regular PML, CFS-PML, and second-order PML have different absorption strengths; CFS helps evanescent waves but can hurt low-frequency propagating waves, while higher-order PML combines mechanisms. | Used for the CFS/ADE candidate classification, not as an energy proof. |
+  | Feng--Li (2013) | PDF pp. 1--4 and 6--9 | Higher-order stretched-coordinate PML can be implemented through ADE variables and can improve late-time/evanescent absorption in computations. | Used to justify an ADE time-domain realization of rational stretch factors. |
+  | Ping--Xu--Mao--Yang (2014) | PDF pp. 1--3 and 8--10 | Second-order M-PML is reported as long-time stable and efficient in elastic simulations, while classical PML can show late-time instability. | Used as supporting context for MPML as a stability-oriented, not exact-matching-first, repair class. |
+  | Xie--Zheng--Cristini--Zhang (2023) | PDF pp. 1--7 and 13 | M-PML is explicitly described as losing perfect matching because of multiaxial stretching, though frequency shifting improves near-grazing and long-time behavior. | Used to state that MPML-type repairs should be labeled stable/absorbing, not perfectly matched. |
+  | `references/main.pdf` | PDF pp. 4--6, 38--40, 42--48, 54--56 | Local manuscript derives UPML/Cole--Cole frequency-domain forms, 2D energy boundedness, stretched-coordinate PML notes, and CFS-PML attempts; formulas are partly unreadable in extraction. | Used as local project context; no independent formula claim is taken from unreadable displays. |
+  | `references/Super.pdf` | PDF pp. 1--5, 20, 30, 35--38 | Local superconvergence notes for DG methods with PML; mostly numerical-analysis context rather than continuous matching algebra. | Not used as support for perfect matching; recorded because it was requested among local PDFs. |
+  | `references/Thesis.pdf` | PDF pp. 80--86, 111--112, 144--149, 151--155 | Local thesis states one-dimensional C-CPML discrete energies can be strictly dissipative; two-dimensional C-CPML continuous stability is proved by a Gronwall estimate, with monotone energy difficult due to anisotropic PML magnetic terms. | Supports the report's distinction between 1D strict dissipation and 2D finite-time stability for the old C-CPML-style system. |
+  
+
+[30] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '1,260p' references/processed/Joly\\ -\\ 2012\\ -\\ An\\ elementary\\ introduction\\ to\\ the\\ construction\\ and\\ the\\ analysis\\ of\\ perfectly\\ matched\\ layers\\ for\\ time.txt"
+  status: in_progress
+  exit_code: None
+
+[31] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '1,260p' references/processed/Joly\\ -\\ 2012\\ -\\ An\\ elementary\\ introduction\\ to\\ the\\ construction\\ and\\ the\\ analysis\\ of\\ perfectly\\ matched\\ layers\\ for\\ time.txt"
+  status: completed
+  exit_code: 0
+  
+  --- Page 1 ---
+  S(cid:2)eMA Journal
+  no57(2012),5–48
+  
+  AN ELEMENTARY INTRODUCTION TO THE CONSTRUCTION AND THE
+  ANALYSIS OF PERFECTLY MATCHED LAYERS FOR TIME DOMAIN
+  WAVE PROPAGATION
+  
+  PATRICK JOLY
+  
+  POEMS, UMR CNRS/ENSTA/INRIA
+  INRIA, Domaine de Voluceau-Rocquencourt, BP 105, F-78153 Le Chesnay C´edex
+  
+  Patrick.Joly@inria.fr
+  
+  As soon as people have been interested in the numerical simulation of wave propa-
+  gation phenomena, particularly in the time domain, they had to face the delicate ques-
+  tion of realizing “transparent” artiﬁcial boundaries. Indeed, many problems of this type
+  are posed in a unbounded domain (or in a domain which is very large with respect to
+  a zone of interest in which one wishes to observe the solution) : one thus has to bound
+  artiﬁcially the computational domain in such a way that the non physical boundaries
+  are “transparent” for the solution. Due to the crucial importance of this subject, but
+  also because of its difﬁculty, this question has aroused the curiosity from many re-
+  searchers, ﬁrst from engineers, next from applied mathematicians. It would be much
+  too ambitious to give a complete panorama of a research that began almost forty years
+  ago (see however the article by T. Hagstrm [20] which constitutes a quite complete
+  review of the domain) but one can now measure how much the many ingenious ideas
+  proposed by the one or the others have permitted to accomplish impressive progress
+  in this matter. Nowadays, if one restricts oneself to linear wave propagation problems,
+  one can consider that, even though some questions remain open, satisfactory solutions
+  are available for a large number of applications, in particular in the “canonical case” I
+  will have in mind throughout this paper, namely the case where one wishes to reduce
+  numerical computations to a convex bounded domain, assuming that the exterior do-
+  main is homogeneous and source free.
+  
+  Recently, in particular for the applications in acoustics and electromagnetism, impor-
+  tant progress has been achieved in the use of “exact” boundary conditions associated
+  to homogeneous exterior domains. One usually introduces a boundary operator called
+  “Dirichlet to Neumann” (DtN) operator that can be represented by using separation of
+  variables in the exterior domain (in 3D, one will use typically spherical harmonics [19],
+  which requires a spherical artiﬁcial boundary) or through the coupling with an integral
+  representation formula of the exterior solution (which relies on the explicit knowledge
+  of the Green’s function of the problem) [4].
+  
+  Received: May 13, 2011. Accepted: July 19, 2011.
+  
+  5
+  
+  
+  --- Page 2 ---
+  6
+  
+  Patrick Joly
+  
+  However, these techniques, beyond the fact that they remain restricted to a relatively
+  limited ﬁeld of applications, have the disadvantage to be nonlocal in space and time
+  : they remain quite difﬁcult to implement and rather costly in terms of computational
+  time and storage, despite of the recent progress accomplished is fast algorithms for the
+  evaluation of such nonlocal operators, such as the multipole method [18]. That is why,
+  in many computational codes, one prefers to use solutions involving local operators,
+  typically differential operators, which lead to a much simpler implementation. Such
+  solutions, except in 1D, can not provide transparent boundary conditions : one speaks
+  of ”approximate” or ”absorbing” boundary conditions. Of course, these conditions in-
+  volve approximation parameters (devoted to tend to 0 or +∞) and will provide the true
+  solution only when ”passing to the limit”. In this class of methods, two large families
+  of methods can be opposed:
+  
+  • Absorbing boundary conditions (ABC’s): The idea is to complete the interior
+  mathematical model (namely the interior PDE’s) with one or several boundary
+  conditions that can be seen as partial differential equations along the boundary.
+  Such conditions are supposed to minimize the spurious reﬂections that they
+  generate. The pioneering works of Engquist and Majda [15], [16] on the wave
+  equation (in the half space, i. e. with a ﬂat artiﬁcial boundary) are in this spirit.
+  They proposed a hierarchy of boundary conditions that are classiﬁed with an
+  integer N , namely the order of the boundary condition that I will not precisely
+  deﬁne here. Let us simply explain that the greater is N , the higher is the order of
+  the differential operators (which means that the boundary condition is more and
+  more costly in terms of computational time) and the better is the accuracy of the
+  approximate solution, as it has been recently proven in [14] for instance. These
+  initial works have led to an intensive research in applied mathematics aiming
+  at extending this type of techniques to other equations, the treatment of curved
+  boundaries, the treatment of corners,...
+  
+  • Absorbing layers : the idea here is that the absorption of the waves that ”want”
+  to leave the computational domain is not achieved through a boundary condition
+  but inside a (hopefully small) layer surrounding this computational domain. This
+  layer will be made of an ”absorbing material” whose behavior remains described
+  with the help of partial differential equations and inside which the waves are
+  damped (hopefully exponentially fast) during their propagation. In such a case,
+  the boundary condition that has to be prescribed at the external boundary of the
+  absorbing layer has no particular importance as soon as it leads to a well posed
+  problem...
+  
+  The idea, physically rather natural, of absorbing layers has ﬁrst been introduced by
+  engineers at the beginning of the 70’s. The idea was to join the physical non absorbing
+  domain to an absorbing medium of physical nature (typically, in electromagnetism one
+  will use a conductive material, in mechanics a visco-elastic material, ...). This approach
+  has been progressively abandoned - during the 80’s - at the beneﬁt of absorbing
+  boundary conditions for various reasons, in particular because it was not supported
+  - contrary to ABC’s - by a solid and precise theoretical background but also because
+  its practical use required what I will cal some ”engineer intuition”. In the mid 90’s, the
+  
+  
+  --- Page 3 ---
+  Construction and analysis of Perfectly Matched Layers
+  
+  7
+  
+  works of J. P. B´erenger [8], [9], who, for Maxwell’s equations, invented the concept
+  of Perfectly Matched Layers (PMLs), have revolutionized the domain and replaced the
+  methods of absorbing layers as a very attractive and powerful alternative to absorbing
+  boundary conditions. The success of PMLs, whose principle is based on a simple but
+  very clever idea, can be explained by several good reasons among which
+  
+  • the fact that PML’s are particularly simple to implement (in particular by
+  
+  comparison with higher order absorbing boundary conditions),
+  
+  • the fact that they provide in many applications remarkable performances (even
+  
+  when the theory does not completely predict it),
+  
+  • the fact that they can be applied without extreme additional complexity to a great
+  number of equations (including acoustics, electromagnetism, elastodynamics,...)
+  
+  However, to temperate any excessive enthusiasm, I will add that
+  
+  • although substantial progress have been accomplished during the past ten years
+  (which I will try to show later) the mathematical analysis of these methods is
+  still not sufﬁciently well understood (at least from my point of view).
+  
+  • there exist physical models for which they do not work because they lead to
+  
+  unstable mathematical models.
+  
+  • the winner of the competition PMLs agains ABCs is not clearly designated yet
+  
+  and a fair comparison remains to be done.
+  
+  As many (really many) things have already been written on PML’s, I will choose to
+  insist in this text on a particular point of view, which I hope to be well adapted to a
+  reader who is an applied mathematician. More precisely, I will pursue a double goal:
+  
+  • Give a very introductory exposition of the construction of PML’s, which is
+  not the one originally the one of B´erenger but better corresponds to my
+  understanding of the method,
+  
+  • Give a kind of state of the art in the matter of mathematical results about PML’s,
+  with a particular emphasis on the works done by my collaborators and myself at
+  INRIA.
+  
+  In this spirit, I have chosen to organize the content as follows. Chapter 1 concerns
+  the 1D case and has essentially a pedagogical motivation. After a brief introduction
+  on classical absorbing layers, I will present - starting from the classical concept of
+  impedance adaptation - the construction of PML’s for the 1D wave equation. In this
+  very simple case, everything becomes quite simple and can be analyzed ”by hand”.
+  Chapter 2 is devoted to B´erenger’s PML’s for a general hyperbolic system in dimension
+  2 (once one has understood the two-dimensional case, the extension to higher space
+  dimensions does not pose any problem). I will show how, from a very mathematical
+  and formal idea - the use of a ”complex” (in the sense of imaginary numbers) change
+  of variable - one can derive PML’s that generalize the ones proposed by B´erenger for
+  Maxwell’s equations. In a second step, I will restrict myself to the 2D acoustic wave
+  
+  
+  --- Page 4 ---
+  8
+  
+  Patrick Joly
+  
+  equation on which I will explain in detail the absorption mechanism for plane waves,
+  the treatment of corners, the interest of a variable (in space) absorption coefﬁcient,...
+  The chapter 3, which concerns the mathematical analysis of PML models, will report
+  more of some of my recent research. After having recalled the concepts of well-
+  posedness and stability, I will present some results from the literature. These results are
+  incomplete. Some of them enlighten some instability for certain classes of equations
+  which are however of real interest for applications. Finally, some open problems will
+  be mentionned.
+  
+  1 Perfectly Matched Layers in dimension 1
+  
+  Let us consider the 1D wave equation on the real line, with velocity 1:
+  − ∂2u
+  
+  x ∈ IR,
+  
+  t > 0
+  
+  ∂2u
+  ∂t2
+  
+  ∂x2 = 0,
+  
+  (1)
+  
+  The Cauchy problem for this equation models in particular the small amplitude
+  movements of a string submitted for instance to an initial deformation:
+  such
+  deformations propagate with velocity 1 without any modiﬁcation of their shape or
+  amplitude.
+  In what follows, our objective is to characterize, for computational
+  purpose, the restriction of the solution to the half-line x < 0 by introducing an artiﬁcial
+  boundary at x = 0, assuming that the initial data are supported in this half-line. In this
+  case, there is a very simple transparent condition, which is local (but this is no longer
+  true in dimension > 1):
+  
+  ∂u
+  ∂t
+  
+  +
+  
+  ∂u
+  ∂x
+  
+  = 0,
+  
+  x = 0,
+  
+  t > 0.
+  
+  (2)
+  
+  The (very academic) question that we address in this section is the following : how is
+  it possible to realize a “quasi”-transparent condition via an absorbing layer occupying
+  the interval [0, L] ?
+  
+  1.1 Classical absorbing layers
+  
+  It is well known physically that one introduces some mechanisms of dissipation of
+  energy, and thus wave damping, if one adds to the equation (1):
+  
+  • a ﬂuid friction term:
+  
+  + ν
+  
+  • a viscous friction term:
+  
+  ν ≥ 0,
+  
+  ,
+  
+  ∂u
+  ∂t
+  (cid:2)
+  ν∗ ∂2u
+  ∂x∂t
+  
+  − ∂
+  ∂x
+  
+  (cid:3)
+  
+  ,
+  
+  ν∗ ≥ 0,
+  
+  which leads to the equation (where ν and ν∗ may vary in x):
+  (cid:3)
+  
+  (cid:2)
+
+[32] item.started:command_execution
+  command: /bin/zsh -lc "rg -n \"complex|change of variable|coordinate|stretch|perfectly matched|impedance|reflection|derivative|s\\+|sigma|s \\+\" \"references/processed/Joly - 2012 - An elementary introduction to the construction and the analysis of perfectly matched layers for time.txt\""
+  status: in_progress
+  exit_code: None
+
+[33] item.completed:command_execution
+  command: /bin/zsh -lc "rg -n \"complex|change of variable|coordinate|stretch|perfectly matched|impedance|reflection|derivative|s\\+|sigma|s \\+\" \"references/processed/Joly - 2012 - An elementary introduction to the construction and the analysis of perfectly matched layers for time.txt\""
+  status: completed
+  exit_code: 0
+  124:• the fact that they can be applied without extreme additional complexity to a great
+  156:impedance adaptation - the construction of PML’s for the 1D wave equation. In this
+  161:and formal idea - the use of a ”complex” (in the sense of imaginary numbers) change
+  300:where k(ω) is the complex wave number characterized by:
+  521:Construction of PML’s by adaptation of impedance. As a starting point, let us
+  522:recall what is the adaptation of impedance. For this, let us come back to the wave
+  550:• the impedance z(x) =
+  619:In particular, one observes that if the two impedances z et z∗ are equal (one says then
+  620:that there is adaptation of impedance) the reﬂection coefﬁcient vanishes.
+  623:lently perfectly matched. Nevertheless, the medium {x >0} being non absorbing,
+  626:waves may become complex” as in a visco-elastic medium !
+  677:By construction, the product ρ(x)μ(x) is constant; in other words, the impedance in the
+  678:medium {x >0} in the same than the impedance in the medium {x <0} (z =
+  680:We thus have adaptation of impedance. However, the velocity c =
+  682:complex : it is equal to c d(ω), which allows us to make the medium {x > 0} absorb-
+  969:Construction of PML’s through a complex change of variable. One can recover
+  974:the complex plane (with respect to the space variable x). This extension still satisﬁes
+  975:(6) in C (the differentiation being understood in the sense of functions of the complex
+  978:in the complex plane and whose the “physical world” that we observe every day would
+  980:solution along a new path ((cid:8)= IR) in the complex plane, such that
+  996:is perfectly matched),
+  1006:One realizes that all these criteria are satisﬁes with the change of variable :
+  1083:that is to say (13). This approach shows that one still gets a ”perfectly matched” layer
+  1127:included in the complex half-plane Im(X) > 0,
+  1129:• the criterion (iv) corresponds to the fact that the change of variable must depend
+  1673:order equation (15) which only involves second order derivatives in x. The invariance
+  1675:gets an equation involving a ﬁrst order derivative in x:
+  1785:(28), the one which involves x derivatives, which leads to:
+  1838:be perfectly matched (except for 1D y-independent solutions).
+  1848:derivative, the absorption coefﬁcient σ depending this time on y.
+  1851:approach of the complex change of variable introduced in section 1.
+  2122:equations involve derivatives in only one space variable), by applying the approach
+  2497:perfectly matched for the continuous problem, this is no longer the case for the discrete
+  2503:• As the layer is no longer perfectly matched at the discrete level, for the numerical
+  2892:as a generalization (rather complex in its most technical details) of the Fourier analysis
+  3140:Geometrically, this means that all the curves in the complex plane (they form a family
+  3157:are located above some complex half-space. As the functions ωj(k) are continuous
+  3246:s + 1 = sup
+  3314:s+1 ,
+  3322:admitting a “parabolic branch” which goes to inﬁnity in the complex half-space
+  4173:. After integration by parts, space derivatives disappear and one obtains
+  4354:we shall speak of two slowness curves), symmetric with respect to the coordinate axes
+  4695:to the lower complex half plane, which contradicts stability (cf. (60)) .
+  4762:the x direction with Mach number M - the equations are expressed in a coordinate
+  4882:method and exploits in some sense the construction of the PML model via a complex
+  4883:change of variable. As a by product, this computation shows in this case the stability of
+  4917:[2] S. Abarbanel, D. Gottlieb, and J. S. Hesthaven. Well-posed perfectly matched
+  4922:perfectly matched layer equations in computational elactromagnetics. SIAM J.
+  4932:[6] E. B´ecache, S. Fauqueux, and P. Joly. Stability of perfectly matched layers, group
+  4938:unsplit perfectly matched layers. Technical Report 4538, INRIA, 2002.
+  4944:[9] J.P. B´erenger. Three-dimensional perfectly matched layer for the absorption of
+  4948:[10] E. B´ecache and P. Joly. On the analysis of B´erenger’s perfectly matched layers for
+  4962:[12] F. Collino and P. Monk. The Perfectly Matched Layer in curvilinear coordinates.
+  5006:[22] F. Q. Hu. A stable, perfectly matched layer for linearized Euler equations in
+  5048:[30] F. L. Teixeira and W. C. Chew. Uniﬁed analysis of perfectly matched layers using
+
+[34] item.started:command_execution
+  command: /bin/zsh -lc 'rg -n "stretch|PML|perfectly matched|coordinate|sigma|Laplace|Debye|dispersive|material|suscept|epsilon" "references/processed/Bécache 等 - 2023 - Convergence analysis of time-domain PMLS for 2D electromagnetic wave propagation in dispersive waveg.txt"'
+  status: in_progress
+  exit_code: None
+
+[35] item.completed:command_execution
+  command: /bin/zsh -lc 'rg -n "stretch|PML|perfectly matched|coordinate|sigma|Laplace|Debye|dispersive|material|suscept|epsilon" "references/processed/Bécache 等 - 2023 - Convergence analysis of time-domain PMLS for 2D electromagnetic wave propagation in dispersive waveg.txt"'
+  status: completed
+  exit_code: 0
+  9:CONVERGENCE ANALYSIS OF TIME-DOMAIN PMLS FOR 2D
+  14:Abstract. This work is dedicated to the analysis of generalized perfectly matched layers (PMLs) for
+  15:2D electromagnetic wave propagation in dispersive waveguides. Under quite general assumptions on
+  17:in homogeneous waveguides and show that the PML error decreases exponentially with respect to the
+  21:case of the non-dispersive media. Our findings are illustrated by numerical experiments.
+  29:In this paper we are interested in 2D time-domain dispersive wave propagation in unbounded (or semi-
+  30:bounded) waveguides. Typically, a medium is called dispersive if properties of waves propagating in it depend
+  31:on their frequency. Some examples of dispersive media include metals and metamaterials.
+  35:bounded. The perfectly matched layer (PML) method, first introduced by B´erenger for Maxwell’s equations
+  37:implementation. The idea is to surround the computational domain with an absorbing layer (the PML region)
+  39:medium and the artificial absorbing medium. PMLs have been widely used for the simulation of time dependent
+  41:then extended to various non-dispersive models (the paraxial wave equations [22], the linearized Euler equations
+  42:[28,34,35,47], elastic wave propagation in isotropic and anisotropic media [14,24,33], etc.) and dispersive models
+  45:Keywords and phrases. Perfectly matched layers, Time-dependent Maxwell equations, Laplace transform, Waveguides, Dispersive
+  46:media, Metamaterials.
+  63:However, PMLs are known to produce instabilities when applied to some anisotropic [2, 14, 27, 35, 36, 39] or
+  64:dispersive [12, 16, 17, 26] media. Some of these have been overcome in the above-mentioned works, however, the
+  65:question of stabilizing the PMLs remains model-dependent. Moreover, even in situations when the PMLs remain
+  66:stable, their error control is rather difficult, because of the interplay of the various parameters of the PML and
+  69:Concerning the mathematical analysis of PMLs in the time-domain, there are mainly three questions of
+  71:these notions: The PML model is well-posed if there exists a unique solution such that the 𝐿2-norm of the
+  75:the error between the exact solution and the PML solution with respect to the PML parameters (typically
+  78:The question of the well-posedness of PMLs has been addressed very early in [1] for Maxwell’s equations and
+  83:mentioned, standard PMLs can give rise to instabilities for some anisotropic and/or dispersive models, as soon
+  85:the PML transverse direction of the phase and group velocities are of opposite signs [14]). In most of the papers
+  87:Fourier or Laplace analysis or on energy techniques: see e.g. [4, 7, 11, 15, 27] for the non-dispersive scalar wave
+  89:dispersive models. Note that in [4, 14] general hyperbolic systems are also considered.
+  91:Up to our knowledge the only two works where the stability and convergence of PMLs for arbitrary (non-
+  94:PML system for the 2D acoustic wave equation based on the Cagniard-de-Hoop contour deformation method
+  95:and the method of reflections. Then they derive convergence estimates for the PMLs, which, according to the
+  98:decompositions and some energy-like Laplace domain arguments.
+  101:absorption parameter in [13] to the case of isotropic dispersive semi-infinite waveguides. A very important
+  102:example of such media are metamaterials, i.e. artificial composite materials having extraordinary electromag-
+  103:netic properties. In particular, Negative Index Metamaterials (NIMs), also called left-handed media or double
+  104:negative metamaterials, have negative permittivity and permeability at some frequencies due to microscopic
+  108:standard PMLs. Some generalized PMLs have been introduced to overcome these instabilities, see [17]. The
+  110:to the presence of backward waves. The stability of these generalized PMLs have been analysed for a constant
+  111:absorption parameter (for the free space) in [17] using Fourier techniques and in [12] using Laplace techniques.
+  113:new properties of the dispersive media crucial for our analysis. We recall the generalized perfectly matched layers,
+  115:dedicated to a discussion of the well-posedness of the PML problem for the dispersive media, as well as deriving
+  120:CONVERGENCE ANALYSIS OF TIME-DOMAIN PMLS
+  125:constant non-dispersive and dispersive media, and, using semi-analytic arguments, demonstrate that in general,
+  126:perfectly matched layers, even while being stable for the homogeneous media, may exhibit instabilities in the
+  127:presence of the compact perturbations away from the PMLs. Finally, we finish our exposition with numerical
+  137:the two-dimensional semi-unbounded dispersive waveguide Ω = R+
+  155:𝐵 and the magnetic field 𝐻 are given in the Laplace domain. To describe them we introduce the Laplace
+  183:Rewriting the system (M) in the Laplace domain in its second order formulation for the field ^𝐻 yields in
+  218:We call the media dispersive if the dielectric permittivity 𝜀 and/or magnetic permeability 𝜇 depend on the
+  219:Laplace frequency 𝑠 non-trivially. Otherwise, if 𝜇(𝑠) = 𝜀(𝑠) = 1 in C+, we will call the media non-dispersive.
+  220:We will restrict our considerations to the materials satisfying the following mathematical assumptions. Let
+  243:Fourier transform convention, rather than the Laplace transform one, with 𝑠 = −𝑖𝜔, it reduces to requiring that
+  246:– non-dispersive at high frequencies if, for all 𝛼 ∈ (− 𝜋
+  256:non-dispersive at high frequencies.
+  262:In the present paper we will limit our discussion to admissible materials.
+  266:It can be shown, see [19], that this class of materials includes the media considered in the Ph.D. thesis [50],
+  267:some results of which are summarized in the article [17], where the perfectly matched layers were constructed for
+  268:non-dissipative media. The idea of [17] was extended to more general media, including in particular materials
+  271:A standard example of such media is given by so-called Lorentz materials:
+  306:Example 2.4. Other examples of dispersive media are given e.g. by
+  319:CONVERGENCE ANALYSIS OF TIME-DOMAIN PMLS
+  323:– dissipative Drude materials:
+  340:ization of the Lorentz materials. More precisely, repeating the proof of Theorem 4.5 in [19] almost verbatim,
+  527:it, we will use the perfectly matched layer method.
+  531:2.2.1. Generalized PMLs
+  533:It was demonstrated in [26] that B´erenger’s classical perfectly matched layers can exhibit instabilities when
+  534:applied to dispersive media. Such instabilities are induced by the presence of backward propagating waves, as
+  535:explained in [17]. A remedy, originally suggested in [26] for Drude materials, and further generalized in [12, 17],
+  536:to treat the cases of more general media is altering the perfectly matched layer change of variables in order to
+  544:by constructing a perfectly matched layer at 𝑥 = 𝑅 of width 𝐿. For this we first rewrite the problem (6), (5) in
+  545:the Laplace domain, which yields, after eliminating 𝑃 and 𝑀𝑧,
+  558:With this definition, the [17]-PML change of variables reads
+  576:that in the classical B´erenger PML 𝜁(𝑠) = 1. We also introduce the average damping ¯𝜎 by
+  578:* , and is responsible for stabilizing the PMLs for dispersive media. Note
+  593:The interface between the PML and the physical media will be denoted by Σ = {𝑅} × (0, ℓ), and the PML
+  596:Remark 1. In [12, 17], the PML change of variables (8) was written in the form
+  614:CONVERGENCE ANALYSIS OF TIME-DOMAIN PMLS
+  618:Figure 1. Sketch of the decomposition of the waveguide into the physical domain Ω𝑝ℎ, PML
+  621:After performing this change of variables and truncating the PML system, we look for ( ^𝐸
+  684:2.2.2. Choice of 𝜁 for any media satisfying Assumption 2.2 and the corresponding PML system in the time-
+  706:in the possible reduction of the number of auxiliary unknowns required for the implementation of the PML
+  708:for Lorentz materials.
+  716:We rewrite the PML system (10) in the time-domain (where the choice of the auxiliary PML unknowns will
+  774:not involve the PML change of variables, hence remains the same as in the system without the PML. As for the
+  775:second equation, we rewrite it by introducing the new unknown ̃︀𝐸𝜎. More precisely, the term with the PML
+  810:Laplace domain counterpart. In particular, we start with (10), and express all the unknowns with the help of
+  811:^𝐻 𝜎, which yields the following 2D Helmholtz equation with the PML change of variables:
+  863:CONVERGENCE ANALYSIS OF TIME-DOMAIN PMLS
+  869:The principal goal of this paper is to prove convergence of the perfectly matched layers in homogeneous
+  879:Let 𝜇, 𝜀 be admissible materials in the sense of Definition 2.1 and 𝜁 be chosen such that Assumption 2.10 holds.
+  880:Let 𝐿 > 0 and 𝜎 satisfy (7). Then a unique solution of the PML problem (11)–(14) 𝐻 𝜎 ∈ 𝐿∞(0, 𝑇 ; 𝐿2(Ω𝑝ℎ))
+  901:inside the PML region (remember the high-frequency assumption on 𝜇, 𝜀, cf. [19], Thm. 4.9 for a related result
+  902:for the media without the PML). As we assume vanishing initial data in Ω𝜎, the PML truncation may only
+  907:bound with respect to the PML parameter and length for Cartesian perfectly matched layers applied to the
+  908:acoustic wave propagation in vacuum. Since Theorem 2.11 includes also the case of non-dispersive materials
+  909:(i.e., 𝜇 = 𝜀 ≡ 1) it extends the bound from [13] to the case of dispersive waveguides. Note that the factor 4 in
+  912:Remarkably the exponential convergence of the PML truncation is independent of the specific materials 𝜇, 𝜀
+  914:of the PML system. On the other hand, as argued in the recent article [6] for the case of the Klein–Gordon
+  921:of any parameters of the problem (final time, Laplace parameter 𝑠, geometry or PML parameters).
+  925:We analyze the stability and the convergence of the PML based on the Laplace-domain techniques, as
+  947:Such distributions are characterized by bounds on their Laplace transforms.
+  959:* → 𝑋 is a Laplace transform of 𝜑 ∈ 𝑇 𝐷(𝑋) if
+  1010:3.1. Existence and uniqueness for the PML problem (15)
+  1094:As discussed in the beginning of Section 3, this implies in particular that the respective PML system admits
+  1116:CONVERGENCE ANALYSIS OF TIME-DOMAIN PMLS
+  1120:Corollary 3.4. The PML system (11), equipped with the boundary conditions (14), constitutive relations (12),
+  1130:3.2. An explicit solution in the Laplace domain for the data supported in the physical
+  1157:3.2.1. The symbol of the PML DtN map
+  1213:is well-posed. We call the symbol of the PML DtN map the operator 𝑇 𝜎 : 𝐻 1/2(Σ) ↦→ (𝐻 1/2(Σ))′, defined for
+  1331:This allows us to define the symbol of the PML-DtN map by
+  1416:We give the expression for the error between the exact solution and the PML solution in this way, since the
+  1420:PML solution. If we wanted to obtain the 𝐿∞(0, 𝑇 ; 𝐻 1(Ω))-norm of the error, it would have been simpler to
+  1425:Let us remark that (26) indeed defines a Laplace transform of a TD(𝐻 1(Ω𝑐))-distribution of 𝑒𝜎.
+  1435:CONVERGENCE ANALYSIS OF TIME-DOMAIN PMLS
+  1441:Laplace transform to the Laplace-domain error 𝑒𝜎 yields
+  1593:4.1. On obtaining the error bounds by deforming the Laplace inversion contour
+  1607:First, we will show how to do so in the non-dispersive case, next discuss the dispersive case, and finally argue
+  1612:dispersive case, and the goal of this small section is actually to show that, in general, a naively more optimal
+  1615:4.1.1. Non-dispersive case
+  1619:the non-dispersive case, we choose the classical, B´erenger’s PML with 𝜁 ≡ 1, which leads to
+  1693:CONVERGENCE ANALYSIS OF TIME-DOMAIN PMLS
+  1723:indication of the behaviour of the PML error for each mode 𝜆𝑚. In particular, it says that the optimal value 𝛽𝑚
+  1876:Figure 2. Behavior of the function 𝐴(𝑠, 𝜆𝑚, 𝑡) for ¯𝜎 = 𝐿 = 1, 𝑡 = 4 in the non-dispersive
+  1908:For the dispersive media, the reasoning as above applies as well: we look at the contour where 𝐴(·, 𝜆𝑚, 𝑡) is
+  1910:difficulty in choosing this contour lies in the fact that for dispersive media more than one stationary point might
+  1914:the behaviour of 𝐴(𝑠, 𝜆𝑚, 𝑡) for large |𝑠| in the dispersive case resembles the behaviour of 𝐴(𝑠, 𝜆𝑚, 
+  ...[truncated 11854 chars; see raw codex.events.jsonl]
+
+[36] item.started:command_execution
+  command: /bin/zsh -lc 'rg -n "stretched|coordinate|S_x|sigma|Laplace|perfect|match|Debye|Cole|epsilon|PML" references/processed/main.txt references/processed/Thesis.txt'
+  status: in_progress
+  exit_code: None
+
+[37] item.completed:command_execution
+  command: /bin/zsh -lc 'rg -n "stretched|coordinate|S_x|sigma|Laplace|perfect|match|Debye|Cole|epsilon|PML" references/processed/main.txt references/processed/Thesis.txt'
+  status: completed
+  exit_code: 0
+  references/processed/main.txt:52:这里给出的是 1 维情况下，不带 UPML 层的方程。这个方程的好处就是将电极化强度
+  references/processed/main.txt:58:转而使用这样的方程形式，在这个方程组的基础上添加 UPML 层。
+  references/processed/main.txt:117:bye 模型）来描述。对于 Debye 介质，其在频域上的极化率为：
+  references/processed/main.txt:130:而这种模型的精确度较低，有许多其他的经验关系，包括 Cole–Cole（C–C）、Cole–
+  references/processed/main.txt:149:当 α = β = 0 时，描述的就是 Debye 介质；当 α 2 [0, 1], β = 0 时，描述的是 C-C 方程；
+  references/processed/main.txt:160:通过 Laplace 逆变换后，对应式(1.1) 的第三式。
+  references/processed/main.txt:271:The Maxwell Equation with UPML
+  references/processed/main.txt:273:2 The Maxwell Equation with UPML
+  references/processed/main.txt:277:出在 UPML 吸收边界条件下的分数阶 Maxwell 方程组。
+  references/processed/main.txt:348:εr 表示色散介质的相对电容率，其中 σi 作为 UPML 层的相关参数，当 σi = 0 对应于
+  references/processed/main.txt:350:物理的色散介质区域，先考虑 Cole-Cole 介质作为相对电容率。
+  references/processed/main.txt:352:2.1 parameter settings for UPML
+  references/processed/main.txt:355:在连续空间下，如果一个波以角度 θ 入射 PML 层，法线方向为 w，其吸收因子记为：
+  references/processed/main.txt:361:一般的，将 UPML 层中的电导 σi 设计为随多项式变化的形式：
+  references/processed/main.txt:373:其中 l 是到计算区域和 PML 之间的交界面的距离, d 是 PML 层的厚度。从上式中可以看
+  references/processed/main.txt:374:出, σi 在 UPML 层的内边界 l = 0 是零, 在 PML 的外边界 l = d 增加到最大值 σi,max 。在
+  references/processed/main.txt:375:PML 外边界上使用 PEC 边界条件,UPML 层的反射因子取做：
+  references/processed/main.txt:394:−1/2 是光在该物质中的速度。我们可以选取适当的 PML 参数来满足对于给定的
+  references/processed/main.txt:396:标红的部分与 Taflove 中不同 其中 η 是 PML 的阻抗, θ 是入射角, v = (ηϵr,∞)
+  references/processed/main.txt:422:归一化后，η 取值始终为有限值。对于 10 层 PML 网格，一般取反射因子 R(0) = e−16.
+  references/processed/main.txt:450:2.2 2-D Maxwell Equation with UPML in Cole-Cole dispersive medium
+  references/processed/main.txt:454:Cole-Cole 介质下写做：
+  references/processed/main.txt:630:通过 Laplace 逆变换的方式，给出对于 Jz,1, Jz,2, Jz,3 的控制方程。
+  references/processed/main.txt:640:对于 ˘Jz,1，两边同乘 jω，Laplace 逆变换得到：
+  references/processed/main.txt:668:对于 ˘Jz,2，两边同乘 jω，Laplace 逆变换得到：
+  references/processed/main.txt:704:对于 ˘Jz,3，两边同乘 jω，Laplace 逆变换得到：
+  references/processed/main.txt:732:对方程(2.10)采用 Laplace 逆变化，得到等价的时域上的方程：
+  references/processed/main.txt:1195:基于文章 [14] 所分析的在 Cole-Cole 介质中带有 Dirichlet 边界条件的 Maxwell 方程组
+  references/processed/main.txt:1197:的稳定性，将所研究的问题拓展到带有 UPML 吸收层情形。
+  references/processed/main.txt:1199:首先给出频域下，带有 UPML 吸收边界层的 Cole-Cole 介质下的有关 E, H, P 的方程
+  references/processed/main.txt:1241:是有关 UPML 层的取值，具体的取值方法在 section 2中提及。
+  references/processed/main.txt:1283:边界条件取做 perfectly conducting boundary condition:
+  references/processed/main.txt:1762:UPML 吸收层的外层边界条件为 perfectly conducting boundary condition，对应于一维情
+  references/processed/main.txt:1840:ϵ0(ϵs−ϵ∞) ，其中 σz 为 UPML 层参数
+  references/processed/main.txt:3897:UPML 吸收层的一维 Cole-Cole 介质中的 Maxwell 方程组是稳定的。
+  references/processed/main.txt:5249:h directly in Cole-Cole
+  references/processed/main.txt:6204:For terms in Eξ,2, the PML parameter is bounded, i.e. 0 (cid:20) σx (cid:20) σmax by definition.
+  references/processed/main.txt:6830:Since the Cole-Cole model is characterized by the fractional derivative, its solution
+  references/processed/main.txt:8184:And to our knowledge, this is the first time that the fully discrete scheme for the Cole-
+  references/processed/main.txt:8186:Cole model is proved to be stable with the monotonical dissipation of the energy function.
+  references/processed/main.txt:8200:需要分析二维 Cole-Cole 介质中带有 UPML 吸收边界层的 Maxwell 方程组的稳定性，
+  references/processed/main.txt:8656:基于第3节所分析的一维情况下对于 Cole-Cole 介质中带有 UPML 吸收层的 Maxwell
+  references/processed/main.txt:8666:目前对 2 维矩形计算区域设计其四边的 UPML 吸收边界层。
+  references/processed/main.txt:8668:仍然先给出频域下，带有 UPML 吸收边界层的二维 Maxwell 方程组的形式，在做分数
+  references/processed/main.txt:8707:2D Maxwell in C-C with UPML first
+  references/processed/main.txt:8711:2D Maxwell in C-C with UPML second
+  references/processed/main.txt:8715:2D Maxwell in C-C with UPML third
+  references/processed/main.txt:8721:2D Maxwell in C-C with UPML fourth
+  references/processed/main.txt:8730:i = x, y 是有关 UPML 层的取值，具体的取值方法在 section 2中提及。
+  references/processed/main.txt:8834:边界条件取做 perfectly conducting boundary condition:
+  references/processed/main.txt:9650:5.2 2D rectangular area with UPML in x-axis
+  references/processed/main.txt:9658:UPML_x_axis
+  references/processed/main.txt:10091:5.3 2D rectangular area with stretched coordinate PML in x-axis
+  references/processed/main.txt:10093:考虑 stretched coordinate PML, 在 MIT 的课程 note：Coordinate Transformation In-
+  references/processed/main.txt:10095:variance in Electromagnetism 中证明到了 stretched coordinate PML 的表达形式和 UPML
+  references/processed/main.txt:10194:Maxwell's Equation in stretched coordinate
+  references/processed/main.txt:10198:Specifically, for a PML designed to absorb waves propagating in the x direc-
+  references/processed/main.txt:10258:时，stretched coordinate PML 的表达形式和 UPML 在形式上具备相似性。都是在 Maxwell’s
+  references/processed/main.txt:10296:注意到，频率下 1 维 Cole-Cole 介质中 Maxwell 方程组表达为
+  references/processed/main.txt:10314:在 UPML 的吸收边界下，1 维 Maxwell’s Equations 变为
+  references/processed/main.txt:10342:而在 stretched coordinate PML 下，1 维 Maxwell’s Equations 变为
+  references/processed/main.txt:10359:故此这两种吸收边界层的表达形式在形式上具备相似性。在之后我们均采用 stretched
+  references/processed/main.txt:10361:coordinate PML 进行描述。
+  references/processed/main.txt:10369:UPML_x_axis_2
+  references/processed/main.txt:10405:表达在 3 维情形下，stretched coordinate PML 中对应的将任意一个倾斜方向转换至水
+  references/processed/main.txt:10444:Maxwell's Equation in stretched and rotate coordinate
+  references/processed/main.txt:10560:PML_circle
+  references/processed/main.txt:10986:总结下来，3 维 Maxwell 方程组在 Cole-Cole 介质下表达式为
+  references/processed/main.txt:11125:在三维情形下，可以用 coordinate 变换的方式来写 PML 系统的表示方式，参考 [7] 的
+  references/processed/main.txt:11127:形式，在 PML 层中的表示为
+  references/processed/main.txt:11459:6.1 CFS-PML 尝试
+  references/processed/main.txt:11461:在三维情形下，如果采用 CFS-PML 进行建模的话会是怎么样的结果。CFS 表示复频
+  references/processed/main.txt:11463:移的坐标伸缩，coordinate 的变换形式仍然写做
+  references/processed/main.txt:11551:那么在这样的坐标伸缩变换下，相应的含有 PML 的方程组写做：
+  references/processed/main.txt:11577:2D Maxwell in C-C with CFS-PML first
+  references/processed/main.txt:11585:2D Maxwell in C-C with CFS-PML second
+  references/processed/main.txt:11589:2D Maxwell in C-C with CFS-PML third
+  references/processed/main.txt:11595:2D Maxwell in C-C with CFS-PML fourth
+  references/processed/main.txt:11597:Maxwell Equation 2D frequency CFS-PML
+  references/processed/main.txt:11605:单的 Debye 色散介质，系统变为
+  references/processed/main.txt:12352:fectly matched layer equations in computational electromagnetics. Journal of scientific
+  references/processed/main.txt:12404:version of a perfectly matched layer technique for the 3-d second order wave equation
+  references/processed/Thesis.txt:5:题目： Cole-Cole 介电模型的间断
+  references/processed/Thesis.txt:61:比经典模型, 引入 Cole-Cole 这种分数阶的色散介质, 可以更精确地刻画介质的宽带弛
+  references/processed/Thesis.txt:65:匹配层 (PML) 使得 Maxwell 方程组变成具有空间变系数的双曲系统. 这种分数阶时间
+  references/processed/Thesis.txt:67:非定域性与 PML 空间非均匀性的并存, 导致传统基于常系数或周期边界条件的稳定性
+  references/processed/Thesis.txt:73:本文围绕 Cole-Cole 色散介质中 Maxwell 方程组的间断 Galerkin 方法（DG），系统
+  references/processed/Thesis.txt:75:研究了含完美匹配层模型（PML）的稳定性与误差估计、一维双曲型模型的超收敛性
+  references/processed/Thesis.txt:77:以及一维 Cole-Cole Maxwell 方程组的超收敛分析。主要工作如下：
+  references/processed/Thesis.txt:79:1. 针对 PML 的吸收系数随着空间变化的情形, 构建了全离散的数值格式, 提出了
+  references/processed/Thesis.txt:85:系统转化为定域的分布参数系统. 针对变系数 PML 导致的空间导数算子和乘法
+  references/processed/Thesis.txt:105:3. 将校正函数方法进一步推广到一维 Cole-Cole Maxwell 方程组。为处理极化变量
+  references/processed/Thesis.txt:111:DG 数值解相对于修正插值函数的高阶超接近性，并得到一维 Cole-Cole Maxwell
+  references/processed/Thesis.txt:113:方程组的超收敛估计。此外，本文还给出了二维 C-CPML 连续模型及其稳定性
+  references/processed/Thesis.txt:121:分析，为后续研究高维含 PML 模型的误差估计与超收敛性奠定了基础。
+  references/processed/Thesis.txt:123:综上，本文在 Cole-Cole 色散介质 Maxwell 方程组的 DG 数值分析方面取得了以下进
+  references/processed/Thesis.txt:125:展：一方面，建立了含空间变系数 C-CPML 模型的稳定性与误差估计理论；另一方面，
+  references/processed/Thesis.txt:129:数阶极化变量的一维 Cole-Cole Maxwell 方程组。相关结果为复杂色散介质中电磁波传
+  references/processed/Thesis.txt:133:关键词：完美匹配层，间断 Galerkin 方法，Cole-Cole 色散介质，误差估计，超收敛
+  references/processed/Thesis.txt:141:Discontinuous Galerkin Methods for the Cole-Cole Dielectric
+  references/processed/Thesis.txt:159:of the Cole-Cole dispersive medium allows for a more accurate characterization of broadband
+  references/processed/Thesis.txt:165:Matched Layer (PML) adds further complexity to the mathematical model, transforming the
+  references/processed/Thesis.txt:169:tence of fractional temporal non-locality and PML spatial non-uniformity renders traditional
+  references/processed/Thesis.txt:181:Cole–Cole dispersive media. We systematically study the stability and error estimates of the
+  references/processed/Thesis.txt:183:model with a perfectly matched layer, the superconvergence of a one-dimensional damped hy-
+  references/processed/Thesis.txt:185:perbolic model, and the superconvergence analysis of the one-dimensional Cole–Cole Maxwell
+  references/processed/Thesis.txt:189:1. Focusing on the scenario where the PML damping function varies spatially (i.e., non-
+  references/processed/Thesis.txt:243:3. Extended the correction function method to the one-dimensional Cole–Cole Maxwell
+  references/processed/Thesis.txt:265:vergence estimates for the one-dimensional Cole–Cole Maxwell system. In addition,
+  references/processed/Thesis.txt:267:we present the two-dimensional C-CPML continuous model and its stability analysis,
+  references/processed/Thesis.txt:271:high-dimensional PML models.
+  references/processed/Thesis.txt:281:tions in Cole–Cole dispersive media. On the one hand, it establishes stability and error estimate
+  references/processed/Thesis.txt:283:theories for the C-CPML model with spatially varying absorption parameters. On the other
+  references/processed/Thesis.txt:289:the one-dimensional Cole–Cole Maxwell system with a fractional polarization variable. These
+  references/processed/Thesis.txt:295:KEY WORDS: Perfectly Matched Layer, Discontinuous Galerkin Method, Cole-Cole disper-
+  references/processed/Thesis.txt:475:2.3.1 Bérenger’s PML .
+  references/processed/Thesis.txt:675:2.3.2 UPML(Uniaxial Perfectly Matched Layer) .
+  references/processed/Thesis.txt:725:2.3.3 CPML(Convolutional Perfectly Matched Layer)
+  references/processed/Thesis.txt:727:2.3.4 广义坐标伸缩 PML . .
+  references/processed/Thesis.txt:1065:第三章 Cole-Cole 介质中完美匹配层模型的数值算法与分析
+  references/processed/Thesis.txt:1115:3.2 一维 C-CPML 连续模型及其能量稳定性分析 .
+  references/processed/Thesis.txt:2111:3.5.4 C-CPML 吸收性能验证 .
+  references/processed/Thesis.txt:2145:PML 模型截断误差与有效性 .
+  references/processed/Thesis.txt:3579:第五章 Cole-Cole 色散介质中 Maxwell 方程组 DG 方法的稳定性与超收敛性分析 98
+  references/processed/Thesis.txt:3623:5.2 一维 Cole-Cole Maxwell 模型与 DG 格式 .
+  references/processed/Thesis.txt:3933:5.5 一维 Cole-Cole Maxwell 方程组的超收敛估计 .
+  references/processed/Thesis.txt:3935:5.6 二维 C-CPML 连续模型及其稳定性 .
+  references/processed/Thesis.txt:4789:3.1 不同分数阶参数 𝛼 下 C-CPML 模型的能量演化特性. 左图展现了 𝛼 分别
+  references/processed/Thesis.txt:4852:3.2 C-CPML 模型下三种能量泛函的稳定性对比分析. 左图展示了本文提出
+  references/processed/Thesis.txt:4884:𝛼 = 0.5 时, C-CPML 模型中磁场 𝐻 在不同时刻的空间分布快照. 各子
+  references/processed/Thesis.txt:4890:图中红色垂线标示了物理区域与 PML 吸收层的分界面, 展示了电磁波在
+  references/processed/Thesis.txt:4944:同 PML 厚度下, 误差 ℰ𝐺(𝑡) 随时间的演化曲线.
+  references/processed/Thesis.txt:5129:Cole-Cole 模型的分数阶次
+  references/processed/Thesis.txt:5165:Cole-Cole 介电模型
+  references/processed/Thesis.txt:5181:对于窄带信号或者简单的极性分子液体 (如纯水). 经典的 Debye 介电模型 (基于指
+  references/processed/Thesis.txt:5187:物复合材料等. 实验表明, 经典的 Debye 模型在描述这类“反常弛豫”现象时往往失效.
+  references/processed/Thesis.txt:5189:为了更精确地描述宽频带的弛豫过程, Kenneth S.Cole 和 Robert S.Cole 在 1941 年提出
+  references/processed/Thesis.txt:5190:了著名的 Cole-Cole 模型[5]. 通过引入分数阶微分算子, 成功修正了经典理论的局限性,
+  references/processed/Thesis.txt:5194:骨骼等) 的介电谱与 Cole-Cole 模型高度吻合. Lazebnik 等人[7] 进一步的大规
+  references/processed/Thesis.txt:5195:模临床实验表明, Cole-Cole 模型下能够显著区分正常乳腺组织与恶性肿瘤组织.
+  references/processed/Thesis.txt:5196:Lazarevi 等人[8]利用修正 Cole-Cole 模型精确描述皮肤的生物阻抗特性.
+  references/processed/Thesis.txt:5198:• 在地球物理领域, Cole-Cole 模型广泛应用于地址探测等问题上, Pelton 等人[9] 的
+  references/processed/Thesis.txt:5200:出明显的分数阶弛豫行为, 与 Cole-Cole 模型有很好的匹配. Dias 等[10] 在此基础
+  references/processed/Thesis.txt:5209:的紧密联系. Tarasov 等人[11]从理论的角度深入探讨了 Cole-Cole 模型与地质介
+  references/processed/Thesis.t
+  ...[truncated 28674 chars; see raw codex.events.jsonl]
+
+[38] item.completed:agent_message
+  The fact does not explicitly re-list all material sign assumptions, so I’m checking the project source assumptions. If the source fixes physical Debye parameters positive, that closes the positivity scope; otherwise the fact would need a qualifier.
+
+[39] item.started:command_execution
+  command: /bin/zsh -lc "rg -n \"epsilon_0|epsilon|chi|tau|mu|positive|>0|\\sigma|rho|Debye|Maxwell\" sources/energy_functional_problem.tex memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-run-20260619T173930696222Z-source-problem.md PROJECT.md README.md STATUS.md"
+  status: in_progress
+  exit_code: None
+
+[40] item.completed:command_execution
+  command: /bin/zsh -lc "rg -n \"epsilon_0|epsilon|chi|tau|mu|positive|>0|\\sigma|rho|Debye|Maxwell\" sources/energy_functional_problem.tex memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-run-20260619T173930696222Z-source-problem.md PROJECT.md README.md STATUS.md"
+  status: completed
+  exit_code: 0
+  STATUS.md:4:target_artifact: results/energy_design_v3_perfect_matching_report.md
+  STATUS.md:6:stage3_matching_artifact: artifacts/proofs/stage3_v2_perfect_matching_test.md
+  STATUS.md:9:next: after quota recovers, resubmit stage-3 fact verifications, promote passed facts, then run assembly and goal-success verifications for results/energy_design_v3_perfect_matching_report.md
+  PROJECT.md:1:# 2D Maxwell--PML Energy Functional Exploration
+  PROJECT.md:3:Goal: prepare a precise mathematical source problem for exploring monotone or dissipative energy functionals for the two-dimensional Maxwell--PML system, with a staged Cole--Cole fractional extension.
+  README.md:1:# 2D Maxwell--PML Energy Functional Exploration
+  README.md:3:这个文件夹用于准备后续交给 iteris 分析的数学问题：探索图中二维 Maxwell--PML 系统是否存在单调递减的能量泛函；若找不到，则寻找能排除 PML 层异常增长的有界能量泛函。非分数阶情形按 `alpha=1` 处理，分数阶 `0<alpha<1` 放在第二阶段。
+  README.md:17:1. 先验证 `energy_functional_problem.tex` 中图示 Maxwell--PML 模型的代数，包括 `P, P_{z,1}, P_{z,2}, Q_x, Q_y`。
+  memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-run-20260619T173930696222Z-source-problem.md:17:\documentclass[UTF8,a4paper,12pt]{ctexart} \input{macros} \title{Problem Sheet for Iteris: Energy Functionals for 2D Maxwell--PML} \author{Prepared source problem} \date{\today} \begin{document} \maketitle \begin{abstract} This note is a self-contained source problem for an Iteris run. The system to be analyzed is the two-dimensional TM Maxwell--PML model with polarization \(P\), PML auxiliary variables \(P_{z,1},P_{z,2},Q_x,Q_y\), and perfectly conducting boundary condition. The first target is to find a genuinely monotone decreasing energy functional in two space dimensions. If such a monotone energy cannot be found, the fallback target is to find a positive energy functional that proves boundedness/no abnormal long-time growth, in the same spirit as the long-time-stability role of MPML.
+  sources/energy_functional_problem.tex:4:\title{Problem Sheet for Iteris: Energy Functionals for 2D Maxwell--PML}
+  sources/energy_functional_problem.tex:12:This note is a self-contained source problem for an Iteris run.  The system to be analyzed is the two-dimensional TM Maxwell--PML model with polarization \(P\), PML auxiliary variables \(P_{z,1},P_{z,2},Q_x,Q_y\), and perfectly conducting boundary condition.  The first target is to find a genuinely monotone decreasing energy functional in two space dimensions.  If such a monotone energy cannot be found, the fallback target is to find a positive energy functional that proves boundedness/no abnormal long-time growth, in the same spirit as the long-time-stability role of MPML.  The non-fractional case should be understood as the special case \(\alpha=1\) of the displayed polarization law.
+  sources/energy_functional_problem.tex:29:Find a positive energy functional such that
+  sources/energy_functional_problem.tex:35:If no monotone energy can be found, find a positive energy functional that rules out abnormal growth from the PML layer, for example
+  sources/energy_functional_problem.tex:55:  E=E_z,\qquad \epsilon_\infty=\epsilon_{r,\infty},\qquad
+  sources/energy_functional_problem.tex:56:  \epsilon_s=\epsilon_{r,s},\qquad \mu=\mu_0\mu_r,
+  sources/energy_functional_problem.tex:60:  \chi=\epsilon_0(\epsilon_s-\epsilon_\infty).
+  sources/energy_functional_problem.tex:69:\epsilon_0\epsilon_\infty\,\partial_t E
+  sources/energy_functional_problem.tex:71:   -\epsilon_\infty(\sx+\sy)E
+  sources/energy_functional_problem.tex:72:   -\partial_tP-\frac{\sx+\sy}{\epsilon_0}P
+  sources/energy_functional_problem.tex:74:\mu\,\partial_tH_x
+  sources/energy_functional_problem.tex:75:&= -\partial_yE-\mu\frac{\sy-\sx}{\epsilon_0}H_x+Q_x,\\
+  sources/energy_functional_problem.tex:76:\mu\,\partial_tH_y
+  sources/energy_functional_problem.tex:77:&= \partial_xE-\mu\frac{\sx-\sy}{\epsilon_0}H_y+Q_y,\\
+  sources/energy_functional_problem.tex:78:P+\tau^\alpha\partial_t^\alpha P
+  sources/energy_functional_problem.tex:79:&=\chi E,\\
+  sources/energy_functional_problem.tex:81:&=-\frac{\epsilon_\infty}{\epsilon_0}\sx\sy E,\\
+  sources/energy_functional_problem.tex:83:&=-\frac{\sx\sy}{\epsilon_0^2}P,\\
+  sources/energy_functional_problem.tex:85:&=-\frac{\sx}{\epsilon_0}Q_x
+  sources/energy_functional_problem.tex:86:  +\frac{\mu\sx(\sy-\sx)}{\epsilon_0^2}H_x,\\
+  sources/energy_functional_problem.tex:88:&=-\frac{\sy}{\epsilon_0}Q_y
+  sources/energy_functional_problem.tex:89:  +\frac{\mu\sy(\sx-\sy)}{\epsilon_0^2}H_y.
+  sources/energy_functional_problem.tex:96:  P+\tau\partial_tP=\chi E.
+  sources/energy_functional_problem.tex:108:so that the Maxwell principal part has no positive boundary contribution.  If a proof uses a different boundary condition, it must state that choice explicitly.
+  sources/energy_functional_problem.tex:111:The parameters \(\epsilon_0,\epsilon_\infty,\epsilon_s,\mu,\tau\) are positive, and \(\chi>0\) when \(\epsilon_s>\epsilon_\infty\).  The absorption parameters are time-independent and nonnegative.  The first serious cases to analyze are constant \(\sx,\sy\), then separated variable coefficients \(\sx(x),\sy(y)\), and only then general \(\sx(x,y),\sy(x,y)\).
+  sources/energy_functional_problem.tex:119:  \left(\epsilon_0\epsilon_\infty E^2+\mu H_x^2+\mu H_y^2\right)\dd x\dd y.
+  sources/energy_functional_problem.tex:123:Using \eqref{eq:main-model} and the PEC boundary condition, verify that the Maxwell principal part cancels by integration by parts, and that
+  sources/energy_functional_problem.tex:128:&-\epsilon_\infty(\sx+\sy)E^2
+  sources/energy_functional_problem.tex:130:-\frac{\sx+\sy}{\epsilon_0}EP
+  sources/energy_functional_problem.tex:132:&-\frac{\mu}{\epsilon_0}(\sy-\sx)H_x^2
+  sources/energy_functional_problem.tex:133:-\frac{\mu}{\epsilon_0}(\sx-\sy)H_y^2
+  sources/energy_functional_problem.tex:139:The terms involving \(H_x,H_y\) are sign-indefinite when \(\sx\ne\sy\).  The terms involving \(P,P_{z,1},P_{z,2}\) are the electric/PML auxiliary coupling terms that must be absorbed by a refined energy.
+  sources/energy_functional_problem.tex:146:  P+\tau\partial_tP=\chi E,
+  sources/energy_functional_problem.tex:150:  E=\frac{P+\tau\partial_tP}{\chi}.
+  sources/energy_functional_problem.tex:155:  =\frac{1}{2\chi}\frac{\dd}{\dd t}\|P\|_{L^2(\Om)}^2
+  sources/energy_functional_problem.tex:156:   +\frac{\tau}{\chi}\|\partial_tP\|_{L^2(\Om)}^2.
+  sources/energy_functional_problem.tex:164:  =\Ecal_{\rm em}+\frac{1}{2\chi}\|P\|_{L^2(\Om)}^2
+  sources/energy_functional_problem.tex:168:  -\frac{\sx+\sy}{\epsilon_0}EP,\qquad
+  sources/energy_functional_problem.tex:181:  a_x=\frac{\sy-\sx}{\epsilon_0},\qquad
+  sources/energy_functional_problem.tex:182:  a_y=\frac{\sx-\sy}{\epsilon_0},\qquad
+  sources/energy_functional_problem.tex:183:  b_x=\frac{\sx}{\epsilon_0},\qquad
+  sources/energy_functional_problem.tex:184:  b_y=\frac{\sy}{\epsilon_0}.
+  sources/energy_functional_problem.tex:188:  M_x=Q_x-\mu a_xH_x,\qquad
+  sources/energy_functional_problem.tex:189:  M_y=Q_y-\mu a_yH_y.
+  sources/energy_functional_problem.tex:197:&= a_x\,\partial_yE-\frac{\sy}{\epsilon_0}M_x,\\
+  sources/energy_functional_problem.tex:199:&= -a_y\,\partial_xE-\frac{\sx}{\epsilon_0}M_y.
+  sources/energy_functional_problem.tex:214:  \partial_tP_{z,1}=-\frac{\epsilon_\infty}{\epsilon_0}\sx\sy E,\qquad
+  sources/energy_functional_problem.tex:215:  \partial_tP_{z,2}=-\frac{\sx\sy}{\epsilon_0^2}P.
+  sources/energy_functional_problem.tex:250:Look for Maxwell--PML analogues of the following structures:
+  sources/energy_functional_problem.tex:255:\item cross terms that turn \(E P_{z,1}\), \(E P_{z,2}\), \(H_xQ_x\), \(H_yQ_y\) into exact time derivatives plus nonpositive remainders.
+  sources/energy_functional_problem.tex:257:Any candidate energy must be checked for positive definiteness and boundary contributions.
+  sources/energy_functional_problem.tex:264:  \partial_tP=\frac{\chi E-P}{\tau}
+  sources/energy_functional_problem.tex:274:Search for a Hermitian positive matrix \(G\) such that
+  sources/energy_functional_problem.tex:278:If such a \(G\) is independent of \(k\), it suggests a local \(L^2\) energy.  If \(G\) depends polynomially on \(k\), it suggests derivative energies.  If no positive \(G\) exists in a natural class, record the obstruction.
+  sources/energy_functional_problem.tex:284:\item edge PML: \(\sx>0,\sy=0\);
+  sources/energy_functional_problem.tex:285:\item edge PML: \(\sx=0,\sy>0\);
+  sources/energy_functional_problem.tex:286:\item symmetric corner: \(\sx=\sy>0\);
+  sources/energy_functional_problem.tex:287:\item asymmetric corner: \(\sx>0,\sy>0,\sx\ne\sy\).
+  sources/energy_functional_problem.tex:289:For each case, record whether there is an explicit positive quadratic energy, whether it is monotone, and whether the shifted variables \(M_x,M_y\) or integrated variables improve the result.
+  sources/energy_functional_problem.tex:296:  P+\tau^\alpha\partial_t^\alpha P=\chi E
+  sources/energy_functional_problem.tex:298:requires fractional-memory tools.  A possible route is to use a diffusive representation or complete monotonicity to produce a positive memory energy.
+  sources/energy_functional_problem.tex:301:Assuming the \(\alpha=1\) energy has been found or its obstruction understood, determine whether the fractional polarization can be added as a positive memory energy.  Do not assume the correct memory weight; derive it from the Cole--Cole law.  If the fractional part is not needed for the current goal, explicitly postpone it and keep the main theorem for \(\alpha=1\).
+
+[41] item.started:command_execution
+  command: /bin/zsh -lc "nl -ba sources/energy_functional_problem.tex | sed -n '1,180p'"
+  status: in_progress
+  exit_code: None
+
+[42] item.started:command_execution
+  command: /bin/zsh -lc "nl -ba memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-run-20260619T173930696222Z-source-problem.md | sed -n '1,260p'"
+  status: in_progress
+  exit_code: None
+
+[43] item.completed:command_execution
+  command: /bin/zsh -lc "nl -ba memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-run-20260619T173930696222Z-source-problem.md | sed -n '1,260p'"
+  status: completed
+  exit_code: 0
+       1	---
+       2	fact_id: fact:2d_maxwell_pml_energy_functional_exploration:run-20260619T173930696222Z:source-problem
+       3	problem_id: 2d_maxwell_pml_energy_functional_exploration
+       4	source_project: 2d_maxwell_pml_energy_functional_exploration
+       5	source_task: task-initial-source-exploration-run-20260619t173930696222z
+       6	predecessors: []
+       7	status: submitted
+       8	fact_type: source_problem
+       9	review_level: none
+      10	claim_policy: stable_claim
+      11	claim_summary: "The source problem has been recorded for Iteris project work."
+      12	verification: null
+      13	---
+      14	
+      15	## statement
+      16	
+      17	\documentclass[UTF8,a4paper,12pt]{ctexart} \input{macros} \title{Problem Sheet for Iteris: Energy Functionals for 2D Maxwell--PML} \author{Prepared source problem} \date{\today} \begin{document} \maketitle \begin{abstract} This note is a self-contained source problem for an Iteris run. The system to be analyzed is the two-dimensional TM Maxwell--PML model with polarization \(P\), PML auxiliary variables \(P_{z,1},P_{z,2},Q_x,Q_y\), and perfectly conducting boundary condition. The first target is to find a genuinely monotone decreasing energy functional in two space dimensions. If such a monotone energy cannot be found, the fallback target is to find a positive energy functional that proves boundedness/no abnormal long-time growth, in the same spirit as the long-time-stability role of MPML.
+      18	
+      19	## notes
+      20	
+      21	Source file: sources/energy_functional_problem.tex. Exploration artifact: artifacts/runs/run-20260619T173930696222Z/exploration.md.
+
+[44] item.completed:command_execution
+  command: /bin/zsh -lc "nl -ba sources/energy_functional_problem.tex | sed -n '1,180p'"
+  status: completed
+  exit_code: 0
+       1	\documentclass[UTF8,a4paper,12pt]{ctexart}
+       2	\input{macros}
+       3	
+       4	\title{Problem Sheet for Iteris: Energy Functionals for 2D Maxwell--PML}
+       5	\author{Prepared source problem}
+       6	\date{\today}
+       7	
+       8	\begin{document}
+       9	\maketitle
+      10	
+      11	\begin{abstract}
+      12	This note is a self-contained source problem for an Iteris run.  The system to be analyzed is the two-dimensional TM Maxwell--PML model with polarization \(P\), PML auxiliary variables \(P_{z,1},P_{z,2},Q_x,Q_y\), and perfectly conducting boundary condition.  The first target is to find a genuinely monotone decreasing energy functional in two space dimensions.  If such a monotone energy cannot be found, the fallback target is to find a positive energy functional that proves boundedness/no abnormal long-time growth, in the same spirit as the long-time-stability role of MPML.  The non-fractional case should be understood as the special case \(\alpha=1\) of the displayed polarization law.
+      13	\end{abstract}
+      14	
+      15	\section{Primary Goal}
+      16	
+      17	Let \(\Om\subset\R^2\) be a rectangular computational domain containing a physical region and a PML layer.  The absorption parameters are
+      18	\[
+      19	  \sx=\sx(x)\ge0,\qquad \sy=\sy(y)\ge0,
+      20	\]
+      21	or, in a harder variant,
+      22	\[
+      23	  \sx=\sx(x,y)\ge0,\qquad \sy=\sy(x,y)\ge0.
+      24	\]
+      25	The main goal is to analyze the two-dimensional system in Section~\ref{sec:model} and construct an energy functional \(\Ecal(t)\).
+      26	
+      27	\begin{enumerate}
+      28	\item \textbf{Strong target: monotone decreasing energy.}
+      29	Find a positive energy functional such that
+      30	\[
+      31	  \frac{\dd}{\dd t}\Ecal(t)=-\Dcal(t)\le0.
+      32	\]
+      33	This is the preferred outcome.
+      34	\item \textbf{Fallback target: bounded/non-growing energy.}
+      35	If no monotone energy can be found, find a positive energy functional that rules out abnormal growth from the PML layer, for example
+      36	\[
+      37	  \Ecal(t)\le C\,\Ecal(0)
+      38	\]
+      39	with \(C\) independent of long time if possible.  If only a Gronwall estimate
+      40	\[
+      41	  \frac{\dd}{\dd t}\Ecal(t)\le C_\sigma\Ecal(t)
+      42	\]
+      43	is available, identify the precise terms responsible for the possible growth and whether they are coefficient-gradient terms, corner-PML terms, or algebraic sign-indefinite terms.
+      44	\item \textbf{Useful obstruction.}
+      45	If the strong target fails for natural quadratic energies, prove or at least sharply identify the obstruction.  An obstruction result is valuable if it explains which part of the PML coupling prevents monotonicity.
+      46	\end{enumerate}
+      47	
+      48	The energy may include weighted \(L^2\) norms, cross terms, shifted variables, time-integrated auxiliary variables, polarization energy, fractional-memory energy, and derivative terms if they are mathematically justified.
+      49	
+      50	\section{Model to Analyze}
+      51	\label{sec:model}
+      52	
+      53	The model is the system shown in the supplied manuscript image.  Write
+      54	\[
+      55	  E=E_z,\qquad \epsilon_\infty=\epsilon_{r,\infty},\qquad
+      56	  \epsilon_s=\epsilon_{r,s},\qquad \mu=\mu_0\mu_r,
+      57	\]
+      58	and
+      59	\[
+      60	  \chi=\epsilon_0(\epsilon_s-\epsilon_\infty).
+      61	\]
+      62	The unknowns are
+      63	\[
+      64	  E,\quad H_x,\quad H_y,\quad P,\quad P_{z,1},\quad P_{z,2},\quad Q_x,\quad Q_y.
+      65	\]
+      66	The PML system is
+      67	\begin{equation}
+      68	\begin{aligned}
+      69	\epsilon_0\epsilon_\infty\,\partial_t E
+      70	&= \partial_xH_y-\partial_yH_x
+      71	   -\epsilon_\infty(\sx+\sy)E
+      72	   -\partial_tP-\frac{\sx+\sy}{\epsilon_0}P
+      73	   +P_{z,1}+P_{z,2},\\
+      74	\mu\,\partial_tH_x
+      75	&= -\partial_yE-\mu\frac{\sy-\sx}{\epsilon_0}H_x+Q_x,\\
+      76	\mu\,\partial_tH_y
+      77	&= \partial_xE-\mu\frac{\sx-\sy}{\epsilon_0}H_y+Q_y,\\
+      78	P+\tau^\alpha\partial_t^\alpha P
+      79	&=\chi E,\\
+      80	\partial_tP_{z,1}
+      81	&=-\frac{\epsilon_\infty}{\epsilon_0}\sx\sy E,\\
+      82	\partial_tP_{z,2}
+      83	&=-\frac{\sx\sy}{\epsilon_0^2}P,\\
+      84	\partial_tQ_x
+      85	&=-\frac{\sx}{\epsilon_0}Q_x
+      86	  +\frac{\mu\sx(\sy-\sx)}{\epsilon_0^2}H_x,\\
+      87	\partial_tQ_y
+      88	&=-\frac{\sy}{\epsilon_0}Q_y
+      89	  +\frac{\mu\sy(\sx-\sy)}{\epsilon_0^2}H_y.
+      90	\end{aligned}
+      91	\label{eq:main-model}
+      92	\end{equation}
+      93	Here \(\partial_t^\alpha\) should be interpreted as a Caputo-type fractional derivative when \(0<\alpha<1\).  The non-fractional case requested by the user is the case
+      94	\[
+      95	  \alpha=1,\qquad
+      96	  P+\tau\partial_tP=\chi E.
+      97	\]
+      98	Thus the first stage of the analysis should use \(\alpha=1\), not a model with \(P\) removed.
+      99	
+     100	The boundary condition is the perfectly conducting boundary condition
+     101	\[
+     102	  \widehat n\times E=0\qquad\text{on }\partial\Om.
+     103	\]
+     104	For the two-dimensional TM model this should be interpreted as
+     105	\[
+     106	  E=E_z=0\qquad\text{on }\partial\Om,
+     107	\]
+     108	so that the Maxwell principal part has no positive boundary contribution.  If a proof uses a different boundary condition, it must state that choice explicitly.
+     109	
+     110	\begin{remark}
+     111	The parameters \(\epsilon_0,\epsilon_\infty,\epsilon_s,\mu,\tau\) are positive, and \(\chi>0\) when \(\epsilon_s>\epsilon_\infty\).  The absorption parameters are time-independent and nonnegative.  The first serious cases to analyze are constant \(\sx,\sy\), then separated variable coefficients \(\sx(x),\sy(y)\), and only then general \(\sx(x,y),\sy(x,y)\).
+     112	\end{remark}
+     113	
+     114	\section{First Energy Balance to Verify}
+     115	
+     116	Start with the electromagnetic part
+     117	\[
+     118	  \Ecal_{\rm em}(t)=\frac12\int_\Om
+     119	  \left(\epsilon_0\epsilon_\infty E^2+\mu H_x^2+\mu H_y^2\right)\dd x\dd y.
+     120	\]
+     121	
+     122	\begin{task}[Check the electromagnetic energy derivative]
+     123	Using \eqref{eq:main-model} and the PEC boundary condition, verify that the Maxwell principal part cancels by integration by parts, and that
+     124	\[
+     125	\begin{aligned}
+     126	\frac{\dd}{\dd t}\Ecal_{\rm em}
+     127	=\int_\Om\Big[
+     128	&-\epsilon_\infty(\sx+\sy)E^2
+     129	-E\partial_tP
+     130	-\frac{\sx+\sy}{\epsilon_0}EP
+     131	+E(P_{z,1}+P_{z,2})\\
+     132	&-\frac{\mu}{\epsilon_0}(\sy-\sx)H_x^2
+     133	-\frac{\mu}{\epsilon_0}(\sx-\sy)H_y^2
+     134	+H_xQ_x+H_yQ_y
+     135	\Big]\dd x\dd y .
+     136	\end{aligned}
+     137	\label{eq:em-balance}
+     138	\]
+     139	The terms involving \(H_x,H_y\) are sign-indefinite when \(\sx\ne\sy\).  The terms involving \(P,P_{z,1},P_{z,2}\) are the electric/PML auxiliary coupling terms that must be absorbed by a refined energy.
+     140	\end{task}
+     141	
+     142	\section{The \texorpdfstring{\(\alpha=1\)}{alpha=1} Polarization Identity}
+     143	
+     144	For the non-fractional case \(\alpha=1\),
+     145	\[
+     146	  P+\tau\partial_tP=\chi E,
+     147	\]
+     148	so
+     149	\[
+     150	  E=\frac{P+\tau\partial_tP}{\chi}.
+     151	\]
+     152	This gives the useful identity
+     153	\begin{equation}
+     154	  E\,\partial_tP
+     155	  =\frac{1}{2\chi}\frac{\dd}{\dd t}\|P\|_{L^2(\Om)}^2
+     156	   +\frac{\tau}{\chi}\|\partial_tP\|_{L^2(\Om)}^2.
+     157	\label{eq:alpha-one-dissipation}
+     158	\end{equation}
+     159	
+     160	\begin{task}[Use the alpha=1 identity]
+     161	Use \eqref{eq:alpha-one-dissipation} to decide whether the energy
+     162	\[
+     163	  \Ecal_{\rm em+P}
+     164	  =\Ecal_{\rm em}+\frac{1}{2\chi}\|P\|_{L^2(\Om)}^2
+     165	\]
+     166	is the right starting point.  Then identify the remaining troublesome electric auxiliary terms:
+     167	\[
+     168	  -\frac{\sx+\sy}{\epsilon_0}EP,\qquad
+     169	  E P_{z,1},\qquad
+     170	  E P_{z,2},\qquad
+     171	  \partial_tP_{z,1},\qquad
+     172	  \partial_tP_{z,2}.
+     173	\]
+     174	Try to absorb them using cross terms, shifted variables, or time-integrated variables.
+     175	\end{task}
+     176	
+     177	\section{Magnetic Auxiliary Variable Shift}
+     178	
+     179	Define
+     180	\[
+
+[45] item.completed:agent_message
+  The source problem fixes the needed positivity assumptions: positive material parameters and nonnegative, time-independent absorption. With that scope, the reduced energy coefficient `(1 + rho*tau)/chi` is positive and the dissipation terms have the stated sign.
+
+[46] item.started:command_execution
+  command: /bin/zsh -lc "nl -ba \"references/processed/Joly - 2012 - An elementary introduction to the construction and the analysis of perfectly matched layers for time.txt\" | sed -n '600,710p'"
+  status: in_progress
+  exit_code: None
+
+[47] item.completed:command_execution
+  command: /bin/zsh -lc "nl -ba \"references/processed/Joly - 2012 - An elementary introduction to the construction and the analysis of perfectly matched layers for time.txt\" | sed -n '600,710p'"
+  status: completed
+  exit_code: 0
+     600	
+     601	pour x > 0,
+     602	
+     603	(k∗ = ω/c∗).
+     604	
+     605	The traduction of the transmission conditions at x = 0 provides the expression of the
+     606	reﬂection and transmission coefﬁcients:
+     607	z − z∗
+     608	z + z∗
+     609	
+     610	2z
+     611	z + z∗
+     612	
+     613	, T =
+     614	
+     615	R =
+     616	
+     617	.
+     618	
+     619	In particular, one observes that if the two impedances z et z∗ are equal (one says then
+     620	that there is adaptation of impedance) the reﬂection coefﬁcient vanishes.
+     621	In other
+     622	words, the medium {x > 0} is transparent for the medium {x < 0} - or equiva-
+     623	lently perfectly matched. Nevertheless, the medium {x >0} being non absorbing,
+     624	we simply have postponed the problem of the transparent condition. In fact, we shall
+     625	overcome this difﬁculty by considering (unphysical) media in which “the velocity of
+     626	waves may become complex” as in a visco-elastic medium !
+     627	
+     628	Which follows is rather formal from the mathematical point of view but provides in
+     629	my opinion a good intuitive understanding of the construction of PML’s.
+     630	
+     631	We ﬁrst place ourselves in the frequency domain : in other words we look at solu-
+     632	tions of the form (3). This is not restrictive since we treat a linear equation whose
+     633	coefﬁcients do not depend on time. The equation (5) becomes
+     634	
+     635	−ρ(x) ω2u − ∂
+     636	∂x
+     637	
+     638	(μ(x)
+     639	
+     640	∂u
+     641	∂x
+     642	
+     643	) = 0.
+     644	
+     645	(6)
+     646	
+     647	
+     648	--- Page 8 ---
+     649	12
+     650	
+     651	Patrick Joly
+     652	
+     653	Let us now consider d(ω) ∈ C and,
+     654	
+     655	⎧
+     656	⎪⎨
+     657	
+     658	ρ(x) =ρ,
+     659	
+     660	μ( x) = μ,
+     661	
+     662	for x < 0,
+     663	
+     664	⎪⎩
+     665	
+     666	ρ(x) =
+     667	
+     668	ρ
+     669	d(ω)
+     670	
+     671	,
+     672	
+     673	μ(x) = μ d(ω),
+     674	
+     675	for x > 0,
+     676	
+     677	By construction, the product ρ(x)μ(x) is constant; in other words, the impedance in the
+     678	medium {x >0} in the same than the impedance in the medium {x <0} (z =
+     679	ρμ).
+     680	We thus have adaptation of impedance. However, the velocity c =
+     681	μ/ρ becomes
+     682	complex : it is equal to c d(ω), which allows us to make the medium {x > 0} absorb-
+     683	ing if one chooses d(ω) adequately. To build this function, we have to keep in mind
+     684	that, for the applications to time domain, coming back to the time domain should lead
+     685	to differential operators in time. This means to impose that :
+     686	
+     687	(cid:10)
+     688	
+     689	√
+     690	
+     691	d(ω) is a rational fraction with real coefﬁcients in the variable iω.
+     692	
+     693	(7)
+     694	
+     695	In the medium {x >0 }, harmonic solutions are of the form (I reincorporate on purpose
+     696	the time dependency)
+     697	
+     698	(cid:7)
+     699	
+     700	exp i
+     701	
+     702	ωt − k∗(ω) x
+     703	
+     704	(cid:8)
+     705	
+     706	,
+     707	
+     708	k∗(ω) = ± ω
+     709	c
+     710	
+
+[48] item.started:command_execution
+  command: /bin/zsh -lc "nl -ba \"references/processed/Joly - 2012 - An elementary introduction to the construction and the analysis of perfectly matched layers for time.txt\" | sed -n '960,1090p'"
+  status: in_progress
+  exit_code: None
+
+[49] item.completed:command_execution
+  command: /bin/zsh -lc "nl -ba \"references/processed/Joly - 2012 - An elementary introduction to the construction and the analysis of perfectly matched layers for time.txt\" | sed -n '960,1090p'"
+  status: completed
+  exit_code: 0
+     960	d(ω) = 1 + iωσ,
+     961	
+     962	σ > 0.
+     963	
+     964	It is easy to see that the resulting PML equation is also dissipative, remains of
+     965	“hyperbolic nature” (one still has propagation with ﬁnite velocity) and yields an
+     966	exponential absorption of harmonic waves. However, this absorption is no longer
+     967	uniform : the penetration length of plane waves depends on the frequency.
+     968	
+     969	Construction of PML’s through a complex change of variable. One can recover
+     970	the system (14) by another method whose physical meaning is not obvious but which is
+     971	more directly generalizable to higher space dimensions. First we remark that, at least
+     972	when the coefﬁcients ρ et μ are constant, the general solution of the Helmholtz equation
+     973	(6), namely a linear combination of two exponentials, can be extended analytically to
+     974	the complex plane (with respect to the space variable x). This extension still satisﬁes
+     975	(6) in C (the differentiation being understood in the sense of functions of the complex
+     976	variable). In some sense, one can imagine the existence of a “super-reality” in which
+     977	the space variable X (the notation I use for the ”extended” space variable) would vary
+     978	in the complex plane and whose the “physical world” that we observe every day would
+     979	only be the ”trace” on the real axis. An idea, which is then natural, is to observe the
+     980	solution along a new path ((cid:8)= IR) in the complex plane, such that
+     981	
+     982	(i) this path can be easily parameterized with the true physical variable x
+     983	
+     984	X =
+     985	, in such a way that the new ”computational domain” can be identiﬁed to
+     986	
+     987	(cid:8)
+     988	
+     989	X(x)
+     990	the physical one,
+     991	
+     992	(cid:7)
+     993	
+     994	(ii) this path coincides with the real axis for x < 0, so that the observed solution
+     995	coincides with the physical one for x < 0 (a way to ensure that the new medium
+     996	is perfectly matched),
+     997	
+     998	(iii) the solution decays exponentially along this path when x describes the half-line
+     999	
+    1000	x > 0 by increasing values, so that an absorbing medium is realized,
+    1001	
+    1002	(iv) After come-back to the “time domain”, the variations of the “new solution” can
+    1003	
+    1004	be described with partial differential equations (this is criterion (7)).
+    1005	
+    1006	One realizes that all these criteria are satisﬁes with the change of variable :
+    1007	
+    1008	X(x) = x +
+    1009	
+    1010	(cid:13)
+    1011	
+    1012	x
+    1013	
+    1014	0
+    1015	
+    1016	1
+    1017	iω
+    1018	
+    1019	σ(ξ) dξ,
+    1020	
+    1021	where σ(x) is a damping function satisfying typically
+    1022	
+    1023	σ(x) = 0 for x < 0,
+    1024	
+    1025	σ(x) > 0 for x > 0.
+    1026	
+    1027	
+    1028	--- Page 11 ---
+    1029	Construction and analysis of Perfectly Matched Layers
+    1030	
+    1031	15
+    1032	
+    1033	(cid:7)
+    1034	Remarking that, if u and (cid:14)u are related by (cid:14)u(x) = u
+    1035	
+    1036	X(x)
+    1037	
+    1038	(cid:8)
+    1039	
+    1040	then
+    1041	
+    1042	∂(cid:14)u
+    1043	∂x
+    1044	
+    1045	(x) =
+    1046	
+    1047	iω
+    1048	iω + σ(x)
+    1049	
+    1050	∂u
+    1051	∂x
+    1052	
+    1053	(cid:7)
+    1054	
+    1055	(cid:8)
+    1056	
+    1057	,
+    1058	
+    1059	X(x)
+    1060	
+    1061	one sees that if u is solution of (6), then (cid:14)u satisﬁes
+    1062	(cid:3)
+    1063	
+    1064	(cid:2)
+    1065	
+    1066	− iω
+    1067	
+    1068	iω + σ
+    1069	
+    1070	∂
+    1071	∂x
+    1072	
+    1073	iω
+    1074	iω + σ
+    1075	
+    1076	μ
+    1077	
+    1078	∂(cid:14)u
+    1079	∂x
+    1080	
+    1081	− ρ ω2(cid:14)u = 0.
+    1082	
+    1083	that is to say (13). This approach shows that one still gets a ”perfectly matched” layer
+    1084	even with a varying absorption proﬁle. Moreover, if ρ and μ are constant, a basis of
+    1085	solutions of (13) is given by:
+    1086	
+    1087	(cid:11)
+    1088	
+    1089	(cid:13)
+    1090	
+
+[50] item.started:command_execution
+  command: /bin/zsh -lc "nl -ba \"references/processed/Bécache 等 - 2023 - Convergence analysis of time-domain PMLS for 2D electromagnetic wave propagation in dispersive waveg.txt\" | sed -n '530,625p'"
+  status: in_progress
+  exit_code: None
+
+[51] item.completed:command_execution
+  command: /bin/zsh -lc "nl -ba \"references/processed/Bécache 等 - 2023 - Convergence analysis of time-domain PMLS for 2D electromagnetic wave propagation in dispersive waveg.txt\" | sed -n '530,625p'"
+  status: completed
+  exit_code: 0
+     530	
+     531	2.2.1. Generalized PMLs
+     532	
+     533	It was demonstrated in [26] that B´erenger’s classical perfectly matched layers can exhibit instabilities when
+     534	applied to dispersive media. Such instabilities are induced by the presence of backward propagating waves, as
+     535	explained in [17]. A remedy, originally suggested in [26] for Drude materials, and further generalized in [12, 17],
+     536	to treat the cases of more general media is altering the perfectly matched layer change of variables in order to
+     537	account for the dispersion of the problem. Let us describe the respective procedure in more detail.
+     538	
+     539	First of all, we assume that
+     540	
+     541	Assumption 2.9. supp 𝐸0, supp 𝐻0 ⊂ [0, 𝑅) × (0, ℓ).
+     542	
+     543	Our goal is to compute the solution to the original problem (6) in the physical domain Ω𝑝ℎ := (0, 𝑅) × (0, ℓ),
+     544	by constructing a perfectly matched layer at 𝑥 = 𝑅 of width 𝐿. For this we first rewrite the problem (6), (5) in
+     545	the Laplace domain, which yields, after eliminating 𝑃 and 𝑀𝑧,
+     546	𝑠𝜀(𝑠) ^𝐸 − 𝐸0 − curl ^𝐻 = 0,
+     547	𝑠𝜇(𝑠) ^𝐻 − 𝐻0 + curl ^𝐸 = 0,
+     548	^𝐸𝑥𝑛𝑦 − ^𝐸𝑦𝑛𝑥 = 0,
+     549	
+     550	on Γ.
+     551	
+     552	in Ω,
+     553	
+     554	Next, let us define the absorption function 𝜎 : (0, 𝑅 + 𝐿) → R+ satisfying
+     555	
+     556	𝜎 ∈ 𝐿∞(0, 𝑅 + 𝐿) and 𝜎 = 0 on (0, 𝑅).
+     557	
+     558	With this definition, the [17]-PML change of variables reads
+     559	
+     560	̃︀𝑥 = 𝑥 +
+     561	
+     562	1
+     563	𝑠𝜁(𝑠)
+     564	
+     565	∫︁ 𝑥
+     566	
+     567	𝑅
+     568	
+     569	𝜎(𝑥′) d𝑥′,
+     570	
+     571	(7)
+     572	
+     573	(8)
+     574	
+     575	where the function 𝜁 is analytic in C+
+     576	that in the classical B´erenger PML 𝜁(𝑠) = 1. We also introduce the average damping ¯𝜎 by
+     577	
+     578	* , and is responsible for stabilizing the PMLs for dispersive media. Note
+     579	
+     580	¯𝜎 =
+     581	
+     582	1
+     583	𝐿
+     584	
+     585	∫︁ 𝐿+𝑅
+     586	
+     587	𝑅
+     588	
+     589	𝜎(𝑥) d𝑥.
+     590	
+     591	(9)
+     592	
+     593	The interface between the PML and the physical media will be denoted by Σ = {𝑅} × (0, ℓ), and the PML
+     594	media by Ω𝜎 = (𝑅, 𝑅 + 𝐿) × (0, ℓ). See Figure 1 for an illustration of the geometry.
+     595	
+     596	Remark 1. In [12, 17], the PML change of variables (8) was written in the form
+     597	
+     598	̃︀𝑥 = 𝑥 +
+     599	
+     600	𝜓(𝑠)
+     601	𝑠
+     602	
+     603	∫︁ 𝑥
+     604	
+     605	𝑅
+     606	
+     607	𝜎(𝑥′) d𝑥′,
+     608	
+     609	i.e., with 𝜓 = 𝜁 −1. Because we will limit our discussion to the choices of 𝜓(𝑠) suggested in [12, 17], we will take
+     610	𝜓, s.t. 𝜓−1 is admissible in the sense of Definition 2.1. Thus we feel that it is more natural to introduce 𝜁 = 𝜓−1.
+     611	
+     612	
+     613	--- Page 7 ---
+     614	CONVERGENCE ANALYSIS OF TIME-DOMAIN PMLS
+     615	
+     616	2457
+     617	
+     618	Figure 1. Sketch of the decomposition of the waveguide into the physical domain Ω𝑝ℎ, PML
+     619	domain Ω𝜎, and the computational domain Ω𝑐 = int(Ω𝑝ℎ ∪ Ω𝜎).
+     620	
+     621	After performing this change of variables and truncating the PML system, we look for ( ^𝐸
+     622	
+     623	𝜎
+     624	
+     625	, ^𝐻 𝜎) that solve
+
+[52] item.completed:agent_message
+  I’ve finished the substance check. I’m going to write the required `verification.json` with a `correct` verdict, scoped to the constant-coefficient planar-interface and reduced normal-incidence identity actually proved.
+
+[53] item.started:command_execution
+  command: /bin/zsh -lc "test -e verification/agent_runs/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m/verification.json; printf '%s\\n' "'$?'
+  status: in_progress
+  exit_code: None
+
+[54] item.started:command_execution
+  command: /bin/zsh -lc 'ls -l verification/agent_runs/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m'
+  status: in_progress
+  exit_code: None
+
+[55] item.completed:command_execution
+  command: /bin/zsh -lc "test -e verification/agent_runs/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m/verification.json; printf '%s\\n' "'$?'
+  status: completed
+  exit_code: 0
+  1
+
+[56] item.completed:command_execution
+  command: /bin/zsh -lc 'ls -l verification/agent_runs/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m'
+  status: completed
+  exit_code: 0
+  total 4776
+  -rw-r--r--@ 1 wcli  staff  1530146 Jun 20 14:52 codex.events.jsonl
+  -rw-r--r--@ 1 wcli  staff      770 Jun 20 14:48 codex.log
+  -rw-r--r--@ 1 wcli  staff        0 Jun 20 14:48 codex.stderr.log
+  -rw-r--r--@ 1 wcli  staff    10868 Jun 20 14:48 prompt.md
+  -rw-------@ 1 wcli  staff     1552 Jun 20 14:48 request.json
+
+[57] item.started:file_change
+  status: in_progress
+  [{"path":"/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/verification/agent_runs/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m/verification.json","kind":"add"}]
+
+[58] item.completed:file_change
+  status: completed
+  [{"path":"/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/verification/agent_runs/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m/verification.json","kind":"add"}]
+
+[59] item.completed:agent_message
+  The verification file is written. I’ll validate the JSON syntax and briefly inspect it so the final answer can report the exact outcome.
+
+[60] item.started:command_execution
+  command: /bin/zsh -lc 'jq . verification/agent_runs/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m/verification.json >/dev/null'
+  status: in_progress
+  exit_code: None
+
+[61] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '1,220p' verification/agent_runs/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m/verification.json"
+  status: in_progress
+  exit_code: None
+
+[62] item.completed:command_execution
+  command: /bin/zsh -lc 'jq . verification/agent_runs/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m/verification.json >/dev/null'
+  status: completed
+  exit_code: 0
+
+[63] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '1,220p' verification/agent_runs/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m/verification.json"
+  status: completed
+  exit_code: 0
+  {
+    "verification_report": {
+      "summary": "Correct within the stated scope. The cited fact is supported for the standard Laplace-domain stretched-coordinate Maxwell-Debye PML with the physical Debye law left as A(s)=epsilon0 epsilon_infty+chi/(1+tau s), coordinate-aligned planar interfaces, Re s>0, physical positive material parameters, and constant nonnegative layer damping in the reduced 1D energy calculation. The planar-interface calculation is algebraic: replacing partial_x by S_x^{-1} partial_x gives (S_x^{-1} kappa_sc)^2=kappa_0^2, so choosing the outgoing/decaying branch kappa_sc=S_x kappa_0 makes the PML admittance equal to the physical admittance and the reflection coefficient vanishes. The reduced normal-incidence system follows by multiplying the 1D stretched equations by (s+rho)/s, giving (partial_t+rho)(epsilon0 epsilon_infty E+P)=partial_x H_y, mu(partial_t+rho)H_y=partial_x E, and P+tau P_t=chi E. Multiplying by E and H_y and using E=(P+tau P_t)/chi yields exactly the stated energy derivative with the boundary flux plus the nonpositive bulk terms. The supporting artifact also correctly limits the result: it does not claim a full 2D monotone energy for the exact ADE stretched-coordinate system.",
+      "critical_errors": [],
+      "gaps": []
+    },
+    "verdict": "correct",
+    "repair_hints": "No repair needed.",
+    "checked_artifacts": [
+      "verification/agent_runs/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m/request.json",
+      "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-standard-stretched-pml-matching-and-1d-energy.md",
+      "artifacts/proofs/stage3_repaired_model_energy.md",
+      "artifacts/proofs/stage3_v2_perfect_matching_test.md",
+      "sources/energy_functional_problem.tex",
+      "artifacts/references/stage3_literature_reading_record.md",
+      "references/processed/Joly - 2012 - An elementary introduction to the construction and the analysis of perfectly matched layers for time.txt"
+    ],
+    "checked_fact_ids": [
+      "fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy",
+      "fact:2d_maxwell_pml_energy_functional_exploration:run-20260619T173930696222Z:source-problem"
+    ]
+  }
+
+[64] item.completed:agent_message
+  Wrote the verification result to [verification.json](/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/verification/agent_runs/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m/verification.json).
+  
+  Verdict: `correct`. JSON syntax validated with `jq`.
+
+[65] turn.completed
+  {"input_tokens":674787,"cached_input_tokens":580736,"output_tokens":7768,"reasoning_output_tokens":4034}

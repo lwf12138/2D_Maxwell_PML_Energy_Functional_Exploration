@@ -1,0 +1,17 @@
+{
+  "verification_report": {
+    "summary": "Correct. The source model and the repaired ADE model both use the 2D TM first-order evolution equations with E, H_x, H_y, P and PML auxiliaries, and the source problem imposes PEC E=0 but no additional divergence constraint. In an open physical subregion where sigma_x=sigma_y=0, choose phi smooth, compactly supported there, with grad phi nonzero, set E=P=0, all auxiliary variables zero, H_x=partial_x phi, and H_y=partial_y phi. Then partial_x H_y - partial_y H_x=0, partial_x E=partial_y E=0, the Debye law gives P_t=0, and every PML/ADE damping or auxiliary source term vanishes. Compact support keeps boundary and interface traces harmless. Thus the state is a nonzero stationary solution with positive magnetic energy for any positive state energy controlling H. Along such a stationary state an autonomous total electromagnetic-Debye energy cannot strictly decrease for every nonzero state. Therefore a valid dissipative identity on the whole computational domain must allow a nullspace containing these undamped curl-free magnetic modes.",
+    "critical_errors": [],
+    "gaps": []
+  },
+  "verdict": "correct",
+  "repair_hints": "None.",
+  "checked_artifacts": [
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-whole-domain-strict-decay-nullspace-obstruction.md",
+    "artifacts/proofs/stage3_repaired_model_energy.md",
+    "sources/energy_functional_problem.tex"
+  ],
+  "checked_fact_ids": [
+    "fact:2d_maxwell_pml_energy_functional_exploration:whole-domain-strict-decay-nullspace-obstruction"
+  ]
+}

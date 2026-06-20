@@ -1,0 +1,42 @@
+{
+  "schema_version": "iteris.verification_result.v0",
+  "request_id": "verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d",
+  "backend": "agent",
+  "mode": "fact",
+  "claim": "The v2 covariantly damped Maxwell-Debye layer is not perfectly matched at a planar constant x-PML interface, with the squared-admittance mismatch stated in the fact file.",
+  "verdict": "accepted",
+  "passed": true,
+  "strict_verdict": "correct",
+  "summary": "Correct. The cited stage-3 proof uses the verified covariantly damped Maxwell-Debye model from the predecessor fact and the source TM sign conventions. For the physical Maxwell-Debye half-space, the Laplace-Fourier symbol gives H_x=-ik_y E/(mu s), H_y=nu_0 E/(mu s), nu_0^2=k_y^2+mu s^2 A(s), hence Y_0^2=A(s)/mu+k_y^2/(mu^2 s^2). For the constant x-layer v2 model with rho_x=rho>0 and rho_y=0, the same symbol gives P=chi E/(1+tau(s+rho)), H_x=-ik_y E/(mu s), H_y=nu E/(mu(s+rho)), nu^2=mu(s+rho)^2 A_rho(s)+k_y^2(s+rho)/s, hence Y_rho^2=A_rho(s)/mu+k_y^2/(mu^2 s(s+rho)). Subtracting gives exactly -rho[chi tau/(mu(1+tau(s+rho))(1+tau s))+k_y^2/(mu^2 s^2(s+rho))], matching the fact file and the boxed formula in the proof artifact. Since this expression is not identically zero for rho>0 under the stated positive Debye parameters, the admittance mismatch is generically nonzero and the continuous planar-interface reflection coefficient is generically nonzero. The claim is scoped to this planar constant-coefficient x-interface test and does not overclaim more.",
+  "critical_errors": [],
+  "gaps": [],
+  "repair_hints": "",
+  "checked_artifacts": [
+    "verification/agent_runs/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d/request.json",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-v2-covariant-model-not-perfectly-matched.md",
+    "artifacts/proofs/stage3_v2_perfect_matching_test.md",
+    "results/energy_design_v2_report_verified.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-covariantly-damped-debye-energy.md",
+    "verification/results/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw.json",
+    "artifacts/proofs/stage2_repair_design.md",
+    "sources/energy_functional_problem.tex"
+  ],
+  "checked_fact_ids": [
+    "fact:2d_maxwell_pml_energy_functional_exploration:v2-covariant-model-not-perfectly-matched",
+    "fact:2d_maxwell_pml_energy_functional_exploration:covariantly-damped-debye-energy"
+  ],
+  "primary_fact_ids": [
+    "fact:2d_maxwell_pml_energy_functional_exploration:v2-covariant-model-not-perfectly-matched"
+  ],
+  "target_artifact": null,
+  "executor": "codex",
+  "verification_scope": "codex_agent",
+  "claim_ceiling_after_verification": "verified",
+  "agent_run_dir": "verification/agent_runs/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d",
+  "agent_log": "verification/agent_runs/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d/codex.log",
+  "agent_events_log": "verification/agent_runs/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d/codex.events.jsonl",
+  "agent_stderr_log": "verification/agent_runs/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d/codex.stderr.log",
+  "agent_log_manifest": "verification/agent_runs/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d/log_manifest.json",
+  "created_at": "2026-06-20T06:47:46.898285Z",
+  "verifier": "iteris.codex_verification_agent"
+}

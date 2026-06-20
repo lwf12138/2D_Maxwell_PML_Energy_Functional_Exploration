@@ -1,0 +1,26 @@
+{
+  "verification_report": {
+    "summary": "Correct within the fact's stated scope. The stage-3 artifact proves planar-interface perfect matching for the stretched-coordinate Maxwell-Debye model by keeping the Debye law as (1+tau s)P=chi E and applying S_i^{-1} only to spatial derivatives; at an x-interface with S_y=1 the PML normal symbol satisfies nu=S_x nu0 and the admittance equals the physical admittance. The ADE realization of S_i^{-1}=s/(s+sigma_i) yields the displayed auxiliary variables, and differentiating the naive physical Debye energy gives the negative Debye dissipation term plus the memory couplings E(psi_E,x-psi_E,y)-H_x psi_Hx,y+H_y psi_Hy,x. Those auxiliary couplings have no definite sign in the physical energy alone, so the v2 monotone identity does not transfer to the exact stretched-coordinate ADE system. The same artifact and the prior accepted verification support that only the reduced normal-incidence 1D monotone identity is proved, while the full 2D monotone augmented/passive-memory energy remains an identified gap rather than a claimed theorem.",
+    "critical_errors": [],
+    "gaps": []
+  },
+  "verdict": "correct",
+  "repair_hints": "",
+  "checked_artifacts": [
+    "verification/agent_runs/verify-20260620T065326237995Z-fact-the-standard-stretched-coordinate-m/request.json",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-stretched-coordinate-debye-pml-matching-and-energy-gap.md",
+    "artifacts/proofs/stage3_repaired_model_energy.md",
+    "verification/results/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d.json",
+    "verification/results/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m.json",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-standard-stretched-pml-matching-and-1d-energy.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-v2-covariant-model-not-perfectly-matched.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-covariantly-damped-debye-energy.md",
+    "verification/results/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw.json"
+  ],
+  "checked_fact_ids": [
+    "fact:2d_maxwell_pml_energy_functional_exploration:stretched-coordinate-debye-pml-matching-and-energy-gap",
+    "fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:v2-covariant-model-not-perfectly-matched",
+    "fact:2d_maxwell_pml_energy_functional_exploration:covariantly-damped-debye-energy"
+  ]
+}

@@ -6,12 +6,12 @@ source_task: task-stage3-repaired-model-energy
 predecessors:
   - fact:2d_maxwell_pml_energy_functional_exploration:v2-covariant-model-not-perfectly-matched
   - fact:2d_maxwell_pml_energy_functional_exploration:covariantly-damped-debye-energy
-status: submitted
+status: verified
 fact_type: energy_obstruction
-review_level: none
+review_level: verified
 claim_policy: stable_claim
 claim_summary: "The standard stretched-coordinate Maxwell-Debye PML is perfectly matched but the naive physical Debye energy has sign-indefinite ADE memory couplings."
-verification: null
+verification: verify-20260620T065326237995Z-fact-the-standard-stretched-coordinate-m
 ---
 
 ## statement

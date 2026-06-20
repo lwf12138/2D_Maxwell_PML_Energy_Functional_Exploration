@@ -4,12 +4,12 @@ problem_id: 2d_maxwell_pml_energy_functional_exploration
 source_project: 2d_maxwell_pml_energy_functional_exploration
 source_task: task-stage3-repaired-model-energy
 predecessors: []
-status: submitted
+status: verified
 fact_type: obstruction
-review_level: none
+review_level: verified
 claim_policy: stable_claim
 claim_summary: "Strict decay of total energy on the whole domain is impossible without a nullspace."
-verification: null
+verification: verify-20260620T065810059861Z-fact-strict-decay-of-total-electromagnet
 ---
 
 ## statement

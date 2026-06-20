@@ -1,9 +1,9 @@
-phase: stage3_verification_blocked
-last_updated: 2026-06-20T04:45:28Z
+phase: stage3_assembly_verification
+last_updated: 2026-06-20T07:03:11Z
 source: sources/energy_functional_problem.tex
 target_artifact: results/energy_design_v3_perfect_matching_report.md
 stage3_literature_record: artifacts/references/stage3_literature_reading_record.md
 stage3_matching_artifact: artifacts/proofs/stage3_v2_perfect_matching_test.md
 stage3_repaired_model_artifact: artifacts/proofs/stage3_repaired_model_energy.md
-verification_status: blocked; repeated agent verifier attempts, including verify-20260620T043846315949Z, failed before verdict with external Codex usage limit; no verification.json was produced; retry-after 2026-06-20 14:33 Asia/Shanghai
-next: after quota recovers, resubmit stage-3 fact verifications, promote passed facts, then run assembly and goal-success verifications for results/energy_design_v3_perfect_matching_report.md
+verification_status: stage-3 facts verified and promoted; assembly verification is next for results/energy_design_v3_perfect_matching_report.md
+next: run assembly verification, then goal-success verification, then finalize the verified terminal artifact

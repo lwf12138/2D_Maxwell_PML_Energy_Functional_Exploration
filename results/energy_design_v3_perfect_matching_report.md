@@ -1,4 +1,3 @@
-<!-- ITERIS STAGE-3 DRAFT: agent fact/assembly/goal-success verification pending because Codex verifier runs hit an external usage limit before verdict; retry after 2026-06-20 14:33 Asia/Shanghai. -->
 # Energy Design V3 Perfect Matching Report
 
 Problem id: `2d_maxwell_pml_energy_functional_exploration`
@@ -67,10 +66,10 @@ stretched-coordinate/ADE Maxwell--Debye 模型修复了匹配性；完整二维�
 | `fact:2d_maxwell_pml_energy_functional_exploration:edge-pml-linear-obstruction` | verified | `verification/results/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-.json` |
 | `fact:2d_maxwell_pml_energy_functional_exploration:augmented-gronwall-energy` | verified | `verification/results/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e.json` |
 | `fact:2d_maxwell_pml_energy_functional_exploration:covariantly-damped-debye-energy` | verified | `verification/results/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw.json` |
-| `fact:2d_maxwell_pml_energy_functional_exploration:v2-covariant-model-not-perfectly-matched` | submitted | pending: first agent attempt failed from external usage limit, not from a mathematical rejection |
-| `fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy` | submitted | pending |
-| `fact:2d_maxwell_pml_energy_functional_exploration:stretched-coordinate-debye-pml-matching-and-energy-gap` | submitted | pending |
-| `fact:2d_maxwell_pml_energy_functional_exploration:whole-domain-strict-decay-nullspace-obstruction` | submitted | pending |
+| `fact:2d_maxwell_pml_energy_functional_exploration:v2-covariant-model-not-perfectly-matched` | verified | `verification/results/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d.json` |
+| `fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy` | verified | `verification/results/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m.json` |
+| `fact:2d_maxwell_pml_energy_functional_exploration:stretched-coordinate-debye-pml-matching-and-energy-gap` | verified | `verification/results/verify-20260620T065326237995Z-fact-the-standard-stretched-coordinate-m.json` |
+| `fact:2d_maxwell_pml_energy_functional_exploration:whole-domain-strict-decay-nullspace-obstruction` | verified | `verification/results/verify-20260620T065810059861Z-fact-strict-decay-of-total-electromagnet.json` |
 
 Stage-3 proof artifacts:
 
@@ -518,13 +517,15 @@ s\varepsilon_D(s)\widehat E
 E\psi_{E,x},\quad E\psi_{E,y},\quad H_x\psi_{H_x,y},\quad H_y\psi_{H_y,x}.
 \]
 
-目前已验证的最强稳定结论仍是 v2 的单调能量；已推导但待 agent 验证的 stage-3 结论是
-v2 不 perfect matched，以及标准 stretched-coordinate 模型修复了 matching 但完整二维
+目前已验证的最强稳定结论是：v2 的单调能量成立但 v2 不 perfect matched；标准
+stretched-coordinate 模型修复了 matching，并在 1D 法向入射块中有正耗散恒等式；完整二维
 单调能量仍未闭合。
 
 ## Assembly
 
-已验证事实给出旧模型 obstruction、Gronwall fallback 和 v2 单调能量。stage-3 新代数表明：
+Fact index 中列出的已验证事实给出旧模型 obstruction、Gronwall fallback、v2 单调能量、
+v2 matching 失效、标准 stretched-coordinate matching/1D 能量，以及全域严格衰减的零空间
+obstruction。由这些事实组装得到：
 
 - v2 的 \(D_\rho\) Debye law 把物理 \(\varepsilon_D(s)\) 改为
   \(\varepsilon_D(s+\rho)\)，并改变斜入射导纳项，所以不是 perfectly matched。

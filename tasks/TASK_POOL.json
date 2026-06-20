@@ -1,7 +1,7 @@
 {
   "schema_version": "iteris.task_pool.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-06-20T04:45:28.453880Z",
+  "updated_at": "2026-06-20T07:03:11.386246Z",
   "active_frontier": "",
   "tasks": [
     {
@@ -226,7 +226,7 @@
       "task_id": "task-stage3-final-report",
       "mode": "proof",
       "objective": "Assemble verified stage-3 facts into results/energy_design_v3_perfect_matching_report.md and pass assembly plus goal-success verification.",
-      "status": "blocked",
+      "status": "running",
       "priority": 130,
       "dependencies": [
         "task-stage3-repaired-model-energy"
@@ -240,10 +240,11 @@
         "Terminal artifact for stage-3 Iteris goal.",
         "Drafted results/energy_design_v3_perfect_matching_report.md; performing consistency pass before verification retry.",
         "Blocked on required agent verifications: repeated verifier runs fail before verdict with external Codex usage limit, retry-after 2:33 PM local. Terminal artifact draft exists at results/energy_design_v3_perfect_matching_report.md; fact/assembly/goal_success still pending.",
-        "Latest fact-verifier retry verify-20260620T043846315949Z failed before verdict with Codex usage limit (retry-after 2:33 PM local); no verification.json was produced, so stage-3 facts remain unverified and assembly/goal_success remain blocked."
+        "Latest fact-verifier retry verify-20260620T043846315949Z failed before verdict with Codex usage limit (retry-after 2:33 PM local); no verification.json was produced, so stage-3 facts remain unverified and assembly/goal_success remain blocked.",
+        "Stage-3 durable facts are now verified and promoted: v2 mismatch, standard stretched-coordinate matching/1D energy, full 2D ADE energy gap, and whole-domain strict-decay nullspace obstruction. Report fact index updated; starting assembly verification."
       ],
       "created_at": "2026-06-20T04:12:20.338555Z",
-      "updated_at": "2026-06-20T04:45:28.453872Z"
+      "updated_at": "2026-06-20T07:03:11.386239Z"
     }
   ]
 }

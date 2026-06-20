@@ -1,0 +1,41 @@
+{
+  "schema_version": "iteris.verification_result.v0",
+  "request_id": "verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m",
+  "backend": "agent",
+  "mode": "fact",
+  "claim": "The standard stretched-coordinate Maxwell-Debye PML restores planar-interface perfect matching and, in the reduced normal-incidence constant-coefficient case, has the dissipative energy identity stated in the fact file.",
+  "verdict": "accepted",
+  "passed": true,
+  "strict_verdict": "correct",
+  "summary": "Correct within the stated scope. The cited fact is supported for the standard Laplace-domain stretched-coordinate Maxwell-Debye PML with the physical Debye law left as A(s)=epsilon0 epsilon_infty+chi/(1+tau s), coordinate-aligned planar interfaces, Re s>0, physical positive material parameters, and constant nonnegative layer damping in the reduced 1D energy calculation. The planar-interface calculation is algebraic: replacing partial_x by S_x^{-1} partial_x gives (S_x^{-1} kappa_sc)^2=kappa_0^2, so choosing the outgoing/decaying branch kappa_sc=S_x kappa_0 makes the PML admittance equal to the physical admittance and the reflection coefficient vanishes. The reduced normal-incidence system follows by multiplying the 1D stretched equations by (s+rho)/s, giving (partial_t+rho)(epsilon0 epsilon_infty E+P)=partial_x H_y, mu(partial_t+rho)H_y=partial_x E, and P+tau P_t=chi E. Multiplying by E and H_y and using E=(P+tau P_t)/chi yields exactly the stated energy derivative with the boundary flux plus the nonpositive bulk terms. The supporting artifact also correctly limits the result: it does not claim a full 2D monotone energy for the exact ADE stretched-coordinate system.",
+  "critical_errors": [],
+  "gaps": [],
+  "repair_hints": "No repair needed.",
+  "checked_artifacts": [
+    "verification/agent_runs/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m/request.json",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-standard-stretched-pml-matching-and-1d-energy.md",
+    "artifacts/proofs/stage3_repaired_model_energy.md",
+    "artifacts/proofs/stage3_v2_perfect_matching_test.md",
+    "sources/energy_functional_problem.tex",
+    "artifacts/references/stage3_literature_reading_record.md",
+    "references/processed/Joly - 2012 - An elementary introduction to the construction and the analysis of perfectly matched layers for time.txt"
+  ],
+  "checked_fact_ids": [
+    "fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:run-20260619T173930696222Z:source-problem"
+  ],
+  "primary_fact_ids": [
+    "fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy"
+  ],
+  "target_artifact": null,
+  "executor": "codex",
+  "verification_scope": "codex_agent",
+  "claim_ceiling_after_verification": "verified",
+  "agent_run_dir": "verification/agent_runs/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m",
+  "agent_log": "verification/agent_runs/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m/codex.log",
+  "agent_events_log": "verification/agent_runs/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m/codex.events.jsonl",
+  "agent_stderr_log": "verification/agent_runs/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m/codex.stderr.log",
+  "agent_log_manifest": "verification/agent_runs/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m/log_manifest.json",
+  "created_at": "2026-06-20T06:53:06.905162Z",
+  "verifier": "iteris.codex_verification_agent"
+}

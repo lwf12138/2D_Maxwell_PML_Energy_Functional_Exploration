@@ -5,12 +5,12 @@ source_project: 2d_maxwell_pml_energy_functional_exploration
 source_task: task-stage3-perfect-matching-test
 predecessors:
   - fact:2d_maxwell_pml_energy_functional_exploration:covariantly-damped-debye-energy
-status: submitted
+status: verified
 fact_type: obstruction
-review_level: none
+review_level: verified
 claim_policy: stable_claim
 claim_summary: "The v2 covariantly damped Maxwell-Debye layer is not perfectly matched."
-verification: null
+verification: verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d
 ---
 
 ## statement

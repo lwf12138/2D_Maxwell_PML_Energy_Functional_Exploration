@@ -4,12 +4,12 @@ problem_id: 2d_maxwell_pml_energy_functional_exploration
 source_project: 2d_maxwell_pml_energy_functional_exploration
 source_task: task-stage3-repaired-model-energy
 predecessors: []
-status: submitted
+status: verified
 fact_type: energy_identity
-review_level: none
+review_level: verified
 claim_policy: stable_claim
 claim_summary: "The standard stretched-coordinate Maxwell-Debye PML restores perfect matching and has a reduced normal-incidence dissipative energy identity."
-verification: null
+verification: verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m
 ---
 
 ## statement
