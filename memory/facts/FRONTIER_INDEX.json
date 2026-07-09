@@ -1,47 +1,81 @@
 {
   "schema_version": "iteris.frontier_index.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-06-20T15:15:49.661198Z",
+  "updated_at": "2026-07-09T04:06:39.294967Z",
   "active_frontiers": [
     {
       "schema_version": "iteris.frontier_entry.v0",
-      "frontier_id": "auto-new-energy-functional",
-      "title": "New Energy Functional",
-      "hypothesis": "Route inferred from facts, tasks, and artifacts matching `new-energy-functional`.",
-      "summary": "0 fact(s), 0 blocker fact(s), 1 active task(s), 0 artifact(s).",
+      "frontier_id": "auto-v5-variable-coefficient",
+      "title": "V5 Variable Coefficient",
+      "hypothesis": "Route inferred from facts, tasks, and artifacts matching `v5-variable-coefficient`.",
+      "summary": "2 fact(s), 1 blocker fact(s), 1 active task(s), 0 artifact(s).",
       "status": "active",
-      "fact_ids": [],
-      "blocker_fact_ids": [],
+      "fact_ids": [
+        "fact:2d_maxwell_pml_energy_functional_exploration:port-layer-energy-not-pml",
+        "fact:2d_maxwell_pml_energy_functional_exploration:variable-baffet-remainder-small-gradient"
+      ],
+      "blocker_fact_ids": [
+        "fact:2d_maxwell_pml_energy_functional_exploration:port-layer-energy-not-pml"
+      ],
       "task_ids": [
-        "task-new-energy-functional-tex-contract"
+        "task-v5-variable-coefficient-baffet"
       ],
       "active_tasks": [
-        "task-new-energy-functional-tex-contract"
+        "task-v5-variable-coefficient-baffet"
       ],
       "blocked_tasks": [],
       "artifact_paths": [],
-      "verification_ids": [],
+      "verification_ids": [
+        "verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi",
+        "verify-20260709T035701313438Z-fact-verify-the-variable-coefficient-baf"
+      ],
       "agent_run_ids": [],
       "open_questions": [
-        "Create the TeX/PDF terminal artifact, algebra verification files, and Markdown summary required by the new Iteris goal prompt."
+        "Verify variable-coefficient Baffet energy, port-layer matching, Lean/SymPy checks, TeX/PDF artifact, and v5 terminal report."
       ],
       "next_actions": [],
-      "recent_fact_summaries": [],
+      "recent_fact_summaries": [
+        {
+          "fact_id": "fact:2d_maxwell_pml_energy_functional_exploration:port-layer-energy-not-pml",
+          "status": "verified",
+          "claim_summary": "The port layer has a monotone energy but fails the strict PML admittance test for oblique modes."
+        },
+        {
+          "fact_id": "fact:2d_maxwell_pml_energy_functional_exploration:variable-baffet-remainder-small-gradient",
+          "status": "verified",
+          "claim_summary": "Variable-coefficient Baffet-Debye energy has an exact R_sigma remainder and only conditional small-gradient monotonicity."
+        }
+      ],
       "task_status_counts": {
         "running": 1
       },
-      "evidence_terms": [],
+      "evidence_terms": [
+        "baffet",
+        "but",
+        "coefficient",
+        "debye",
+        "energy",
+        "exact",
+        "fails",
+        "has",
+        "layer",
+        "monotone",
+        "port",
+        "sigma",
+        "strict",
+        "variable"
+      ],
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T15:15:49.661035Z",
+      "updated_at": "2026-07-09T04:06:39.294784Z",
       "health": {
-        "frontier_id": "auto-new-energy-functional",
-        "title": "New Energy Functional",
+        "frontier_id": "auto-v5-variable-coefficient",
+        "title": "V5 Variable Coefficient",
         "status": "active",
-        "fact_count": 0,
-        "blocker_count": 0,
-        "verified_count": 0,
+        "fact_count": 2,
+        "blocker_count": 1,
+        "verified_count": 2,
         "active_task_count": 1,
         "ready_task_count": 0,
         "artifact_count": 0,
@@ -128,7 +162,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T15:15:49.661015Z",
+      "updated_at": "2026-07-09T04:06:39.294795Z",
       "health": {
         "frontier_id": "auto-stage3-repaired-model",
         "title": "Stage3 Repaired Model",
@@ -212,7 +246,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T15:15:49.660991Z",
+      "updated_at": "2026-07-09T04:06:39.294766Z",
       "health": {
         "frontier_id": "auto-alpha1-pml-cases",
         "title": "Alpha1 Pml Cases",
@@ -281,7 +315,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T15:15:49.661019Z",
+      "updated_at": "2026-07-09T04:06:39.294800Z",
       "health": {
         "frontier_id": "auto-stage3-perfect-matching",
         "title": "Stage3 Perfect Matching",
@@ -348,7 +382,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T15:15:49.660981Z",
+      "updated_at": "2026-07-09T04:06:39.294755Z",
       "health": {
         "frontier_id": "auto-alpha1-algebra-energy",
         "title": "Alpha1 Algebra Energy",
@@ -399,7 +433,7 @@
       "explore_run_count": 1,
       "last_explore_at": "2026-06-20T02:27:13.918334Z",
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T15:15:49.661051Z",
+      "updated_at": "2026-07-09T04:06:39.294827Z",
       "health": {
         "frontier_id": "auto-explore-second-stage",
         "title": "Explore Second Stage",
@@ -447,7 +481,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T15:15:49.661024Z",
+      "updated_at": "2026-07-09T04:06:39.294804Z",
       "health": {
         "frontier_id": "auto-final-energy-report",
         "title": "Final Energy Report",
@@ -511,12 +545,60 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T15:15:49.661008Z",
+      "updated_at": "2026-07-09T04:06:39.294789Z",
       "health": {
         "frontier_id": "auto-initial-exploration-run",
         "title": "Initial Exploration Run",
         "status": "stale",
         "fact_count": 1,
+        "blocker_count": 0,
+        "verified_count": 0,
+        "active_task_count": 0,
+        "ready_task_count": 0,
+        "artifact_count": 0,
+        "explore_run_count": 0,
+        "last_explore_at": null,
+        "cooldown_ok": true,
+        "explore_recommended": false,
+        "reason": "",
+        "recommended_focus": ""
+      }
+    },
+    {
+      "schema_version": "iteris.frontier_entry.v0",
+      "frontier_id": "auto-new-energy-functional",
+      "title": "New Energy Functional",
+      "hypothesis": "Route inferred from facts, tasks, and artifacts matching `new-energy-functional`.",
+      "summary": "0 fact(s), 0 blocker fact(s), 0 active task(s), 0 artifact(s).",
+      "status": "stale",
+      "fact_ids": [],
+      "blocker_fact_ids": [],
+      "task_ids": [
+        "task-new-energy-functional-tex-contract"
+      ],
+      "active_tasks": [],
+      "blocked_tasks": [],
+      "artifact_paths": [],
+      "verification_ids": [],
+      "agent_run_ids": [],
+      "open_questions": [
+        "Create the TeX/PDF terminal artifact, algebra verification files, and Markdown summary required by the new Iteris goal prompt."
+      ],
+      "next_actions": [],
+      "recent_fact_summaries": [],
+      "task_status_counts": {
+        "done": 1
+      },
+      "evidence_terms": [],
+      "explore_run_count": 0,
+      "last_explore_at": null,
+      "generated_by": "frontier_refresh",
+      "updated_at": "2026-07-09T04:06:39.294814Z",
+      "health": {
+        "frontier_id": "auto-new-energy-functional",
+        "title": "New Energy Functional",
+        "status": "stale",
+        "fact_count": 0,
         "blocker_count": 0,
         "verified_count": 0,
         "active_task_count": 0,
@@ -555,7 +637,7 @@
       "explore_run_count": 1,
       "last_explore_at": "2026-06-20T02:20:45.187532Z",
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T15:15:49.661045Z",
+      "updated_at": "2026-07-09T04:06:39.294822Z",
       "health": {
         "frontier_id": "auto-second-stage-constructive",
         "title": "Second Stage Constructive",
@@ -603,7 +685,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T15:15:49.661027Z",
+      "updated_at": "2026-07-09T04:06:39.294807Z",
       "health": {
         "frontier_id": "auto-stage2-final-report",
         "title": "Stage2 Final Report",
@@ -670,7 +752,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T15:15:49.661003Z",
+      "updated_at": "2026-07-09T04:06:39.294778Z",
       "health": {
         "frontier_id": "auto-stage2-repair-design",
         "title": "Stage2 Repair Design",
@@ -737,7 +819,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T15:15:49.660997Z",
+      "updated_at": "2026-07-09T04:06:39.294772Z",
       "health": {
         "frontier_id": "auto-stage3-final-report",
         "title": "Stage3 Final Report",
@@ -785,7 +867,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-06-20T15:15:49.661031Z",
+      "updated_at": "2026-07-09T04:06:39.294811Z",
       "health": {
         "frontier_id": "auto-stage3-literature-sources",
         "title": "Stage3 Literature Sources",

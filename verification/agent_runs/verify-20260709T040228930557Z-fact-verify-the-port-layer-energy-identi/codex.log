@@ -1,0 +1,1229 @@
+started_at: 2026-07-09T04:02:28.931895Z
+command: /Users/wcli/.local/bin/codex exec --json -C '/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration' -m gpt-5.5 --config model_reasoning_effort=xhigh --dangerously-bypass-approvals-and-sandbox -
+prompt_file: verification/agent_runs/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi/prompt.md
+events_log: verification/agent_runs/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi/codex.events.jsonl
+stderr_log: verification/agent_runs/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi/codex.stderr.log
+
+--- rendered codex exec events ---
+
+[1] thread.started
+  thread_id: 019f450a-93ed-7540-9bf8-051b342ad682
+
+[2] turn.started
+
+[?] error: null
+
+[?] error: null
+
+[?] error: null
+
+[?] error: null
+
+[7] item.completed:error
+  id: item_0
+  message: Falling back from WebSockets to HTTPS transport. request timed out
+
+[8] item.completed:agent_message
+  I’ll read the verification request and then trace each cited artifact/fact before judging the mathematical claim. After that I’ll write the required `verification.json` in the specified run directory.
+
+[9] item.started:command_execution
+  command: /bin/zsh -lc 'jq . verification/agent_runs/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi/request.json'
+  status: in_progress
+  exit_code: None
+
+[10] item.completed:command_execution
+  command: /bin/zsh -lc 'jq . verification/agent_runs/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi/request.json'
+  status: completed
+  exit_code: 0
+  {
+    "schema_version": "iteris.verification_request.v0",
+    "request_id": "verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi",
+    "backend": "agent",
+    "executor": "codex",
+    "mode": "fact",
+    "claim": "Verify the port-layer energy identity and the planar-interface admittance mismatch showing it is not a strict PML for oblique modes.",
+    "artifacts": [
+      "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-port-layer-energy-not-pml.md",
+      "tex/variable_coefficient_baffet_energy_analysis.tex",
+      "verification/algebra/variable_coefficient_baffet_sympy.py",
+      "results/v5_variable_coefficient_baffet/verification_outputs.md"
+    ],
+    "fact_ids": [
+      "fact:2d_maxwell_pml_energy_functional_exploration:port-layer-energy-not-pml"
+    ],
+    "target_artifact": null,
+    "created_at": "2026-07-09T04:02:28.930984Z",
+    "prompt_path": "verification/agent_runs/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi/prompt.md",
+    "codex_log": "verification/agent_runs/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi/codex.log",
+    "codex_events": "verification/agent_runs/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi/codex.events.jsonl",
+    "codex_stderr": "verification/agent_runs/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi/codex.stderr.log",
+    "codex_log_manifest": "verification/agent_runs/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi/log_manifest.json"
+  }
+
+[11] item.started:command_execution
+  command: /bin/zsh -lc "find verification -maxdepth 4 -type f | sort | sed -n '1,200p'"
+  status: in_progress
+  exit_code: None
+
+[12] item.completed:command_execution
+  command: /bin/zsh -lc "find verification -maxdepth 4 -type f | sort | sed -n '1,200p'"
+  status: completed
+  exit_code: 0
+  verification/VERIFICATION_INDEX.jsonl
+  verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/codex.events.jsonl
+  verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/codex.log
+  verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/codex.stderr.log
+  verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/log_manifest.json
+  verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/prompt.md
+  verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/request.json
+  verification/agent_runs/verify-20260619T180514214437Z-fact-alpha-1-pec-balance-and-shifted-mag/verification.json
+  verification/agent_runs/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-/codex.events.jsonl
+  verification/agent_runs/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-/codex.log
+  verification/agent_runs/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-/codex.stderr.log
+  verification/agent_runs/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-/log_manifest.json
+  verification/agent_runs/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-/prompt.md
+  verification/agent_runs/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-/request.json
+  verification/agent_runs/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-/verification.json
+  verification/agent_runs/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e/codex.events.jsonl
+  verification/agent_runs/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e/codex.log
+  verification/agent_runs/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e/codex.stderr.log
+  verification/agent_runs/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e/log_manifest.json
+  verification/agent_runs/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e/prompt.md
+  verification/agent_runs/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e/request.json
+  verification/agent_runs/verify-20260619T181650715321Z-fact-a-positive-augmented-zeroth-order-e/verification.json
+  verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/codex.events.jsonl
+  verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/codex.log
+  verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/codex.stderr.log
+  verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/log_manifest.json
+  verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/prompt.md
+  verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/request.json
+  verification/agent_runs/verify-20260619T182155152008Z-assembly-assemble-verified-facts-to-answ/verification.json
+  verification/agent_runs/verify-20260619T182724786704Z-assembly-assemble-verified-facts-to-answ/codex.events.jsonl
+  verification/agent_runs/verify-20260619T182724786704Z-assembly-assemble-verified-facts-to-answ/codex.log
+  verification/agent_runs/verify-20260619T182724786704Z-assembly-assemble-verified-facts-to-answ/codex.stderr.log
+  verification/agent_runs/verify-20260619T182724786704Z-assembly-assemble-verified-facts-to-answ/log_manifest.json
+  verification/agent_runs/verify-20260619T182724786704Z-assembly-assemble-verified-facts-to-answ/prompt.md
+  verification/agent_runs/verify-20260619T182724786704Z-assembly-assemble-verified-facts-to-answ/request.json
+  verification/agent_runs/verify-20260619T182724786704Z-assembly-assemble-verified-facts-to-answ/verification.json
+  verification/agent_runs/verify-20260619T183134018854Z-goal_success-analyze-sources-energy_func/codex.events.jsonl
+  verification/agent_runs/verify-20260619T183134018854Z-goal_success-analyze-sources-energy_func/codex.log
+  verification/agent_runs/verify-20260619T183134018854Z-goal_success-analyze-sources-energy_func/codex.stderr.log
+  verification/agent_runs/verify-20260619T183134018854Z-goal_success-analyze-sources-energy_func/log_manifest.json
+  verification/agent_runs/verify-20260619T183134018854Z-goal_success-analyze-sources-energy_func/prompt.md
+  verification/agent_runs/verify-20260619T183134018854Z-goal_success-analyze-sources-energy_func/request.json
+  verification/agent_runs/verify-20260619T183134018854Z-goal_success-analyze-sources-energy_func/verification.json
+  verification/agent_runs/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw/codex.events.jsonl
+  verification/agent_runs/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw/codex.log
+  verification/agent_runs/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw/codex.stderr.log
+  verification/agent_runs/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw/log_manifest.json
+  verification/agent_runs/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw/prompt.md
+  verification/agent_runs/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw/request.json
+  verification/agent_runs/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw/verification.json
+  verification/agent_runs/verify-20260620T023007094217Z-assembly-assemble-verified-facts-to-answ/codex.events.jsonl
+  verification/agent_runs/verify-20260620T023007094217Z-assembly-assemble-verified-facts-to-answ/codex.log
+  verification/agent_runs/verify-20260620T023007094217Z-assembly-assemble-verified-facts-to-answ/codex.stderr.log
+  verification/agent_runs/verify-20260620T023007094217Z-assembly-assemble-verified-facts-to-answ/log_manifest.json
+  verification/agent_runs/verify-20260620T023007094217Z-assembly-assemble-verified-facts-to-answ/prompt.md
+  verification/agent_runs/verify-20260620T023007094217Z-assembly-assemble-verified-facts-to-answ/request.json
+  verification/agent_runs/verify-20260620T023007094217Z-assembly-assemble-verified-facts-to-answ/verification.json
+  verification/agent_runs/verify-20260620T023507094543Z-goal_success-read-.iteris-goal_prompt.tx/codex.events.jsonl
+  verification/agent_runs/verify-20260620T023507094543Z-goal_success-read-.iteris-goal_prompt.tx/codex.log
+  verification/agent_runs/verify-20260620T023507094543Z-goal_success-read-.iteris-goal_prompt.tx/codex.stderr.log
+  verification/agent_runs/verify-20260620T023507094543Z-goal_success-read-.iteris-goal_prompt.tx/log_manifest.json
+  verification/agent_runs/verify-20260620T023507094543Z-goal_success-read-.iteris-goal_prompt.tx/prompt.md
+  verification/agent_runs/verify-20260620T023507094543Z-goal_success-read-.iteris-goal_prompt.tx/request.json
+  verification/agent_runs/verify-20260620T023507094543Z-goal_success-read-.iteris-goal_prompt.tx/verification.json
+  verification/agent_runs/verify-20260620T042134131118Z-fact-the-v2-covariantly-damped-maxwell-d/codex.events.jsonl
+  verification/agent_runs/verify-20260620T042134131118Z-fact-the-v2-covariantly-damped-maxwell-d/codex.log
+  verification/agent_runs/verify-20260620T042134131118Z-fact-the-v2-covariantly-damped-maxwell-d/codex.stderr.log
+  verification/agent_runs/verify-20260620T042134131118Z-fact-the-v2-covariantly-damped-maxwell-d/log_manifest.json
+  verification/agent_runs/verify-20260620T042134131118Z-fact-the-v2-covariantly-damped-maxwell-d/prompt.md
+  verification/agent_runs/verify-20260620T042134131118Z-fact-the-v2-covariantly-damped-maxwell-d/request.json
+  verification/agent_runs/verify-20260620T042228780266Z-fact-the-v2-covariantly-damped-maxwell-d/codex.events.jsonl
+  verification/agent_runs/verify-20260620T042228780266Z-fact-the-v2-covariantly-damped-maxwell-d/codex.log
+  verification/agent_runs/verify-20260620T042228780266Z-fact-the-v2-covariantly-damped-maxwell-d/codex.stderr.log
+  verification/agent_runs/verify-20260620T042228780266Z-fact-the-v2-covariantly-damped-maxwell-d/log_manifest.json
+  verification/agent_runs/verify-20260620T042228780266Z-fact-the-v2-covariantly-damped-maxwell-d/prompt.md
+  verification/agent_runs/verify-20260620T042228780266Z-fact-the-v2-covariantly-damped-maxwell-d/request.json
+  verification/agent_runs/verify-20260620T043308157721Z-fact-the-v2-covariantly-damped-maxwell-d/codex.events.jsonl
+  verification/agent_runs/verify-20260620T043308157721Z-fact-the-v2-covariantly-damped-maxwell-d/codex.log
+  verification/agent_runs/verify-20260620T043308157721Z-fact-the-v2-covariantly-damped-maxwell-d/codex.stderr.log
+  verification/agent_runs/verify-20260620T043308157721Z-fact-the-v2-covariantly-damped-maxwell-d/log_manifest.json
+  verification/agent_runs/verify-20260620T043308157721Z-fact-the-v2-covariantly-damped-maxwell-d/prompt.md
+  verification/agent_runs/verify-20260620T043308157721Z-fact-the-v2-covariantly-damped-maxwell-d/request.json
+  verification/agent_runs/verify-20260620T043606452654Z-fact-the-v2-covariantly-damped-maxwell-d/codex.events.jsonl
+  verification/agent_runs/verify-20260620T043606452654Z-fact-the-v2-covariantly-damped-maxwell-d/codex.log
+  verification/agent_runs/verify-20260620T043606452654Z-fact-the-v2-covariantly-damped-maxwell-d/codex.stderr.log
+  verification/agent_runs/verify-20260620T043606452654Z-fact-the-v2-covariantly-damped-maxwell-d/log_manifest.json
+  verification/agent_runs/verify-20260620T043606452654Z-fact-the-v2-covariantly-damped-maxwell-d/prompt.md
+  verification/agent_runs/verify-20260620T043606452654Z-fact-the-v2-covariantly-damped-maxwell-d/request.json
+  verification/agent_runs/verify-20260620T043846315949Z-fact-the-v2-covariantly-damped-maxwell-d/codex.events.jsonl
+  verification/agent_runs/verify-20260620T043846315949Z-fact-the-v2-covariantly-damped-maxwell-d/codex.log
+  verification/agent_runs/verify-20260620T043846315949Z-fact-the-v2-covariantly-damped-maxwell-d/codex.stderr.log
+  verification/agent_runs/verify-20260620T043846315949Z-fact-the-v2-covariantly-damped-maxwell-d/log_manifest.json
+  verification/agent_runs/verify-20260620T043846315949Z-fact-the-v2-covariantly-damped-maxwell-d/prompt.md
+  verification/agent_runs/verify-20260620T043846315949Z-fact-the-v2-covariantly-damped-maxwell-d/request.json
+  verification/agent_runs/verify-20260620T044113290188Z-fact-the-v2-covariantly-damped-maxwell-d/codex.events.jsonl
+  verification/agent_runs/verify-20260620T044113290188Z-fact-the-v2-covariantly-damped-maxwell-d/codex.log
+  verification/agent_runs/verify-20260620T044113290188Z-fact-the-v2-covariantly-damped-maxwell-d/codex.stderr.log
+  verification/agent_runs/verify-20260620T044113290188Z-fact-the-v2-covariantly-damped-maxwell-d/log_manifest.json
+  verification/agent_runs/verify-20260620T044113290188Z-fact-the-v2-covariantly-damped-maxwell-d/prompt.md
+  verification/agent_runs/verify-20260620T044113290188Z-fact-the-v2-covariantly-damped-maxwell-d/request.json
+  verification/agent_runs/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d/codex.events.jsonl
+  verification/agent_runs/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d/codex.log
+  verification/agent_runs/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d/codex.stderr.log
+  verification/agent_runs/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d/log_manifest.json
+  verification/agent_runs/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d/prompt.md
+  verification/agent_runs/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d/request.json
+  verification/agent_runs/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d/verification.json
+  verification/agent_runs/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m/codex.events.jsonl
+  verification/agent_runs/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m/codex.log
+  verification/agent_runs/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m/codex.
+  ...[truncated 9657 chars; see raw codex.events.jsonl]
+
+[13] item.started:command_execution
+  command: /bin/zsh -lc 'rg -n "port-layer|port layer|energy identity|PML|Maxwell|verify-the-port" .'
+  status: in_progress
+  exit_code: None
+
+[14] item.completed:command_execution
+  command: /bin/zsh -lc 'rg -n "port-layer|port layer|energy identity|PML|Maxwell|verify-the-port" .'
+  status: completed
+  exit_code: 0
+  ./README.md:1:# 2D Maxwell--PML Energy Functional Exploration
+  ./README.md:3:这个文件夹用于准备后续交给 iteris 分析的数学问题：探索图中二维 Maxwell--PML 系统是否存在单调递减的能量泛函；若找不到，则寻找能排除 PML 层异常增长的有界能量泛函。非分数阶情形按 `alpha=1` 处理，分数阶 `0<alpha<1` 放在第二阶段。
+  ./README.md:17:1. 先验证 `energy_functional_problem.tex` 中图示 Maxwell--PML 模型的代数，包括 `P, P_{z,1}, P_{z,2}, Q_x, Q_y`。
+  ./PROJECT.md:1:# 2D Maxwell--PML Energy Functional Exploration
+  ./PROJECT.md:3:Goal: prepare a precise mathematical source problem for exploring monotone or dissipative energy functionals for the two-dimensional Maxwell--PML system, with a staged Cole--Cole fractional extension.
+  ./ITERIS_INPUT_GUIDE.md:21:Analyze sources/energy_functional_problem.tex. The model is the displayed 2D Maxwell--PML system with P, P_{z,1}, P_{z,2}, Q_x, Q_y and PEC boundary condition. Start with the alpha = 1 case of P + tau^alpha partial_t^alpha P = chi E; do not remove P from the model. Search first for a monotone decreasing energy functional in two dimensions. If no monotone energy can be found, derive the strongest bounded-energy/no-abnormal-growth estimate possible, in the spirit of MPML long-time stability, or identify a verified obstruction for natural quadratic energies. Only after the alpha = 1 model is understood, examine whether the fractional case 0 < alpha < 1 can be added as a positive memory energy. Write the final result to results/energy_functional_report.md.
+  ./docs/OPERATOR.md:1:# 2D_Maxwell_PML_Energy_Functional_Exploration — Operator Notes
+  ./results/v5_variable_coefficient_baffet/verification_outputs.md:23:port Maxwell cross terms equal div(E*W_y, -E*W_x): 0
+  ./verification/algebra/NewEnergyFunctional.lean:2:Lean/Mathlib algebra targets for the Baffet-Debye Maxwell-PML energy.
+  ./verification/algebra/new_energy_functional_sympy.py:2:"""Symbolic checks for the Baffet-Debye 2D Maxwell-PML energy.
+  ./results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:11:a positive monotone energy for the two-dimensional Maxwell--Debye--PML problem,
+  ./results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:13:non-PML absorbing layer. It also requires a formula-level audit of the
+  ./results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:14:variable-coefficient Baffet remainder, a separate port-layer matching test,
+  ./results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:19:The new PDF is useful but not sufficient for the final strict PML goal.
+  ./results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:38:It should be called a stable absorbing layer, not a strict PML.
+  ./results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:46:| `fact:2d_maxwell_pml_energy_functional_exploration:port-layer-energy-not-pml` | pending | pending |
+  ./results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:52:   stretched-coordinate Maxwell--Debye PML.
+  ./results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:53:2. The strict Baffet primitive model remains the correct final PML mainline
+  ./results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:54:   because it is Laplace-equivalent to stretched-coordinate PML in the constant
+  ./results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:61:5. The port model reduces to Maxwell--Debye when all damping vanishes and has a
+  ./results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:62:   positive energy identity, but its x-PML admittance satisfies
+  ./results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:109:Second, the port model is a separate passive absorbing layer. Its energy identity
+  ./results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:111:modes, so it cannot be used as the final strict PML theorem.
+  ./prompts/run_energy_design_v2.sh:12:The previous run showed that the original eight-variable 2D Maxwell--PML model admits an edge-PML linear-growth obstruction for arbitrary auxiliary-variable initial data. Therefore, do not stop at re-verifying that obstruction.
+  ./prompts/run_energy_design_v2.sh:15:Construct or propose a modified 2D Maxwell--PML formulation, auxiliary-variable transformation, compatibility condition, damping design, MPML/CFS-type modification, or equivalent PML model that admits a monotone decreasing energy functional or a genuinely dissipative long-time bounded energy estimate.
+  ./prompts/run_energy_design_v2.sh:19:2. You may impose physically meaningful compatibility conditions on PML auxiliary variables.
+  ./prompts/run_energy_design_v2.sh:20:3. You may modify the PML equations if the modified model still behaves as an absorbing layer for 2D Maxwell waves.
+  ./prompts/run_energy_design_v2.sh:21:4. You may consider MPML-type multi-axial damping, CFS-PML-type frequency shifted damping, or Baffet-type time-integrated variables.
+  ./prompts/run_energy_design_v2.sh:23:6. You may first solve edge PML, then corner PML.
+  ./prompts/run_energy_design_v2.sh:28:1. Identify exactly which old-model term causes edge-PML linear growth.
+  ./prompts/run_energy_design_v2.sh:32:   - modified damping/PML equation such as CFS-PML, MPML, or equivalent Berenger-type model.
+  ./prompts/run_energy_design_v2.sh:53:- energy identity or inequality;
+  ./results/energy_design_v3_perfect_matching_report.md:11:Maxwell--Debye 吸收层有正的单调能量。但 stage-3 的新问题是：这个模型是否真的是
+  ./results/energy_design_v3_perfect_matching_report.md:18:Maxwell--Debye 导纳 \(Y_0\) 与 v2 透射导纳 \(Y_{v2}\) 满足
+  ./results/energy_design_v3_perfect_matching_report.md:34:2. 一个更接近标准 PML 的修复模型是 stretched-coordinate Maxwell--Debye
+  ./results/energy_design_v3_perfect_matching_report.md:35:PML：在 Laplace 域中只把空间导数替换为 \(S_i(s)^{-1}\partial_i\)，同时保持
+  ./results/energy_design_v3_perfect_matching_report.md:44:PML。标准 stretched-coordinate 修复模型有精确匹配；其朴素物理能量在完整二维
+  ./results/energy_design_v3_perfect_matching_report.md:46:\(u_t=E,q_t=P\) 后，在常系数二维 PML 块上得到正的非增能量
+  ./results/energy_design_v3_perfect_matching_report.md:58:当前最强结论是：v2 是稳定吸收层而不是 perfectly matched PML；标准
+  ./results/energy_design_v3_perfect_matching_report.md:59:stretched-coordinate/Baffet-primitive Maxwell--Debye 模型在常系数二维块上同时给出
+  ./results/energy_design_v3_perfect_matching_report.md:60:perfect matching 与非增耗散能量。下一篇 manuscript 不应把 v2 称为 PML。
+  ./results/energy_design_v3_perfect_matching_report.md:90:| `sources/energy_functional_problem.tex` | 全文，特别是模型与任务段 | 给出原八变量 Maxwell--PML/Cole--Cole 模型、PEC、\(\alpha=1\) Debye 化、旧模型 \(M_x,M_y\) 变量与 fallback 要求。 | 定义旧模型和必须处理的 obstruction。 |
+  ./results/energy_design_v3_perfect_matching_report.md:91:| `results/energy_functional_report_verified.md` | 全文 | 已验证旧模型能量代数、edge-PML 线性增长、Gronwall fallback。 | 作为旧模型背景，不替代新的 matching 推导。 |
+  ./results/energy_design_v3_perfect_matching_report.md:93:| `references/references.bib` | 全文 | Berenger、Joly/Becache、Baffet、dispersive PML、CFS/ADE、MPML 文献索引。 | 避免杜撰引用和题名。 |
+  ./results/energy_design_v3_perfect_matching_report.md:94:| Joly 2012 | PDF pp. 6--8, 15--17 | PML 的本质是阻抗匹配/零反射；通过复坐标变换构造；二维中只应拉伸 PML 方向导数；简单各向同性阻尼一般不匹配。 | 定义本文的平面界面导纳测试。 |
+  ./results/energy_design_v3_perfect_matching_report.md:95:| Bécache--Kachanovska--Wess 2023 | PDF pp. 6--8 | 色散波导 PML 在 Laplace 域先消去极化，采用 \(1+\sigma/(s\zeta(s))\) 伸缩；\(\zeta\) 和 admissibility 影响稳定性。 | 支持“保留 \(\varepsilon_D(s)\)，不要改成 \(\varepsilon_D(s+\rho)\)”的修复方向。 |
+  ./results/energy_design_v3_perfect_matching_report.md:96:| Baffet--Grote--Imperiale--Kachanovska 2019 | PDF pp. 4--11 | 二阶波方程 PML 的单调能量不是朴素能量，而是含 shifted/time-integrated 变量的 augmented energy；常系数是清晰能量恒等式的自然范围。 | 指出完整二维 stretched PML 能量需要 Baffet 型结构。 |
+  ./results/energy_design_v3_perfect_matching_report.md:97:| Bécache--Fliss--Kachanovska--Kazakova 2021 | PDF pp. 2--8 | 3D 对角各向异性 Maxwell 中 classical Cartesian PML 可能因 backward waves 不稳定。 | 强调 perfect matching 和 stability 是不同性质。 |
+  ./results/energy_design_v3_perfect_matching_report.md:98:| Huang--Li--Liu 2023 | PDF pp. 1--6 | 等价 Berenger PML 的稳定性分析非平凡；变量阻尼情形仍困难。 | 支持“不能从匹配性自动推出朴素能量单调”。 |
+  ./results/energy_design_v3_perfect_matching_report.md:99:| Meza-Fajardo--Papageorgiou 2008 | PDF pp. 1--2, 26 | M-PML 通过多轴阻尼改善稳定性；稳定性与阻尼比例相关。 | 作为 MPML 候选的背景。 |
+  ./results/energy_design_v3_perfect_matching_report.md:100:| Correia--Jin 2006 | PDF pp. 1--5 | regular PML、CFS-PML、second-order PML 对传播波/倏逝波/低频表现不同。 | 作为 CFS/ADE 候选背景，不作为能量证明。 |
+  ./results/energy_design_v3_perfect_matching_report.md:101:| Feng--Li 2013 | PDF pp. 1--4 | 高阶 stretched-coordinate PML 可用 ADE 实现，结合 CFS 优点。 | 支持 rational stretch 的 ADE 实现。 |
+  ./results/energy_design_v3_perfect_matching_report.md:102:| Ping--Xu--Mao--Yang 2014 | PDF pp. 1--3, 8--10 | second-order M-PML 在弹性长时间计算中稳定有效。 | 支持 MPML 是稳定性修复类。 |
+  ./results/energy_design_v3_perfect_matching_report.md:103:| Xie--Zheng--Cristini--Zhang 2023 | PDF pp. 1--7, 13 | 频移多轴 PML 提升吸收/稳定性；文中明确多轴界面不完全匹配。 | 用于标注 MPML 为 absorbing/stability 而非 exact matching。 |
+  ./results/energy_design_v3_perfect_matching_report.md:104:| `references/main.pdf` | PDF pp. 45--47 等 | 本地笔记给出 stretched-coordinate 与 UPML 的相似性、Cole--Cole/UPML 频域形式。 | 项目背景；不可读公式不作为独立证据。 |
+  ./results/energy_design_v3_perfect_matching_report.md:105:| `references/Super.pdf` | PDF pp. 20--25 | 本地超收敛笔记复述二维 C-CPML 频域/时域形式和能量稳定框架。 | 项目背景；不支持新 matching 结论。 |
+  ./results/energy_design_v3_perfect_matching_report.md:106:| `references/Thesis.pdf` | PDF pp. 144--147 | 二维 C-CPML 中磁场方程的 \((\sigma_y-\sigma_x)H_x\)、\((\sigma_x-\sigma_y)H_y\) 使单调能量困难，只证明有限时间有界。 | 支持旧 C-CPML/八变量模型的能量困难分类。 |
+  ./results/energy_design_v3_perfect_matching_report.md:110:设物理半空间为 \(x<0\)，PML 半空间为 \(x>0\)。取 Laplace--Fourier 模式
+  ./results/energy_design_v3_perfect_matching_report.md:114:物理 Maxwell--Debye 介质满足
+  ./results/energy_design_v3_perfect_matching_report.md:153:标准 stretched-coordinate PML 取
+  ./results/energy_design_v3_perfect_matching_report.md:161:同时保持 \(\varepsilon_D(s)\) 不变。于是 PML 中 \(\nu_+=S_x\nu_0\)，而
+  ./results/energy_design_v3_perfect_matching_report.md:184:考虑 \(x\)-PML 常系数半空间：
+  ./results/energy_design_v3_perfect_matching_report.md:241:结论：v2 的协变 Debye 阻尼有利于能量耗散，但破坏了标准 PML 的
+  ./results/energy_design_v3_perfect_matching_report.md:244:## 5. Candidate repaired PML models
+  ./results/energy_design_v3_perfect_matching_report.md:246:### 5.1 标准 stretched-coordinate Maxwell--Debye PML
+  ./results/energy_design_v3_perfect_matching_report.md:299:### 5.2 CFS/ADE generalized stretched PML
+  ./results/energy_design_v3_perfect_matching_report.md:313:### 5.3 MPML-type damping
+  ./results/energy_design_v3_perfect_matching_report.md:315:MPML 在法向之外增加多轴阻尼，可改善某些模型的长时间稳定性或消除 Jordan 型增长。
+  ./results/energy_design_v3_perfect_matching_report.md:316:但一旦切向 stretch 在界面处非平凡，界面导纳通常改变。已检查的 MPML 文献也明确提示
+  ./results/energy_design_v3_perfect_matching_report.md:317:多轴版本可能不是 exact perfectly matched。因此本报告把 MPML 归类为稳定/吸收修复，
+  ./results/energy_design_v3_perfect_matching_report.md:335:用 PEC 外边界 \(E=0\) 消去 Maxwell flux，并用
+  ./results/energy_design_v3_perfect_matching_report.md:361:并满足 Maxwell 主方程，则耗散为零。物理未阻尼区域中的定常磁场模式属于这种零空间。
+  ./results/energy_design_v3_perfect_matching_report.md:363:### 6.2 标准 stretched-coordinate PML 的朴素能量
+  ./results/energy_design_v3_perfect_matching_report.md:393:在 PEC 外边界为零，在内部材料/PML 界面由切向迹连续抵消。
+  ./results/energy_design_v3_perfect_matching_report.md:398:### 6.3 法向入射一维 stretched PML 的正耗散恒等式
+  ./results/energy_design_v3_perfect_matching_report.md:400:在 \(x\)-PML 法向入射块 \(k_y=0\) 中，精确 stretched 模型化为
+  ./results/energy_design_v3_perfect_matching_report.md:451:对常系数 PML 块，令
+  ./results/energy_design_v3_perfect_matching_report.md:492:即从标准 stretched-coordinate Maxwell--Debye PML 消去 \(H_x,H_y\) 后得到的二阶方程。
+  ./results/energy_design_v3_perfect_matching_report.md:590:所有 PML auxiliary 若初值为零则保持零；该非零磁能态是定常解。因此任何总能量都不可能
+  ./results/energy_design_v3_perfect_matching_report.md:599:分数阶极化不能修复与 \(P\) 无关的电磁/PML 失配。旧八变量 edge obstruction 可取
+  ./results/energy_design_v3_perfect_matching_report.md:601:已经确定的 matched Maxwell PML 上作为正记忆材料能量加入。若要声称 fractional theorem，
+  ./results/
+  ...[truncated 980582 chars; see raw codex.events.jsonl]
+
+[15] item.completed:agent_message
+  The request is `mode: fact`; the cited fact is about a port-layer model, with supporting TeX, a SymPy checker, and recorded verification outputs. I’m now reading those artifacts directly and checking the algebra against the stated equations, not just checking that the files exist.
+
+[16] item.started:command_execution
+  command: /bin/zsh -lc "nl -ba memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-port-layer-energy-not-pml.md | sed -n '1,260p'"
+  status: in_progress
+  exit_code: None
+
+[17] item.completed:command_execution
+  command: /bin/zsh -lc "nl -ba memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-port-layer-energy-not-pml.md | sed -n '1,260p'"
+  status: completed
+  exit_code: 0
+       1	---
+       2	fact_id: fact:2d_maxwell_pml_energy_functional_exploration:port-layer-energy-not-pml
+       3	problem_id: 2d_maxwell_pml_energy_functional_exploration
+       4	source_project: 2d_maxwell_pml_energy_functional_exploration
+       5	source_task: task-v5-variable-coefficient-baffet
+       6	predecessors: []
+       7	status: submitted
+       8	fact_type: energy_obstruction
+       9	review_level: none
+      10	claim_policy: stable_claim
+      11	claim_summary: "The port layer has a monotone energy but fails the strict PML admittance test for oblique modes."
+      12	verification: null
+      13	---
+      14	
+      15	## statement
+      16	
+      17	For the port model epsilon E_t + P_t + epsilon sigma_E E = partial_x W_y - partial_y W_x, mu W_{x,t}+mu sigma_y W_x=-partial_y E, mu W_{y,t}+mu sigma_x W_y=partial_x E, tau P_t+P=kappa E, the positive energy 1/2 integral (epsilon E^2+mu W_x^2+mu W_y^2+kappa^{-1}P^2) satisfies dE_port/dt plus integral(epsilon sigma_E E^2+mu sigma_y W_x^2+mu sigma_x W_y^2+tau kappa^{-1}P_t^2) equals the boundary flux integral E(W_y n_x-W_x n_y). However, in an x-PML with sigma_x=sigma>0 and sigma_y=0, the Laplace-Fourier admittance obeys Y_port^2-Y_0^2=(epsilon sigma_E-sigma epsilon_D(s))/(mu(s+sigma))-sigma k_y^2/(mu^2 s^2(s+sigma)). Therefore no scalar local sigma_E makes Y_port=Y_0 for all oblique modes k_y, so the port model is a stable absorbing layer, not a strict perfectly matched layer, although it reduces to Maxwell-Debye when all damping vanishes.
+      18	
+      19	## notes
+      20	
+      21	Generated by Iteris bootstrap workflow.
+
+[18] item.started:command_execution
+  command: /bin/zsh -lc "nl -ba tex/variable_coefficient_baffet_energy_analysis.tex | sed -n '1,260p'"
+  status: in_progress
+  exit_code: None
+
+[19] item.completed:command_execution
+  command: /bin/zsh -lc "nl -ba tex/variable_coefficient_baffet_energy_analysis.tex | sed -n '1,260p'"
+  status: completed
+  exit_code: 0
+       1	\documentclass[UTF8,a4paper,11pt]{ctexart}
+       2	
+       3	\usepackage{amsmath,amssymb,amsthm,bm,mathtools}
+       4	\usepackage{geometry}
+       5	\usepackage{booktabs,longtable,array}
+       6	\usepackage{enumitem}
+       7	\usepackage{xcolor}
+       8	\usepackage{xurl}
+       9	\usepackage{hyperref}
+      10	
+      11	\geometry{left=2.5cm,right=2.5cm,top=2.4cm,bottom=2.4cm}
+      12	\hypersetup{
+      13	  colorlinks=true,
+      14	  linkcolor=blue!55!black,
+      15	  citecolor=blue!55!black,
+      16	  urlcolor=blue!55!black
+      17	}
+      18	\setlist[itemize]{leftmargin=2em,itemsep=0.25em,topsep=0.25em}
+      19	\setlist[enumerate]{leftmargin=2.2em,itemsep=0.25em,topsep=0.25em}
+      20	\renewcommand{\arraystretch}{1.16}
+      21	\sloppy
+      22	
+      23	\newtheorem{theorem}{定理}
+      24	\newtheorem{lemma}{引理}
+      25	\newtheorem{proposition}{命题}
+      26	\newtheorem{remark}{说明}
+      27	
+      28	\newcommand{\dd}{\,\mathrm d}
+      29	\newcommand{\Om}{\Omega}
+      30	\newcommand{\sx}{\sigma_x}
+      31	\newcommand{\sy}{\sigma_y}
+      32	\newcommand{\Ecal}{\mathcal E}
+      33	\newcommand{\Dcal}{\mathcal D}
+      34	\newcommand{\Rcal}{\mathcal R}
+      35	\newcommand{\eps}{\varepsilon}
+      36	\newcommand{\diag}{\operatorname{diag}}
+      37	
+      38	\title{变系数 Baffet--Debye 能量审查与下一步定理形式}
+      39	\author{Iteris 第五阶段报告}
+      40	\date{2026-07-09}
+      41	
+      42	\begin{document}
+      43	\maketitle
+      44	
+      45	\begin{abstract}
+      46	本文审查新加入的
+      47	\texttt{references/variable\_coefficient\_baffet\_energy.pdf}，并把它和前一阶段的
+      48	二维 Maxwell--Debye--PML 结论对齐。结论是：新 PDF 没有给出一般变系数
+      49	strict stretched-coordinate PML 的无条件单调能量。它正确指出常系数 Baffet 能量在
+      50	\(a=\sx+\sy\) 为空间函数时产生内部余项
+      51	\[
+      52	R_\sigma(t)=-\int_{\Omega_+}u\,\nabla a\cdot\lambda\,\dd x\dd y,
+      53	\]
+      54	该项符号不定，不能由 \(\sx',\sy'\ge0\) 控制。若耗散 \(D_0\) 同时控制
+      55	\(\|u\|\) 与 \(\|\lambda\|\)，且
+      56	\(\|\nabla a\|_{L^\infty}^2<4m_um_\lambda\)，则可得到条件单调性。新 PDF 的
+      57	port 模型有干净的正能量耗散恒等式，但平面界面 Laplace--Fourier 阻抗测试显示它
+      58	一般不是 perfectly matched layer。因此它可作为 stable absorbing layer 或数值稳定性
+      59	工具，不能替代最终的 strict PML 定理。
+      60	\end{abstract}
+      61	
+      62	\tableofcontents
+      63	
+      64	\section{结论审查}
+      65	
+      66	本轮问题的最终目标仍是为二维 Maxwell--Debye--PML 构造正定能量泛函并证明
+      67	\[
+      68	\frac{\dd}{\dd t}\Ecal(t)+\Dcal(t)\le0,\qquad \Dcal(t)\ge0,
+      69	\]
+      70	同时不能牺牲 perfectly matched 性质。必须区分三个模型。
+      71	
+      72	\begin{enumerate}
+      73	\item \textbf{strict stretched-coordinate Maxwell--Debye PML。}
+      74	频域只替换空间导数
+      75	\[
+      76	\partial_i\mapsto S_i^{-1}\partial_i,\qquad S_i(s)=1+\frac{\sigma_i}{s},
+      77	\]
+      78	并保持物理 Debye law
+      79	\[
+      80	(1+\tau s)\widehat P=\kappa\widehat E.
+      81	\]
+      82	这是前一阶段推荐的最终 PML 主线。
+      83	\item \textbf{Baffet primitive 形式。}
+      84	令 \(E=u_t\)、\(q_t=P\)、\(q+\tau P=\kappa u\)，并引入
+      85	\(\lambda=\nabla u+\phi\)。常系数时它与 strict stretched-coordinate PML 等价，
+      86	且有非增能量。
+      87	\item \textbf{port/weighted field 模型。}
+      88	它有自然端口能量，对非负变系数阻尼无 \(\nabla\sigma\) 余项；但它不是一般斜入射
+      89	perfectly matched 的模型。
+      90	\end{enumerate}
+      91	
+      92	因此，新 PDF 的状态是：
+      93	\begin{itemize}
+      94	\item 它没有完成最终目标所需的无条件变系数 strict PML 单调能量。
+      95	\item 它给出了 strict stretched-coordinate Baffet 能量的正确变量系数障碍
+      96	\(R_\sigma\)，以及小梯度吸收的可写定理形式。
+      97	\item 它给出的 port 模型是单调稳定吸收层；除特殊法向入射或非物理的频率/波数依赖
+      98	\(\sigma_E\) 外，一般不是 perfectly matched。
+      99	\item 因此 port 模型可用于数值稳定性设计，但 final PML theorem 仍应沿
+     100	stretched-coordinate/Baffet primitive 主线处理 \(R_\sigma\)。
+     101	\end{itemize}
+     102	
+     103	\section{Strict Baffet--Debye primitive 系统}
+     104	
+     105	设
+     106	\[
+     107	a(x,y)=\sx(x)+\sy(y),\qquad b(x,y)=\sx(x)\sy(y),
+     108	\]
+     109	\[
+     110	\Gamma_1=\diag(\sx,\sy),\qquad
+     111	\Gamma_2=\diag(\sy-\sx,\sx-\sy).
+     112	\]
+     113	在 \(\Omega_+=\{a>0\}\) 上，Baffet--Debye primitive 方程写作
+     114	\begin{align}
+     115	\mu\{\eps(u_{tt}+a u_t+b u)+P_t+aP+bq\}-\nabla\cdot\lambda&=0,
+     116	\label{eq:baffet-main}\\
+     117	\phi_t+\Gamma_1\phi&=\Gamma_2\nabla u,\label{eq:baffet-phi}\\
+     118	\tau P_t+P&=\kappa u_t,\qquad q_t=P,\qquad q+\tau P=\kappa u.
+     119	\label{eq:baffet-debye}
+     120	\end{align}
+     121	常系数时，\eqref{eq:baffet-phi} 在 Laplace 域给出
+     122	\[
+     123	\widehat\lambda_x=\frac{S_y}{S_x}\partial_x\widehat u,\qquad
+     124	\widehat\lambda_y=\frac{S_x}{S_y}\partial_y\widehat u,
+     125	\]
+     126	而 Debye 兼容性给出
+     127	\[
+     128	\widehat P=\frac{\kappa s}{1+\tau s}\widehat u,\qquad \widehat q=\frac1s\widehat P.
+     129	\]
+     130	于是 \eqref{eq:baffet-main} 等价于从 strict stretched-coordinate
+     131	Maxwell--Debye PML 消去磁场后的二阶方程。这个等价性是匹配性的来源；port 模型没有
+     132	这个等价结构。
+     133	
+     134	\section{变系数 Baffet 能量逐式推导}
+     135	
+     136	定义
+     137	\[
+     138	W=u_t+a u.
+     139	\]
+     140	由于 \(a\) 与时间无关，
+     141	\[
+     142	\nabla W=\nabla u_t+a\nabla u+u\nabla a.
+     143	\]
+     144	这正是变量系数推导与常系数推导分叉的唯一内部位置。
+     145	
+     146	令
+     147	\[
+     148	\alpha=1+2a\tau,\qquad \beta=a+b\tau,\qquad
+     149	\gamma=a^2+b(1+a\tau).
+     150	\]
+     151	Baffet--Debye 能量为
+     152	\begin{equation}
+     153	\begin{aligned}
+     154	\Ecal_B(t)=\frac12\int_{\Omega_+}\{&
+     155	\mu\eps W^2+|\lambda|^2+\phi^T a^{-1}\Gamma_1\phi+\mu\eps b u^2\\
+     156	&+\frac{\mu}{\kappa}(\alpha P^2+2\beta Pq+\gamma q^2)\}\dd x\dd y.
+     157	\end{aligned}
+     158	\label{eq:EB}
+     159	\end{equation}
+     160	
+     161	\subsection{主方程乘子恒等式}
+     162	
+     163	用 \(W\) 乘 \eqref{eq:baffet-main}，利用
+     164	\[
+     165	(u_{tt}+a u_t+b u)W=(W_t+b u)W,
+     166	\]
+     167	得到
+     168	\[
+     169	\begin{aligned}
+     170	&\frac12\frac{\dd}{\dd t}\int_{\Omega_+}\mu\eps(W^2+b u^2)\dd x\dd y
+     171	+\int_{\Omega_+}\mu\eps a b u^2\dd x\dd y\\
+     172	&\quad=\int_{\Omega_+}W\nabla\cdot\lambda\dd x\dd y
+     173	-\mu\int_{\Omega_+}(P_t+aP+bq)W\dd x\dd y .
+     174	\end{aligned}
+     175	\]
+     176	分部积分给出
+     177	\[
+     178	\int_{\Omega_+}W\nabla\cdot\lambda
+     179	=-\int_{\Omega_+}\nabla W\cdot\lambda
+     180	+\int_{\partial\Omega_+}W\lambda\cdot n\,\dd s.
+     181	\]
+     182	
+     183	\subsection{Baffet 通量恒等式}
+     184	
+     185	令 \(\widetilde\Gamma_2=\Gamma_1+\Gamma_2=\diag(\sy,\sx)\)。由
+     186	\[
+     187	\lambda_t+\Gamma_1\lambda=\nabla u_t+\widetilde\Gamma_2\nabla u
+     188	\]
+     189	和 Baffet 乘子
+     190	\[
+     191	g=(I+a^{-1}\Gamma_1)\lambda-a^{-1}\Gamma_1\nabla u
+     192	\]
+     193	逐分量得到
+     194	\[
+     195	\begin{aligned}
+     196	&\frac12\frac{\dd}{\dd t}\int_{\Omega_+}
+     197	\left(|\lambda|^2+\phi^Ta^{-1}\Gamma_1\phi\right)\dd x\dd y\\
+     198	&\quad+\int_{\Omega_+}\left[
+     199	|\lambda|^2_{\Gamma_1(I+a^{-1}\Gamma_1)}
+     200	+\frac{b}{a}|\nabla u|^2
+     201	\right]\dd x\dd y\\
+     202	&\quad=\int_{\Omega_+}(\nabla u_t+a\nabla u)\cdot\lambda\dd x\dd y .
+     203	\end{aligned}
+     204	\]
+     205	这里没有对空间变系数权重再分部积分，所以不会产生
+     206	\(\nabla(a^{-1}\Gamma_1)\)；新的变量系数项只来自 \(\nabla W\)。
+     207	
+     208	\subsection{Debye primitive 乘积恒等式}
+     209	
+     210	由 \(q_t=P\) 与 \(q+\tau P=\kappa u\)，
+     211	\[
+     212	W=u_t+a u=\frac{\tau P_t+(1+a\tau)P+a q}{\kappa}.
+     213	\]
+     214	直接展开可得
+     215	\begin{align}
+     216	&(P_t+aP+bq)\bigl(\tau P_t+(1+a\tau)P+a q\bigr)\notag\\
+     217	&\quad =
+     218	\frac12\partial_t(\alpha P^2+2\beta Pq+\gamma q^2)
+     219	+\tau P_t^2+\tau(a^2-b)P^2+abq^2.
+     220	\label{eq:debye-identity}
+     221	\end{align}
+     222	SymPy 与 Lean 目标文件均覆盖了 \eqref{eq:debye-identity}。
+     223	
+     224	\subsection{变量系数余项}
+     225	
+     226	把三部分相加，常系数抵消
+     227	\[
+     228	-(\nabla u_t+a\nabla u)\cdot\lambda
+     229	+(\nabla u_t+a\nabla u)\cdot\lambda=0
+     230	\]
+     231	仍然成立，但剩下
+     232	\[
+     233	-u\nabla a\cdot\lambda.
+     234	\]
+     235	因此
+     236	\begin{equation}
+     237	\boxed{
+     238	\frac{\dd}{\dd t}\Ecal_B(t)=-D_0(t)+R_\sigma(t)+B(t)}
+     239	\label{eq:variable-identity}
+     240	\end{equation}
+     241	其中
+     242	\[
+     243	B(t)=\int_{\partial\Omega_+}(u_t+a u)\lambda\cdot n\,\dd s,
+     244	\]
+     245	\[
+     246	\boxed{
+     247	R_\sigma(t)=-\int_{\Omega_+}u\,\nabla a\cdot\lambda\,\dd x\dd y
+     248	=-\int_{\Omega_+}u(\sx'(x)\lambda_x+\sy'(y)\lambda_y)\dd x\dd y.}
+     249	\]
+     250	理想耗散为
+     251	\begin{equation}
+     252	\begin{aligned}
+     253	D_0(t)=\int_{\Omega_+}\{&
+     254	|\lambda|^2_{\Gamma_1(I+a^{-1}\Gamma_1)}
+     255	+\frac{b}{a}|\nabla u|^2+\mu\eps a b u^2\\
+     256	&+\frac{\mu}{\kappa}[\tau P_t^2+\tau(a^2-b)P^2+abq^2]\}\dd x\dd y.
+     257	\end{aligned}
+     258	\label{eq:D0}
+     259	\end{equation}
+     260	
+
+[20] item.started:command_execution
+  command: /bin/zsh -lc "nl -ba results/v5_variable_coefficient_baffet/verification_outputs.md | sed -n '1,220p'"
+  status: in_progress
+  exit_code: None
+
+[21] item.started:command_execution
+  command: /bin/zsh -lc "nl -ba verification/algebra/variable_coefficient_baffet_sympy.py | sed -n '1,260p'"
+  status: in_progress
+  exit_code: None
+
+[22] item.completed:command_execution
+  command: /bin/zsh -lc "nl -ba verification/algebra/variable_coefficient_baffet_sympy.py | sed -n '1,260p'"
+  status: completed
+  exit_code: 0
+       1	#!/usr/bin/env python3
+       2	"""Symbolic checks for the variable-coefficient Baffet-Debye analysis.
+       3	
+       4	The script verifies the algebra used in the v5 report:
+       5	
+       6	* Debye primitive multiplier identity and P,q determinant.
+       7	* 2 a^2 - b expansion for a = sigma_x + sigma_y, b = sigma_x sigma_y.
+       8	* Variable-coefficient multiplier gradient term.
+       9	* Small-gradient absorption Schur complement.
+      10	* Port-model Maxwell cross-term cancellation.
+      11	* Port-model Laplace-Fourier admittance mismatch.
+      12	"""
+      13	
+      14	from __future__ import annotations
+      15	
+      16	import sympy as sp
+      17	
+      18	
+      19	def reduced(expr: sp.Expr) -> sp.Expr:
+      20	    return sp.factor(sp.cancel(sp.together(sp.expand(expr))))
+      21	
+      22	
+      23	def check_zero(name: str, expr: sp.Expr) -> None:
+      24	    value = reduced(expr)
+      25	    print(f"{name}: {value}")
+      26	    assert value == 0, name
+      27	
+      28	
+      29	def check_equal(name: str, lhs: sp.Expr, rhs: sp.Expr) -> None:
+      30	    check_zero(name, lhs - rhs)
+      31	
+      32	
+      33	sx, sy, tau = sp.symbols("sigma_x sigma_y tau", positive=True)
+      34	Pt, P, q = sp.symbols("P_t P q")
+      35	
+      36	a = sx + sy
+      37	b = sx * sy
+      38	alpha = 1 + 2 * a * tau
+      39	beta = a + b * tau
+      40	gamma = a**2 + b * (1 + a * tau)
+      41	
+      42	print("=== Debye primitive algebra ===")
+      43	lhs = (Pt + a * P + b * q) * (tau * Pt + (1 + a * tau) * P + a * q)
+      44	energy_derivative_part = Pt * (alpha * P + beta * q) + beta * P**2 + gamma * P * q
+      45	rhs = (
+      46	    energy_derivative_part
+      47	    + tau * Pt**2
+      48	    + tau * (a**2 - b) * P**2
+      49	    + a * b * q**2
+      50	)
+      51	check_equal("Debye primitive product identity", lhs, rhs)
+      52	
+      53	det_pq = alpha * gamma - beta**2
+      54	det_sum = b + a * b * tau + 2 * a**3 * tau + b * (2 * a**2 - b) * tau**2
+      55	check_equal("P,q determinant identity", det_pq, det_sum)
+      56	check_equal(
+      57	    "2*a^2-b nonnegative expansion",
+      58	    2 * a**2 - b,
+      59	    2 * sx**2 + 3 * sx * sy + 2 * sy**2,
+      60	)
+      61	print(f"a^2-b = {sp.expand(a**2 - b)}")
+      62	
+      63	print("\n=== Variable-coefficient multiplier term ===")
+      64	utx, u, ux, ax = sp.symbols("u_tx u u_x a_x")
+      65	check_equal(
+      66	    "component product-rule expansion for grad(u_t+a*u)",
+      67	    utx + ax * u + a * ux,
+      68	    utx + a * ux + u * ax,
+      69	)
+      70	
+      71	print("\n=== Small-gradient absorption Schur complement ===")
+      72	m_u, m_lam, g, lam = sp.symbols("m_u m_lambda g lambda", positive=True)
+      73	positive_form = m_u * u**2 + m_lam * lam**2 - g * u * lam
+      74	sos_rhs = (2 * m_u * u - g * lam) ** 2 + (4 * m_u * m_lam - g**2) * lam**2
+      75	check_equal(
+      76	    "absorption sum-of-squares identity",
+      77	    4 * m_u * positive_form,
+      78	    sos_rhs,
+      79	)
+      80	schur_condition = sp.factor(m_u * m_lam - (g / 2) ** 2)
+      81	print(f"Schur complement m_u*m_lambda-(g/2)^2 = {schur_condition}")
+      82	print("Thus g^2 <= 4*m_u*m_lambda is exactly the 2x2 absorption condition.")
+      83	
+      84	print("\n=== Port-model energy cross-term cancellation ===")
+      85	E, Wx, Wy = sp.symbols("E W_x W_y")
+      86	Ex, Ey, Wxy, Wyx = sp.symbols("E_x E_y W_x_y W_y_x")
+      87	maxwell_cross = E * (Wyx - Wxy) - Wx * Ey + Wy * Ex
+      88	boundary_divergence = Ex * Wy + E * Wyx - Ey * Wx - E * Wxy
+      89	check_equal(
+      90	    "port Maxwell cross terms equal div(E*W_y, -E*W_x)",
+      91	    maxwell_cross,
+      92	    boundary_divergence,
+      93	)
+      94	
+      95	kappa = sp.symbols("kappa", positive=True)
+      96	check_equal(
+      97	    "Debye port product identity",
+      98	    ((P + tau * Pt) / kappa) * Pt,
+      99	    (sp.Rational(1, 2) / kappa) * (2 * P * Pt) + tau * Pt**2 / kappa,
+     100	)
+     101	
+     102	print("\n=== Strict stretched-coordinate admittance ===")
+     103	mu, eps, s, sig, ky, nu0 = sp.symbols(
+     104	    "mu epsilon s sigma k_y nu_0", positive=True
+     105	)
+     106	eps_D = eps + kappa / (1 + tau * s)
+     107	Sx = 1 + sig / s
+     108	nu_plus = Sx * nu0
+     109	Y_sc = (nu_plus / Sx) / (mu * s)
+     110	Y0 = nu0 / (mu * s)
+     111	check_equal("strict stretched-coordinate admittance", Y_sc, Y0)
+     112	
+     113	print("\n=== Port-model Laplace-Fourier mismatch ===")
+     114	sigma_E = sp.symbols("sigma_E")
+     115	Y0_sq = eps_D / mu + ky**2 / (mu**2 * s**2)
+     116	Yport_sq = (s * eps_D + eps * sigma_E) / (mu * (s + sig)) + ky**2 / (
+     117	    mu**2 * s * (s + sig)
+     118	)
+     119	port_mismatch = (eps * sigma_E - sig * eps_D) / (mu * (s + sig)) - sig * ky**2 / (
+     120	    mu**2 * s**2 * (s + sig)
+     121	)
+     122	check_equal("port squared-admittance mismatch", Yport_sq - Y0_sq, port_mismatch)
+     123	
+     124	sigma_E_normal = sig * eps_D / eps
+     125	check_equal(
+     126	    "port normal-incidence matching with dispersive sigma_E",
+     127	    port_mismatch.subs({sigma_E: sigma_E_normal, ky: 0}),
+     128	    0,
+     129	)
+     130	oblique_residual = reduced(port_mismatch.subs({sigma_E: sigma_E_normal}))
+     131	print(f"oblique residual after normal-incidence sigma_E choice = {oblique_residual}")
+     132	assert oblique_residual == reduced(-sig * ky**2 / (mu**2 * s**2 * (s + sig)))
+     133	
+     134	print("\nAll variable-coefficient Baffet SymPy checks passed.")
+
+[23] item.completed:command_execution
+  command: /bin/zsh -lc "nl -ba results/v5_variable_coefficient_baffet/verification_outputs.md | sed -n '1,220p'"
+  status: completed
+  exit_code: 0
+       1	# Verification Outputs: V5 Variable-Coefficient Baffet
+       2	
+       3	Problem id: `2d_maxwell_pml_energy_functional_exploration`
+       4	
+       5	## Local algebra: SymPy
+       6	
+       7	Command:
+       8	
+       9	```sh
+      10	python3 verification/algebra/variable_coefficient_baffet_sympy.py
+      11	```
+      12	
+      13	Result: passed.
+      14	
+      15	Key output:
+      16	
+      17	```text
+      18	Debye primitive product identity: 0
+      19	P,q determinant identity: 0
+      20	2*a^2-b nonnegative expansion: 0
+      21	component product-rule expansion for grad(u_t+a*u): 0
+      22	absorption sum-of-squares identity: 0
+      23	port Maxwell cross terms equal div(E*W_y, -E*W_x): 0
+      24	Debye port product identity: 0
+      25	strict stretched-coordinate admittance: 0
+      26	port squared-admittance mismatch: 0
+      27	port normal-incidence matching with dispersive sigma_E: 0
+      28	oblique residual after normal-incidence sigma_E choice =
+      29	  -k_y**2*sigma/(mu**2*s**2*(s + sigma))
+      30	All variable-coefficient Baffet SymPy checks passed.
+      31	```
+      32	
+      33	## Local algebra: Lean
+      34	
+      35	Command:
+      36	
+      37	```sh
+      38	lean verification/algebra/VariableCoefficientBaffet.lean
+      39	```
+      40	
+      41	Result: failed because the local environment has no Lean executable.
+      42	
+      43	Output:
+      44	
+      45	```text
+      46	zsh:1: command not found: lean
+      47	```
+      48	
+      49	## TeX build
+      50	
+      51	Commands:
+      52	
+      53	```sh
+      54	xelatex -interaction=nonstopmode -halt-on-error -output-directory=tex tex/variable_coefficient_baffet_energy_analysis.tex
+      55	```
+      56	
+      57	The command was rerun until references and outlines stabilized.
+      58	
+      59	Result: passed. The captured build log
+      60	`tex/variable_coefficient_baffet_energy_analysis_build.log` contains no TeX
+      61	errors, undefined-reference warnings, rerun warnings, or overfull boxes. The PDF
+      62	was produced at `tex/variable_coefficient_baffet_energy_analysis.pdf`.
+      63	
+      64	## Iteris verification
+      65	
+      66	Pending before fact, assembly, and goal-success verification.
+
+[24] item.completed:agent_message
+  The fact’s statement is compact, so the main burden is in the report’s port-model section. I’ve confirmed the cited SymPy script checks the exact cross-term and admittance formula, but I’m also tracing the derivation in the TeX to catch any sign, normalization, or quantifier issue.
+
+[25] item.started:command_execution
+  command: /bin/zsh -lc "rg -n \"port|weighted|admittance|导纳|perfectly|Y_\\{|Y_|sigma_E|strict\" tex/variable_coefficient_baffet_energy_analysis.tex"
+  status: in_progress
+  exit_code: None
+
+[26] item.completed:command_execution
+  command: /bin/zsh -lc "rg -n \"port|weighted|admittance|导纳|perfectly|Y_\\{|Y_|sigma_E|strict\" tex/variable_coefficient_baffet_energy_analysis.tex"
+  status: completed
+  exit_code: 0
+  49:strict stretched-coordinate PML 的无条件单调能量。它正确指出常系数 Baffet 能量在
+  57:port 模型有干净的正能量耗散恒等式，但平面界面 Laplace--Fourier 阻抗测试显示它
+  58:一般不是 perfectly matched layer。因此它可作为 stable absorbing layer 或数值稳定性
+  59:工具，不能替代最终的 strict PML 定理。
+  70:同时不能牺牲 perfectly matched 性质。必须区分三个模型。
+  73:\item \textbf{strict stretched-coordinate Maxwell--Debye PML。}
+  85:\(\lambda=\nabla u+\phi\)。常系数时它与 strict stretched-coordinate PML 等价，
+  87:\item \textbf{port/weighted field 模型。}
+  89:perfectly matched 的模型。
+  94:\item 它没有完成最终目标所需的无条件变系数 strict PML 单调能量。
+  95:\item 它给出了 strict stretched-coordinate Baffet 能量的正确变量系数障碍
+  97:\item 它给出的 port 模型是单调稳定吸收层；除特殊法向入射或非物理的频率/波数依赖
+  98:\(\sigma_E\) 外，一般不是 perfectly matched。
+  99:\item 因此 port 模型可用于数值稳定性设计，但 final PML theorem 仍应沿
+  130:于是 \eqref{eq:baffet-main} 等价于从 strict stretched-coordinate
+  131:Maxwell--Debye PML 消去磁场后的二阶方程。这个等价性是匹配性的来源；port 模型没有
+  351:新 PDF 的 port 模型为
+  353:\eps E_t+P_t+\eps\sigma_E E&=\partial_xW_y-\partial_yW_x,\label{eq:port-E}\\
+  354:\mu W_{x,t}+\mu\sy W_x&=-\partial_yE,\label{eq:port-Wx}\\
+  355:\mu W_{y,t}+\mu\sx W_y&=\partial_xE,\label{eq:port-Wy}\\
+  356:\tau P_t+P&=\kappa E.\label{eq:port-P}
+  358:若 \(\sx=\sy=\sigma_E=0\)，并识别 \(W_x=H_x,W_y=H_y\)，则
+  359:\eqref{eq:port-E}--\eqref{eq:port-P} 退化为物理 Maxwell--Debye 系统。
+  365:\Ecal_{\rm port}(t)=\frac12\int_\Omega
+  368:将 \eqref{eq:port-E}--\eqref{eq:port-Wy} 分别乘以 \(E,W_x,W_y\)，空间项满足
+  380:\frac{\dd}{\dd t}\Ecal_{\rm port}(t)
+  382:\eps\sigma_EE^2+\mu\sy W_x^2+\mu\sx W_y^2+\frac{\tau}{\kappa}P_t^2
+  397:Y_0=\frac{H_y}{E}=\frac{\nu_0}{\mu s},\qquad
+  402:(s\eps_D(s)+\eps\sigma_E)E=\nu W_y-ik_yW_x,
+  413:Y_{\rm port}^2
+  414:=\frac{s\eps_D(s)+\eps\sigma_E}{\mu(s+\sigma)}
+  419:Y_0^2=\frac{\eps_D(s)}{\mu}+\frac{k_y^2}{\mu^2s^2}
+  424:Y_{\rm port}^2-Y_0^2
+  425:=\frac{\eps\sigma_E-\sigma\eps_D(s)}{\mu(s+\sigma)}
+  427:\label{eq:port-mismatch}
+  431:R_{\rm port}=\frac{Y_0-Y_{\rm port}}{Y_0+Y_{\rm port}}.
+  433:若要 \eqref{eq:port-mismatch} 对所有 \(k_y\) 为零，第二项强迫
+  435:port 模型一般不 perfectly matched。
+  439:\sigma_E(s)=\sigma\frac{\eps_D(s)}{\eps}
+  441:使 \(Y_{\rm port}=Y_0\)。但该选择通常是频率依赖的 Debye 卷积阻尼；并且即使用它，
+  446:所以 port 模型应称为 stable absorbing layer，而不是 strict PML。
+  459:\(2a^2-b\) 展开、变量乘子梯度项、小梯度 Schur 补、port 能量交叉项抵消、strict
+  460:stretched-coordinate admittance，以及 port 模型阻抗失配公式。命令
+  482:建议把论文主线拆成三个定理，避免把 Gronwall 或 port 稳定性误写成 strict PML
+  486:对 strict stretched-coordinate Maxwell--Debye PML，保持
+  488:\(\nu_+=S_x\nu_0\)、\(Y_+=Y_0\)，故 \(R=0\)。
+  502:Port 模型 \eqref{eq:port-E}--\eqref{eq:port-P} 对任意非负
+  503:\(\sx,\sy,\sigma_E\) 有正的端口能量耗散恒等式。但由
+  504:\eqref{eq:port-mismatch}，它对斜入射一般 \(R_{\rm port}\ne0\)，因此是 stable
+  505:absorbing layer，不是 strict PML。
+
+[27] item.started:command_execution
+  command: /bin/zsh -lc "nl -ba tex/variable_coefficient_baffet_energy_analysis.tex | sed -n '260,520p'"
+  status: in_progress
+  exit_code: None
+
+[28] item.completed:command_execution
+  command: /bin/zsh -lc "nl -ba tex/variable_coefficient_baffet_energy_analysis.tex | sed -n '260,520p'"
+  status: completed
+  exit_code: 0
+     260	
+     261	\section{正定性、非负耗散与失败机制}
+     262	
+     263	\subsection{Debye primitive 二次型}
+     264	
+     265	\[
+     266	M_{Pq}=\begin{pmatrix}\alpha&\beta\\ \beta&\gamma\end{pmatrix}.
+     267	\]
+     268	其行列式为
+     269	\[
+     270	\alpha\gamma-\beta^2
+     271	=b+ab\tau+2a^3\tau+b(2a^2-b)\tau^2.
+     272	\]
+     273	在 \(\sx,\sy\ge0\) 时
+     274	\[
+     275	2a^2-b=2\sx^2+3\sx\sy+2\sy^2\ge0,
+     276	\]
+     277	故在 \(a>0\)、\(\tau>0\) 且角 PML 中 \(b>0\) 时该块正定。边 PML 中 \(b=0\)
+     278	时 primitive 变量的若干方向退化，必须单独处理。
+     279	
+     280	\subsection{理想耗散非负条件}
+     281	
+     282	\[
+     283	\Gamma_1(I+a^{-1}\Gamma_1)
+     284	=\diag\left(\sx\left(1+\frac{\sx}{a}\right),
+     285	\sy\left(1+\frac{\sy}{a}\right)\right)\ge0,
+     286	\]
+     287	\[
+     288	\frac{b}{a}\ge0,\qquad a^2-b=\sx^2+\sx\sy+\sy^2\ge0,\qquad ab\ge0.
+     289	\]
+     290	所以在 \(a>0\)、\(\sx,\sy\ge0\)、材料参数正的区域中 \(D_0\ge0\)。若要把
+     291	\(R_\sigma\) 吸收到 \(D_0\)，还需要 \(D_0\) 对 \(\|u\|\) 与 \(\|\lambda\|\) 有正
+     292	下界；这通常要求角 PML 中 \(\sx,\sy\) 有正下界。边 PML 或物理区不满足该条件。
+     293	
+     294	\subsection{变量系数余项符号不定}
+     295	
+     296	即使 \(\sx',\sy'\ge0\)，也不能推出 \(R_\sigma\le0\)。例如在一个开集上
+     297	\(\sx'>0\)、\(\sy'=0\)。若取 \(u\ge0\) 且 \(\lambda_x<0\)，则
+     298	\[
+     299	-u\sx'\lambda_x>0,
+     300	\]
+     301	使 \(R_\sigma\) 对能量导数作正贡献；若 \(\lambda_x>0\)，该项才为负。变量
+     302	\(\lambda\) 是动态未知量，其符号不由阻尼剖面的单调性决定。因此 ``阻尼递增''
+     303	不是单调能量证明。
+     304	
+     305	\section{小梯度吸收定理}
+     306	
+     307	设在角 PML 子区域 \(\Omega_c\) 中边界通量非正，并有常数 \(m_u,m_\lambda>0\)
+     308	使
+     309	\[
+     310	D_0(t)\ge m_u\|u\|_{L^2(\Omega_c)}^2
+     311	+m_\lambda\|\lambda\|_{L^2(\Omega_c)}^2+\hbox{其他非负项}.
+     312	\]
+     313	令 \(g=\|\nabla a\|_{L^\infty(\Omega_c)}\)。由 Cauchy--Schwarz，
+     314	\[
+     315	|R_\sigma(t)|\le g\|u\|\,\|\lambda\|.
+     316	\]
+     317	二维二次型
+     318	\[
+     319	-m_u u^2-m_\lambda\lambda^2+g u\lambda
+     320	\]
+     321	半负定当且仅当
+     322	\[
+     323	g^2\le4m_um_\lambda.
+     324	\]
+     325	更强地，若
+     326	\begin{equation}
+     327	\boxed{\|\nabla a\|_{L^\infty(\Omega_c)}^2<4m_um_\lambda,}
+     328	\label{eq:small-gradient}
+     329	\end{equation}
+     330	取
+     331	\[
+     332	\theta=1-\frac{\|\nabla a\|_{L^\infty}}{2\sqrt{m_um_\lambda}}>0,
+     333	\]
+     334	则
+     335	\[
+     336	|R_\sigma(t)|\le(1-\theta)D_0(t),
+     337	\]
+     338	从而由 \eqref{eq:variable-identity} 得
+     339	\[
+     340	\boxed{\frac{\dd}{\dd t}\Ecal_B(t)+\theta D_0(t)\le0.}
+     341	\]
+     342	这是可写入论文的变量系数 stretched-coordinate theorem，但它是有条件结论：
+     343	需要角 PML 正下界、耗散控制 \(u,\lambda\)、小梯度和非正通量。若缺少这些条件，只能得
+     344	\[
+     345	\Ecal_B'(t)\le C_\sigma\Ecal_B(t),
+     346	\]
+     347	即 Gronwall 有界性，不是单调下降。
+     348	
+     349	\section{Port 模型能量与匹配性分离验证}
+     350	
+     351	新 PDF 的 port 模型为
+     352	\begin{align}
+     353	\eps E_t+P_t+\eps\sigma_E E&=\partial_xW_y-\partial_yW_x,\label{eq:port-E}\\
+     354	\mu W_{x,t}+\mu\sy W_x&=-\partial_yE,\label{eq:port-Wx}\\
+     355	\mu W_{y,t}+\mu\sx W_y&=\partial_xE,\label{eq:port-Wy}\\
+     356	\tau P_t+P&=\kappa E.\label{eq:port-P}
+     357	\end{align}
+     358	若 \(\sx=\sy=\sigma_E=0\)，并识别 \(W_x=H_x,W_y=H_y\)，则
+     359	\eqref{eq:port-E}--\eqref{eq:port-P} 退化为物理 Maxwell--Debye 系统。
+     360	
+     361	\subsection{端口能量}
+     362	
+     363	定义
+     364	\[
+     365	\Ecal_{\rm port}(t)=\frac12\int_\Omega
+     366	\left(\eps E^2+\mu W_x^2+\mu W_y^2+\kappa^{-1}P^2\right)\dd x\dd y.
+     367	\]
+     368	将 \eqref{eq:port-E}--\eqref{eq:port-Wy} 分别乘以 \(E,W_x,W_y\)，空间项满足
+     369	\[
+     370	E(\partial_xW_y-\partial_yW_x)-W_x\partial_yE+W_y\partial_xE
+     371	=\partial_x(EW_y)-\partial_y(EW_x).
+     372	\]
+     373	并且
+     374	\[
+     375	EP_t=\frac1{2\kappa}\partial_t(P^2)+\frac{\tau}{\kappa}P_t^2.
+     376	\]
+     377	因此
+     378	\[
+     379	\boxed{
+     380	\frac{\dd}{\dd t}\Ecal_{\rm port}(t)
+     381	+\int_\Omega\left(
+     382	\eps\sigma_EE^2+\mu\sy W_x^2+\mu\sx W_y^2+\frac{\tau}{\kappa}P_t^2
+     383	\right)\dd x\dd y
+     384	=\int_{\partial\Omega}E(W_y n_x-W_xn_y)\dd s.}
+     385	\]
+     386	在 PEC、周期或非正端口通量边界下，这是无条件单调能量。
+     387	
+     388	\subsection{平面界面阻抗测试}
+     389	
+     390	考虑 \(x\)-PML，
+     391	\[
+     392	\sx=\sigma>0,\qquad \sy=0,
+     393	\]
+     394	并取 Laplace--Fourier 模态 \(e^{st+ik_y y+\nu x}\)、\(\Re s>0\)。物理介质中
+     395	\[
+     396	\eps_D(s)=\eps+\frac{\kappa}{1+\tau s},\qquad
+     397	Y_0=\frac{H_y}{E}=\frac{\nu_0}{\mu s},\qquad
+     398	\nu_0^2=k_y^2+\mu s^2\eps_D(s).
+     399	\]
+     400	Port 模型的代数系统为
+     401	\[
+     402	(s\eps_D(s)+\eps\sigma_E)E=\nu W_y-ik_yW_x,
+     403	\]
+     404	\[
+     405	\mu sW_x=-ik_yE,\qquad \mu(s+\sigma)W_y=\nu E.
+     406	\]
+     407	故
+     408	\[
+     409	\frac{W_y}{E}=\frac{\nu}{\mu(s+\sigma)}
+     410	\]
+     411	且
+     412	\[
+     413	Y_{\rm port}^2
+     414	=\frac{s\eps_D(s)+\eps\sigma_E}{\mu(s+\sigma)}
+     415	+\frac{k_y^2}{\mu^2s(s+\sigma)}.
+     416	\]
+     417	与
+     418	\[
+     419	Y_0^2=\frac{\eps_D(s)}{\mu}+\frac{k_y^2}{\mu^2s^2}
+     420	\]
+     421	相减得
+     422	\begin{equation}
+     423	\boxed{
+     424	Y_{\rm port}^2-Y_0^2
+     425	=\frac{\eps\sigma_E-\sigma\eps_D(s)}{\mu(s+\sigma)}
+     426	-\frac{\sigma k_y^2}{\mu^2s^2(s+\sigma)}.}
+     427	\label{eq:port-mismatch}
+     428	\end{equation}
+     429	反射系数为
+     430	\[
+     431	R_{\rm port}=\frac{Y_0-Y_{\rm port}}{Y_0+Y_{\rm port}}.
+     432	\]
+     433	若要 \eqref{eq:port-mismatch} 对所有 \(k_y\) 为零，第二项强迫
+     434	\(\sigma k_y^2=0\)。因此只要 \(\sigma>0\) 且存在斜入射 \(k_y\ne0\)，
+     435	port 模型一般不 perfectly matched。
+     436	
+     437	法向入射 \(k_y=0\) 时，可令
+     438	\[
+     439	\sigma_E(s)=\sigma\frac{\eps_D(s)}{\eps}
+     440	\]
+     441	使 \(Y_{\rm port}=Y_0\)。但该选择通常是频率依赖的 Debye 卷积阻尼；并且即使用它，
+     442	斜入射残差仍为
+     443	\[
+     444	-\frac{\sigma k_y^2}{\mu^2s^2(s+\sigma)}.
+     445	\]
+     446	所以 port 模型应称为 stable absorbing layer，而不是 strict PML。
+     447	
+     448	\section{形式化验证结果}
+     449	
+     450	本轮创建了
+     451	\[
+     452	\texttt{verification/algebra/VariableCoefficientBaffet.lean}
+     453	\]
+     454	和
+     455	\[
+     456	\texttt{verification/algebra/variable\_coefficient\_baffet\_sympy.py}.
+     457	\]
+     458	SymPy 检查覆盖 Debye primitive 恒等式、\(P,q\) 行列式、
+     459	\(2a^2-b\) 展开、变量乘子梯度项、小梯度 Schur 补、port 能量交叉项抵消、strict
+     460	stretched-coordinate admittance，以及 port 模型阻抗失配公式。命令
+     461	\[
+     462	\texttt{python3 verification/algebra/variable\_coefficient\_baffet\_sympy.py}
+     463	\]
+     464	已通过。
+     465	
+     466	Lean 文件覆盖同一组核心代数中的五个 Lean 目标：Debye primitive 乘积、\(P,q\)
+     467	行列式、\(2a^2-b\) 展开、变量系数乘子的一维 product-rule 版本、以及
+     468	\[
+     469	-m_u u^2-m_\lambda\lambda^2+g u\lambda\le0
+     470	\]
+     471	的吸收判据。本机实际运行
+     472	\[
+     473	\texttt{lean verification/algebra/VariableCoefficientBaffet.lean}
+     474	\]
+     475	失败，原因是当前环境没有 \(\texttt{lean}\) 可执行文件：
+     476	\[
+     477	\texttt{zsh:1: command not found: lean}.
+     478	\]
+     479	
+     480	\section{下一步论文 theorem 推荐形式}
+     481	
+     482	建议把论文主线拆成三个定理，避免把 Gronwall 或 port 稳定性误写成 strict PML
+     483	单调能量。
+     484	
+     485	\begin{theorem}[平面界面 perfect matching]
+     486	对 strict stretched-coordinate Maxwell--Debye PML，保持
+     487	\((1+\tau s)\widehat P=\kappa\widehat E\) 并只拉伸空间导数，则常系数平面界面满足
+     488	\(\nu_+=S_x\nu_0\)、\(Y_+=Y_0\)，故 \(R=0\)。
+     489	\end{theorem}
+     490	
+     491	\begin{theorem}[变系数 Baffet 小梯度单调性]
+     492	在角 PML 区域 \(\Omega_c\) 中，若 \(\sx,\sy\) 有正下界、边界通量非正、
+     493	\(D_0\ge m_u\|u\|^2+m_\lambda\|\lambda\|^2+\cdots\)，且
+     494	\(\|\nabla a\|_{L^\infty}^2<4m_um_\lambda\)，则 \eqref{eq:EB} 满足
+     495	\[
+     496	\frac{\dd}{\dd t}\Ecal_B(t)+\theta D_0(t)\le0,\qquad \theta>0.
+     497	\]
+     498	若没有小梯度条件，不应声称单调下降。
+     499	\end{theorem}
+     500	
+     501	\begin{theorem}[Port absorbing layer]
+     502	Port 模型 \eqref{eq:port-E}--\eqref{eq:port-P} 对任意非负
+     503	\(\sx,\sy,\sigma_E\) 有正的端口能量耗散恒等式。但由
+     504	\eqref{eq:port-mismatch}，它对斜入射一般 \(R_{\rm port}\ne0\)，因此是 stable
+     505	absorbing layer，不是 strict PML。
+     506	\end{theorem}
+     507	
+     508	\end{document}
+
+[29] item.started:command_execution
+  command: /bin/zsh -lc "nl -ba tex/variable_coefficient_baffet_energy_analysis.tex | sed -n '520,780p'"
+  status: in_progress
+  exit_code: None
+
+[30] item.completed:command_execution
+  command: /bin/zsh -lc "nl -ba tex/variable_coefficient_baffet_energy_analysis.tex | sed -n '520,780p'"
+  status: completed
+  exit_code: 0
+
+[31] item.started:command_execution
+  command: /bin/zsh -lc 'python3 verification/algebra/variable_coefficient_baffet_sympy.py'
+  status: in_progress
+  exit_code: None
+
+[32] item.completed:command_execution
+  command: /bin/zsh -lc 'python3 verification/algebra/variable_coefficient_baffet_sympy.py'
+  status: completed
+  exit_code: 0
+  === Debye primitive algebra ===
+  Debye primitive product identity: 0
+  P,q determinant identity: 0
+  2*a^2-b nonnegative expansion: 0
+  a^2-b = sigma_x**2 + sigma_x*sigma_y + sigma_y**2
+  
+  === Variable-coefficient multiplier term ===
+  component product-rule expansion for grad(u_t+a*u): 0
+  
+  === Small-gradient absorption Schur complement ===
+  absorption sum-of-squares identity: 0
+  Schur complement m_u*m_lambda-(g/2)^2 = -(g**2 - 4*m_lambda*m_u)/4
+  Thus g^2 <= 4*m_u*m_lambda is exactly the 2x2 absorption condition.
+  
+  === Port-model energy cross-term cancellation ===
+  port Maxwell cross terms equal div(E*W_y, -E*W_x): 0
+  Debye port product identity: 0
+  
+  === Strict stretched-coordinate admittance ===
+  strict stretched-coordinate admittance: 0
+  
+  === Port-model Laplace-Fourier mismatch ===
+  port squared-admittance mismatch: 0
+  port normal-incidence matching with dispersive sigma_E: 0
+  oblique residual after normal-incidence sigma_E choice = -k_y**2*sigma/(mu**2*s**2*(s + sigma))
+  
+  All variable-coefficient Baffet SymPy checks passed.
+
+[33] item.completed:agent_message
+  The algebra checks out manually as well: the port energy identity follows from one divergence cancellation plus the Debye product identity, and the squared-admittance difference leaves an unavoidable `k_y^2` residual for oblique modes. I’m writing a `correct` verification with empty gaps/critical errors.
+
+[34] item.started:file_change
+  status: in_progress
+  [{"path":"/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/verification/agent_runs/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi/verification.json","kind":"add"}]
+
+[35] item.completed:file_change
+  status: completed
+  [{"path":"/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/verification/agent_runs/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi/verification.json","kind":"add"}]
+
+[36] item.completed:agent_message
+  The verification file has been added. I’ll do a quick JSON parse check and confirm the verdict field before closing.
+
+[37] item.started:command_execution
+  command: /bin/zsh -lc 'jq . verification/agent_runs/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi/verification.json'
+  status: in_progress
+  exit_code: None
+
+[38] item.completed:command_execution
+  command: /bin/zsh -lc 'jq . verification/agent_runs/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi/verification.json'
+  status: completed
+  exit_code: 0
+  {
+    "verification_report": {
+      "summary": "The cited fact is supported. The port-layer energy identity follows from multiplying the four port equations by E, W_x, W_y, and P_t/kappa, using tau P_t + P = kappa E to convert E P_t into the P-energy derivative plus tau kappa^{-1} P_t^2, and using the Maxwell cross-term divergence identity. The planar x-PML Laplace-Fourier calculation gives the stated Y_port^2 - Y_0^2 formula, and its oblique k_y term cannot be removed by any scalar local sigma_E independent of frequency and tangential wavenumber. With all damping zero, the equations reduce to Maxwell-Debye after W_x=H_x and W_y=H_y.",
+      "critical_errors": [],
+      "gaps": []
+    },
+    "verdict": "correct",
+    "repair_hints": "No repair needed.",
+    "checked_artifacts": [
+      "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-port-layer-energy-not-pml.md",
+      "tex/variable_coefficient_baffet_energy_analysis.tex",
+      "verification/algebra/variable_coefficient_baffet_sympy.py",
+      "results/v5_variable_coefficient_baffet/verification_outputs.md"
+    ],
+    "checked_fact_ids": [
+      "fact:2d_maxwell_pml_energy_functional_exploration:port-layer-energy-not-pml"
+    ]
+  }
+
+[39] item.started:command_execution
+  command: /bin/zsh -lc "jq -r '.verdict' verification/agent_runs/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi/verification.json"
+  status: in_progress
+  exit_code: None
+
+[40] item.completed:command_execution
+  command: /bin/zsh -lc "jq -r '.verdict' verification/agent_runs/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi/verification.json"
+  status: completed
+  exit_code: 0
+  correct
+
+[41] item.completed:agent_message
+  Wrote the verification result to [verification.json](/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/verification/agent_runs/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi/verification.json).
+  
+  Verdict: `correct`. I checked the cited fact, TeX derivation, SymPy script, and recorded outputs; reran the SymPy algebra check; and confirmed the JSON parses successfully.
+
+[42] turn.completed
+  {"input_tokens":236897,"cached_input_tokens":194816,"output_tokens":4145,"reasoning_output_tokens":2111}

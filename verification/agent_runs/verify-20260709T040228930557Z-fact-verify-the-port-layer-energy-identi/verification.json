@@ -1,0 +1,18 @@
+{
+  "verification_report": {
+    "summary": "The cited fact is supported. The port-layer energy identity follows from multiplying the four port equations by E, W_x, W_y, and P_t/kappa, using tau P_t + P = kappa E to convert E P_t into the P-energy derivative plus tau kappa^{-1} P_t^2, and using the Maxwell cross-term divergence identity. The planar x-PML Laplace-Fourier calculation gives the stated Y_port^2 - Y_0^2 formula, and its oblique k_y term cannot be removed by any scalar local sigma_E independent of frequency and tangential wavenumber. With all damping zero, the equations reduce to Maxwell-Debye after W_x=H_x and W_y=H_y.",
+    "critical_errors": [],
+    "gaps": []
+  },
+  "verdict": "correct",
+  "repair_hints": "No repair needed.",
+  "checked_artifacts": [
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-port-layer-energy-not-pml.md",
+    "tex/variable_coefficient_baffet_energy_analysis.tex",
+    "verification/algebra/variable_coefficient_baffet_sympy.py",
+    "results/v5_variable_coefficient_baffet/verification_outputs.md"
+  ],
+  "checked_fact_ids": [
+    "fact:2d_maxwell_pml_energy_functional_exploration:port-layer-energy-not-pml"
+  ]
+}

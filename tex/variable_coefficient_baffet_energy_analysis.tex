@@ -1,0 +1,508 @@
+\documentclass[UTF8,a4paper,11pt]{ctexart}
+
+\usepackage{amsmath,amssymb,amsthm,bm,mathtools}
+\usepackage{geometry}
+\usepackage{booktabs,longtable,array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{xurl}
+\usepackage{hyperref}
+
+\geometry{left=2.5cm,right=2.5cm,top=2.4cm,bottom=2.4cm}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!55!black,
+  citecolor=blue!55!black,
+  urlcolor=blue!55!black
+}
+\setlist[itemize]{leftmargin=2em,itemsep=0.25em,topsep=0.25em}
+\setlist[enumerate]{leftmargin=2.2em,itemsep=0.25em,topsep=0.25em}
+\renewcommand{\arraystretch}{1.16}
+\sloppy
+
+\newtheorem{theorem}{定理}
+\newtheorem{lemma}{引理}
+\newtheorem{proposition}{命题}
+\newtheorem{remark}{说明}
+
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\Om}{\Omega}
+\newcommand{\sx}{\sigma_x}
+\newcommand{\sy}{\sigma_y}
+\newcommand{\Ecal}{\mathcal E}
+\newcommand{\Dcal}{\mathcal D}
+\newcommand{\Rcal}{\mathcal R}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\diag}{\operatorname{diag}}
+
+\title{变系数 Baffet--Debye 能量审查与下一步定理形式}
+\author{Iteris 第五阶段报告}
+\date{2026-07-09}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+本文审查新加入的
+\texttt{references/variable\_coefficient\_baffet\_energy.pdf}，并把它和前一阶段的
+二维 Maxwell--Debye--PML 结论对齐。结论是：新 PDF 没有给出一般变系数
+strict stretched-coordinate PML 的无条件单调能量。它正确指出常系数 Baffet 能量在
+\(a=\sx+\sy\) 为空间函数时产生内部余项
+\[
+R_\sigma(t)=-\int_{\Omega_+}u\,\nabla a\cdot\lambda\,\dd x\dd y,
+\]
+该项符号不定，不能由 \(\sx',\sy'\ge0\) 控制。若耗散 \(D_0\) 同时控制
+\(\|u\|\) 与 \(\|\lambda\|\)，且
+\(\|\nabla a\|_{L^\infty}^2<4m_um_\lambda\)，则可得到条件单调性。新 PDF 的
+port 模型有干净的正能量耗散恒等式，但平面界面 Laplace--Fourier 阻抗测试显示它
+一般不是 perfectly matched layer。因此它可作为 stable absorbing layer 或数值稳定性
+工具，不能替代最终的 strict PML 定理。
+\end{abstract}
+
+\tableofcontents
+
+\section{结论审查}
+
+本轮问题的最终目标仍是为二维 Maxwell--Debye--PML 构造正定能量泛函并证明
+\[
+\frac{\dd}{\dd t}\Ecal(t)+\Dcal(t)\le0,\qquad \Dcal(t)\ge0,
+\]
+同时不能牺牲 perfectly matched 性质。必须区分三个模型。
+
+\begin{enumerate}
+\item \textbf{strict stretched-coordinate Maxwell--Debye PML。}
+频域只替换空间导数
+\[
+\partial_i\mapsto S_i^{-1}\partial_i,\qquad S_i(s)=1+\frac{\sigma_i}{s},
+\]
+并保持物理 Debye law
+\[
+(1+\tau s)\widehat P=\kappa\widehat E.
+\]
+这是前一阶段推荐的最终 PML 主线。
+\item \textbf{Baffet primitive 形式。}
+令 \(E=u_t\)、\(q_t=P\)、\(q+\tau P=\kappa u\)，并引入
+\(\lambda=\nabla u+\phi\)。常系数时它与 strict stretched-coordinate PML 等价，
+且有非增能量。
+\item \textbf{port/weighted field 模型。}
+它有自然端口能量，对非负变系数阻尼无 \(\nabla\sigma\) 余项；但它不是一般斜入射
+perfectly matched 的模型。
+\end{enumerate}
+
+因此，新 PDF 的状态是：
+\begin{itemize}
+\item 它没有完成最终目标所需的无条件变系数 strict PML 单调能量。
+\item 它给出了 strict stretched-coordinate Baffet 能量的正确变量系数障碍
+\(R_\sigma\)，以及小梯度吸收的可写定理形式。
+\item 它给出的 port 模型是单调稳定吸收层；除特殊法向入射或非物理的频率/波数依赖
+\(\sigma_E\) 外，一般不是 perfectly matched。
+\item 因此 port 模型可用于数值稳定性设计，但 final PML theorem 仍应沿
+stretched-coordinate/Baffet primitive 主线处理 \(R_\sigma\)。
+\end{itemize}
+
+\section{Strict Baffet--Debye primitive 系统}
+
+设
+\[
+a(x,y)=\sx(x)+\sy(y),\qquad b(x,y)=\sx(x)\sy(y),
+\]
+\[
+\Gamma_1=\diag(\sx,\sy),\qquad
+\Gamma_2=\diag(\sy-\sx,\sx-\sy).
+\]
+在 \(\Omega_+=\{a>0\}\) 上，Baffet--Debye primitive 方程写作
+\begin{align}
+\mu\{\eps(u_{tt}+a u_t+b u)+P_t+aP+bq\}-\nabla\cdot\lambda&=0,
+\label{eq:baffet-main}\\
+\phi_t+\Gamma_1\phi&=\Gamma_2\nabla u,\label{eq:baffet-phi}\\
+\tau P_t+P&=\kappa u_t,\qquad q_t=P,\qquad q+\tau P=\kappa u.
+\label{eq:baffet-debye}
+\end{align}
+常系数时，\eqref{eq:baffet-phi} 在 Laplace 域给出
+\[
+\widehat\lambda_x=\frac{S_y}{S_x}\partial_x\widehat u,\qquad
+\widehat\lambda_y=\frac{S_x}{S_y}\partial_y\widehat u,
+\]
+而 Debye 兼容性给出
+\[
+\widehat P=\frac{\kappa s}{1+\tau s}\widehat u,\qquad \widehat q=\frac1s\widehat P.
+\]
+于是 \eqref{eq:baffet-main} 等价于从 strict stretched-coordinate
+Maxwell--Debye PML 消去磁场后的二阶方程。这个等价性是匹配性的来源；port 模型没有
+这个等价结构。
+
+\section{变系数 Baffet 能量逐式推导}
+
+定义
+\[
+W=u_t+a u.
+\]
+由于 \(a\) 与时间无关，
+\[
+\nabla W=\nabla u_t+a\nabla u+u\nabla a.
+\]
+这正是变量系数推导与常系数推导分叉的唯一内部位置。
+
+令
+\[
+\alpha=1+2a\tau,\qquad \beta=a+b\tau,\qquad
+\gamma=a^2+b(1+a\tau).
+\]
+Baffet--Debye 能量为
+\begin{equation}
+\begin{aligned}
+\Ecal_B(t)=\frac12\int_{\Omega_+}\{&
+\mu\eps W^2+|\lambda|^2+\phi^T a^{-1}\Gamma_1\phi+\mu\eps b u^2\\
+&+\frac{\mu}{\kappa}(\alpha P^2+2\beta Pq+\gamma q^2)\}\dd x\dd y.
+\end{aligned}
+\label{eq:EB}
+\end{equation}
+
+\subsection{主方程乘子恒等式}
+
+用 \(W\) 乘 \eqref{eq:baffet-main}，利用
+\[
+(u_{tt}+a u_t+b u)W=(W_t+b u)W,
+\]
+得到
+\[
+\begin{aligned}
+&\frac12\frac{\dd}{\dd t}\int_{\Omega_+}\mu\eps(W^2+b u^2)\dd x\dd y
++\int_{\Omega_+}\mu\eps a b u^2\dd x\dd y\\
+&\quad=\int_{\Omega_+}W\nabla\cdot\lambda\dd x\dd y
+-\mu\int_{\Omega_+}(P_t+aP+bq)W\dd x\dd y .
+\end{aligned}
+\]
+分部积分给出
+\[
+\int_{\Omega_+}W\nabla\cdot\lambda
+=-\int_{\Omega_+}\nabla W\cdot\lambda
++\int_{\partial\Omega_+}W\lambda\cdot n\,\dd s.
+\]
+
+\subsection{Baffet 通量恒等式}
+
+令 \(\widetilde\Gamma_2=\Gamma_1+\Gamma_2=\diag(\sy,\sx)\)。由
+\[
+\lambda_t+\Gamma_1\lambda=\nabla u_t+\widetilde\Gamma_2\nabla u
+\]
+和 Baffet 乘子
+\[
+g=(I+a^{-1}\Gamma_1)\lambda-a^{-1}\Gamma_1\nabla u
+\]
+逐分量得到
+\[
+\begin{aligned}
+&\frac12\frac{\dd}{\dd t}\int_{\Omega_+}
+\left(|\lambda|^2+\phi^Ta^{-1}\Gamma_1\phi\right)\dd x\dd y\\
+&\quad+\int_{\Omega_+}\left[
+|\lambda|^2_{\Gamma_1(I+a^{-1}\Gamma_1)}
++\frac{b}{a}|\nabla u|^2
+\right]\dd x\dd y\\
+&\quad=\int_{\Omega_+}(\nabla u_t+a\nabla u)\cdot\lambda\dd x\dd y .
+\end{aligned}
+\]
+这里没有对空间变系数权重再分部积分，所以不会产生
+\(\nabla(a^{-1}\Gamma_1)\)；新的变量系数项只来自 \(\nabla W\)。
+
+\subsection{Debye primitive 乘积恒等式}
+
+由 \(q_t=P\) 与 \(q+\tau P=\kappa u\)，
+\[
+W=u_t+a u=\frac{\tau P_t+(1+a\tau)P+a q}{\kappa}.
+\]
+直接展开可得
+\begin{align}
+&(P_t+aP+bq)\bigl(\tau P_t+(1+a\tau)P+a q\bigr)\notag\\
+&\quad =
+\frac12\partial_t(\alpha P^2+2\beta Pq+\gamma q^2)
++\tau P_t^2+\tau(a^2-b)P^2+abq^2.
+\label{eq:debye-identity}
+\end{align}
+SymPy 与 Lean 目标文件均覆盖了 \eqref{eq:debye-identity}。
+
+\subsection{变量系数余项}
+
+把三部分相加，常系数抵消
+\[
+-(\nabla u_t+a\nabla u)\cdot\lambda
++(\nabla u_t+a\nabla u)\cdot\lambda=0
+\]
+仍然成立，但剩下
+\[
+-u\nabla a\cdot\lambda.
+\]
+因此
+\begin{equation}
+\boxed{
+\frac{\dd}{\dd t}\Ecal_B(t)=-D_0(t)+R_\sigma(t)+B(t)}
+\label{eq:variable-identity}
+\end{equation}
+其中
+\[
+B(t)=\int_{\partial\Omega_+}(u_t+a u)\lambda\cdot n\,\dd s,
+\]
+\[
+\boxed{
+R_\sigma(t)=-\int_{\Omega_+}u\,\nabla a\cdot\lambda\,\dd x\dd y
+=-\int_{\Omega_+}u(\sx'(x)\lambda_x+\sy'(y)\lambda_y)\dd x\dd y.}
+\]
+理想耗散为
+\begin{equation}
+\begin{aligned}
+D_0(t)=\int_{\Omega_+}\{&
+|\lambda|^2_{\Gamma_1(I+a^{-1}\Gamma_1)}
++\frac{b}{a}|\nabla u|^2+\mu\eps a b u^2\\
+&+\frac{\mu}{\kappa}[\tau P_t^2+\tau(a^2-b)P^2+abq^2]\}\dd x\dd y.
+\end{aligned}
+\label{eq:D0}
+\end{equation}
+
+\section{正定性、非负耗散与失败机制}
+
+\subsection{Debye primitive 二次型}
+
+\[
+M_{Pq}=\begin{pmatrix}\alpha&\beta\\ \beta&\gamma\end{pmatrix}.
+\]
+其行列式为
+\[
+\alpha\gamma-\beta^2
+=b+ab\tau+2a^3\tau+b(2a^2-b)\tau^2.
+\]
+在 \(\sx,\sy\ge0\) 时
+\[
+2a^2-b=2\sx^2+3\sx\sy+2\sy^2\ge0,
+\]
+故在 \(a>0\)、\(\tau>0\) 且角 PML 中 \(b>0\) 时该块正定。边 PML 中 \(b=0\)
+时 primitive 变量的若干方向退化，必须单独处理。
+
+\subsection{理想耗散非负条件}
+
+\[
+\Gamma_1(I+a^{-1}\Gamma_1)
+=\diag\left(\sx\left(1+\frac{\sx}{a}\right),
+\sy\left(1+\frac{\sy}{a}\right)\right)\ge0,
+\]
+\[
+\frac{b}{a}\ge0,\qquad a^2-b=\sx^2+\sx\sy+\sy^2\ge0,\qquad ab\ge0.
+\]
+所以在 \(a>0\)、\(\sx,\sy\ge0\)、材料参数正的区域中 \(D_0\ge0\)。若要把
+\(R_\sigma\) 吸收到 \(D_0\)，还需要 \(D_0\) 对 \(\|u\|\) 与 \(\|\lambda\|\) 有正
+下界；这通常要求角 PML 中 \(\sx,\sy\) 有正下界。边 PML 或物理区不满足该条件。
+
+\subsection{变量系数余项符号不定}
+
+即使 \(\sx',\sy'\ge0\)，也不能推出 \(R_\sigma\le0\)。例如在一个开集上
+\(\sx'>0\)、\(\sy'=0\)。若取 \(u\ge0\) 且 \(\lambda_x<0\)，则
+\[
+-u\sx'\lambda_x>0,
+\]
+使 \(R_\sigma\) 对能量导数作正贡献；若 \(\lambda_x>0\)，该项才为负。变量
+\(\lambda\) 是动态未知量，其符号不由阻尼剖面的单调性决定。因此 ``阻尼递增''
+不是单调能量证明。
+
+\section{小梯度吸收定理}
+
+设在角 PML 子区域 \(\Omega_c\) 中边界通量非正，并有常数 \(m_u,m_\lambda>0\)
+使
+\[
+D_0(t)\ge m_u\|u\|_{L^2(\Omega_c)}^2
++m_\lambda\|\lambda\|_{L^2(\Omega_c)}^2+\hbox{其他非负项}.
+\]
+令 \(g=\|\nabla a\|_{L^\infty(\Omega_c)}\)。由 Cauchy--Schwarz，
+\[
+|R_\sigma(t)|\le g\|u\|\,\|\lambda\|.
+\]
+二维二次型
+\[
+-m_u u^2-m_\lambda\lambda^2+g u\lambda
+\]
+半负定当且仅当
+\[
+g^2\le4m_um_\lambda.
+\]
+更强地，若
+\begin{equation}
+\boxed{\|\nabla a\|_{L^\infty(\Omega_c)}^2<4m_um_\lambda,}
+\label{eq:small-gradient}
+\end{equation}
+取
+\[
+\theta=1-\frac{\|\nabla a\|_{L^\infty}}{2\sqrt{m_um_\lambda}}>0,
+\]
+则
+\[
+|R_\sigma(t)|\le(1-\theta)D_0(t),
+\]
+从而由 \eqref{eq:variable-identity} 得
+\[
+\boxed{\frac{\dd}{\dd t}\Ecal_B(t)+\theta D_0(t)\le0.}
+\]
+这是可写入论文的变量系数 stretched-coordinate theorem，但它是有条件结论：
+需要角 PML 正下界、耗散控制 \(u,\lambda\)、小梯度和非正通量。若缺少这些条件，只能得
+\[
+\Ecal_B'(t)\le C_\sigma\Ecal_B(t),
+\]
+即 Gronwall 有界性，不是单调下降。
+
+\section{Port 模型能量与匹配性分离验证}
+
+新 PDF 的 port 模型为
+\begin{align}
+\eps E_t+P_t+\eps\sigma_E E&=\partial_xW_y-\partial_yW_x,\label{eq:port-E}\\
+\mu W_{x,t}+\mu\sy W_x&=-\partial_yE,\label{eq:port-Wx}\\
+\mu W_{y,t}+\mu\sx W_y&=\partial_xE,\label{eq:port-Wy}\\
+\tau P_t+P&=\kappa E.\label{eq:port-P}
+\end{align}
+若 \(\sx=\sy=\sigma_E=0\)，并识别 \(W_x=H_x,W_y=H_y\)，则
+\eqref{eq:port-E}--\eqref{eq:port-P} 退化为物理 Maxwell--Debye 系统。
+
+\subsection{端口能量}
+
+定义
+\[
+\Ecal_{\rm port}(t)=\frac12\int_\Omega
+\left(\eps E^2+\mu W_x^2+\mu W_y^2+\kappa^{-1}P^2\right)\dd x\dd y.
+\]
+将 \eqref{eq:port-E}--\eqref{eq:port-Wy} 分别乘以 \(E,W_x,W_y\)，空间项满足
+\[
+E(\partial_xW_y-\partial_yW_x)-W_x\partial_yE+W_y\partial_xE
+=\partial_x(EW_y)-\partial_y(EW_x).
+\]
+并且
+\[
+EP_t=\frac1{2\kappa}\partial_t(P^2)+\frac{\tau}{\kappa}P_t^2.
+\]
+因此
+\[
+\boxed{
+\frac{\dd}{\dd t}\Ecal_{\rm port}(t)
++\int_\Omega\left(
+\eps\sigma_EE^2+\mu\sy W_x^2+\mu\sx W_y^2+\frac{\tau}{\kappa}P_t^2
+\right)\dd x\dd y
+=\int_{\partial\Omega}E(W_y n_x-W_xn_y)\dd s.}
+\]
+在 PEC、周期或非正端口通量边界下，这是无条件单调能量。
+
+\subsection{平面界面阻抗测试}
+
+考虑 \(x\)-PML，
+\[
+\sx=\sigma>0,\qquad \sy=0,
+\]
+并取 Laplace--Fourier 模态 \(e^{st+ik_y y+\nu x}\)、\(\Re s>0\)。物理介质中
+\[
+\eps_D(s)=\eps+\frac{\kappa}{1+\tau s},\qquad
+Y_0=\frac{H_y}{E}=\frac{\nu_0}{\mu s},\qquad
+\nu_0^2=k_y^2+\mu s^2\eps_D(s).
+\]
+Port 模型的代数系统为
+\[
+(s\eps_D(s)+\eps\sigma_E)E=\nu W_y-ik_yW_x,
+\]
+\[
+\mu sW_x=-ik_yE,\qquad \mu(s+\sigma)W_y=\nu E.
+\]
+故
+\[
+\frac{W_y}{E}=\frac{\nu}{\mu(s+\sigma)}
+\]
+且
+\[
+Y_{\rm port}^2
+=\frac{s\eps_D(s)+\eps\sigma_E}{\mu(s+\sigma)}
++\frac{k_y^2}{\mu^2s(s+\sigma)}.
+\]
+与
+\[
+Y_0^2=\frac{\eps_D(s)}{\mu}+\frac{k_y^2}{\mu^2s^2}
+\]
+相减得
+\begin{equation}
+\boxed{
+Y_{\rm port}^2-Y_0^2
+=\frac{\eps\sigma_E-\sigma\eps_D(s)}{\mu(s+\sigma)}
+-\frac{\sigma k_y^2}{\mu^2s^2(s+\sigma)}.}
+\label{eq:port-mismatch}
+\end{equation}
+反射系数为
+\[
+R_{\rm port}=\frac{Y_0-Y_{\rm port}}{Y_0+Y_{\rm port}}.
+\]
+若要 \eqref{eq:port-mismatch} 对所有 \(k_y\) 为零，第二项强迫
+\(\sigma k_y^2=0\)。因此只要 \(\sigma>0\) 且存在斜入射 \(k_y\ne0\)，
+port 模型一般不 perfectly matched。
+
+法向入射 \(k_y=0\) 时，可令
+\[
+\sigma_E(s)=\sigma\frac{\eps_D(s)}{\eps}
+\]
+使 \(Y_{\rm port}=Y_0\)。但该选择通常是频率依赖的 Debye 卷积阻尼；并且即使用它，
+斜入射残差仍为
+\[
+-\frac{\sigma k_y^2}{\mu^2s^2(s+\sigma)}.
+\]
+所以 port 模型应称为 stable absorbing layer，而不是 strict PML。
+
+\section{形式化验证结果}
+
+本轮创建了
+\[
+\texttt{verification/algebra/VariableCoefficientBaffet.lean}
+\]
+和
+\[
+\texttt{verification/algebra/variable\_coefficient\_baffet\_sympy.py}.
+\]
+SymPy 检查覆盖 Debye primitive 恒等式、\(P,q\) 行列式、
+\(2a^2-b\) 展开、变量乘子梯度项、小梯度 Schur 补、port 能量交叉项抵消、strict
+stretched-coordinate admittance，以及 port 模型阻抗失配公式。命令
+\[
+\texttt{python3 verification/algebra/variable\_coefficient\_baffet\_sympy.py}
+\]
+已通过。
+
+Lean 文件覆盖同一组核心代数中的五个 Lean 目标：Debye primitive 乘积、\(P,q\)
+行列式、\(2a^2-b\) 展开、变量系数乘子的一维 product-rule 版本、以及
+\[
+-m_u u^2-m_\lambda\lambda^2+g u\lambda\le0
+\]
+的吸收判据。本机实际运行
+\[
+\texttt{lean verification/algebra/VariableCoefficientBaffet.lean}
+\]
+失败，原因是当前环境没有 \(\texttt{lean}\) 可执行文件：
+\[
+\texttt{zsh:1: command not found: lean}.
+\]
+
+\section{下一步论文 theorem 推荐形式}
+
+建议把论文主线拆成三个定理，避免把 Gronwall 或 port 稳定性误写成 strict PML
+单调能量。
+
+\begin{theorem}[平面界面 perfect matching]
+对 strict stretched-coordinate Maxwell--Debye PML，保持
+\((1+\tau s)\widehat P=\kappa\widehat E\) 并只拉伸空间导数，则常系数平面界面满足
+\(\nu_+=S_x\nu_0\)、\(Y_+=Y_0\)，故 \(R=0\)。
+\end{theorem}
+
+\begin{theorem}[变系数 Baffet 小梯度单调性]
+在角 PML 区域 \(\Omega_c\) 中，若 \(\sx,\sy\) 有正下界、边界通量非正、
+\(D_0\ge m_u\|u\|^2+m_\lambda\|\lambda\|^2+\cdots\)，且
+\(\|\nabla a\|_{L^\infty}^2<4m_um_\lambda\)，则 \eqref{eq:EB} 满足
+\[
+\frac{\dd}{\dd t}\Ecal_B(t)+\theta D_0(t)\le0,\qquad \theta>0.
+\]
+若没有小梯度条件，不应声称单调下降。
+\end{theorem}
+
+\begin{theorem}[Port absorbing layer]
+Port 模型 \eqref{eq:port-E}--\eqref{eq:port-P} 对任意非负
+\(\sx,\sy,\sigma_E\) 有正的端口能量耗散恒等式。但由
+\eqref{eq:port-mismatch}，它对斜入射一般 \(R_{\rm port}\ne0\)，因此是 stable
+absorbing layer，不是 strict PML。
+\end{theorem}
+
+\end{document}

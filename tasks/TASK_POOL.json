@@ -1,7 +1,7 @@
 {
   "schema_version": "iteris.task_pool.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-06-20T15:15:49.659769Z",
+  "updated_at": "2026-07-09T04:06:48.430112Z",
   "active_frontier": "",
   "tasks": [
     {
@@ -283,6 +283,35 @@
       ],
       "created_at": "2026-06-20T14:45:16.831494Z",
       "updated_at": "2026-06-20T15:15:49.659760Z"
+    },
+    {
+      "schema_version": "iteris.task_pool_task.v0",
+      "task_id": "task-v5-variable-coefficient-baffet",
+      "mode": "proof",
+      "objective": "Verify variable-coefficient Baffet energy, port-layer matching, Lean/SymPy checks, TeX/PDF artifact, and v5 terminal report.",
+      "status": "running",
+      "priority": 250,
+      "dependencies": [],
+      "inputs": [
+        ".iteris/goal_prompt.txt",
+        "references/variable_coefficient_baffet_energy.pdf",
+        "results/energy_design_v3_perfect_matching_report.md",
+        "results/new_energy_functional_2d_debye_pml_report.md"
+      ],
+      "expected_outputs": [
+        "results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md",
+        "tex/variable_coefficient_baffet_energy_analysis.tex",
+        "tex/variable_coefficient_baffet_energy_analysis.pdf",
+        "verification/algebra/VariableCoefficientBaffet.lean",
+        "verification/algebra/variable_coefficient_baffet_sympy.py"
+      ],
+      "assigned_agent_run": null,
+      "notes": [
+        "Started inline by Codex after reading the v5 goal_prompt contract.",
+        "Verified and promoted v5 facts: variable-baffet-remainder-small-gradient and port-layer-energy-not-pml."
+      ],
+      "created_at": "2026-07-09T03:44:22.236174Z",
+      "updated_at": "2026-07-09T04:06:48.430088Z"
     }
   ]
 }

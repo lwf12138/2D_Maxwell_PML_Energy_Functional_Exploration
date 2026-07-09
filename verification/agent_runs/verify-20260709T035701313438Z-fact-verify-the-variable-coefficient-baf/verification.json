@@ -1,0 +1,26 @@
+{
+  "verification_report": {
+    "summary": "Correct. The fact is supported within its stated conditional scope. The variable-coefficient Baffet-Debye derivation in the TeX artifact matches the predecessor constant-coefficient Baffet primitive system and the only new interior term is exactly the product-rule contribution -int u grad(a) dot lambda from grad(u_t+a u). The displayed D0 is nonnegative term by term for sigma_x,sigma_y >= 0, a > 0, and positive material parameters. The sign-obstruction claim is valid because monotone damping profiles do not fix the sign of the dynamical lambda components. Under the explicitly assumed nonpositive boundary flux and D0 coercivity in u and lambda, the small-gradient condition ||grad a||_infty^2 < 4 m_u m_lambda gives |R_sigma| <= c D0 with c < 1, hence dE_B/dt + theta D0 <= 0. Without that absorption, the identity supports only a Gronwall-type bound rather than unconditional monotonicity. The Lean artifact was not executable in this environment, as the outputs state, so it was not counted as an independently checked formal proof; the same load-bearing algebra was checked by the SymPy script and direct component calculations.",
+    "critical_errors": [],
+    "gaps": []
+  },
+  "verdict": "correct",
+  "repair_hints": "No repair needed. Preserve the stated hypotheses: sufficient smoothness on Omega_+, a > 0 where a^{-1} is used, nonpositive boundary flux for monotonicity, explicit D0 coercivity in u and lambda, and the strict small-gradient condition. Do not restate the result as unconditional variable-coefficient monotonicity.",
+  "checked_artifacts": [
+    "verification/agent_runs/verify-20260709T035701313438Z-fact-verify-the-variable-coefficient-baf/request.json",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-variable-baffet-remainder-small-gradient.md",
+    "tex/variable_coefficient_baffet_energy_analysis.tex",
+    "verification/algebra/variable_coefficient_baffet_sympy.py",
+    "verification/algebra/VariableCoefficientBaffet.lean",
+    "results/v5_variable_coefficient_baffet/verification_outputs.md",
+    "results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-baffet-primitive-stretched-debye-2d-energy.md",
+    "verification/results/verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa.json",
+    "artifacts/proofs/stage3_baffet_debye_2d_energy.md",
+    "references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt"
+  ],
+  "checked_fact_ids": [
+    "fact:2d_maxwell_pml_energy_functional_exploration:variable-baffet-remainder-small-gradient",
+    "fact:2d_maxwell_pml_energy_functional_exploration:baffet-primitive-stretched-debye-2d-energy"
+  ]
+}

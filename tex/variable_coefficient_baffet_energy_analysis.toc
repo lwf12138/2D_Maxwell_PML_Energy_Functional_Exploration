@@ -1,0 +1,17 @@
+\contentsline {section}{\numberline {1}结论审查}{2}{section.1}%
+\contentsline {section}{\numberline {2}Strict Baffet--Debye primitive 系统}{2}{section.2}%
+\contentsline {section}{\numberline {3}变系数 Baffet 能量逐式推导}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}主方程乘子恒等式}{3}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Baffet 通量恒等式}{4}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Debye primitive 乘积恒等式}{4}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}变量系数余项}{4}{subsection.3.4}%
+\contentsline {section}{\numberline {4}正定性、非负耗散与失败机制}{5}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Debye primitive 二次型}{5}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}理想耗散非负条件}{5}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}变量系数余项符号不定}{5}{subsection.4.3}%
+\contentsline {section}{\numberline {5}小梯度吸收定理}{5}{section.5}%
+\contentsline {section}{\numberline {6}Port 模型能量与匹配性分离验证}{6}{section.6}%
+\contentsline {subsection}{\numberline {6.1}端口能量}{6}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}平面界面阻抗测试}{7}{subsection.6.2}%
+\contentsline {section}{\numberline {7}形式化验证结果}{8}{section.7}%
+\contentsline {section}{\numberline {8}下一步论文 theorem 推荐形式}{8}{section.8}%
