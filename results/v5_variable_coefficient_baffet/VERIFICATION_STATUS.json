@@ -1,0 +1,9 @@
+{
+  "schema_version": "iteris.verification_status.v0",
+  "target_artifact": "results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md",
+  "terminal_mode": "goal_success",
+  "ok": false,
+  "assembly_request_id": "verify-20260709T040717291493Z-assembly-assemble-the-verified-v5-facts-",
+  "goal_success_request_id": "verify-20260709T041310547987Z-goal_success-read-.iteris-goal_prompt.tx",
+  "verified_artifact": null
+}

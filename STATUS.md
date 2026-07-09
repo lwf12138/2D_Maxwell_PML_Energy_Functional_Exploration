@@ -1,10 +1,12 @@
-phase: goal_success_verified
-last_updated: 2026-06-20T15:16:01.406719Z
-source: sources/energy_functional_problem.tex
-target_artifact: tex/new_energy_functional_2d_debye_pml.tex
-verified_artifact: tex/new_energy_functional_2d_debye_pml.tex
+phase: v5_goal_success_verified
+last_updated: 2026-07-09T04:20:17Z
+source: .iteris/goal_prompt.txt
+target_artifact: results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md
+verified_artifact: results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md
 stage3_literature_record: artifacts/references/stage3_literature_reading_record.md
 stage3_matching_artifact: artifacts/proofs/stage3_v2_perfect_matching_test.md
 stage3_repaired_model_artifact: artifacts/proofs/stage3_repaired_model_energy.md
-verification_status: TeX/PDF artifact created; SymPy algebra verification passed; Lean attempted but unavailable locally; assembly verification passed as verify-20260620T150039430501Z-assembly-tex-terminal-artifact-tex-new_e; goal-success verification passed as verify-20260620T150735411403Z-goal_success-goal-maxwell-debye-pml-frac
-next: run final checkpoint and Iteris goal finalization for the TeX terminal artifact
+v5_tex_artifact: tex/variable_coefficient_baffet_energy_analysis.tex
+v5_pdf_artifact: tex/variable_coefficient_baffet_energy_analysis.pdf
+verification_status: V5 variable-coefficient Baffet audit complete; SymPy algebra verification passed; Lean attempted but unavailable locally; TeX/PDF build passed; fact verifications passed as verify-20260709T035701313438Z-fact-verify-the-variable-coefficient-baf and verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi; assembly verification passed as verify-20260709T040717291493Z-assembly-assemble-the-verified-v5-facts-; goal-success verification passed as verify-20260709T041310547987Z-goal_success-read-.iteris-goal_prompt.tx
+next: v5 contract complete; no open Iteris action

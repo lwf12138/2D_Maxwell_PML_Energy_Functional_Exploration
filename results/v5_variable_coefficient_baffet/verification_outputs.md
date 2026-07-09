@@ -74,4 +74,13 @@ Fact verification passed:
   The verifier accepted the port energy identity and the oblique-mode admittance
   mismatch.
 
-Assembly and goal-success verification are pending.
+Assembly verification passed:
+
+- `verify-20260709T040717291493Z-assembly-assemble-the-verified-v5-facts-`
+  accepted `results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md`
+  as a correct assembly of the verified v5 facts and artifacts.
+
+Goal-success verification passed:
+
+- `verify-20260709T041310547987Z-goal_success-read-.iteris-goal_prompt.tx`
+  accepted the terminal artifact as satisfying the complete v5 contract.

@@ -1,0 +1,43 @@
+{
+  "verification_report": {
+    "summary": "Correct. The source v5 goal is not a universal claim that the final variable-coefficient strict PML theorem has been solved; it asks for a rigorous audit of the new variable-coefficient Baffet PDF, the port model, required artifacts, local algebra checks, fact verification, assembly verification, and honest scope distinctions. The terminal report and TeX artifact satisfy that scoped contract: they identify the exact variable-coefficient remainder R_sigma = -int u grad(a) dot lambda, show why monotone damping profiles do not control its sign, give conditional small-gradient absorption assumptions, separate the passive port-layer energy from strict PML matching, and compute the oblique-mode admittance mismatch. Required artifacts exist, the TeX/PDF report contains the requested derivations and conclusions, SymPy reruns successfully, Lean failure is honestly recorded as a missing executable, the load-bearing facts are verified, and the assembly verification passed. The artifact does not overclaim unconditional strict-PML monotonicity or relabel a Gronwall/port result as final PML success.",
+    "critical_errors": [],
+    "gaps": []
+  },
+  "verdict": "correct",
+  "repair_hints": "No repair needed. Preserve the current scope: strict stretched-coordinate variable-coefficient monotonicity is conditional on coercivity, small-gradient, and boundary-flux assumptions; the port model remains a stable absorbing layer, not a strict PML.",
+  "checked_artifacts": [
+    "verification/agent_runs/verify-20260709T041310547987Z-goal_success-read-.iteris-goal_prompt.tx/request.json",
+    ".iteris/goal_prompt.txt",
+    "references/variable_coefficient_baffet_energy.pdf",
+    "results/energy_design_v3_perfect_matching_report.md",
+    "results/new_energy_functional_2d_debye_pml_report.md",
+    "verification/algebra/NewEnergyFunctional.lean",
+    "verification/algebra/new_energy_functional_sympy.py",
+    "results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md",
+    "tex/variable_coefficient_baffet_energy_analysis.tex",
+    "tex/variable_coefficient_baffet_energy_analysis.pdf",
+    "tex/variable_coefficient_baffet_energy_analysis_build.log",
+    "tex/variable_coefficient_baffet_energy_analysis.log",
+    "verification/algebra/VariableCoefficientBaffet.lean",
+    "verification/algebra/variable_coefficient_baffet_sympy.py",
+    "results/v5_variable_coefficient_baffet/verification_outputs.md",
+    "verification/results/verify-20260709T040717291493Z-assembly-assemble-the-verified-v5-facts-.json",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-baffet-primitive-stretched-debye-2d-energy.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-variable-baffet-remainder-small-gradient.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-port-layer-energy-not-pml.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-standard-stretched-pml-matching-and-1d-energy.md",
+    "verification/results/verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa.json",
+    "verification/results/verify-20260709T035701313438Z-fact-verify-the-variable-coefficient-baf.json",
+    "verification/results/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi.json",
+    "verification/results/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m.json",
+    "verification/results/verify-20260620T065810059861Z-fact-strict-decay-of-total-electromagnet.json"
+  ],
+  "checked_fact_ids": [
+    "fact:2d_maxwell_pml_energy_functional_exploration:baffet-primitive-stretched-debye-2d-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:variable-baffet-remainder-small-gradient",
+    "fact:2d_maxwell_pml_energy_functional_exploration:port-layer-energy-not-pml",
+    "fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:whole-domain-strict-decay-nullspace-obstruction"
+  ]
+}

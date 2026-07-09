@@ -1,0 +1,39 @@
+{
+  "verification_report": {
+    "summary": "Correct as an assembly. The target report answers the v5 variable-coefficient Baffet audit in the limited, supported sense requested: it identifies the constant-coefficient Baffet-Debye primitive model as the matched strict-PML baseline; records that variable damping adds the exact internal remainder R_sigma = - int u grad(a) dot lambda; states that monotonicity for the strict stretched-coordinate model is only conditional on nonpositive flux plus D0 coercivity and a small-gradient absorption condition; and keeps the port model separate as a passive absorbing layer whose oblique admittance mismatch prevents it from being a strict PML. The cited verified facts and their predecessor facts support those statements. The report is also honest about local checks: SymPy passes, the TeX build succeeds, and Lean is not counted because the local executable is missing. I found no theorem claim beyond the verified scope and no relabeling of a Gronwall or port-layer result as unconditional strict-PML monotone decay.",
+    "critical_errors": [],
+    "gaps": []
+  },
+  "verdict": "correct",
+  "repair_hints": "No repair needed. Preserve the current scope: the variable-coefficient strict stretched-coordinate theorem is conditional on explicit coercivity, small-gradient, and boundary-flux assumptions; the port model should remain classified as a stable absorbing layer, not a strict PML.",
+  "checked_artifacts": [
+    "verification/agent_runs/verify-20260709T040717291493Z-assembly-assemble-the-verified-v5-facts-/request.json",
+    "results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md",
+    "tex/variable_coefficient_baffet_energy_analysis.tex",
+    "tex/variable_coefficient_baffet_energy_analysis_build.log",
+    "verification/algebra/variable_coefficient_baffet_sympy.py",
+    "verification/algebra/VariableCoefficientBaffet.lean",
+    "results/v5_variable_coefficient_baffet/verification_outputs.md",
+    "references/variable_coefficient_baffet_energy.pdf",
+    "prompts/run_energy_design_v5_variable_coefficient_baffet.sh",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-baffet-primitive-stretched-debye-2d-energy.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-variable-baffet-remainder-small-gradient.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-port-layer-energy-not-pml.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-standard-stretched-pml-matching-and-1d-energy.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-whole-domain-strict-decay-nullspace-obstruction.md",
+    "verification/results/verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa.json",
+    "verification/results/verify-20260709T035701313438Z-fact-verify-the-variable-coefficient-baf.json",
+    "verification/results/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi.json",
+    "verification/results/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m.json",
+    "verification/results/verify-20260620T065810059861Z-fact-strict-decay-of-total-electromagnet.json",
+    "artifacts/proofs/stage3_baffet_debye_2d_energy.md",
+    "artifacts/proofs/stage3_repaired_model_energy.md"
+  ],
+  "checked_fact_ids": [
+    "fact:2d_maxwell_pml_energy_functional_exploration:baffet-primitive-stretched-debye-2d-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:variable-baffet-remainder-small-gradient",
+    "fact:2d_maxwell_pml_energy_functional_exploration:port-layer-energy-not-pml",
+    "fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:whole-domain-strict-decay-nullspace-obstruction"
+  ]
+}

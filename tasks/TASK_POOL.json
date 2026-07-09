@@ -1,7 +1,7 @@
 {
   "schema_version": "iteris.task_pool.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-07-09T04:06:48.430112Z",
+  "updated_at": "2026-07-09T04:20:54.130361Z",
   "active_frontier": "",
   "tasks": [
     {
@@ -289,7 +289,7 @@
       "task_id": "task-v5-variable-coefficient-baffet",
       "mode": "proof",
       "objective": "Verify variable-coefficient Baffet energy, port-layer matching, Lean/SymPy checks, TeX/PDF artifact, and v5 terminal report.",
-      "status": "running",
+      "status": "done",
       "priority": 250,
       "dependencies": [],
       "inputs": [
@@ -308,10 +308,11 @@
       "assigned_agent_run": null,
       "notes": [
         "Started inline by Codex after reading the v5 goal_prompt contract.",
-        "Verified and promoted v5 facts: variable-baffet-remainder-small-gradient and port-layer-energy-not-pml."
+        "Verified and promoted v5 facts: variable-baffet-remainder-small-gradient and port-layer-energy-not-pml.",
+        "Assembly verification passed as verify-20260709T040717291493Z-assembly-assemble-the-verified-v5-facts-; goal-success verification passed as verify-20260709T041310547987Z-goal_success-read-.iteris-goal_prompt.tx."
       ],
       "created_at": "2026-07-09T03:44:22.236174Z",
-      "updated_at": "2026-07-09T04:06:48.430088Z"
+      "updated_at": "2026-07-09T04:20:54.130353Z"
     }
   ]
 }

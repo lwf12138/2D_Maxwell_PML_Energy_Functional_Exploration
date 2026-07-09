@@ -1,0 +1,4212 @@
+started_at: 2026-07-09T04:07:17.292666Z
+command: /Users/wcli/.local/bin/codex exec --json -C '/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration' -m gpt-5.5 --config model_reasoning_effort=xhigh --dangerously-bypass-approvals-and-sandbox -
+prompt_file: verification/agent_runs/verify-20260709T040717291493Z-assembly-assemble-the-verified-v5-facts-/prompt.md
+events_log: verification/agent_runs/verify-20260709T040717291493Z-assembly-assemble-the-verified-v5-facts-/codex.events.jsonl
+stderr_log: verification/agent_runs/verify-20260709T040717291493Z-assembly-assemble-the-verified-v5-facts-/codex.stderr.log
+
+--- rendered codex exec events ---
+
+[1] thread.started
+  thread_id: 019f450e-fa5c-7943-a0f5-020f4a4c4c77
+
+[2] turn.started
+
+[?] error: null
+
+[?] error: null
+
+[?] error: null
+
+[?] error: null
+
+[7] item.completed:error
+  id: item_0
+  message: Falling back from WebSockets to HTTPS transport. request timed out
+
+[8] item.completed:agent_message
+  I’ll read the verification request first, then trace each cited artifact and fact in order before writing the required `verification.json`.
+
+[9] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '1,220p' verification/agent_runs/verify-20260709T040717291493Z-assembly-assemble-the-verified-v5-facts-/request.json"
+  status: in_progress
+  exit_code: None
+
+[10] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '1,220p' verification/agent_runs/verify-20260709T040717291493Z-assembly-assemble-the-verified-v5-facts-/request.json"
+  status: completed
+  exit_code: 0
+  {
+    "schema_version": "iteris.verification_request.v0",
+    "request_id": "verify-20260709T040717291493Z-assembly-assemble-the-verified-v5-facts-",
+    "backend": "agent",
+    "executor": "codex",
+    "mode": "assembly",
+    "claim": "Assemble the verified v5 facts and artifacts to answer the variable-coefficient Baffet goal without overclaiming unconditional strict-PML monotonicity.",
+    "artifacts": [
+      "results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md",
+      "tex/variable_coefficient_baffet_energy_analysis.tex",
+      "tex/variable_coefficient_baffet_energy_analysis_build.log",
+      "verification/algebra/variable_coefficient_baffet_sympy.py",
+      "verification/algebra/VariableCoefficientBaffet.lean",
+      "results/v5_variable_coefficient_baffet/verification_outputs.md"
+    ],
+    "fact_ids": [
+      "fact:2d_maxwell_pml_energy_functional_exploration:baffet-primitive-stretched-debye-2d-energy",
+      "fact:2d_maxwell_pml_energy_functional_exploration:variable-baffet-remainder-small-gradient",
+      "fact:2d_maxwell_pml_energy_functional_exploration:port-layer-energy-not-pml"
+    ],
+    "target_artifact": "results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md",
+    "created_at": "2026-07-09T04:07:17.291940Z",
+    "prompt_path": "verification/agent_runs/verify-20260709T040717291493Z-assembly-assemble-the-verified-v5-facts-/prompt.md",
+    "codex_log": "verification/agent_runs/verify-20260709T040717291493Z-assembly-assemble-the-verified-v5-facts-/codex.log",
+    "codex_events": "verification/agent_runs/verify-20260709T040717291493Z-assembly-assemble-the-verified-v5-facts-/codex.events.jsonl",
+    "codex_stderr": "verification/agent_runs/verify-20260709T040717291493Z-assembly-assemble-the-verified-v5-facts-/codex.stderr.log",
+    "codex_log_manifest": "verification/agent_runs/verify-20260709T040717291493Z-assembly-assemble-the-verified-v5-facts-/log_manifest.json"
+  }
+
+[11] item.completed:agent_message
+  The request is `mode: assembly`; I’m checking whether the target report’s conclusions are actually supported by the three cited facts and the listed algebra/Lean/TeX artifacts, not just whether the files exist.
+
+[12] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '1,260p' results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md"
+  status: in_progress
+  exit_code: None
+
+[13] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '1,260p' results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md"
+  status: completed
+  exit_code: 0
+  # Variable-Coefficient Baffet Next-Step Report
+  
+  Problem id: `2d_maxwell_pml_energy_functional_exploration`
+  
+  Terminal artifact: `results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md`
+  
+  ## Original Goal Summary
+  
+  The v5 goal asks whether the new PDF
+  `references/variable_coefficient_baffet_energy.pdf` completes the construction of
+  a positive monotone energy for the two-dimensional Maxwell--Debye--PML problem,
+  or whether it only gives a conditional variable-coefficient result or a stable
+  non-PML absorbing layer. It also requires a formula-level audit of the
+  variable-coefficient Baffet remainder, a separate port-layer matching test,
+  Lean/SymPy algebra files, a Chinese TeX/PDF report, and Iteris verification.
+  
+  ## Short Answer
+  
+  The new PDF is useful but not sufficient for the final strict PML goal.
+  
+  For the strict stretched-coordinate Baffet--Debye model, the variable damping
+  profiles create the internal term
+  
+  ```text
+  R_sigma(t) = - int u grad(a) dot lambda,   a = sigma_x + sigma_y.
+  ```
+  
+  This term has no sign, even when the damping profiles are monotone. It can be
+  absorbed only under an additional coercivity and small-gradient condition such as
+  
+  ```text
+  D0 >= m_u ||u||^2 + m_lambda ||lambda||^2 + nonnegative terms,
+  ||grad a||_infty^2 < 4 m_u m_lambda.
+  ```
+  
+  The port model has a clean monotone energy for arbitrary nonnegative damping,
+  but its planar-interface admittance is generally mismatched for oblique modes.
+  It should be called a stable absorbing layer, not a strict PML.
+  
+  ## Fact Index
+  
+  | fact id | status | verification |
+  |---|---:|---|
+  | `fact:2d_maxwell_pml_energy_functional_exploration:baffet-primitive-stretched-debye-2d-energy` | verified | `verification/results/verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa.json` |
+  | `fact:2d_maxwell_pml_energy_functional_exploration:variable-baffet-remainder-small-gradient` | verified | `verification/results/verify-20260709T035701313438Z-fact-verify-the-variable-coefficient-baf.json` |
+  | `fact:2d_maxwell_pml_energy_functional_exploration:port-layer-energy-not-pml` | verified | `verification/results/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi.json` |
+  
+  ## Required Judgments
+  
+  1. The new PDF has not constructed an unconditional monotone energy for the
+     original final target, namely the variable-coefficient strict
+     stretched-coordinate Maxwell--Debye PML.
+  2. The strict Baffet primitive model remains the correct final PML mainline
+     because it is Laplace-equivalent to stretched-coordinate PML in the constant
+     coefficient interface test.
+  3. The variable-coefficient Baffet identity is
+     `E_B' = -D0 + R_sigma + B`; under nonpositive boundary flux, monotonicity
+     follows only if `R_sigma` is absorbed.
+  4. `sigma_i' >= 0` does not control `R_sigma`, because the sign of `lambda_i`
+     is a dynamical state variable and can oppose or align with `sigma_i'`.
+  5. The port model reduces to Maxwell--Debye when all damping vanishes and has a
+     positive energy identity, but its x-PML admittance satisfies
+  
+  ```text
+  Y_port^2 - Y_0^2
+    = (epsilon sigma_E - sigma_x epsilon_D(s))/(mu (s + sigma_x))
+      - sigma_x k_y^2/(mu^2 s^2 (s + sigma_x)).
+  ```
+  
+     No scalar local `sigma_E` removes the `k_y` term for all oblique modes.
+  
+  ## Produced Artifacts
+  
+  - `tex/variable_coefficient_baffet_energy_analysis.tex`
+  - `tex/variable_coefficient_baffet_energy_analysis.pdf`
+  - `tex/variable_coefficient_baffet_energy_analysis_build.log`
+  - `verification/algebra/VariableCoefficientBaffet.lean`
+  - `verification/algebra/variable_coefficient_baffet_sympy.py`
+  - `results/v5_variable_coefficient_baffet/verification_outputs.md`
+  
+  ## Local Verification Summary
+  
+  `python3 verification/algebra/variable_coefficient_baffet_sympy.py` passed. It
+  checks the Debye primitive expansion, the `P,q` determinant, the `2a^2-b`
+  expansion, the variable-gradient product term, the small-gradient Schur
+  complement, the port energy cross-term cancellation, strict stretched-coordinate
+  matching, and the port admittance mismatch.
+  
+  `lean verification/algebra/VariableCoefficientBaffet.lean` was attempted and
+  failed honestly because this machine has no `lean` executable:
+  
+  ```text
+  zsh:1: command not found: lean
+  ```
+  
+  The TeX artifact compiled successfully to PDF. The final captured build log has
+  no TeX errors, undefined-reference warnings, rerun warnings, or overfull boxes.
+  
+  ## Assembly
+  
+  The previously verified constant-coefficient Baffet fact establishes the strict
+  stretched-coordinate/Baffet primitive model as the matched constant-coefficient
+  baseline. The new variable-coefficient audit adds two conclusions:
+  
+  First, the same Baffet energy acquires the exact remainder
+  `R_sigma = - int u grad(a) dot lambda`. This blocks unconditional monotonicity
+  and gives a precise theorem only under small-gradient absorption.
+  
+  Second, the port model is a separate passive absorbing layer. Its energy identity
+  is valid, but the admittance computation gives nonzero reflection for oblique
+  modes, so it cannot be used as the final strict PML theorem.
+  
+  Therefore the next manuscript theorem should state variable-coefficient
+  monotonicity only under explicit small-gradient/coercivity assumptions. If the
+  port model is used in numerics, it should be advertised as a stable absorbing
+  layer rather than a perfectly matched layer. The report does not relabel a
+  Gronwall bound as monotone decay.
+
+[14] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '1,260p' results/v5_variable_coefficient_baffet/verification_outputs.md"
+  status: in_progress
+  exit_code: None
+
+[15] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '1,260p' results/v5_variable_coefficient_baffet/verification_outputs.md"
+  status: completed
+  exit_code: 0
+  # Verification Outputs: V5 Variable-Coefficient Baffet
+  
+  Problem id: `2d_maxwell_pml_energy_functional_exploration`
+  
+  ## Local algebra: SymPy
+  
+  Command:
+  
+  ```sh
+  python3 verification/algebra/variable_coefficient_baffet_sympy.py
+  ```
+  
+  Result: passed.
+  
+  Key output:
+  
+  ```text
+  Debye primitive product identity: 0
+  P,q determinant identity: 0
+  2*a^2-b nonnegative expansion: 0
+  component product-rule expansion for grad(u_t+a*u): 0
+  absorption sum-of-squares identity: 0
+  port Maxwell cross terms equal div(E*W_y, -E*W_x): 0
+  Debye port product identity: 0
+  strict stretched-coordinate admittance: 0
+  port squared-admittance mismatch: 0
+  port normal-incidence matching with dispersive sigma_E: 0
+  oblique residual after normal-incidence sigma_E choice =
+    -k_y**2*sigma/(mu**2*s**2*(s + sigma))
+  All variable-coefficient Baffet SymPy checks passed.
+  ```
+  
+  ## Local algebra: Lean
+  
+  Command:
+  
+  ```sh
+  lean verification/algebra/VariableCoefficientBaffet.lean
+  ```
+  
+  Result: failed because the local environment has no Lean executable.
+  
+  Output:
+  
+  ```text
+  zsh:1: command not found: lean
+  ```
+  
+  ## TeX build
+  
+  Commands:
+  
+  ```sh
+  xelatex -interaction=nonstopmode -halt-on-error -output-directory=tex tex/variable_coefficient_baffet_energy_analysis.tex
+  ```
+  
+  The command was rerun until references and outlines stabilized.
+  
+  Result: passed. The captured build log
+  `tex/variable_coefficient_baffet_energy_analysis_build.log` contains no TeX
+  errors, undefined-reference warnings, rerun warnings, or overfull boxes. The PDF
+  was produced at `tex/variable_coefficient_baffet_energy_analysis.pdf`.
+  
+  ## Iteris verification
+  
+  Fact verification passed:
+  
+  - `fact:2d_maxwell_pml_energy_functional_exploration:variable-baffet-remainder-small-gradient`
+    passed as `verify-20260709T035701313438Z-fact-verify-the-variable-coefficient-baf`.
+    The verifier accepted the exact `R_sigma` derivation, the sign obstruction, and
+    the small-gradient absorption theorem under the stated hypotheses.
+  - `fact:2d_maxwell_pml_energy_functional_exploration:port-layer-energy-not-pml`
+    passed as `verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi`.
+    The verifier accepted the port energy identity and the oblique-mode admittance
+    mismatch.
+  
+  Assembly and goal-success verification are pending.
+
+[16] item.started:command_execution
+  command: /bin/zsh -lc 'rg -n "baffet-primitive-stretched-debye-2d-energy|variable-baffet-remainder-small-gradient|port-layer-energy-not-pml" .'
+  status: in_progress
+  exit_code: None
+
+[17] item.completed:command_execution
+  command: /bin/zsh -lc 'rg -n "baffet-primitive-stretched-debye-2d-energy|variable-baffet-remainder-small-gradient|port-layer-energy-not-pml" .'
+  status: completed
+  exit_code: 0
+  ./verification/VERIFICATION_INDEX.jsonl:19:{"schema_version":"iteris.verification_result.v0","request_id":"verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa","backend":"agent","mode":"fact","claim":"A Baffet-type time-primitive standard stretched-coordinate Maxwell-Debye PML has a full 2D constant-coefficient dissipative energy identity and remains Laplace-equivalent to the exact stretched-coordinate Maxwell-Debye PML.","verdict":"accepted","passed":true,"strict_verdict":"correct","summary":"Correct within the stated constant-coefficient scope. The cited Baffet-Debye artifact defines the primitive variables and compatibility constraint, derives the Laplace symbol of the auxiliary field, and reduces the model to the same second-order stretched-coordinate Maxwell-Debye equation as the verified standard PML fact. The Debye compatibility gives the advertised material factor epsilon_D(s), so the planar-interface perfect-matching conclusion is inherited from the verified predecessor fact. The energy identity is also supported: the spatial part matches the checked two-dimensional Baffet identity for constant damping, the Debye primitive product expands exactly into the derivative of the stated P,q quadratic plus nonnegative remainders, and the P,q determinant is positive for sigma_x,sigma_y >= 0, a > 0, tau > 0. The artifact correctly limits the result to non-increase/no-abnormal-growth with boundary flux cancellation and nullspace/gauge limitations, not strict decay or variable-coefficient monotonicity.","critical_errors":[],"gaps":[],"repair_hints":"No repair needed.","checked_artifacts":["verification/agent_runs/verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa/request.json","memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-baffet-primitive-stretched-debye-2d-energy.md","artifacts/proofs/stage3_baffet_debye_2d_energy.md","artifacts/proofs/stage3_repaired_model_energy.md","memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-standard-stretched-pml-matching-and-1d-energy.md","memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-whole-domain-strict-decay-nullspace-obstruction.md","verification/results/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m.json","verification/results/verify-20260620T065810059861Z-fact-strict-decay-of-total-electromagnet.json","sources/energy_functional_problem.tex","sources/energy_functional_problem.bbl","artifacts/references/stage3_literature_reading_record.md","references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt"],"checked_fact_ids":["fact:2d_maxwell_pml_energy_functional_exploration:baffet-primitive-stretched-debye-2d-energy","fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy","fact:2d_maxwell_pml_energy_functional_exploration:whole-domain-strict-decay-nullspace-obstruction"],"primary_fact_ids":["fact:2d_maxwell_pml_energy_functional_exploration:baffet-primitive-stretched-debye-2d-energy"],"target_artifact":null,"executor":"codex","verification_scope":"codex_agent","claim_ceiling_after_verification":"verified","agent_run_dir":"verification/agent_runs/verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa","agent_log":"verification/agent_runs/verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa/codex.log","agent_events_log":"verification/agent_runs/verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa/codex.events.jsonl","agent_stderr_log":"verification/agent_runs/verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa/codex.stderr.log","agent_log_manifest":"verification/agent_runs/verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa/log_manifest.json","created_at":"2026-06-20T07:30:47.332845Z","verifier":"iteris.codex_verification_agent"}
+  ./verification/VERIFICATION_INDEX.jsonl:20:{"schema_version":"iteris.verification_result.v0","request_id":"verify-20260620T073403963252Z-assembly-updated-stage-3-terminal-report","backend":"agent","mode":"assembly","claim":"Updated stage-3 terminal report results/energy_design_v3_perfect_matching_report.md assembles verified facts to answer the perfect-matching and energy-design goal, including v2 mismatch, standard stretched-coordinate matching, naive ADE energy gap, verified Baffet-primitive full 2D constant-coefficient dissipative energy, old-model relation, fractional status, and literature record.","verdict":"accepted","passed":true,"strict_verdict":"correct","summary":"Correct as an assembly. The updated terminal report uses verified facts within their stated scopes: the v2 covariantly damped Maxwell-Debye layer is dissipative but not perfectly matched at the planar constant x-interface; the standard stretched-coordinate Maxwell-Debye model preserves the physical Debye law and gives planar-interface admittance matching; the naive ADE physical energy has sign-indefinite memory terms; the added Baffet-primitive formulation is Laplace-equivalent to the standard stretched-coordinate model and supplies a full 2D constant-coefficient non-increasing energy identity with nonnegative dissipation up to boundary flux; and strict whole-domain decay is correctly weakened by the verified stationary magnetic/nullspace obstruction. The old-model obstruction, fractional status, and literature record are used as context or scoped classifications, not as unsupported theorem claims. The report also keeps variable damping profiles as future work and does not derive them from the constant-coefficient theorem.","critical_errors":[],"gaps":[],"repair_hints":"No repair needed. Maintain the current scope: the Baffet-Debye energy theorem is verified for constant coefficients and for boundary/transmission situations where the stated flux term is zero or nonpositive; variable damping profiles require a separate theorem.","checked_artifacts":["verification/agent_runs/verify-20260620T073403963252Z-assembly-updated-stage-3-terminal-report/request.json","results/energy_design_v3_perfect_matching_report.md","artifacts/proofs/stage3_v2_perfect_matching_test.md","artifacts/proofs/stage3_repaired_model_energy.md","artifacts/proofs/stage3_baffet_debye_2d_energy.md","artifacts/references/stage3_literature_reading_record.md","memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-v2-covariant-model-not-perfectly-matched.md","memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-standard-stretched-pml-matching-and-1d-energy.md","memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-stretched-coordinate-debye-pml-matching-and-energy-gap.md","memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-whole-domain-strict-decay-nullspace-obstruction.md","memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-baffet-primitive-stretched-debye-2d-energy.md","memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-covariantly-damped-debye-energy.md","memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-edge-pml-linear-obstruction.md","verification/results/verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa.json","verification/results/verify-20260620T064341474739Z-fact-the-v2-covariantly-damped-maxwell-d.json","verification/results/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m.json","verification/results/verify-20260620T065326237995Z-fact-the-standard-stretched-coordinate-m.json","verification/results/verify-20260620T065810059861Z-fact-strict-decay-of-total-electromagnet.json","verification/results/verify-20260620T022411192181Z-fact-the-covariantly-damped-alpha-1-maxw.json","verification/results/verify-20260619T181255226823Z-fact-the-alpha-1-source-model-has-exact-.json","sources/energy_functional_problem.tex",".iteris/goal_prompt.txt","references/processed/Joly - 2012 - An elementary introduction to the construction and the analysis of perfectly matched layers for time.txt","references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt","references/processed/Bécache 等 - 2023 - Convergence analysis of time-domain PMLS for 2D electromagnetic wave propagation in dispersive waveg.txt","references/processed/Xie 等 - 2023 - Multi-axial unsplit frequency-shifted perfectly matched layer for displacement-based anisotropic wav.txt","references/processed/A_Nonconvolutional_Split-Field_Perfectly_Matched_L.txt"],"checked_fact_ids":["fact:2d_maxwell_pml_energy_functional_exploration:v2-covariant-model-not-perfectly-matched","fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy","fact:2d_maxwell_pml_energy_functional_exploration:stretched-coordinate-debye-pml-matching-and-energy-gap","fact:2d_maxwell_pml_energy_functional_exploration:whole-domain-strict-decay-nullspace-obstruction","fact:2d_maxwell_pml_energy_functional_exploration:baffet-primitive-stretched-debye-2d-energy","fact:2d_maxwell_pml_energy_functional_exploration:covariantly-damped-debye-energy","fact:2d_maxwell_pml_energy_functional_exploration:edge-pml-linear-obstruction","fact:2d_maxwell_pml_energy_functional_exploration:augmented-gronwall-energy","fact:2d_maxwell_pml_energy_functional_exploration:alpha1-algebra-balance","fact:2d_maxwell_pml_energy_functional_exploration:run-20260619T173930696222Z:source-problem"],"primary_fact_ids":["fact:2d_maxwell_pml_energy_functional_exploration:v2-covariant-model-not-perfectly-matched","fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy","fact:2d_maxwell_pml_energy_functional_exploration:stretched-coordinate-debye-pml-matching-and-energy-gap","fact:2d_maxwell_pml_energy_functional_exploration:whole-domain-strict-decay-nullspace-obstruction","fact:2d_maxwell_pml_energy_functional_exploration:baffet-primitive-stretched-debye-2d-energy"],"target_artifact":"results/energy_design_v3_perfect_matching_report.md","executor":"codex","verification_scope":"codex_agent","claim_ceiling_after_verification":"verified","agent_run_dir":"verification/agent_runs/verify-20260620T073403963252Z-assembly-updated-stage-3-terminal-report","agent_log":"verification/agent_runs/verify-20260620T073403963252Z-assembly-updated-stage-3-terminal-report/codex.log","agent_events_log":"verification/agent_runs/verify-20260620T073403963252Z-assembly-updated-stage-3-terminal-report/codex.events.jsonl","agent_stderr_log":"verification/agent_runs/verify-20260620T073403963252Z-assembly-updated-stage-3-terminal-report/codex.stderr.log","agent_log_manifest":"verification/agent_runs/verify-20260620T073403963252Z-assembly-updated-stage-3-terminal-report/log_manifest.json","created_at":"2026-06-20T07:40:53.632158Z","verifier":"iteris.codex_verification_agent"}
+  ./verification/VERIFICATION_INDEX.jsonl:21:{"schema_version":"iteris.verification_result.v0","request_id":"verify-20260620T141636842186Z-goal_success-read-.iteris-goal_prompt.tx","backend":"agent","mode":"goal_success","claim":"Read .iteris/goal_prompt.txt and execute the full stage-3 Iteris goal contract for the 2D Maxwell-PML energy-functional project: verify whether the v2 covariantly damped Maxwell-Debye model is perfectly matched; if not, identify the exact mismatch; propose repaired PML models close to standard stretched-coordinate, Berenger, CFS-PML, MPML, or Baffet-type constructions; derive energy identities or formula-level obstructions; address the old eight-variable model and fractional status; include the required literature reading record; and write results/energy_design_v3_perfect_matching_report.md with verified facts, assembly, and required conclusions, including the repaired Baffet-primitive 2D constant-coefficient energy identity for the exact stretched-coordinate Maxwell-Debye PML.","verdict":"accepted","passed":true,"strict_verdict":"correct","summary":"Goal-success check passed. Scope/quantifier check:
+  ...[truncated 1011394 chars; see raw codex.events.jsonl]
+
+[18] item.completed:agent_message
+  The target report is conservative on its face: it says the variable-coefficient strict PML is only conditional, while the port layer is passive but not matched. I’m now checking whether the fact files and verification records actually justify those exact statements.
+
+[19] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '1,260p' memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-baffet-primitive-stretched-debye-2d-energy.md"
+  status: in_progress
+  exit_code: None
+
+[20] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '1,280p' memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-variable-baffet-remainder-small-gradient.md"
+  status: in_progress
+  exit_code: None
+
+[21] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '1,260p' memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-baffet-primitive-stretched-debye-2d-energy.md"
+  status: completed
+  exit_code: 0
+  ---
+  fact_id: fact:2d_maxwell_pml_energy_functional_exploration:baffet-primitive-stretched-debye-2d-energy
+  problem_id: 2d_maxwell_pml_energy_functional_exploration
+  source_project: 2d_maxwell_pml_energy_functional_exploration
+  source_task: task-stage3-final-report
+  predecessors:
+    - fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy
+    - fact:2d_maxwell_pml_energy_functional_exploration:whole-domain-strict-decay-nullspace-obstruction
+  status: verified
+  fact_type: energy_identity
+  review_level: verified
+  claim_policy: stable_claim
+  claim_summary: "A Baffet-type time-primitive standard stretched-coordinate Maxwell-Debye PML has a full 2D constant-coefficient dissipative energy identity."
+  verification: verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa
+  ---
+  
+  ## statement
+  
+  For constant nonnegative PML coefficients sigma_x,sigma_y with a=sigma_x+sigma_y>0 and positive Debye parameters, the Baffet-type primitive formulation in artifacts/proofs/stage3_baffet_debye_2d_energy.md is Laplace-equivalent to the standard stretched-coordinate Maxwell-Debye PML, hence retains planar-interface perfect matching, and has the displayed positive energy E_BD satisfying dE_BD/dt=-D_BD plus boundary flux, with D_BD nonnegative. Under PEC or canceling transmission flux, E_BD is non-increasing and gives a no-abnormal-growth estimate with the nullspace/gauge limitations stated in the artifact.
+  
+  ## notes
+  
+  Generated by Iteris bootstrap workflow.
+
+[22] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '1,280p' memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-variable-baffet-remainder-small-gradient.md"
+  status: completed
+  exit_code: 0
+  ---
+  fact_id: fact:2d_maxwell_pml_energy_functional_exploration:variable-baffet-remainder-small-gradient
+  problem_id: 2d_maxwell_pml_energy_functional_exploration
+  source_project: 2d_maxwell_pml_energy_functional_exploration
+  source_task: task-v5-variable-coefficient-baffet
+  predecessors:
+    - fact:2d_maxwell_pml_energy_functional_exploration:baffet-primitive-stretched-debye-2d-energy
+  status: verified
+  fact_type: energy_identity
+  review_level: verified
+  claim_policy: stable_claim
+  claim_summary: "Variable-coefficient Baffet-Debye energy has an exact R_sigma remainder and only conditional small-gradient monotonicity."
+  verification: verify-20260709T035701313438Z-fact-verify-the-variable-coefficient-baf
+  ---
+  
+  ## statement
+  
+  For the Baffet-Debye primitive system with a=sigma_x(x)+sigma_y(y), b=sigma_x sigma_y, sigma_x,sigma_y nonnegative and sufficiently smooth on Omega_+={a>0}, the Baffet energy in tex/variable_coefficient_baffet_energy_analysis.tex satisfies dE_B/dt = -D0 + R_sigma + B with R_sigma = - integral_{Omega_+} u grad(a) dot lambda and boundary flux B = integral_{partial Omega_+} (u_t+a u) lambda dot n. The displayed D0 is nonnegative under sigma_x,sigma_y>=0 and positive material parameters. Monotonicity is not implied by sigma_i' >= 0 because lambda_i has no fixed sign. If B<=0 and D0 controls m_u||u||^2 + m_lambda||lambda||^2 with m_u,m_lambda>0 and ||grad a||_infty^2 < 4 m_u m_lambda, then dE_B/dt + theta D0 <= 0 for some theta>0; without such absorption one obtains at most a Gronwall-type bound from this energy.
+  
+  ## notes
+  
+  Generated by Iteris bootstrap workflow.
+
+[23] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '1,260p' memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-port-layer-energy-not-pml.md"
+  status: in_progress
+  exit_code: None
+
+[24] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '1,260p' memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-port-layer-energy-not-pml.md"
+  status: completed
+  exit_code: 0
+  ---
+  fact_id: fact:2d_maxwell_pml_energy_functional_exploration:port-layer-energy-not-pml
+  problem_id: 2d_maxwell_pml_energy_functional_exploration
+  source_project: 2d_maxwell_pml_energy_functional_exploration
+  source_task: task-v5-variable-coefficient-baffet
+  predecessors: []
+  status: verified
+  fact_type: energy_obstruction
+  review_level: verified
+  claim_policy: stable_claim
+  claim_summary: "The port layer has a monotone energy but fails the strict PML admittance test for oblique modes."
+  verification: verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi
+  ---
+  
+  ## statement
+  
+  For the port model epsilon E_t + P_t + epsilon sigma_E E = partial_x W_y - partial_y W_x, mu W_{x,t}+mu sigma_y W_x=-partial_y E, mu W_{y,t}+mu sigma_x W_y=partial_x E, tau P_t+P=kappa E, the positive energy 1/2 integral (epsilon E^2+mu W_x^2+mu W_y^2+kappa^{-1}P^2) satisfies dE_port/dt plus integral(epsilon sigma_E E^2+mu sigma_y W_x^2+mu sigma_x W_y^2+tau kappa^{-1}P_t^2) equals the boundary flux integral E(W_y n_x-W_x n_y). However, in an x-PML with sigma_x=sigma>0 and sigma_y=0, the Laplace-Fourier admittance obeys Y_port^2-Y_0^2=(epsilon sigma_E-sigma epsilon_D(s))/(mu(s+sigma))-sigma k_y^2/(mu^2 s^2(s+sigma)). Therefore no scalar local sigma_E makes Y_port=Y_0 for all oblique modes k_y, so the port model is a stable absorbing layer, not a strict perfectly matched layer, although it reduces to Maxwell-Debye when all damping vanishes.
+  
+  ## notes
+  
+  Generated by Iteris bootstrap workflow.
+
+[25] item.started:command_execution
+  command: /bin/zsh -lc "jq '.verdict,.strict_verdict,.verification_report? // {summary:.summary,critical_errors:.critical_errors,gaps:.gaps}' verification/results/verify-20260709T035701313438Z-fact-verify-the-variable-coefficient-baf.json verification/results/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi.json verification/results/verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa.json"
+  status: in_progress
+  exit_code: None
+
+[26] item.completed:command_execution
+  command: /bin/zsh -lc "jq '.verdict,.strict_verdict,.verification_report? // {summary:.summary,critical_errors:.critical_errors,gaps:.gaps}' verification/results/verify-20260709T035701313438Z-fact-verify-the-variable-coefficient-baf.json verification/results/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi.json verification/results/verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa.json"
+  status: completed
+  exit_code: 0
+  "accepted"
+  "correct"
+  {
+    "summary": "Correct. The fact is supported within its stated conditional scope. The variable-coefficient Baffet-Debye derivation in the TeX artifact matches the predecessor constant-coefficient Baffet primitive system and the only new interior term is exactly the product-rule contribution -int u grad(a) dot lambda from grad(u_t+a u). The displayed D0 is nonnegative term by term for sigma_x,sigma_y >= 0, a > 0, and positive material parameters. The sign-obstruction claim is valid because monotone damping profiles do not fix the sign of the dynamical lambda components. Under the explicitly assumed nonpositive boundary flux and D0 coercivity in u and lambda, the small-gradient condition ||grad a||_infty^2 < 4 m_u m_lambda gives |R_sigma| <= c D0 with c < 1, hence dE_B/dt + theta D0 <= 0. Without that absorption, the identity supports only a Gronwall-type bound rather than unconditional monotonicity. The Lean artifact was not executable in this environment, as the outputs state, so it was not counted as an independently checked formal proof; the same load-bearing algebra was checked by the SymPy script and direct component calculations.",
+    "critical_errors": [],
+    "gaps": []
+  }
+  "accepted"
+  "correct"
+  {
+    "summary": "The cited fact is supported. The port-layer energy identity follows from multiplying the four port equations by E, W_x, W_y, and P_t/kappa, using tau P_t + P = kappa E to convert E P_t into the P-energy derivative plus tau kappa^{-1} P_t^2, and using the Maxwell cross-term divergence identity. The planar x-PML Laplace-Fourier calculation gives the stated Y_port^2 - Y_0^2 formula, and its oblique k_y term cannot be removed by any scalar local sigma_E independent of frequency and tangential wavenumber. With all damping zero, the equations reduce to Maxwell-Debye after W_x=H_x and W_y=H_y.",
+    "critical_errors": [],
+    "gaps": []
+  }
+  "accepted"
+  "correct"
+  {
+    "summary": "Correct within the stated constant-coefficient scope. The cited Baffet-Debye artifact defines the primitive variables and compatibility constraint, derives the Laplace symbol of the auxiliary field, and reduces the model to the same second-order stretched-coordinate Maxwell-Debye equation as the verified standard PML fact. The Debye compatibility gives the advertised material factor epsilon_D(s), so the planar-interface perfect-matching conclusion is inherited from the verified predecessor fact. The energy identity is also supported: the spatial part matches the checked two-dimensional Baffet identity for constant damping, the Debye primitive product expands exactly into the derivative of the stated P,q quadratic plus nonnegative remainders, and the P,q determinant is positive for sigma_x,sigma_y >= 0, a > 0, tau > 0. The artifact correctly limits the result to non-increase/no-abnormal-growth with boundary flux cancellation and nullspace/gauge limitations, not strict decay or variable-coefficient monotonicity.",
+    "critical_errors": [],
+    "gaps": []
+  }
+
+[27] item.completed:agent_message
+  The verified fact records all line up with the report’s three main claims. I’m also reading the proof artifacts directly, because this mode requires checking that the assembled report did not lean on unverified or mismatched details.
+
+[28] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '1,320p' tex/variable_coefficient_baffet_energy_analysis.tex"
+  status: in_progress
+  exit_code: None
+
+[29] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '1,320p' tex/variable_coefficient_baffet_energy_analysis.tex"
+  status: completed
+  exit_code: 0
+  \documentclass[UTF8,a4paper,11pt]{ctexart}
+  
+  \usepackage{amsmath,amssymb,amsthm,bm,mathtools}
+  \usepackage{geometry}
+  \usepackage{booktabs,longtable,array}
+  \usepackage{enumitem}
+  \usepackage{xcolor}
+  \usepackage{xurl}
+  \usepackage{hyperref}
+  
+  \geometry{left=2.5cm,right=2.5cm,top=2.4cm,bottom=2.4cm}
+  \hypersetup{
+    colorlinks=true,
+    linkcolor=blue!55!black,
+    citecolor=blue!55!black,
+    urlcolor=blue!55!black
+  }
+  \setlist[itemize]{leftmargin=2em,itemsep=0.25em,topsep=0.25em}
+  \setlist[enumerate]{leftmargin=2.2em,itemsep=0.25em,topsep=0.25em}
+  \renewcommand{\arraystretch}{1.16}
+  \sloppy
+  
+  \newtheorem{theorem}{定理}
+  \newtheorem{lemma}{引理}
+  \newtheorem{proposition}{命题}
+  \newtheorem{remark}{说明}
+  
+  \newcommand{\dd}{\,\mathrm d}
+  \newcommand{\Om}{\Omega}
+  \newcommand{\sx}{\sigma_x}
+  \newcommand{\sy}{\sigma_y}
+  \newcommand{\Ecal}{\mathcal E}
+  \newcommand{\Dcal}{\mathcal D}
+  \newcommand{\Rcal}{\mathcal R}
+  \newcommand{\eps}{\varepsilon}
+  \newcommand{\diag}{\operatorname{diag}}
+  
+  \title{变系数 Baffet--Debye 能量审查与下一步定理形式}
+  \author{Iteris 第五阶段报告}
+  \date{2026-07-09}
+  
+  \begin{document}
+  \maketitle
+  
+  \begin{abstract}
+  本文审查新加入的
+  \texttt{references/variable\_coefficient\_baffet\_energy.pdf}，并把它和前一阶段的
+  二维 Maxwell--Debye--PML 结论对齐。结论是：新 PDF 没有给出一般变系数
+  strict stretched-coordinate PML 的无条件单调能量。它正确指出常系数 Baffet 能量在
+  \(a=\sx+\sy\) 为空间函数时产生内部余项
+  \[
+  R_\sigma(t)=-\int_{\Omega_+}u\,\nabla a\cdot\lambda\,\dd x\dd y,
+  \]
+  该项符号不定，不能由 \(\sx',\sy'\ge0\) 控制。若耗散 \(D_0\) 同时控制
+  \(\|u\|\) 与 \(\|\lambda\|\)，且
+  \(\|\nabla a\|_{L^\infty}^2<4m_um_\lambda\)，则可得到条件单调性。新 PDF 的
+  port 模型有干净的正能量耗散恒等式，但平面界面 Laplace--Fourier 阻抗测试显示它
+  一般不是 perfectly matched layer。因此它可作为 stable absorbing layer 或数值稳定性
+  工具，不能替代最终的 strict PML 定理。
+  \end{abstract}
+  
+  \tableofcontents
+  
+  \section{结论审查}
+  
+  本轮问题的最终目标仍是为二维 Maxwell--Debye--PML 构造正定能量泛函并证明
+  \[
+  \frac{\dd}{\dd t}\Ecal(t)+\Dcal(t)\le0,\qquad \Dcal(t)\ge0,
+  \]
+  同时不能牺牲 perfectly matched 性质。必须区分三个模型。
+  
+  \begin{enumerate}
+  \item \textbf{strict stretched-coordinate Maxwell--Debye PML。}
+  频域只替换空间导数
+  \[
+  \partial_i\mapsto S_i^{-1}\partial_i,\qquad S_i(s)=1+\frac{\sigma_i}{s},
+  \]
+  并保持物理 Debye law
+  \[
+  (1+\tau s)\widehat P=\kappa\widehat E.
+  \]
+  这是前一阶段推荐的最终 PML 主线。
+  \item \textbf{Baffet primitive 形式。}
+  令 \(E=u_t\)、\(q_t=P\)、\(q+\tau P=\kappa u\)，并引入
+  \(\lambda=\nabla u+\phi\)。常系数时它与 strict stretched-coordinate PML 等价，
+  且有非增能量。
+  \item \textbf{port/weighted field 模型。}
+  它有自然端口能量，对非负变系数阻尼无 \(\nabla\sigma\) 余项；但它不是一般斜入射
+  perfectly matched 的模型。
+  \end{enumerate}
+  
+  因此，新 PDF 的状态是：
+  \begin{itemize}
+  \item 它没有完成最终目标所需的无条件变系数 strict PML 单调能量。
+  \item 它给出了 strict stretched-coordinate Baffet 能量的正确变量系数障碍
+  \(R_\sigma\)，以及小梯度吸收的可写定理形式。
+  \item 它给出的 port 模型是单调稳定吸收层；除特殊法向入射或非物理的频率/波数依赖
+  \(\sigma_E\) 外，一般不是 perfectly matched。
+  \item 因此 port 模型可用于数值稳定性设计，但 final PML theorem 仍应沿
+  stretched-coordinate/Baffet primitive 主线处理 \(R_\sigma\)。
+  \end{itemize}
+  
+  \section{Strict Baffet--Debye primitive 系统}
+  
+  设
+  \[
+  a(x,y)=\sx(x)+\sy(y),\qquad b(x,y)=\sx(x)\sy(y),
+  \]
+  \[
+  \Gamma_1=\diag(\sx,\sy),\qquad
+  \Gamma_2=\diag(\sy-\sx,\sx-\sy).
+  \]
+  在 \(\Omega_+=\{a>0\}\) 上，Baffet--Debye primitive 方程写作
+  \begin{align}
+  \mu\{\eps(u_{tt}+a u_t+b u)+P_t+aP+bq\}-\nabla\cdot\lambda&=0,
+  \label{eq:baffet-main}\\
+  \phi_t+\Gamma_1\phi&=\Gamma_2\nabla u,\label{eq:baffet-phi}\\
+  \tau P_t+P&=\kappa u_t,\qquad q_t=P,\qquad q+\tau P=\kappa u.
+  \label{eq:baffet-debye}
+  \end{align}
+  常系数时，\eqref{eq:baffet-phi} 在 Laplace 域给出
+  \[
+  \widehat\lambda_x=\frac{S_y}{S_x}\partial_x\widehat u,\qquad
+  \widehat\lambda_y=\frac{S_x}{S_y}\partial_y\widehat u,
+  \]
+  而 Debye 兼容性给出
+  \[
+  \widehat P=\frac{\kappa s}{1+\tau s}\widehat u,\qquad \widehat q=\frac1s\widehat P.
+  \]
+  于是 \eqref{eq:baffet-main} 等价于从 strict stretched-coordinate
+  Maxwell--Debye PML 消去磁场后的二阶方程。这个等价性是匹配性的来源；port 模型没有
+  这个等价结构。
+  
+  \section{变系数 Baffet 能量逐式推导}
+  
+  定义
+  \[
+  W=u_t+a u.
+  \]
+  由于 \(a\) 与时间无关，
+  \[
+  \nabla W=\nabla u_t+a\nabla u+u\nabla a.
+  \]
+  这正是变量系数推导与常系数推导分叉的唯一内部位置。
+  
+  令
+  \[
+  \alpha=1+2a\tau,\qquad \beta=a+b\tau,\qquad
+  \gamma=a^2+b(1+a\tau).
+  \]
+  Baffet--Debye 能量为
+  \begin{equation}
+  \begin{aligned}
+  \Ecal_B(t)=\frac12\int_{\Omega_+}\{&
+  \mu\eps W^2+|\lambda|^2+\phi^T a^{-1}\Gamma_1\phi+\mu\eps b u^2\\
+  &+\frac{\mu}{\kappa}(\alpha P^2+2\beta Pq+\gamma q^2)\}\dd x\dd y.
+  \end{aligned}
+  \label{eq:EB}
+  \end{equation}
+  
+  \subsection{主方程乘子恒等式}
+  
+  用 \(W\) 乘 \eqref{eq:baffet-main}，利用
+  \[
+  (u_{tt}+a u_t+b u)W=(W_t+b u)W,
+  \]
+  得到
+  \[
+  \begin{aligned}
+  &\frac12\frac{\dd}{\dd t}\int_{\Omega_+}\mu\eps(W^2+b u^2)\dd x\dd y
+  +\int_{\Omega_+}\mu\eps a b u^2\dd x\dd y\\
+  &\quad=\int_{\Omega_+}W\nabla\cdot\lambda\dd x\dd y
+  -\mu\int_{\Omega_+}(P_t+aP+bq)W\dd x\dd y .
+  \end{aligned}
+  \]
+  分部积分给出
+  \[
+  \int_{\Omega_+}W\nabla\cdot\lambda
+  =-\int_{\Omega_+}\nabla W\cdot\lambda
+  +\int_{\partial\Omega_+}W\lambda\cdot n\,\dd s.
+  \]
+  
+  \subsection{Baffet 通量恒等式}
+  
+  令 \(\widetilde\Gamma_2=\Gamma_1+\Gamma_2=\diag(\sy,\sx)\)。由
+  \[
+  \lambda_t+\Gamma_1\lambda=\nabla u_t+\widetilde\Gamma_2\nabla u
+  \]
+  和 Baffet 乘子
+  \[
+  g=(I+a^{-1}\Gamma_1)\lambda-a^{-1}\Gamma_1\nabla u
+  \]
+  逐分量得到
+  \[
+  \begin{aligned}
+  &\frac12\frac{\dd}{\dd t}\int_{\Omega_+}
+  \left(|\lambda|^2+\phi^Ta^{-1}\Gamma_1\phi\right)\dd x\dd y\\
+  &\quad+\int_{\Omega_+}\left[
+  |\lambda|^2_{\Gamma_1(I+a^{-1}\Gamma_1)}
+  +\frac{b}{a}|\nabla u|^2
+  \right]\dd x\dd y\\
+  &\quad=\int_{\Omega_+}(\nabla u_t+a\nabla u)\cdot\lambda\dd x\dd y .
+  \end{aligned}
+  \]
+  这里没有对空间变系数权重再分部积分，所以不会产生
+  \(\nabla(a^{-1}\Gamma_1)\)；新的变量系数项只来自 \(\nabla W\)。
+  
+  \subsection{Debye primitive 乘积恒等式}
+  
+  由 \(q_t=P\) 与 \(q+\tau P=\kappa u\)，
+  \[
+  W=u_t+a u=\frac{\tau P_t+(1+a\tau)P+a q}{\kappa}.
+  \]
+  直接展开可得
+  \begin{align}
+  &(P_t+aP+bq)\bigl(\tau P_t+(1+a\tau)P+a q\bigr)\notag\\
+  &\quad =
+  \frac12\partial_t(\alpha P^2+2\beta Pq+\gamma q^2)
+  +\tau P_t^2+\tau(a^2-b)P^2+abq^2.
+  \label{eq:debye-identity}
+  \end{align}
+  SymPy 与 Lean 目标文件均覆盖了 \eqref{eq:debye-identity}。
+  
+  \subsection{变量系数余项}
+  
+  把三部分相加，常系数抵消
+  \[
+  -(\nabla u_t+a\nabla u)\cdot\lambda
+  +(\nabla u_t+a\nabla u)\cdot\lambda=0
+  \]
+  仍然成立，但剩下
+  \[
+  -u\nabla a\cdot\lambda.
+  \]
+  因此
+  \begin{equation}
+  \boxed{
+  \frac{\dd}{\dd t}\Ecal_B(t)=-D_0(t)+R_\sigma(t)+B(t)}
+  \label{eq:variable-identity}
+  \end{equation}
+  其中
+  \[
+  B(t)=\int_{\partial\Omega_+}(u_t+a u)\lambda\cdot n\,\dd s,
+  \]
+  \[
+  \boxed{
+  R_\sigma(t)=-\int_{\Omega_+}u\,\nabla a\cdot\lambda\,\dd x\dd y
+  =-\int_{\Omega_+}u(\sx'(x)\lambda_x+\sy'(y)\lambda_y)\dd x\dd y.}
+  \]
+  理想耗散为
+  \begin{equation}
+  \begin{aligned}
+  D_0(t)=\int_{\Omega_+}\{&
+  |\lambda|^2_{\Gamma_1(I+a^{-1}\Gamma_1)}
+  +\frac{b}{a}|\nabla u|^2+\mu\eps a b u^2\\
+  &+\frac{\mu}{\kappa}[\tau P_t^2+\tau(a^2-b)P^2+abq^2]\}\dd x\dd y.
+  \end{aligned}
+  \label{eq:D0}
+  \end{equation}
+  
+  \section{正定性、非负耗散与失败机制}
+  
+  \subsection{Debye primitive 二次型}
+  
+  \[
+  M_{Pq}=\begin{pmatrix}\alpha&\beta\\ \beta&\gamma\end{pmatrix}.
+  \]
+  其行列式为
+  \[
+  \alpha\gamma-\beta^2
+  =b+ab\tau+2a^3\tau+b(2a^2-b)\tau^2.
+  \]
+  在 \(\sx,\sy\ge0\) 时
+  \[
+  2a^2-b=2\sx^2+3\sx\sy+2\sy^2\ge0,
+  \]
+  故在 \(a>0\)、\(\tau>0\) 且角 PML 中 \(b>0\) 时该块正定。边 PML 中 \(b=0\)
+  时 primitive 变量的若干方向退化，必须单独处理。
+  
+  \subsection{理想耗散非负条件}
+  
+  \[
+  \Gamma_1(I+a^{-1}\Gamma_1)
+  =\diag\left(\sx\left(1+\frac{\sx}{a}\right),
+  \sy\left(1+\frac{\sy}{a}\right)\right)\ge0,
+  \]
+  \[
+  \frac{b}{a}\ge0,\qquad a^2-b=\sx^2+\sx\sy+\sy^2\ge0,\qquad ab\ge0.
+  \]
+  所以在 \(a>0\)、\(\sx,\sy\ge0\)、材料参数正的区域中 \(D_0\ge0\)。若要把
+  \(R_\sigma\) 吸收到 \(D_0\)，还需要 \(D_0\) 对 \(\|u\|\) 与 \(\|\lambda\|\) 有正
+  下界；这通常要求角 PML 中 \(\sx,\sy\) 有正下界。边 PML 或物理区不满足该条件。
+  
+  \subsection{变量系数余项符号不定}
+  
+  即使 \(\sx',\sy'\ge0\)，也不能推出 \(R_\sigma\le0\)。例如在一个开集上
+  \(\sx'>0\)、\(\sy'=0\)。若取 \(u\ge0\) 且 \(\lambda_x<0\)，则
+  \[
+  -u\sx'\lambda_x>0,
+  \]
+  使 \(R_\sigma\) 对能量导数作正贡献；若 \(\lambda_x>0\)，该项才为负。变量
+  \(\lambda\) 是动态未知量，其符号不由阻尼剖面的单调性决定。因此 ``阻尼递增''
+  不是单调能量证明。
+  
+  \section{小梯度吸收定理}
+  
+  设在角 PML 子区域 \(\Omega_c\) 中边界通量非正，并有常数 \(m_u,m_\lambda>0\)
+  使
+  \[
+  D_0(t)\ge m_u\|u\|_{L^2(\Omega_c)}^2
+  +m_\lambda\|\lambda\|_{L^2(\Omega_c)}^2+\hbox{其他非负项}.
+  \]
+  令 \(g=\|\nabla a\|_{L^\infty(\Omega_c)}\)。由 Cauchy--Schwarz，
+  \[
+  |R_\sigma(t)|\le g\|u\|\,\|\lambda\|.
+  \]
+  二维二次型
+  \[
+  -m_u u^2-m_\lambda\lambda^2+g u\lambda
+  \]
+
+[30] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '1,320p' verification/algebra/VariableCoefficientBaffet.lean"
+  status: in_progress
+  exit_code: None
+
+[31] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '1,320p' verification/algebra/VariableCoefficientBaffet.lean"
+  status: completed
+  exit_code: 0
+  /-!
+  Lean/Mathlib algebra targets for the v5 variable-coefficient Baffet-Debye
+  analysis.
+  
+  The local Iteris environment used for this run does not provide a `lean`
+  executable.  This file is still written as a Lean 4/Mathlib artifact for the
+  requested checks; the run log records the actual command failure.
+  -/
+  
+  import Mathlib
+  
+  section RationalIdentities
+  
+  theorem debye_primitive_product_identity
+      (sigma_x sigma_y tau Pt P q : ℚ) :
+      let a := sigma_x + sigma_y
+      let b := sigma_x * sigma_y
+      let alpha := 1 + 2 * a * tau
+      let beta := a + b * tau
+      let gamma := a^2 + b * (1 + a * tau)
+      (Pt + a * P + b * q) * (tau * Pt + (1 + a * tau) * P + a * q)
+        =
+      (Pt * (alpha * P + beta * q) + beta * P^2 + gamma * P * q)
+        + tau * Pt^2 + tau * (a^2 - b) * P^2 + a * b * q^2 := by
+    ring_nf
+  
+  theorem pq_determinant_identity
+      (sigma_x sigma_y tau : ℚ) :
+      let a := sigma_x + sigma_y
+      let b := sigma_x * sigma_y
+      let alpha := 1 + 2 * a * tau
+      let beta := a + b * tau
+      let gamma := a^2 + b * (1 + a * tau)
+      alpha * gamma - beta^2
+        =
+      b + a * b * tau + 2 * a^3 * tau + b * (2 * a^2 - b) * tau^2 := by
+    ring_nf
+  
+  theorem two_a_sq_sub_b_expansion
+      (sigma_x sigma_y : ℚ) :
+      let a := sigma_x + sigma_y
+      let b := sigma_x * sigma_y
+      2 * a^2 - b = 2 * sigma_x^2 + 3 * sigma_x * sigma_y + 2 * sigma_y^2 := by
+    ring_nf
+  
+  theorem grad_multiplier_component_identity
+      (u_tx a a_x u u_x : ℚ) :
+      u_tx + (a_x * u + a * u_x) = u_tx + a * u_x + u * a_x := by
+    ring
+  
+  end RationalIdentities
+  
+  section RealAbsorption
+  
+  theorem absorption_sum_of_squares_identity
+      (m_u m_lambda g u lambda : ℝ) :
+      4 * m_u * (m_u * u^2 + m_lambda * lambda^2 - g * u * lambda)
+        =
+      (2 * m_u * u - g * lambda)^2
+        + (4 * m_u * m_lambda - g^2) * lambda^2 := by
+    ring
+  
+  theorem absorption_quadratic_nonpos
+      {m_u m_lambda g u lambda : ℝ}
+      (hm_u : 0 < m_u)
+      (hm_lambda : 0 ≤ m_lambda)
+      (hg : g^2 ≤ 4 * m_u * m_lambda) :
+      -m_u * u^2 - m_lambda * lambda^2 + g * u * lambda ≤ 0 := by
+    have hcoef : 0 ≤ 4 * m_u * m_lambda - g^2 := by
+      nlinarith
+    have hsos : 0 ≤
+        (2 * m_u * u - g * lambda)^2
+          + (4 * m_u * m_lambda - g^2) * lambda^2 := by
+      have h1 : 0 ≤ (2 * m_u * u - g * lambda)^2 := sq_nonneg _
+      have h2 : 0 ≤ (4 * m_u * m_lambda - g^2) * lambda^2 :=
+        mul_nonneg hcoef (sq_nonneg lambda)
+      nlinarith
+    have hid :
+        4 * m_u * (m_u * u^2 + m_lambda * lambda^2 - g * u * lambda)
+          =
+        (2 * m_u * u - g * lambda)^2
+          + (4 * m_u * m_lambda - g^2) * lambda^2 := by
+      ring
+    have hmul : 0 ≤
+        4 * m_u * (m_u * u^2 + m_lambda * lambda^2 - g * u * lambda) := by
+      rw [hid]
+      exact hsos
+    have hpos : 0 < 4 * m_u := by
+      nlinarith
+    have hnonneg :
+        0 ≤ m_u * u^2 + m_lambda * lambda^2 - g * u * lambda :=
+      nonneg_of_mul_nonneg_left hmul hpos
+    nlinarith
+  
+  end RealAbsorption
+
+[32] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '1,320p' verification/algebra/variable_coefficient_baffet_sympy.py"
+  status: in_progress
+  exit_code: None
+
+[33] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '1,320p' verification/algebra/variable_coefficient_baffet_sympy.py"
+  status: completed
+  exit_code: 0
+  #!/usr/bin/env python3
+  """Symbolic checks for the variable-coefficient Baffet-Debye analysis.
+  
+  The script verifies the algebra used in the v5 report:
+  
+  * Debye primitive multiplier identity and P,q determinant.
+  * 2 a^2 - b expansion for a = sigma_x + sigma_y, b = sigma_x sigma_y.
+  * Variable-coefficient multiplier gradient term.
+  * Small-gradient absorption Schur complement.
+  * Port-model Maxwell cross-term cancellation.
+  * Port-model Laplace-Fourier admittance mismatch.
+  """
+  
+  from __future__ import annotations
+  
+  import sympy as sp
+  
+  
+  def reduced(expr: sp.Expr) -> sp.Expr:
+      return sp.factor(sp.cancel(sp.together(sp.expand(expr))))
+  
+  
+  def check_zero(name: str, expr: sp.Expr) -> None:
+      value = reduced(expr)
+      print(f"{name}: {value}")
+      assert value == 0, name
+  
+  
+  def check_equal(name: str, lhs: sp.Expr, rhs: sp.Expr) -> None:
+      check_zero(name, lhs - rhs)
+  
+  
+  sx, sy, tau = sp.symbols("sigma_x sigma_y tau", positive=True)
+  Pt, P, q = sp.symbols("P_t P q")
+  
+  a = sx + sy
+  b = sx * sy
+  alpha = 1 + 2 * a * tau
+  beta = a + b * tau
+  gamma = a**2 + b * (1 + a * tau)
+  
+  print("=== Debye primitive algebra ===")
+  lhs = (Pt + a * P + b * q) * (tau * Pt + (1 + a * tau) * P + a * q)
+  energy_derivative_part = Pt * (alpha * P + beta * q) + beta * P**2 + gamma * P * q
+  rhs = (
+      energy_derivative_part
+      + tau * Pt**2
+      + tau * (a**2 - b) * P**2
+      + a * b * q**2
+  )
+  check_equal("Debye primitive product identity", lhs, rhs)
+  
+  det_pq = alpha * gamma - beta**2
+  det_sum = b + a * b * tau + 2 * a**3 * tau + b * (2 * a**2 - b) * tau**2
+  check_equal("P,q determinant identity", det_pq, det_sum)
+  check_equal(
+      "2*a^2-b nonnegative expansion",
+      2 * a**2 - b,
+      2 * sx**2 + 3 * sx * sy + 2 * sy**2,
+  )
+  print(f"a^2-b = {sp.expand(a**2 - b)}")
+  
+  print("\n=== Variable-coefficient multiplier term ===")
+  utx, u, ux, ax = sp.symbols("u_tx u u_x a_x")
+  check_equal(
+      "component product-rule expansion for grad(u_t+a*u)",
+      utx + ax * u + a * ux,
+      utx + a * ux + u * ax,
+  )
+  
+  print("\n=== Small-gradient absorption Schur complement ===")
+  m_u, m_lam, g, lam = sp.symbols("m_u m_lambda g lambda", positive=True)
+  positive_form = m_u * u**2 + m_lam * lam**2 - g * u * lam
+  sos_rhs = (2 * m_u * u - g * lam) ** 2 + (4 * m_u * m_lam - g**2) * lam**2
+  check_equal(
+      "absorption sum-of-squares identity",
+      4 * m_u * positive_form,
+      sos_rhs,
+  )
+  schur_condition = sp.factor(m_u * m_lam - (g / 2) ** 2)
+  print(f"Schur complement m_u*m_lambda-(g/2)^2 = {schur_condition}")
+  print("Thus g^2 <= 4*m_u*m_lambda is exactly the 2x2 absorption condition.")
+  
+  print("\n=== Port-model energy cross-term cancellation ===")
+  E, Wx, Wy = sp.symbols("E W_x W_y")
+  Ex, Ey, Wxy, Wyx = sp.symbols("E_x E_y W_x_y W_y_x")
+  maxwell_cross = E * (Wyx - Wxy) - Wx * Ey + Wy * Ex
+  boundary_divergence = Ex * Wy + E * Wyx - Ey * Wx - E * Wxy
+  check_equal(
+      "port Maxwell cross terms equal div(E*W_y, -E*W_x)",
+      maxwell_cross,
+      boundary_divergence,
+  )
+  
+  kappa = sp.symbols("kappa", positive=True)
+  check_equal(
+      "Debye port product identity",
+      ((P + tau * Pt) / kappa) * Pt,
+      (sp.Rational(1, 2) / kappa) * (2 * P * Pt) + tau * Pt**2 / kappa,
+  )
+  
+  print("\n=== Strict stretched-coordinate admittance ===")
+  mu, eps, s, sig, ky, nu0 = sp.symbols(
+      "mu epsilon s sigma k_y nu_0", positive=True
+  )
+  eps_D = eps + kappa / (1 + tau * s)
+  Sx = 1 + sig / s
+  nu_plus = Sx * nu0
+  Y_sc = (nu_plus / Sx) / (mu * s)
+  Y0 = nu0 / (mu * s)
+  check_equal("strict stretched-coordinate admittance", Y_sc, Y0)
+  
+  print("\n=== Port-model Laplace-Fourier mismatch ===")
+  sigma_E = sp.symbols("sigma_E")
+  Y0_sq = eps_D / mu + ky**2 / (mu**2 * s**2)
+  Yport_sq = (s * eps_D + eps * sigma_E) / (mu * (s + sig)) + ky**2 / (
+      mu**2 * s * (s + sig)
+  )
+  port_mismatch = (eps * sigma_E - sig * eps_D) / (mu * (s + sig)) - sig * ky**2 / (
+      mu**2 * s**2 * (s + sig)
+  )
+  check_equal("port squared-admittance mismatch", Yport_sq - Y0_sq, port_mismatch)
+  
+  sigma_E_normal = sig * eps_D / eps
+  check_equal(
+      "port normal-incidence matching with dispersive sigma_E",
+      port_mismatch.subs({sigma_E: sigma_E_normal, ky: 0}),
+      0,
+  )
+  oblique_residual = reduced(port_mismatch.subs({sigma_E: sigma_E_normal}))
+  print(f"oblique residual after normal-incidence sigma_E choice = {oblique_residual}")
+  assert oblique_residual == reduced(-sig * ky**2 / (mu**2 * s**2 * (s + sig)))
+  
+  print("\nAll variable-coefficient Baffet SymPy checks passed.")
+
+[34] item.started:command_execution
+  command: /bin/zsh -lc "rg -n \"Success criteria|What does NOT count|variable-coefficient|variable coefficient|Baffet|v5|task-v5\" .iteris sources results prompts verification -g '*.md' -g '*.tex' -g '*.txt' -g '*.json' -g '*.sh'"
+  status: in_progress
+  exit_code: None
+
+[35] item.completed:command_execution
+  command: /bin/zsh -lc "rg -n \"Success criteria|What does NOT count|variable-coefficient|variable coefficient|Baffet|v5|task-v5\" .iteris sources results prompts verification -g '*.md' -g '*.tex' -g '*.txt' -g '*.json' -g '*.sh'"
+  status: completed
+  exit_code: 0
+  prompts/run_energy_design_v2.sh:21:4. You may consider MPML-type multi-axial damping, CFS-PML-type frequency shifted damping, or Baffet-type time-integrated variables.
+  results/v5_variable_coefficient_baffet/verification_outputs.md:1:# Verification Outputs: V5 Variable-Coefficient Baffet
+  results/v5_variable_coefficient_baffet/verification_outputs.md:30:All variable-coefficient Baffet SymPy checks passed.
+  results/v5_variable_coefficient_baffet/verification_outputs.md:38:lean verification/algebra/VariableCoefficientBaffet.lean
+  results/v5_variable_coefficient_baffet/verification_outputs.md:69:  passed as `verify-20260709T035701313438Z-fact-verify-the-variable-coefficient-baf`.
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:1:# Variable-Coefficient Baffet Next-Step Report
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:5:Terminal artifact: `results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md`
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:9:The v5 goal asks whether the new PDF
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:12:or whether it only gives a conditional variable-coefficient result or a stable
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:14:variable-coefficient Baffet remainder, a separate port-layer matching test,
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:21:For the strict stretched-coordinate Baffet--Debye model, the variable damping
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:45:| `fact:2d_maxwell_pml_energy_functional_exploration:variable-baffet-remainder-small-gradient` | verified | `verification/results/verify-20260709T035701313438Z-fact-verify-the-variable-coefficient-baf.json` |
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:51:   original final target, namely the variable-coefficient strict
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:53:2. The strict Baffet primitive model remains the correct final PML mainline
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:56:3. The variable-coefficient Baffet identity is
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:77:- `verification/algebra/VariableCoefficientBaffet.lean`
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:79:- `results/v5_variable_coefficient_baffet/verification_outputs.md`
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:89:`lean verification/algebra/VariableCoefficientBaffet.lean` was attempted and
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:101:The previously verified constant-coefficient Baffet fact establishes the strict
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:102:stretched-coordinate/Baffet primitive model as the matched constant-coefficient
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:103:baseline. The new variable-coefficient audit adds two conclusions:
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:105:First, the same Baffet energy acquires the exact remainder
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:113:Therefore the next manuscript theorem should state variable-coefficient
+  prompts/run_energy_design_v4_new_functional.sh:55:- references/ 目录中的相关 PDF，尤其是 Joly、Baffet、Becache、Huang、
+  prompts/run_energy_design_v4_new_functional.sh:164:交叉项和加权项的候选泛函，甚至可以包含对应变量的导数项，可参考 Baffet
+  prompts/run_energy_design_v4_new_functional.sh:204:3. Baffet 型或时间积分变量型增广能量；
+  verification/results/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi.json:18:    "results/v5_variable_coefficient_baffet/verification_outputs.md"
+  verification/results/verify-20260620T071026348925Z-goal_success-read-.iteris-goal_prompt.tx.json:6:  "claim": "Read .iteris/goal_prompt.txt and execute the stage-3 Iteris goal: verify whether the v2 covariantly damped Maxwell-Debye model is perfectly matched; if not, identify the exact mismatch; propose repaired PML models close to stretched-coordinate/Berenger/CFS/MPML/Baffet constructions; derive energy identities or formula-level obstructions; address the old eight-variable model and fractional status; include a literature reading record; and write results/energy_design_v3_perfect_matching_report.md with verified facts, assembly, and required conclusions.",
+  verification/results/verify-20260620T071026348925Z-goal_success-read-.iteris-goal_prompt.tx.json:10:  "summary": "Scope adequacy check: the source stage-3 goal is not just to find any stable absorbing model or a boundary-case calculation. After testing v2, if v2 is not perfectly matched, the goal requires a repaired standard/Berenger/CFS/MPML/Baffet-type Maxwell-Debye PML and, for the accepted or repaired model in the intended 2D regime, either a genuinely dissipative energy identity/inequality with positivity, boundary terms, and nullspace/no-growth classification, or a formula-level obstruction showing why such an energy cannot exist. The terminal report correctly supports the v2 admittance mismatch and the planar-interface perfect matching of a standard stretched-coordinate repair, and it gives verified energy identities for v2 and for the repaired model only in a 1D normal-incidence block. However, the report explicitly states that the full 2D exact stretched-coordinate/ADE PML monotone energy remains unclosed. The sign-indefinite naive-energy couplings only show the naive physical energy fails; they do not prove no augmented/passive-memory energy can exist. The whole-domain strict-decay nullspace only rules out strict decay for every nonzero state, not the non-increasing dissipative identity with characterized nullspace that the goal would accept. Thus the artifact is a strong partial report, but it does not satisfy goal_success for the original stage-3 goal.",
+  verification/results/verify-20260620T071026348925Z-goal_success-read-.iteris-goal_prompt.tx.json:23:      "issue": "The report does not give the alternative required formula-level nonexistence obstruction. Sign-indefinite terms in the naive energy do not rule out Baffet/passive-memory augmented energies, and the stationary magnetic nullspace only rules out strict decay for all nonzero whole-domain states, not a dissipative identity with a characterized nullspace."
+  verification/results/verify-20260620T071026348925Z-goal_success-read-.iteris-goal_prompt.tx.json:44:    "references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt",
+  sources/energy_functional_problem.tex:111:The parameters \(\epsilon_0,\epsilon_\infty,\epsilon_s,\mu,\tau\) are positive, and \(\chi>0\) when \(\epsilon_s>\epsilon_\infty\).  The absorption parameters are time-independent and nonnegative.  The first serious cases to analyze are constant \(\sx,\sy\), then separated variable coefficients \(\sx(x),\sy(y)\), and only then general \(\sx(x,y),\sy(x,y)\).
+  sources/energy_functional_problem.tex:233:\section{Baffet-Type Energy Design Clue}
+  sources/energy_functional_problem.tex:235:Baffet--Grote--Imperiale--Kachanovska proved monotone energy decay for a second-order wave-equation PML with constant damping coefficients\cite{baffetGroteImperialeKachanovska2019}.  Their main lesson is methodological: do not start from the naive energy alone.  In two dimensions they introduce
+  sources/energy_functional_problem.tex:249:\begin{task}[Translate the Baffet idea to \eqref{eq:main-model}]
+  verification/results/verify-20260620T073403963252Z-assembly-updated-stage-3-terminal-report.json:6:  "claim": "Updated stage-3 terminal report results/energy_design_v3_perfect_matching_report.md assembles verified facts to answer the perfect-matching and energy-design goal, including v2 mismatch, standard stretched-coordinate matching, naive ADE energy gap, verified Baffet-primitive full 2D constant-coefficient dissipative energy, old-model relation, fractional status, and literature record.",
+  verification/results/verify-20260620T073403963252Z-assembly-updated-stage-3-terminal-report.json:10:  "summary": "Correct as an assembly. The updated terminal report uses verified facts within their stated scopes: the v2 covariantly damped Maxwell-Debye layer is dissipative but not perfectly matched at the planar constant x-interface; the standard stretched-coordinate Maxwell-Debye model preserves the physical Debye law and gives planar-interface admittance matching; the naive ADE physical energy has sign-indefinite memory terms; the added Baffet-primitive formulation is Laplace-equivalent to the standard stretched-coordinate model and supplies a full 2D constant-coefficient non-increasing energy identity with nonnegative dissipation up to boundary flux; and strict whole-domain decay is correctly weakened by the verified stationary magnetic/nullspace obstruction. The old-model obstruction, fractional status, and literature record are used as context or scoped classifications, not as unsupported theorem claims. The report also keeps variable damping profiles as future work and does not derive them from the constant-coefficient theorem.",
+  verification/results/verify-20260620T073403963252Z-assembly-updated-stage-3-terminal-report.json:13:  "repair_hints": "No repair needed. Maintain the current scope: the Baffet-Debye energy theorem is verified for constant coefficients and for boundary/transmission situations where the stated flux term is zero or nonpositive; variable damping profiles require a separate theorem.",
+  verification/results/verify-20260620T073403963252Z-assembly-updated-stage-3-terminal-report.json:38:    "references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt",
+  prompts/run_energy_design_v5_variable_coefficient_baffet.sh:19:mkdir -p tex results/v5_variable_coefficient_baffet verification/algebra
+  prompts/run_energy_design_v5_variable_coefficient_baffet.sh:41:本轮不是重新泛泛设计模型，而是围绕新 PDF 的变量系数 Baffet 能量结果做严格审查、
+  prompts/run_energy_design_v5_variable_coefficient_baffet.sh:52:8. references/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.pdf
+  prompts/run_energy_design_v5_variable_coefficient_baffet.sh:60:- 常系数 Baffet--Debye primitive 模型有非增耗散能量；
+  prompts/run_energy_design_v5_variable_coefficient_baffet.sh:73:2. Baffet primitive 变量满足
+  prompts/run_energy_design_v5_variable_coefficient_baffet.sh:81:3. 变量系数 Baffet 能量导数中出现余项
+  prompts/run_energy_design_v5_variable_coefficient_baffet.sh:133:- 变量系数 Baffet 能量的 \(R_\sigma\) 是否可以通过额外条件吸收？条件是否合理？
+  prompts/run_energy_design_v5_variable_coefficient_baffet.sh:135:B. 变量系数 Baffet 能量的公式核查
+  prompts/run_energy_design_v5_variable_coefficient_baffet.sh:139:3. Baffet 通量恒等式；
+  prompts/run_energy_design_v5_variable_coefficient_baffet.sh:165:- verification/algebra/VariableCoefficientBaffet.lean
+  prompts/run_energy_design_v5_variable_coefficient_baffet.sh:207:- lean verification/algebra/VariableCoefficientBaffet.lean
+  prompts/run_energy_design_v5_variable_coefficient_baffet.sh:214:1. results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md
+  prompts/run_energy_design_v5_variable_coefficient_baffet.sh:218:5. verification/algebra/VariableCoefficientBaffet.lean
+  prompts/run_energy_design_v5_variable_coefficient_baffet.sh:220:7. results/v5_variable_coefficient_baffet/verification_outputs.md
+  prompts/run_energy_design_v5_variable_coefficient_baffet.sh:224:- 变量系数 Baffet 能量的完整推导；
+  prompts/run_energy_design_v5_variable_coefficient_baffet.sh:234:2. 如果新 PDF 的 port 模型单调但不 perfect matching
+  ...[truncated 165453 chars; see raw codex.events.jsonl]
+
+[36] item.completed:agent_message
+  The TeX derivation shows the same exact split: constant-coefficient cancellations remain, and the only new internal term is the product-rule remainder from `nabla(u_t + a u)`. I’m checking the remaining sections and rerunning the executable algebra check so the verification output is not taken on trust.
+
+[37] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '321,760p' tex/variable_coefficient_baffet_energy_analysis.tex"
+  status: in_progress
+  exit_code: None
+
+[38] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '321,760p' tex/variable_coefficient_baffet_energy_analysis.tex"
+  status: completed
+  exit_code: 0
+  半负定当且仅当
+  \[
+  g^2\le4m_um_\lambda.
+  \]
+  更强地，若
+  \begin{equation}
+  \boxed{\|\nabla a\|_{L^\infty(\Omega_c)}^2<4m_um_\lambda,}
+  \label{eq:small-gradient}
+  \end{equation}
+  取
+  \[
+  \theta=1-\frac{\|\nabla a\|_{L^\infty}}{2\sqrt{m_um_\lambda}}>0,
+  \]
+  则
+  \[
+  |R_\sigma(t)|\le(1-\theta)D_0(t),
+  \]
+  从而由 \eqref{eq:variable-identity} 得
+  \[
+  \boxed{\frac{\dd}{\dd t}\Ecal_B(t)+\theta D_0(t)\le0.}
+  \]
+  这是可写入论文的变量系数 stretched-coordinate theorem，但它是有条件结论：
+  需要角 PML 正下界、耗散控制 \(u,\lambda\)、小梯度和非正通量。若缺少这些条件，只能得
+  \[
+  \Ecal_B'(t)\le C_\sigma\Ecal_B(t),
+  \]
+  即 Gronwall 有界性，不是单调下降。
+  
+  \section{Port 模型能量与匹配性分离验证}
+  
+  新 PDF 的 port 模型为
+  \begin{align}
+  \eps E_t+P_t+\eps\sigma_E E&=\partial_xW_y-\partial_yW_x,\label{eq:port-E}\\
+  \mu W_{x,t}+\mu\sy W_x&=-\partial_yE,\label{eq:port-Wx}\\
+  \mu W_{y,t}+\mu\sx W_y&=\partial_xE,\label{eq:port-Wy}\\
+  \tau P_t+P&=\kappa E.\label{eq:port-P}
+  \end{align}
+  若 \(\sx=\sy=\sigma_E=0\)，并识别 \(W_x=H_x,W_y=H_y\)，则
+  \eqref{eq:port-E}--\eqref{eq:port-P} 退化为物理 Maxwell--Debye 系统。
+  
+  \subsection{端口能量}
+  
+  定义
+  \[
+  \Ecal_{\rm port}(t)=\frac12\int_\Omega
+  \left(\eps E^2+\mu W_x^2+\mu W_y^2+\kappa^{-1}P^2\right)\dd x\dd y.
+  \]
+  将 \eqref{eq:port-E}--\eqref{eq:port-Wy} 分别乘以 \(E,W_x,W_y\)，空间项满足
+  \[
+  E(\partial_xW_y-\partial_yW_x)-W_x\partial_yE+W_y\partial_xE
+  =\partial_x(EW_y)-\partial_y(EW_x).
+  \]
+  并且
+  \[
+  EP_t=\frac1{2\kappa}\partial_t(P^2)+\frac{\tau}{\kappa}P_t^2.
+  \]
+  因此
+  \[
+  \boxed{
+  \frac{\dd}{\dd t}\Ecal_{\rm port}(t)
+  +\int_\Omega\left(
+  \eps\sigma_EE^2+\mu\sy W_x^2+\mu\sx W_y^2+\frac{\tau}{\kappa}P_t^2
+  \right)\dd x\dd y
+  =\int_{\partial\Omega}E(W_y n_x-W_xn_y)\dd s.}
+  \]
+  在 PEC、周期或非正端口通量边界下，这是无条件单调能量。
+  
+  \subsection{平面界面阻抗测试}
+  
+  考虑 \(x\)-PML，
+  \[
+  \sx=\sigma>0,\qquad \sy=0,
+  \]
+  并取 Laplace--Fourier 模态 \(e^{st+ik_y y+\nu x}\)、\(\Re s>0\)。物理介质中
+  \[
+  \eps_D(s)=\eps+\frac{\kappa}{1+\tau s},\qquad
+  Y_0=\frac{H_y}{E}=\frac{\nu_0}{\mu s},\qquad
+  \nu_0^2=k_y^2+\mu s^2\eps_D(s).
+  \]
+  Port 模型的代数系统为
+  \[
+  (s\eps_D(s)+\eps\sigma_E)E=\nu W_y-ik_yW_x,
+  \]
+  \[
+  \mu sW_x=-ik_yE,\qquad \mu(s+\sigma)W_y=\nu E.
+  \]
+  故
+  \[
+  \frac{W_y}{E}=\frac{\nu}{\mu(s+\sigma)}
+  \]
+  且
+  \[
+  Y_{\rm port}^2
+  =\frac{s\eps_D(s)+\eps\sigma_E}{\mu(s+\sigma)}
+  +\frac{k_y^2}{\mu^2s(s+\sigma)}.
+  \]
+  与
+  \[
+  Y_0^2=\frac{\eps_D(s)}{\mu}+\frac{k_y^2}{\mu^2s^2}
+  \]
+  相减得
+  \begin{equation}
+  \boxed{
+  Y_{\rm port}^2-Y_0^2
+  =\frac{\eps\sigma_E-\sigma\eps_D(s)}{\mu(s+\sigma)}
+  -\frac{\sigma k_y^2}{\mu^2s^2(s+\sigma)}.}
+  \label{eq:port-mismatch}
+  \end{equation}
+  反射系数为
+  \[
+  R_{\rm port}=\frac{Y_0-Y_{\rm port}}{Y_0+Y_{\rm port}}.
+  \]
+  若要 \eqref{eq:port-mismatch} 对所有 \(k_y\) 为零，第二项强迫
+  \(\sigma k_y^2=0\)。因此只要 \(\sigma>0\) 且存在斜入射 \(k_y\ne0\)，
+  port 模型一般不 perfectly matched。
+  
+  法向入射 \(k_y=0\) 时，可令
+  \[
+  \sigma_E(s)=\sigma\frac{\eps_D(s)}{\eps}
+  \]
+  使 \(Y_{\rm port}=Y_0\)。但该选择通常是频率依赖的 Debye 卷积阻尼；并且即使用它，
+  斜入射残差仍为
+  \[
+  -\frac{\sigma k_y^2}{\mu^2s^2(s+\sigma)}.
+  \]
+  所以 port 模型应称为 stable absorbing layer，而不是 strict PML。
+  
+  \section{形式化验证结果}
+  
+  本轮创建了
+  \[
+  \texttt{verification/algebra/VariableCoefficientBaffet.lean}
+  \]
+  和
+  \[
+  \texttt{verification/algebra/variable\_coefficient\_baffet\_sympy.py}.
+  \]
+  SymPy 检查覆盖 Debye primitive 恒等式、\(P,q\) 行列式、
+  \(2a^2-b\) 展开、变量乘子梯度项、小梯度 Schur 补、port 能量交叉项抵消、strict
+  stretched-coordinate admittance，以及 port 模型阻抗失配公式。命令
+  \[
+  \texttt{python3 verification/algebra/variable\_coefficient\_baffet\_sympy.py}
+  \]
+  已通过。
+  
+  Lean 文件覆盖同一组核心代数中的五个 Lean 目标：Debye primitive 乘积、\(P,q\)
+  行列式、\(2a^2-b\) 展开、变量系数乘子的一维 product-rule 版本、以及
+  \[
+  -m_u u^2-m_\lambda\lambda^2+g u\lambda\le0
+  \]
+  的吸收判据。本机实际运行
+  \[
+  \texttt{lean verification/algebra/VariableCoefficientBaffet.lean}
+  \]
+  失败，原因是当前环境没有 \(\texttt{lean}\) 可执行文件：
+  \[
+  \texttt{zsh:1: command not found: lean}.
+  \]
+  
+  \section{下一步论文 theorem 推荐形式}
+  
+  建议把论文主线拆成三个定理，避免把 Gronwall 或 port 稳定性误写成 strict PML
+  单调能量。
+  
+  \begin{theorem}[平面界面 perfect matching]
+  对 strict stretched-coordinate Maxwell--Debye PML，保持
+  \((1+\tau s)\widehat P=\kappa\widehat E\) 并只拉伸空间导数，则常系数平面界面满足
+  \(\nu_+=S_x\nu_0\)、\(Y_+=Y_0\)，故 \(R=0\)。
+  \end{theorem}
+  
+  \begin{theorem}[变系数 Baffet 小梯度单调性]
+  在角 PML 区域 \(\Omega_c\) 中，若 \(\sx,\sy\) 有正下界、边界通量非正、
+  \(D_0\ge m_u\|u\|^2+m_\lambda\|\lambda\|^2+\cdots\)，且
+  \(\|\nabla a\|_{L^\infty}^2<4m_um_\lambda\)，则 \eqref{eq:EB} 满足
+  \[
+  \frac{\dd}{\dd t}\Ecal_B(t)+\theta D_0(t)\le0,\qquad \theta>0.
+  \]
+  若没有小梯度条件，不应声称单调下降。
+  \end{theorem}
+  
+  \begin{theorem}[Port absorbing layer]
+  Port 模型 \eqref{eq:port-E}--\eqref{eq:port-P} 对任意非负
+  \(\sx,\sy,\sigma_E\) 有正的端口能量耗散恒等式。但由
+  \eqref{eq:port-mismatch}，它对斜入射一般 \(R_{\rm port}\ne0\)，因此是 stable
+  absorbing layer，不是 strict PML。
+  \end{theorem}
+  
+  \end{document}
+
+[39] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '1,280p' prompts/run_energy_design_v5_variable_coefficient_baffet.sh"
+  status: in_progress
+  exit_code: None
+
+[40] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '1,280p' prompts/run_energy_design_v5_variable_coefficient_baffet.sh"
+  status: completed
+  exit_code: 0
+  #!/usr/bin/env bash
+  set -euo pipefail
+  
+  PROJECT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+  cd "$PROJECT_DIR"
+  
+  for required_dir in sources references results verification/algebra; do
+    if [ ! -d "$required_dir" ]; then
+      echo "Error: expected $required_dir/ directory in $PROJECT_DIR" >&2
+      exit 1
+    fi
+  done
+  
+  if [ ! -f references/variable_coefficient_baffet_energy.pdf ]; then
+    echo "Error: missing references/variable_coefficient_baffet_energy.pdf" >&2
+    exit 1
+  fi
+  
+  mkdir -p tex results/v5_variable_coefficient_baffet verification/algebra
+  
+  GOAL_FILE="$(mktemp)"
+  trap 'rm -f "$GOAL_FILE"' EXIT
+  
+  cat > "$GOAL_FILE" <<'EOF'
+  第五阶段目标：基于新加入的
+  references/variable_coefficient_baffet_energy.pdf
+  继续推进二维 Maxwell--Debye--PML 的单调下降能量泛函构造。
+  
+  请牢记最终目标：
+  构造一个适用于二维 PML 系统的正定能量泛函，使其满足
+  \[
+  \frac{d}{dt}\mathcal E(t)\le 0
+  \]
+  或更强的
+  \[
+  \frac{d}{dt}\mathcal E(t)+\mathcal D(t)\le 0,\qquad \mathcal D(t)\ge0.
+  \]
+  如果只能得到 Gronwall 有界性、局部小梯度条件下的耗散，或某个替代模型的端口耗散，
+  必须明确说明它和最终目标之间的差距。
+  
+  本轮不是重新泛泛设计模型，而是围绕新 PDF 的变量系数 Baffet 能量结果做严格审查、
+  修正和形式化验证。
+  
+  必须读取的材料：
+  1. references/variable_coefficient_baffet_energy.pdf
+  2. results/energy_design_v3_perfect_matching_report.md
+  3. results/new_energy_functional_2d_debye_pml_report.md
+  4. tex/new_energy_functional_2d_debye_pml.tex，如果存在；
+  5. results/v3_v4_tex/new_energy_functional_2d_debye_pml.tex，如果存在；
+  6. verification/algebra/NewEnergyFunctional.lean
+  7. verification/algebra/new_energy_functional_sympy.py
+  8. references/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.pdf
+  9. references/Joly - 2012 - An elementary introduction to the construction and the analysis of perfectly matched layers for time.pdf
+  10. references/Bécache 等 - 2023 - Convergence analysis of time-domain PMLS for 2D electromagnetic wave propagation in dispersive waveg.pdf
+  
+  核心背景：
+  第三、四阶段已经得到：
+  - v2 covariantly damped Maxwell--Debye layer 有单调能量，但不是 perfectly matched；
+  - 标准 stretched-coordinate Maxwell--Debye PML 保持 perfect matching；
+  - 常系数 Baffet--Debye primitive 模型有非增耗散能量；
+  - 全域严格指数衰减存在零空间障碍，不能轻易声称。
+  
+  新 PDF 似乎给出以下变量系数结论，请核实而不是直接相信：
+  1. 令
+     \[
+     a(x,y)=\sigma_x(x)+\sigma_y(y),\qquad
+     b(x,y)=\sigma_x(x)\sigma_y(y),
+     \]
+     \[
+     \Gamma_1=\operatorname{diag}(\sigma_x,\sigma_y),\qquad
+     \Gamma_2=\operatorname{diag}(\sigma_y-\sigma_x,\sigma_x-\sigma_y).
+     \]
+  2. Baffet primitive 变量满足
+     \[
+     E=u_t,\qquad q_t=P,\qquad q+\tau P=\kappa u,
+     \]
+     \[
+     \lambda=\nabla u+\phi,\qquad
+     \phi_t+\Gamma_1\phi=\Gamma_2\nabla u.
+     \]
+  3. 变量系数 Baffet 能量导数中出现余项
+     \[
+     R_\sigma(t)
+     =
+     -\int_{\Omega_+}u\,\nabla a\cdot\lambda\,dxdy
+     =
+     -\int_{\Omega_+}u(\sigma_x'(x)\lambda_x+\sigma_y'(y)\lambda_y)\,dxdy.
+     \]
+  4. 因为 \(\lambda\) 的符号不受 \(\nabla a\) 控制，单调性一般不能从
+     \(\sigma_i'\ge0\) 推出。
+  5. 若 \(D_0\) 能同时控制 \(\|u\|\) 与 \(\|\lambda\|\)，且
+     \(\|\nabla a\|_\infty\) 足够小，可能得到
+     \[
+     \frac{d}{dt}\mathcal E_B(t)+\theta D_0(t)\le0.
+     \]
+  6. 新 PDF 还提出一个 port/weighted field 模型：
+     \[
+     \epsilon E_t+P_t+\epsilon\sigma_E E=\partial_x W_y-\partial_y W_x,
+     \]
+     \[
+     \mu W_{x,t}+\mu\sigma_y W_x=-\partial_y E,\qquad
+     \mu W_{y,t}+\mu\sigma_x W_y=\partial_x E,
+     \]
+     \[
+     \tau P_t+P=\kappa E,
+     \]
+     其自然能量
+     \[
+     \mathcal E_{\rm port}(t)
+     =
+     \frac12\int_\Omega
+     \left(\epsilon E^2+\mu W_x^2+\mu W_y^2+\kappa^{-1}P^2\right)\,dxdy
+     \]
+     满足
+     \[
+     \frac{d}{dt}\mathcal E_{\rm port}(t)
+     +
+     \int_\Omega
+     \left(\epsilon\sigma_EE^2+\mu\sigma_yW_x^2+\mu\sigma_xW_y^2
+     +\frac{\tau}{\kappa}P_t^2\right)\,dxdy
+     =
+     \int_{\partial\Omega}E(W_y n_x-W_x n_y)\,ds.
+     \]
+  
+  本轮必须完成的判断：
+  
+  A. 先判断新 PDF 是否已经“足够好”
+  请给出明确结论：
+  - 是否已经构造出原目标所需的单调下降能量泛函？
+  - 这个单调能量对应的是严格 stretched-coordinate PML，还是一个稳定 absorbing/port layer？
+  - 如果是 port layer，它是否 perfect matching？请做 Laplace--Fourier 平面界面阻抗测试。
+  - 如果不是 perfect matching，是否可以作为数值稳定性工具使用，但不能作为最终 PML 定理？
+  - 变量系数 Baffet 能量的 \(R_\sigma\) 是否可以通过额外条件吸收？条件是否合理？
+  
+  B. 变量系数 Baffet 能量的公式核查
+  必须逐式重推：
+  1. \(W=u_t+a u\)；
+  2. \(\nabla W=\nabla u_t+a\nabla u+u\nabla a\)；
+  3. Baffet 通量恒等式；
+  4. Debye primitive 乘积恒等式；
+  5. 变量系数余项
+     \[
+     R_\sigma=-\int u\nabla a\cdot\lambda;
+     \]
+  6. \(D_0\ge0\) 的条件；
+  7. \(R_\sigma\) 不能由 \(\sigma_i'\ge0\) 保证非正的反例或代数说明；
+  8. 小梯度吸收条件，例如
+     \[
+     \|\nabla a\|_{L^\infty}^2<4m_um_\lambda
+     \]
+     的精确来源。
+  
+  C. Port 模型的匹配性与能量性分开验证
+  对 port 模型必须分别回答：
+  1. 它是否在 \(\sigma_i=0\) 时退化为 Maxwell--Debye？
+  2. 它是否在平面界面上 perfect matching？
+  3. 若取 \(x\)-PML，\(\sigma_x>0,\sigma_y=0\)，请写出 Laplace--Fourier 代数系统；
+  4. 计算 \(E/W_y\) 或 \(W_y/E\) 的界面导纳；
+  5. 求反射系数 \(R\)，判断是否恒为零；
+  6. 若 \(\sigma_E\) 需要特殊选择才能匹配，请给出选择；
+  7. 若无法匹配，则报告必须称它为 stable absorbing layer，而不是 strict PML。
+  
+  D. Lean 与 SymPy 形式化验证
+  本轮必须创建或更新以下文件：
+  - verification/algebra/VariableCoefficientBaffet.lean
+  - verification/algebra/variable_coefficient_baffet_sympy.py
+  
+  Lean 验证至少覆盖：
+  1. Debye primitive 乘积恒等式：
+     \[
+     (P_t+aP+bq)(\tau P_t+(1+a\tau)P+a q)
+     \]
+     展开后等于能量导数项加
+     \[
+     \tau P_t^2+\tau(a^2-b)P^2+abq^2.
+     \]
+  2. \(P,q\) 二次型行列式：
+     \[
+     \alpha\gamma-\beta^2
+     =
+     b+ab\tau+2a^3\tau+b(2a^2-b)\tau^2.
+     \]
+  3. \(2a^2-b\ge0\) 在 \(a=\sigma_x+\sigma_y,b=\sigma_x\sigma_y,\sigma_x,\sigma_y\ge0\) 下成立的代数展开。
+  4. 变量系数余项来源：
+     \[
+     \nabla(u_t+a u)=\nabla u_t+a\nabla u+u\nabla a.
+     \]
+     Lean 可以验证一维或抽象代数版本，例如
+     \[
+     (u_t+a u)_x=u_{tx}+a u_x+u a_x.
+     \]
+  5. 二维二次型吸收判据：
+     对
+     \[
+     -m_u u^2-m_\lambda \lambda^2+g u\lambda
+     \]
+     证明当 \(g^2\le4m_um_\lambda\) 时其非正。
+  
+  SymPy 验证至少覆盖：
+  - 所有 Lean 中的代数恒等式；
+  - port 模型能量导数中的 Maxwell 交叉项抵消；
+  - port 模型 Laplace--Fourier admittance/mismatch 公式；
+  - 小梯度吸收条件的 Schur 补。
+  
+  必须实际运行：
+  - python3 verification/algebra/variable_coefficient_baffet_sympy.py
+  - lean verification/algebra/VariableCoefficientBaffet.lean
+  
+  如果 Lean 因 Mathlib、toolchain 或证明复杂度失败，不要装作成功；请记录命令、输出和失败原因。
+  如果 Lean 成功，请在报告中给出成功输出摘要。
+  
+  E. 输出要求
+  请生成以下文件：
+  1. results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md
+  2. tex/variable_coefficient_baffet_energy_analysis.tex
+  3. tex/variable_coefficient_baffet_energy_analysis.pdf
+  4. tex/variable_coefficient_baffet_energy_analysis_build.log
+  5. verification/algebra/VariableCoefficientBaffet.lean
+  6. verification/algebra/variable_coefficient_baffet_sympy.py
+  7. results/v5_variable_coefficient_baffet/verification_outputs.md
+  
+  中文 TeX 文档必须包含：
+  - 对新 PDF 的结论审查；
+  - 变量系数 Baffet 能量的完整推导；
+  - \(R_\sigma\) 的来源和失败机制；
+  - 小梯度吸收定理；
+  - port 模型的能量恒等式；
+  - port 模型是否 perfect matching 的独立判断；
+  - Lean/SymPy 验证结果；
+  - 下一步论文 theorem 的推荐形式。
+  
+  最终报告必须给出清晰结论：
+  1. 如果新 PDF 已经足够接近最终目标，请说明还需要补哪些 Lean/SymPy 与文字证明即可进入论文。
+  2. 如果新 PDF 的 port 模型单调但不 perfect matching，请明确建议：它可作为稳定 absorbing layer，而 final PML 主线仍应采用 stretched-coordinate/Baffet primitive，并处理 \(R_\sigma\)。
+  3. 如果变量系数 stretched-coordinate Baffet 能量只能在小 \(\|\nabla a\|_\infty\) 下单调，请给出可写成 theorem 的精确假设。
+  4. 不得把“Gronwall 有界”误写成“单调下降”。
+  EOF
+  
+  iteris run . \
+    --goal "$(cat "$GOAL_FILE")" \
+    --target-artifact results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md \
+    --foreground \
+    --new-session
+
+[41] item.started:command_execution
+  command: /bin/zsh -lc 'tail -n 80 tex/variable_coefficient_baffet_energy_analysis_build.log'
+  status: in_progress
+  exit_code: None
+
+[42] item.completed:command_execution
+  command: /bin/zsh -lc 'tail -n 80 tex/variable_coefficient_baffet_energy_analysis_build.log'
+  status: completed
+  exit_code: 0
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsmath/amsmath.sty
+  For additional information on amsmath, use the `?' option.
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsmath/amstext.sty
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsmath/amsgen.sty))
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsmath/amsopn.sty))
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/amssymb.sty
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/amscls/amsthm.sty)
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/tools/bm.sty)
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/mathtools/mathtools.sty
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/graphics/keyval.sty)
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/tools/calc.sty)
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/mathtools/mhsetup.sty))
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/geometry/geometry.sty
+  (/usr/local/texlive/2025/texmf-dist/tex/generic/iftex/ifvtex.sty
+  (/usr/local/texlive/2025/texmf-dist/tex/generic/iftex/iftex.sty)))
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/booktabs/booktabs.sty)
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/tools/longtable.sty)
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/tools/array.sty)
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/enumitem/enumitem.sty)
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/xcolor/xcolor.sty
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/graphics-def/xetex.def)
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/xurl/xurl.sty
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/url/url.sty))
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/hyperref.sty
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+  (/usr/local/texlive/2025/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+  (/usr/local/texlive/2025/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+  (/usr/local/texlive/2025/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+  (/usr/local/texlive/2025/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+  (/usr/local/texlive/2025/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/hycolor/hycolor.sty)
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/nameref.sty
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/refcount/refcount.sty)
+  (/usr/local/texlive/2025/texmf-dist/tex/generic/gettitlestring/gettitlestring.s
+  ty (/usr/local/texlive/2025/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+  (/usr/local/texlive/2025/texmf-dist/tex/generic/stringenc/stringenc.sty)
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/pd1enc.def)
+  (/usr/local/texlive/2025/texmf-dist/tex/generic/intcalc/intcalc.sty)
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/puenc.def)
+  (/usr/local/texlive/2025/texmf-dist/tex/generic/bitset/bitset.sty
+  (/usr/local/texlive/2025/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/hxetex.def
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+  (/usr/local/texlive/2025/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+  ))) (tex/variable_coefficient_baffet_energy_analysis.aux)
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/graphics/graphicx.sty
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/graphics/graphics.sty
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/graphics/trig.sty)
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))
+  *geometry* driver: auto-detecting
+  *geometry* detected driver: xetex
+  (tex/variable_coefficient_baffet_energy_analysis.out)
+  (tex/variable_coefficient_baffet_energy_analysis.out)
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd)
+  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd)
+  (tex/variable_coefficient_baffet_energy_analysis.toc
+  [1])
+  Underfull \hbox (badness 1527) in paragraph at lines 99--101
+  []\TU/STSong(0)/m/n/10.95 因 此 \TU/lmr/m/n/10.95 port \TU/STSong(0)/m/n/10.95 模 
+  型 可 用 于 数 值 稳 定 性 设 计，|  但 \TU/lmr/m/n/10.95 final PML theorem \TU/STSong(0)/m/
+  n/10.95 仍 应 沿 \TU/lmr/m/n/10.95 stretched-
+  
+  [2]
+  [3]
+  [4]
+  [5]
+  [6]
+  [7]
+  [8] (tex/variable_coefficient_baffet_energy_analysis.aux) )
+  (see the transcript file for additional information)
+  Output written on tex/variable_coefficient_baffet_energy_analysis.pdf (8 pages)
+  .
+  Transcript written on tex/variable_coefficient_baffet_energy_analysis.log.
+
+[43] item.started:command_execution
+  command: /bin/zsh -lc 'python3 verification/algebra/variable_coefficient_baffet_sympy.py'
+  status: in_progress
+  exit_code: None
+
+[44] item.completed:command_execution
+  command: /bin/zsh -lc 'python3 verification/algebra/variable_coefficient_baffet_sympy.py'
+  status: completed
+  exit_code: 0
+  === Debye primitive algebra ===
+  Debye primitive product identity: 0
+  P,q determinant identity: 0
+  2*a^2-b nonnegative expansion: 0
+  a^2-b = sigma_x**2 + sigma_x*sigma_y + sigma_y**2
+  
+  === Variable-coefficient multiplier term ===
+  component product-rule expansion for grad(u_t+a*u): 0
+  
+  === Small-gradient absorption Schur complement ===
+  absorption sum-of-squares identity: 0
+  Schur complement m_u*m_lambda-(g/2)^2 = -(g**2 - 4*m_lambda*m_u)/4
+  Thus g^2 <= 4*m_u*m_lambda is exactly the 2x2 absorption condition.
+  
+  === Port-model energy cross-term cancellation ===
+  port Maxwell cross terms equal div(E*W_y, -E*W_x): 0
+  Debye port product identity: 0
+  
+  === Strict stretched-coordinate admittance ===
+  strict stretched-coordinate admittance: 0
+  
+  === Port-model Laplace-Fourier mismatch ===
+  port squared-admittance mismatch: 0
+  port normal-incidence matching with dispersive sigma_E: 0
+  oblique residual after normal-incidence sigma_E choice = -k_y**2*sigma/(mu**2*s**2*(s + sigma))
+  
+  All variable-coefficient Baffet SymPy checks passed.
+
+[45] item.completed:agent_message
+  The SymPy script passes locally and the TeX build log ends with a PDF output. Lean remains explicitly non-counted because the executable is missing; the report says that honestly, so it is not an unsupported formal-verification claim.
+
+[46] item.started:command_execution
+  command: /bin/zsh -lc "ls -l references | sed -n '1,120p'"
+  status: in_progress
+  exit_code: None
+
+[47] item.completed:command_execution
+  command: /bin/zsh -lc "ls -l references | sed -n '1,120p'"
+  status: completed
+  exit_code: 0
+  total 53704
+  -rw-r--r--@  1 wcli  staff  1683180 Jun 19 23:12 A_Nonconvolutional_Split-Field_Perfectly_Matched_L.pdf
+  -rw-r--r--@  1 wcli  staff  3976867 Jun 20 00:25 Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.pdf
+  -rw-r--r--@  1 wcli  staff  5804514 Jun 19 23:12 Bécache 等 - 2021 - On a surprising instability result of Perfectly Matched Layers for Maxwell’s equations in 3D media w.pdf
+  -rw-r--r--@  1 wcli  staff  2082389 Jun 19 23:12 Bécache 等 - 2023 - Convergence analysis of time-domain PMLS for 2D electromagnetic wave propagation in dispersive waveg.pdf
+  -rw-r--r--@  1 wcli  staff   178161 Jun 19 23:12 Correia和Jin - 2006 - Performance of regular PML, CFS-PML, and second-order PML for waveguide problems.pdf
+  -rw-r--r--@  1 wcli  staff   458111 Jun 19 23:12 Feng - Novel and efficient FDTD implementation of higher-order perfectly matched layer based on ADE method.pdf
+  -rw-r--r--@  1 wcli  staff  2428746 Jun 19 23:12 Huang 等 - 2023 - Developing and analyzing an explicit unconditionally stable finite element scheme for an equivalent.pdf
+  -rw-r--r--@  1 wcli  staff   825008 Mar 18  2025 Joly - 2012 - An elementary introduction to the construction and the analysis of perfectly matched layers for time.pdf
+  -rw-r--r--@  1 wcli  staff  2123945 Jun 19 23:12 Ping 等 - 2014 - A multiaxial perfectly matched layer (M-PML) for the long-time simulation of elastic wave propagatio.pdf
+  -rw-r--r--@  1 wcli  staff       78 Jun 20 01:39 README.md
+  -rw-r--r--@  1 wcli  staff   702574 Jun 19 23:12 Super.pdf
+  -rw-r--r--@  1 wcli  staff  4118360 Jun 20 00:53 Thesis.pdf
+  -rw-r--r--@  1 wcli  staff  2115384 Jun 19 23:12 Xie 等 - 2023 - Multi-axial unsplit frequency-shifted perfectly matched layer for displacement-based anisotropic wav.pdf
+  -rw-r--r--@  1 wcli  staff   613435 Jun 19 23:12 main.pdf
+  drwxr-xr-x@ 15 wcli  staff      480 Jun 20 12:14 processed
+  -rw-r--r--@  1 wcli  staff    10199 Jun 20 00:53 references.bib
+  drwxr-xr-x@  2 wcli  staff       64 Jun 20 01:39 user
+  -rw-r--r--@  1 wcli  staff   346444 Jun 24 15:46 variable_coefficient_baffet_energy.pdf
+
+[48] item.started:command_execution
+  command: /bin/zsh -lc "jq '.' verification/results/verify-20260709T035701313438Z-fact-verify-the-variable-coefficient-baf.json"
+  status: in_progress
+  exit_code: None
+
+[49] item.completed:command_execution
+  command: /bin/zsh -lc "jq '.' verification/results/verify-20260709T035701313438Z-fact-verify-the-variable-coefficient-baf.json"
+  status: completed
+  exit_code: 0
+  {
+    "schema_version": "iteris.verification_result.v0",
+    "request_id": "verify-20260709T035701313438Z-fact-verify-the-variable-coefficient-baf",
+    "backend": "agent",
+    "mode": "fact",
+    "claim": "Verify the variable-coefficient Baffet-Debye energy identity, R_sigma obstruction, and small-gradient absorption condition stated in the fact.",
+    "verdict": "accepted",
+    "passed": true,
+    "strict_verdict": "correct",
+    "summary": "Correct. The fact is supported within its stated conditional scope. The variable-coefficient Baffet-Debye derivation in the TeX artifact matches the predecessor constant-coefficient Baffet primitive system and the only new interior term is exactly the product-rule contribution -int u grad(a) dot lambda from grad(u_t+a u). The displayed D0 is nonnegative term by term for sigma_x,sigma_y >= 0, a > 0, and positive material parameters. The sign-obstruction claim is valid because monotone damping profiles do not fix the sign of the dynamical lambda components. Under the explicitly assumed nonpositive boundary flux and D0 coercivity in u and lambda, the small-gradient condition ||grad a||_infty^2 < 4 m_u m_lambda gives |R_sigma| <= c D0 with c < 1, hence dE_B/dt + theta D0 <= 0. Without that absorption, the identity supports only a Gronwall-type bound rather than unconditional monotonicity. The Lean artifact was not executable in this environment, as the outputs state, so it was not counted as an independently checked formal proof; the same load-bearing algebra was checked by the SymPy script and direct component calculations.",
+    "critical_errors": [],
+    "gaps": [],
+    "repair_hints": "No repair needed. Preserve the stated hypotheses: sufficient smoothness on Omega_+, a > 0 where a^{-1} is used, nonpositive boundary flux for monotonicity, explicit D0 coercivity in u and lambda, and the strict small-gradient condition. Do not restate the result as unconditional variable-coefficient monotonicity.",
+    "checked_artifacts": [
+      "verification/agent_runs/verify-20260709T035701313438Z-fact-verify-the-variable-coefficient-baf/request.json",
+      "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-variable-baffet-remainder-small-gradient.md",
+      "tex/variable_coefficient_baffet_energy_analysis.tex",
+      "verification/algebra/variable_coefficient_baffet_sympy.py",
+      "verification/algebra/VariableCoefficientBaffet.lean",
+      "results/v5_variable_coefficient_baffet/verification_outputs.md",
+      "results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md",
+      "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-baffet-primitive-stretched-debye-2d-energy.md",
+      "verification/results/verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa.json",
+      "artifacts/proofs/stage3_baffet_debye_2d_energy.md",
+      "references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt"
+    ],
+    "checked_fact_ids": [
+      "fact:2d_maxwell_pml_energy_functional_exploration:variable-baffet-remainder-small-gradient",
+      "fact:2d_maxwell_pml_energy_functional_exploration:baffet-primitive-stretched-debye-2d-energy"
+    ],
+    "primary_fact_ids": [
+      "fact:2d_maxwell_pml_energy_functional_exploration:variable-baffet-remainder-small-gradient"
+    ],
+    "target_artifact": null,
+    "executor": "codex",
+    "verification_scope": "codex_agent",
+    "claim_ceiling_after_verification": "verified",
+    "agent_run_dir": "verification/agent_runs/verify-20260709T035701313438Z-fact-verify-the-variable-coefficient-baf",
+    "agent_log": "verification/agent_runs/verify-20260709T035701313438Z-fact-verify-the-variable-coefficient-baf/codex.log",
+    "agent_events_log": "verification/agent_runs/verify-20260709T035701313438Z-fact-verify-the-variable-coefficient-baf/codex.events.jsonl",
+    "agent_stderr_log": "verification/agent_runs/verify-20260709T035701313438Z-fact-verify-the-variable-coefficient-baf/codex.stderr.log",
+    "agent_log_manifest": "verification/agent_runs/verify-20260709T035701313438Z-fact-verify-the-variable-coefficient-baf/log_manifest.json",
+    "created_at": "2026-07-09T04:02:11.787793Z",
+    "verifier": "iteris.codex_verification_agent"
+  }
+
+[50] item.started:command_execution
+  command: /bin/zsh -lc "rg -n \"variable_coefficient_baffet_energy|R_sigma|port model|weighted field|stable absorbing|strict PML|perfect\" references results artifacts sources -g '*.*'"
+  status: in_progress
+  exit_code: None
+
+[51] item.completed:command_execution
+  command: /bin/zsh -lc "rg -n \"variable_coefficient_baffet_energy|R_sigma|port model|weighted field|stable absorbing|strict PML|perfect\" references results artifacts sources -g '*.*'"
+  status: completed
+  exit_code: 0
+  artifacts/runs/run-20260619T173930696222Z/exploration.md:9:\documentclass[UTF8,a4paper,12pt]{ctexart} \input{macros} \title{Problem Sheet for Iteris: Energy Functionals for 2D Maxwell--PML} \author{Prepared source problem} \date{\today} \begin{document} \maketitle \begin{abstract} This note is a self-contained source problem for an Iteris run. The system to be analyzed is the two-dimensional TM Maxwell--PML model with polarization \(P\), PML auxiliary variables \(P_{z,1},P_{z,2},Q_x,Q_y\), and perfectly conducting boundary condition. The first target is to find a genuinely monotone decreasing energy functional in two space dimensions. If such a monotone energy cannot be found, the fallback target is to find a positive energy functional that proves boundedness/no abnormal long-time growth, in the same spirit as the long-time-stability role of MPML.
+  sources/energy_functional_problem.bbl:6:\newblock Energy decay and stability of a perfectly matched layer for the wave
+  artifacts/runs/run-20260619T173930696222Z/result.md:5:Problem: \documentclass[UTF8,a4paper,12pt]{ctexart} \input{macros} \title{Problem Sheet for Iteris: Energy Functionals for 2D Maxwell--PML} \author{Prepared source problem} \date{\today} \begin{document} \maketitle \begin{abstract} This note is a self-contained source problem for an Iteris run. The system to be analyzed is the two-dimensional TM Maxwell--PML model with polarization \(P\), PML auxiliary variables \(P_{z,1},P_{z,2},Q_x,Q_y\), and perfectly conducting boundary condition. The first target is to find a genuinely monotone decreasing energy functional in two space dimensions. If such a monotone energy cannot be found, the fallback target is to find a positive energy functional that proves boundedness/no abnormal long-time growth, in the same spirit as the long-time-stability role of MPML.
+  results/v5_variable_coefficient_baffet/verification_outputs.md:54:xelatex -interaction=nonstopmode -halt-on-error -output-directory=tex tex/variable_coefficient_baffet_energy_analysis.tex
+  results/v5_variable_coefficient_baffet/verification_outputs.md:60:`tex/variable_coefficient_baffet_energy_analysis_build.log` contains no TeX
+  results/v5_variable_coefficient_baffet/verification_outputs.md:62:was produced at `tex/variable_coefficient_baffet_energy_analysis.pdf`.
+  results/v5_variable_coefficient_baffet/verification_outputs.md:70:  The verifier accepted the exact `R_sigma` derivation, the sign obstruction, and
+  artifacts/proofs/stage3_v2_perfect_matching_test.md:1:# Stage-3 proof: perfect-matching test for the v2 covariantly damped model
+  artifacts/proofs/stage3_v2_perfect_matching_test.md:5:Task: `task-stage3-perfect-matching-test`
+  artifacts/proofs/stage3_v2_perfect_matching_test.md:35:The model is perfectly matched at this interface iff \(Y_+=Y_0\) for every
+  artifacts/proofs/stage3_v2_perfect_matching_test.md:158:not perfectly matched.
+  artifacts/proofs/stage3_v2_perfect_matching_test.md:202:The covariantly damped v2 Maxwell--Debye absorbing-layer model is not perfectly
+  results/energy_design_v2_report.md:211:1. Exact perfect matching for the selected covariantly damped model is not
+  artifacts/proofs/stage3_repaired_model_energy.md:11:perfectly matched layer.  In an \(x\)-layer with \(\rho_x=\rho>0,\rho_y=0\),
+  artifacts/proofs/stage3_repaired_model_energy.md:157:This candidate is the formula-level perfect-matching repair.  A local monotone
+  artifacts/proofs/stage3_repaired_model_energy.md:180:This is exactly the \(k_y=0\) restriction of the perfectly matched stretched
+  artifacts/proofs/stage3_repaired_model_energy.md:241:so the continuous model is perfectly matched whenever the stretch is applied to
+  artifacts/proofs/stage3_repaired_model_energy.md:250:Classification: perfectly matched at the continuous planar-interface level;
+  artifacts/proofs/stage3_repaired_model_energy.md:264:that exact perfect matching may be lost in multiaxial variants.
+  artifacts/proofs/stage3_repaired_model_energy.md:300:This identity is genuinely dissipative, but the model is not perfectly matched.
+  artifacts/proofs/stage3_repaired_model_energy.md:301:It should therefore be described as a stable absorbing-layer model, not as a
+  artifacts/proofs/stage3_repaired_model_energy.md:306:Even for a perfectly matched repair, strict decay of a total energy controlling
+  artifacts/proofs/stage3_repaired_model_energy.md:337:   state it is not perfectly matched, or build a new Baffet/passive-memory
+  artifacts/proofs/stage3_repaired_model_energy.md:346:law left as \((1+\tau s)P=\chi E\), is perfectly matched at a constant
+  artifacts/proofs/stage3_repaired_model_energy.md:353:- `fact:2d_maxwell_pml_energy_functional_exploration:v2-covariant-model-not-perfectly-matched`
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:10:`references/variable_coefficient_baffet_energy.pdf` completes the construction of
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:19:The new PDF is useful but not sufficient for the final strict PML goal.
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:25:R_sigma(t) = - int u grad(a) dot lambda,   a = sigma_x + sigma_y.
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:36:The port model has a clean monotone energy for arbitrary nonnegative damping,
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:38:It should be called a stable absorbing layer, not a strict PML.
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:57:   `E_B' = -D0 + R_sigma + B`; under nonpositive boundary flux, monotonicity
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:58:   follows only if `R_sigma` is absorbed.
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:59:4. `sigma_i' >= 0` does not control `R_sigma`, because the sign of `lambda_i`
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:61:5. The port model reduces to Maxwell--Debye when all damping vanishes and has a
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:74:- `tex/variable_coefficient_baffet_energy_analysis.tex`
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:75:- `tex/variable_coefficient_baffet_energy_analysis.pdf`
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:76:- `tex/variable_coefficient_baffet_energy_analysis_build.log`
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:106:`R_sigma = - int u grad(a) dot lambda`. This blocks unconditional monotonicity
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:109:Second, the port model is a separate passive absorbing layer. Its energy identity
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:111:modes, so it cannot be used as the final strict PML theorem.
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:115:port model is used in numerics, it should be advertised as a stable absorbing
+  results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md:116:layer rather than a perfectly matched layer. The report does not relabel a
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:56:In the last two decades, the perfectly matched layer (PML) approach [13] has
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:59:which generates no reﬂections at its interface; hence, it is perfectly matched. As
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:63:robust treatment of corners, B´erenger’s perfectly matched layer (PML) approach
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:171:(rPML) formulation which, however, ”will not achieve perfect matching” [32].
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:189:avoid spurious reﬂections from the boundary of Ω0, we surround it by a perfectly
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:1088:which are a consequence of the requirement that the layer in ΩP M L perfectly
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:5217:FE mesh is aligned with the boundary B of the perfectly matched layer to avoid
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:5459:Finally, we demonstrate the long-time stability of our perfectly matched layer
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:5533:damping functions are not necessary to achieve perfect matching at the discrete
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:5552:2. Abarbanel, S., Gottlieb, D., Hestahaven, J.S.: Well-posed perfectly matched layers for
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:5558:4. Appel¨o, D., Kreiss, G.: Application of a perfectly matched layer to the nonlinear wave
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:5566:6. B´ecache, E., Fauqueux, S., Joly, P.: Stability of perfectly matched layers, group velocities
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:5570:7. B´ecache, E., Joly, P.: On the analysis of B´erenger’s perfectly matched layers for Maxwell’s
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:5574:8. B´ecache, E., Joly, P., Kachanovska, M.: Stable perfectly matched layers for a cold plasma
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:5581:10. B´ecache, E., Joly, P., Vinoles, V.: On the analysis of perfectly matched layers for a class
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:5585:11. B´ecache, E., Kachanovska, M.: Stable perfectly matched layers for a class of anisotropic
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:5591:13. B´erenger, J.P.: A perfectly matched layer for the absorption of electromagnetic waves. J.
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:5595:14. B´erenger, J.P.: Three-dimensional perfectly matched layer for the absorption of electro-
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:5603:16. Chen, Z.: Convergence of the time-domain perfectly matched layer method for acoustic
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:5607:17. Chew, W.C., Weedon, W.H.: A 3D perfectly matched medium from modiﬁed Maxwell’s
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.txt:5611:18. Collino, F., Monk, P.B.: Optimizing the perfectly matched layer. Comput. Methods Appl.
+  references/processed/Baffet 等 - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wa
+  ...[truncated 79463 chars; see raw codex.events.jsonl]
+
+[52] item.started:command_execution
+  command: /bin/zsh -lc "jq '.' verification/results/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi.json"
+  status: in_progress
+  exit_code: None
+
+[53] item.completed:command_execution
+  command: /bin/zsh -lc "jq '.' verification/results/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi.json"
+  status: completed
+  exit_code: 0
+  {
+    "schema_version": "iteris.verification_result.v0",
+    "request_id": "verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi",
+    "backend": "agent",
+    "mode": "fact",
+    "claim": "Verify the port-layer energy identity and the planar-interface admittance mismatch showing it is not a strict PML for oblique modes.",
+    "verdict": "accepted",
+    "passed": true,
+    "strict_verdict": "correct",
+    "summary": "The cited fact is supported. The port-layer energy identity follows from multiplying the four port equations by E, W_x, W_y, and P_t/kappa, using tau P_t + P = kappa E to convert E P_t into the P-energy derivative plus tau kappa^{-1} P_t^2, and using the Maxwell cross-term divergence identity. The planar x-PML Laplace-Fourier calculation gives the stated Y_port^2 - Y_0^2 formula, and its oblique k_y term cannot be removed by any scalar local sigma_E independent of frequency and tangential wavenumber. With all damping zero, the equations reduce to Maxwell-Debye after W_x=H_x and W_y=H_y.",
+    "critical_errors": [],
+    "gaps": [],
+    "repair_hints": "No repair needed.",
+    "checked_artifacts": [
+      "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-port-layer-energy-not-pml.md",
+      "tex/variable_coefficient_baffet_energy_analysis.tex",
+      "verification/algebra/variable_coefficient_baffet_sympy.py",
+      "results/v5_variable_coefficient_baffet/verification_outputs.md"
+    ],
+    "checked_fact_ids": [
+      "fact:2d_maxwell_pml_energy_functional_exploration:port-layer-energy-not-pml"
+    ],
+    "primary_fact_ids": [
+      "fact:2d_maxwell_pml_energy_functional_exploration:port-layer-energy-not-pml"
+    ],
+    "target_artifact": null,
+    "executor": "codex",
+    "verification_scope": "codex_agent",
+    "claim_ceiling_after_verification": "verified",
+    "agent_run_dir": "verification/agent_runs/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi",
+    "agent_log": "verification/agent_runs/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi/codex.log",
+    "agent_events_log": "verification/agent_runs/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi/codex.events.jsonl",
+    "agent_stderr_log": "verification/agent_runs/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi/codex.stderr.log",
+    "agent_log_manifest": "verification/agent_runs/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi/log_manifest.json",
+    "created_at": "2026-07-09T04:05:58.481865Z",
+    "verifier": "iteris.codex_verification_agent"
+  }
+
+[54] item.completed:agent_message
+  I found the v5 source prompt. Its required judgments match the report’s structure: audit the new PDF, separate strict stretched-coordinate PML from the port model, derive the remainder, and avoid calling Gronwall or port stability a final strict-PML theorem.
+
+[55] item.started:command_execution
+  command: /bin/zsh -lc "pdftotext references/variable_coefficient_baffet_energy.pdf - | sed -n '1,260p'"
+  status: in_progress
+  exit_code: None
+
+[56] item.completed:command_execution
+  command: /bin/zsh -lc "pdftotext references/variable_coefficient_baffet_energy.pdf - | sed -n '1,260p'"
+  status: completed
+  exit_code: 0
+  zsh:1: command not found: pdftotext
+
+[57] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '1,260p' artifacts/proofs/stage3_baffet_debye_2d_energy.md"
+  status: in_progress
+  exit_code: None
+
+[58] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '1,260p' artifacts/proofs/stage3_baffet_debye_2d_energy.md"
+  status: completed
+  exit_code: 0
+  # Stage-3 proof: Baffet-type 2D energy for a matched Maxwell-Debye PML
+  
+  Problem id: `2d_maxwell_pml_energy_functional_exploration`
+  
+  Task: `task-stage3-final-report`
+  
+  ## Purpose
+  
+  The previous stage-3 artifact proves that the standard stretched-coordinate
+  Maxwell-Debye PML is perfectly matched, but only gives a monotone energy in the
+  one-dimensional normal-incidence block.  This artifact records a full two
+  dimensional constant-coefficient Baffet-type formulation for the same stretched
+  coordinate model.  The formulation uses a time primitive of the electric field
+  and a time primitive of the Debye polarization, which is exactly the type of
+  augmented/time-integrated variable used in Baffet-type PML energy arguments.
+  
+  ## Assumptions and notation
+  
+  Let
+  \[
+  e=\epsilon_0\epsilon_\infty>0,\quad \mu>0,\quad \chi>0,\quad \tau>0.
+  \]
+  In the Laplace domain,
+  \[
+  \varepsilon_D(s)=e+\frac{\chi}{1+\tau s}.
+  \]
+  On one constant-coefficient PML block let
+  \[
+  \sigma_x,\sigma_y\ge 0,\qquad
+  a=\sigma_x+\sigma_y,\qquad b=\sigma_x\sigma_y,
+  \]
+  and assume \(a>0\) for the PML block.  The undamped physical block \(a=b=0\)
+  uses the ordinary Maxwell-Debye energy and is coupled by the usual transmission
+  flux.  Define
+  \[
+  \Gamma_1=\begin{pmatrix}\sigma_x&0\\0&\sigma_y\end{pmatrix},\qquad
+  \Gamma_2=\begin{pmatrix}\sigma_y-\sigma_x&0\\0&\sigma_x-\sigma_y\end{pmatrix}.
+  \]
+  For a vector \(v\), write \(|v|_M^2=v\cdot Mv\).
+  
+  Let \(u\) be the time primitive of the electric field:
+  \[
+  E=u_t.
+  \]
+  Let \(q\) be the time primitive of the Debye polarization:
+  \[
+  q_t=P.
+  \]
+  The Debye law is written in compatible primitive form
+  \[
+  \tau P_t+P=\chi u_t,\qquad q+\tau P=\chi u.
+  \]
+  The second relation is preserved by the first two equations if it is true at
+  initial time.
+  
+  ## Baffet-type matched PML system
+  
+  Introduce the Baffet auxiliary vector \(\phi=(\phi_x,\phi_y)\) and
+  \[
+  \lambda=\nabla u+\phi.
+  \]
+  The constant-coefficient two-dimensional repaired model is
+  \[
+  \boxed{
+  \mu\{e(u_{tt}+a u_t+b u)+P_t+aP+bq\}-\nabla\cdot\lambda=0,}
+  \tag{1}
+  \]
+  \[
+  \boxed{\phi_t+\Gamma_1\phi=\Gamma_2\nabla u,}
+  \tag{2}
+  \]
+  \[
+  \boxed{\tau P_t+P=\chi u_t,\qquad q_t=P,\qquad q+\tau P=\chi u.}
+  \tag{3}
+  \]
+  Outer boundary conditions are taken so that the boundary flux
+  \[
+  \int_{\partial\Omega}(u_t+au)\lambda\cdot n\,ds
+  \]
+  is zero or nonpositive.  For a PEC outer boundary, the compatible primitive
+  condition is \(u=0\), hence \(u_t=E=0\), on that boundary.  On piecewise
+  constant internal interfaces, the usual transmission conditions are continuity
+  of \(u\) and \(\lambda\cdot n\), so the flux cancels pairwise.
+  
+  ## Equivalence with the stretched-coordinate Maxwell-Debye PML
+  
+  For constant coefficients, Laplace transforming (2) gives
+  \[
+  \widehat\phi_x=\frac{\sigma_y-\sigma_x}{s+\sigma_x}\partial_x\widehat u,
+  \qquad
+  \widehat\phi_y=\frac{\sigma_x-\sigma_y}{s+\sigma_y}\partial_y\widehat u.
+  \]
+  Thus
+  \[
+  \widehat\lambda_x
+  =\frac{s+\sigma_y}{s+\sigma_x}\partial_x\widehat u
+  =\frac{S_y}{S_x}\partial_x\widehat u,\qquad
+  \widehat\lambda_y
+  =\frac{s+\sigma_x}{s+\sigma_y}\partial_y\widehat u
+  =\frac{S_x}{S_y}\partial_y\widehat u,
+  \]
+  where
+  \[
+  S_i(s)=1+\frac{\sigma_i}{s}=\frac{s+\sigma_i}{s}.
+  \]
+  The Debye compatibility gives
+  \[
+  \widehat P=\frac{\chi s}{1+\tau s}\widehat u,\qquad
+  \widehat q=\frac{1}{s}\widehat P.
+  \]
+  Therefore
+  \[
+  e(s^2+as+b)\widehat u+s\widehat P+a\widehat P+b\widehat q
+  =\left(e+\frac{\chi}{1+\tau s}\right)(s^2+as+b)\widehat u
+  =\varepsilon_D(s)s^2S_xS_y\widehat u.
+  \]
+  Equation (1) becomes
+  \[
+  \mu\varepsilon_D(s)s^2S_xS_y\widehat u
+  =\nabla\cdot\widehat\lambda.
+  \]
+  Dividing by \(S_xS_y\) gives
+  \[
+  \mu\varepsilon_D(s)s^2\widehat u
+  =S_x^{-1}\partial_x(S_x^{-1}\partial_x\widehat u)
+  +S_y^{-1}\partial_y(S_y^{-1}\partial_y\widehat u).
+  \]
+  Since \(\widehat E=s\widehat u\), this is exactly the second-order equation
+  obtained by eliminating \(H_x,H_y\) from the standard stretched-coordinate
+  Maxwell-Debye PML while keeping
+  \[
+  (1+\tau s)\widehat P=\chi \widehat E.
+  \]
+  Consequently this Baffet-type time-domain system has the same planar-interface
+  perfect matching as the standard stretched-coordinate PML: at an \(x\)-interface
+  with \(S_y=1\), the normal symbol satisfies \(\nu=S_x\nu_0\) and the tangential
+  Maxwell admittance is unchanged.
+  
+  ## Energy functional
+  
+  Define
+  \[
+  \alpha=1+2a\tau,\qquad
+  \beta=a+b\tau,\qquad
+  \gamma=a^2+b(1+a\tau).
+  \]
+  The Baffet-Debye energy is
+  \[
+  \boxed{
+  \begin{aligned}
+  \mathcal E_{BD}
+  =\frac12\int_\Omega \{&
+  \mu e(u_t+a u)^2+|\lambda|^2
+  +|\phi|_{a^{-1}\Gamma_1}^2+\mu e\,b u^2\\
+  &+\frac{\mu}{\chi}\left(\alpha P^2+2\beta Pq+\gamma q^2\right)
+  \}\,dxdy .
+  \end{aligned}}
+  \tag{4}
+  \]
+  The \(P,q\) block is positive definite whenever \(a>0\).  Indeed
+  \[
+  \alpha>0,\qquad
+  \alpha\gamma-\beta^2
+  =b+ab\tau+2a^3\tau+b(2a^2-b)\tau^2>0,
+  \]
+  because \(a=\sigma_x+\sigma_y>0\), \(b=\sigma_x\sigma_y\ge0\), \(\tau>0\), and
+  \(2a^2-b\ge0\).  Thus (4) is nonnegative, and it is coercive on the PML block
+  modulo the usual zero modes of the primitive variables and boundary conditions.
+  
+  ## Energy identity
+  
+  Test (1) with \(u_t+a u\).  The nondispersive part gives the usual Baffet
+  calculation:
+  \[
+  \frac12\frac{d}{dt}\int_\Omega
+  \mu e\{(u_t+a u)^2+b u^2\}\,dxdy
+  +\int_\Omega \mu e\,ab u^2\,dxdy
+  =\int_\Omega (u_t+a u)\nabla\cdot\lambda\,dxdy
+  -\mu\int_\Omega (P_t+aP+bq)(u_t+a u)\,dxdy .
+  \tag{5}
+  \]
+  The boundary part of the first term is the flux stated above, and the interior
+  part is handled by the same Baffet multiplier used for \(\lambda\).  Specifically,
+  from
+  \[
+  \lambda_t+\Gamma_1\lambda=\nabla u_t+\widetilde\Gamma_2\nabla u,\qquad
+  \widetilde\Gamma_2=\Gamma_2+\Gamma_1
+  =\begin{pmatrix}\sigma_y&0\\0&\sigma_x\end{pmatrix},
+  \]
+  and the multiplier
+  \[
+  g=(I+a^{-1}\Gamma_1)\lambda-a^{-1}\Gamma_1\nabla u,
+  \]
+  one obtains
+  \[
+  \begin{aligned}
+  &\frac12\frac{d}{dt}\int_\Omega
+  \left(|\lambda|^2+|\phi|_{a^{-1}\Gamma_1}^2\right)\,dxdy\\
+  &\quad+\int_\Omega
+  \left(|\lambda|^2_{\Gamma_1(I+a^{-1}\Gamma_1)}
+  +\frac{b}{a}|\nabla u|^2\right)\,dxdy
+  =\int_\Omega \nabla(u_t+a u)\cdot\lambda\,dxdy .
+  \end{aligned}
+  \tag{6}
+  \]
+  This is the two-dimensional Baffet identity; it uses
+  \(\Gamma_1\widetilde\Gamma_2=bI\) and
+  \(a^{-1}\Gamma_1(\Gamma_1+\widetilde\Gamma_2)+\widetilde\Gamma_2=aI\).
+  
+  It remains to compute the Debye primitive contribution.  Using
+  \[
+  u_t+a u
+  =\frac{\tau P_t+(1+a\tau)P+a q}{\chi},
+  \]
+  we have
+  \[
+  \begin{aligned}
+  &(P_t+aP+bq)(u_t+a u)\\
+  &=\frac1\chi\Big[
+  \frac12\frac{d}{dt}
+  \left(\alpha P^2+2\beta Pq+\gamma q^2\right)
+  +\tau P_t^2+\tau(a^2-b)P^2+abq^2
+  \Big].
+  \end{aligned}
+  \tag{7}
+  \]
+  Here \(q_t=P\), and the constants \(\alpha,\beta,\gamma\) are exactly those in
+  (4).
+  
+  Adding (5), (6), and (7) gives the full identity
+  \[
+  \boxed{
+  \frac{d}{dt}\mathcal E_{BD}(t)
+  =-\mathcal D_{BD}(t)
+  +\int_{\partial\Omega}(u_t+a u)\lambda\cdot n\,ds,}
+  \tag{8}
+  \]
+  where
+  \[
+  \boxed{
+  \begin{aligned}
+  \mathcal D_{BD}
+  =\int_\Omega \{&
+  |\lambda|^2_{\Gamma_1(I+a^{-1}\Gamma_1)}
+  +\frac{b}{a}|\nabla u|^2+\mu e\,ab u^2\\
+  &+\frac{\mu}{\chi}\left[
+  \tau P_t^2+\tau(a^2-b)P^2+abq^2
+  \right]\}\,dxdy .
+  \end{aligned}}
+  \tag{9}
+  \]
+  All displayed terms in \(\mathcal D_{BD}\) are nonnegative for
+  \(\sigma_x,\sigma_y\ge0\), \(a>0\), and positive material parameters.  Under PEC
+  or canceling transmission flux, (8) gives
+  \[
+  \mathcal E_{BD}(t)+\int_0^t\mathcal D_{BD}(r)\,dr\le \mathcal E_{BD}(0).
+  \]
+  
+  ## Classification and nullspace
+  
+
+[59] item.started:command_execution
+  command: /bin/zsh -lc 'pdftotext references/variable_coefficient_baffet_energy.pdf - | rg -n "R_|sigma|lambda|port|perfect|matched|gradient|Gronwall|monotone|energy|admittance|absorbing"'
+  status: in_progress
+  exit_code: None
+
+[60] item.completed:command_execution
+  command: /bin/zsh -lc 'pdftotext references/variable_coefficient_baffet_energy.pdf - | rg -n "R_|sigma|lambda|port|perfect|matched|gradient|Gronwall|monotone|energy|admittance|absorbing"'
+  status: failed
+  exit_code: 1
+  zsh:1: command not found: pdftotext
+
+[61] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '1,260p' artifacts/proofs/stage3_repaired_model_energy.md"
+  status: in_progress
+  exit_code: None
+
+[62] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '1,260p' artifacts/proofs/stage3_repaired_model_energy.md"
+  status: completed
+  exit_code: 0
+  # Stage-3 proof: repaired PML candidates and dissipative-energy classification
+  
+  Problem id: `2d_maxwell_pml_energy_functional_exploration`
+  
+  Task: `task-stage3-repaired-model-energy`
+  
+  ## Input fact from the matching test
+  
+  The v2 covariantly damped Maxwell--Debye model has the verified stage-2 monotone
+  energy identity, but the stage-3 interface calculation shows that it is not a
+  perfectly matched layer.  In an \(x\)-layer with \(\rho_x=\rho>0,\rho_y=0\),
+  \[
+  Y_{v2}^2-Y_0^2
+  =-\frac{\rho}{\mu^2}\left[
+  \frac{\mu\chi\tau}{(1+\tau s)(1+\tau(s+\rho))}
+  +\frac{k_y^2}{s^2(s+\rho)}
+  \right],
+  \]
+  so the v2 reflection coefficient is not identically zero.
+  
+  Therefore a repaired model must keep the physical Debye law as a function of the
+  Laplace variable \(s\), not \(s+\rho\), and must implement damping through
+  coordinate stretching or an equivalent split/ADE system.
+  
+  ## Candidate 1: classical stretched-coordinate Maxwell--Debye PML
+  
+  Let
+  \[
+  \varepsilon_D(s)=\epsilon_0\epsilon_\infty+\frac{\chi}{1+\tau s},
+  \qquad
+  S_i(s)=1+\frac{\sigma_i}{s},\quad i=x,y.
+  \]
+  In the physical region \(\sigma_x=\sigma_y=0\).  In the PML the coefficients are
+  nonnegative and are first analyzed as piecewise constant near each planar
+  interface.
+  
+  The Laplace-domain repaired model is
+  \[
+  \boxed{
+  s\varepsilon_D(s)\widehat E
+  =S_x^{-1}\partial_x\widehat H_y
+  -S_y^{-1}\partial_y\widehat H_x,}
+  \]
+  \[
+  \boxed{
+  \mu s\widehat H_x=-S_y^{-1}\partial_y\widehat E,\qquad
+  \mu s\widehat H_y=S_x^{-1}\partial_x\widehat E,}
+  \]
+  \[
+  \boxed{(1+\tau s)\widehat P=\chi\widehat E.}
+  \]
+  Equivalently, the Debye law is not damped:
+  \[
+  P+\tau P_t=\chi E.
+  \]
+  
+  ### Perfect matching
+  
+  At an \(x\)-interface, \(S_y=1\).  With tangential Fourier number \(k_y\),
+  the physical normal symbol satisfies
+  \[
+  \nu_0^2=k_y^2+\mu s^2\varepsilon_D(s),\qquad
+  Y_0=\frac{\nu_0}{\mu s}.
+  \]
+  In the PML,
+  \[
+  s\varepsilon_D E=S_x^{-1}\nu H_y-ik_yH_x,\qquad
+  \mu sH_x=-ik_yE,\qquad
+  \mu sH_y=S_x^{-1}\nu E.
+  \]
+  The dispersion relation gives
+  \[
+  \left(S_x^{-1}\nu\right)^2=k_y^2+\mu s^2\varepsilon_D(s),
+  \]
+  hence \(\nu=S_x\nu_0\) and
+  \[
+  Y_+=\frac{S_x^{-1}\nu}{\mu s}=\frac{\nu_0}{\mu s}=Y_0.
+  \]
+  Thus the planar-interface reflection coefficient is \(R=0\) for every
+  \((s,k_y)\) in the Laplace half-plane.  The same argument applies to a
+  \(y\)-interface with \(x,y\) interchanged.
+  
+  ### Time-domain ADE realization
+  
+  Define the causal operator
+  \[
+  \mathcal A_i=S_i^{-1}=\frac{s}{s+\sigma_i}
+  \]
+  in the Laplace domain.  Equivalently,
+  \[
+  \mathcal A_i f=f+\psi_i,\qquad
+  (\partial_t+\sigma_i)\psi_i=-\sigma_i f.
+  \]
+  Then a time-domain unsplit ADE form is
+  \[
+  \epsilon_0\epsilon_\infty E_t+P_t
+  =\partial_xH_y-\partial_yH_x
+  +\psi_{E,x}-\psi_{E,y},
+  \]
+  \[
+  \mu H_{x,t}=-\partial_yE-\psi_{H_x,y},\qquad
+  \mu H_{y,t}=\partial_xE+\psi_{H_y,x},
+  \]
+  \[
+  P+\tau P_t=\chi E,
+  \]
+  with
+  \[
+  (\partial_t+\sigma_x)\psi_{E,x}=-\sigma_x\partial_xH_y,\qquad
+  (\partial_t+\sigma_y)\psi_{E,y}=-\sigma_y\partial_yH_x,
+  \]
+  \[
+  (\partial_t+\sigma_y)\psi_{H_x,y}=-\sigma_y\partial_yE,\qquad
+  (\partial_t+\sigma_x)\psi_{H_y,x}=-\sigma_x\partial_xE.
+  \]
+  Interface conditions are continuity of the physical tangential traces.  For an
+  \(x\)-interface these are \(E\) and \(H_y\).  The auxiliary variables vanish in the
+  physical region and are initialized consistently with the causal convolution.
+  
+  ### Naive energy calculation
+  
+  The natural physical Debye energy is
+  \[
+  \mathcal E_{\rm phys}
+  =\frac12\int_\Omega
+  \left(\epsilon_0\epsilon_\infty E^2+\mu H_x^2+\mu H_y^2+\chi^{-1}P^2\right)\,dxdy.
+  \]
+  It is positive because
+  \(\epsilon_0,\epsilon_\infty,\mu,\chi>0\).  Using
+  \[
+  E P_t=\frac{1}{2\chi}\partial_t(P^2)+\frac{\tau}{\chi}P_t^2
+  \]
+  and the PEC boundary condition \(E=0\) on the outer boundary gives
+  \[
+  \frac{d}{dt}\mathcal E_{\rm phys}
+  =-\int_\Omega\frac{\tau}{\chi}P_t^2\,dxdy
+  +\int_\Omega
+  \left[
+  E(\psi_{E,x}-\psi_{E,y})
+  -H_x\psi_{H_x,y}
+  +H_y\psi_{H_y,x}
+  \right]\,dxdy .
+  \]
+  The Maxwell principal part contributes only the boundary flux
+  \[
+  \int_{\partial\Omega}E(H_y n_x-H_x n_y)\,ds,
+  \]
+  which vanishes under PEC at the outer boundary and cancels by transmission at
+  internal material/PML interfaces when the tangential traces are continuous.
+  
+  The remaining auxiliary terms are not sign-definite in this naive energy.
+  Therefore the positive physical Debye energy alone is not a monotone energy for
+  the exact stretched-coordinate PML.
+  
+  ### Classification
+  
+  This candidate is the formula-level perfect-matching repair.  A local monotone
+  energy for the full 2D Maxwell--Debye ADE system is not certified here.  The
+  calculation above identifies the exact terms that a Baffet-type augmented energy
+  would have to absorb:
+  \[
+  E\psi_{E,x},\quad E\psi_{E,y},\quad
+  H_x\psi_{H_x,y},\quad H_y\psi_{H_y,x}.
+  \]
+  The literature record supports that such augmented energies are non-naive and
+  that constant-coefficient damping is the natural first scope for a sharp identity.
+  
+  ### Reduced normal-incidence 1D energy identity
+  
+  There is one important positive result for the exact stretched-coordinate model.
+  In the \(x\)-layer normal-incidence block \(k_y=0\), the standard stretch gives
+  \[
+  (\partial_t+\rho)(\epsilon_0\epsilon_\infty E+P)=\partial_xH_y,
+  \qquad
+  \mu(\partial_t+\rho)H_y=\partial_xE,
+  \]
+  \[
+  P+\tau P_t=\chi E.
+  \]
+  This is exactly the \(k_y=0\) restriction of the perfectly matched stretched
+  model, not the v2 model, because the Debye law still uses \(\partial_t\) rather
+  than \(\partial_t+\rho\).
+  
+  Multiply the first equation by \(E\), the second by \(H_y\), and use
+  \[
+  E=\frac{P+\tau P_t}{\chi}.
+  \]
+  Then
+  \[
+  E P_t=\frac{1}{2\chi}\partial_t(P^2)+\frac{\tau}{\chi}P_t^2,
+  \]
+  and
+  \[
+  \rho E P
+  =\frac{\rho}{\chi}P^2+\frac{\rho\tau}{2\chi}\partial_t(P^2).
+  \]
+  After integrating by parts, the principal terms give only the boundary flux
+  \(\int_{\partial I}EH_y n_x\,ds\).  Hence
+  \[
+  \boxed{
+  \frac{d}{dt}\mathcal E_{1d,sc}
+  =-\int_I\left(
+  \rho\epsilon_0\epsilon_\infty E^2+\mu\rho H_y^2
+  +\frac{\rho}{\chi}P^2+\frac{\tau}{\chi}P_t^2
+  \right)\,dx
+  +\int_{\partial I}EH_y n_x\,ds,}
+  \]
+  where
+  \[
+  \boxed{
+  \mathcal E_{1d,sc}
+  =\frac12\int_I\left(
+  \epsilon_0\epsilon_\infty E^2+\mu H_y^2
+  +\frac{1+\rho\tau}{\chi}P^2
+  \right)\,dx.}
+  \]
+  This energy is positive for \(\rho,\tau,\chi>0\), and it is dissipative under
+  PEC or otherwise nonpositive boundary flux.  It explains why the v2 idea is
+  close to a useful construction in normal incidence, but it does not solve the
+  full 2D oblique problem: as soon as \(k_y\ne0\), the exact stretched model
+  contains the ADE memory couplings displayed above.
+  
+  ## Candidate 2: generalized CFS/ADE stretched-coordinate PML
+  
+  Let
+  \[
+  S_i(s)=\kappa_i+\frac{\sigma_i}{s+\alpha_i},
+  \qquad
+  \kappa_i\ge1,\quad \sigma_i\ge0,\quad \alpha_i\ge0.
+  \]
+  The repaired Laplace-domain equations are the same as Candidate 1, with these
+  \(S_i\).  In particular the Debye law remains
+  \[
+  (1+\tau s)\widehat P=\chi\widehat E.
+  \]
+  
+  For a planar \(x\)-interface with \(S_y=1\), the same calculation gives
+  \[
+  \nu=S_x\nu_0,\qquad Y_+=Y_0,
+  \]
+  so the continuous model is perfectly matched whenever the stretch is applied to
+  the spatial derivatives and the physical material law is left unchanged.
+  
+  If \(S_i^{-1}\) is rational with poles in \(\Re s<0\), it can be implemented by
+  ADE variables.  The CFS shift \(\alpha_i>0\) is a standard way to improve
+  low-frequency/evanescent and late-time behavior, but a monotone time-domain
+  energy requires an explicit positive realization of the memory kernel.  No such
+  positive memory theorem is claimed here for the full 2D Maxwell--Debye system.
+  
+  Classification: perfectly matched at the continuous planar-interface level;
+  recommended if long-time CFS behavior is needed; energy status is boundedness or
+  passive-memory proof pending, not a completed monotone identity.
+  
+  ## Candidate 3: MPML-type extra damping
+  
+  An MPML-type repair adds damping in more than the normal coordinate direction.
+  For example, in an \(x\)-layer one may replace a scalar stretch by a multiaxial
+  stretch depending also on tangential damping parameters.  This is useful for
+  removing long-time instabilities or Jordan-block behavior in some systems.
+  
+
+[63] item.completed:agent_message
+  The local `pdftotext` utility is not installed, so I’m using the project’s already extracted proof artifacts and, if possible, another local PDF text tool. The key load-bearing external Baffet baseline is already tied to a verified fact and a processed reference file.
+
+[64] item.started:command_execution
+  command: /bin/zsh -lc 'command -v mutool || true'
+  status: in_progress
+  exit_code: None
+
+[65] item.started:command_execution
+  command: /bin/zsh -lc 'command -v qpdf || true'
+  status: in_progress
+  exit_code: None
+
+[66] item.completed:command_execution
+  command: /bin/zsh -lc 'command -v mutool || true'
+  status: completed
+  exit_code: 0
+
+[67] item.completed:command_execution
+  command: /bin/zsh -lc 'command -v qpdf || true'
+  status: completed
+  exit_code: 0
+
+[68] item.started:command_execution
+  command: /bin/zsh -lc "command -v python3 && python3 - <<'PY'
+mods=['pypdf','PyPDF2','pdfminer.high_level','fitz']
+for m in mods:
+    try:
+        __import__(m)
+        print(m, 'OK')
+    except Exception as e:
+        print(m, 'NO')
+PY"
+  status: in_progress
+  exit_code: None
+
+[69] item.started:command_execution
+  command: /bin/zsh -lc "strings references/variable_coefficient_baffet_energy.pdf | rg -n \"R_|sigma|lambda|port|perfect|matched|gradient|Gronwall|monotone|Energy|Baffet\" | sed -n '1,160p'"
+  status: in_progress
+  exit_code: None
+
+[70] item.completed:command_execution
+  command: /bin/zsh -lc "command -v python3 && python3 - <<'PY'
+mods=['pypdf','PyPDF2','pdfminer.high_level','fitz']
+for m in mods:
+    try:
+        __import__(m)
+        print(m, 'OK')
+    except Exception as e:
+        print(m, 'NO')
+PY"
+  status: completed
+  exit_code: 0
+  pypdf NO
+  PyPDF2 NO
+  pdfminer.high_level OK
+  fitz NO
+
+[71] item.completed:command_execution
+  command: /bin/zsh -lc "strings references/variable_coefficient_baffet_energy.pdf | rg -n \"R_|sigma|lambda|port|perfect|matched|gradient|Gronwall|monotone|Energy|Baffet\" | sed -n '1,160p'"
+  status: completed
+  exit_code: 0
+  2017:4_R_T_P
+  3072:Gs?R_
+
+[72] item.completed:agent_message
+  `pdfminer` is available in the Iteris Python environment, so I’m using it only for PDF text extraction because the usual shell PDF tools are absent.
+
+[73] item.started:command_execution
+  command: /bin/zsh -lc "python3 - <<'PY'
+from pdfminer.high_level import extract_text
+path='references/variable_coefficient_baffet_energy.pdf'
+text=extract_text(path)
+for i,line in enumerate(text.splitlines()[:300],1):
+    print(f'{i:04d}: {line}')
+PY"
+  status: in_progress
+  exit_code: None
+
+[74] item.completed:command_execution
+  command: /bin/zsh -lc "python3 - <<'PY'
+from pdfminer.high_level import extract_text
+path='references/variable_coefficient_baffet_energy.pdf'
+text=extract_text(path)
+for i,line in enumerate(text.splitlines()[:300],1):
+    print(f'{i:04d}: {line}')
+PY"
+  status: completed
+  exit_code: 0
+  0001: 空间变系数阻尼剖面下二维 Debye–PML 的 Baffet 型能量分
+  0002: 
+  0003: 析
+  0004: 
+  0005: ReasLingo
+  0006: 
+  0007: 2026 年 6 月 23 日
+  0008: 
+  0009: 摘要
+  0010: 
+  0011: 本文继续分析当前项目中的二维 TM Maxwell–Debye–PML 模型和 Baffet 型 time-primitive
+  0012: 
+  0013: 能量，但不再假设阻尼剖面为常数。设
+  0014: 
+  0015: σx = σx(x),
+  0016: 
+  0017: σy = σy(y),
+  0018: 
+  0019: 且 σx, σy 2 W 1,∞。核心结论是：常系数 Baffet–Debye 能量在变系数 stretched PML 上的时
+  0020: 间导数精确变为
+  0021: 
+  0022: d
+  0023: dt
+  0024: 
+  0025: EB(t) = (cid:0)D0(t) + Rσ(t) + B(t),
+  0026: 
+  0027: Rσ(t) = (cid:0)
+  0028: 
+  0029: u ra (cid:1) λ dxdy,
+  0030: 
+  0031: Ω
+  0032: 
+  0033: Z
+  0034: 
+  0035: 其中 a = σx + σy。该内部剩余项含有 ∂xσx 和 ∂yσy，且符号不定；仅有 σi (cid:21) 0、∂iσi (cid:21) 0
+  0036: 或界面连续性均不能推出 E ′
+  0037: L∞ 足
+  0038: 够小，则该余项可被耗散吸收，从而得到有条件单调性。一般变系数剖面只能由该能量得到
+  0039: 
+  0040: B(t) (cid:20) 0。在角 PML 中若 a, b = σxσy 有正下界且 krak
+  0041: 
+  0042: Gronwall 型稳定估计。若放弃严格 stretched-coordinate PML 而优先要求对任意变系数阻尼
+  0043: 无条件单调，则可采用被动端口型能量；该能量对变系数无 rσ 余项，但不是本文前一报告
+  0044: 中证明完美匹配的严格 stretched PML。
+  0045: 
+  0046: 目录
+  0047: 
+  0048: 1 Introduction
+  0049: 
+  0050: 2 Maxwell–Debye–PML model
+  0051: 
+  0052: 2.1 物理 Maxwell–Debye 方程 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  0053: 
+  0054: 2.2 严格 stretched-coordinate PML 的 primitive 形式 . . . . . . . . . . . . . . . . . .
+  0055: 
+  0056: 2.3 未知量、边界和初值 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  0057: 
+  0058: 3 Assumptions on variable damping profiles
+  0059: 
+  0060: 4 Review of the original Baffet energy
+  0061: 
+  0062: 5 Time derivative of the Baffet energy for variable coeﬀicients
+  0063: 
+  0064: 6 Analysis of the variable-coeﬀicient remainder terms
+  0065: 
+  0066: 1
+  0067: 
+  0068: 2
+  0069: 
+  0070: 2
+  0071: 
+  0072: 2
+  0073: 
+  0074: 3
+  0075: 
+  0076: 3
+  0077: 
+  0078: 4
+  0079: 
+  0080: 4
+  0081: 
+  0082: 5
+  0083: 
+  0084: 6
+  0085: 
+  0086: 
+  0087: 1
+  0088: 
+  0089: INTRODUCTION
+  0090: 
+  0091: 7 Failure mechanism or additional suﬀicient conditions
+  0092: 
+  0093: 7.1 Gronwall 型估计 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  0094: 
+  0095: 7.2 小梯度条件下的条件单调性 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  0096: 
+  0097: 8 Construction of a modified energy functional
+  0098: 
+  0099: 9 Positivity of the modified energy
+  0100: 
+  0101: 10 Monotonicity theorem
+  0102: 
+  0103: 11 Strict dissipation versus non-increasing energy
+  0104: 
+  0105: 12 Comparison between constant and variable damping
+  0106: 
+  0107: 13 Conclusions and open problems
+  0108: 
+  0109: 1 Introduction
+  0110: 
+  0111: 2
+  0112: 
+  0113: 7
+  0114: 
+  0115: 7
+  0116: 
+  0117: 7
+  0118: 
+  0119: 8
+  0120: 
+  0121: 8
+  0122: 
+  0123: 8
+  0124: 
+  0125: 9
+  0126: 
+  0127: 9
+  0128: 
+  0129: 10
+  0130: 
+  0131: 当前项目已有文件 perfect_matching_debye_pml_energy_analysis.tex 给出了常系数
+  0132: 
+  0133: Baffet–Debye primitive 模型及能量恒等式；new_energy_functional_2d_debye_pml.tex 给出
+  0134: 
+  0135: 了一个能量耗散但一般不严格匹配的被动端口模型。本文只研究连续层面，不讨论离散误差。
+  0136: 
+  0137: 本文保持项目符号：E = Ez，H = (Hx, Hy)，P 为 Debye 极化，
+  0138: 
+  0139: ε = ε0εr,∞,
+  0140: 
+  0141: µ = µ0µr,
+  0142: 
+  0143: κ = ε0(εr,s (cid:0) εr,∞),
+  0144: 
+  0145: τ = τ0.
+  0146: 
+  0147: 假设 ε, µ, κ, τ > 0。PML 阻尼记为 σx, σy。
+  0148: 
+  0149: 本文结论分为三层：
+  0150: 
+  0151: • 对严格 stretched-coordinate Baffet 模型，常系数能量在一般变系数阻尼下无条件单调性
+  0152: 
+  0153: 失败；
+  0154: 
+  0155: • 在小梯度和正下界条件下，原 Baffet 能量有有条件单调性；
+  0156: 
+  0157: • 若改用被动端口吸收层，则存在对任意非负变系数阻尼的无条件单调能量，但该模型不再
+  0158: 
+  0159: 是已证明的严格 stretched PML。
+  0160: 
+  0161: 2 Maxwell–Debye–PML model
+  0162: 
+  0163: 2.1 物理 Maxwell–Debye 方程
+  0164: 
+  0165: 在物理区域 Ωph，二维 TM Maxwell–Debye 方程为
+  0166: 
+  0167: εEt + Pt = ∂xHy (cid:0) ∂yHx,
+  0168: 
+  0169: µHx,t = (cid:0)∂yE,
+  0170: 
+  0171: µHy,t = ∂xE,
+  0172: 
+  0173: τ Pt + P = κE.
+  0174: 
+  0175: (1)
+  0176: 
+  0177: (2)
+  0178: 
+  0179: (3)
+  0180: 
+  0181: (4)
+  0182: 
+  0183: 
+  0184: 2 MAXWELL–DEBYE–PML MODEL
+  0185: 
+  0186: 3
+  0187: 
+  0188: 自然能量满足
+  0189: 
+  0190: Z
+  0191: 
+  0192: (cid:0)
+  0193: 
+  0194: Ω
+  0195: 
+  0196: d
+  0197: dt
+  0198: 
+  0199: 1
+  0200: 2
+  0201: 
+  0202: εE2 + µH 2
+  0203: 
+  0204: x + µH 2
+  0205: 
+  0206: y + κ−1P 2
+  0207: 
+  0208: (cid:1)
+  0209: 
+  0210: dxdy +
+  0211: 
+  0212: Z
+  0213: 
+  0214: τ
+  0215: κ
+  0216: 
+  0217: Ω
+  0218: 
+  0219: P 2
+  0220: 
+  0221: t dxdy = 边界通量.
+  0222: 
+  0223: 2.2 严格 stretched-coordinate PML 的 primitive 形式
+  0224: 
+  0225: 频域 stretched PML 使用
+  0226: 
+  0227: Si(s, xi) = 1 +
+  0228: 
+  0229: σi(xi)
+  0230: s
+  0231: 
+  0232: ,
+  0233: 
+  0234: ∂i 7! S−1
+  0235: 
+  0236: i ∂i,
+  0237: 
+  0238: i = x, y.
+  0239: 
+  0240: Debye 响应保持为
+  0241: 
+  0242: bP =
+  0243: 
+  0244: κ
+  0245: 1 + aus
+  0246: 
+  0247: bE,
+  0248: 
+  0249: εD(s) = ε +
+  0250: 
+  0251: κ
+  0252: 1 + aus
+  0253: 
+  0254: .
+  0255: 
+  0256: 为获得能量法，引入 primitive 变量
+  0257: 
+  0258: ut = E,
+  0259: 
+  0260: qt = P,
+  0261: 
+  0262: q + auP = κu.
+  0263: 
+  0264: 令
+  0265: 
+  0266: 并定义
+  0267: 
+  0268: a(x, y) = σx(x) + σy(y),
+  0269: 
+  0270: b(x, y) = σx(x)σy(y),
+  0271: 
+  0272: Γ1 =
+  0273: 
+  0274: !
+  0275: 
+  0276: σx
+  0277: 0
+  0278: 
+  0279: 0
+  0280: 
+  0281: σy
+  0282: 
+  0283: ,
+  0284: 
+  0285: Γ2 =
+  0286: 
+  0287: σy (cid:0) σx
+  0288: 0
+  0289: 
+  0290: 0
+  0291: σx (cid:0) σy
+  0292: 
+  0293: !
+  0294: 
+  0295: .
+  0296: 
+  0297: 辅助磁通量变量为
+  0298: 
+  0299: λ = ru + ϕ,
+  0300: 
+
+[75] item.started:command_execution
+  command: /bin/zsh -lc "python3 - <<'PY'
+from pdfminer.high_level import extract_text
+text=extract_text('references/variable_coefficient_baffet_energy.pdf')
+lines=text.splitlines()
+for start in [300,430,560,680,820,950,1060]:
+    print(f'--- lines {start+1}-{min(start+120,len(lines))} ---')
+    for i,line in enumerate(lines[start:start+120], start+1):
+        print(f'{i:04d}: {line}')
+PY"
+  status: in_progress
+  exit_code: None
+
+[76] item.completed:command_execution
+  command: /bin/zsh -lc "python3 - <<'PY'
+from pdfminer.high_level import extract_text
+text=extract_text('references/variable_coefficient_baffet_energy.pdf')
+lines=text.splitlines()
+for start in [300,430,560,680,820,950,1060]:
+    print(f'--- lines {start+1}-{min(start+120,len(lines))} ---')
+    for i,line in enumerate(lines[start:start+120], start+1):
+        print(f'{i:04d}: {line}')
+PY"
+  status: completed
+  exit_code: 0
+  --- lines 301-420 ---
+  0301: ϕt + Γ1ϕ = Γ2ru.
+  0302: 
+  0303: 本文研究的 Baffet–Debye primitive 方程是
+  0304: 
+  0305: µfε(utt + aut + bu) + Pt + aP + bqg (cid:0) r (cid:1) λ = 0,
+  0306: 
+  0307: ϕt + Γ1ϕ = Γ2ru,
+  0308: 
+  0309: τ Pt + P = κut,
+  0310: 
+  0311: qt = P,
+  0312: 
+  0313: q + auP = κu.
+  0314: 
+  0315: (5)
+  0316: 
+  0317: (6)
+  0318: 
+  0319: (7)
+  0320: 
+  0321: (8)
+  0322: 
+  0323: (9)
+  0324: 
+  0325: (10)
+  0326: 
+  0327: (11)
+  0328: 
+  0329: (12)
+  0330: 
+  0331: 当 σx, σy 为常数时，这是当前项目报告中使用的 Baffet 型模型；当 σx = σx(x)、σy = σy(y) 时，
+  0332: 频域中仍有
+  0333: 
+  0334: ∂xbu,
+  0335: 
+  0336: bλy =
+  0337: 
+  0338: Sy
+  0339: Sx
+  0340: 
+  0341: Sx
+  0342: Sy
+  0343: 
+  0344: ∂y bu,
+  0345: 
+  0346: bλx =
+  0347: 
+  0348: 从而二阶算子包含变系数通量散度。
+  0349: 
+  0350: 2.3 未知量、边界和初值
+  0351: 
+  0352: 未知量为
+  0353: 
+  0354: u, E = ut, P,
+  0355: 
+  0356: q, ϕ = (ϕx, ϕy),
+  0357: 
+  0358: λ = (λx, λy).
+  0359: 
+  0360: 磁场可由 stretched 磁通量恢复；常系数频域关系为
+  0361: 
+  0362: bλx = Syµ bHy,
+  0363: 
+  0364: bλy = (cid:0)Sxµ bHx.
+  0365: 
+  0366:  
+  0367:  
+  0368: 
+  0369: 3 ASSUMPTIONS ON VARIABLE DAMPING PROFILES
+  0370: 
+  0371: 4
+  0372: 
+  0373: 边界项统一写为
+  0374: 
+  0375: Z
+  0376: 
+  0377: B(t) =
+  0378: 
+  0379: (ut + au)λ (cid:1) n ds.
+  0380: 
+  0381: ∂Ω
+  0382: 
+  0383: 在周期边界、界面通量成对抵消、或 primitive PEC 条件 u = 0 且 ut + au = 0 的外边界上，
+  0384: B(t) = 0。初值必须满足 Debye primitive 相容条件 q(0) + τ P (0) = κu(0)，并给定 ut(0) = E(0)。
+  0385: 
+  0386: 3 Assumptions on variable damping profiles
+  0387: 
+  0388: 本文区分如下假设。
+  0389: 
+  0390: 假设 1 (基本非负剖面). 区域 Ω = Ix (cid:2) Iy 有 Lipschitz 边界，
+  0391: 
+  0392: σx 2 W 1,∞(Ix),
+  0393: 
+  0394: σy 2 W 1,∞(Iy),
+  0395: 
+  0396: σx, σy (cid:21) 0.
+  0397: 
+  0398: 允许物理区中 σx = σy = 0。此时 a, b 2 W 1,∞(Ω)，且
+  0399: 
+  0400: ra = (σ′
+  0401: 
+  0402: x(x), σ′
+  0403: 
+  0404: y(y)).
+  0405: 
+  0406: 假设 2 (角 PML 正下界). 在待证明严格 Baffet 能量估计的子区域 Ωc 中存在常数
+  0407: 
+  0408: 0 < σ∗ (cid:20) σx(x), σy(y) (cid:20) σ∗ < 1.
+  0409: 
+  0410: 于是 a (cid:21) 2σ∗，b (cid:21) σ2
+  0411: 
+  0412: ∗。
+  0413: 
+  0414: 假设 3 (小梯度条件). 在 Ωc 中，krak
+  0415: 
+  0416: L∞(Ωc) 足够小，具体阈值见定理 2。
+  0417: 
+  0418: 分片光滑阻尼可逐块使用下列计算，并在跳跃界面保留通量项。若 σi 在物理区与 PML 交
+  0419: 界面不连续，则 ra 含分布项，能量推导会产生额外界面项；除非这些界面项符号可控，否则不
+  0420: 
+  --- lines 431-550 ---
+  0431: 
+  0432: β0 = a + bτ,
+  0433: 
+  0434: γ0 = a2 + b(1 + aτ ).
+  0435: 
+  0436: (13)
+  0437: 
+  0438: 在 a > 0 的区域中令
+  0439: 
+  0440: EB(t) =
+  0441: 
+  0442: Z
+  0443: 
+  0444: h
+  0445: 
+  0446: Ω
+  0447: 
+  0448: 1
+  0449: 2
+  0450: 
+  0451: µε(ut + au)2 + jλj2 + ϕT a−1Γ1ϕ + µεbu2
+  0452: 
+  0453: α0P 2 + 2β0P q + γ0q2
+  0454: 
+  0455: (cid:1)i
+  0456: 
+  0457: dxdy.
+  0458: 
+  0459: +
+  0460: 
+  0461: (cid:0)
+  0462: 
+  0463: µ
+  0464: κ
+  0465: 
+  0466: (14)
+  0467: 
+  0468: 若 a = 0，则 Γ1 = 0，上式中 a−1Γ1 按连续延拓取零；此时 primitive 变量 q, u 的某些 gauge 方
+  0469: 向不由 Baffet 能量控制，物理能量应退化为 E, H, P 的自然能量。因此本文关于 EB 的正定性
+  0470: 和单调性结论默认应用在 a > 0 的 PML 区域，或应用在物理区与 PML 区分块耦合且界面通量
+  0471: 
+  0472: 被单独处理的全局模型中。
+  0473: 
+  0474: 各项来源如下：µε(ut + au)2 来自主方程乘子 ut + au；jλj2 + ϕT a−1Γ1ϕ 来自 Baffet 磁通
+  0475: 
+  0476: 量抵消；µεbu2 是角 PML 零阶储能；P, q 二次型来自 Debye primitive 恒等式。
+  0477: 
+  0478: 
+  0479: 5 TIME DERIVATIVE OF THE BAFFET ENERGY FOR VARIABLE COEFFICIENTS 5
+  0480: 
+  0481: 引理 1 (点态正定性). 若 a > 0、b (cid:21) 0、τ > 0，则 P, q 二次型矩阵
+  0482: 
+  0483: MP q =
+  0484: 
+  0485: !
+  0486: 
+  0487: α0 β0
+  0488: β0 γ0
+  0489: 
+  0490: 正定。
+  0491: 
+  0492: 证明. 有 α0 = 1 + 2aτ > 0，且
+  0493: 
+  0494: α0γ0 (cid:0) β2
+  0495: 
+  0496: 0 = b + abτ + 2a3τ + b(2a2 (cid:0) b)τ 2 > 0,
+  0497: 
+  0498: 因为 2a2 (cid:0) b = 2σ2
+  0499: 
+  0500: x + 3σxσy + 2σ2
+  0501: y
+  0502: 
+  0503: (cid:21) 0。由 Sylvester 判据得正定。
+  0504: 
+  0505: 5 Time derivative of the Baffet energy for variable coeﬀicients
+  0506: 
+  0507: 本节重新逐项计算，不引用常系数结论。
+  0508: 
+  0509: 引理 2 (主方程乘子恒等式). 令 W = ut + au。由于 a, b 与时间无关，沿 (9) 有
+  0510: 
+  0511: Z
+  0512: 
+  0513: 1
+  0514: 2
+  0515: 
+  0516: d
+  0517: dt
+  0518: Z
+  0519: 
+  0520: =
+  0521: 
+  0522: (cid:0)
+  0523: 
+  0524: µε
+  0525: 
+  0526: W 2 + bu2
+  0527: 
+  0528: (cid:1)
+  0529: 
+  0530: Ω
+  0531: W r (cid:1) λdxdy (cid:0) µ
+  0532: 
+  0533: Z
+  0534: 
+  0535: dxdy +
+  0536: Z
+  0537: 
+  0538: µεabu2dxdy
+  0539: 
+  0540: Ω
+  0541: 
+  0542: (Pt + aP + bq)W dxdy.
+  0543: 
+  0544: 进一步分部积分得
+  0545: 
+  0546: 其中
+  0547: 
+  0548: Ω
+  0549: 
+  0550: Z
+  --- lines 561-680 ---
+  0561: 
+  0562: Ω
+  0563: 
+  0564: rW = rut + aru + ura.
+  0565: 
+  0566: (15)
+  0567: 
+  0568: (16)
+  0569: 
+  0570: (17)
+  0571: 
+  0572: 证明. 展开 (utt + aut + bu)W = (Wt + bu)W ，并用 1
+  0573: 新项是 (17) 中的 ura；常系数证明正是在此处隐含使用了 ra = 0。
+  0574: 
+  0575: 2 (bu2)t = buut。式 (16) 是散度定理。关键
+  0576: 
+  0577: 引理 3 (磁通量 Baffet 恒等式). 在 a > 0 处，沿 (10) 有点态恒等式
+  0578: 
+  0579: (cid:0)
+  0580: 
+  0581: ∂t
+  0582: 
+  0583: jλj2 + ϕT a−1Γ1ϕ
+  0584: 
+  0585: 1
+  0586: 2
+  0587: = λ (cid:1) (rut + aru).
+  0588: 
+  0589: (cid:1)
+  0590: 
+  0591: + λT Γ1(I + a−1Γ1)λ +
+  0592: 
+  0593: b
+  0594: a
+  0595: 
+  0596: jruj2
+  0597: 
+  0598: (18)
+  0599: 
+  0600: 证明. 只需逐分量验证。以 x 分量为例，记 d = ∂xu、λ = λx、ϕ = λ (cid:0) d。由 (10)，
+  0601: 
+  0602: λt = dt + σyd (cid:0) σxλ,
+  0603: 
+  0604: ϕt = σyd (cid:0) σxλ.
+  0605: 
+  0606: 于是
+  0607: 
+  0608: λλt +
+  0609: 
+  0610: σx
+  0611: a
+  0612: 
+  0613: ϕϕt
+  0614: 
+  0615: = λdt + σyλd (cid:0) σxλ2 +
+  0616: 
+  0617: (cid:16)
+  0618: 
+  0619: = λdt + aλd (cid:0) σx
+  0620: 
+  0621: 1 +
+  0622: 
+  0623: σx
+  0624: a
+  0625: σx
+  0626: a
+  0627: 
+  0628: (λ (cid:0) d)(σyd (cid:0) σxλ)
+  0629: (cid:17)
+  0630: λ2 (cid:0) b
+  0631: a
+  0632: 
+  0633: d2.
+  0634: 
+  0635: y 分量同理，将 σx 与 σy 交换。相加即得 (18)。注意该证明未对空间积分分部积分，因此不会
+  0636: 产生 ∂x(a−1σx) 等项；变系数只通过 (17) 出现。
+  0637: 
+  0638:  
+  0639: 
+  0640: 6 ANALYSIS OF THE VARIABLE-COEFFICIENT REMAINDER TERMS
+  0641: 
+  0642: 6
+  0643: 
+  0644: 引理 4 (Debye primitive 恒等式). 沿 (11)–(12)，点态有
+  0645: 
+  0646: (Pt + aP + bq) (τ Pt + (1 + aτ )P + aq)
+  0647: 1
+  0648: 2
+  0649: 
+  0650: α0P 2 + 2β0P q + γ0q2
+  0651: 
+  0652: ∂t
+  0653: 
+  0654: =
+  0655: 
+  0656: (cid:0)
+  0657: 
+  0658: (cid:1)
+  0659: 
+  0660: + τ P 2
+  0661: 
+  0662: t + τ (a2 (cid:0) b)P 2 + abq2.
+  0663: 
+  0664: (19)
+  0665: 
+  0666: 证明. 利用 qt = P ，并注意 a, b, α0, β0, γ0 与时间无关，直接展开整理即可。
+  0667: 
+  0668: 由 Debye primitive 相容式可得
+  0669: 
+  0670: W = ut + au =
+  0671: 
+  0672: τ Pt + (1 + aτ )P + aq
+  0673: κ
+  0674: 
+  0675: .
+  0676: 
+  0677: (20)
+  0678: 
+  0679: 定理 1 (变系数 Baffet 能量恒等式). 在假设 1 下，令 Ω+ = f(x, y) : a(x, y) > 0g。设解在 Ω+
+  0680: 上足够光滑且所有分部积分合法；若全局区域还含物理区 a = 0，则物理区使用 Maxwell–Debye
+  --- lines 681-800 ---
+  0681: 自然能量并把界面通量计入边界项。则 (9)–(12) 在 Ω+ 上满足
+  0682: 
+  0683: 其中理想耗散项为
+  0684: 
+  0685: d
+  0686: dt
+  0687: 
+  0688: Z
+  0689: 
+  0690: (cid:20)
+  0691: 
+  0692: D0(t) =
+  0693: 
+  0694: Ω+
+  0695: µ
+  0696: κ
+  0697: 
+  0698: +
+  0699: 
+  0700: Z
+  0701: 
+  0702: 内部变系数余项为
+  0703: 
+  0704: EB(t) = (cid:0)D0(t) + Rσ(t) + B(t),
+  0705: 
+  0706: (cid:21)
+  0707: 
+  0708: jruj2 + µεabu2
+  0709: 
+  0710: dxdy
+  0711: 
+  0712: b
+  0713: a
+  0714: 
+  0715: λT Γ1(I + a−1Γ1)λ +
+  0716: Z
+  0717: 
+  0718: τ P 2
+  0719: 
+  0720: t + τ (a2 (cid:0) b)P 2 + abq2
+  0721: 
+  0722: (cid:3)
+  0723: 
+  0724: dxdy (cid:21) 0,
+  0725: 
+  0726: (cid:2)
+  0727: 
+  0728: Ω+
+  0729: 
+  0730: Rσ(t) = (cid:0)
+  0731: 
+  0732: ura (cid:1) λdxdy = (cid:0)
+  0733: 
+  0734: Ω+
+  0735: 
+  0736: Z
+  0737: 
+  0738: (cid:0)
+  0739: 
+  0740: u
+  0741: 
+  0742: Ω+
+  0743: 
+  0744: x(x)λx + σ′
+  0745: σ′
+  0746: 
+  0747: y(y)λy
+  0748: 
+  0749: (cid:1)
+  0750: 
+  0751: dxdy,
+  0752: 
+  0753: 边界项为
+  0754: 
+  0755: Z
+  0756: 
+  0757: B(t) =
+  0758: 
+  0759: ∂Ω
+  0760: 证明. 将引理 2–4 相加。由 (16)–(17) 得到 (cid:0)
+  0761: 剩余正是 (cid:0)
+  0762: 
+  0763: R
+  0764: 
+  0765: (ut + au)λ (cid:1) nds.
+  0766: R
+  0767: 
+  0768: ura (cid:1) λ。极化部分由 (20) 和 (19) 转化为 P, q 能量导数与正耗散。
+  0769: 
+  0770: (rut + aru) (cid:1) λ 与磁通量恒等式右端完全抵消，
+  0771: 
+  0772: 6 Analysis of the variable-coeﬀicient remainder terms
+  0773: 
+  0774: 式 (23) 是变系数阻尼剖面的唯一内部新项，但它足以破坏无条件单调性。
+  0775: 
+  0776: 命题 1 (符号不定性). 即使 σx, σy (cid:21) 0 且 σ′
+  0777: 
+  0778: x, σ′
+  0779: 
+  0780: y
+  0781: 
+  0782: (cid:21) 0，余项 Rσ 也没有固定符号。
+  0783: 
+  0784: 证明. 若在某个开集 O 中 ∂xσx > 0，取 u (cid:21) 0 支撑于 O。当 λx < 0 时，(cid:0)uσ′
+  0785: 时，该项为负。变量 λ 是独立的 PML 状态变量，由初值和方程演化确定，符号不受 σ′
+  0786: 性限制。因此 σ′
+  0787: i
+  0788: 
+  0789: (cid:21) 0 不能推出 Rσ (cid:20) 0。
+  0790: 
+  0791: xλx > 0；当 λx > 0
+  0792: x 的单调
+  0793: 
+  0794: 命题 2 (局部二次型障碍). 在忽略边界项并冻结其他变量后，u, λ 子块中的能量导数含有二次型
+  0795: 
+  0796: 其中 cu, cλ (cid:21) 0 来自 (22)。若 jraj2 > 4cucλ，该二次型不是半负定。
+  0797: 
+  0798: (cid:0)cuu2 (cid:0) cλjλj2 (cid:0) ura (cid:1) λ,
+  0799: 
+  0800: (21)
+  --- lines 821-940 ---
+  0821: 
+  0822: 明失效的精确步骤是将 r(ut + au) 当成 rut + aru，忽略了 ura。
+  0823: 
+  0824: 7 Failure mechanism or additional suﬀicient conditions
+  0825: 
+  0826: 7.1 Gronwall 型估计
+  0827: 
+  0828: 若在某区域内 EB 控制 kuk 和 kλk，则
+  0829: 
+  0830: jRσ(t)j (cid:20) krak
+  0831: 
+  0832: L∞ kuk
+  0833: 
+  0834: L2 kλk
+  0835: 
+  0836: L2 (cid:20) CσEB(t).
+  0837: 
+  0838: 因此零边界通量时仅能推出
+  0839: 
+  0840: E ′
+  0841: B(t) (cid:20) CσEB(t),
+  0842: 
+  0843: EB(t) (cid:20) eCσtEB(0).
+  0844: 
+  0845: 这只是稳定性，不是能量单调性。
+  0846: 
+  0847: 7.2 小梯度条件下的条件单调性
+  0848: 
+  0849: 定理 2 (条件单调性). 在角 PML 子区域 Ωc 中假设 2 成立。设存在常数 mu, mλ > 0 使
+  0850: 
+  0851: D0(t) (cid:21) mu kuk2
+  0852: 
+  0853: L2(Ωc) + mλ kλk2
+  0854: 
+  0855: L2(Ωc) + 其他非负项.
+  0856: 
+  0857: 若
+  0858: 
+  0859: 且边界通量非正，则存在 θ > 0 使
+  0860: 
+  0861: krak2
+  0862: 
+  0863: L∞(Ωc) < 4mumλ,
+  0864: 
+  0865: d
+  0866: dt
+  0867: 
+  0868: EB(t) + θD0(t) (cid:20) 0.
+  0869: 
+  0870: 证明. 由 Young 不等式，对任意 η > 0，
+  0871: 
+  0872: jRσj (cid:20) ηmλ kλk2 +
+  0873: 
+  0874: krak2
+  0875: 4ηmλ
+  0876: 
+  0877: L∞
+  0878: 
+  0879: kuk2 .
+  0880: 
+  0881: (25)
+  0882: 
+  0883: (26)
+  0884: 
+  0885: (27)
+  0886: 
+  0887: (28)
+  0888: 
+  0889: (29)
+  0890: 
+  0891: 按用户问题中的分类，严格 stretched-coordinate Baffet 能量在一般变系数阻尼下属于结论
+  0892: 
+  0893: C：只能得到稳定性。若再加上角 PML 正下界和小梯度吸收条件，则属于结论 B：有条件单调性。
+  0894: 
+  0895: 结论 A 的无条件单调性仅对下文的端口型修改模型成立，而不适用于严格 stretched-coordinate
+  0896: Baffet 模型本身。若可选 η 2 (0, 1) 使第二个系数小于 (1 (cid:0) η)mu，即 (28)，则 jRσj 被 D0 的真
+  0897: 子项吸收。代入 (21) 即得。
+  0898: 
+  0899: 该定理解释了为何 “缓慢变化” 的阻尼剖面可能仍可用于 Baffet 能量法。它也说明：需要的
+  0900: (cid:21) 0，而是 ra 相对于耗散强度足够小，并且耗散必须真正控制 u 和 λ。在边 PML 或
+  0901: 
+  0902: 不是 σ′
+  0903: i
+  0904: 物理区，b = 0 或 a = 0 时这种控制可能退化。
+  0905: 
+  0906: 
+  0907: 8 CONSTRUCTION OF A MODIFIED ENERGY FUNCTIONAL
+  0908: 
+  0909: 8
+  0910: 
+  0911: 8 Construction of a modified energy functional
+  0912: 
+  0913: 对严格 stretched-coordinate 模型，本文没有得到对任意 σi 2 W 1,∞ 都满足 E ′(t) (cid:20) 0 的局
+  0914: 
+  0915: 部正定二次能量。原因如下。若取
+  0916: 
+  0917: EM (t) =
+  0918: 
+  0919: Z
+  0920: 
+  0921: 1
+  0922: 2
+  0923: 
+  0924: Ω
+  0925: 
+  0926: U T M (x, y)U dxdy,
+  0927: 
+  0928: 并令 M 依赖于 x, y，则主部空间分部积分会产生
+  0929: 
+  0930: Z
+  0931: 
+  0932: 1
+  0933: 2
+  0934: 
+  0935: U T ∂x(M Ax)U dxdy,
+  0936: 
+  0937: Ω
+  0938: 
+  0939: Z
+  0940: 
+  --- lines 951-1070 ---
+  0951: 
+  0952: 若把目标改为 “任意非负变系数阻尼下无条件单调”，当前项目已有的被动端口模型给出一
+  0953: 
+  0954: 个可证明的修改能量。模型为
+  0955: 
+  0956: (30)
+  0957: 
+  0958: (31)
+  0959: 
+  0960: (32)
+  0961: 
+  0962: (33)
+  0963: 
+  0964: (34)
+  0965: 
+  0966: εEt + Pt + εσEE = ∂xWy (cid:0) ∂yWx,
+  0967: µWx,t + µσyWx = (cid:0)∂yE,
+  0968: 
+  0969: µWy,t + µσxWy = ∂xE,
+  0970: 
+  0971: τ Pt + P = κE.
+  0972: 
+  0973: 这里 Wx, Wy 是能量端口磁通量；在物理区 σx = σy = 0 时可识别为 Hx, Hy。取
+  0974: 
+  0975: Eport(t) =
+  0976: 
+  0977: Z
+  0978: 
+  0979: (cid:0)
+  0980: 
+  0981: Ω
+  0982: 
+  0983: 1
+  0984: 2
+  0985: 
+  0986: εE2 + µW 2
+  0987: 
+  0988: x + µW 2
+  0989: 
+  0990: y + κ−1P 2
+  0991: 
+  0992: (cid:1)
+  0993: 
+  0994: dxdy.
+  0995: 
+  0996: 该能量在 σi = 0 的物理区域不奇异，显式控制 E, W, P ，且 W = H 于无阻尼区域。
+  0997: 
+  0998: 9 Positivity of the modified energy
+  0999: 
+  1000: 定理 3 (端口能量正定性). 设 ε, µ, κ > 0。对 U = (E, Wx, Wy, P )T ，能量 (34) 满足
+  1001: 
+  1002: c1 kU k2
+  1003: 
+  1004: L2(Ω)
+  1005: 
+  1006: (cid:20) Eport(t) (cid:20) c2 kU k2
+  1007: 
+  1008: L2(Ω) ,
+  1009: 
+  1010: 其中
+  1011: 
+  1012: c1 =
+  1013: 
+  1014: 1
+  1015: 2
+  1016: 
+  1017: minfε, µ, κ−1g,
+  1018: 
+  1019: c2 =
+  1020: 
+  1021: 1
+  1022: 2
+  1023: 
+  1024: maxfε, µ, κ−1g.
+  1025: 
+  1026: 常数不依赖 σx, σy，也不需要阻尼正下界。
+  1027: 
+  1028: 证明. 能量矩阵为 diag(ε, µ, µ, κ−1)，其特征值正且与阻尼无关。
+  1029: 
+  1030: 10 Monotonicity theorem
+  1031: 
+  1032: 定理 4 (端口模型的无条件变系数单调性). 设 σx, σy, σE 2 L∞(Ω) 且非负。对 (30)–(33) 的光滑
+  1033: 解，有
+  1034: Z
+  1035: 
+  1036: d
+  1037: dt
+  1038: 
+  1039: Eport(t) + Dport(t) =
+  1040: 
+  1041: E(Wynx (cid:0) Wxny)ds,
+  1042: 
+  1043: (35)
+  1044: 
+  1045: ∂Ω
+  1046: 
+  1047: 
+  1048: 11 STRICT DISSIPATION VERSUS NON-INCREASING ENERGY
+  1049: 
+  1050: 9
+  1051: 
+  1052: 其中
+  1053: 
+  1054: Dport(t) =
+  1055: 
+  1056: Z
+  1057: 
+  1058: (cid:16)
+  1059: 
+  1060: Ω
+  1061: 
+  1062: εσEE2 + µσyW 2
+  1063: 
+  1064: x + µσxW 2
+  1065: 
+  1066: y +
+  1067: 
+  1068: (cid:17)
+  1069: 
+  1070: τ
+  --- lines 1061-1180 ---
+  1061: 
+  1062: εσEE2 + µσyW 2
+  1063: 
+  1064: x + µσxW 2
+  1065: 
+  1066: y +
+  1067: 
+  1068: (cid:17)
+  1069: 
+  1070: τ
+  1071: κ
+  1072: 
+  1073: P 2
+  1074: t
+  1075: 
+  1076: dxdy (cid:21) 0.
+  1077: 
+  1078: (36)
+  1079: 
+  1080: 在 PEC、周期或零通量边界下，E ′
+  1081: 
+  1082: port(t) = (cid:0)Dport(t) (cid:20) 0。
+  1083: 
+  1084: 证明. 将 (30) 乘以 E，(31) 乘以 Wx，(32) 乘以 Wy 后积分。空间项满足
+  1085: 
+  1086: Z
+  1087: 
+  1088: Z
+  1089: 
+  1090: Z
+  1091: 
+  1092: Z
+  1093: 
+  1094: E(∂xWy (cid:0) ∂yWx) +
+  1095: 
+  1096: Wx∂yE (cid:0)
+  1097: 
+  1098: Wy∂xE =
+  1099: 
+  1100: E(Wynx (cid:0) Wxny)ds.
+  1101: 
+  1102: ∂Ω
+  1103: 
+  1104: 这里没有对含 σi 的项做空间分部积分，因此不出现 rσ。Debye 项由
+  1105: 
+  1106: Z
+  1107: 
+  1108: Z
+  1109: 
+  1110: PtE =
+  11
+  ...[truncated 985 chars; see raw codex.events.jsonl]
+
+[77] item.completed:agent_message
+  The new PDF text itself is consistent with the report: it explicitly says the strict stretched-coordinate Baffet energy has the `R_sigma` obstruction, only gives conditional monotonicity under small-gradient/coercivity assumptions, and the port energy is monotone but not the previously verified strict stretched PML.
+
+[78] item.started:command_execution
+  command: /bin/zsh -lc "python3 - <<'PY'
+from pdfminer.high_level import extract_text
+text=extract_text('references/variable_coefficient_baffet_energy.pdf')
+lines=text.splitlines()
+for start in [1180,1300,1420]:
+    print(f'--- lines {start+1}-{min(start+120,len(lines))} ---')
+    for i,line in enumerate(lines[start:start+120], start+1):
+        print(f'{i:04d}: {line}')
+PY"
+  status: in_progress
+  exit_code: None
+
+[79] item.completed:command_execution
+  command: /bin/zsh -lc "python3 - <<'PY'
+from pdfminer.high_level import extract_text
+text=extract_text('references/variable_coefficient_baffet_energy.pdf')
+lines=text.splitlines()
+for start in [1180,1300,1420]:
+    print(f'--- lines {start+1}-{min(start+120,len(lines))} ---')
+    for i,line in enumerate(lines[start:start+120], start+1):
+        print(f'{i:04d}: {line}')
+PY"
+  status: completed
+  exit_code: 0
+  --- lines 1181-1300 ---
+  1181: 每块同常数 块 内 是； 界
+  1182: 
+  1183: 界面跳跃项 需要界面处
+  1184: 
+  1185: 条 件 单 调 或
+  1186: 
+  1187: 通 量 需 匹 配
+  1188: 
+  1189: 面 需 通 量 抵
+  1190: 
+  1191: 理
+  1192: 
+  1193: 稳定
+  1194: 
+  1195: primitive 能量
+  1196: 
+  1197: 光滑变系数
+  1198: 
+  1199: 正定性点态
+  1200: 
+  1201: 一般否
+  1202: 
+  1203: 消
+  1204: 
+  1205: 成立于 a >
+  1206: 
+  1207: 0
+  1208: 
+  1209: 同上
+  1210: 
+  1211: 单调递增剖面
+  1212: 
+  1213: 是，
+  1214: R
+  1215: (cid:0)
+  1216: 
+  1217: ura (cid:1) λ
+  1218: 
+  1219: 通常需要
+  1220: 
+  1221: Gronwall 稳
+  1222: 
+  1223: 若 严 格 PML，
+  1224: 
+  1225: 定
+  1226: 
+  1227: 需处理余项
+  1228: 
+  1229: 仍一般否
+  1230: 
+  1231: 是
+  1232: 
+  1233: 单调性本身
+  1234: 
+  1235: 不够
+  1236: 
+  1237: 不应忽略余项
+  1238: 
+  1239: 不 能 仅 凭
+  1240: σ′
+  1241: (cid:21) 0 断言
+  1242: i
+  1243: 单调
+  1244: 
+  1245: 
+  1246: 13 CONCLUSIONS AND OPEN PROBLEMS
+  1247: 
+  1248: 10
+  1249: 
+  1250: 一般非负剖面
+  1251: 
+  1252: 物 理 区
+  1253: 
+  1254: 否
+  1255: 
+  1256: 是
+  1257: 
+  1258: 大梯度可失
+  1259: 
+  1260: 败
+  1261: 
+  1262: 最多 E ′
+  1263: B
+  1264: CσEB
+  1265: 
+  1266: (cid:20)
+  1267: 
+  1268: 若要无条件能
+  1269: 
+  1270: 量， 改 用 端 口
+  1271: 
+  1272: 模型
+  1273: 
+  1274: primitive
+  1275: 
+  1276: 退化
+  1277: 
+  1278: 是
+  1279: 
+  1280: 小梯度角 PML
+  1281: 
+  1282: 有条件是
+  1283: 
+  1284: 是但可吸收 需要 (28)
+  1285: 
+  1286: 条件单调
+  1287: 
+  1288: 可作为局部稳
+  1289: 
+  1290: 定设计
+  1291: 
+  1292: 被动端口模型
+  1293: 
+  1294: 全域正定
+  1295: 
+  1296: 是
+  1297: 
+  1298: 否
+  1299: 
+  1300: 不需要
+  --- lines 1301-1390 ---
+  1301: 
+  1302: 无 条 件 单
+  1303: 
+  1304: 最适合能量稳
+  1305: 
+  1306: 调 但 非 严 格
+  1307: 
+  1308: 定 DG
+  1309: 
+  1310: PML
+  1311: 
+  1312: 13 Conclusions and open problems
+  1313: 
+  1314: 本文对用户提出的问题作如下明确回答。
+  1315: 
+  1316: 1. 当前 Baffet 能量在一般 σx(x), σy(y) 下不再无条件单调不增。
+  1317: 
+  1318: 2. 常系数证明失效的步骤是 r(ut + au) = rut + aru；变系数下必须加上 ura。
+  1319: 
+  1320: 3. 由此出现符号不定项 Rσ = (cid:0)
+  1321: 
+  1322: R
+  1323: 
+  1324: u(σ′
+  1325: 
+  1326: xλx + σ′
+  1327: 
+  1328: yλy)。
+  1329: 
+  1330: 4. ∂xσx (cid:21) 0、∂yσy (cid:21) 0 不能保证该项非正，因为 λ 的符号不固定。
+  1331: 
+  1332: 5. 若 krak
+  1333: 
+  1334: L∞ 相对于耗散强度足够小，并且角 PML 中 a, b 有正下界，则原 Baffet 能量仍
+  1335: 
+  1336: 可得到有条件单调性。
+  1337: 
+  1338: 6. 对一般非负变系数剖面，原 Baffet 能量最多自然给出 E ′
+  1339: 
+  1340: B(t) (cid:20) CσEB(t)，即 Gronwall 稳
+  1341: 
+  1342: 定性，而非单调衰减。
+  1343: 
+  1344: 7. 若要求任意变系数阻尼下无条件单调，推荐能量为端口能量 (34)；它正定且显式控制 E, W, P ，
+  1345: 
+  1346: 在物理区 W = H。
+  1347: 
+  1348: 8. 端口能量满足 E ′
+  1349: 
+  1350: port(t) = (cid:0)Dport(t) (cid:20) 0，但该模型一般不是此前证明完美匹配的严格
+  1351: 
+  1352: stretched-coordinate PML。
+  1353: 
+  1354: 9. 得到的是单调不增，不是对所有非零解严格下降；严格下降需要 D(t) > 0，指数衰减还需
+  1355: 
+  1356: 要可观测性。
+  1357: 
+  1358: 10. 后续 DG 若首要目标是严格 stretched PML，应采用 Baffet 变量但必须在离散层面保留并
+  1359: 控制 rσ 或界面余项；若首要目标是无条件离散能量稳定，则应采用端口能量结构。
+  1360: 
+  1361: 开放问题包括：为严格 stretched-coordinate 变系数 Debye PML 构造无小量条件的正定
+  1362: 
+  1363: Lyapunov 泛函；处理边 PML 中 b = 0 的 primitive 退化；在分片光滑阻尼跳跃界面设计完全
+  1364: 
+  1365: 耗散的 DG 数值通量；以及将本文结论推广到 Cole–Cole 分数阶记忆模型。
+  1366: 
+  1367: 
+  1368: 参考文献
+  1369: 
+  1370: 11
+  1371: 
+  1372: 参考文献
+  1373: 
+  1374: [1] J.-P. Berenger, A perfectly matched layer for the absorption of electromagnetic waves, Jour-
+  1375: 
+  1376: nal of Computational Physics, 1994.
+  1377: 
+  1378: [2] P. Joly, An elementary introduction to the construction and the analysis of perfectly matched
+  1379: 
+  1380: layers for time domain wave propagation, 2012.
+  1381: 
+  1382: [3] D. Baffet, M. J. Grote, S. Imperiale, and M. Kachanovska, Energy decay and stability of a
+  1383: 
+  1384: perfectly matched layer for the wave equation, Journal of Scientific Computing, 2019.
+  1385: 
+  1386: [4] E. Becache, M. Kachanovska, and M. Wess, Convergence analysis of time-domain PMLs for
+  1387: 
+  1388: 2D electromagnetic wave propagation in dispersive waveguides, 2023.
+  1389: 
+  1390: 
+  --- lines 1421-1390 ---
+
+[80] item.completed:agent_message
+  The PDF source does not overstate the port model either: its conclusion section says the port energy is monotone but “generally not” the previously proved strict stretched-coordinate PML. The added TeX/SymPy artifacts supply the missing explicit oblique-admittance mismatch.
+
+[81] item.started:command_execution
+  command: /bin/zsh -lc 'rg -n "(''^!|Undefined|undefined|Warning|warning|Rerun|Overfull|Fatal|Error|Emergency stop)" tex/variable_coefficient_baffet_energy_analysis_build.log'
+  status: in_progress
+  exit_code: None
+
+[82] item.completed:command_execution
+  command: /bin/zsh -lc 'rg -n "(''^!|Undefined|undefined|Warning|warning|Rerun|Overfull|Fatal|Error|Emergency stop)" tex/variable_coefficient_baffet_energy_analysis_build.log'
+  status: failed
+  exit_code: 1
+
+[83] item.started:command_execution
+  command: /bin/zsh -lc 'lean verification/algebra/VariableCoefficientBaffet.lean'
+  status: in_progress
+  exit_code: None
+
+[84] item.started:command_execution
+  command: /bin/zsh -lc 'ls -l tex/variable_coefficient_baffet_energy_analysis.pdf tex/variable_coefficient_baffet_energy_analysis.tex tex/variable_coefficient_baffet_energy_analysis_build.log results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md results/v5_variable_coefficient_baffet/verification_outputs.md verification/algebra/variable_coefficient_baffet_sympy.py verification/algebra/VariableCoefficientBaffet.lean'
+  status: in_progress
+  exit_code: None
+
+[85] item.completed:command_execution
+  command: /bin/zsh -lc 'lean verification/algebra/VariableCoefficientBaffet.lean'
+  status: failed
+  exit_code: 127
+  zsh:1: command not found: lean
+
+[86] item.completed:command_execution
+  command: /bin/zsh -lc 'ls -l tex/variable_coefficient_baffet_energy_analysis.pdf tex/variable_coefficient_baffet_energy_analysis.tex tex/variable_coefficient_baffet_energy_analysis_build.log results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md results/v5_variable_coefficient_baffet/verification_outputs.md verification/algebra/variable_coefficient_baffet_sympy.py verification/algebra/VariableCoefficientBaffet.lean'
+  status: completed
+  exit_code: 0
+  -rw-r--r--@ 1 wcli  staff    5396 Jul  9 12:06 results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md
+  -rw-r--r--@ 1 wcli  staff    2242 Jul  9 12:06 results/v5_variable_coefficient_baffet/verification_outputs.md
+  -rw-r--r--@ 1 wcli  staff  212470 Jul  9 11:54 tex/variable_coefficient_baffet_energy_analysis.pdf
+  -rw-r--r--@ 1 wcli  staff   15174 Jul  9 11:54 tex/variable_coefficient_baffet_energy_analysis.tex
+  -rw-r--r--@ 1 wcli  staff    7154 Jul  9 11:54 tex/variable_coefficient_baffet_energy_analysis_build.log
+  -rw-r--r--@ 1 wcli  staff    2907 Jul  9 11:49 verification/algebra/VariableCoefficientBaffet.lean
+  -rw-r--r--@ 1 wcli  staff    4357 Jul  9 11:49 verification/algebra/variable_coefficient_baffet_sympy.py
+
+[87] item.started:command_execution
+  command: /bin/zsh -lc "jq -r '.strict_verdict // .verdict, .passed, .summary // .verification_report.summary' verification/results/verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa.json verification/results/verify-20260709T035701313438Z-fact-verify-the-variable-coefficient-baf.json verification/results/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi.json"
+  status: in_progress
+  exit_code: None
+
+[88] item.completed:command_execution
+  command: /bin/zsh -lc "jq -r '.strict_verdict // .verdict, .passed, .summary // .verification_report.summary' verification/results/verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa.json verification/results/verify-20260709T035701313438Z-fact-verify-the-variable-coefficient-baf.json verification/results/verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi.json"
+  status: completed
+  exit_code: 0
+  correct
+  true
+  Correct within the stated constant-coefficient scope. The cited Baffet-Debye artifact defines the primitive variables and compatibility constraint, derives the Laplace symbol of the auxiliary field, and reduces the model to the same second-order stretched-coordinate Maxwell-Debye equation as the verified standard PML fact. The Debye compatibility gives the advertised material factor epsilon_D(s), so the planar-interface perfect-matching conclusion is inherited from the verified predecessor fact. The energy identity is also supported: the spatial part matches the checked two-dimensional Baffet identity for constant damping, the Debye primitive product expands exactly into the derivative of the stated P,q quadratic plus nonnegative remainders, and the P,q determinant is positive for sigma_x,sigma_y >= 0, a > 0, tau > 0. The artifact correctly limits the result to non-increase/no-abnormal-growth with boundary flux cancellation and nullspace/gauge limitations, not strict decay or variable-coefficient monotonicity.
+  correct
+  true
+  Correct. The fact is supported within its stated conditional scope. The variable-coefficient Baffet-Debye derivation in the TeX artifact matches the predecessor constant-coefficient Baffet primitive system and the only new interior term is exactly the product-rule contribution -int u grad(a) dot lambda from grad(u_t+a u). The displayed D0 is nonnegative term by term for sigma_x,sigma_y >= 0, a > 0, and positive material parameters. The sign-obstruction claim is valid because monotone damping profiles do not fix the sign of the dynamical lambda components. Under the explicitly assumed nonpositive boundary flux and D0 coercivity in u and lambda, the small-gradient condition ||grad a||_infty^2 < 4 m_u m_lambda gives |R_sigma| <= c D0 with c < 1, hence dE_B/dt + theta D0 <= 0. Without that absorption, the identity supports only a Gronwall-type bound rather than unconditional monotonicity. The Lean artifact was not executable in this environment, as the outputs state, so it was not counted as an independently checked formal proof; the same load-bearing algebra was checked by the SymPy script and direct component calculations.
+  correct
+  true
+  The cited fact is supported. The port-layer energy identity follows from multiplying the four port equations by E, W_x, W_y, and P_t/kappa, using tau P_t + P = kappa E to convert E P_t into the P-energy derivative plus tau kappa^{-1} P_t^2, and using the Maxwell cross-term divergence identity. The planar x-PML Laplace-Fourier calculation gives the stated Y_port^2 - Y_0^2 formula, and its oblique k_y term cannot be removed by any scalar local sigma_E independent of frequency and tangential wavenumber. With all damping zero, the equations reduce to Maxwell-Debye after W_x=H_x and W_y=H_y.
+
+[89] item.completed:agent_message
+  At this point I have no concrete unsupported claim: the target is an honest scoped assembly, not a full goal-success claim. I’m doing one last dependency check on the constant-coefficient matching predecessor before writing the JSON verdict.
+
+[90] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '1,220p' memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-standard-stretched-pml-matching-and-1d-energy.md"
+  status: in_progress
+  exit_code: None
+
+[91] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '1,220p' memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-standard-stretched-pml-matching-and-1d-energy.md"
+  status: completed
+  exit_code: 0
+  ---
+  fact_id: fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy
+  problem_id: 2d_maxwell_pml_energy_functional_exploration
+  source_project: 2d_maxwell_pml_energy_functional_exploration
+  source_task: task-stage3-repaired-model-energy
+  predecessors: []
+  status: verified
+  fact_type: energy_identity
+  review_level: verified
+  claim_policy: stable_claim
+  claim_summary: "The standard stretched-coordinate Maxwell-Debye PML restores perfect matching and has a reduced normal-incidence dissipative energy identity."
+  verification: verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m
+  ---
+  
+  ## statement
+  
+  For Maxwell-Debye with A(s)=epsilon0 epsilon_infty+chi/(1+tau s), the standard stretched-coordinate PML keeps A(s) and replaces partial_i by S_i(s)^{-1} partial_i, S_i=1+sigma_i/s.  At a planar x-interface with S_x=(s+rho)/s, S_y=1, the transmitted normal number is kappa_sc=S_x kappa_0 and the admittance is Y_sc=-kappa_sc/(mu s S_x)=-kappa_0/(mu s), hence the reflection coefficient is zero for every outgoing physical mode.  In the one-dimensional x-PML normal-incidence block, the exact stretched system (partial_t+rho)(epsilon0 epsilon_infty E+P)=partial_x H_y, mu(partial_t+rho)H_y=partial_xE, P+tau P_t=chi E has the positive energy integral 1/2 int (epsilon0 epsilon_infty E^2+mu H_y^2+(1+rho tau)chi^{-1}P^2) dx and derivative -int (rho epsilon0 epsilon_infty E^2+mu rho H_y^2+rho chi^{-1}P^2+tau chi^{-1}P_t^2) dx, up to the usual boundary flux.  Full derivation and full 2D classification: artifacts/proofs/stage3_repaired_model_energy.md.
+  
+  ## notes
+  
+  Generated by Iteris bootstrap workflow.
+
+[92] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '1,220p' verification/agent_runs/verify-20260709T040717291493Z-assembly-assemble-the-verified-v5-facts-/prompt.md"
+  status: in_progress
+  exit_code: None
+
+[93] item.started:command_execution
+  command: /bin/zsh -lc "sed -n '1,220p' memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-whole-domain-strict-decay-nullspace-obstruction.md"
+  status: in_progress
+  exit_code: None
+
+[94] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '1,220p' memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-whole-domain-strict-decay-nullspace-obstruction.md"
+  status: completed
+  exit_code: 0
+  ---
+  fact_id: fact:2d_maxwell_pml_energy_functional_exploration:whole-domain-strict-decay-nullspace-obstruction
+  problem_id: 2d_maxwell_pml_energy_functional_exploration
+  source_project: 2d_maxwell_pml_energy_functional_exploration
+  source_task: task-stage3-repaired-model-energy
+  predecessors: []
+  status: verified
+  fact_type: obstruction
+  review_level: verified
+  claim_policy: stable_claim
+  claim_summary: "Strict decay of total energy on the whole domain is impossible without a nullspace."
+  verification: verify-20260620T065810059861Z-fact-strict-decay-of-total-electromagnet
+  ---
+  
+  ## statement
+  
+  If a physical subregion has zero PML damping, then E=0, P=0, all PML auxiliary variables zero, and H=(H_x,H_y)=grad phi with phi smooth and compactly supported in that undamped physical subregion gives an exact stationary Maxwell-Debye solution whenever curl H=partial_x H_y-partial_y H_x=0. The magnetic energy is positive for grad phi nonzero while all layer and Debye damping terms vanish. Hence no positive total energy controlling the magnetic field can be strictly decreasing for every nonzero state on the whole computational domain; any dissipative identity must have a characterized nullspace containing such undamped stationary modes. See artifacts/proofs/stage3_repaired_model_energy.md.
+  
+  ## notes
+  
+  Generated by Iteris bootstrap workflow.
+
+[95] item.completed:command_execution
+  command: /bin/zsh -lc "sed -n '1,220p' verification/agent_runs/verify-20260709T040717291493Z-assembly-assemble-the-verified-v5-facts-/prompt.md"
+  status: completed
+  exit_code: 0
+  You are the Iteris Verification Agent.
+  
+  Read the verification request at `/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/verification/agent_runs/verify-20260709T040717291493Z-assembly-assemble-the-verified-v5-facts-/request.json` and verify it inside this
+  project workspace. Do not treat schema validity as enough. Your job is to check
+  whether the claim is actually supported by the cited artifacts, facts, proof
+  steps, source material, and external references when relevant.
+  
+  For mathematical work:
+  - verify statements and subproofs sequentially in the order written;
+  - check assumptions, theorem applications, definitions, and unjustified jumps;
+  - if an external theorem is cited, search/check the reference before accepting
+    it, and verify that the cited theorem's hypotheses and terminology match this
+    problem;
+  - a load-bearing external result must be located to a specific checkable
+    source (paper or identifier plus the precise statement); reliance on an
+    unnamed "standard theorem" or "well-known result" that you cannot locate
+    and check is a critical error, not a gap;
+  - mark any logical error, missing argument, unsupported theorem application, or
+    mismatched reference as a failure.
+  
+  Mode guidance:
+  - `fact`: verify the fact statement, the cited evidence, and predecessor facts.
+    Passing requires that the fact is true within its stated claim scope, not just
+    well-formed.
+  - `assembly`: verify that the terminal artifact answers the goal only by using
+    cited verified facts, and that those facts actually support the assembled
+    conclusion. If the artifact claims a theorem that the facts do not prove,
+    return `wrong`. An artifact that claims to resolve a broader or universally
+    quantified goal but whose cited facts only establish a single instance,
+    sub-family, or degenerate/boundary case overclaims and is `wrong`.
+  - `goal_success`: verify that the terminal artifact satisfies the original
+    user goal in the request claim, not merely that the artifact is internally
+    assembled from verified facts. A verified partial result, blocker, remaining
+    bridge, gap report, or weaker theorem is `wrong` unless the request claim
+    explicitly asks for that limited output.
+    Scope adequacy and quantifier check (mandatory): before judging, restate the
+    goal's quantifier structure and its intended non-trivial regime. If the goal
+    is universally quantified — "for ANY/EVERY choice of X achieve P", "an
+    algorithm that works for all inputs/instances" — then an artifact that
+    establishes P only for a single instance, a hand-picked sub-family, or a
+    boundary case is `wrong`, even when that sub-result is itself correct and
+    verified, unless it genuinely covers the whole quantifier or the problem
+    provably reduces to that case. The solver does NOT get to pick the easiest
+    admissible instance and declare the goal solved when the goal quantifies over
+    all of them. Also REJECT degenerate instantiations that trivialize the
+    objective: a parameter regime where the quantity to be improved collapses to a
+    trivial value (an approximation/competitive factor that becomes 1, a bound
+    that becomes vacuous), an "improvement" measured against an inflated or padded
+    nominal quantity rather than the effective/tight one for that instance, or
+    strictness manufactured only at a boundary (e.g. an empty or zero-optimum
+    input). Such a single-instance or degenerate obstruction may be recorded as an
+    intermediate fact but is `wrong` as goal_success. A genuinely scoped answer is
+    full goal_success when the SOURCE goal as authored (not the solver) defines that
+    scope as the target — a source that explicitly restricts to a named sub-case is
+    satisfied by solving that sub-case. Verify coverage against the ORIGINAL SOURCE goal (found in the cited
+    `source_problem` fact or the referenced direction file's `## Success criteria` /
+    `## What does NOT count`), not the solver-authored request claim: the claim is
+    written by the solver and may
+    quietly NARROW the goal to a self-chosen sub-model, scope, or parameter regime.
+    If the claim or artifact restricts success to a self-selected sub-scope of the
+    source goal, that is a scoped PARTIAL and is `wrong` as goal_success even though
+    the claim "asks for" that narrow scope — the solver does not get to redefine
+    success by narrowing the claim. Honor any explicit anti-narrowing,
+    anti-degeneracy, or "what does NOT count" instruction in the source. If the SOURCE goal's
+    deliverable is itself a maximality/optimality claim — it asks to PROVE a quantity
+    is OPTIMAL / SHARP / TIGHT / BEST-POSSIBLE, not merely to ACHIEVE a target bound,
+    give an algorithm, or prove a stated bound suffices — then `correct` requires
+    BOTH a verified constructive upper bound AND a verified matching lower bound,
+    proven in the SAME resource/access model and the intended non-degenerate regime;
+    an achievability/upper bound alone, or a bound obtained in a different or
+    trivializing model (e.g. retreating to an exact-cost model so the optimum
+    collapses to a constant), does NOT prove optimality. A goal that asks only for an
+    algorithm meeting a stated bound, or for a one-sided bound, does NOT trigger the
+    matching-lower-bound requirement — demanding a lower bound there is
+    over-rejection. When optimality IS the deliverable but the matching lower bound
+    is missing, that is `wrong` as full goal_success — record the gap as "achievable
+    bound; optimal/sharp OPEN" and finalize the honest partial via principled_stop
+    (the research-open landing below), not endless goal_success retries. Adopt a refuting stance: look for the self-narrowing,
+    the model-shift, the missing required matching bound, and the coverage gap
+    before accepting, but reserve `wrong` for a CONCRETE identified gap (a named
+    uncovered class, a witnessed model-shift, a missing required matching bound): if
+    the artifact clearly covers the source goal's full quantifier structure, accept
+    it; if the source goal cannot be located among the cited artifacts, report THAT
+    as the gap rather than refuting a complete-looking answer on mere uncertainty.
+    When the goal or the direction
+    source file it references contains a `## Success criteria` section, check
+    the artifact against EVERY criterion; a result named under `## What does
+    NOT count` does not satisfy the goal even if itself verified. When the goal
+    declares an audit contract (`## Audit routes`), every enumerated route must
+    carry an explicit verdict — a proof or a precisely-witnessed obstruction —
+    plus a synthesis verdict; a single positive result with unaddressed routes
+    is `wrong`.
+  - `principled_stop`: the request claim is the ORIGINAL goal; the artifact asks to
+    STOP because the full goal is unreachable AS STATED, not because it is solved.
+    This is the honest terminal for "provably impossible as stated" or "reduced to
+    a named open subproblem" — it is NOT a license to give up on hard work. Restate
+    the goal's quantifier structure first (as for goal_success), then default to
+    `wrong` and return `correct` ONLY if ALL hold: (1) the artifact cites a VERIFIED
+    obstruction — either a verified impossibility result for the FULL goal exactly
+    as stated, or a precise reduction to a named, well-characterized open
+    subproblem the goal provably reduces to; a vague "this is hard", an unproven
+    conjecture, or an unverified lower bound is `wrong`; (2) the obstruction is on
+    the genuine full goal, not a strawman, a misformalization, or a
+    degenerate-instance escape (the mirror of the goal_success degeneracy check: an
+    "impossibility" manufactured by misreading the goal, padding/inflating a bound,
+    or picking an adversarial sub-instance is `wrong`); (3) the artifact also states
+    the STRONGEST valid result actually achieved AND verified (e.g. the
+    conditional/partial theorem), so the stop captures real progress rather than a
+    blank give-up; (4) there is evidence of genuine exploration (recorded rejected
+    routes / alternative attempts) — a premature stop with obvious unexplored
+    routes is `wrong`. For a research-OPEN goal (not provably impossible, but not
+    fully closable this run), a precise, VERIFIED reduction (the full goal provably
+    follows from the named subproblem; reduction direction and faithfulness checked)
+    of the full goal to a named, well-characterized OPEN subproblem PLUS a
+    comprehensive obstruction map of the
+    standard routes, accompanied by the strongest verified partial and genuine
+    exploration evidence, IS a legitimate principled stop under (1)'s reduction
+    branch — the honest scientific terminal for an open problem. Do not reject such
+    an honest strong-partial merely because the full goal remains open; reject only
+    a cop-out (a weak partial, obvious unexplored routes, a vague "this is hard", or
+    an overclaim).
+  - `proof`: verify the full proof text in paper order. A proof with any gap is
+    `wrong`.
+  - `experiment`: verify the claim against the cited artifacts as for other
+    modes, and additionally verify discriminating power. The artifact must
+    declare its baseline/control and what outcome would falsify the claim; check
+    whether a trivial baseline would also pass on the same instances. An
+    experiment that any baseline passes is 0-discriminating and must not pass as
+    empirical support for the claim. When the claim selects between competing
+    hypotheses (e.g. growth laws), also check that the ANALYSIS METHOD can
+    distinguish them on the data range: near-collinear fits compared by goodness
+    of fit have no discriminating power — demand a diagnostic that separates the
+    hypotheses (such as increment/difference behavior) or mark the selection as
+    a gap. Check that the experiment declares its scope (what the data is a
+    proxy for) and does not over-claim beyond it.
+  - `source`, `code`, `claim_firewall`: verify the claim against
+    the cited artifacts at the appropriate scope and report all gaps.
+  
+  Write exactly one JSON object to `/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/verification/agent_runs/verify-20260709T040717291493Z-assembly-assemble-the-verified-v5-facts-/verification.json` with this shape:
+  
+  ```json
+  {
+    "verification_report": {
+      "summary": "string",
+      "critical_errors": [
+        {"location": "string", "issue": "string"}
+      ],
+      "gaps": [
+        {"location": "string", "issue": "string"}
+      ]
+    },
+    "verdict": "correct",
+    "repair_hints": "string",
+    "checked_artifacts": ["path"],
+    "checked_fact_ids": ["fact:id"]
+  }
+  ```
+  
+  Use `verdict: "correct"` if and only if there are no critical errors and no
+  gaps. Otherwise use `verdict: "wrong"` and provide concrete repair hints.
+  
+  Request id: verify-20260709T040717291493Z-assembly-assemble-the-verified-v5-facts-
+
+[96] item.started:command_execution
+  command: /bin/zsh -lc "jq '.strict_verdict,.passed,.summary' verification/results/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m.json verification/results/verify-20260620T065810059861Z-fact-strict-decay-of-total-electromagnet.json"
+  status: in_progress
+  exit_code: None
+
+[97] item.completed:command_execution
+  command: /bin/zsh -lc "jq '.strict_verdict,.passed,.summary' verification/results/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m.json verification/results/verify-20260620T065810059861Z-fact-strict-decay-of-total-electromagnet.json"
+  status: completed
+  exit_code: 0
+  "correct"
+  true
+  "Correct within the stated scope. The cited fact is supported for the standard Laplace-domain stretched-coordinate Maxwell-Debye PML with the physical Debye law left as A(s)=epsilon0 epsilon_infty+chi/(1+tau s), coordinate-aligned planar interfaces, Re s>0, physical positive material parameters, and constant nonnegative layer damping in the reduced 1D energy calculation. The planar-interface calculation is algebraic: replacing partial_x by S_x^{-1} partial_x gives (S_x^{-1} kappa_sc)^2=kappa_0^2, so choosing the outgoing/decaying branch kappa_sc=S_x kappa_0 makes the PML admittance equal to the physical admittance and the reflection coefficient vanishes. The reduced normal-incidence system follows by multiplying the 1D stretched equations by (s+rho)/s, giving (partial_t+rho)(epsilon0 epsilon_infty E+P)=partial_x H_y, mu(partial_t+rho)H_y=partial_x E, and P+tau P_t=chi E. Multiplying by E and H_y and using E=(P+tau P_t)/chi yields exactly the stated energy derivative with the boundary flux plus the nonpositive bulk terms. The supporting artifact also correctly limits the result: it does not claim a full 2D monotone energy for the exact ADE stretched-coordinate system."
+  "correct"
+  true
+  "Correct. The source model and the repaired ADE model both use the 2D TM first-order evolution equations with E, H_x, H_y, P and PML auxiliaries, and the source problem imposes PEC E=0 but no additional divergence constraint. In an open physical subregion where sigma_x=sigma_y=0, choose phi smooth, compactly supported there, with grad phi nonzero, set E=P=0, all auxiliary variables zero, H_x=partial_x phi, and H_y=partial_y phi. Then partial_x H_y - partial_y H_x=0, partial_x E=partial_y E=0, the Debye law gives P_t=0, and every PML/ADE damping or auxiliary source term vanishes. Compact support keeps boundary and interface traces harmless. Thus the state is a nonzero stationary solution with positive magnetic energy for any positive state energy controlling H. Along such a stationary state an autonomous total electromagnetic-Debye energy cannot strictly decrease for every nonzero state. Therefore a valid dissipative identity on the whole computational domain must allow a nullspace containing these undamped curl-free magnetic modes."
+
+[98] item.completed:agent_message
+  I’m writing the verification result as `correct`: the assembly is scoped to the v5 audit result, cites verified facts for each load-bearing statement, and does not claim unconditional variable-coefficient strict-PML monotonicity.
+
+[99] item.started:file_change
+  status: in_progress
+  [{"path":"/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/verification/agent_runs/verify-20260709T040717291493Z-assembly-assemble-the-verified-v5-facts-/verification.json","kind":"add"}]
+
+[100] item.completed:file_change
+  status: completed
+  [{"path":"/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/verification/agent_runs/verify-20260709T040717291493Z-assembly-assemble-the-verified-v5-facts-/verification.json","kind":"add"}]
+
+[101] item.completed:agent_message
+  I’ll validate the JSON shape now so the verifier output is machine-readable.
+
+[102] item.started:command_execution
+  command: /bin/zsh -lc "jq '.' verification/agent_runs/verify-20260709T040717291493Z-assembly-assemble-the-verified-v5-facts-/verification.json >/dev/null && jq -r '.verdict' verification/agent_runs/verify-20260709T040717291493Z-assembly-assemble-the-verified-v5-facts-/verification.json"
+  status: in_progress
+  exit_code: None
+
+[103] item.completed:command_execution
+  command: /bin/zsh -lc "jq '.' verification/agent_runs/verify-20260709T040717291493Z-assembly-assemble-the-verified-v5-facts-/verification.json >/dev/null && jq -r '.verdict' verification/agent_runs/verify-20260709T040717291493Z-assembly-assemble-the-verified-v5-facts-/verification.json"
+  status: completed
+  exit_code: 0
+  correct
+
+[104] item.completed:agent_message
+  Wrote the verification result to [verification.json](/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/verification/agent_runs/verify-20260709T040717291493Z-assembly-assemble-the-verified-v5-facts-/verification.json).
+  
+  Verdict: `correct`. The assembly is supported by the verified facts and artifacts, and it does not overclaim unconditional variable-coefficient strict-PML monotonicity. JSON validation passed.
+
+[105] turn.completed
+  {"input_tokens":1055599,"cached_input_tokens":958464,"output_tokens":8303,"reasoning_output_tokens":1987}

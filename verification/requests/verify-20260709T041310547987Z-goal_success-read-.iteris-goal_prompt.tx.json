@@ -1,0 +1,27 @@
+{
+  "schema_version": "iteris.verification_request.v0",
+  "request_id": "verify-20260709T041310547987Z-goal_success-read-.iteris-goal_prompt.tx",
+  "backend": "agent",
+  "executor": "codex",
+  "mode": "goal_success",
+  "claim": "Read .iteris/goal_prompt.txt and verify that the v5 terminal artifact satisfies the complete variable-coefficient Baffet contract, including required artifacts, local verification, fact verification, assembly verification, and honest scope distinctions.",
+  "artifacts": [
+    ".iteris/goal_prompt.txt",
+    "results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md",
+    "tex/variable_coefficient_baffet_energy_analysis.tex",
+    "tex/variable_coefficient_baffet_energy_analysis.pdf",
+    "tex/variable_coefficient_baffet_energy_analysis_build.log",
+    "verification/algebra/VariableCoefficientBaffet.lean",
+    "verification/algebra/variable_coefficient_baffet_sympy.py",
+    "results/v5_variable_coefficient_baffet/verification_outputs.md",
+    "verification/results/verify-20260709T040717291493Z-assembly-assemble-the-verified-v5-facts-.json"
+  ],
+  "fact_ids": [],
+  "target_artifact": "results/v5_variable_coefficient_baffet/variable_coefficient_baffet_next_step_report.md",
+  "created_at": "2026-07-09T04:13:10.548498Z",
+  "prompt_path": "verification/agent_runs/verify-20260709T041310547987Z-goal_success-read-.iteris-goal_prompt.tx/prompt.md",
+  "codex_log": "verification/agent_runs/verify-20260709T041310547987Z-goal_success-read-.iteris-goal_prompt.tx/codex.log",
+  "codex_events": "verification/agent_runs/verify-20260709T041310547987Z-goal_success-read-.iteris-goal_prompt.tx/codex.events.jsonl",
+  "codex_stderr": "verification/agent_runs/verify-20260709T041310547987Z-goal_success-read-.iteris-goal_prompt.tx/codex.stderr.log",
+  "codex_log_manifest": "verification/agent_runs/verify-20260709T041310547987Z-goal_success-read-.iteris-goal_prompt.tx/log_manifest.json"
+}
