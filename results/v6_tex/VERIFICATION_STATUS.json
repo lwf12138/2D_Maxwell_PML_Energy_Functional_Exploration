@@ -1,0 +1,9 @@
+{
+  "schema_version": "iteris.verification_status.v0",
+  "target_artifact": "results/v6_tex/nonlocal_memory_strict_pml_report.md",
+  "terminal_mode": "goal_success",
+  "ok": true,
+  "assembly_request_id": "verify-20260714T113553444125Z-assembly-assemble-the-verified-v6-result",
+  "goal_success_request_id": "verify-20260714T114324180024Z-goal_success-execute-the-complete-v6-goa",
+  "verified_artifact": "results/v6_tex/nonlocal_memory_strict_pml_report_verified.md"
+}
