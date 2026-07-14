@@ -86,12 +86,24 @@ expansion, the variable-gradient product term, the small-gradient Schur
 complement, the port energy cross-term cancellation, strict stretched-coordinate
 matching, and the port admittance mismatch.
 
-`lean verification/algebra/VariableCoefficientBaffet.lean` was attempted and
-failed honestly because this machine has no `lean` executable:
+The original Iteris run attempted
+`lean verification/algebra/VariableCoefficientBaffet.lean` in an environment
+whose `PATH` did not include the local elan directory, so the command failed as
 
 ```text
 zsh:1: command not found: lean
 ```
+
+On the current machine, Lean is installed at `/Users/wcli/.elan/bin/lean`.
+After calling that executable explicitly, the next blocker is the missing
+Mathlib project environment:
+
+```text
+error: unknown module prefix 'Mathlib'
+```
+
+Thus the Lean verification still needs to be rerun inside a Lake/Mathlib
+project, but the issue is not that Lean is absent from the machine.
 
 The TeX artifact compiled successfully to PDF. The final captured build log has
 no TeX errors, undefined-reference warnings, rerun warnings, or overfull boxes.

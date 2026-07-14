@@ -1,0 +1,439 @@
+\documentclass[UTF8,a4paper,11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm}
+\usepackage{geometry,booktabs,longtable,array,enumitem,xcolor,xurl,hyperref}
+\geometry{left=2.35cm,right=2.35cm,top=2.3cm,bottom=2.3cm}
+\hypersetup{colorlinks=true,linkcolor=blue!55!black,urlcolor=blue!55!black}
+\setlist{itemsep=.2em,topsep=.25em,leftmargin=2em}
+\renewcommand{\arraystretch}{1.15}
+\sloppy
+\newtheorem{definition}{定义}
+\newtheorem{lemma}{引理}
+\newtheorem{theorem}{定理}
+\newtheorem{proposition}{命题}
+\newtheorem{remark}{说明}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\E}{\mathcal E}
+\newcommand{\D}{\mathcal D}
+\newcommand{\Om}{\Omega}
+\newcommand{\sx}{\sigma_x}
+\newcommand{\sy}{\sigma_y}
+\newcommand{\ep}{\varepsilon}
+\newcommand{\ip}[2]{\left(#1,#2\right)}
+
+\title{二维变系数严格 Maxwell--Debye PML：\\非局部记忆能量的动态审查与条件单调定理}
+\author{Iteris 第六阶段报告}
+\date{2026年7月14日}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+本文固定严格 stretched-coordinate Maxwell--Debye PML，而不以斜入射不匹配的
+port layer 替代它。平直内界面的 Laplace--Fourier 计算在固定 causal outgoing
+平方根分支后给出任意切向频率下的零反射。变系数 Baffet--Debye 能量满足精确恒等式
+\[
+ \E_B'=-\D_0-\int u\nabla(\sx+\sy)\cdot\lambda+\mathcal B.
+\]
+在双轴角 PML、非正通量及点态 Schur 条件下，得到与自然 primitive 状态范数等价的
+条件单调能量，故结论分级为 Level B。新研究稿提出的椭圆变量
+$z=\mathcal L^{-1}\nabla\cdot(u\nabla a)$ 的修正项完整求导后产生
+$\lambda_t,z_t,u_t$ 新项，不抵消原余项。本文给出弱式、边界条件、核空间、完整导数、
+静态正性与两种修正的失败公式；同时比较局部 Riccati、椭圆和 Gramian/KYP 路线。
+Lean/Mathlib 与 SymPy 均实际运行通过。
+\end{abstract}
+
+\tableofcontents
+
+\section{结论等级与资料追溯}
+
+本轮最终等级是\textbf{Level B：条件性单调能量}。没有把 Gronwall 有界性写成单调下降，
+也没有把内界面 perfect matching 与有限厚外边界零反射混为一谈。
+
+\begin{longtable}{p{.28\textwidth}p{.25\textwidth}p{.38\textwidth}}
+\toprule
+来源&页码/公式或结论&本轮用途\\ \midrule
+\endfirsthead
+\toprule 来源&页码/公式或结论&本轮用途\\ \midrule
+\endhead
+\path{nonlocal_memory_energy_strict_pml.pdf}（未同行评审项目稿）&
+pp.3--4, (9)--(17)；pp.7--8, (42)--(50)&重推 matching，并补做原稿遗漏的
+$z_t$ 与完整动态导数\\
+\path{variable_coefficient_baffet_energy.pdf}&pp.5--7, (14)--(29)&
+复核 $\E_B,\D_0,R_\sigma$，写成精确点态 Schur 条件\\
+v5 Markdown 与 TeX 报告&变量余项、小梯度、port mismatch&继承已验证结论，禁止以 port 层替代 strict PML\\
+Baffet--Grote--Imperiale--Kachanovska (2019)&PDF pp.5--7，(2.3)--(2.9), Thm.2.1&
+常阻尼 Baffet 乘子与能量恒等式\\
+Joly (2012)&PDF pp.7,10--11，(17), Thm.1&阻抗适配、复坐标、变法向剖面与截断区别\\
+Bécache--Kachanovska--Wess (2023)&§2.2, (8)--(14), Thm.2.11；§3&
+dispersive PML 的 Laplace 因果、稳定与收敛框架\\
+Bécache--Fliss--Kachanovska--Kazakova (2021)&PDF pp.5--8，(9)--(11), Thm.1&
+说明 matching 不蕴含稳定；不把 3D 各向异性反例误当本问题反例\\
+两个 source TeX&原模型、naive/shift/Lyapunov 建议&固定研究对象；区分工作猜想与证明\\
+三项 v5 Lean/SymPy 文件&乘积、Debye、Schur、matching&新机器验证的回归基线\\
+\bottomrule
+\end{longtable}
+
+正式书目信息与 DOI 见文末。两个 2026 项目 PDF 仅作为待审查研究材料，不作为外部权威。
+
+\section{严格坐标拉伸模型与时域实现}
+
+物理 TM 系统为
+\begin{align}
+ \ep E_t+P_t&=\partial_xH_y-\partial_yH_x,\label{eq:phys1}\\
+ \mu H_{x,t}&=-\partial_yE,\qquad \mu H_{y,t}=\partial_xE,\label{eq:phys2}\\
+ \tau P_t+P&=\kappa E,\qquad \ep,\mu,\tau,\kappa>0.\label{eq:debye}
+\end{align}
+在 $\Re s>0$ 取
+\[
+ S_i=1+\frac{\sigma_i(x_i)}s,\qquad \partial_i\mapsto S_i^{-1}\partial_i,
+ \qquad \ep_D(s)=\ep+\frac\kappa{1+\tau s}.
+\]
+严格频域 PML 是
+\begin{align}
+ s\ep_D\widehat E&=S_x^{-1}\partial_x\widehat H_y-S_y^{-1}\partial_y\widehat H_x,\label{eq:freq1}\\
+ \mu s\widehat H_x&=-S_y^{-1}\partial_y\widehat E,qquad
+ \mu s\widehat H_y=S_x^{-1}\partial_x\widehat E.\label{eq:freq2}
+\end{align}
+
+\begin{definition}[Baffet--Debye causal primitive]
+令
+\[
+ u_t=E,\quad q_t=P,\quad q+\tau P=\kappa u,
+\quad a=\sx+\sy,\quad b=\sx\sy,
+\]
+\[
+ \Gamma_1=\operatorname{diag}(\sx,\sy),\quad
+ \Gamma_2=\operatorname{diag}(\sy-\sx,\sx-\sy),
+\]
+并取
+\begin{align}
+ \mu\{\ep(u_{tt}+au_t+bu)+P_t+aP+bq\}-\nabla\cdot\lambda&=0,\label{eq:prim1}\\
+ \phi_t+\Gamma_1\phi&=\Gamma_2\nabla u,\qquad \lambda=\nabla u+\phi.\label{eq:prim2}
+\end{align}
+\end{definition}
+
+\begin{lemma}[严格等价]
+在 causal compatibility manifold 上，\eqref{eq:prim1}--\eqref{eq:prim2} 与
+\eqref{eq:freq1}--\eqref{eq:freq2} 对分离变剖面完全等价，且
+\[
+ \widehat\lambda_x=\frac{S_y}{S_x}\partial_x\widehat u,
+ \quad \widehat\lambda_y=\frac{S_x}{S_y}\partial_y\widehat u,
+ \quad \widehat\lambda_x=\mu S_y\widehat H_y,
+ \quad \widehat\lambda_y=-\mu S_x\widehat H_x.
+\]
+\end{lemma}
+\begin{proof}
+对 \eqref{eq:prim2} 作 Laplace 变换，逐分量解一阶代数式即得两个 ratio。把
+\eqref{eq:freq1} 乘 $S_xS_y$，再用 \eqref{eq:freq2} 消去磁场及
+$\widehat E=s\widehat u$、$\widehat P=s\widehat q$，恰得 \eqref{eq:prim1}。
+反向步骤可逆，故不是仅在平面模态上相似。
+\end{proof}
+
+初值需满足 $q(0)+\tau P(0)=\kappa u(0)$、$u_t(0)=E(0)$、
+$\lambda(0)=\nabla u(0)+\phi(0)$，PML history 与 causal 过去相容。本文无源
+Laplace matching 取 PML 内零历史。剖面满足
+$\sigma_i\in W^{1,\infty}$、非负、仅依赖 $x_i$、物理区为零，内界面取连续零迹，
+否则跳跃必须作为 transmission distribution/flux 保留。内界面连续切向 $E,H$；外边界
+可取 PEC，或任何使总通量非正的条件。阻尼全零时 $\phi=0,\lambda=\nabla u$，退化到
+\eqref{eq:phys1}--\eqref{eq:debye} 的 primitive。
+
+\section{Laplace--Fourier perfect matching}
+
+考虑 $x=0$，右侧仅 $S_x$，$S_y=1$。取任意实 $k_y$ 与 $\Re s>0$，定义
+\[
+ \nu_0^2=k_y^2+\mu s^2\ep_D(s).
+\]
+固定由 causal outgoing resolvent 解析延拓得到的平方根分支，而不是只比较平方。右侧取
+\[
+ E_+=T\exp\left(ik_yy-\nu_0\int_0^xS_x(s,\xi)\dd\xi\right).
+\]
+于是 $S_x^{-1}\partial_xE_+=-\nu_0E_+$，在同一法向符号约定下
+\[
+ Y_+=-\frac{H_y}E=\frac{\nu_0}{\mu s}=Y_0.
+\]
+由 $1+R=T$、$Y_0(1-R)=Y_+T$，
+\[
+ R=\frac{Y_0-Y_+}{Y_0+Y_+}=0.
+\]
+该推导只使用积分坐标，故任意非负法向变剖面仍匹配。它只证明内界面无反射；有限厚
+PML 的外边界反射通常非零。角区若仍是同一二维坐标变换，则保持匹配；若 multi-axial
+方案在 $x$ 界面引入 $S_y\ne1$，则
+\[
+ Y_+^2-Y_0^2=\frac{k_y^2}{\mu^2s^2}(S_y^{-2}-1),
+\]
+斜入射一般失配。
+
+\section{Baffet 余项与条件单调能量}
+
+令 $W=u_t+au$。由于 $a$ 与时间无关但依赖空间，
+\begin{equation}\label{eq:product}
+ \nabla W=\nabla u_t+a\nabla u+u\nabla a.
+\end{equation}
+定义
+\[
+ \alpha=1+2a\tau,\quad\beta=a+b\tau,\quad
+ \gamma=a^2+b(1+a\tau),
+\]
+\begin{equation}\label{eq:EB}
+\E_B=\frac12\int_{\Om_+}\left\{
+ \mu\ep W^2+|\lambda|^2+\phi^Ta^{-1}\Gamma_1\phi+\mu\ep b u^2
+ +\frac\mu\kappa(\alpha P^2+2\beta Pq+\gamma q^2)\right\}.
+\end{equation}
+
+\begin{lemma}[完整恒等式]\label{lem:identity}
+对足够光滑相容解，
+\begin{equation}\label{eq:id}
+ \E_B'=-\D_0+R_\sigma+\mathcal B,
+ \qquad R_\sigma=-\int_{\Om_+}u\nabla a\cdot\lambda,
+ \qquad \mathcal B=\int_{\partial\Om_+}W\lambda\cdot n,
+\end{equation}
+其中
+\begin{align}\label{eq:D0}
+\D_0=\int_{\Om_+}\bigg\{&
+ \lambda^T\Gamma_1(I+a^{-1}\Gamma_1)\lambda+\frac ba|\nabla u|^2
+ +\mu\ep ab u^2\\
+&+\frac\mu\kappa[\tau P_t^2+\tau(a^2-b)P^2+abq^2]\bigg\}\ge0.\notag
+\end{align}
+\end{lemma}
+\begin{proof}
+以 $W$ 乘 \eqref{eq:prim1}。空间分部积分产生 $-\ip{\nabla W}{\lambda}$ 与
+$\mathcal B$。Baffet flux identity 给出
+\[
+ \frac12\partial_t(|\lambda|^2+\phi^Ta^{-1}\Gamma_1\phi)
+ +\lambda^T\Gamma_1(I+a^{-1}\Gamma_1)\lambda+\frac ba|\nabla u|^2
+ =(\nabla u_t+a\nabla u)\cdot\lambda.
+\]
+Debye compatibility 给出
+\[
+(P_t+aP+bq)(\tau P_t+(1+a\tau)P+aq)
+=\frac12\partial_t(\alpha P^2+2\beta Pq+\gamma q^2)
++\tau P_t^2+\tau(a^2-b)P^2+abq^2.
+\]
+相加后 \eqref{eq:product} 中前两项抵消，留下 $-u\nabla a\cdot\lambda$。
+$a^2-b=\sx^2+\sx\sy+\sy^2\ge0$，故 \eqref{eq:D0} 非负。
+\end{proof}
+
+极化矩阵的行列式是
+\[
+ \alpha\gamma-\beta^2=b+ab\tau+2a^3\tau+b(2a^2-b)\tau^2>0,
+\quad 2a^2-b=2\sx^2+3\sx\sy+2\sy^2,
+\]
+故 Sylvester 判据给出正定。在 $\sx,\sy$ 有统一正下界和上界的角域，$b u^2$ 与
+$W^2$ 联合控制 $(u_t,u)$，$a^{-1}\Gamma_1$ 控制 $\phi$，因此 \eqref{eq:EB}
+与 $\|(u_t,u,\lambda,\phi,P,q)\|_{L^2}^2$ 等价。边域 $b=0$ 与物理区 $a=0$
+在全 primitive 空间有 gauge/退化方向，必须限制到 causal compatibility manifold，或在
+物理区拼接缩放自然 Maxwell--Debye 能量。不能把 $a^{-1}$ 公式不加说明地跨过 $a=0$。
+
+$R_\sigma$ 无固定符号：在开集上取 $u>0$、$\lambda=\mp c\nabla a$ 即得到正负两种符号。
+
+令
+\[
+ C_\lambda=\Gamma_1(I+a^{-1}\Gamma_1),\qquad c_u=\mu\ep ab,
+\quad Q=\begin{pmatrix}c_u&(\nabla a)^T/2\\ \nabla a/2&C_\lambda\end{pmatrix}.
+\]
+\begin{theorem}[Level-B 条件单调性]\label{thm:levelb}
+设角域上 $\sx,\sy$ 有正上下界，解相容，$\mathcal B\le0$，且存在
+$\delta\in(0,1)$ 使
+\begin{equation}\label{eq:schur}
+ (\nabla a)^TC_\lambda^{-1}\nabla a\le4(1-\delta)c_u
+ \quad\text{a.e.}
+\end{equation}
+则存在 $\theta>0$ 使
+\[
+ \E_B'(t)+\theta\D_0(t)\le0.
+\]
+\end{theorem}
+\begin{proof}
+矩阵 $Q$ 的 Schur 补正是
+$c_u-\frac14(\nabla a)^TC_\lambda^{-1}\nabla a$。
+条件 \eqref{eq:schur} 以统一余量吸收
+$|u\nabla a\cdot\lambda|$，其余 \eqref{eq:D0} 项不变。代入
+\eqref{eq:id} 并用 $\mathcal B\le0$ 即得。等价的积分充分条件为
+$\D_0\ge m_u\|u\|^2+m_\lambda\|\lambda\|^2+\cdots$ 与
+$\|\nabla a\|_\infty^2<4m_um_\lambda$。
+\end{proof}
+
+若无 \eqref{eq:schur}，只能由能量控制得到 $\E_B'\le C_\sigma\E_B$；这是
+Gronwall 估计，不是单调性。冻结块 $m_u=m_\lambda=1$、$|\nabla a|=3$ 的
+Schur 矩阵特征值为 $-1/2,5/2$，精确展示高梯度失败。
+
+\section{椭圆非局部修正的完整动态审查}
+
+\begin{definition}[椭圆变量]
+令 $\Om_+$ 为 Lipschitz 角 PML 子域，$V=H_0^1(\Om_+)$，
+$C=C^T\ge c_*I$，$c\ge0$，定义
+\[
+ \mathcal Lv=-\nabla\cdot(C\nabla v)+cv,
+ \quad A(z,v)=\ip{C\nabla z}{\nabla v}+\ip{cz}{v},
+\]
+\begin{equation}\label{eq:weak}
+ A(z,v)=-\ip{u\nabla a}{\nabla v},\qquad
+ z=\mathcal L^{-1}\nabla\cdot(u\nabla a).
+\end{equation}
+\end{definition}
+Dirichlet 情形由 Poincaré--Lax--Milgram 无核可逆。Neumann 情形需要
+$(C\nabla z+u\nabla a)\cdot n=0$，并取 $c\ge c_0>0$，或在均值零商空间满足
+compatibility；否则常数核使逆算子无定义。由系数时间不变，
+\begin{equation}\label{eq:zt}
+ A(z_t,v)=-\ip{u_t\nabla a}{\nabla v},\qquad
+ z_t=\mathcal L^{-1}\nabla\cdot(u_t\nabla a).
+\end{equation}
+
+考察研究稿候选
+\[
+ F=\eta\ip\lambda{\nabla z}+\frac\eta2A(z,z).
+\]
+\begin{proposition}[候选不抵消]\label{prop:fail}
+完整导数为
+\begin{align}\label{eq:Fprime}
+ \eta^{-1}F'&=\ip{\lambda_t}{\nabla z}+\ip\lambda{\nabla z_t}+A(z,z_t)\\
+ &=\ip{\lambda_t}{\nabla z}+\ip{\lambda-u\nabla a}{\nabla z_t}.\notag
+\end{align}
+因此
+\begin{align}\label{eq:totalfail}
+ (\E_B+F)'={}&-\D_0-\ip{u\nabla a}{\lambda}+\mathcal B\\
+ &+\eta\left[\ip{\lambda_t}{\nabla z}
+ +\ip{\lambda-u\nabla a}{\nabla z_t}\right].\notag
+\end{align}
+特别地，没有出现所需的 $+\ip{u\nabla a}{\lambda}$。
+\end{proposition}
+\begin{proof}
+第一行是两项逐项乘积法则；由 \eqref{eq:weak} 取 $v=z_t$ 得
+$A(z,z_t)=-\ip{u\nabla a}{\nabla z_t}$，即第二行。与引理
+\ref{lem:identity} 相加得 \eqref{eq:totalfail}。
+\end{proof}
+
+静态方面，$\mathcal L^{-1}\nabla\cdot(u\nabla a):L^2\to H_0^1$ 有界；若
+$\eta$ 相对原 $u,\lambda$ 强制性足够小，可以 Schur 补使 $\E_B+F$ 正定且有上界。
+但这依赖角域原能量已经等价，且不能修复 \eqref{eq:totalfail}。当 $a\to0$ 时统一下界
+消失，故也不能声称全域自然范数等价。
+
+两个修改也可明确否定。若第二变量 $p=\mathcal L^{-1}\nabla\cdot\lambda$，静态项
+$A(z,p)$ 的导数只含 $u_t\lambda+u\lambda_t$ 型项。若引入时间 primitive $r_t=\lambda$，
+则
+\[
+ \frac\dd{\dd t}\ip{u\nabla a}{r}=\ip{u_t\nabla a}{r}+\ip{u\nabla a}{\lambda};
+\]
+虽抵消目标，却留下第一项；裸交叉项不正定，加入 $\|r\|^2$ 又产生
+$\ip r\lambda$，且新 gauge/history 状态不与原范数等价。
+
+\section{局部交叉项与 Gramian/KYP}
+
+逐分量严格关系为
+\[
+ \lambda_{i,t}=\partial_i u_t+\sigma_j\partial_i u-\sigma_i\lambda_i.
+\]
+因此
+\[
+ \frac\dd{\dd t}\int c_i u\lambda_i
+ =\int c_i[u_t\lambda_i+u\partial_i u_t
+ +\sigma_j u\partial_i u-\sigma_i u\lambda_i].
+\]
+取 $c_i=-\partial_i a/\sigma_i$ 虽产生所需正项，却留下
+\[
+ -\frac{\partial_i a}{\sigma_i}
+ [u_t\lambda_i+u\partial_i u_t+\sigma_j u\partial_i u],
+\]
+并在内界面奇异。一般局部 symmetrizer $M(x)$ 必须满足
+\[
+ MA_0^{-1}A_i=(MA_0^{-1}A_i)^T,
+\]
+\[
+ MA_0^{-1}B+(A_0^{-1}B)^TM-sum_i\partial_i(MA_0^{-1}A_i)\ge0,
+ \qquad M>0,
+\]
+即矩阵微分 Lyapunov/Riccati 不等式。本轮没有得到跨 $a=0$ 的正解。
+
+对相容 strict-ADE 生成元 $A_\sigma$，若在 PEC/transmission 的自然
+$H(\operatorname{curl})\times L^2$ history 空间上\emph{预先}生成指数稳定半群，且输出
+$C$ 精确可观测，则
+\[
+ G=\int_0^\infty T(t)^*C^*CT(t)\dd t,
+ \qquad A_\sigma^*G+GA_\sigma=-C^*C
+\]
+给正定等价单调能量。指数稳定保证收敛，精确可观测给下界；这些尚未独立证明，故以
+Gramian 证明它们会循环。只有强稳定时积分可发散；有限时域与加权版本分别满足
+\[
+ \E_T'=\|CT(T)U\|^2-\|CU\|^2,
+ \qquad \E_\delta'=-\|CU\|^2+2\delta\E_\delta,
+\]
+并不自动单调。ratio $(s+\sigma_j)/(s+\sigma_i)$ 虽为 right-half-plane
+positive-real，时域指数核系数 $\sigma_j-\sigma_i$ 可变号，必须验证耦合矩阵 kernel/KYP
+storage，不能逐分量直接宣布正记忆能量。
+
+\section{必要性检验与路线比较}
+
+\begin{longtable}{p{.22\textwidth}p{.34\textwidth}p{.34\textwidth}}
+\toprule 检验&矩阵判断&结论\\ \midrule\endfirsthead
+\toprule 检验&矩阵判断&结论\\ \midrule\endhead
+$k_y=0$ 一维&最小 ADE 有被动能量；全 primitive 在 $b=0$ 有零方向&匹配通过，等价性须限 compatibility\\
+冻结 $k_y\ne0$&常系数角域 $M_B>0,Q_0\ge0$&通过必要测试，冻结看不见 $\nabla a$\\
+常数边层&$b=0$，若干 primitive/gauge 方向退化&用 reduced state\\
+常数角层&$\sigma_i>0$ 时 Sylvester/Schur 通过&Baffet 常系数定理适用\\
+局部缓变&$Q=\bigl(\begin{smallmatrix}c_u&g^T/2\\g/2&C_\lambda\end{smallmatrix}\bigr)$&由 \eqref{eq:schur} 精确判定\\
+高梯度&$m_u=m_\lambda=1,g=3$ 特征值 $-1/2,5/2$&原耗散不能吸收\\
+$a\to0$&最小特征值趋零&物理/primitive 分区，无统一全状态等价\\
+零频&$S_i$ 奇异，primitive 有 gauge&必须 causal compatibility；不能推出严格衰减\\
+\bottomrule
+\end{longtable}
+
+\begin{center}
+\begin{tabular}{p{.16\textwidth}p{.15\textwidth}p{.18\textwidth}p{.18\textwidth}p{.20\textwidth}}
+\toprule 路线&matching&正性&单调性&推广/离散\\ \midrule
+Baffet/局部&保持&角域等价&Schur 条件成功；额外交叉失败&近期 DG 最可执行\\
+椭圆非局部&不改方程&小 $\eta$ 静态可&动态失败&全局 solve，不利 DG\\
+Gramian/KYP&同生成元则保持&需可观测&条件 Level C&最有 Cole--Cole 理论潜力\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+下一篇理论论文最值得继续 resolvent-to-KYP 的非循环构造；近期 DG 论文应采用
+定理 \ref{thm:levelb} 的分片常数/小梯度剖面并显式处理界面通量。
+
+\section{机器验证}
+
+SymPy 脚本验证 strict dispersion/admittance、\eqref{eq:product}、Debye 展开、
+\eqref{eq:Fprime} 的标量代理、两种修正、局部余项、所有 Schur/完成平方，以及随机正参数
+和精确高梯度控制例。随机测试仅是 smoke test；证书是精确恒等式与有理反例。
+
+实际命令为
+\begin{verbatim}
+python3 results/v6_tex/nonlocal_memory_strict_pml_sympy.py
+cd lean_verification
+lake env lean ../results/v6_tex/NonlocalMemoryStrictPML.lean
+\end{verbatim}
+两者退出码均为 0。Lean 文件无 \texttt{sorry}、\texttt{admit} 或自定义公理，形式化了
+v5 Schur 判据、非局部代理能量和导数余项、$2\times2$ 正定充分条件、matching 的
+$Y_+=Y_0\Rightarrow R=0$ 及局部交叉项余项。完整输出见
+\texttt{verification\_outputs.md}。
+
+\section{最终判断}
+
+严格 PML 内界面匹配成立；原 Baffet 能量在明确角域 Schur/小梯度条件下给出真正单调
+不增，故为 Level B。新椭圆候选不是 Level A：它的失败是时间导数结构性的，而非只差
+一个可调系数。一般非负变剖面的无条件显式正定时域能量仍是开放问题。port layer 虽耗散，
+但不属于本结论。
+
+\begin{thebibliography}{9}
+\bibitem{Baffet2019}
+D. H. Baffet, M. J. Grote, S. Imperiale, M. Kachanovska,
+Energy Decay and Stability of a Perfectly Matched Layer for the Wave Equation,
+\emph{Journal of Scientific Computing} 81 (2019), 2237--2270.
+\url{https://doi.org/10.1007/s10915-019-01089-9}.
+\bibitem{Joly2012}
+P. Joly, An elementary introduction to the construction and the analysis of perfectly matched
+layers for time domain wave propagation, \emph{SeMA Journal} 57 (2012), 5--48.
+\url{https://doi.org/10.1007/BF03322599}.
+\bibitem{Becache2023}
+É. Bécache, M. Kachanovska, M. Wess,
+Convergence analysis of time-domain PMLs for 2D electromagnetic wave propagation in dispersive
+waveguides, \emph{ESAIM: M2AN} 57 (2023), 2451--2491.
+\url{https://doi.org/10.1051/m2an/2023060}.
+\bibitem{Becache2021}
+É. Bécache, S. Fliss, M. Kachanovska, M. Kazakova,
+On a surprising instability result of Perfectly Matched Layers for Maxwell's equations in 3D media
+with diagonal anisotropy, \emph{Comptes Rendus Mathématique} 359 (2021), 249--256.
+\url{https://doi.org/10.5802/crmath.165}.
+\end{thebibliography}
+
+\end{document}

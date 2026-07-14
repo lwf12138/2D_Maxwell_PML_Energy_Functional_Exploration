@@ -4,6 +4,12 @@ set -euo pipefail
 PROJECT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$PROJECT_DIR"
 
+export PATH="$HOME/.elan/bin:$PATH"
+LEAN_BIN="${LEAN_BIN:-$HOME/.elan/bin/lean}"
+if [ ! -x "$LEAN_BIN" ]; then
+  LEAN_BIN="$(command -v lean || true)"
+fi
+
 for required_dir in sources references results verification/algebra; do
   if [ ! -d "$required_dir" ]; then
     echo "Error: expected $required_dir/ directory in $PROJECT_DIR" >&2
@@ -204,7 +210,16 @@ SymPy 验证至少覆盖：
 
 必须实际运行：
 - python3 verification/algebra/variable_coefficient_baffet_sympy.py
-- lean verification/algebra/VariableCoefficientBaffet.lean
+- /Users/wcli/.elan/bin/lean verification/algebra/VariableCoefficientBaffet.lean
+
+运行 Lean 前必须先检查：
+\[
+\texttt{command -v lean},\qquad \texttt{lean --version}.
+\]
+如果普通 \texttt{lean} 不在 PATH 中，则必须改用绝对路径
+\[
+\texttt{/Users/wcli/.elan/bin/lean}.
+\]
 
 如果 Lean 因 Mathlib、toolchain 或证明复杂度失败，不要装作成功；请记录命令、输出和失败原因。
 如果 Lean 成功，请在报告中给出成功输出摘要。

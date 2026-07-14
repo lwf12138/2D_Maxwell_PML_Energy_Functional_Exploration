@@ -32,19 +32,36 @@ All variable-coefficient Baffet SymPy checks passed.
 
 ## Local algebra: Lean
 
-Command:
+Original Iteris command:
 
 ```sh
 lean verification/algebra/VariableCoefficientBaffet.lean
 ```
 
-Result: failed because the local environment has no Lean executable.
+Result in the Iteris run: failed because that run's `PATH` did not include the
+local elan directory.
 
 Output:
 
 ```text
 zsh:1: command not found: lean
 ```
+
+Current local check:
+
+```sh
+/Users/wcli/.elan/bin/lean verification/algebra/VariableCoefficientBaffet.lean
+```
+
+Result: Lean is installed, but Mathlib is not available from the current
+directory's Lean search path.
+
+```text
+error: unknown module prefix 'Mathlib'
+```
+
+Conclusion: rerun Lean verification inside a Lake/Mathlib project or rewrite the
+Lean file to avoid `import Mathlib`.
 
 ## TeX build
 

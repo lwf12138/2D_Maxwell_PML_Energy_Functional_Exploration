@@ -1,0 +1,94 @@
+{
+  "schema_version": "iteris.agent_output.v0",
+  "role": "execute",
+  "run_id": "execute-20260714T103423926402Z-task-v6-literature-model-audit",
+  "mode": "foundation",
+  "task_id": "task-v6-literature-model-audit",
+  "summary": "Completed the v6 foundation audit: read or extracted all thirteen mandated materials, wrote the traceability report, froze the strict stretched-coordinate Maxwell-Debye model, listed boundary/interface/compatibility assumptions, recorded the x-interface perfect-matching calculation, and fenced the nonlocal elliptic/Gramian proposals as candidate routes requiring proof.",
+  "status_recommendation": "review",
+  "created_artifacts": [
+    "artifacts/agent_runs/execute-20260714T103423926402Z-task-v6-literature-model-audit/output.md",
+    "artifacts/agent_runs/execute-20260714T103423926402Z-task-v6-literature-model-audit/output.json",
+    "artifacts/references/v6_literature_model_audit.md",
+    "artifacts/route_checks/task-v6-literature-model-audit/execute-20260714T103423926402Z-task-v6-literature-model-audit/route_report.md",
+    "artifacts/route_checks/task-v6-literature-model-audit/execute-20260714T103423926402Z-task-v6-literature-model-audit/source_notes.md",
+    "artifacts/route_checks/task-v6-literature-model-audit/execute-20260714T103423926402Z-task-v6-literature-model-audit/pdf_text/nonlocal_memory_energy_strict_pml.txt",
+    "artifacts/route_checks/task-v6-literature-model-audit/execute-20260714T103423926402Z-task-v6-literature-model-audit/pdf_text/variable_coefficient_baffet_energy.txt",
+    "artifacts/route_checks/task-v6-literature-model-audit/execute-20260714T103423926402Z-task-v6-literature-model-audit/pdf_text/baffet_2019.txt",
+    "artifacts/route_checks/task-v6-literature-model-audit/execute-20260714T103423926402Z-task-v6-literature-model-audit/pdf_text/joly_2012.txt",
+    "artifacts/route_checks/task-v6-literature-model-audit/execute-20260714T103423926402Z-task-v6-literature-model-audit/pdf_text/becache_2023.txt",
+    "artifacts/route_checks/task-v6-literature-model-audit/execute-20260714T103423926402Z-task-v6-literature-model-audit/pdf_text/becache_2021.txt"
+  ],
+  "artifact_manifest": "artifacts/route_checks/task-v6-literature-model-audit/execute-20260714T103423926402Z-task-v6-literature-model-audit/artifact_manifest.json",
+  "updated_shared_files": [],
+  "candidate_facts": [
+    {
+      "fact_id": "",
+      "claim_summary": "Under the frozen strict x-interface assumptions, the stretched-coordinate Maxwell-Debye PML has zero reflection for all Re s>0 and real tangential k_y.",
+      "verification_request": "proposed for task-v6-nonlocal-and-route-audit or task-v6-machine-verification",
+      "status": "candidate"
+    },
+    {
+      "fact_id": "",
+      "claim_summary": "The Baffet primitive system is Laplace-equivalent to the strict stretched-coordinate model for constant or frozen coefficients with compatible zero histories.",
+      "verification_request": "proposed for task-v6-nonlocal-and-route-audit or task-v6-machine-verification",
+      "status": "candidate"
+    },
+    {
+      "fact_id": "",
+      "claim_summary": "The displayed nonlocal elliptic energy candidate is not proved monotone until z_t, lambda_t, and boundary terms are expanded and controlled.",
+      "verification_request": "proposed after derivative audit",
+      "status": "candidate"
+    }
+  ],
+  "verification_requests": [],
+  "blockers": [],
+  "task_pool_updates": [
+    {
+      "action": "update",
+      "task_id": "task-v6-literature-model-audit",
+      "status": "review",
+      "mode": "foundation",
+      "objective": "Read all thirteen mandated materials completely; establish the strict stretched-coordinate Maxwell--Debye model, traceability table, boundary/interface assumptions, and perfect-matching calculation."
+    }
+  ],
+  "frontier_updates": [
+    {
+      "action": "update",
+      "title": "V6 Strict PML Nonlocal Memory Route",
+      "hypothesis": "The strict stretched-coordinate Maxwell-Debye PML remains the matched target model; a monotone energy, if available for variable damping, must handle the Baffet remainder through local, elliptic nonlocal, or Gramian/memory corrections without changing the admittance.",
+      "status": "active",
+      "fact_ids": [
+        "fact:2d_maxwell_pml_energy_functional_exploration:baffet-primitive-stretched-debye-2d-energy",
+        "fact:2d_maxwell_pml_energy_functional_exploration:variable-baffet-remainder-small-gradient",
+        "fact:2d_maxwell_pml_energy_functional_exploration:port-layer-energy-not-pml",
+        "fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy"
+      ],
+      "blocker_fact_ids": [
+        "fact:2d_maxwell_pml_energy_functional_exploration:variable-baffet-remainder-small-gradient",
+        "fact:2d_maxwell_pml_energy_functional_exploration:port-layer-energy-not-pml"
+      ],
+      "task_ids": [
+        "task-v6-literature-model-audit",
+        "task-v6-nonlocal-and-route-audit"
+      ],
+      "artifact_paths": [
+        "artifacts/references/v6_literature_model_audit.md"
+      ],
+      "open_questions": [
+        "Does the proposed elliptic nonlocal correction cancel R_sigma after differentiating z_t and lambda_t terms, or does it leave a structural residual?",
+        "Can any local cross-term route satisfy positivity and preserve strict stretched-coordinate matching?",
+        "Can a Gramian route avoid circular reliance on stability?"
+      ],
+      "next_actions": [
+        "Run task-v6-nonlocal-and-route-audit from the frozen model and assumptions in artifacts/references/v6_literature_model_audit.md.",
+        "Extend SymPy/Lean checks in task-v6-machine-verification to cover strict matching and nonlocal finite-dimensional proxy derivatives."
+      ]
+    }
+  ],
+  "next_actions": [
+    "Review artifacts/references/v6_literature_model_audit.md for acceptance.",
+    "Move task-v6-literature-model-audit to review if harvesting this output.",
+    "Start task-v6-nonlocal-and-route-audit using the frozen strict model and firewall notes."
+  ]
+}

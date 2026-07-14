@@ -1,0 +1,5327 @@
+ESAIM: M2AN 57 (2023) 2451–2491
+https://doi.org/10.1051/m2an/2023060
+
+ESAIM: Mathematical Modelling and Numerical Analysis
+www.esaim-m2an.org
+
+CONVERGENCE ANALYSIS OF TIME-DOMAIN PMLS FOR 2D
+ELECTROMAGNETIC WAVE PROPAGATION IN DISPERSIVE WAVEGUIDES
+
+´Eliane B´ecache1, Maryna Kachanovska1 and Markus Wess2,*
+
+Abstract. This work is dedicated to the analysis of generalized perfectly matched layers (PMLs) for
+2D electromagnetic wave propagation in dispersive waveguides. Under quite general assumptions on
+frequency-dependent dielectric permittivity and magnetic permeability we prove convergence estimates
+in homogeneous waveguides and show that the PML error decreases exponentially with respect to the
+absorption parameter and the length of the absorbing layer. The optimality of this error estimate is
+studied both numerically and analytically. Finally, we demonstrate that in the case when the waveguide
+contains a heterogeneity supported away from the absorbing layer, instabilities may occur, even in the
+case of the non-dispersive media. Our findings are illustrated by numerical experiments.
+
+Mathematics Subject Classification. 35L05, 35Q61, 65M12.
+
+Received December 22, 2022. Accepted July 11, 2023.
+
+1. Introduction
+
+In this paper we are interested in 2D time-domain dispersive wave propagation in unbounded (or semi-
+bounded) waveguides. Typically, a medium is called dispersive if properties of waves propagating in it depend
+on their frequency. Some examples of dispersive media include metals and metamaterials.
+
+For simulating wave propagation in unbounded domains using classical numerical approximation methods
+(finite differences, finite elements, Discontinuous Galerkin etc), the computational domain has to be artificially
+bounded. The perfectly matched layer (PML) method, first introduced by B´erenger for Maxwell’s equations
+(1994 [8] in 2D, 1996 [9] in 3D), is one of the most popular methods because of its efficiency and ease of
+implementation. The idea is to surround the computational domain with an absorbing layer (the PML region)
+so that the coupled system possesses the property of generating no reflections at the interface between the free
+medium and the artificial absorbing medium. PMLs have been widely used for the simulation of time dependent
+electromagnetic waves, as well as Helmholtz-like equations e.g., [10, 30, 41, 42, 48, 49, 52]. The method has been
+then extended to various non-dispersive models (the paraxial wave equations [22], the linearized Euler equations
+[28,34,35,47], elastic wave propagation in isotropic and anisotropic media [14,24,33], etc.) and dispersive models
+[12, 16, 17, 26].
+
+Keywords and phrases. Perfectly matched layers, Time-dependent Maxwell equations, Laplace transform, Waveguides, Dispersive
+media, Metamaterials.
+
+1 POEMS, CNRS, Inria, ENSTA Paris, Institut Polytechnique de Paris, 828 Bd. des Mar´echaux, 91120 Palaiseau, France.
+2 Institute of Analysis and Scientific Computing, TU Wien, Wiedner Hauptstraße 8-10, 1040 Wien, Austria.
+*Corresponding author: markus.wess@tuwien.ac.at
+
+This is an Open Access article distributed under the terms of the Creative Commons Attribution License (https://creativecommons.org/licenses/by/4.0),
+which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is properly cited.
+
+c○ The authors. Published by EDP Sciences, SMAI 2023
+
+2452
+
+´E. B´ECACHE ET AL.
+
+However, PMLs are known to produce instabilities when applied to some anisotropic [2, 14, 27, 35, 36, 39] or
+dispersive [12, 16, 17, 26] media. Some of these have been overcome in the above-mentioned works, however, the
+question of stabilizing the PMLs remains model-dependent. Moreover, even in situations when the PMLs remain
+stable, their error control is rather difficult, because of the interplay of the various parameters of the PML and
+the discretization errors, see [5, 20, 23, 38].
+
+Concerning the mathematical analysis of PMLs in the time-domain, there are mainly three questions of
+interest : (i) the well posedness, (ii) the stability and (iii) the convergence. It is important to precisely specify
+these notions: The PML model is well-posed if there exists a unique solution such that the 𝐿2-norm of the
+solution can be bounded by some norm of the initial conditions multiplied by a constant 𝐶(𝑡) (which can
+possibly grow exponentially in time). The stronger notion of stability imposes that the constant 𝐶(𝑡) does not
+grow faster than some polynomial (𝐶(𝑡) ≤ 𝐶𝑡𝑘). Finally, the question of convergence consists of estimating
+the error between the exact solution and the PML solution with respect to the PML parameters (typically
+parameters of the damping function and the length of the layer).
+
+The question of the well-posedness of PMLs has been addressed very early in [1] for Maxwell’s equations and
+has been then shown in various papers for several models including general hyperbolic systems and for a general
+non-constant damping parameters [1, 3, 4, 11, 14, 32, 37].
+
+Concerning the stability, the situation is quite different and depends on the model considered. As previously
+mentioned, standard PMLs can give rise to instabilities for some anisotropic and/or dispersive models, as soon
+as there exist backward waves in the direction of the absorbing layer (i.e. waves for which the projections on
+the PML transverse direction of the phase and group velocities are of opposite signs [14]). In most of the papers
+the stability analysis is done in a simplified setting where all the absorption parameters are constant, based on
+Fourier or Laplace analysis or on energy techniques: see e.g. [4, 7, 11, 15, 27] for the non-dispersive scalar wave
+equation or Maxwell’s equation, [14, 29] for elastic wave, [28, 36, 39] for aeroacoustics, and [12, 16, 17] for some
+dispersive models. Note that in [4, 14] general hyperbolic systems are also considered.
+
+Up to our knowledge the only two works where the stability and convergence of PMLs for arbitrary (non-
+negative) absorption parameters were proven are the article by Diaz and Joly [28] and in our previous work [13].
+In [28], the authors construct an explicit representation of the solution using the fundamental solution for the
+PML system for the 2D acoustic wave equation based on the Cagniard-de-Hoop contour deformation method
+and the method of reflections. Then they derive convergence estimates for the PMLs, which, according to the
+numerical experiments, are close to optimal. In [13], the case of a 3D acoustic waveguide is considered and
+again some convergence estimates are obtained from explicit representations of the solution, based on modal
+decompositions and some energy-like Laplace domain arguments.
+
+In the present paper, we aim at extending the stability and convergence results obtained for a non-constant
+absorption parameter in [13] to the case of isotropic dispersive semi-infinite waveguides. A very important
+example of such media are metamaterials, i.e. artificial composite materials having extraordinary electromag-
+netic properties. In particular, Negative Index Metamaterials (NIMs), also called left-handed media or double
+negative metamaterials, have negative permittivity and permeability at some frequencies due to microscopic
+resonating structures [46]. Since the 1990s, NIMs are the subject of active research due to their promising appli-
+cations [25]: superlensing, cloaking, improved antennae, etc. Even in isotropic media in the free space, NIMs
+naturally support backward waves (at least in some range of frequencies), which leads to instabilities of the
+standard PMLs. Some generalized PMLs have been introduced to overcome these instabilities, see [17]. The
+key point is to introduce a damping parameter which depends on the frequency 𝜔 so that it can be adapted
+to the presence of backward waves. The stability of these generalized PMLs have been analysed for a constant
+absorption parameter (for the free space) in [17] using Fourier techniques and in [12] using Laplace techniques.
+We proceed as follows. Section 2 is dedicated to the presentation of the problem, and listing as well as deriving
+new properties of the dispersive media crucial for our analysis. We recall the generalized perfectly matched layers,
+introduced in [26] and further generalized in [17] and studied in [12]. Section 3 is of technical nature and is
+dedicated to a discussion of the well-posedness of the PML problem for the dispersive media, as well as deriving
+an explicit representation of the solution. Section 4 presents the convergence analysis. Section 5 is dedicated to
+
+CONVERGENCE ANALYSIS OF TIME-DOMAIN PMLS
+
+2453
+
+the case when the waveguide is no longer homogeneous. We study the cases of waveguides composed of piecewise-
+constant non-dispersive and dispersive media, and, using semi-analytic arguments, demonstrate that in general,
+perfectly matched layers, even while being stable for the homogeneous media, may exhibit instabilities in the
+presence of the compact perturbations away from the PMLs. Finally, we finish our exposition with numerical
+experiments in Section 6 and conclusions in Section 7.
+
+2. Problem setting
+
+2.1. Physical preliminaries and the scope of the problem
+
+Let R+ := {𝑥 ∈ R : 𝑥 ≥ 0} and R+
+
+* = {𝑥 ∈ R : 𝑥 > 0}. We consider electromagnetic wave propagation in
+the two-dimensional semi-unbounded dispersive waveguide Ω = R+
+* × (0, ℓ), ℓ > 0, whose boundary is denoted
+by Γ and the respective exterior normal by 𝑛 = (𝑛𝑥, 𝑛𝑦)𝑇 . In particular, we study the TM system of Maxwell’s
+equations for the electromagnetic field 𝐸 = (𝐸𝑥, 𝐸𝑦)𝑇 : R+ × Ω → R2 and 𝐻 : R+ × Ω → R:
+
+𝜕𝑡𝐷 − curl 𝐻 = 0,
+𝜕𝑡𝐵 + curl 𝐸 = 0,
+
+in R+
+
+* × Ω,
+
+(M)
+
+which we later on equip with initial and boundary conditions (the results of the paper will extend naturally to
+the case when there are source terms in the formulation (M)).
+
+The relations between the electric induction 𝐷 and the electric field 𝐸, and between the magnetic induction
+𝐵 and the magnetic field 𝐻 are given in the Laplace domain. To describe them we introduce the Laplace
+transform, defined for causal (i.e., vanishing on R−
+
+* ) functions 𝜑 ∈ 𝐿1(R) by
+
+^𝜑(𝑠) = (ℒ𝜑)(𝑠) =
+
+∫︁ +∞
+
+0
+
+e−𝑠𝑡𝜑(𝑡) d𝑡,
+
+𝑠 ∈ C+
+
+* = {𝑧 ∈ C : Re 𝑧 > 0} .
+
+Provided the respective dielectric permittivity and magnetic permeability of the medium 𝜀, 𝜇 : C+
+equip the system (M) with the constitutive laws
+
+* → C, we
+
+^𝐷(𝑠, 𝑥) = 𝜀(𝑠) ^𝐸(𝑠, 𝑥),
+
+^𝐵(𝑠, 𝑥) = 𝜇(𝑠) ^𝐻(𝑠, 𝑥).
+
+(1)
+
+Rewriting the system (M) in the Laplace domain in its second order formulation for the field ^𝐻 yields in
+particular the scalar wave equation (where we assumed that the initial conditions vanish):
+
+𝑠2𝜇(𝑠)𝜀(𝑠) ^𝐻 − Δ ^𝐻 = 0
+
+in Ω.
+
+(2)
+
+The dielectric permittivity and the magnetic permeability are such that in the time domain the constitutive
+relations (1) can be written in the form of convolutions of causal tempered distributions, which a priori requires
+that 𝜀 and 𝜇 are analytic in C+
+* :
+
+𝐷 = 𝜀(𝜕𝑡)𝐸 = ℒ−1(𝜀(𝑠) ^𝐸), 𝐵 = 𝜇(𝜕𝑡)𝐻 = ℒ−1(𝜇(𝑠) ^𝐻).
+
+(CR)
+
+In the following paragraph we will discuss various properties that may be satisfied by 𝜀 and 𝜇, which will
+be important at different stages of the analysis. Some of these properties have been already studied in the
+literature and/or have some physical meaning behind, cf. [12, 19], while some of them seem to be of a more
+technical nature.
+
+Let us remark that here we work in the dimensionless setting of the Maxwell’s equations, where the dielectric
+
+permittivity of the vacuum and its magnetic permeability are 𝜀0 = 𝜇0 = 1.
+
+2454
+
+´E. B´ECACHE ET AL.
+
+2.1.1. Properties of the dielectric permittivity, the magnetic permeability and the relation between them
+
+We call the media dispersive if the dielectric permittivity 𝜀 and/or magnetic permeability 𝜇 depend on the
+Laplace frequency 𝑠 non-trivially. Otherwise, if 𝜇(𝑠) = 𝜀(𝑠) = 1 in C+, we will call the media non-dispersive.
+We will restrict our considerations to the materials satisfying the following mathematical assumptions. Let
+𝜂 : C+
+
+* → C denote 𝜀 or 𝜇. We call a function 𝜂 which is analytic in C+
+*
+
+– time-real, if 𝜂(𝑠) = 𝜂(𝑠), for all 𝑠 ∈ C+
+* .
+
+This property is related to the fact that ℒ−1𝜂(𝑠) is a real-valued causal distribution.
+
+– passive if
+
+Re(𝑠𝜂(𝑠)) > 0,
+
+for all
+
+𝑠 ∈ C+
+* .
+
+(P)
+
+Passivity is related to the stability of the problem, as discussed in e.g. [12, 19]. When written with the
+Fourier transform convention, rather than the Laplace transform one, with 𝑠 = −𝑖𝜔, it reduces to requiring that
+Im(𝜔𝜂(−𝑖𝜔)) > 0 for 𝜔 ∈ C with Im(𝜔) > 0, i.e. that 𝜔𝜂(−𝑖𝜔) is a Herglotz function.
+
+– non-dispersive at high frequencies if, for all 𝛼 ∈ (− 𝜋
+
+2 , 𝜋
+The above properties have already appeared in the literature, cf. e.g., [19] (with a slightly different formulation
+
+2 ), lim𝑅→+∞ 𝜂(𝑅e𝑖𝛼) = 1.
+
+of the non-dispersivity at high frequencies).
+
+Definition 2.1. We will call the function 𝜂 : C+
+non-dispersive at high frequencies.
+
+* → C admissible if 𝜂 is analytic in C+
+
+* , time-real, passive and
+
+In the present paper we will limit our discussion to admissible materials.
+
+Assumption 2.2. The functions 𝑠 ↦→ 𝜀(𝑠) and 𝑠 ↦→ 𝜇(𝑠) are admissible.
+
+It can be shown, see [19], that this class of materials includes the media considered in the Ph.D. thesis [50],
+some results of which are summarized in the article [17], where the perfectly matched layers were constructed for
+non-dissipative media. The idea of [17] was extended to more general media, including in particular materials
+satisfying the above assumption, in [50].
+
+A standard example of such media is given by so-called Lorentz materials:
+
+Definition 2.3. The medium (𝜀, 𝜇) is called Lorentz, if
+
+𝜀(𝑠) = 1 +
+
+𝜇(𝑠) = 1 +
+
+𝑁𝜀∑︁
+
+𝑗=0
+
+𝑁𝜇
+∑︁
+
+𝑗=0
+
+𝜀𝑗
+𝜀,𝑗 + 𝑠2 ,
+𝜔2
+
+𝜀𝑗 > 0, 𝜔𝜀,𝑗 ≥ 0,
+
+𝑗 = 0, . . . , 𝑁𝜀, 𝑁𝜀 ∈ N,
+
+𝜇𝑗
+𝜇,𝑗 + 𝑠2 , 𝜇𝑗 > 0, 𝜔𝜇,𝑗 ≥ 0,
+𝜔2
+
+𝑗 = 0, . . . , 𝑁𝜇, 𝑁𝜇 ∈ N.
+
+In the particular case when 𝑁𝜀 = 𝑁𝜇 = 0 and 𝜔𝜇,0 = 𝜔𝜀,0 = 0, the corresponding medium is called Drude.
+
+Lorentz media are non-dissipative: plane waves propagate rather than decay in such media.
+
+Example 2.4. Other examples of dispersive media are given e.g. by
+
+– Havriliak–Negami dielectrics (see [31]):
+
+𝜀(𝑠) = 1 +
+
+𝜀0
+(1 + (𝑠𝜏 )𝛼)𝛽
+
+with 𝜏, 𝛼, 𝛽 > 0, which reduce to Cole–Cole dielectrics (see [21]) for 𝛽 = 1, and
+
+CONVERGENCE ANALYSIS OF TIME-DOMAIN PMLS
+
+2455
+
+– dissipative Drude materials:
+
+𝜀(𝑠) = 1 +
+
+𝜀0
+𝑠2 + 𝛾𝜀,0𝑠
+
+, 𝜇(𝑠) = 1 +
+
+𝜇0
+𝑠2 + 𝛾𝜇,0𝑠
+
+,
+
+𝛾𝜀,0, 𝛾𝜇,0 > 0.
+
+It can be shown that any (even dissipative) medium that satisfies Assumption 2.2 can be viewed as a general-
+ization of the Lorentz materials. More precisely, repeating the proof of Theorem 4.5 in [19] almost verbatim,
+one obtains the following refinement of the famous Herglotz–Nevanlinna representation theorem.
+Theorem 2.5 (cf. Theorem 4.5 in [19]). Let 𝜂 : C+
+1. Then there exists a Borel regular measure 𝜈 s.t.
+
+* → C be analytic, passive, time-real and satisfy lim
+𝑟→+∞
+
+𝜂(𝑟) =
+
+𝜂(𝑠) = 1 +
+
+∫︁
+
+R
+
+𝑑𝜈(𝜉)
+𝜉2 + 𝑠2 ,
+
+𝑠 ∈ C+
+* ,
+
+with
+
+∫︁
+
+R
+
+𝑑𝜈(𝜉)/(1 + 𝜉2) < ∞.
+
+An immediate corollary of the above is
+
+Lemma 2.6. Let analytic 𝜂 : C+
+
+* → C be admissible (cf. Def. 2.1). Then
+
+Re(𝑠𝜂(𝑠)) ≥ Re 𝑠,
+
+𝑠 ∈ C+
+* .
+
+Another technical property that we encountered during the analysis is stated in the lemma below.
+* → C be admissible (cf. Def. 2.1). Then
+
+Lemma 2.7. Let analytic 𝜂 : C+
+
+Re(𝑠𝜂(𝑠)) ≥ Re(𝑠) max {|𝜂(𝑠)|, 2 − |𝜂(𝑠)|} ,
+
+for all 𝑠 ∈ C+
+* .
+
+Proof. First of all, by Theorem 2.5,
+
+Re(𝑠𝜂(𝑠)) = Re 𝑠
+
+1 +
+
+(︂
+
+∫︁
+
+R
+
+)︂
+|𝑠|2 + 𝜉2
+|𝑠2 + 𝜉2|2 d𝜈(𝜉)
+
+.
+
+(3)
+
+(MP)
+
+(4)
+
+A straightforward computation yields
+
+⃒
+∫︁
+⃒
+⃒
+⃒
+
+R
+
+d𝜈(𝜉)
+𝑠2 + 𝜉2
+
+⃒
+⃒
+⃒
+⃒
+
+=
+
+⃒
+⃒
+⃒
+⃒
+
+∫︁
+
+R
+
+¯𝑠2 + 𝜉2
+|𝑠2 + 𝜉2|2 d𝜈(𝜉)
+
+⃒
+⃒
+⃒
+⃒
+
+∫︁
+
+≤
+
+R
+
+|𝑠|2 + 𝜉2
+|𝑠2 + 𝜉2|2 d𝜈(𝜉) =: 𝑝(𝑠).
+
+Obviously,
+
+The above inequalities combined with (4) yield the desired statement of the lemma.
+
+(cid:3)
+
+1 − 𝑝(𝑠) ≤ |𝜂(𝑠)| ≤ 1 + 𝑝(𝑠),
+
+and also
+
+2 − |𝜂(𝑠)| ≤ 1 + 𝑝(𝑠).
+
+2.1.2. Stability of the problem (M, CR)
+
+First of all, let us rewrite the problem (M, CR) in a more convenient form. We introduce the polarization 𝑃
+
+and the magnetization 𝑀 , related to 𝐸, 𝐻 via the identities
+
+^𝑃 = 𝜒𝑒(𝑠) ^𝐸,
+
+^𝑀 = 𝜒𝑚(𝑠) ^𝐻, 𝜒𝑒(𝑠) = 𝜀(𝑠) − 1, 𝜒𝑚(𝑠) = 𝜇(𝑠) − 1.
+
+(5)
+
+This allows to rewrite the problem (M), (CR), which we equip with initial and boundary conditions, in the
+following form:
+
+𝜕𝑡𝐸 + 𝜕𝑡𝑃 − curl 𝐻 = 0,
+𝜕𝑡𝐻 + 𝜕𝑡𝑀 + curl 𝐸 = 0,
+𝐸𝑥𝑛𝑦 − 𝐸𝑦𝑛𝑥 = 0,
+𝐸(0, 𝑥) = 𝐸0(𝑥), 𝐻(0, 𝑥) = 𝐻0(𝑥), 𝑃 (0, 𝑥) = 0, 𝑀 (0, 𝑥) = 0
+
+* × Ω,
+* × Γ,
+
+in R+
+on R+
+in Ω.
+
+(6)
+
+We recall the following result, which is a reformulation of ([19], Thm. 4.8) and its proof, see also [13].
+
+2456
+
+´E. B´ECACHE ET AL.
+
+Proposition 2.8 ([19]). Under Assumption 2.2, for every (𝐸0, 𝐻0) ∈ (︀𝐿2(Ω))︀3
+, for all 𝑇 > 0, the problem (6),
+(5) has a unique solution (𝐸, 𝐻) ∈ 𝐿2(0, 𝑇 ; (︀𝐿2(Ω))︀3
+) and (𝑃 , 𝑀 ) in a class causal tempered (𝐿2(Ω))3-valued
+distributions. Moreover, for any sufficiently regular solution, the electromagnetic energy is uniformly bounded:
+
+ℰ(𝑡) =
+
+1
+2
+
+(︀‖𝐸(𝑡)‖2 + ‖𝐻(𝑡)‖2)︀ ≤ ℰ(0),
+
+𝑡 ∈ (0, 𝑇 ).
+
+The difficulty in the numerical simulation of (5), (6) lies in the unboundedness of the domain. To deal with
+
+it, we will use the perfectly matched layer method.
+
+2.2. Perfectly matched layer method
+
+2.2.1. Generalized PMLs
+
+It was demonstrated in [26] that B´erenger’s classical perfectly matched layers can exhibit instabilities when
+applied to dispersive media. Such instabilities are induced by the presence of backward propagating waves, as
+explained in [17]. A remedy, originally suggested in [26] for Drude materials, and further generalized in [12, 17],
+to treat the cases of more general media is altering the perfectly matched layer change of variables in order to
+account for the dispersion of the problem. Let us describe the respective procedure in more detail.
+
+First of all, we assume that
+
+Assumption 2.9. supp 𝐸0, supp 𝐻0 ⊂ [0, 𝑅) × (0, ℓ).
+
+Our goal is to compute the solution to the original problem (6) in the physical domain Ω𝑝ℎ := (0, 𝑅) × (0, ℓ),
+by constructing a perfectly matched layer at 𝑥 = 𝑅 of width 𝐿. For this we first rewrite the problem (6), (5) in
+the Laplace domain, which yields, after eliminating 𝑃 and 𝑀𝑧,
+𝑠𝜀(𝑠) ^𝐸 − 𝐸0 − curl ^𝐻 = 0,
+𝑠𝜇(𝑠) ^𝐻 − 𝐻0 + curl ^𝐸 = 0,
+^𝐸𝑥𝑛𝑦 − ^𝐸𝑦𝑛𝑥 = 0,
+
+on Γ.
+
+in Ω,
+
+Next, let us define the absorption function 𝜎 : (0, 𝑅 + 𝐿) → R+ satisfying
+
+𝜎 ∈ 𝐿∞(0, 𝑅 + 𝐿) and 𝜎 = 0 on (0, 𝑅).
+
+With this definition, the [17]-PML change of variables reads
+
+̃︀𝑥 = 𝑥 +
+
+1
+𝑠𝜁(𝑠)
+
+∫︁ 𝑥
+
+𝑅
+
+𝜎(𝑥′) d𝑥′,
+
+(7)
+
+(8)
+
+where the function 𝜁 is analytic in C+
+that in the classical B´erenger PML 𝜁(𝑠) = 1. We also introduce the average damping ¯𝜎 by
+
+* , and is responsible for stabilizing the PMLs for dispersive media. Note
+
+¯𝜎 =
+
+1
+𝐿
+
+∫︁ 𝐿+𝑅
+
+𝑅
+
+𝜎(𝑥) d𝑥.
+
+(9)
+
+The interface between the PML and the physical media will be denoted by Σ = {𝑅} × (0, ℓ), and the PML
+media by Ω𝜎 = (𝑅, 𝑅 + 𝐿) × (0, ℓ). See Figure 1 for an illustration of the geometry.
+
+Remark 1. In [12, 17], the PML change of variables (8) was written in the form
+
+̃︀𝑥 = 𝑥 +
+
+𝜓(𝑠)
+𝑠
+
+∫︁ 𝑥
+
+𝑅
+
+𝜎(𝑥′) d𝑥′,
+
+i.e., with 𝜓 = 𝜁 −1. Because we will limit our discussion to the choices of 𝜓(𝑠) suggested in [12, 17], we will take
+𝜓, s.t. 𝜓−1 is admissible in the sense of Definition 2.1. Thus we feel that it is more natural to introduce 𝜁 = 𝜓−1.
+
+CONVERGENCE ANALYSIS OF TIME-DOMAIN PMLS
+
+2457
+
+Figure 1. Sketch of the decomposition of the waveguide into the physical domain Ω𝑝ℎ, PML
+domain Ω𝜎, and the computational domain Ω𝑐 = int(Ω𝑝ℎ ∪ Ω𝜎).
+
+After performing this change of variables and truncating the PML system, we look for ( ^𝐸
+
+𝜎
+
+, ^𝐻 𝜎) that solve
+
+the following problem in the computational domain Ω𝑐 = (0, 𝐿 + 𝑅) × (0, ℓ), with the boundary Γ𝑐:
+
+𝑠𝜀(𝑠) ^𝐸𝜎
+
+𝑥 − 𝜕𝑦 ^𝐻 𝜎 = 𝐸0𝑥,
+
+𝑠𝜀(𝑠) ^𝐸𝜎
+
+𝑦 +
+
+)︂−1
+
+(︂
+
+1 +
+
+𝜎
+𝑠𝜁(𝑠)
+
+𝜕𝑥 ^𝐻 𝜎 = 𝐸0𝑦,
+
+𝑠𝜇(𝑠) ^𝐻 𝜎 +
+
+)︂−1
+
+(︂
+
+1 +
+
+𝜎
+𝑠𝜁(𝑠)
+
+𝜕𝑥 ^𝐸𝜎
+
+𝑦 − 𝜕𝑦 ^𝐸𝜎
+
+𝑥 = 𝐻0,
+
+^𝐸𝜎
+
+𝑥 𝑛𝑦 − ^𝐸𝜎
+
+𝑦 𝑛𝑥 = 0
+
+in Ω𝑐,
+
+in Ω𝑐,
+
+in Ω𝑐,
+
+on Γ𝑐.
+
+(10)
+
+It remains to rewrite the above problem in the time domain. For this, however, we need to choose a function 𝜁
+that ensures that the time-domain counterpart of the above system is stable.
+
+2.2.2. Choice of 𝜁 for any media satisfying Assumption 2.2 and the corresponding PML system in the time-
+
+domain
+
+In [12,17] a choice of 𝜁, depending on 𝜀, 𝜇, was proposed based on the stability analysis performed for the case
+when 𝜎 = const > 0 in (0, 𝑅 + 𝐿) (or even in the case when Ω𝑐 = R𝑑, cf. [17]). Numerical experiments indicate
+that the time-domain counterpart of (10), provided the choice of 𝜁 based on the analysis for 𝜎 = const > 0,
+is stable as well. Therefore, we will limit our choice of the parameter 𝜁 to the one suggested in [12, 17], more
+precisely, to the one described in ([12], Thm. 3.7) well adapted to our setting.
+
+Assumption 2.10. 𝜁 is an analytic in C+
+
+* function which is admissible in the sense of Defn. 2.1 and
+
+i.e., 𝜇(𝑠)𝜀(𝑠)𝜁(𝑠)−1 is also admissible.
+
+Re (︀𝑠𝜇(𝑠)𝜀(𝑠)𝜁(𝑠)−1)︀ > 0,
+
+𝑠 ∈ C+
+* ,
+
+Evidently, 𝜁 = 𝜇 or 𝜁 = 𝜀 satisfy the above assumption. The advantage in choosing different functions 𝜁 lies
+in the possible reduction of the number of auxiliary unknowns required for the implementation of the PML
+system. Let us remark that, as shown in [12], this choice of 𝜁 covers the stabilizing functions suggested in [17]
+for Lorentz materials.
+
+2458
+
+´E. B´ECACHE ET AL.
+
+We rewrite the PML system (10) in the time-domain (where the choice of the auxiliary PML unknowns will
+
+be explained after equation (14)), for (𝑡, 𝑥) ∈ R+
+
+* × Ω𝑐,
+
+𝜕𝑡𝐸𝜎
+𝑦 + 𝜕𝑡𝑃 𝜎
+
+𝑥 + 𝜕𝑡𝑃 𝜎
+𝑥 − 𝜕𝑦𝐻 𝜎 = 0,
+𝑦 + 𝜕𝑥𝐻 𝜎 − 𝜎 ̃︀𝐸𝜎 = 0,
+𝜕𝑡𝐸𝜎
+𝜕𝑡 ̃︀𝐸𝜎 + 𝜕𝑡 ̃︀𝑃 𝜎 + 𝜎 ̃︀𝐸𝜎 − 𝜕𝑥𝐻 𝜎 = 0,
+𝑥 = 0,
+
+𝑦 − 𝜕𝑦𝐸𝜎
+𝜕𝑡 ̃︀𝐻 𝜎 + 𝜕𝑡 ̃︁𝑀 𝜎 + 𝜎 ̃︀𝐻 𝜎 − 𝜕𝑥𝐸𝜎
+
+𝑦 = 0,
+
+𝜕𝑡𝐻 𝜎 + 𝜕𝑡𝑀 𝜎 − 𝜎 ̃︀𝐻 𝜎 + 𝜕𝑥𝐸𝜎
+
+(11)
+
+equipped with the constitutive relations in R+
+
+* × Ω𝑐:
+
+𝑃 𝜎 = 𝜒𝑒(𝜕𝑡)𝐸𝜎, 𝑀 𝜎 = 𝜒𝑚(𝜕𝑡)𝐻 𝜎, ̃︁𝑀 𝜎 = 𝜒𝜁(𝜕𝑡) ̃︀𝐻 𝜎,
+
+̃︀𝑃 𝜎 = 𝜒𝜁(𝜕𝑡) ̃︀𝐸𝜎,
+
+(12)
+
+with 𝜒𝜁(𝑠) = 𝜁(𝑠) − 1, initial conditions in Ω𝑐:
+
+𝐸𝜎(0) = 𝐸0, 𝐻 𝜎(0) = 𝐻0, 𝑃 𝜎(0) = 0, 𝑀 𝜎(0) = 0,
+
+̃︀𝐻 𝜎(0) = ̃︀𝐸𝜎(0) = ̃︁𝑀 𝜎(0) = 0,
+
+(13)
+
+and the boundary conditions
+
+𝐸𝜎
+
+𝑥 𝑛𝑦 − 𝐸𝜎
+
+𝑦 𝑛𝑥 = 0
+
+on R+
+
+* ×Γ𝑐.
+
+(14)
+
+Let us briefly comment on how we obtained (11) from (10) in the time domain. The first equation in (10) does
+not involve the PML change of variables, hence remains the same as in the system without the PML. As for the
+second equation, we rewrite it by introducing the new unknown ̃︀𝐸𝜎. More precisely, the term with the PML
+change of variables is rewritten as follows:
+
+)︂−1
+
+(︂
+
+1 +
+
+𝜎
+𝑠𝜁
+
+𝜕𝑥 ^𝐻 𝜎 = 𝜕𝑥 ^𝐻 𝜎 −
+
+𝜎
+𝑠𝜁 + 𝜎
+
+(𝑠𝜁 + 𝜎)ℒ ̃︀𝐸𝜎 − 𝜕𝑥 ^𝐻 𝜎 = 0.
+
+𝜕𝑥 ^𝐻 𝜎 = 𝜕𝑥 ^𝐻 𝜎 − 𝜎ℒ ̃︀𝐸𝜎, where
+
+We see that the latter equation resembles the equations for electromagnetic field in the original Maxwell system
+(M), (CR), had we defined the induction term as ̃︀𝐷𝜎 := 𝜁(𝑠) ̃︀𝐸𝜎 (modulo the term 𝜎 ̃︀𝐸𝜎). Therefore we rewrite it
+in the time domain in the same manner as we rewrote the system (M), (CR), by introducing the polarization-like
+term ̃︀𝑃 𝜎 as defined in (12) (compare with (6)).
+
+Finally, the third equation in (10) is treated similarly to the second equation; the new unknown ̃︀𝐻 𝜎 satisfies
+
+(𝑠𝜁 + 𝜎)ℒ ̃︀𝐻 𝜎 − 𝜕𝑥 ^𝐸𝜎
+
+𝑦 = 0,
+
+and we rewrite this equation in the time domain like explained above.
+
+For the well-posedness and stability analysis, we will not work with (11)–(14) directly, but rather with its
+Laplace domain counterpart. In particular, we start with (10), and express all the unknowns with the help of
+^𝐻 𝜎, which yields the following 2D Helmholtz equation with the PML change of variables:
+
+(︂
+
+1 +
+
+𝑠2𝜇𝜀
+
+)︂
+
+𝜎
+𝑠𝜁
+
+^𝐻 𝜎 − 𝜕𝑥
+
+)︂−1
+
+(︂
+
+1 +
+
+𝜎
+𝑠𝜁
+
+𝜕𝑥 ^𝐻 𝜎 −
+
+(︂
+
+1 +
+
+)︂
+
+𝜎
+𝑠𝜁
+
+𝜕2
+𝑦
+
+^𝐻 𝜎 = ^𝑓
+
+in Ω𝑐,
+
+(15)
+
+∇ ^𝐻 𝜎 · 𝑛 = 0
+
+on Γ𝑐,
+
+where ^𝑓 = 𝑠𝜀(𝑠)𝐻0 − curl 𝐸0.
+
+CONVERGENCE ANALYSIS OF TIME-DOMAIN PMLS
+
+2459
+
+2.3. Principal result of the paper
+
+The principal goal of this paper is to prove convergence of the perfectly matched layers in homogeneous
+waveguides and the main result Theorem 2.11 is given below. We formulate it with respect to the field 𝐻;
+for the field 𝐸 the respective results can be obtained similarly, but for the price of some additional technical
+computations.
+
+In what follows, for 𝑢 ∈ 𝐻 1(Ω𝑝ℎ), we will denote by 𝛾0𝑢 its trace on 𝜕Ω𝑝ℎ.
+
+Theorem 2.11. Let 𝑇 > 0, 𝐻 be a sufficiently regular solution of (6) with the initial data satisfying Assump-
+tion 2.9, for 0 < 𝑡 < 𝑇 , more precisely, 𝐻 ∈ 𝑊 1,2(0, 𝑇 ; 𝐻 1(Ω)).
+
+Let 𝜇, 𝜀 be admissible materials in the sense of Definition 2.1 and 𝜁 be chosen such that Assumption 2.10 holds.
+Let 𝐿 > 0 and 𝜎 satisfy (7). Then a unique solution of the PML problem (11)–(14) 𝐻 𝜎 ∈ 𝐿∞(0, 𝑇 ; 𝐿2(Ω𝑝ℎ))
+satisfies the following error bound, with 𝑒𝜎 = 𝐻 𝜎 − 𝐻:
+
+‖𝑒𝜎‖𝐿∞(0,𝑇 ;𝐿2(Ω𝑝ℎ))
+
+{︃
+
+= 0,
+≤ 𝐶e−4𝐿2 ¯𝜎𝑇 −1 𝑇 3/2
+
+¯𝜎1/2𝐿 max (︀1, 𝑇
+
+¯𝜎𝐿2
+
+)︀ ‖𝛾0𝜕𝑡𝐻‖𝐿2(0,𝑇 ;𝐿2(Σ)) , 𝑇 ≥ 2𝐿,
+
+𝑇 ∈ [0, 2𝐿),
+
+where the constant 𝐶 > 0 in the inequality is independent of 𝑇, 𝐿, ¯𝜎, Ω𝑝ℎ and the solution of (6).
+
+Remark 2. The fact that the error vanishes for 𝑡 < 2𝐿 can be explained by the finite speed of wave propagation
+inside the PML region (remember the high-frequency assumption on 𝜇, 𝜀, cf. [19], Thm. 4.9 for a related result
+for the media without the PML). As we assume vanishing initial data in Ω𝜎, the PML truncation may only
+generate an error in Ω𝑝ℎ after the wave has traveled from Ω𝑝ℎ to the truncation boundary and is reflected back
+into Ω𝑝ℎ.
+
+This result is in accordance with or extends known results: in [28] the authors prove a similar exponential
+bound with respect to the PML parameter and length for Cartesian perfectly matched layers applied to the
+acoustic wave propagation in vacuum. Since Theorem 2.11 includes also the case of non-dispersive materials
+(i.e., 𝜇 = 𝜀 ≡ 1) it extends the bound from [13] to the case of dispersive waveguides. Note that the factor 4 in
+the exponential in the work at hand refines the bound from [13] to the best achievable one.
+
+Remarkably the exponential convergence of the PML truncation is independent of the specific materials 𝜇, 𝜀
+and the choice of the function 𝜁. However, the choice of 𝜁 (cf. [17]) greatly influences the ease of implementation
+of the PML system. On the other hand, as argued in the recent article [6] for the case of the Klein–Gordon
+equation, different choices of 𝜁 behave differently if long-time errors are considered; unfortunately, the above
+error bound does not capture this effects.
+
+The rest of the paper is dedicated to the proof of Theorem 2.11.
+
+Remark 3. We will use the notation 𝑎 (cid:46) 𝑏 to indicate that 𝑎 ≤ 𝐶𝑏, for a generic constant 𝐶 > 0 independent
+of any parameters of the problem (final time, Laplace parameter 𝑠, geometry or PML parameters).
+
+3. Well-posedness and explicit representation of the solution
+
+We analyze the stability and the convergence of the PML based on the Laplace-domain techniques, as
+
+suggested e.g. in [13]. For this recall the class 𝑇 𝐷(𝑋) defined by Sayas [43].
+
+Definition 3.1 (cf. [43]). Let 𝑋 be a Banach space. Then the class 𝑇 𝐷(𝑋) consists of causal (i.e., vanishing on
+(−∞, 0)) 𝑋-valued distributions, s.t. for each Φ ∈ 𝑇 𝐷(𝑋), there exists a causal continuous function 𝜑 : R → 𝑋
+and constants 𝐶, 𝑝, 𝑚 ≥ 0, s.t. for all 𝑡 ≥ 0,
+
+‖𝜑(𝑡)‖ ≤ 𝐶(1 + 𝑡𝑝),
+
+and Φ =
+
+d𝑚𝜑
+d𝑡𝑚 ·
+
+2460
+
+´E. B´ECACHE ET AL.
+
+Here d
+Such distributions are characterized by bounds on their Laplace transforms.
+
+d𝑡 is understood as a distributional derivative.
+
+Theorem 3.2 (Props. 3.1.1–3.1.3 in [43]). A function Φ : C+
+and only if:
+(1) Φ is holomorphic in C+
+(2) Φ satisfies the following bound in C+
+* :
+
+* , and
+
+* → 𝑋 is a Laplace transform of 𝜑 ∈ 𝑇 𝐷(𝑋) if
+
+‖Φ(𝑠)‖ ≤ |𝑠|𝜇𝐶Φ(Re 𝑠),
+
+𝜇 ∈ R,
+
+(16)
+
+where 𝐶Φ : R+ → R+ is non-increasing and satisfies, for some 𝑚 ≥ 0 and 𝐶 > 0,
+
+𝐶Φ(𝜂) ≤ 𝐶𝜂−𝑚,
+
+for all 𝜂 ∈ (0, 1].
+
+Therefore, we start by proving the well-posedness of the following problem: given ^𝑓 ∈ ̃︀𝐻 −1(Ω𝑐) = (𝐻 1(Ω𝑐))′,
+* . Moreover, per Theorem 3.2, the solution to this problem
+
+find ^𝐻 𝜎 ∈ 𝐻 1(Ω𝑐) that satisfies (15), for 𝑠 ∈ C+
+should satisfy the stability bound
+
+^𝐻 𝜎⃦
+⃦
+⃦
+⃦
+⃦𝐻 1(Ω𝑐)
+⃦
+
+⃦
+(cid:46) |𝑠|𝑚 min(1, Re 𝑠)−𝜈 ⃦
+^𝑓
+⃦
+⃦
+⃦ ̃︀𝐻−1(Ω𝑐)
+⃦
+
+, 𝑚 ∈ Z,
+
+𝜈 ≥ 0.
+
+(17)
+
+These results are achieved by proving an inf-sup condition satisfied by the sesquilinear form associated to (15)
+(let us remark that it relies on some non-local in time and space constructions, and thus cannot be easily applied
+to waveguides with perturbations). The bound (17) implies in particular that with ^𝑓 given after equation (15),
+the solution to (15) is a causal tempered distribution, and, in particular, a distributional derivative of some order
+of a continuous causal function of polynomial growth. The time-domain stability estimates on this function can
+be obtained by e.g. the Plancherel theorem or contour integration techniques, see [43] for more details. The
+drawback of this approach is that the obtained stability bounds are quite far from optimal. Significantly finer
+stability estimates on the solution 𝐻 𝜎 can be obtained by exploiting an explicit representation of the solution
+and the Plancherel theorem, cf. [13]. This is the point of view we are going to pursue in this article.
+
+3.1. Existence and uniqueness for the PML problem (15)
+
+Let us consider the following problem: given 𝑝 ∈ ̃︀𝐻 −1(Ω𝑐), find 𝑢 ∈ 𝐻 1(Ω𝑐) that satisfies
+
+𝑎𝑠(𝑢, 𝑣) = ⟨𝑝, 𝑣⟩,
+
+𝑎𝑠(𝑢, 𝑣) = 𝑠2𝜇(𝑠)𝜀(𝑠)
+
+𝑣 ∈ 𝐻 1(Ω𝑐),
+(︂
+
+∫︁
+
+1 +
+
+Ω𝑐
+
+𝜎
+𝑠𝜁(𝑠)
+
+)︂
+
+𝑢 𝑣 +
+
+∫︁
+
+(︂
+
+Ω𝑐
+
+)︂−1
+
+1 +
+
+𝜎
+𝑠𝜁(𝑠)
+
+𝜕𝑥 𝑢 𝜕𝑥𝑣 +
+
+∫︁
+
+(︂
+
+Ω𝑐
+
+1 +
+
+)︂
+
+𝜎
+𝑠𝜁(𝑠)
+
+𝜕𝑦𝑢 𝜕𝑦𝑣.
+
+(18)
+
+We have the following result, which generalizes Lemma 3.6 in [13].
+
+Lemma 3.3. For any 𝑠 ∈ C+
+estimate:
+
+* , the form 𝑎𝑠 : 𝐻 1(Ω𝑐) × 𝐻 1(Ω𝑐) → C is continuous, and satisfies the following
+
+inf
+𝑢∈𝐻 1(Ω𝑐)
+
+sup
+𝑣∈𝐻 1(Ω𝑐)
+
+|𝑎𝑠(𝑢, 𝑣)|
+‖𝑢‖𝐻 1(Ω𝑐)‖𝑣‖𝐻 1(Ω𝑐)
+
+≥ 𝑐𝑠,
+
+where 𝑐𝑠 = 𝑐(𝜎) min(1,(Re 𝑠)ℓ)
+
+|𝑠|𝑘
+
+, for some ℓ, 𝑘 ≥ 0.
+
+Proof. See Appendix A.
+
+(cid:3)
+
+As discussed in the beginning of Section 3, this implies in particular that the respective PML system admits
+𝑦 ) the solution of
+
+𝑦 ), ̃︀𝑈 = (𝑃 𝜎
+
+𝑦 , 𝑀 𝜎, ̃︁𝑀 𝜎
+
+𝑦 , 𝐻 𝜎, ̃︀𝐻 𝜎
+
+𝑥 , 𝑃 𝜎
+
+𝑦 , ̃︀𝑃 𝜎
+
+𝑥 , 𝐸𝜎
+
+𝑦 , ̃︀𝐸𝜎
+
+a unique solution. Let us denote by 𝑈 = (𝐸𝜎
+(11).
+
+CONVERGENCE ANALYSIS OF TIME-DOMAIN PMLS
+
+2461
+
+Corollary 3.4. The PML system (11), equipped with the boundary conditions (14), constitutive relations (12),
+initial conditions 𝑈 |𝑡=0 = 𝑈 0 ∈ (𝐿2(Ω𝑐))5 and vanishing initial conditions for the rest of unknowns, admits a
+unique solution (𝑈 , ̃︀𝑈 ) ∈ 𝑇 𝐷((𝐻 1(Ω𝑐))10).
+
+Remark that the result holds true for initial conditions supported inside Ω𝑐. Moreover, one can show some a
+d𝑡𝑚 𝑢 (where d/d𝑡 is a distributional derivative), with 𝑢 being a
+
+priori stability bounds, by proving that 𝑈 = d𝑚
+continuous causal function, s.t. ‖𝑢(𝑡)‖𝐻 1(Ω𝑐) (cid:46) (1 + 𝑡)𝑘‖𝑈 0‖𝐿2(Ω𝑐), cf. the techniques of Chapter 3 of [43].
+
+3.2. An explicit solution in the Laplace domain for the data supported in the physical
+
+domain
+
+Our analysis relies on the modal decomposition. In particular, we denote by (𝜆2
+
+𝑚, 𝜑𝑚(𝑦)) the eigenvalues and
+
+eigenfunctions of the transverse Neumann Laplacian:
+
+− 𝜕2
+0 < 𝜆2
+
+𝑦𝜑𝑚 = 𝜆2
+0 ≤ 𝜆2
+
+𝑚𝜑𝑚,
+
+1 ≤ · · · → +∞,
+
+𝜕𝑦𝜑𝑚(0) = 𝜕𝑦𝜑𝑚(ℓ) = 0,
+‖𝜑𝑚‖𝐿2(0,ℓ) = 1.
+
+For 𝑢 ∈ 𝐿2(Ω𝑐), let us denote by 𝑢𝑚(𝑥) its decomposition into Fourier series in 𝜑𝑚: 𝑢(𝑥, 𝑦) = ∑︀∞
+
+𝑚=0 𝑢𝑚(𝑥)𝜑𝑚(𝑦).
+
+3.2.1. The symbol of the PML DtN map
+
+Using the same argument as in the proof of Lemma 3.3 it follows that the following problem: given 𝑔 ∈
+
+𝐻 1/2(Σ), find 𝑢 ∈ 𝐻 1(Ω𝜎) s.t.
+
+(︂
+
+1 +
+
+𝑠2𝜇𝜀
+
+)︂
+
+𝜎
+𝑠𝜁
+
+(︂
+
+𝑢 − 𝜕𝑥
+
+1 +
+
+𝜎
+𝑠𝜁
+
+)︂−1
+
+(︂
+
+𝜕𝑥𝑢 −
+
+1 +
+
+)︂
+
+𝜎
+𝑠𝜁
+
+𝜕2
+𝑦𝑢 = 0
+
+in Ω𝜎,
+
+∇𝑢 · 𝑛 = 0
+
+on 𝜕Ω𝜎 ∖ Σ,
+
+𝑢 = 𝑔,
+
+on Σ,
+
+(19)
+
+(20)
+
+is well-posed. We call the symbol of the PML DtN map the operator 𝑇 𝜎 : 𝐻 1/2(Σ) ↦→ (𝐻 1/2(Σ))′, defined for
+sufficiently regular functions 𝑢 as follows:
+
+𝑇 𝜎𝑔 = 𝛾1𝑢(𝑅, 𝑦),
+
+where 𝛾1 is a conormal derivative on Σ, defined for sufficiently regular 𝜎 (e.g. piecewise-constant) and 𝑢 by
+
+(︂
+
+𝛾1𝑢(𝑅, 𝑦) =
+
+1 +
+
+)︂−1
+
+𝜎(𝑅+)
+𝑠
+
+𝜕𝑥𝑢(𝑅, 𝑦).
+
+To obtain an explicit representation of the DtN we apply the modal decomposition to (19), which yields the
+family of one-dimensional problems: find 𝑢𝑚 ∈ 𝐻 1(𝑅, 𝑅 + 𝐿), s.t.
+
+(︂
+
+1 +
+
+𝑠2𝜇𝜀
+
+)︂
+
+𝜎
+𝑠𝜁
+
+(︂
+
+𝑢𝑚 − 𝜕𝑥
+
+1 +
+
+)︂−1
+
+𝜎
+𝑠𝜁
+
+(︂
+
+𝜕𝑥𝑢𝑚 +
+
+1 +
+
+)︂
+
+𝜎
+𝑠𝜁
+
+𝜆2
+𝑚𝑢𝑚 = 0
+
+in (𝑅, 𝑅 + 𝐿),
+
+𝜕𝑥𝑢𝑚(𝑅 + 𝐿) = 0,
+
+𝑢𝑚(𝑅) = 𝑔𝑚.
+
+A computation similar to [13] yields with
+
+𝜅(𝑠, 𝜆) = √︀𝑠2𝜀(𝑠)𝜇(𝑠) + 𝜆2,
+
+the identity
+
+(21)
+
+(22)
+
+𝛾1𝑢𝑗(𝑅) = 𝑇 𝜎
+
+𝑗 (𝑠)𝑔𝑗, 𝑇 𝜎
+
+𝑗 (𝑠) = −𝜅(𝑠, 𝜆𝑗)
+
+1 − exp(−2𝜅(𝑠, 𝜆𝑗)𝛾(𝑠))
+1 + exp(−2𝜅(𝑠, 𝜆𝑗)𝛾(𝑠))
+
+,
+
+2462
+
+´E. B´ECACHE ET AL.
+
+where 𝛾(𝑠) is defined by
+
+𝛾(𝑠) = 𝐿 +
+
+1
+𝑠𝜁(𝑠)
+
+∫︁ 𝐿+𝑅
+
+𝑅
+
+(︂
+
+𝜎(𝑥)𝑑𝑥 = 𝐿
+
+1 +
+
+)︂
+
+.
+
+¯𝜎
+𝑠𝜁(𝑠)
+
+(23)
+
+This allows us to define the symbol of the PML-DtN map by
+
+𝑇 𝜎(𝑠)𝑔 =
+
+∞
+∑︁
+
+𝑚=0
+
+𝑇 ∞
+𝑚 (𝑠)
+
+1 − e−2𝜅(𝑠,𝜆𝑚)𝛾(𝑠)
+1 + e−2𝜅(𝑠,𝜆𝑚)𝛾(𝑠)
+
+𝑔𝑚𝜑𝑚,
+
+where 𝑇 ∞
+
+𝑚 (𝑠) = −𝜅(𝑠, 𝜆𝑚) is the symbol of the modal radiating DtN map.
+
+3.2.2. An explicit expression for the solution
+
+Any solution of (15) satisfies the following problem (recall that supp ^𝑓 ⊂ (0, 𝑅)):
+
+𝑠2𝜀𝜇 ^𝐻 𝜎 − Δ ^𝐻 𝜎 = ^𝑓 ,
+∇ ^𝐻 𝜎 · 𝑛 = 0
+
+in Ω𝑝ℎ,
+
+on 𝜕Ω𝑝ℎ ∖ Σ,
+
+∇ ^𝐻 𝜎 · 𝑛 = 𝑇 𝜎 ^𝐻 𝜎 on Σ.
+
+On the other hand, the exact solutions satisfies
+
+𝑠2𝜀𝜇 ^𝐻 − Δ ^𝐻 = ^𝑓
+∇ ^𝐻 · 𝑛 = 0
+
+in Ω𝑝ℎ,
+
+on 𝜕Ω𝑝ℎ ∖ Σ,
+
+∇ ^𝐻 · 𝑛 = 𝑇 ∞ ^𝐻 on Σ.
+
+Hence the error ^𝑒𝜎 = ^𝐻 𝜎 − ^𝐻 satisfies
+
+𝑠2𝜀𝜇^𝑒𝜎 − Δ^𝑒𝜎 = 0
+∇^𝑒𝜎 · 𝑛 = 0
+
+in Ω𝑝ℎ,
+
+on 𝜕Ω𝑝ℎ ∖ Σ,
+
+∇^𝑒𝜎 · 𝑛 = 𝑇 𝜎 ^𝑒𝜎 + (𝑇 𝜎 − 𝑇 ∞) ^𝐻.
+
+(24)
+
+(25)
+
+The (unique) solution to the above problem can be found explicitly by using the modal decomposition (cf. [13]
+for a similar computation), which yields the explicit expression of the error
+
+∞
+∑︁
+
+^𝑒𝜎 =
+
+𝜑𝑚(𝑦)^𝑒𝜎
+𝑚,
+
+𝑚(𝑠, 𝑥) = 𝑐𝑚(𝑠, 𝑥)e−2𝜅(𝑠,𝜆𝑚)𝛾(𝑠),
+^𝑒𝜎
+
+(26)
+
+𝑚=0
+(︁
+
+1 − e−2𝜅(𝑠,𝜆𝑚)(𝛾(𝑠)+𝑅))︁−1 (︁
+
+𝑐𝑚(𝑠, 𝑥) =
+
+e𝜅(𝑠,𝜆𝑚)(𝑥−𝑅) + e−𝜅(𝑠,𝜆𝑚)(𝑥+𝑅))︁ ^𝐻𝑚(𝑠, 𝑅).
+
+We give the expression for the error between the exact solution and the PML solution in this way, since the
+term e−2𝜅(𝑠,𝜆𝑚)𝛾 plays an important role in the convergence estimates.
+
+Remark 4. Our goal is to obtain 𝐿∞(0, 𝑇 ; 𝐿2(Ω)) estimates on the error between the exact solution and the
+PML solution. If we wanted to obtain the 𝐿∞(0, 𝑇 ; 𝐻 1(Ω))-norm of the error, it would have been simpler to
+rewrite the above expression by introducing auxiliary volume problems as it was done [13]. Since we want to
+keep the presentation as simple as possible, we stick to the above expression and concentrate on the estimate
+of the 𝐿∞(0, 𝑇 ; 𝐿2(Ω))-norms.
+
+Let us remark that (26) indeed defines a Laplace transform of a TD(𝐻 1(Ω𝑐))-distribution of 𝑒𝜎.
+
+4. Convergence analysis
+
+In this section we present the proof of the main result of this work Theorem 2.11. The proof of this theorem
+
+can be done in at least either of the two ways (cf. a similar discussion in [13]):
+
+CONVERGENCE ANALYSIS OF TIME-DOMAIN PMLS
+
+2463
+
+Bromwich formula and contour deformation: An application of the Bromwich formula for the inverse
+
+Laplace transform to the Laplace-domain error 𝑒𝜎 yields
+
+𝑒𝜎(𝑡, 𝑥, 𝑦) =
+
+1
+2𝜋𝑖
+
+∞
+∑︁
+
+𝑚=0
+
+𝜑𝑚(𝑦)
+
+∫︁
+
+𝜂+𝑖R
+
+e𝑠𝑡−2𝜅(𝑠,𝜆𝑚)𝛾(𝑠)𝑐𝑚(𝑠, 𝑥) d𝑠,
+
+for every 𝜂 > 0. Recall that 𝛾(𝑠) = 𝐿(︀1 + ¯𝜎
+)︀. Since we want to prove convergence for ¯𝜎, 𝐿 → +∞, and
+𝑐𝑚 is bounded for large ¯𝜎, 𝐿, the only way to control the exponential growth of the integrand with respect
+to 𝑡 is to bound the expression 𝑠𝑡 − 2𝜅(𝑠, 𝜆𝑚)𝛾(𝑠) on the integration contour.
+The main idea is then to use the fact that the integrand is holomorphic and deform the integration contour
+from the straight vertical line 𝜂 + 𝑖R to a contour 𝒞𝑚(𝜔) = 𝑖𝜔 + 𝜂𝑚(𝜔), 𝜔 ∈ R, for a smooth, bounded
+function 𝜂𝑚 > 0 in a way that the expression sup𝑠∈𝒞𝑚 |𝑒𝑠𝑡−2𝛾𝜅(𝑠,𝜆𝑚)| is minimized. Such a procedure would
+yield the bound
+
+𝑠𝜁(𝑠)
+
+⃒
+∫︁
+⃒
+⃒
+⃒
+
+𝜂+𝑖R
+
+⃒
+⃒
+e𝑠𝑡−2𝜅(𝑠,𝜆𝑚)𝛾𝑐𝑚(𝑠, 𝑥) d𝑠
+⃒
+⃒
+
+=
+
+⃒
+⃒
+⃒
+⃒
+
+∫︁
+
+𝒞𝑚
+
+≤ sup
+𝑠∈𝒞𝑚
+
+⃒
+⃒
+e𝑠𝑡−2𝜅(𝑠,𝜆𝑚)𝛾𝑐𝑚(𝑠, 𝑥) d𝑠
+⃒
+⃒
+⃒e𝑠𝑡−2𝛾𝜅(𝑠,𝜆𝑚)⃒
+
+∫︁
+
+⃒
+⃒
+
+⃒
+⃒
+
+𝒞𝑚
+
+|𝑐𝑚(𝑠, 𝑥)||d𝑠|,
+
+(27)
+
+𝒞𝑚
+
+where ∫︀
+·|𝑑𝑠| denotes the real line integral along the curve 𝒞𝑚 in the complex plane. Assuming that the
+contour is regular enough, to bound the remaining integral, one can proceed similarly to the proof of ([43],
+proof of Prop. 3.2.2) which exploits the regularity of the time-domain counterpart of 𝑐𝑚; this procedure
+would allow to obtain a bound on the error in terms of a certain 𝑊 𝑘,1-norm of the time-domain 𝑐𝑚.
+
+Plancherel’s identity: Alternatively, we can use Plancherel’s identity
+
+∫︁ ∞
+
+0
+
+exp(−2𝜂𝑡) ‖𝑔(𝑡) ‖2 d𝑡 =
+
+1
+2𝜋𝑖
+
+∫︁
+
+𝑖R+𝜂
+
+‖^𝑔(𝑠) ‖2 d𝑠.
+
+for 𝑔 ∈ 𝐿2(R+, 𝑋) on some Banach space 𝑋 and 𝜂 > 0. Proceeding as in ([13], proof of Lemma 4.2) enables
+us to obtain the bound of the following form, for some 𝜂𝑚 > 0,
+
+‖𝑒𝜎‖𝐿2(0,𝑇 ;𝐿2(Ω)) ≤ 𝐶(𝑇 ) sup
+𝜆𝑚
+
+sup
+𝑠∈𝜂𝑚+𝑖R
+
+⃒
+⃒
+
+⃒e𝜂𝑚𝑇 −2𝛾(𝑠)𝜅(𝑠,𝜆𝑚)⃒
+
+⃒
+⃒ ‖𝛾0𝐻‖𝐿2(0,𝑇 ;𝐿2(Σ)),
+
+where 𝐶 depends polynomially on 𝑇 , cf. this expression with (27). It remains to find suitable parameters
+𝜂𝑚 > 0 to minimize the supremum on the right hand side (uniformly in 𝜆𝑚).
+
+Comparing the two techniques described above one notices that in both cases one has to find a contour 𝒞𝑚 (in
+the latter case a straight line) in C+
+
+* connecting −𝑖∞ + 𝜂− and 𝑖∞ + 𝜂+, 𝜂−, 𝜂+ > 0, such that the quantity
+
+𝐴(𝑠, 𝜆𝑚, 𝑡) = Re (𝑠𝑡 − 2𝛾(𝑠)𝜅(𝑠, 𝜆𝑚)) ,
+
+𝑠 ∈ 𝒞𝑚,
+
+(28)
+
+can be bounded on this contour by a negative number, so that e−𝐴(𝑠,𝜆𝑚,𝑡) is small. For convergence, it is
+necessary that this bound decreases with ¯𝜎, 𝐿 (but, possibly, deteriorates with 𝑡). Also this bound has to be
+uniform in 𝜆𝑚.
+
+When using the first method one may use more general contours, while when using Plancherel’s identity one
+is limited to straight, vertical lines. Thus, a priori the first technique might lead to a better bound. However, as
+we shall see in the following Subsection 4.1, a properly chosen straight line leads to error bounds which are in
+some sense optimal. Therefore, we will present in Subsection 4.2 the proof of Theorem 2.11 using Plancherel’s
+identity.
+
+2464
+
+´E. B´ECACHE ET AL.
+
+4.1. On obtaining the error bounds by deforming the Laplace inversion contour
+
+Due to the considerations above we have to find a contour 𝒞𝑚 in the complex right half plane connecting
+
+−𝑖∞ + 𝜂−, 𝑖∞ + 𝜂+ for some 𝜂+, 𝜂− > 0 such that
+
+𝐴(𝑠, 𝜆𝑚, 𝑡) ≤ 𝛽𝑚 < 0,
+
+𝑠 ∈ 𝒞𝑚,
+
+(29)
+
+with 𝐴 given by (28) and some 𝛽𝑚 < 0.
+
+First, we will show how to do so in the non-dispersive case, next discuss the dispersive case, and finally argue
+that the bounds obtained using this approach, in general, do not improve over the use of the usual Plancherel
+bound, cf. [13].
+
+Let us emphasize that the approach presented here is different from the one presented in [13] for the non-
+dispersive case, and the goal of this small section is actually to show that, in general, a naively more optimal
+approach would not necessarily lead to better uniform error estimates.
+
+4.1.1. Non-dispersive case
+
+For the remainder of this subsection we assume that 𝜇 = 𝜀 ≡ 1 and 𝑡 > 2𝐿. Due to the fact that we consider
+
+the non-dispersive case, we choose the classical, B´erenger’s PML with 𝜁 ≡ 1, which leads to
+
+𝐴(𝑠, 𝜆𝑚, 𝑡) = Re
+
+(︁
+
+𝑠𝑡 − 2𝐿
+
+(︁
+
+1 +
+
+¯𝜎
+𝑠
+
+)︁ √︀𝜆2
+
+𝑚 + 𝑠2
+
+)︁
+
+.
+
+(30)
+
+To obtain the best bound on the error we want to find an integration contour 𝒞𝑚, such that the constant 𝛽𝑚 in
+(29) is minimized. Remark that such a contour should lie in C+
+* , and, moreover, connect 𝜂− − 𝑖∞ and 𝜂+ + 𝑖∞,
+𝜂± > 0.
+
+The principal result of this section reads.
+
+Theorem 4.1. Let 𝜆𝑚 > 0, 𝑡 > 2𝐿, and ¯𝜎 be fixed. Then there exists an optimal contour 𝒞𝑚 (in a sense
+that 𝛽𝑚 in (29) is minimized), which passes through the two unique saddle points 𝑠0, ¯𝑠0 of 𝐴(·, 𝜆𝑚, 𝑡) in C+
+*
+and connects 𝐴(𝑠0,𝜆𝑚,𝑡)+2𝐿¯𝜎
++ 𝑖∞. Moreover, one can choose this contour so that
+𝐴(𝑠, 𝜆𝑚, 𝑡) = 𝐴(𝑠0, 𝜆𝑚, 𝑡) = 𝛽𝑚 ∈ (−2𝐿¯𝜎, 0) for all 𝑠 ∈ 𝒞𝑚.
+
+− 𝑖∞ and 𝐴(𝑠0,𝜆𝑚,𝑡)+2𝐿¯𝜎
+
+𝑡−2𝐿
+
+𝑡−2𝐿
+
+Remark 5. The case 𝜆𝑚 = 0 is quite simple: 𝐴(𝑠, 0, 𝑡) = (𝑡 − 2𝐿)Re 𝑠 − 2𝐿¯𝜎. Therefore, the value of 𝐴(𝑠, 0, 𝑡)
+is constant along the lines 𝑖R + 𝜂, 𝜂 > 0, and is increasing in Re 𝑠.
+
+Since the proof of Theorem 4.1 is long and technical we merely present a sketch, the full proof can be found
+in Appendix D. It relies on the following two technical propositions, which we prove in Appendices B and C.
+The first proposition describes the behaviour of the level sets of real parts of holomorphic functions.
+
+Proposition 4.2. Let 𝐷 ⊆ C be a possibly unbounded domain, and 𝜑 be non-constant and holomorphic in 𝐷.
+Let 𝜑 have a finite number of stationary points. For 𝜑𝑅 = Re 𝜑, it holds that
+
+(1) the level sets of 𝜑𝑅 are finite unions of piecewise-smooth curves, which may intersect only in stationary
+
+points of 𝜑;
+
+(2) the level sets of 𝜑𝑅 do not contain closed contours;
+(3) each component of a level set of 𝜑𝑅 approaches 𝜕𝐷 or is unbounded;
+(4) each stationary point of 𝜑𝑅 is a point of a self-intersection of the level set; moreover, the branches of the
+level set curves intersecting in 𝑠0 divide the vicinity 𝐵𝜀(𝑠0) for 𝜀 → 0 into 2 + 2𝑚 sectors where 𝑚 is the
+order of the stationary point.
+
+The second proposition shows that 𝑃 (𝑠) := 𝑠𝑡 − 2𝛾(𝑠)𝜅(𝑠, 𝜆𝑚) has only two saddle points in C+
+
+* , cf. (30).
+
+Proposition 4.3. For all ¯𝜎 > 0, 𝐿 > 0, 𝑡 > 2𝐿, the function 𝑠 ↦→ (𝑠𝑡 − 2𝛾(𝑠)𝜅(𝑠, 𝜆𝑚))′ has precisely two
+complex conjugate roots with a positive real part.
+
+CONVERGENCE ANALYSIS OF TIME-DOMAIN PMLS
+
+2465
+
+Sketch of the proof of Theorem 4.1. The main idea is to define the contour 𝒞𝑚 as part of a level set of 𝐴. As 𝐴
+is the real part of a holomorphic function 𝑃 (𝑠) in C+
+* , we may use Proposition 4.2 to conclude that level sets of
+𝐴 may only intersect in the stationary points of 𝑃 , i.e. points where 𝑃 ′(𝑠) = 0. Moreover, they do not contain
+closed contours in C+
+* .
+
+By Proposition 4.3, there exist precisely two stationary points in C+
+
+* . By studying the behavior of 𝑠 ↦→ 𝐴(𝑠)
+on the imaginary axis, positive real axis and at infinity, we deduce that there exists a component of the level
+set passing through the two stationary points which connects ±𝑖∞ as in the statement of the theorem. It is this
+component of the level set that we choose as the contour 𝒞𝑚.
+
+The optimality of the chosen contour can be deduced from the monotonicity of 𝐴 on the positive real axis
+and the asymptotic monotonicity of 𝐴 on the lines Im 𝑠 = const as Im 𝑠 → +∞, geometric considerations and
+(cid:3)
+the fact that level sets of different values are disjoint.
+
+Let us provide several comments about the result of the above theorem.
+
+Non-uniqueness of the contour. Theorem shows that an optimal contour exists, but of course such a contour is
+non-unique. As we see in Figure 2, we could have taken instead of a level set a straight line passing through 𝑠0
+𝑚.
+Optimality of the error and the use of the result of the theorem for an a priori error estimate. The proof of the
+theorem is constructive: it allows to find an optimal bound on 𝐴(𝑠, 𝜆𝑚, 𝑡), which, in turn, gives quite a good
+indication of the behaviour of the PML error for each mode 𝜆𝑚. In particular, it says that the optimal value 𝛽𝑚
+is given by 𝐴(𝑠0
+𝑚 can be found numerically as one of the roots of the equation 𝐷(𝑠) = 0, where
+
+𝑚, 𝜆𝑚, 𝑡), and 𝑠0
+
+𝐷(𝑠) = 𝑃 ′(𝑠) = (𝑠𝑡 − 2𝛾(𝑠)𝜅(𝑠, 𝜆𝑚))′.
+
+(31)
+
+However, for the moment we did not provide any analytic bounds on 𝐴(𝑠0
+
+𝑚, 𝜆𝑚, 𝑡).
+
+As for deriving a uniform in 𝜆𝑚 bound, it appears that as 𝜆𝑚 → +∞, the quantity 𝛽𝑚 converges. Then a
+
+uniform in 𝜆𝑚 error bound cannot be better than the one given by the limit of 𝛽𝑚.
+Proposition 4.4. Let 𝛽𝑚 and 𝑠0
+√︂ 𝑡2
+
+𝑚 be as in Theorem 4.1; 𝑡 > 0. Then, as 𝜆𝑚 → +∞,
+
+𝑠0
+𝑚 = 𝑖𝜆𝑚
+
+𝑡2 − 4𝐿2 +
+
+4𝐿2 ¯𝜎
+𝑡2 + 𝑂(𝜆−1
+𝑚 ),
+
+𝛽𝑚 = 𝛽∞ + 𝑂(︀𝜆−1
+
+)︀ ,
+
+𝑚
+
+𝛽∞ = −
+
+4𝐿2 ¯𝜎
+𝑡
+
+·
+
+Proof. It suffices to find the roots of 𝐷(𝑠) defined in (31) with a positive real part for 𝜆𝑚 → +∞ (recall that
+by Proposition 4.3, there is one complex-conjugate pair of roots in C+
+* ). For this we rescale 𝑠 := 𝜆𝑚𝑠𝑚, which
+yields
+
+̃︀𝐷(𝑠𝑚, 𝜆−1
+
+𝑚 ) = 𝐷(𝜆𝑚𝑠𝑚) = 𝑡 −
+
+2𝐿𝑠𝑚
+
+√︀𝑠2
+
++
+
+2𝐿¯𝜎
+√︀𝑠2
+
+·
+
+𝜆𝑚𝑠2
+𝑚
+𝑚 ) is continuous in the quarter-plane 𝐿+ = {𝑧 ∈ C : Im 𝑧 > 1, Re 𝑧 > 0},
+𝑠𝑚 − 𝑖 in 𝐿+. The branch cut of the latter function (recall that we use the principal
+𝑚 + 1 replaced
+𝑠𝑚 − 𝑖 can be extended to an analytic function in the half-plane 𝐿 = {𝑧 ∈ C : Im 𝑧 > 1} (and
+
+Remark that the function 𝑠 ↦→ ̃︀𝐷(𝑠𝑚, 𝜆−1
+and √︀𝑠2
+𝑠𝑚 + 𝑖
+branch of the square root) coincides with the segment [−𝑖, 𝑖]. Then ̃︀𝐷(𝑠𝑚, 𝜆−1
+by
+even to a larger set C ∖ [−𝑖, 𝑖]).
+
+𝑚 ), defined with √︀𝑠2
+
+𝑚 + 1 =
+
+𝑠𝑚 + 𝑖
+
+𝑚 + 1
+
+𝑚 + 1
+
+√
+
+√
+
+√
+
+√
+
+It remains to apply the implicit function theorem. Indeed, we can find explicitly the roots of ̃︀𝐷(𝑠𝑚, 0). Inside
+𝑚 ):
+
+𝑚 → 0, we have the following expansion for the roots of ̃︀𝐷(𝑠𝑚, 𝜆−1
+
+𝑡2−4𝐿2 . Then, as 𝜆−1
+
+𝐿+, the only root is 𝑖
+
+√︁ 𝑡2
+
+𝑠*
+𝑚 = 𝑖
+
+√︂ 𝑡2
+
+𝑡2 − 4𝐿2 +
+
+4𝐿2 ¯𝜎
+𝑡2𝜆𝑚
+
++ 𝑂 (︀𝜆−2
+
+𝑚
+
+)︀ .
+
+Remarking that
+
+√︀(𝑠*
+
+𝑚)2 + 1 =
+
+1
+𝑡
+
+(︂
+
+2𝐿𝑠*
+
+𝑚 −
+
+2𝐿¯𝜎
+𝜆𝑚(𝑠*
+
+𝑚)2
+
+)︂
+
+,
+
+2466
+
+´E. B´ECACHE ET AL.
+
+Figure 2. Behavior of the function 𝐴(𝑠, 𝜆𝑚, 𝑡) for ¯𝜎 = 𝐿 = 1, 𝑡 = 4 in the non-dispersive
+case (see Prop. 4.4 for the notation 𝛽∞). The circles mark the (imaginary parts) of the saddle
+points and the dashed line the global bound 𝛽∞ = 1. (a) Level sets, stationary and paths of
+integration for the function 𝐴(., 𝜆𝑚, 𝑡) for 𝜆𝑚 = 1 and (b) 𝐴(𝑠, 𝜆𝑚, 𝑡) along the Re 𝑠 = Re 𝑠0
+𝑚
+for two different values of 𝜆𝑚.
+
+we can compute the expansion of 𝛽𝑚, as 𝜆𝑚 → +∞,
+
+𝛽𝑚 = 𝐴 (𝜆𝑚𝑠*
+
+𝑚, 𝜆𝑚, 𝑡) = −
+
+4𝐿2 ¯𝜎
+𝑡
+
++ 𝑂 (︀𝜆−1
+
+𝑚
+
+)︀ .
+
+(cid:3)
+
+We will see in the section that follows that the above limit provides the best uniform in 𝜆𝑚 error bound.
+
+Remark 6. The fact that finding a stationary point of 𝐴(·, 𝜆𝑚, 𝑡) can be reduced to the root finding of 𝐷(𝑠) = 0,
+where 𝐷(𝑠) is defined in (31), which, in turn can be recast as a sixth order polynomial equation, leads to a
+method to compute the optimal bounds numerically, in the case when the data is highly regular in space.
+
+4.1.2. Dispersive media: open questions
+
+For the dispersive media, the reasoning as above applies as well: we look at the contour where 𝐴(·, 𝜆𝑚, 𝑡) is
+minimized as a sub-contour of a level set passing through a saddle point of 𝑠𝑡 − 2𝛾(𝑠)𝜅(𝑠, 𝜆𝑚). However, the
+difficulty in choosing this contour lies in the fact that for dispersive media more than one stationary point might
+exist, as illustrated in Figure 3.
+
+On the other hand, because of the non-dispersivity at high frequencies (cf. Sect. 2.1.1) we can expect that
+the behaviour of 𝐴(𝑠, 𝜆𝑚, 𝑡) for large |𝑠| in the dispersive case resembles the behaviour of 𝐴(𝑠, 𝜆𝑚, 𝑡) in the
+non-dispersive case, and, therefore, one can conjecture that the best uniform error bound for 𝐴 in this case is
+also given by the result of Proposition 4.4.
+
+4.1.3. Discussion
+
+The above numerical experiments and semi-analytical arguments indicate that
+
+CONVERGENCE ANALYSIS OF TIME-DOMAIN PMLS
+
+2467
+
+Figure 3. Behavior of the function 𝐴(𝑠, 𝜆𝑚, 𝑡) for ¯𝜎 = 𝐿 = 1 and Drude media with 𝜇0 =
+𝜀0 = 1. Remark that we use the notation 𝐴(𝑠) for 𝐴(𝑠, 𝜆𝑚, 𝑡). (a) Level sets, stationary points
+and paths of integration for the function 𝐴(., 𝜆𝑚, 𝑡) for 𝜆𝑚 = 1 and (b) 𝐴(𝑠, 𝜆𝑚, 𝑡) along the
+lines Re 𝑠 = Re 𝑠0
+𝑚 for two different values of 𝜆𝑚 and 𝑡 = 3 (left) and 𝑡 = 2.1 (right). The circles
+mark the (imaginary parts) of the saddle points and the dashed line the global bound 𝛽∞.
+
+– we can hope to find a contour along which the function 𝐴(𝑠, 𝜆𝑚, 𝑡) is uniformly bounded by looking at the
+contours with Re 𝑠 = const, cf. Figures 2 and 3. Remark however that, as Figure 3b illustrates, the maximum
+value of 𝐴 along the straight line with Re 𝑠 = Re 𝑠0
+𝑚, 𝜆𝑚, 𝑡), contrary to
+what numerical experiments indicate in the non-dispersive case.
+
+𝑚 is not necessarily given by 𝐴(𝑠0
+
+– for large 𝜆𝑚, we expect that an upper bound for 𝐴(𝑠, 𝜆𝑚, 𝑡) that would be close to the optimal one is given
+by 𝛽∞ = −4𝐿2 ¯𝜎/𝑡, cf. Proposition 4.4 and the discussion in the end of Section 4.1.2. Moreover, the numerical
+experiments in Figure 2 and the argument of Proposition 4.4 indicate that in this case a “good” choice of
+the contour is given by Re 𝑠 = 4𝐿2 ¯𝜎
+· Let us remark that this choice is close to the one suggested in [13] for
+𝑡2
+all 𝜆𝑚 (Re 𝑠 = 4𝐿2 ¯𝜎
+
+𝑡2 𝑐, with 𝑐 = (1 + 16𝐿2
+
+𝑡2 )−1).
+
+2468
+
+´E. B´ECACHE ET AL.
+
+4.2. Proof of Theorem 2.11
+
+We have seen above that choosing a contour along a level set 𝐴(𝑠, 𝜆𝑚, 𝑡) = 𝛽𝑚 < 0 allows us to bound the
+error, cf. (27). The results of the previous section show that such a contour can be chosen for any 𝜆𝑚 and,
+moreover, for 𝜆𝑚 → +∞, 𝛽𝑚 → 𝛽∞ = −4𝐿2 ¯𝜎2𝑡−1. In this section we show that this latter bound is suitable
+for all 𝜆𝑚, 𝑚 ∈ N; moreover, it can be also achieved by using the contour 𝒞 = {𝑠 ∈ C : Re 𝑠 = 𝜂} for a
+suitable 𝜂 > 0, independent of 𝑚. We conclude this subsection by filling in the remaining details of the proof of
+Theorem 2.11 where we make use of Plancherel’s Theorem.
+
+4.2.1. Several auxiliary technical results
+
+We start with the following result about 𝜅(𝑠, 𝜆) = √︀𝑠2𝜀(𝑠)𝜇(𝑠) + 𝜆2.
+
+Lemma 4.5. For 𝜆 ∈ R, the function 𝑠 ↦→ 𝜅(𝑠, 𝜆) is analytic in C+
+
+* . Moreover,
+
+Re 𝜅(𝑠, 𝜆) ≥ Re 𝑠.
+
+Proof. Analyticity. The analyticity of 𝑠 ↦→ 𝜅(𝑠, 𝜆𝑚) = √︀𝑠2𝜀(𝑠)𝜇(𝑠) + 𝜆2
+assumption (3): indeed, Re(𝑠𝜀(𝑠)) > 0, Re(𝑠𝜇(𝑠)) > 0 in C+
+Arg(𝑠2𝜀(𝑠)𝜇(𝑠) + 𝜆2
+
+𝑚) ∈ (−𝜋, 𝜋).
+
+* follows from the passivity
+* , therefore Arg(𝑠2𝜀(𝑠)𝜇(𝑠)) ∈ (−𝜋, 𝜋), and thus
+
+𝑚 in C+
+
+Next, to prove a lower bound on 𝜅, let us recall that for 𝑧 ∈ C ∖ R≤0, the principal square root is
+
+√
+
+1
+√
+2
+𝑥 + 𝑖𝑦 is non-decreasing in 𝑥 ∈ R. Hence
+
+𝑧 =
+
+)︁
+(︁√︀|𝑧| + Re(𝑧) + sign(Im(𝑧)) 𝑖√︀|𝑧| − Re(𝑧)
+
+Hence 𝑥 ↦→ Re
+
+√
+
+Re 𝜅(𝑠, 𝜆) ≥ Re 𝜅(𝑠, 0) = Re√︀𝑠2𝜇(𝑠)𝜀(𝑠).
+
+From (32) it follows that, for 𝑧𝑘 = 𝑧𝑘𝑟 + 𝑖𝑧𝑘𝑖, 𝑘 = 1, 2,
+
+√
+
+(Re
+
+𝑧1𝑧2)2 =
+
+1
+2
+
+(|𝑧1𝑧2| + 𝑧1𝑟𝑧2𝑟 − 𝑧1𝑖𝑧2𝑖) =
+
+(︂√︁
+
+1
+2
+
+𝑧2
+1𝑟 + 𝑧2
+1𝑖
+
+√︁
+
+𝑧2
+2𝑟 + 𝑧2
+
+2𝑖 + 𝑧1𝑟𝑧2𝑟 − 𝑧1𝑖𝑧2𝑖
+
+≥
+
+1
+2
+
+(|𝑧1𝑟𝑧2𝑟| + |𝑧1𝑖𝑧2𝑖| + 𝑧1𝑟𝑧2𝑟 − 𝑧1𝑖𝑧2𝑖) ,
+
+where the last inequality was obtained from the Cauchy-Schwarz inequality. Applying the above with 𝑧1 = 𝑠𝜇(𝑠)
+and 𝑧2 = 𝑠𝜀(𝑠) yields
+
+Re 𝜅(𝑠, 0) ≥ √︀Re(𝑠𝜇(𝑠))Re(𝑠𝜀(𝑠)) ≥ Re 𝑠,
+
+where the last inequality follows from the passivity condition (3).
+
+We will also need the following technical result (whose role will be clear later).
+
+Lemma 4.6. For all 𝑠 ∈ C+
+
+* and 𝜆 ∈ R
+
+Re 𝜅(𝑠, 𝜆) Re
+
+(︂ 𝜅(𝑠, 𝜆)
+𝑠𝜁(𝑠)
+
+)︂
+
+≥ Re 𝑠.
+
+(cid:3)
+
+(33)
+
+Proof. Let 𝑠 ∈ C+
+hand side of (33) by replacing Re 𝜅 from equation (32), and recalling that Im 𝜅2 = 2 Re 𝜅 Im 𝜅
+
+* . For brevity of notation, we write 𝜅 for 𝜅(𝑠, 𝜆) and 𝜁 for 𝜁(𝑠) (resp. 𝜇, 𝜀). We rewrite the left
+
+Re 𝜅 Re
+
+𝜅
+𝑠𝜁
+
+=
+
+Re 𝜅
+|𝑠𝜁|2 (Re 𝜅 Re(𝑠𝜁) + Im 𝜅 Im(𝑠𝜁))
+
+1
+2|𝑠𝜁|2
+1
+
+=
+
+=
+
+(︀(︀|𝜅|2 + Re(︀𝜅2)︀)︀ Re(𝑠𝜁) + Im(︀𝜅2)︀ Im(𝑠𝜁))︀
+
+2|𝑠𝜁|2 Re(𝑠𝜁) (︀⃒
+
+⃒𝑠2𝜀𝜇 + 𝜆2⃒
+
+⃒ + Re(︀𝑠2𝜀𝜇 + 𝜆2)︀)︀ +
+
+1
+
+2|𝑠𝜁|2 Im(𝑠𝜁) Im(︀𝑠2𝜀𝜇 + 𝜆2)︀ .
+
+.
+
+(32)
+
+)︂
+
+CONVERGENCE ANALYSIS OF TIME-DOMAIN PMLS
+
+2469
+
+Since Re(𝑠𝜁) > 0 by the passivity of 𝜁 we use the inverse triangle inequality for the first term in the above
+
+⃒𝑠2𝜀𝜇 + 𝜆2⃒
+⃒
+
+⃒ + Re(︀𝑠2𝜀𝜇 + 𝜆2)︀ ≥ |𝑠2𝜀𝜇| + Re(︀𝑠2𝜀𝜇)︀
+
+1
+2|𝑠𝜁|2
+[︃
+
+to obtain
+
+Re 𝜅 Re
+
+𝜅
+𝑠𝜁
+
+≥
+
+=
+
+=
+
+[︀Re(𝑠𝜁) (︀|𝑠2𝜀𝜇| + Re(︀𝑠2𝜀𝜇)︀)︀ + Im(𝑠𝜁) Im(︀𝑠2𝜀𝜇)︀]︀
+
+1
+2
+
+|𝜀𝜇|Re(𝑠𝜁)
+|𝜁|2
+
+[︃
+
+1
+2
+
+|𝜀𝜇|Re(𝑠𝜁)
+|𝜁|2
+
+Re(︀𝑠2𝜀𝜇)︀ Re(𝑠𝜁) + Im(𝑠𝜁) Im(︀𝑠2𝜀𝜇)︀
+|𝑠𝜁|2
+
+]︃
+
+]︃
+
+Re(︀𝑠𝜁𝑠2𝜀𝜇)︀
+|𝑠𝜁|2
+
+=
+
+[︂ |𝜀𝜇|Re(𝑠𝜁)
+|𝜁|2
+
+1
+2
+
++ Re
+
+)︂]︂
+
+(︂ 𝑠𝜀𝜇
+𝜁
+
+≥
+
+1
+2
+
+(︂
+
+Re 𝑠
+
+⃒
+⃒
+⃒
+⃒
+
+𝜇𝜀
+𝜁
+
+⃒
+⃒
+⃒
+⃒
+
++ Re
+
+(︂ 𝑠𝜇𝜀
+𝜁
+
+)︂)︂
+
+,
+
++
+
++
+
+where the last bound follows from (MP) in the form Re(𝑠𝜁)
+
+|𝜁| ≥ Re 𝑠.
+
+Finally, applying again (MP) and next using the inequality 𝑎 + max(𝑎, 2 − 𝑎) ≥ 2 yields the desired bound:
+
+Re 𝜅 Re
+
+𝜅
+𝑠𝜁
+
+≥
+
+1
+2
+
+Re 𝑠
+
+(︂⃒
+⃒
+⃒
+⃒
+
+𝜇𝜀
+𝜁
+
+⃒
+⃒
+⃒
+⃒
+
++ max
+
+(︂⃒
+⃒
+⃒
+⃒
+
+𝜇𝜀
+𝜁
+
+⃒
+⃒
+⃒
+⃒
+
+, 2 −
+
+)︂)︂
+
+⃒
+⃒
+⃒
+⃒
+
+𝜇𝜀
+𝜁
+
+⃒
+⃒
+⃒
+⃒
+
+≥ Re 𝑠.
+
+(cid:3)
+
+4.2.2. Proof of Theorem 2.11
+
+The two Lemmas 4.5 and 4.6 allow us to prove the principal proposition about the choice of the contour that
+
+allows to control the quantity (28).
+Proposition 4.7. Let 𝜇, 𝜀, 𝜁 such that Assumptions 2.2 and 2.10 hold. Then for given 𝜆𝑚 ∈ R and 𝑡, 𝐿, ¯𝜎 ≥ 0
+we have that the function 𝐴 defined in (28) is holomorphic in C+
+
+* and fulfills
+
+(︂ 4𝐿2 ¯𝜎
+
+)︂
+𝑡2 + 𝑖𝑠𝑖, 𝜆𝑚, 𝑡
+
+𝐴
+
+≤ −
+
+4𝐿2 ¯𝜎
+𝑡
+
+,
+
+𝑠𝑖 ∈ R.
+
+(34)
+
+Before proving this proposition, we remark that the quantity 𝐴 controlling the error is uniformly bounded in
+𝜆𝑚 on a straight line 4𝐿2 ¯𝜎
+𝑡2 + 𝑖𝑠𝑖. According to Proposition 4.4, as 𝜆𝑚 → +∞, in the non-dispersive case, this
+line gets closer and closer to the straight line passing through the saddle point 𝑠0
+𝑚 (see previous section for the
+discussion of the role of the saddle points in the error bounds). Moreover, the upper bound is consistent with
+the best upper bound of Proposition 4.4.
+
+Proof of Proposition 4.7. Recall that 𝐴 is given by
+
+𝐴(𝑠, 𝜆, 𝑡) = Re(𝑠𝑡) −
+
+2𝐿Re 𝜅(𝑠, 𝜆) + 2𝐿¯𝜎Re
+
+(︂
+
+(︂ 𝜅(𝑠, 𝜆)
+𝑠𝜁(𝑠)
+
+)︂)︂
+
+.
+
+By Lemma 4.5 𝐴(·, 𝜆, 𝑡) is holomorphic in C+
+
+* . We next apply the Young inequality 𝑎 + 𝑏 ≥ 2
+(︂ 𝜅(𝑠, 𝜆)
+𝑠𝜁(𝑠)
+
+𝑏 = 2𝐿¯𝜎Re
+
+)︂
+
+,
+
+𝑎 = 2𝐿Re 𝜅(𝑠, 𝜆),
+
+√
+
+𝑎𝑏 with
+
+and use the bound of Lemma 4.6 for
+
+√
+
+𝑎𝑏 to obtain
+
+𝐴(𝑠, 𝜆, 𝑡) ≤ 𝑡Re 𝑠 − 4𝐿
+
+¯𝜎Re 𝑠.
+
+√
+
+This shows that on straight vertical lines 𝐴 can be bounded independently of Im 𝑠 and 𝜆. An ’optimal’ line
+𝑥,
+can be found by minimizing 𝐴 in Re 𝑠 > 0. In particular, we remark that the function 𝑔(𝑥) = 𝑡𝑥 − 4𝐿
+takes its global minimum at 𝑥0 = 4𝐿2 ¯𝜎
+· Hence the result in the
+𝑡2
+(cid:3)
+statement of the proposition follows.
+
+, and this minimum is equal to 𝑔(𝑥0) = − 4𝐿2 ¯𝜎
+
+√
+
+√
+
+¯𝜎
+
+𝑡
+
+1
+Re 𝜅(𝑠, 𝜆𝑚)
+
+2
+
+⃒
+⃒
+⃒
+
+⃒
+⃒
+⃒ ^𝐻𝑚(𝑠, 𝑅)
+⃒
+⃒
+⃒
+
+⃒
+⃒
+⃒ ^𝐻𝑚(𝑠, 𝑅)
+
+,
+
+2
+
+2470
+
+´E. B´ECACHE ET AL.
+
+Now we are in position to prove Theorem 2.11.
+
+Proof of Theorem 2.11. First of all, let us remark that the PML problem admits a unique solution, as per
+Corollary 3.4. The proof of Theorem 2.11 follows like in the proof of Theorem 4.1 from [13].
+
+Case 𝑡 > 2𝐿. Using Plancherel’s theorem, for 𝜂 > 0 one has that, cf. (26) for the definition of 𝑐𝑚:
+
+∫︁ ∞
+
+0
+
+e−2𝜂𝑡 ‖𝑒𝜎
+
+𝑚(𝑡)‖2
+
+𝐿2(0,𝑅) d𝑡 =
+
+1
+2𝜋𝑖
+
+∫︁
+
+𝜂+𝑖R
+
+e−4Re(𝜅(𝑠,𝜆𝑚)𝛾(𝑠))‖𝑐𝑚(𝑠, .)‖2
+
+𝐿2(0,𝑅) d𝑠.
+
+(35)
+
+A straightforward computation yields the following bound:
+
+‖𝑐𝑚(𝑠, .)‖2
+
+𝐿2(0,𝑅) ≤ 2
+⃒
+⃒
+⃒1 − e−2𝜅(𝑠,𝜆𝑚)(𝛾(𝑠)+𝑅)
+
+(cid:46)
+
+−2
+
+⃒
+⃒
+⃒
+
+⃒
+⃒
+⃒ ^𝐻𝑚(𝑠, 𝑅)
+
+⃒
+⃒
+⃒
+
+2 ⃒
+⃒
+⃒1 − e−2𝜅(𝑠,𝜆𝑚)(𝛾(𝑠)+𝑅)
+
+−2
+
+⃒
+⃒
+⃒
+
+e−2Re 𝜅(𝑠,𝜆𝑚)𝑅
+
+∫︁ 𝑅
+
+(︁
+
+0
+
+e2Re 𝜅(𝑠,𝜆𝑚)𝑥 + e−2Re 𝜅(𝑠,𝜆𝑚)𝑥
+
+)︁
+
+d𝑥
+
+(cid:46) (Re 𝑠)−1|1 − e−2𝜅(𝑠,𝜆𝑚)(𝛾(𝑠)+𝑅)|−2
+
+where the last bound follows from Lemma 4.5.
+
+Inserting this bound into (35) and using the Plancherel identity again yields
+(︂
+∫︁ ∞
+
+e−2𝜂𝑡 ‖𝑒𝜎
+
+𝑚(𝑡)‖2
+
+𝐿2(0,𝑅) d𝑡 (cid:46) 𝜂−1
+
+e−4Re(𝜅(𝑠,𝜆𝑚)𝛾(𝑠))
+
+sup
+𝑠∈𝜂+𝑖R
+
+0
+
+⃒
+⃒
+⃒1 − e−2𝜅(𝑠,𝜆𝑚)(𝛾(𝑠)+𝑅)
+
+(36)
+
+)︂ ∫︁ ∞
+
+−2
+
+⃒
+⃒
+⃒
+
+0
+
+e−2𝜂𝑡 |𝐻𝑚(𝑡, 𝑅)|2 d𝑡.
+
+Next, one can use the causality argument (cf. [13]) which allows to truncate the above integrals to finite intervals.
+More precisely, for each 𝑇 > 0, it holds that
+
+∫︁ 𝑇
+
+0
+
+e−2𝜂𝑡 ‖𝑒𝜎
+
+𝑚(𝑡)‖2
+
+𝐿2(0,𝑅) d𝑡 (cid:46) 𝜂−1
+
+(︂
+
+sup
+𝑠∈𝜂+𝑖R
+
+e−4Re(𝜅(𝑠,𝜆𝑚)𝛾(𝑠))
+
+⃒
+⃒
+⃒1 − e−2𝜅(𝑠,𝜆𝑚)(𝛾(𝑠)+𝑅)
+
+⃒
+⃒
+⃒
+
+)︂ ∫︁ 𝑇
+
+−2
+
+0
+
+e−2𝜂𝑡 |𝐻𝑚(𝑡, 𝑅)|2 d𝑡.
+
+Finally, we bound the above integrals to obtain
+
+‖𝑒𝜎
+
+𝑚‖2
+
+𝐿2(0,𝑇 ;𝐿2(0,𝑅))
+
+(︂
+
+(cid:46) 𝜂−1
+
+sup
+𝑠∈𝜂+𝑖R
+
+e2𝜂𝑇 −4Re(𝜅(𝑠,𝜆𝑚)𝛾(𝑠)) ⃒
+⃒
+
+⃒1 − e−2𝜅(𝑠,𝜆𝑚)(𝛾(𝑠)+𝑅)⃒
+
+⃒
+⃒
+
+−2)︂
+
+‖𝐻𝑚(., 𝑅)‖2
+
+𝐿2(0,𝑇 ) .
+
+Repeating the above arguments with 𝑒𝜎
+get the same bound for ‖𝜕𝑡𝑒𝜎
+𝑇 1/2‖𝜕𝑡𝑒𝜎
+
+𝑚‖𝐿2(0,𝑇 ;𝐿2(0,𝑅)). Therefore,
+
+𝑚‖2
+
+𝑚 replaced by 𝜕𝑡𝑒𝜎
+
+𝐿2(0,𝑇 ;𝐿2(0,𝑅)). Finally, since 𝑒𝜎
+
+𝑚, and using the fact that 𝜕𝑡𝐻𝑚(0, 𝑅) = 0, we
+𝑚‖𝐿∞(0,𝑇 ;𝐿2(0,𝑅)) ≤
+
+𝑚(0) = 0, we have that ‖𝑒𝜎
+
+‖𝑒𝜎
+
+𝑚‖2
+
+𝐿∞(0,𝑇 ;𝐿2(0,𝑅))
+
+(cid:46) 𝑇 𝜂−1
+
+(cid:46) 𝑇 𝜂−1
+
+sup
+𝑠∈𝜂+𝑖R
+
+sup
+𝑠∈𝜂+𝑖R
+
+(︂
+
+e2𝜂𝑇 −4Re(𝜅(𝑠,𝜆𝑚)𝛾(𝑠)) ⃒
+⃒
+
+⃒1 − e−2𝜅(𝑠,𝜆𝑚)(𝛾(𝑠)+𝑅)⃒
+
+⃒
+⃒
+
+−2)︂
+
+‖𝜕𝑡𝐻𝑚(., 𝑅)‖2
+
+𝐿2(0,𝑇 )
+
+exp(2𝐴(𝑠, 𝜆𝑚, 𝑇 ))
+
+sup
+𝑠∈𝜂+𝑖R
+
+⃒
+⃒
+
+⃒1 − e−2𝜅(𝑠,𝜆𝑚)(𝛾(𝑠)+𝑅)⃒
+
+⃒
+⃒
+
+−2
+
+‖𝜕𝑡𝐻𝑚(., 𝑅)‖2
+
+𝐿2(0,𝑇 ) .
+
+(37)
+
+Since by Proposition 4.7 we are able to bound the first exponent in the supremum by setting 𝜂 = 4𝐿2 ¯𝜎𝑇 −2, it
+remains to bound the term |1 − e−2𝜅(𝑠,𝜆𝑚)(𝛾(𝑠)+𝑅)|−2. We use
+
+⃒
+⃒
+
+⃒1 − e−2𝜅(𝑠,𝜆𝑚)(𝛾(𝑠)+𝑅)⃒
+
+⃒ ≥ 1 − e−2Re(𝜅(𝑠,𝜆𝑚)(𝛾(𝑠)+𝑅))
+⃒
+
+and the fact that 𝐴(𝑠, 𝜆, 𝑇 ) = Re 𝑠𝑇 − 2Re(𝜅(𝑠, 𝜆)𝛾(𝑠, 𝜆)), as well as Lemma 4.5, which allows to rewrite for
+Re 𝑠 = 𝜂,
+
+⃒
+⃒
+
+⃒1 − e−2𝜅(𝑠,𝜆𝑚)(𝛾(𝑠)+𝑅)⃒
+
+⃒ ≥ 1 − e𝐴(𝑠,𝜆𝑚,𝑇 )−Re 𝑠𝑇 −2Re 𝑠𝑅 ≥ 1 − e−8𝐿2 ¯𝜎𝑇 −1−8𝐿2𝑅𝑇 −2 ¯𝜎.
+⃒
+
+CONVERGENCE ANALYSIS OF TIME-DOMAIN PMLS
+
+2471
+
+With the inequality 1 − e−𝑥 ≥ 1
+
+2 min(1, 𝑥), 𝑥 ≥ 0, we have
+
+⃒
+⃒
+
+⃒1 − e−2𝜅(𝑠,𝜆𝑚)(𝛾(𝑠)+𝑅)⃒
+
+−1
+⃒
+⃒
+
+(cid:46) max
+
+(︂
+
+1,
+
+𝑇
+¯𝜎𝐿2(1 + 𝑅𝑇 −1)
+
+)︂
+
+(cid:46) max
+
+(︂
+
+1,
+
+)︂
+
+.
+
+𝑇
+¯𝜎𝐿2
+
+Combining the above bound and the bound of Proposition 4.7 into (37) yields
+
+‖𝑒𝜎
+
+𝑚‖𝐿∞(0,𝑇 ;𝐿2(0,𝑅))
+
+(cid:46) e−4𝐿2 ¯𝜎𝑇 −1 𝑇 3/2
+¯𝜎1/2𝐿
+
+(︂
+
+max
+
+1,
+
+)︂
+
+𝑇
+¯𝜎𝐿2
+
+‖𝜕𝑡𝐻𝑚(., 𝑅)‖𝐿2(0,𝑇 ) .
+
+Case 𝑡 ≤ 2𝐿. Again, following the same argument as used in [13], it is sufficient to verify that ‖^𝑒𝜎
+
+𝑚(𝑠)‖𝐿2(0,𝑅) (cid:46)
+
+e−2𝐿Re 𝑠|𝑠|𝑘 max(1, (Re 𝑠)−ℓ), for some 𝑘, ℓ ≥ 0. This is straightforward from (26):
+
+‖^𝑒𝜎
+
+𝑚(𝑠)‖𝐿2(0,𝑅) ≤ ‖𝑐𝑚(𝑠)‖𝐿2(0,𝑅)e−2Re 𝜅(𝑠,𝜆𝑚)𝛾(𝑠) ≤ ‖𝑐𝑚(𝑠)‖𝐿2(0,𝑅) e−2Re 𝑠𝐿,
+
+where the last bound follows from the definition of 𝛾(𝑠) = 𝐿(1 + ¯𝜎
+𝑠𝜁 ) and the technical Lemmas 4.5 and 4.6
+(the latter implying in particular that Re(𝜅(𝑠, 𝜆𝑚)/𝑠𝜁(𝑠)) > 0). Finally, the bound on 𝑐𝑚(𝑠) follows from (36).
+Because ^𝐻𝑚 itself is a Laplace transform of a function of 𝑇 𝐷(𝐻 1(Ω𝑝ℎ)) (this is seen in particular from the same
+argument as the one used to derive Cor. 3.4), we have the desired bound in 𝑠 on | ^𝐻𝑚(𝑠, 𝑅)| from Theorem 3.2.
+It remains to consider the term
+
+⃒
+⃒
+
+⃒1 − e−2𝜅(𝑠,𝜆𝑚)(𝛾(𝑠)+𝑅)⃒
+
+⃒
+⃒
+
+(cid:38) 1 − e−2Re(𝜅(𝑠,𝜆𝑚)(𝛾(𝑠)+𝑅)) (cid:38) 1 − e−2Re 𝑠𝐿 (cid:38) min(1, Re 𝑠),
+
+where the last two bounds were obtained from the technical Lemmas 4.5 and 4.6 and the inequality 1 − e−𝑥 ≥
+(cid:3)
+1/2 min(1, 𝑥) used before.
+
+5. Extension of the results: examples and counterexamples for a waveguide
+
+with a heterogeneity
+
+Since the techniques for the stability and convergence analysis from the previous section are largely based on
+the modal decomposition, it is natural to ask whether the respective results can be extended to waveguides with
+a perturbation (e.g. when 𝜀 and 𝜇 depend on the spatial variable away from the PMLs, when Ω𝑝ℎ is no longer
+a rectangle, but a curved waveguide, or when there is an inclusion present in the domain). It is not difficult to
+verify that once the stability of the PML system is proven, the convergence can be shown by comparing the
+DtN operators, cf. the equation (24). Example when 𝜀, 𝜇 depend on 𝑥, one can start by proving the stability
+of the problem satisfied by the error of the PML. Provided the data 𝑔, this problem in the Laplace domain can
+be written as:
+
+𝑠2𝜇(𝑠, 𝑥)^𝑒𝜎 − div 𝜀−1(𝑠, 𝑥)∇^𝑒𝜎 = 0
+∇^𝑒𝜎 · 𝑛 = 0
+
+on 𝜕Ω𝑝ℎ ∖ Σ,
+
+in Ω𝑝ℎ,
+∇^𝑒𝜎 · 𝑛 = 𝑇 𝜎 ^𝑒𝜎 + ^𝑔.
+
+(38)
+
+(39)
+
+Next, one uses the same arguments as in the proof of Theorem 2.11 to show that in the case when ^𝑔 =
+(𝑇 𝜎 − 𝑇 ∞) ^𝐻, the error is small thanks to the stability and the ’smallness’ of the error between the two DtNs.
+The main difficulty is to prove stability in this case. In this section we present two counter-examples, where we
+will prove that even if the heterogeneity is bounded away from the PMLs, the solution can exhibit instabilities
+in the time domain.
+
+2472
+
+´E. B´ECACHE ET AL.
+
+5.1. Piecewise-constant dispersive media
+
+Let us consider wave propagation in media given by parameters of the following form:
+
+𝜀(𝑠, 𝑥) = 1 +
+
+𝜇(𝑠, 𝑥) = 1 +
+
+𝜔2
+
+𝜔2
+
+𝑒 (𝑥)
+𝑠2
+𝑚(𝑥)
+𝑠2
+
+, 𝜔𝑒(𝑥) = const > 0
+
+for 𝑥 < 𝑅/2, 𝜔𝑒(𝑥) = 0
+
+for 𝑥 > 𝑅/2,
+
+, 𝜔𝑚(𝑥) = const > 0
+
+for 𝑥 < 𝑅/2, 𝜔𝑚(𝑥) = 0
+
+for 𝑥 > 𝑅/2.
+
+We consider the boundary-value problem written in the Laplace domain:
+
+𝑠2𝜇 ^𝐻 𝜎 − div 𝜀−1∇ ^𝐻 𝜎 = 0,
+∇ ^𝐻 𝜎 · 𝑛 = 0
+∇ ^𝐻 𝜎 · 𝑛 = 𝑔
+
+𝑥 > 0,
+on R+
+
+* × Γ,
+on {0} × Γ.
+
+Let us remark that the time-domain counterpart of the above problem is stable, as can be shown by energy
+techniques.
+
+Next, we apply a PML with the parameter 𝜁 (because the media parameters are piecewise-constant rather
+
+than constant as before, we do not impose the conditions of Assumption 2.10 on 𝜁). We thus obtain
+
+)︂
+
+(︂
+
+1 +
+
+𝑠2𝜇
+
+𝜎
+𝑠𝜁
+∇ ^𝐻 𝜎 · 𝑛 = 0
+
+^𝐻 𝜎 − 𝜕𝑥𝜀−1
+
+)︂−1
+
+(︂
+
+1 +
+
+𝜎
+𝑠𝜁
+
+𝜕𝑥 ^𝐻 𝜎 − 𝜀−1
+
+(︂
+
+1 +
+
+)︂
+
+𝜎
+𝑠𝜁
+
+𝜕2
+𝑦
+
+^𝐻 𝜎 = 0,
+
+𝑥 > 0,
+
+on (0, 𝑅 + 𝐿) × Γ ∪ {𝑥 = 𝑅 + 𝐿}, ∇ ^𝐻 𝜎 · 𝑛 = 𝑔
+
+on {0} × Γ.
+
+(40)
+
+Because the PML and the dispersive media are separated by a layer of vacuum, the so-called backward prop-
+agating waves which cause the instability of the PMLs do not reach the absorbing layer. Therefore one would
+expect that a ’good’ (leading to a stable problem) choice of a PML would be the classical, B´erenger’s PML with
+𝜁 = 1.
+
+On the other hand, arguing like in Section 3.2, one can formally reduce the above problem to the problem
+on the subdomain (0, 𝑅) × (0, ℓ) with the boundary condition at 𝑥 = 𝑅 written in the form 𝜀−1𝜕𝑥 ^𝐻 𝜎 = ̃︀𝑇 𝜎 ^𝐻 𝜎,
+where ̃︀𝑇 𝜎 is the DtN associated to the coupled vacuum-PML problem posed on (𝑅/2, 𝑅 + 𝐿) × (0, ℓ). From this
+point of view it is less clear whether it is the PML change of variables with 𝜁 = 1 or 𝜁 satisfying Assumption 2.10
+that leads to a stable problem.
+
+In this short section we will argue, semi-analytically and numerically, that neither of the choices leads to a
+
+stable formulation in this case.
+
+For this it is sufficient to show that there exists 𝑠0 ∈ C+
+Thus, we will look for the solution to the problem (40) in the following form:
+
+* , s.t. that the solution to (40) is not unique.
+
+^𝐻 𝜎(𝑠, 𝑥, 𝑦) =
+
+⎧
+⎪⎨
+
+⎪⎩
+
+∑︀∞
+
+∑︀∞
+
+∑︀∞
+
+𝑚=0 𝑔𝑚
+𝑚=0 𝑔𝑚
+𝑚=0 𝑔𝑚
+∫︁ 𝑥
+1
+𝑠𝜁
+
+𝑅
+
+𝑥𝜎(𝑠) = 𝑥 +
+
+𝜎(𝑥′) d𝑥′,
+
+𝑚e−𝜅𝑑(𝑠,𝜆𝑚)𝑥)︀ 𝜑𝑚(𝑦),
+
+(︀𝑎+
+(︀𝑏+
+(︀𝑐+
+
+𝑚e𝜅𝑑(𝑠,𝜆𝑚)𝑥 + 𝑎−
+𝑚e𝜅0(𝑠,𝜆𝑚)(𝑥−𝑅/2) + 𝑏−
+𝑚e𝜅0(𝑠,𝜆𝑚)(𝑥𝜎−𝑅) + 𝑐−
+
+𝑚e−𝜅0(𝑠,𝜆𝑚)(𝑥−𝑅/2))︀ 𝜑𝑚(𝑦),
+𝑚e−𝜅0(𝑠,𝜆𝑚)(𝑥𝜎−𝑅))︀ 𝜑𝑚(𝑦),
+
+𝑥 < 𝑅
+2 ,
+𝑅
+2 < 𝑥 < 𝑅,
+𝑅 < 𝑥 < 𝑅 + 𝐿,
+
+where 𝜅𝑑(𝑠, 𝜆) = √︀𝑠2𝜀(𝑠)𝜇(𝑠) + 𝜆2 and 𝜅0(𝑠, 𝜆) =
+
+𝑠2 + 𝜆2.
+The coefficients satisfy the following equation, which is obtained from the boundary conditions at 𝑥 = 0,
+2 , the transmission conditions at 𝑥 = 𝑅 and the boundary condition at
+
+the transmission conditions at 𝑥 = 𝑅
+
+√
+
+CONVERGENCE ANALYSIS OF TIME-DOMAIN PMLS
+
+2473
+
+𝑥 = 𝑅 + 𝐿:
+
+⎛
+
+⎜
+⎜
+⎜
+⎝
+
+0
+0
+
+0
+
+𝑀 (11)
+𝑚
+𝑀 (21)
+𝑚 𝑀 (22)
+0 𝑀 (32)
+0
+
+𝑚
+𝑚 𝑀 (33)
+0 𝑀 (44)
+
+𝑚
+
+𝑚
+
+⎞
+
+⎟
+⎟
+⎟
+⎠
+
+⎛
+
+⎜
+⎜
+⎜
+⎜
+⎜
+⎝
+
+𝑎+
+𝑚
+𝑎−
+𝑚
+𝑏+
+𝑚
+𝑏−
+𝑚
+𝑐+
+𝑚
+𝑐−
+𝑚
+
+where the matrix 𝑀𝑚 is given by
+
+𝑀 (11)
+
+𝑚 = (︀1 −1)︀ ,
+(︃
+
+𝑀 (21)
+
+𝑚 =
+
+(︂
+
+𝑀 (32)
+
+𝑚 =
+
+e𝜅𝑑(𝑠,𝜆𝑚) 𝑅
+
+2
+
+e−𝜅𝑑(𝑠,𝜆𝑚) 𝑅
+
+2
+
+𝜅𝑑(𝑠,𝜆𝑚)
+𝜀
+
+e𝜅𝑑(𝑠,𝜆𝑚) 𝑅
+
+2 − 𝜅𝑑(𝑠,𝜆𝑚)
+
+𝜀
+
+e−𝜅𝑑(𝑠,𝜆𝑚) 𝑅
+
+2
+
+)︃
+
+,
+
+e𝜅0(𝑠,𝜆𝑚) 𝑅
+𝜅0(𝑠, 𝜆𝑚)e𝜅0(𝑠,𝜆𝑚) 𝑅
+
+e−𝜅0(𝑠,𝜆𝑚) 𝑅
+2 −𝜅0(𝑠, 𝜆𝑚)e−𝜅0(𝑠,𝜆𝑚) 𝑅
+
+2
+
+2
+
+2
+
+)︂
+
+,
+
+⎞
+
+⎟
+⎟
+⎟
+⎟
+⎟
+⎠
+
+=
+
+⎞
+
+⎟
+⎟
+⎟
+⎟
+⎟
+⎠
+
+,
+
+⎛
+
+⎜
+⎜
+⎜
+⎜
+⎜
+⎝
+
+𝑔𝑚
+0
+0
+0
+0
+0
+
+(︂
+
+(︂
+
+𝑀 (22)
+
+𝑚 =
+
+𝑀 (33)
+
+𝑚 =
+
+−1
+
+−1
+
+−𝜅0(𝑠, 𝜆𝑚) 𝜅0(𝑠, 𝜆𝑚)
+
+−1
+
+−1
+
+−𝜅0(𝑠, 𝜆𝑚) 𝜅0(𝑠, 𝜆𝑚)
+
+)︂
+
+)︂
+
+,
+
+,
+
+𝑀 (44)
+
+𝑚 = (︀ 𝜅0(𝑠, 𝜆𝑚)e𝜅0(𝑠,𝜆𝑚)𝛾(𝑠) −𝜅0(𝑠, 𝜆𝑚)e−𝜅0(𝑠,𝜆𝑚)𝛾(𝑠) )︀ .
+
+𝑚 and 𝑀 (33)
+
+The matrices 𝑀 (21)
+and −2𝜅0(𝑠, 𝜆𝑚), which do not vanish for any 𝑠 ∈ C+
+𝑚 )𝑇 via 𝑏𝑚 = ( 𝑏+
+𝑎𝑚 = ( 𝑎+
+equation on 𝑏𝑚:
+
+𝑚 )𝑇 and 𝑐𝑚 = ( 𝑐+
+
+𝑚 are invertible for all 𝑠 ∈ C+
+
+𝑚 𝑎−
+
+𝑚 𝑐−
+
+* (their determinants are respectively −2𝜅𝑑(𝑠, 𝜆𝑚)/𝜀
+* by passivity of 𝜀(𝑠) and Lemma 4.5). We thus express
+𝑚 𝑏−
+𝑚 )𝑇 . This allows us to reduce the problem to a linear
+
+(︂ − 𝜀
+2𝜅𝑑
+
+(︀e−𝜅𝑑𝑅/2 (︀ 𝜅𝑑
+
+)︀ − e𝜅𝑑𝑅/2 (︀ 𝜅𝑑
+
+𝜀 − 𝜅0
+
+)︀)︀ − 𝜀
+2𝜅𝑑
+
+(︀e−𝜅𝑑𝑅/2 (︀ 𝜅𝑑
+
+𝜀 − 𝜅0
+
+)︀ − e𝜅𝑑𝑅/2 (︀ 𝜅𝑑
+
+𝜀 + 𝜅0
+
+𝜀 + 𝜅0
+e𝜅0(𝛾𝑚+𝑅/2)
+
+−e−𝜅0(𝛾𝑚+𝑅/2)
+
+)︀)︀
+
+)︂
+
+𝑏𝑚 =
+
+(︂ 𝑔𝑚
+0
+
+)︂
+
+.
+
+The above matrix is not invertible if and only if, with 𝜉 = 𝜅𝑑−𝜀𝜅0
+𝜅𝑑+𝜀𝜅0
+
+,
+
+𝐹 (𝑠) = e−𝜅0𝛾𝑚
+
+(︁
+
+e−(𝜅𝑑+𝜅0)𝑅/2 − 𝜉e(𝜅𝑑−𝜅0)𝑅/2)︁
+
++ e𝜅0𝛾𝑚
+
+(︁
+
+𝜉e(𝜅0−𝜅𝑑)𝑅/2 − e(𝜅0+𝜅𝑑)𝑅/2)︁
+
+= 0.
+
+(41)
+
+Our goal is thus to show that there exists 𝑠0 ∈ C+
+of 𝑠0 would be a root of 𝐹 of a finite multiplicity.
+
+* , s.t. 𝐹 (𝑠0) = 0. Because 𝐹 is analytic in C+
+
+* , any such value
+
+Because estimating the sign of the real part of the roots of 𝐹 seems fairly cumbersome, even in the asymptotic
+regime 𝜎 → 0, we propose instead to look at the evolution of some of the roots, computed numerically, as 𝜎
+increases.
+
+We proceed to show numerically that for a certain choice of parameters the function (41) has roots in C+
+* .
+
+To this end we choose
+
+𝜔𝑒 = 3,
+
+𝜔𝑚 = 0.2, 𝑅 = 1, 𝐿 = 0.5,
+
+𝜆𝑚 = 1
+
+and plot the values of |𝐹 (𝑠)| in the complex plane for different values of ¯𝜎. Note that due to the fact that 𝐹 is
+holomorphic in the right half plane, we obtain by the minimum principle that a level set which is a closed curve
+in C+
+* must enclose a root of 𝐹 . Figure 4 shows that such level sets exist for various choices of 𝜎 proving the
+existence of unstable solutions for the according PML truncation.
+
+This is confirmed by computing the full two-dimensional time-domain simulation, where Figure 6a shows
+the instability in time. On the other hand Figure 6a also demonstrates the stability of the solution for the
+homogeneous dispersive waveguide with the choice 𝜁 = 𝜇.
+
+Moreover Figure 5 shows that the choice of 𝜁 = 𝜇 which would be the ’correct’ one for a homogeneous
+
+dispersive waveguide leads again to unstable solutions.
+
+2474
+
+´E. B´ECACHE ET AL.
+
+Figure 4. The values of |𝐹 | (cf. (41), remember that here 𝜁 = 1) for various choices of ¯𝜎,
+where yellow indicates larger and blue smaller values. The white contours are the level sets
+corresponding to |𝐹 | = 0.5. (a) ¯𝜎 = 5 and (b) ¯𝜎 = 15.
+
+Figure 5. The values of the function corresponding to |𝐹 | (cf. (41)) for 𝜁 = 𝜇 and for various
+choices of ¯𝜎, where yellow indicates larger and blue smaller values. The white contours are the
+level sets corresponding to |𝐹 | = 0.5. (a) ¯𝜎 = 5 and (b) ¯𝜎 = 15.
+
+CONVERGENCE ANALYSIS OF TIME-DOMAIN PMLS
+
+2475
+
+Figure 6. Exponential blow-up and stability of the time-domain solution for the inhomo-
+geneous/homogeneous waveguide problems with ℓ = 𝜋, a time-harmonic source 𝑓 (𝑡, 𝑥, 𝑦) =
+sin(𝜔0𝑡)𝑦 exp (︀−20(𝑥2 + (𝑦 − 𝜋/2)2))︀, a finite element mesh size ℎ = 0.1, third order finite
+elements, a time step 𝜏 = 0.04 and an explicit time-stepping scheme. (a) Homogeneous and
+inhomogeneous, dispersive Drude materials with source frequency 𝜔0 = 1 (for the remaining
+parameters see Sec. 5.1) and (b) homogeneous and inhomogeneous, non-dispersive materials
+with source frequency 𝜔0 = 0.8 (for the remaining parameters see Sec. 5.2).
+
+5.2. Piecewise-constant non-dispersive media
+
+The results of the previous section may seem quite surprising, since the instability in the PMLs is produced
+even despite the fact that backward propagating waves do not reach the absorbing layer. This observation
+has incited us to ask whether the PMLs can be unstable when the heterogeneities do not support backward
+propagating waves at all. The goal of this section is to demonstrate semi-analytically and numerically that this
+may be indeed the case. For this we will relax the high-frequency requirement on 𝜇 and 𝜀 (i.e. we do not require
+that 𝜀(𝑠), 𝜇(𝑠) → 1 as 𝑠 → +∞), and will study the problem (40) with
+
+𝜀(𝑠, 𝑥) =
+
+{︂ 𝜀𝐻 ,
+1,
+
+if 𝑥 < 𝑅/2,
+𝑥 > 𝑅/2,
+
+𝜇(𝑠, 𝑥) =
+
+{︂ 𝜇𝐻 ,
+1,
+
+if 𝑥 < 𝑅/2,
+𝑥 > 𝑅/2,
+
+𝜇𝐻 = const > 0,
+
+𝜀𝐻 = const > 0.
+
+In this case (40) describes wave propagation in two media characterized by different wave velocities. Evi-
+dently, both decoupled problems are isotropic and non-dispersive; the stability of (40) in the time domain is
+straightforward from energy estimates. It is thus natural to apply the standard, B´erenger’s PMLs to bound
+the computational domain, i.e., we choose 𝜁 = 1. Repeating the same arguments as in the previous section, we
+conclude that PML instabilities may occur if there exists the solution 𝑠0 ∈ C+
+
+* to (41).
+
+For this we choose the parameters as follows:
+
+𝜀𝐻 = 𝜇𝐻 = 10, 𝑅 = 1, 𝐿 = 0.5,
+
+𝜆𝑚 = 1.
+
+As in the non-dispersive case we observe that there exist roots (cf. Fig. 7) of the resulting function 𝐹 (suitably
+* for certain parameters. Again this shows the existence of unstable
+
+defined for the non dispersive case) in C+
+solutions (cf. Fig. 6b).
+
+6. Numerical experiments
+
+To underline our theoretical findings, we conduct numerical experiments studying the convergence of the
+truncation error of the PMLs. To this end we use an implementation of the PML equations (11)–(14) by
+high-order conforming finite elements on a triangular mesh using the software package NGSolve [44, 45].
+
+2476
+
+´E. B´ECACHE ET AL.
+
+Figure 7. The values of the function corresponding to |𝐹 | (cf. (41)) for the non dispersive case
+(cf. Sec. 5.2) and various choices of ¯𝜎, where yellow indicates larger and blue smaller values.
+The white contours are the level sets corresponding to |𝐹 | = 0.5. (a) ¯𝜎 = 6 and (b) ¯𝜎 = 18.
+
+6.1. Description of the experiments
+
+We consider a one-sided waveguide with physical domain Ω𝑝ℎ = (0, 𝑅) × (0, 1) and PML domain Ω𝜎 =
+(𝑅, 𝑅 + 𝐿) × (0, 1) for 𝑅 = 0.5 and 𝐿 > 0. In all the experiments we used finite elements of the polynomial order
+7 (and higher orders for the reference solution) and a mesh size ℎ = 0.1.
+
+For our experiments we choose Lorentz materials with a single pole of the form (cf. Fig. 8)
+
+𝜇(𝑠) = 1 +
+
+𝜇2
+1
+𝜇,1 + 𝑠2 ,
+𝑠2
+
+𝜀(𝑠) = 1 +
+
+𝜀2
+1
+𝑠2
+𝜀,1 + 𝑠2
+
+with 𝜇1, 𝜀1 = 10 and 𝑠𝜇,1 = 6, 𝑠𝜀,1 = 8.
+
+To be able to apply standard time-stepping methods to the system (11)–(14) we need to rewrite (12) as a
+first order system in time. This is straightforward for our choice of material and the choice of 𝜁 equal to 𝜇 or 𝜀
+by introducing additional unknowns.
+
+Remark 7. As long as the materials 𝜇, 𝜀 are rational functions in 𝑠 it is always possible to introduce additional
+unknowns to obtain a first order system in time, however the choice of unknowns and additional equations is by
+far not unique. A usual choice (also of the scaling function 𝜁) would aim to minimize the number of unknowns
+to keep the computational effort as small as possible.
+
+We apply embedded Runge-Kutta 2(3) time-stepping methods to the resulting first-order system in time to
+
+ensure that the time integration error is small.
+
+Let us consider the dispersion relation of the plane waves e𝑖(𝜔𝑡−𝑘𝑥) propagating in the free space media
+
+characterized by 𝜇 and 𝜀, namely,
+
+ℱ(𝜔, 𝑘) = 𝜔2𝜀(−𝑖𝜔)𝜇(−𝑖𝜔) − |𝑘|2 = 0.
+
+(42)
+
+It can be shown that the above implicit equation defines six branches of the solution |𝑘| ↦→ 𝜔𝑗(|𝑘|), 𝑗 = 1, . . . , 6.
+Depending on the range of frequencies, the following types of wave propagation can be observed (cf. [19] and
+[17]):
+
+CONVERGENCE ANALYSIS OF TIME-DOMAIN PMLS
+
+2477
+
+Figure 8. Materials used in the numerical experiments. The colors indicate the regions where
+we expect propagating, backward and evanescent waves.
+
+– for 𝜔 s.t. 𝜇(𝜔) ≥ 0, 𝜀(𝜔) ≥ 0 all the waves are forward propagating, more precisely, the group velocity
+
+𝑣𝑔 = ∇𝑘𝜔(𝑘) and the phase velocity 𝑣𝑝ℎ = 𝜔
+
+|𝑘| 𝑘 satisfy:
+
+(𝑣𝑔 · 𝑒𝑥) (𝑣𝑝ℎ · 𝑒𝑥) ≥ 0,
+
+(𝑣𝑔 · 𝑒𝑦) (𝑣𝑝ℎ · 𝑒𝑦) ≥ 0.
+
+– for 𝜔 s.t. 𝜇(𝜔) < 0, 𝜀(𝜔) < 0 all the waves are backward propagating, more precisely
+
+(𝑣𝑔 · 𝑒𝑥) (𝑣𝑝ℎ · 𝑒𝑥) < 0,
+
+(𝑣𝑔 · 𝑒𝑦) (𝑣𝑝ℎ · 𝑒𝑦) < 0.
+
+– finally, for 𝜔 s.t. 𝜇(𝜔)𝜀(𝜔) < 0, the dispersion relation (42) has no real solutions, and thus the waves are
+
+evanescent.
+
+This analysis originally done in the free-space dispersive medium can be extended to the case of the dispersive
+waveguide. As one can expect, cf. the seminal work [14] and a rigorous justification in [17], the B´erenger’s PML
+instabilities occur due to the presence of the backward propagating waves. The choice of the scaling function
+𝜁 = 𝜇 stabilizes the perfectly matched layer.
+
+The PML damping is chosen as 𝜎(𝑥) ≡ 𝜎0 which leads to the average damping ¯𝜎 = 𝜎0.
+Moreover, we introduce a time-dependent source by equipping the problem with the Neumann boundary
+
+values at 𝑥 = 0 for 𝐻 𝜎
+
+∇𝐻 𝜎(𝑡, 0, 𝑦) · 𝑛 = exp(−10𝑦2)𝜏 (𝑡),
+
+𝜏 (𝑡) =
+
+sin(𝜔0𝑡)
+𝑡
+
+(︂
+
+exp
+
+−
+
+1
+2
+
+)︂
+
+ln2(𝑡)
+
+, 𝜔0 > 0.
+
+To obtain the reference solution, we solve the same problem in the domain (0, 𝑅+𝐿∞)×(0, ℓ) with a homogeneous
+Neumann boundary condition for 𝐻 𝜎 on the right end and 𝐿∞ chosen so that for the considered time no reflected
+wave re-enters the interior domain. We measure the relative (with respect to the reference solution) error of 𝐻 𝜎
+in the 𝐿2(0, 𝑇 ; 𝐿2(Ω𝑝ℎ))-norm inside the interior domain only.
+
+2478
+
+´E. B´ECACHE ET AL.
+
+Figure 9. Experiment 1: convergence of the PML-truncation for propagating waves with
+respect to the damping parameter. The discretization error is ≈ 10−6.
+
+Remark 8. Due to the fact that the source has a fixed distance 𝑅 to the start of the PML, we also might
+consider the whole waveguide as a PML of length 𝐿 + 𝑅 with
+
+𝜎(𝑥) =
+
+{︃
+
+0,
+𝑥 ≤ 𝑅,
+𝜎0, 𝑥 > 𝑅.
+
+This leads to an average damping ¯𝜎 = 𝐿
+
+𝐿+𝑅 𝜎0 and thus to the exponential part of the error bound
+
+𝜖(𝑇, 𝜎0, 𝐿, 𝑅) = exp
+
+−
+
+(︂
+
+4𝐿(𝐿 + 𝑅)𝜎0
+𝑇
+
+)︂
+
+.
+
+6.2. Experiments and the related discussion
+
+Experiment 1. In our first experiment we fix the PML length to 𝐿 = 0.5, the frequency 𝜔0 = 20, and vary
+the damping parameter 𝜎0, as well as the final time 𝑇 ∈ {2, 6, 10}. Figure 9 shows the exponential convergence
+of the PML-truncation with respect to 𝜎0 compared to the theoretical estimates. We also observe that the
+asymptotic bound is sharp for 𝑇 = 2.
+
+Experiment 2. We fix 𝜎0 = 4, 𝜔0 = 20, and vary the length of the PML 𝐿, as well as the final time 𝑇 ∈ {3, 4, 5}.
+The results are shown in Figure 10. Again, we observe the exponential convergence in 𝐿(𝑅 + 𝐿), whose rate is
+faster than the theoretical asymptotic rate.
+
+Experiment 3. For the last experiment we vary the frequency 𝜔0 = 7, 10, 20 of the source to obtain solutions
+in the three different regimes (cf. Fig. 11) and study again the convergence in the PML damping 𝜎0. For
+
+CONVERGENCE ANALYSIS OF TIME-DOMAIN PMLS
+
+2479
+
+Figure 10. Experiment 2: convergence of the PML-truncation for propagating waves with
+respect to the PML thickness. The discretization error is ≈ 10−6.
+
+Figure 11. Experiment 3: convergence of waves in different regimes. As a comparison the error
+of a non-dispersive waveguide is given.
+
+2480
+
+´E. B´ECACHE ET AL.
+
+comparison, we have added to the figure the PML error measured in the analogous configuration with a non-
+dispersive material. The observed exponential rate of convergence in this example depends very mildly on the
+source frequency, but exhibits quite significant dependence on the material. Quite surprisingly, the PMLs for
+the dispersive media show a better convergence rate than in the classical B´erenger’s PMLs in the vacuum.
+
+The above results show the exponential convergence of the PML as predicted by the theoretical error bounds,
+however, the numerically observed convergence rates do not always coincide with the theoretical ones (cf. Fig. 9).
+This may be related to the way we derived the error bounds: by taking the maximal value of the error indicator
+exp(𝐴(𝑠, 𝜆𝑚, 𝑡)) along the contour 𝑠 = 𝑠0 + 𝑖𝜔, while, as we see in Figure 2, if the source contains only high
+frequencies in space and is e.g., time frequency band limited, it may happen that an actual PML error is much
+smaller than the one that was predicted by Theorem 2.11.
+
+Remark 9. In Figure 9 we observe that the errors of the first two experiments for 𝑇 = 6, 10 coincide for
+the first two choices of 𝜎0 and settle in different asymptotic rate for larger damping parameters. A possible
+explanation for this behavior would be that for smaller damping parameters the error induced by the first (or
+an early) reflection on the truncation boundary dominates the later occurring reflections (recall that we use a
+source with a decaying magnitude in time). A similar argument can be made for the corresponding results in
+Figure 10.
+
+7. Conclusions and open questions
+
+In this article we have studied the convergence of generalized perfectly matched layers for the 2D electromag-
+netic wave propagation in homogeneous dispersive media. We have obtained the same exponential convergence
+bound as in the case of Brenger’s PMLs for non-dispersive media. Similar arguments can of course be applied
+to the 2D/3D acoustic wave propagation in dispersive waveguides.
+
+Our arguments can be extended to the case of waveguides with localized heterogeneities, as soon as stability
+is proven. However, as we show using semi-analytic arguments and numerical experiments, even in the case of
+localized heterogeneity in non-dispersive waveguides, the PMLs (B´erenger’s PMLs) may exhibit instabilities(!).
+It is thus an open question how to construct stable PMLs for these cases.
+
+Another interesting open question is investigating the stability and convergence of PMLs for 3D Maxwell
+
+waveguides, both in the dispersive and the non-dispersive case.
+
+Appendix A. Proof of Lemma 3.3
+
+We will use the following bound from Lemma 2.4 of [12]: for any admissible 𝜂, it holds that
+
+The proof below is nothing less but a generalization of the approach suggested in [13]. We start by considering
+the PML sesquilinear form written using the modal decomposition
+
+|𝜂(𝑠)| (cid:46) |𝑠| max(1, (Re 𝑠)−3),
+
+𝑠 ∈ C+
+* .
+
+(A.1)
+
+𝑎𝑠(𝑢, 𝑣) =
+
+∫︁ 𝑅+𝐿
+
+∞
+∑︁
+
+0
+
+𝑚=0
+
+(︃
+
+(︀𝑠2𝜀𝜇 + 𝜆2
+
+𝑚
+
+(︂
+
+)︀
+
+1 +
+
+)︂
+
+𝜎
+𝑠𝜁
+
+(︂
+
+𝑢𝑚𝑣𝑚 +
+
+1 +
+
+)︂−1
+
+𝜎
+𝑠𝜁
+
+)︃
+
+𝜕𝑥𝑢𝑚 𝜕𝑥𝑣𝑚
+
+d𝑥.
+
+Let us introduce ̃︀𝜇 := 𝜀𝜇
+
+𝜁 , which, by Assumption 2.10, is admissible, cf. Definition 2.1. We then have
+
+𝑎𝑠(𝑢, 𝑣) =
+
+∫︁ 𝑅+𝐿
+
+∞
+∑︁
+
+0
+
+𝑚=0
+
+(︃
+
+(︀𝑠2
+
+̃︀𝜇𝜁 + 𝜆2
+
+𝑚
+
+(︂
+
+)︀
+
+1 +
+
+)︂
+
+𝜎
+𝑠𝜁
+
+(︂
+
+𝑢𝑚𝑣𝑚 +
+
+1 +
+
+)︂−1
+
+𝜎
+𝑠𝜁
+
+)︃
+
+𝜕𝑥𝑢𝑚 𝜕𝑥𝑣𝑚
+
+d𝑥.
+
+First of all, remark that for 𝑠 ∈ C+, the form 𝑎𝑠 is continuous, because, on one hand, 𝜁, ̃︀𝜇 are analytic in
+C+, and, on the other hand (𝑠𝜁 + 𝜎) is bounded for all Re 𝑠 > 0, 𝜎 ≥ 0, since Re(𝑠𝜁 + 𝜎) ≥ Re(𝑠𝜁) > 0, by
+Assumption 2.10.
+
+Let us now define ˜𝑠𝑖 := Im(𝑠̃︀𝜇) Im(𝑠𝜁). To prove the inf-sup condition, we consider two cases.
+
+CONVERGENCE ANALYSIS OF TIME-DOMAIN PMLS
+
+2481
+
+(1) ˜𝑠𝑖 ≤ 0. It is then straightforward to verify that Re 𝑎𝑠(𝑢, 𝑢) ≥ 𝑐𝑠‖𝑢‖2
+
+𝐻 1(Ω𝑐). Indeed,
+
+Re 𝑎𝑠(𝑢, 𝑢) =
+
+∫︁ 𝑅+𝐿
+
+∞
+∑︁
+
+0
+
+𝑚=0
+
+(︀Re(𝑠𝜁)Re(𝑠̃︀𝜇) − ̃︀𝑠𝑖 + 𝜆2
+
+𝑚 + 𝜎(𝑥)Re (𝑠̃︀𝜇) + 𝜎(𝑥)𝜆2
+
+𝑚Re(𝑠𝜁)−1)︀ |𝑢𝑚(𝑥)|2 d𝑥
+
+∫︁ 𝑅+𝐿
+
+∞
+∑︁
+
++
+
+0
+
+𝑚=0
+
+|𝑠𝜁|2 + 𝜎(𝑥)Re(𝑠𝜁)
+|𝑠𝜁 + 𝜎(𝑥)|2
+
+|𝜕𝑥𝑢𝑚(𝑥)|2 d𝑥
+
+(︀(Re 𝑠)2 + 𝜆2
+
+𝑚
+
+)︀ |𝑢𝑚(𝑥)|2 d𝑥 + min (︀1, (Re 𝑠)2‖𝜎‖−2
+
+∞
+
+)︀
+
+∫︁ 𝑅+𝐿
+
+∞
+∑︁
+
+(cid:38)
+
+0
+
+𝑚=0
+
+∫︁ 𝑅+𝐿
+
+∞
+∑︁
+
+0
+
+𝑚=0
+
+|𝜕𝑥𝑢𝑚(𝑥)|2 d𝑥,
+
+where the result follows by recalling the positivity result of (3), ̃︀𝑠𝑖 ≤ 0 and the following bound:
+
+|𝑠𝜁|2 + 𝜎Re(𝑠𝜁)
+|𝑠𝜁 + 𝜎|2
+
+(cid:38)
+
+|𝑠𝜁|2
+|𝑠𝜁|2 + ‖𝜎‖2
+∞
+
+(cid:38)
+
+|Re(𝑠𝜁)|2
+|Re(𝑠𝜁)|2 + ‖𝜎‖2
+∞
+
+·
+
+The latter bound is obtained by remarking that the function 𝑥 ↦→ 𝑥
+we can use (3) to bound Re(𝑠𝜁) from below by Re 𝑠:
+
+𝑥+𝑎 grows in 𝑥 > 0. For the same reason
+
+Re
+
+|𝑠𝜁|2 + 𝜎Re(𝑠𝜁)
+|𝑠𝜁 + 𝜎|2
+
+(cid:38)
+
+(Re 𝑠)2
+(Re 𝑠)2 + ‖𝜎‖2
+∞
+
+(cid:38)
+
+(Re 𝑠)2
+max ((Re 𝑠)2, ‖𝜎‖2
+
+∞)
+
+(︃
+
+(cid:38) min
+
+1,
+
+(︂ Re 𝑠
+‖𝜎‖∞
+
+)︂2)︃
+
+.
+
+(A.2)
+
+(2) ˜𝑠𝑖 > 0. We will prove an inf-sup condition in terms of the 𝑇 -coercivity, cf. [18]. We define the operator
+
+𝑇𝑠 : 𝐻 1(Ω𝑐) → 𝐻 1(Ω𝑐) by
+
+𝑇𝑠𝑣 =
+
+∑︁
+
+𝜆2
+
+𝑚<˜𝑠𝑖
+
+𝑠𝜁(𝑠)𝑣𝑚𝜑𝑚 +
+
+∑︁
+
+𝜆2
+
+𝑚≥˜𝑠𝑖
+
+𝑣𝑚𝜑𝑚.
+
+(A.3)
+
+Evidently, 𝑇𝑠 is invertible with a bounded inverse. We then have
+
+Re 𝑎(𝑢, 𝑇𝑠𝑢) =
+
+∫︁ 𝑅+𝐿
+
+(︂
+
+∑︁
+
+|𝑠𝜁|2Re(𝑠̃︀𝜇) + 𝜆2
+
+𝑚Re(𝑠𝜁) +
+
+(︁
+
+𝜎(𝑥)
+|𝑠𝜁|2
+
+ ⏞
+𝐼1
+
+|𝑠𝜁|2Re (︀𝑠̃︀𝜇𝑠𝜁)︀ + 𝜆2
+
+𝑚Re (︀𝑠𝜁)︀2)︁)︂
+
+|𝑢𝑚|2
+
+(︀Re(𝑠𝜁)Re (𝑠̃︀𝜇) − ̃︀𝑠𝑖 + 𝜆2
+
+𝑚 + 𝜎(𝑥) (︀Re (𝑠̃︀𝜇) + 𝜆2
+
+𝑚Re(𝑠𝜁)−1)︀)︀ |𝑢𝑚|2
+
+∫︁ 𝑅+𝐿
+
+∑︁
+
+0
+
+𝜆2
+
+𝑚<̃︀𝑠𝑖
+
+Re
+
+)︂
+
+(︂ |𝑠𝜁|2
+𝑠𝜁 + 𝜎
+
+|𝜕𝑥𝑢𝑚|2 +
+
+ ⏞
+𝐼2
+∫︁ 𝑅+𝐿
+
+∑︁
+
+0
+
+𝜆2
+
+𝑚≥̃︀𝑠𝑖
+
+Re
+
+(︂ |𝑠𝜁|2 + 𝜎𝑠𝜁
+|𝑠𝜁 + 𝜎|2
+
+)︂
+
+|𝜕𝑥𝑢𝑚|2.
+
+0
+
+⏟
+
+𝜆2
+
+𝑚<̃︀𝑠𝑖
+
+∫︁ 𝑅+𝐿
+
+∑︁
+
+0
+
+⏟
+
+𝜆2
+
+𝑚≥̃︀𝑠𝑖
+
++
+
++
+
+The latter term in the above is bounded from below using (A.2). The previous term can be bounded using
+
+(3) and (A.2)
+
+Re
+
+)︂
+
+(︂ |𝑠𝜁|2
+𝑠𝜁 + 𝜎
+
+(cid:38) |𝑠𝜁|2Re(𝑠𝜁)
+|𝑠𝜁 + 𝜎|2
+
+(︃
+
+(cid:38) Re 𝑠 min
+
+1,
+
+(︂ Re 𝑠
+‖𝜎‖∞
+
+)︂2)︃
+
+.
+
+It remains to study the signs of 𝐼1 and 𝐼2. In 𝐼1, the only term that is not a priori sign-definite (cf. Assump-
+tion 2.10) is developed below:
+
+|𝑠𝜁|2Re (︀𝑠̃︀𝜇𝑠𝜁)︀ + 𝜆2
+
+𝑚Re (︀𝑠𝜁)︀2
+
+≥ |𝑠𝜁|2 (︀Re(𝑠̃︀𝜇)Re(𝑠𝜁) + ̃︀𝑠𝑖 − 𝜆2
+
+𝑚
+
+)︀ ≥ |𝑠𝜁|2Re(𝑠̃︀𝜇)Re(𝑠𝜁), because 𝜆2
+
+𝑚 < ̃︀𝑠𝑖 in 𝐼1.
+
+ 
+ 
+2482
+
+´E. B´ECACHE ET AL.
+
+This yields the lower bound
+
+𝐼1 ≥ (Re(𝑠𝜁))2 Re (𝑠̃︀𝜇)
+
+∑︁
+
+|𝑢𝑚|2 +
+
+∑︁
+
+𝜆2
+
+𝑚<̃︀𝑠𝑖
+
+𝜆2
+
+𝑚<̃︀𝑠𝑖
+
+Re(𝑠𝜁)𝜆2
+
+𝑚|𝑢𝑚|2 ≥ (Re 𝑠)3‖𝑢‖2 + Re 𝑠
+
+∑︁
+
+𝜆2
+
+𝑚<̃︀𝑠𝑖
+
+𝑚|𝑢𝑚|2,
+𝜆2
+
+where the last bound follows from (3).
+
+Let us now consider the term 𝐼2. The term 𝐼2 is clearly bounded from below by Re(𝑠𝜁)Re(𝑠̃︀𝜇)‖𝑢‖2 (cid:38)
+
+(Re 𝑠)2‖𝑢‖2, since 𝜆2
+
+𝑚 ≥ ̃︀𝑠𝑖, and it remains to argue that 𝐼2 (cid:38) ∑︀
+
+𝜆2
+
+𝑚≥̃︀𝑠𝑖
+
+𝑚|𝑢𝑚|2.
+𝜆2
+
+For any 0 < 𝜀 < 1 (to be chosen), it holds that
+
+∫︁ 𝑅+𝐿
+
+∑︁
+
+𝐼2 ≥
+
+0
+
+𝜆2
+
+𝑚(1−𝜀)≥̃︀𝑠𝑖
+
+(︀(Re 𝑠)2|𝑢𝑚|2 + (︀𝜆2
+
+𝑚 − ̃︀𝑠𝑖
+
+)︀ |𝑢𝑚|2)︀ +
+
+∫︁ 𝑅+𝐿
+
+∑︁
+
+(Re 𝑠)2|𝑢𝑚|2
+
+(1−𝜀)̃︀𝑠𝑖≤𝜆2
+
+𝑚(1−𝜀)≤̃︀𝑠𝑖
+
+∫︁ 𝑅+𝐿
+
+∑︁
+
+≥
+
+0
+
+𝜆2
+
+𝑚(1−𝜀)≥̃︀𝑠𝑖
+
+(︀(Re 𝑠)2|𝑢𝑚|2 + 𝜀𝜆2
+
+𝑚|𝑢𝑚|2)︀ +
+
+∫︁ 𝑅+𝐿
+
+0
+
+(1−𝜀)̃︀𝑠𝑖≤𝜆2
+
+𝑚(1−𝜀)≤̃︀𝑠𝑖
+
+(︂ (Re 𝑠)2
+2
+
+|𝑢𝑚|2 +
+
+1 − 𝜀
+2̃︀𝑠𝑖
+
+𝑚(Re 𝑠)2|𝑢𝑚|2
+𝜆2
+
+)︂
+
+.
+
+0
+
+∑︁
+
+Let us remark that ̃︀𝑠𝑖 ≤ |𝑠|4 max(1, (Re 𝑠)−6), by (A.1). We choose e.g. 𝜀 = 1/2, so that we finally obtain the
+following bound:
+
+𝐼2 (cid:38) (Re 𝑠)2 ∑︁
+𝑚≥̃︀𝑠𝑖
+(cid:38) (Re 𝑠)2 ∑︁
+𝑚≥̃︀𝑠𝑖
+
+𝜆2
+
+𝜆2
+
+‖𝑢𝑚‖2
+
+𝐿2(0,𝑅+𝐿) + min
+
+(︂
+
+1,
+
+)︂
+
+1
+|𝑠|4
+
+min(1, (Re 𝑠)6)
+
+∑︁
+
+𝑚|𝑢2
+𝜆2
+𝑚|
+
+‖𝑢𝑚‖2
+
+𝐿2(0,𝑅+𝐿) + |𝑠|−4 min(1, (Re 𝑠)10)
+
+𝜆2
+𝑚≥̃︀𝑠𝑖
+𝑚|𝑢2
+𝜆2
+
+𝑚|,
+
+∑︁
+
+𝜆2
+
+𝑚≥̃︀𝑠𝑖
+
+where the last bound follows from min(1, |𝑠|−4) ≥ |𝑠|−4 min(|𝑠|4, 1) ≥ |𝑠|−4 min((Re 𝑠)4, 1).
+
+Finally, gathering all the bounds in the statement of the lemma, we notice that, for ̃︀𝑠𝑖 ≤ 0,
+
+|𝑎𝑠(𝑢, 𝑢)| (cid:38) (Re 𝑠)2‖𝑢‖2 + ‖𝜕𝑦𝑢‖2 + ‖𝜎‖−2
+
+∞ min(1, (Re 𝑠)2)‖𝜕𝑥𝑢‖2 ≥ 𝐶𝜎 min(1, (Re 𝑠)2)‖𝑢‖2
+
+𝐻 1(Ω𝑐).
+
+For ̃︀𝑠𝑖 > 0,
+|𝑎(𝑢, 𝑇𝑠𝑢)| ≥ 𝑐𝜎
+
+(︀min(1, (Re 𝑠)3)‖𝜕𝑥𝑢‖2 + (Re 𝑠)2 min(1, Re𝑠)‖𝑢‖2 + min(Re 𝑠, |𝑠|−4 min(1, (Re 𝑠)10))‖𝜕𝑦𝑢‖2)︀ .
+
+Because min(Re 𝑠, |𝑠|−4 min(1, (Re 𝑠)10)) ≥ |𝑠|−4 min(1, (Re 𝑠)10), we can conclude that
+
+Finally, the operator 𝑇𝑠 is bounded, and we have that, by (A.1),
+
+|𝑎(𝑢, 𝑇𝑠𝑢)| (cid:38) 𝑐𝜎|𝑠|−4 min(1, (Re 𝑠)10)‖𝑢‖2
+
+𝐻 1(Ω𝑐).
+
+‖𝑇𝑠‖ ≤ max (1, |𝑠𝜁(𝑠)|) ≤ max (︀1, |𝑠|2 max(1, (Re 𝑠)−3))︀
+
+≤ |𝑠|2 max (︀(Re 𝑠)−2, max(1, (Re 𝑠)−3))︀ ≤ |𝑠|2 max (︀1, (Re 𝑠)−3)︀ .
+
+This implies the desired bound in the statement of the lemma.
+
+Appendix B. Level sets of harmonic functions
+
+For an open set 𝐷 ⊂ C, let 𝜑 : 𝐷 → C be holomorphic. Then 𝜑𝑅 := Re(𝜑) is a harmonic function. Harmonic
+
+functions have the following well-known properties.
+Proposition B.1. Let 𝜑𝑅 : 𝐷 → R be the real part of a holomorphic function 𝜑. Then 𝜑𝑅 fulfills the min-max
+principle: for every simple closed curve 𝒞 ⊂ 𝐷 with 𝒞 = 𝜕𝑀 for an open set 𝑀 ⊂ 𝐷 we have
+
+inf
+𝑠∈𝑀
+
+𝜑𝑅(𝑠) = min
+𝑠∈𝑀
+
+𝜑𝑅(𝑠) = min
+𝑠∈𝒞
+
+𝜑𝑅(𝑠),
+
+sup
+𝑠∈𝑀
+
+𝜑𝑅(𝑠) = max
+𝑠∈𝑀
+
+𝜑𝑅(𝑠) = max
+𝑠∈𝒞
+
+𝜑𝑅(𝑠).
+
+CONVERGENCE ANALYSIS OF TIME-DOMAIN PMLS
+
+2483
+
+Proof of Proposition 4.2. (1) Follows from the implicit function theorem.
+
+(2) Suppose that a level set contains a closed curve. Then by the min–max-principle it would follow that the
+function 𝜑𝑅 is constant in the interior of the said curve. From the Cauchy–Riemann equations the same
+follows for 𝜑 and thus 𝜑 would have to be constant also in the whole domain.
+
+(3) A level set cannot be compact since it would be a closed curve in this case.
+(4) The proof is similar to the reasoning of Lemma 3 in [51]. Let 𝑧0 ∈ 𝐷 be a stationary point of 𝜑, i.e.,
+
+𝜑′(𝑧0) = 0. Then, since 𝜑 is not constant there exists an index 𝑚 ∈ N, 𝑚 ≥ 2, such that
+
+𝜑(𝑧) = 𝜑(𝑧0) + 𝜑𝑚(𝑧 − 𝑧0)𝑚 + 𝑂 (︀(𝑧 − 𝑧0)𝑚+1)︀ ,
+
+for some 𝜑𝑚 ̸= 0 and 𝑧 sufficiently close to 𝑧0. Thus
+
+𝜑𝑅 (𝑧0 + 𝜀 exp(𝑖𝜃)) − 𝜑𝑅(𝑧0) = |𝜑𝑚|𝜀𝑚 cos(𝑚𝜃 + arg(𝜑𝑚)) + 𝑂(𝜀𝑚+1),
+
+for 𝜀 > 0 small enough and 𝜃 ∈ [0, 2𝜋). We now may choose 𝜀 > 0 small enough such that the function
+𝜃 ↦→ 𝜑𝑅(𝑧0 + 𝜀 exp(𝑖𝜃)) − 𝜑𝑅(𝑧0) has 2𝑚 different roots in [0, 2𝜋). This shows that 2𝑚 branches of the
+level set meet in the point 𝑠0. Because for sufficiently small 𝜀 in 𝐵𝜀(𝑠0) they do not intersect but in 𝑠0, the
+statement follows.
+
+(cid:3)
+
+Appendix C. Proof of Proposition 4.3
+
+Let us recall the result to prove.
+
+Proposition C.1. For all ¯𝜎 > 0, 𝐿 > 0, 𝑡 > 2𝐿, 𝜆 > 0, the function 𝑠 ↦→ (𝑠𝑡 − 2𝛾(𝑠)𝜅(𝑠, 𝜆))′ has precisely two
+complex conjugate roots with a positive real part.
+
+Let us explain our strategy to prove the above proposition. First,
+
+𝐷(𝑠) = (𝑠𝑡 − 2𝛾(𝑠)𝜅(𝑠, 𝜆))′ = 𝑡 −
+
+√
+
+2𝑠𝐿
+𝑠2 + 𝜆2
+
+(︁
+
+1 +
+
+)︁
+
+¯𝜎
+𝑠
+
++
+
+2¯𝜎𝐿
+𝑠2
+
+√︀
+
+𝑠2 + 𝜆2 = 𝑡 −
+
+Because the number of roots in C+
+consider
+
+* remains constant under multiplication by
+𝑝(𝑠) = 𝑡𝑠2√︀
+
+𝑠2 + 𝜆2 − 2𝐿𝑠3 + 2𝐿¯𝜎𝜆2.
+
+√
+
+2𝐿𝑠
+𝑠2 + 𝜆2
+√
+
++
+
+2𝐿¯𝜎𝜆2
+√
+
+𝑠2 + 𝜆2
+
+·
+
+𝑠2
+
+𝑠2 + 𝜆2𝑠2, instead we can
+
+We proceed as follows. By a suitable rescaling 𝑠 = 𝜆𝑧, we have that
+
+𝑝(𝑠) = 𝜆3
+
+̃︀𝑝(𝑧),
+
+̃︀𝑝(𝑧) = 𝑡𝑧2√︀
+
+𝑧2 + 1 − 2𝐿𝑧3 + 2𝐿
+
+¯𝜎
+𝜆
+
+·
+
+Let 𝐿 > 0 be fixed, and let us consider the family of the analytic in C ∖ 𝑖R and continuous in C ∖ {𝑧 : 𝑧 =
+𝑖𝑥, 𝑥 ∈ R, |𝑥| ≥ 1} functions ̃︀𝑝(𝑧, ¯𝜎) = ̃︀𝑝(𝑧), ¯𝜎 ≥ 0, defined as above. First of all, we remark that the roots of
+𝑧 ↦→ ̃︀𝑝(𝑧, ¯𝜎) in C depend on ¯𝜎 continuously. The proof of this fact follows exactly like in the classical proof of
+the dependence of the continuity of the roots of a polynomial on its coefficients ([40], Thm. 3.1.1).
+
+𝑘 /∈ 𝑖R, 𝑘 = 0, . . . , 𝑁 .
+
+Lemma C.2. Let ¯𝜎0 > 0, and let 𝑧0
+(1) 𝑧0
+(2) There exists 𝜃0 > 0, s.t. for all 0 < 𝜃 < 𝜃0, inf 𝑧∈𝜃+𝑖R |𝑝(𝑧, ¯𝜎0)| > 0.
+(3) There exists 𝜀0 > 0, s.t. for each 0 < 𝜀 < 𝜀0 there exists 𝛿 > 0, s.t. the roots 𝑧𝑖 of ̃︀𝑝(𝑧, ¯𝜎0 + 𝛿) can be ordered
+
+𝑖 , 𝑖 = 0, . . . , 𝑁 , be the roots of ̃︀𝑝(𝑧, ¯𝜎0) = 𝑡𝑧2
+
+𝑧2 + 1 − 2𝐿𝑧3 + 2𝐿 ¯𝜎0
+𝜆 .
+
+√
+
+to satisfy:
+
+⃒
+⃒𝑧𝑖 − 𝑧0
+𝑖
+
+⃒
+⃒ < 𝜀.
+
+2484
+
+´E. B´ECACHE ET AL.
+
+Proof of (1). For ¯𝜎0 > 0, 𝑧 ↦→ ̃︀𝑝(𝑧, ¯𝜎0) does not vanish on the imaginary axis. Indeed, for 𝑧 = 𝑖𝜔 with |𝜔| < 1,
+we have that Im ̃︀𝑝(𝑧, ¯𝜎0) = 2𝐿𝜔3, which vanishes only in 0, however, ̃︀𝑝(0, ¯𝜎0) = 2𝐿 ¯𝜎0
+𝜆 ̸= 0. For |𝜔| ≥ 1, we have
+that Re ̃︀𝑝(𝑧, ¯𝜎0) = 2𝐿 ¯𝜎0
+
+𝜆 ̸= 0.
+
+Proof of (2). First of all, for |𝑧| → +∞, ̃︀𝑝(𝑧, ¯𝜎0) = (𝑡 − 2𝐿)𝑧3 + 𝑜(𝑧3), where 𝑡 > 2𝐿. From this and the fact that
+̃︀𝑝 does not vanish on the imaginary axis, it follows that there exists 𝜃0 > 0, s.t., for all 0 < 𝜃 < 𝜃0,
+|𝑝(𝑧, ¯𝜎0)| = min
+𝑧∈𝑖R±𝜃
+
+|𝑝(𝑧, ¯𝜎0)| > 𝜈0 > 0.
+
+inf
+𝑧∈𝑖R±𝜃
+
+(C.4)
+
+Proof of (3). Remark that ̃︀𝑝(𝑧, ¯𝜎) has at most six roots: indeed, any root of ̃︀𝑝(𝑧, ¯𝜎) solves the polynomial equation
+of the 6th degree:
+
+(︁
+
+𝑡𝑧2√︀
+
+𝑧2 + 1
+
+)︁2
+
+=
+
+(︁
+
+2𝐿𝑧3 − 2𝐿
+
+¯𝜎
+𝜆
+
+)︁2
+
+.
+
+(C.5)
+
+Next, let us fix 𝜀 > 0 sufficiently small so that 𝐵(𝑧0
+Let
+
+𝑖 , 𝜀) ∩ 𝐵(𝑧0
+
+𝑗 , 𝜀) = ∅ for 𝑖 ̸= 𝑗, and 𝐵(𝑧0
+
+𝑖 , 𝜀) ∩ 𝑖R = ∅, for all 𝑖.
+
+𝜈 := min
+
+𝑖
+
+min
+𝑧∈𝜕𝐵(𝑧0
+
+𝑖 ,𝜀)
+
+|̃︀𝑝(𝑧, ¯𝜎0)|.
+
+Evidently, 𝜈 > 0 by continuity of ̃︀𝑝.
+– remark that |̃︀𝑝(𝑧, ¯𝜎0)− ̃︀𝑝(𝑧, ¯𝜎)| = 2𝐿 |¯𝜎0−¯𝜎|
+and, by Rouch´e’s theorem applied to 𝐵(𝑧0
+𝐵(𝑧0
+
+𝜆
+
+𝑖 , 𝜀).
+
+· If 2𝐿 |¯𝜎0−¯𝜎|
+𝑖 , 𝜀),
+𝑖 , 𝜀), the analytic in C ∖ 𝑖R function 𝑧 ↦→ ̃︀𝑝(𝑧, ¯𝜎) has one root inside
+
+𝜆 < 𝜈, then |̃︀𝑝(𝑧, ¯𝜎0)− ̃︀𝑝(𝑧, ¯𝜎)| < |̃︀𝑝(𝑧, ¯𝜎0)| on 𝜕𝐵(𝑧0
+
+– to show that all the roots of ̃︀𝑝(𝑧, ¯𝜎) are given by perturbations of roots ̃︀𝑝(𝑧, ¯𝜎0), we remark that Rouch´e’s
+
+theorem can be applied in the following setting. For any 𝑅 > 0 sufficiently large we have
+
+inf
+|𝑧|=𝑅
+
+|̃︀𝑝(𝑧, ¯𝜎0)| > 𝜈1 > 0.
+
+Then the above reasoning can be applied by taking 2𝐿 |¯𝜎0−¯𝜎|
+that on
+
+𝑅 = {𝑧 ∈ 𝑖R + 𝜃, |𝑧| < 𝑅} ∪ {|𝑧| = 𝑅, Re 𝑧 > 𝜃} ∪ ∪𝑖: Re 𝑧0
+Γ+
+
+𝜆 < min(𝜈, 𝜈0, 𝜈1) (𝜈0 as in (C.4)) and remarking
+𝑖 >0𝜕𝐵 (︀𝑧0
+
+𝑖 , 𝜀)︀ ,
+
+we again have |̃︀𝑝(𝑧, ¯𝜎) − ̃︀𝑝(𝑧, ¯𝜎0)| < |̃︀𝑝(𝑧, ¯𝜎0)|, and therefore both ̃︀𝑝(𝑧, ¯𝜎0) and ̃︀𝑝(𝑧, ¯𝜎) do not have roots in
+the domain {𝑧 : Re 𝑧 > 𝜃, |𝑧| < 𝑅} ∖ ∪𝑖: Re 𝑧0
+𝑖 , 𝜀). Because the above is valid for any sufficiently large
+𝑅 and sufficiently small 𝜃, we conclude that the result holds true for C+ ∖ ∪𝑖: Re 𝑧0
+Similar reasoning applies to C− ∖ ∪𝑖: Re 𝑧0
+
+𝑖 >0𝐵(𝑧0
+
+𝑖 >0𝐵(𝑧0
+
+𝑖 , 𝜀).
+
+𝑖 , 𝜀).
+
+𝑖 <0𝐵(𝑧0
+
+(cid:3)
+
+Besides the fact that the roots of 𝑧 ↦→ ̃︀𝑝(𝑧, ¯𝜎) for ¯𝜎 > 0 are located in C ∖ 𝑖R, the above result also means that
+the number of roots of ̃︀𝑝(𝑧, ¯𝜎) in the right-half is the same for any ¯𝜎 > 0 (by continuity of the roots of the
+function 𝑧 ↦→ ̃︀𝑝(𝑧, ¯𝜎) on ¯𝜎 in C ∖ 𝑖R, changing ¯𝜎 would lead to roots getting close to the imaginary axis, which
+is impossible as shown above). Therefore, it suffices to study the distribution of the roots of 𝑧 ↦→ ̃︀𝑝(𝑧, ¯𝜎) for
+¯𝜎 → 0. Remark that a root 𝑧 of (C.5) is a root of ̃︀𝑝(𝑧, ¯𝜎) if and only if the following additional condition holds
+true (which stems from the chosen branch of
+
+𝑧)
+
+√
+
+Re
+
+(︁
+
+(︂ 1
+𝑡𝑧2
+
+2𝐿𝑧3 − 2𝐿
+
+)︁)︂
+
+¯𝜎
+𝜆
+
+> 0.
+
+The polynomial equation (C.5) can be reduced to
+
+𝑃 (𝑧, ¯𝜎) := 𝑡2𝑧4(𝑧2 + 1) −
+
+(︁
+
+2𝐿𝑧3 − 2𝐿
+
+)︁2
+
+¯𝜎
+𝜆
+
+= 0.
+
+(C.6)
+
+(C.7)
+
+CONVERGENCE ANALYSIS OF TIME-DOMAIN PMLS
+
+2485
+
+For ¯𝜎 = 0 it has a root 𝑧0
+
+0 = 0 of multiplicity 4 and two simple roots 𝑧0
+
+± = ±𝑖(1 − 4𝐿2
+
+𝑡2 )−1/2.
+
+The above can be formalized as follows. Denoting by 𝒵(𝑝, ¯𝜎) the set of the roots of 𝑝(., ¯𝜎) and by 𝒵(𝑃, ¯𝜎)
+
+the set of the roots of 𝑃 (., ¯𝜎), we have that
+
+𝒵(𝑝, ¯𝜎) = {𝑧 ∈ 𝒵(𝑃, ¯𝜎) : (C.6) holds true} ,
+
+¯𝜎 > 0.
+
+Because
+
+𝒵(𝑃, 0) = {0} ∪ {︀𝑧0
+±
+for small ¯𝜎, the roots of 𝒵(𝑝, ¯𝜎) are given by perturbations of 𝑧0
+
+}︀ ,
+
+± and 0, as summarized in the lemma below.
+
+Lemma C.3. For all 𝜀 > 0, there exists 𝛿 > 0, s.t. for all 0 < ¯𝜎 < 𝛿,
+
+𝒵 (𝑝, ¯𝜎) ⊂ 𝐵(0, 𝜀) ∪ 𝐵 (︀𝑧0
+
++, 𝜀)︀ ∪ 𝐵 (︀𝑧0
+
+−, 𝜀)︀ .
+
+(C.8)
+
+Let us now study the behaviour of the roots close to 𝑧0
+±.
+
+Lemma C.4 (“Large” roots of ̃︀𝑝). For ¯𝜎 → 0, two of the roots of ̃︀𝑝 are given by
+
+± = 𝑧0
+𝑧 ¯𝜎
+
+± +
+
+4𝐿2
+𝜆𝑡2 ¯𝜎 + 𝑜(¯𝜎),
+
+¯𝜎 → 0.
+
+Proof. Let us study the roots 𝑧 ¯𝜎
+
+± of 𝒵(𝑃, ¯𝜎) close to 𝑧0
+
+±. We have that
+
+𝜕𝑧𝑃 (︀𝑧0
+
+±, 0)︀ = ±2𝑖𝑡2
+
+)︂−3/2
+
+(︂
+
+1 −
+
+4𝐿2
+𝑡2
+
+,
+
+𝜕¯𝜎𝑃 (︀𝑧0
+
+±, 0)︀ = ∓𝑖
+
+(︂
+
+1 −
+
+8𝐿2
+𝜆
+
+4𝐿2
+𝑡2
+
+)︂−3/2
+
+.
+
+By the implicit function theorem we then have that
+
+4𝐿2
+𝜆𝑡2 ¯𝜎 + 𝑜(¯𝜎),
+It remains to verify that these roots are indeed roots of ̃︀𝑝(𝑧, ¯𝜎), i.e. the condition (C.6). It automatically holds
+true, since it can be rewritten as follows:
+
+± = 𝑧0
+𝑧 ¯𝜎
+
+¯𝜎 → 0.
+
+± +
+
+(︃
+
+Re
+
+1
+𝑡 (︀𝑧 ¯𝜎
+
+±
+
+)︀2
+
+(︁
+
+2𝐿 (︀𝑧 ¯𝜎
+
+±
+
+)︀3
+
+− 2𝐿
+
+)︃
+
+)︁
+
+¯𝜎
+𝜆
+
+=
+
+2𝐿
+𝑡
+
+Re (︀𝑧 ¯𝜎
+
+±
+
+)︀ − 2𝐿Re
+
+¯𝜎
+𝜆𝑡 (︀𝑧 ¯𝜎
+
+±
+
+)︀2 = ¯𝜎
+
+2𝐿
+𝑡
+
+4𝐿2
+𝜆𝑡2 + 2𝐿
+
+¯𝜎
+±|2 + 𝑜(¯𝜎),
+𝜆𝑡|𝑧0
+
+which is indeed positive for ¯𝜎 sufficiently small.
+
+(cid:3)
+
+The above result shows in particular that for sufficiently small ¯𝜎 at least two roots of ̃︀𝑝 are located in C+.
+Lemma C.5 (“Small” roots of ̃︀𝑝). For ¯𝜎 → 0, the function ̃︀𝑝 has two roots in the vicinity of zero. Moreover,
+they have a strictly negative real part for ¯𝜎 > 0.
+
+Proof. The roots of ̃︀𝑝(𝑧, ¯𝜎) satisfy
+
+̃︀𝑝(𝑧, ¯𝜎) = 𝑡𝑧2√︀
+
+𝑧2 + 1 − 2𝐿𝑧3 +
+
+2𝐿
+𝜆
+
+¯𝜎 = 0.
+
+We denote the last term of the above by 𝜀 and introduce the corresponding polynomial ̃︀𝑝𝜀(𝑧). Remark that for
+𝑧2 + 1−2𝐿𝑧3 +𝜀−𝑡𝑧2| < 𝑡|𝑧|2
+all 𝜀 > 0 sufficiently small there exists 𝛿 > 0, 𝛿 < 𝐶
+𝜀 (𝑧) = 𝑡𝑧2 have the same
+for all |𝑧| = 𝛿. Therefore by Rouch´e’s theorem, ̃︀𝑝𝜀(𝑧) = 𝑡𝑧2
+number of roots inside 𝐵(0, 𝛿) (i.e. two roots).
+
+𝑧2 + 1 − 2𝐿𝑧3 + 𝜀 and ̃︀𝑝(1)
+
+𝜀 with some 𝐶 > 0, s.t. |𝑡𝑧2
+
+√
+
+√
+
+√
+
+It remains to prove that these two roots have a negative real part.
+
+2486
+
+´E. B´ECACHE ET AL.
+
+Let us now introduce ̃︀𝑧 = 𝜀−1/2𝑧. Then the roots of ̃︀𝑝𝜀(𝑧) are (scaled) roots of
+𝜀 (̃︀𝑧) = 𝑡̃︀𝑧2√︀
+̃︀𝑝(2)
+𝜂 = ̃︀𝑝(2)
+𝜂 (̃︀𝑧) = 𝑡̃︀𝑧2√︀
+̃︀𝑝(3)
+
+After setting 𝜂 = 𝜀1/2, we can define ̃︀𝑝(3)
+
+1 + 𝜀̃︀𝑧2 + 1 − 2𝐿𝜀1/2
+
+̃︀𝑧3 = 0.
+
+𝜂2 , i.e.
+
+1 + 𝜂2
+
+̃︀𝑧2 + 1 − 2𝐿𝜂̃︀𝑧3 = 0.
+√
+
+The polynomial ̃︀𝑝(3)
+obtain an expansion of the roots of ̃︀𝑝(3)
+
+0 (̃︀𝑧) has two simple roots ̃︀𝑧0
+
+𝜂 (̃︀𝑧) as 𝜂 → 0:
+√
+
+̃︀𝑧𝜂
+± = ±𝑖/
+
+𝑡 − 𝜂𝐿/𝑡2 + 𝑜(𝜂),
+
+± = ±𝑖/
+
+𝑡. It remains to use an implicit function theorem to
+
+and this translates into the following expansion of the roots of ̃︀𝑝𝜀(𝑧) w.r.t. a small parameter 𝜀:
+
+± = 𝜀1/2 (︁
+𝑧𝜀
+
+√
+
+±𝑖/
+
+𝑡 − 𝐿/𝑡2𝜀1/2 + 𝑜(𝜀1/2)
+
+)︁
+
+.
+
+(cid:3)
+
+We finally can prove Proposition C.1.
+
+Proof. As argued before, the number of roots of 𝑝(𝑧, ¯𝜎) in C+
+Lemmas C.3–C.5 show that for small ¯𝜎 > 0 𝑝(𝑧, ¯𝜎) has two roots in C+
+complex conjugate since 𝑝(¯𝑧) = 𝑝(𝑧).
+
+* (resp. C−
+
+* and two roots in C−
+
+* ) remains constant for all ¯𝜎 > 0.
+* . The roots are
+(cid:3)
+
+Appendix D. Proof of Theorem 4.1
+
+Proof of Theorem 4.1. Our idea is to look for the contour 𝒞𝑚 as a component of the level set 𝐴(𝑠, 𝜆𝑚, 𝑡) = 𝛽𝑚.
+The function 𝑠 ↦→ 𝐴(𝑠, 𝜆𝑚, 𝑡) is the real part of the function 𝑃 (𝑠) = 𝑠𝑡 − 2𝛾(𝑠)𝜅(𝑠, 𝜆𝑚). The function 𝑃 is
+
+holomorphic in C+
+
+* and can be extended by continuity, together with its first derivative, to C+ ∖ {0, ±𝑖𝜆𝑚}.
+
+By Proposition 4.3 we know that 𝑃 has precisely two complex conjugate stationary points 𝑠0
+𝑚, 𝑠0
+𝑚) > 0.
+
+positive real part. Since 𝐴 = Re 𝑃 , the points 𝑠0
+We assume without loss of generality that Im(𝑠0
+
+𝑚 with a
+𝑚 are unique stationary points of 𝑠 ↦→ 𝐴(𝑠, 𝜆𝑚, 𝑡) in C+
+* .
+
+𝑚, 𝑠0
+
+Step 1. Properties of a level set passing through a saddle point. Our goal is to show that there exists a
+𝑚, s.t. 𝐴(𝑠, 𝜆𝑚, 𝑡) = const < 0 along this curve; this curve would lie
++ 𝑖∞. Note that due to symmetry of the function 𝐴 with
+
+𝑚,𝜆𝑚,𝑡)+2𝐿¯𝜎
+
+piecewise-smooth curve passing through 𝑠0
+* , and connect the real axis to 𝐴(𝑠0
+in C+
+respect to the complex conjugation this is sufficient.
+Step 1.1. Behaviour of 𝐴 in C+
+* .
+Step 1.1.1. Behaviour of 𝐴 on the real axis. Studying
+
+𝑡−2𝐿
+
+𝐷(𝑠) := 𝑃 ′(𝑠) = 𝑡 −
+
+2𝑠𝐿
+√︀𝑠2 + 𝜆2
+
+𝑚
+
+(︁
+
+1 +
+
+)︁
+
+¯𝜎
+𝑠
+
++
+
+2¯𝜎𝐿
+𝑠2
+
+√︀𝑠2 + 𝜆2
+
+𝑚 = 𝑡 −
+
+2𝐿𝑠
+√︀𝑠2 + 𝜆2
+
+𝑚
+
++
+
+2𝐿¯𝜎𝜆2
+𝑚
+𝑠2√︀𝑠2 + 𝜆2
+
+𝑚
+
+,
+
+(D.9)
+
+we immediately obtain (using 𝑡 > 2𝐿) that 𝐷(𝑟) > 𝑡 − 2𝐿 > 0 for 𝑟 > 0. Since
+
+lim
+𝑟→0+
+
+𝐴(𝑟, 𝜆𝑚, 𝑡) = −∞,
+
+lim
+𝑟→+∞
+
+𝐴(𝑟, 𝜆𝑚, 𝑡) = +∞,
+
+we have that the mapping 𝐴|R+
+
+*
+
+→ R is bijective.
+
+CONVERGENCE ANALYSIS OF TIME-DOMAIN PMLS
+
+2487
+
+Step 1.1.2. Behaviour of 𝐴 on the imaginary axis. Remark that the continuation of 𝐷 : C+
+Im(𝐷(𝑖𝜔)) < 0 for 𝜔 ∈ (0, 𝜆𝑚) and Im(𝐷(𝑖𝜔)) > 0 for 𝜔 > 𝜆𝑚. Thus, using the limits
+
+* → C on 𝑖R satisfies
+
+lim
+𝜔→0+
+
+𝐴(𝑖𝜔, 𝜆𝑚, 𝑡) = −2𝐿𝜆𝑚,
+
+lim
+𝜔→+∞
+
+𝐴(𝑖𝜔, 𝜆𝑚, 𝑡) = −2𝐿¯𝜎,
+
+and the fact that 𝐴(𝑖𝜆𝑚, 𝜆𝑚, 𝑡) = 0 we have that the mappings
+
+𝐴|𝑠∈𝑖(0,𝜆𝑚) → (−2𝐿𝜆𝑚, 0),
+
+𝐴|𝑠∈𝑖(𝜆𝑚,∞) → (−2𝐿¯𝜎, 0),
+
+(D.10)
+
+are bijections.
+
+Moreover, in the vicinity of 𝑖𝜆𝑚 in C+
+
+* , we have that
+(︂
+
+√︀
+
+𝐴(𝑖𝜆𝑚 + 𝛿, 𝜆𝑚, 𝑡) = −2𝐿
+
+𝜆𝑚
+
+1 +
+
+)︂
+
+¯𝜎
+𝜆𝑚
+
+𝛿1/2 + 𝑂(𝛿),
+
+𝛿 → 0.
+
+This shows in particular that the level sets in C+ along which 𝐴 = 0 do not pass through 𝑖𝜆𝑚.
+Step 1.1.3. Behaviour of 𝐴 on the lines 𝑟 + 𝑖𝜔, 𝑟 > 0, |𝜔| ≫ 1. We see that as |𝑠| → +∞,
+
+𝐷(𝑠) = 𝑡 − 2𝐿 + 𝑂(1/|𝑠|3), 𝐴(𝑠, 𝜆𝑚, 𝑡) = Re 𝑠(𝑡 − 2𝐿) − 2𝐿¯𝜎 + 𝑂(1/|𝑠|),
+
+(D.11)
+
+and therefore, on the lines 𝑟 + 𝑖𝜔, 𝑟 ≥ 0, with 𝜔 being a large constant, the function 𝑟 ↦→ 𝐴(𝑟 + 𝑖𝜔, 𝜆𝑚, 𝑡) is
+strictly monotonically increasing, from −2𝐿¯𝜎 + 𝑜(1) to +∞.
+Step 1.1.4. Behaviour of 𝐴 on the lines 𝑟 + 𝑖𝜔, 𝑟 ≫ 1, 𝜔 ∈ R. By the same argument as before, on the lines
+𝑟 + 𝑖𝜔, 𝜔 ∈ R, with 𝑟 being a large constant, the function 𝐴(𝑟 + 𝑖𝜔, 𝜆𝑚, 𝑡) = 𝑟(𝑡 − 2𝐿) + 𝑜(1).
+Step 1.1.5. Behavior of 𝐴 at 𝑠 = 0. Expanding 𝐴 in the series in the vicinity of the origin yields
+
+𝐴(𝑠, 𝜆𝑚, 𝑡) = −2𝐿𝜆𝑚
+
+¯𝜎
+|𝑠|2 Re 𝑠 − 2𝐿𝜆𝑚 + 𝑂(|𝑠|),
+
+𝑠 → 0,
+
+which gives 𝐴(𝑠, 𝜆𝑚, 𝑡) < −2𝐿𝜆𝑚 for 𝑠 ∈ C+
+
+* sufficiently close to 0.
+
+These results are summarized in Figure D.1.
+
+Step 1.2. Proof that 𝐴(𝑠0
+tion 4.2 that in 𝑠0
+which 𝐴(·, 𝜆𝑚, 𝑡) is constant, and which do not intersect but in 𝑠0
+
+𝑚, 𝜆𝑚, 𝑡) ∈ (−2𝐿¯𝜎, 0). Let us set now 𝛽𝑚 := 𝐴(𝑠0
+
+𝑚 the level set self-intersects, and there are at least 4 different curves originating at 𝑠0
+
+𝑚, 𝜆𝑚, 𝑡). Then we know by Proposi-
+𝑚, along
+
+𝑚 and, possibly, in 𝑠0
+
+𝑚.
+
+First of all, by Proposition 4.2, these curves should intersect the boundary of the domain
+
+𝐷𝜀,𝑅 = {𝑧 ∈ C+
+* ,
+
+𝜀 < Im 𝑧, Re 𝑧 < 𝑅,
+
+|𝑧| > 𝜀},
+
+for any 𝜀 > 0, 𝑅 > 0. However, because of the monotonicity properties of the function 𝐴 discussed above, we
+have that, for sufficiently large 𝑅 and sufficiently small 𝜀 > 0,
+
+– the level set 𝐴(𝑠0
+– for sufficiently large 𝑅 it does not intersect the boundary along which Re 𝑧 = 𝑅;
+– the imaginary axis and 𝜕𝐵𝜀(0) ∩ 𝜕𝐷 can be intersected only if 𝛽𝑚 < 0 (remark in particular the behaviour
+
+𝑚, 𝜆𝑚, 𝑡) = 𝛽𝑚 intersects the real axis at most once;
+
+of 𝐴 in the vicinity of 𝜆𝑚 and 0).
+
+This immediately implies that 𝛽𝑚 < 0, cf. Figure D.2, left.
+
+Next, let us show that 𝛽𝑚 > −2𝐿¯𝜎. As follows from the behaviour of the function 𝑠 ↦→ 𝐴(𝑠, 𝜆𝑚, 𝑡) in C+
+
+* , the
+
+level set on which 𝛽𝑚 ≤ −2𝐿¯𝜎
+
+– does not intersect the boundaries Im 𝑧 = 𝑅, Re 𝑧 = 𝑅 for 𝑅 sufficiently large;
+– intersects the real axis at most once;
+
+2488
+
+´E. B´ECACHE ET AL.
+
+Figure D.1. Behaviour of 𝐴 in the right-half complex plane.
+
+Figure D.2. “Forbidden” components of the boundary of the domain 𝐷𝜀,𝑅, for 𝜀 sufficiently
+small and 𝑅 sufficiently large. Left: the components of boundaries of 𝐷𝜀,𝑅 that cannot be
+crossed by level sets 𝐴(𝑠, 𝜆𝑚, 𝑡) = const > 0 are marked in red, and those that can be crossed
+at most once in blue. Right: the components of boundaries of 𝐷𝜀,𝑅 that cannot be crossed by
+level sets 𝐴(𝑠, 𝜆𝑚, 𝑡) = const ≤ −2𝐿¯𝜎 are marked in red, and those that can be crossed at most
+once in blue (resp. green).
+
+– intersects at most once (𝜕𝐵𝜀(0) ∩ 𝜕𝐷𝜀,𝑅) ∪ (𝑖𝜀, 𝑖𝜆𝑚) (in particular, if 𝛽𝑚 ≤ −2𝐿¯𝜎 and −2𝐿¯𝜎 > −2𝐿𝜆𝑚, this
+
+level set would intersect (𝑖𝜀, 𝑖𝜆𝑚), for −2𝐿¯𝜎 ≤ −2𝐿𝜆𝑚, it would intersect 𝜕𝐵𝜀(0) ∩ 𝜕𝐷𝜀,𝑅).
+
+This is illustrated in Figure D.2, right. Because in total in 𝐷𝜀,𝑅 there are at least four non-intersecting curves
+emanating from 𝑠0
+
+𝑚, we arrive at a conclusion that 𝛽𝑚 > −2𝐿¯𝜎.
+
+Step 2. Construction of the contour 𝒞𝑚. Let us now prove that there exists a curve connecting 𝑧𝑟,0 + 𝑖∞ the
+
+saddle point 𝑠0
+
+𝑚 and a point on R*
+
++, s.t. 𝑧𝑟,0 > 0 and 𝐴 is constant along this curve.
+
+Let us consider the branches of the level set curve starting at the point 𝑠0
+
+𝑚. Because 𝛽𝑚 ∈ [−2𝐿¯𝜎, 0), by
+(D.10), at most two of these branches 𝛾1, 𝛾2 intersect (𝑖R ∪ 𝜕𝐵𝜀(0)) ∩ 𝜕𝐷𝜀,𝑅: they intersect correspondingly
+the interval 𝑖(𝜆𝑚, +∞) and either the interval (0, 𝑖𝜆𝑚) or 𝜕𝐵𝜀(0) ∩ 𝜕𝐷𝜀,𝑅 for sufficiently small 𝜀 > 0. For the
+
+CONVERGENCE ANALYSIS OF TIME-DOMAIN PMLS
+
+2489
+
+remaining branches the following holds true: either the branch is unbounded in C+ ∩ {Im 𝑧 > 0} or it intersects
+the real axis. However, by studying the behaviour of 𝐴 at infinity (and its monotonicity properties), we see
+that only a single branch can be unbounded, and only one branch can intersect the real axis. The unbounded
+branch 𝒞+,∞
+necessarily intersects all the lines {𝑟 + 𝑖𝜔, 𝑟 > 0}, for all 𝜔 sufficiently large (since 𝐴 < 0 along
+this branch). By (D.11), this branch connects 𝑧𝑟,0 + 𝑖∞ with 𝑧𝑟,0 as in the statement of the theorem, and 𝑠0
+𝑚.
+The remaining branch 𝒞+,0
+
+𝑚 then intersects the real axis.
+
+𝑚
+
+Denoting by 𝒞−,∞
+
+𝑚 = {¯𝑧, 𝑧 ∈ C+,∞
+
+𝑚 }, and using a similar convention for 𝒞−,0
+
+𝑚 , we obtain
+
+𝒞𝑚 = 𝒞−,∞
+
+𝑚 ∪ 𝒞+,∞
+
+𝑚 ∪ 𝒞−,0
+
+𝑚 ∪ 𝒞+,0
+𝑚 .
+
+Step 3. Optimality of the contour.
+
+It remains to show that the chosen curve is optimal. Assume that there
+exists another contour 𝒞′
+𝑚 passing through the real axis and joining 𝜂− + 𝑖∞ and 𝜂+ + 𝑖∞, with 𝜂± ≥ 0, along
+which 𝐴(𝑠, 𝜆𝑚, 𝑡) ≤ 𝛽𝑚 − 𝜀, for some 𝜀 > 0. Let us denote the point where the contour 𝒞′
+𝑚 crosses the real
+axis by 𝑥′
+0, and the point where the contour 𝒞𝑚 crosses the real axis by 𝑥0. By monotonicity of 𝐴 on the real
+axis, 𝑥′
+𝑚 and joining a
+point (𝑥, 0) on the real axis and some point on the imaginary axis, along which the function 𝐴 equals to 𝛽𝑚.
+Because 𝑥′
+0 to 𝜂+ + 𝑖∞, 𝜂+ > 0, would cross this curve. However, on this curve
+(cid:3)
+𝐴(𝑠, 𝜆𝑚, 𝑡) = 𝛽𝑚, and thus we have arrived at a contradiction with our assumption.
+
+0 < 𝑥0. From the considerations in Step 2 we see that there is a curve passing through 𝑠0
+
+0 < 𝑥0, any contour joining 𝑥′
+
+Acknowledgements. The authors are grateful to anonymous reviewers for their suggestions that helped to improve the
+quality of the manuscript.
+
+References
+
+[1] S. Abarbanel and D. Gottlieb, A mathematical analysis of the PML method. J. Comput. Phys. 134 (1997) 357–363.
+[2] S. Abarbanel, D. Gottlieb and J.S. Hesthaven, Well-posed perfectly matched layers for advective acoustics. J. Comput. Phys.
+
+154 (1999) 266–283.
+
+[3] S. Abarbanel, D. Gottlieb and J.S. Hesthaven, Long time behavior of the perfectly matched layer equations in computational
+
+elactromagnetics. J. Sci. Comput. 17 (2002) 405–422.
+
+[4] D. Appel¨o, T. Hagstrom and G. Kreiss, Perfectly matched layers for hyperbolic systems: general formulation, well-posedness,
+
+and stability. SIAM J. Appl. Math. 67 (2006) 1–23.
+
+[5] S. Asvadurov, V. Druskin, M.N. Guddati and L. Knizhnerman, On optimal finite-difference approximation of PML. SIAM J.
+
+Numer. Anal. 41 (2003) 287–305.
+
+[6] N. Baara, J. Diaz and M. Tlemcani, Time domain analysis and localization of a non-local PML for dispersive wave equations.
+
+J. Comput. Phys. 445 (2021) 18.
+
+[7] D.H. Baffet, M.J. Grote, S. Imperiale and M. Kachanovska, Energy decay and stability of a perfectly matched layer for the
+
+wave equation. J. Sci. Comput. 81 (2019) 2237–2270.
+
+[8] J.-P. Berenger, A perfectly matched layer for the absorption of electromagnetic waves. J. Comput. Phys. 114 (1994) 185–200.
+[9] J.-P. Berenger, Three-dimensional perfectly matched layer for the absorption of electromagnetic waves. J. Comput. Phys. 127
+
+(1996) 363–379.
+
+[10] J.P. Berenger, Improved PML for the FDTD solution of wave-structure interaction problems. IEEE Trans. Antennas Propag.
+
+45 (1997) 466–473.
+
+[11] E. B´ecache and P. Joly, On the analysis of B´erenger’s perfectly matched layers for Maxwell’s equations. M2AN Math. Model.
+
+Numer. Anal. 36 (2002) 87–119.
+
+[12] E. B´ecache and M. Kachanovska, Stable perfectly matched layers for a class of anisotropic dispersive models. Part I: necessary
+
+and sufficient conditions of stability. ESAIM Math. Model. Numer. Anal. 51 (2017) 2399–2434.
+
+[13] E. B´ecache and M. Kachanovska, Stability and convergence analysis of time-domain perfectly matched layers for the wave
+
+equation in waveguides. SIAM J. Numer. Anal. 59 (2021) 2004–2039.
+
+[14] E. B´ecache, S. Fauqueux and P. Joly, Stability of perfectly matched layers, group velocities and anisotropic waves. J. Comput.
+
+Phys. 188 (2003) 399–433.
+
+[15] E. B´ecache, P. Petropoulos and S. Gedney, On the long-time behavior of unsplit perfectly matched layers. IEEE Trans.
+
+Antennas Propag. 52 (2004) 1335–1342.
+
+[16] E. B´ecache, P. Joly and M. Kachanovska, Stable perfectly matched layers for a cold plasma in a strong background magnetic
+
+field. J. Comput. Phys. 341 (2017) 76–101.
+
+[17] E. B´ecache, P. Joly and V. Vinoles, On the analysis of perfectly matched layers for a class of dispersive media and application
+
+to negative index metamaterials. Math. Comput. 87 (2018) 2775–2810.
+
+2490
+
+´E. B´ECACHE ET AL.
+
+[18] A.S. Bonnet-Ben Dhia, P. Ciarlet Jr. and C.M. Zw¨olf, Time harmonic wave diffraction problems in materials with sign-shifting
+
+coefficients. J. Comput. Appl. Math. 234 (2010) 1912–1919.
+
+[19] M. Cassier, P. Joly and M. Kachanovska, Mathematical models for dispersive electromagnetic waves: an overview. Comput.
+
+Math. Appl. 74 (2017) 2792–2830.
+
+[20] A. Chern, A reflectionless discrete perfectly matched layer. J. Comput. Phys. 381 (2019) 91–109.
+[21] K.S. Cole and R.H. Cole, Dispersion and absorption in dielectrics I. Alternating current characteristics. J. Chem. Phys. 9
+
+(1941) 341–351.
+
+[22] F. Collino, Perfectly matched absorbing layers for the paraxial equations. J. Comput. Phys. 131 (1997) 164–180.
+[23] F. Collino and P.B. Monk, Optimizing the perfectly matched layer. Comput. Methods Appl. Mech. Eng. 164 (1998) 157–171.
+[24] F. Collino and C. Tsogka, Application of the pml absorbing layer model to the linear elastodynamic problem in anisotropic
+
+heteregeneous media. Geophysics 66 (2001) 294–307.
+
+[25] T.J. Cui, D.R. Smith and R. Liu, Metamaterials: Theory, Design, and Applications. Springer (2010).
+[26] S.A. Cummer, Perfectly matched layer behavior in negative refractive index materials. IEEE Antennas Wirel. Propag. Lett. 3
+
+(2004) 172–175.
+
+[27] E. Demaldent and S. Imperiale, Perfectly matched transmission problem with absorbing layers: application to anisotropic
+
+acoustics in convex polygonal domains. Int. J. Numer. Methods Eng. 96 (2013) 689–711.
+
+[28] J. Diaz and P. Joly, A time domain analysis of PML models in acoustics. Comput. Methods Appl. Mech. Eng. 195 (2006)
+
+3820–3853.
+
+[29] K. Duru and G. Kreiss, On the accuracy and stability of the perfectly matched layer in transient waveguides. J. Sci. Comput.
+
+53 (2012) 642–671.
+
+[30] S.D. Gedney, An anisotropic perfectly matched layer-absorbing medium for the truncation of fdtd lattices. IEEE Trans.
+
+Antennas Propag. 44 (1996) 1630–1639.
+
+[31] S. Havriliak and S. Negami, A complex plane representation of dielectric and mechanical relaxation processes in some polymers.
+
+Polymer 8 (1967) 161–210.
+
+[32] L. Halpern, S. Petit-Bergez and J. Rauch, The analysis of matched layers. Conflu. Math. 3 (2011) 159–236.
+[33] F. Hastings, J.B. Schneider and S.L. Broschat, Application of the perfectly matched layer (PML) absorbing boundary condition
+
+to elastic wave propagation . J. Acoust. Soc. Am. 100 (1996) 3061– 3069.
+
+[34] J.S. Hesthaven, On the Analysis and construction of perfectly matched layers for the linearized Euler equations. J. Comput.
+
+Phys. 142 (1998) 129–147.
+
+[35] F.Q. Hu, On absorbing boundary conditions for linearized euler equations by a perfectly matched layer. J. Comput. Phys. 129
+
+(1996) 201–219.
+
+[36] F.Q. Hu, A stable, perfectly matched layer for linearized Euler equations in unsplit physical variables. J. Comput. Phys., 173
+
+(2001) 455–480.
+
+[37] Y. Huang, H. Jia and J. Li, Analysis and application of an equivalent Berenger’s PML model. J. Comput. Appl. Math. 333
+
+(2018) 157–169.
+
+[38] A. Modave, E. Delhez and C. Geuzaine, Optimizing perfectly matched layers in discrete contexts. Int. J. Numer. Methods
+
+Eng. 99 (2014) 410–437.
+
+[39] F. Nataf, A new approach to perfectly matched layers for the linearized Euler system. J. Comput. Phys. 214 (2006) 757–772.
+[40] J.M. Ortega, Numerical analysis, in Classics in Applied Mathematics. Vol. 3, second edition, Society for Industrial and Applied
+
+Mathematics (SIAM), Philadelphia, PA (1990).
+
+[41] P.G. Petropoulos, Reflectionless sponge layers as absorbing boundary condition for the numerical solution of Maxwell’s equa-
+
+tions in rectangular, cylindrical, and spherical coordinates. SIAM J. Appl. Math. 60 (2000) 1037–1058.
+
+[42] P.G. Petropoulos, L. Zhao and A.C. Cangellaris, A reflectionless sponge layer absorbing boundary condition for the solution
+
+of Maxwell’s equations with high-order staggered finite difference schemes. J. Comput. Phys. 139 (1998) 184–208.
+
+[43] F.-J. Sayas, Retarded potentials and time domain boundary integral equations, in Springer Series in Computational Mathe-
+
+matics. Vol. 50. Springer, Cham (2016).
+
+[44] J. Sch¨oberl, Netgen – an advancing front 2d/3d-mesh generator based on abstract rules. Comput. Visual. Sci. 1 (1997) 41–52.
+[45] J. Sch¨oberl, C++11 Implementation of Finite Elements In NGSolve. Preprint 30/2014, Institute for Analysis and Scientific
+
+Computing, TU Wien (2014).
+
+[46] D.R. Smith, J.B. Pendry and M.C.K. Wiltshire, Metamaterials and negative refractive index. Science 305 (2004) 788–792.
+[47] C.K.W. Tam, L. Auriault and F. Cambuli, Perfectly matched layer as an absorbing boundary condition for the linearized euler
+
+equations in open and ducted domains. J. Comput. Phys. 144 (1998) 213–234.
+
+[48] F.L. Teixeira and W.C. Chew, On causality and dynamic stability of perfectly matched layers for FDTD simulations. Micro.
+
+Opt. Tech. Lett. 17 (1998) 231–236.
+
+[49] E. Turkel and A. Yefet, Absorbing PML boundary layers for wave-like equations. Appl. Numer. Math. 27 (1998) 533–557.
+[50] V. Vinoles, Probl`emes d’interface en pr´esence de m´etamat´eriaux: mod´elisation, analyse et simulations, Ph.D. thesis, Universit´e
+
+Paris-Saclay (ComUE) (2016).
+
+[51] G. Wanner, E. Hairer and S.P. Nørsett, Order stars and stability theorems. BIT 18 (1978) 475–489.
+
+CONVERGENCE ANALYSIS OF TIME-DOMAIN PMLS
+
+2491
+
+[52] L. Zhao and A.C. Cangellaris, GT PML: generalize theory of perfectly matched layers and its application to the reflectionless
+
+truncation of finite-difference time-domain grids. IEEE Trans. Microwave Theory Tech. 44 (1996) 2555–2563.
+
+Please help to maintain this journal in open access!
+
+journal
+This
+(S2O). We are
+publish this
+readers.
+
+is currently published in open access under
+
+thankful
+
+to our
+
+subscribers and supporters
+
+journal
+
+in open access
+
+in the current year,
+
+the Subscribe to Open model
+for making it possible
+to
+free of charge for authors and
+
+Check with your library that it subscribes to the journal, or consider making a personal donation to
+the S2O programme by contacting subscribers@edpsciences.org.
+
+information,
+
+More
+and
+is available at https://edpsciences.org/en/subscribe-to-open-s2o.
+
+supporters
+
+including
+
+list
+
+of
+
+a
+
+financial
+
+transparency
+
+reports,
+
+

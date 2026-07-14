@@ -1,0 +1,9 @@
+\contentsline {section}{\numberline {1}结论等级与资料追溯}{2}{section.1}%
+\contentsline {section}{\numberline {2}严格坐标拉伸模型与时域实现}{2}{section.2}%
+\contentsline {section}{\numberline {3}Laplace--Fourier perfect matching}{3}{section.3}%
+\contentsline {section}{\numberline {4}Baffet 余项与条件单调能量}{4}{section.4}%
+\contentsline {section}{\numberline {5}椭圆非局部修正的完整动态审查}{5}{section.5}%
+\contentsline {section}{\numberline {6}局部交叉项与 Gramian/KYP}{6}{section.6}%
+\contentsline {section}{\numberline {7}必要性检验与路线比较}{6}{section.7}%
+\contentsline {section}{\numberline {8}机器验证}{7}{section.8}%
+\contentsline {section}{\numberline {9}最终判断}{8}{section.9}%

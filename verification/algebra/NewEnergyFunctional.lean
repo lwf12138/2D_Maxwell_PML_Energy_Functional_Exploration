@@ -1,12 +1,14 @@
+import Mathlib
+
 /-!
 Lean/Mathlib algebra targets for the Baffet-Debye Maxwell-PML energy.
 
 This file is intended to be checked in an environment with Lean 4 and Mathlib.
-The local machine used for this Iteris run did not have the `lean` executable,
-so the TeX artifact records the attempted command and the resulting failure.
+If an automated run reports `lean: command not found`, the usual cause is that
+the run environment did not include `$HOME/.elan/bin` in PATH.  If Lean is found
+but this file reports `unknown module prefix 'Mathlib'`, run it inside a
+Lake/Mathlib project.
 -/
-
-import Mathlib
 
 open scoped BigOperators
 

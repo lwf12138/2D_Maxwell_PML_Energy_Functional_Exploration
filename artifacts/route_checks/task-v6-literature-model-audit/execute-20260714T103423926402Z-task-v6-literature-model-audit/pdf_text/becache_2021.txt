@@ -1,0 +1,911 @@
+Comptes Rendus
+
+Mathématique
+
+Éliane Bécache, Sonia Fliss, Maryna Kachanovska and Maria
+Kazakova
+
+On a surprising instability result of Perfectly Matched Layers for
+Maxwell’s equations in 3D media with diagonal anisotropy
+
+Volume 359, issue 3 (2021), p. 249-256
+
+Published online: 20 April 2021
+
+https://doi.org/10.5802/crmath.165
+
+This article is licensed under the
+Creative Commons Attribution 4.0 International License.
+http://creativecommons.org/licenses/by/4.0/
+
+Les Comptes Rendus. Mathématique sont membres du
+Centre Mersenne pour l’édition scientiﬁque ouverte
+www.centre-mersenne.org
+e-ISSN : 1778-3569
+
+Comptes Rendus
+Mathématique
+2021, Vol. 359, 3, p. 249-256
+https://doi.org/10.5802/crmath.165
+
+Numerical analysis / Analyse numérique
+
+On a surprising instability result of Perfectly
+
+Matched Layers for Maxwell’s equations in 3D
+
+media with diagonal anisotropy
+
+Éliane Bécache a, Sonia Fliss a, Maryna Kachanovska a and Maria Kazakova
+
+∗, b
+
+a Labratoire POEMS, CNRS, Inria, ENSTA Paris Institut Polytechnique de Paris, 828
+boulevard des Maréchaux, 91762 Palaiseau, France
+b Normandie Univ, INSA de Rouen Normandie, LMI (EA 3226 - FR CNRS 3335), 76000
+Rouen, France, 685 Avenue de l’Université, 76801 St Etienne du Rouvray cedex, France
+
+E-mail: maria.kazakova@insa-rouen.fr
+
+Abstract. The analysis of Cartesian Perfectly Matched Layers (PMLs) in the context of time-domain electro-
+magnetic wave propagation in a 3D unbounded anisotropic homogeneous medium modelled by a diagonal
+dielectric tensor is presented. Contrary to the 3D scalar wave equation or 2D Maxwell’s equations some diag-
+onal anisotropies lead to the existence of backward waves giving rise to instabilities of the PMLs. Numerical
+experiments conﬁrm the presented result.
+
+Résumé. Dans cette note nous nous intéressons à l’analyse de stabilité de la méthode de couches absor-
+bantes parfaitement adaptées (PMLs) pour la propagation d’ondes électromagnétiques en régime transitoire
+dans un milieu anisotrope décrit par un tenseur diélectrique diagonal. Contrairement aux cas de l’équation
+d’ondes scalaire 3D et des équations de Maxwell 2D, certaines anisotropies diagonales mènent à l’existence
+d’ondes inverses qui provoquent des instabilités de la méthode PML. Ce résultat est illustré par des simula-
+tions numériques.
+
+Funding. The fourth author was partially supported by a public grant as part of the ”Investissement d’avenir“
+project, reference ANR-11-LABX-0056-LMH, LabEx LMH.
+
+Manuscript received 19 June 2020, revised 6 November 2020, accepted 2 December 2020.
+
+Version française abrégée
+
+Nous nous intéressons à la simulation numérique de la propagation des ondes électromagné-
+tiques, décrite par des équations de Maxwell, dans un milieu non borné tridimensionnel (voir (1)
+ci-dessous). Aﬁn de borner artiﬁciellement le domaine de calcul, une technique largement uti-
+lisée proposée initialement dans [6] et [7], consiste à appliquer les couches absorbantes parfai-
+tement adaptées (PMLs). Cette méthode est eﬃcace et très populaire car simple à implémenter.
+Toutefois il est connu que la méthode PML classique en coordonnées cartésiennes ne fonctionne
+
+∗
+
+Corresponding author.
+
+ISSN (electronic) : 1778-3569
+
+https://comptes-rendus.academie-sciences.fr/mathematique/
+
+250
+
+Éliane Bécache, Sonia Fliss, Maryna Kachanovska and Maria Kazakova
+
+pas lorsqu’il existe des ondes inverses dans la direction d’une des couches, i.e. des ondes pour les-
+quelles les projections de la vitesse de groupe et de la vitesse de phase dans cette direction sont
+opposées (voir la déﬁnition (9) pour plus de détails). Plus précisément, il a été démontré dans [2]
+que l’absence d’ondes inverses dans la direction de la couche est une condition nécessaire de
+stabilité des PMLs en régime transitoire.
+
+Dans cette note nous nous concentrons sur des milieux anisotropes avec un tenseur diélec-
+trique diagonal, modélisant par exemple certains types de cristaux. Ces cristaux sont appelés ma-
+tériaux biréfringents ou bi-axiaux (voir [8] pour plus de détails). Pour ces modèles à anisotropie
+diagonale, peut-il y avoir existence d’ondes inverses et par conséquent des instabilités des PMLs ?
+La réponse est non pour l’équation des ondes scalaire 2D ou 3D et les équations de Maxwell 2D
+(qui peuvent se réduire à la résolution d’une équation scalaire), modèles pour lesquels la condi-
+tion nécessaire de stabilité proposée dans [2] est toujours vériﬁée. Dans ces derniers cas il serait
+même possible de montrer un résultat de stabilité des PMLs classiques en s’inspirant des tech-
+niques développées dans [10] et [5]. Cependant, de façon inattendue, dans le cas des équations
+de Maxwell 3D avec un tenseur diélectrique diagonal, certaines anisotropies mènent à l’appari-
+tion d’instabilités des PMLs (voir Figure 2). Ce dernier cas est contre-intuitif et nous expliquons
+ce phénomène dans cette note. Le résultat est formulé dans le théorème suivant :
+Théorème 1. Soit ε un tenseur diélectrique diagonal avec les coeﬃcients εi , i = 1, 2, 3. Si
+
+min(ε2, ε3) < ε1 < max(ε2, ε3)
+
+(1)
+
+alors il existe des ondes inverses dans la direction e1. Sinon, il n’y a pas d’ondes inverses dans la
+direction e1.
+
+En conséquence, la méthode PML est instable en régime transitoire si le milieu satisfait la
+condition (1). Les simulations numériques conﬁrment l’apparition des instabilités dans ce cas
+(voir Figure 2). Notons que pour un tel milieu nous n’avons observé aucune instabilité numérique
+dans les deux autres directions, la justiﬁcation théorique resterait à faire.
+
+La preuve du théorème 1 n’est évidemment pas spéciﬁque à la direction e1 et le résultat peut
+facilement être généralisé de la façon suivante : si les coeﬃcients intervenant dans le tenseur
+diélectrique sont diﬀérents deux à deux alors la méthode PML est instable. Dans ce cas, il
+faudrait trouver une nouvelle stratégie pour borner le domaine de calcul car les méthodes de
+stabilisation des PMLs qui existent pour d’autres modèles ne semblent pas appropriées dans le
+cas présent (voir [10] pour l’acoustique en écoulement, [9] pour l’acoustique anisotrope, [11]
+pour les équations d’Euler linéarisées, [4] pour les modèles de métamatériaux dispersifs et [3]
+pour les plasmas froids fortement magnétisés).
+
+1. Introduction
+
+We are interested in simulating time-domain wave propagation in three-dimensional un-
+bounded anisotropic media which can be described with Maxwell’s equations. Since the medium
+is unbounded, one needs to introduce an equivalent or approximated formulation set in a
+bounded domain which is suitable for numerical purposes. The widely-used Perfectly Matched
+Layers (PML) method (see e.g. [6], [7]) consists in surrounding the computational domain by a
+layer which absorbs outgoing waves. PML techniques are very popular because they are eﬃcient
+and easy to implement for a large class of problems. Moreover, their use requires no auxiliary
+knowledge (e.g. the fundamental solution) but only the PDE itself. However, it is well known that
+one can observe instabilities when classical Cartesian PMLs for anisotropic or dispersive media
+are used (see e.g. [2]).
+
+In [2] a mathematical analysis has been performed and a necessary criterion of stability
+has been established: classical PMLs are unstable if there exist backward modes in one of the
+
+Éliane Bécache, Sonia Fliss, Maryna Kachanovska and Maria Kazakova
+
+251
+
+directions of the layer (a more precise mathematical deﬁnition is given below). In this note, we
+consider electromagnetic wave propagation in anisotropic media where the tensor of electric
+permittivity is diagonal. A typical example of such media is given by biaxial or birefringent
+crystals (see [8] for details). It is then natural to wonder, when considering models with diagonal
+anisotropy, do backward waves exist? The answer is no for the 2D and 3D scalar wave equation as
+well as for 2D Maxwell’s equations (which can be reduced to the resolution of a scalar equation).
+But surprisingly backward waves do exist for 3D Maxwell’s equations for a class of diagonal
+anisotropic dielectric tensors. This is counter-intuitive and a more detailed analysis follows.
+
+We present ﬁrst the problem statement and recall general considerations for the necessary
+stability criterion in Section 2, a detailed proof and numerical illustrations are given in Section 3.
+
+2. Problem statement and reminders on PMLs
+
+We consider electromagnetic wave propagation in an anisotropic medium described by
+Maxwell’s equations (where we use the scaling ε0 = µ0 = 1)
+
+with compactly supported initial conditions E |t =0 = E 0, ∂t E |
+electric permittivity ε of the form
+
+t =0
+
+ε∂t t E (t , x) + ∇ × ∇ × E (t , x) = 0,
+
+x = (x1, x2, x3) ∈ (cid:82)3
+
+(1)
+= E 1, and with the tensor of
+
+ε = diag(ε1, ε2, ε3), with ε j > 0,
+
+j = 1, 2, 3.
+
+In order to allow for numerical simulation of (1), we want to restrict the computations to a
+region of interest which includes the supports of the initial data. To do so, we surround the
+computational domain by a PML. Mathematically, there are diﬀerent ways to present PMLs.
+One of them consists in considering equation (1) in the frequency domain.
+Inside this layer
+one modiﬁes (1) by an appropriate complex frequency-dependent scaling aimed to ensure
+the exponential decay of the solution in space. The layer is then truncated and vanishing
+Dirichlet/Neumann boundary conditions are imposed on the external boundary.
+
+In more detail, we consider the physical solution to (1) inside the domain x ∈ (−a, a)3,
+which we surround by the PML of width L. The computational domain is (−a − L, a + L)3, and
+(−a − L, a + L)3 \ (−a, a)3 is the truncated perfectly matched layer.
+
+The PMLs are based on the analytic continuation (with respect to each variable) of the Fourier
+
+transform of the solution
+
+(cid:98)E (ω, x) :=
+
+1
+(cid:112)
+2π
+
+(cid:90) +∞
+
+−∞
+
+ei ωt E (t , x)dt .
+
+Now we introduce the change of variables applied to (1)
+
+|x j | ≥ a,
+|x j | < a,
+x j ,
+where the absorption functions σ j (x), j = 1, 2, 3 are deﬁned as follows
+
+x j − (i ω)
+
+(cid:101)x j :=
+
+σ j (x
+
+
+
+a
+
+(cid:48)
+j )dx
+
+(cid:48)
+j ,
+
+
+
+
+(cid:90) x j
+
+−1
+
+(2)
+
+∞
+
+σ j ∈ L
+
+((−a − L, a + L)), with σ j (x) :=
+
+(cid:40)
+
+for x ∈ (−a, a),
+
+0,
+σ j (x) ≥ 0, otherwise.
+σ
+
+The PML method consists then in looking for the approximate solution (cid:98)E
+following equation written in the frequency domain:
+
+(ω, x) satisfying the
+
+σ
+
+−ω2ε (cid:98)E
+
+(ω, x) + ∇σ × ∇σ × (cid:98)E
+
+σ
+
+(ω, x) = −i ωεE 0 + εE 1,
+
+∇σ = (cid:161)γ1∂x1 , γ2∂x2 , γ3∂x3
+
+(cid:162)T , γ j =
+
+(cid:181)
+1 −
+
+x ∈ (−a − L, a + L)3,
+σ j (x j )
+i ω
+
+(cid:182)−1
+
+.
+
+(3)
+
+(4)
+
+252
+
+Éliane Bécache, Sonia Fliss, Maryna Kachanovska and Maria Kazakova
+
+The above system is equipped with vanishing Dirichlet (or Neumann) boundary conditions at the
+boundary of the computational domain (−a −L, a +L)3. We can notice that the dependence of (3)
+with respect to ω is rational. It is then classical to introduce auxiliary unknowns to come back to
+the time domain.
+
+To analyse the stability of PMLs, we will follow the approach introduced in [2], by considering
+
+the time-domain PML system in each direction e j with assumptions
+
+a = 0, L = ∞, σ j (x j ) ≡ σ j = const > 0, σl = 0 for all l (cid:54)= j.
+Let us remind this approach, which is based on the Kreiss stability analysis (cf. [12]). It relies on
+the plane-wave analysis of the system, i.e. on considering particular solutions of the form
+U (t , x) = (cid:101)U ei(ωt −k·x),
+
+(cid:101)U ∈ (cid:67)3,
+
+where U (t , x) is a vector associated with the physical variable E
+(t , x) and the auxiliary un-
+knowns, and k = (k1, k2, k3) is the wave vector. The PML system admits such solutions if and
+only if k and ω are related by the dispersion relation
+
+σ
+
+Fσ(ω, k) = 0.
+(5)
+Considering this relation as an equation in ω allows to deﬁne the solutions ωσ(k). Due to [12] the
+considered system is stable if and only if
+
+ℑ(ωσ(k)) ≥ 0 ∀ k ∈ (cid:82)3.
+
+(6)
+
+One can write solutions ωσ(k) as
+
+ωσ(k) = ω(k) + ∆ωσ(k),
+where ω(k) are the so-called modes, i.e. solutions of the dispersion relation associated with the
+original system (1):
+
+F (ω, k) = 0,
+(7)
+and ∆ωσ(k) are the perturbation terms. For non-dissipative models, the solutions ω(k) being real,
+the stability criterion (6) is therefore equivalent to
+
+ℑ(∆ωσ(k)) ≥ 0 ∀ k ∈ (cid:82)3.
+
+(8)
+
+Expressing this criterion for all k is not a trivial task. However, in [2] a necessary stability condition
+for anisotropic non-dispersive media is given, expressing that (8) is satisﬁed for large k. This
+condition can be related to properties of the modes of the original system ω(k). To formulate
+it, let us recall that the function F (ω, k) is polynomial in ω and k, so that its solutions ω(n)(k),
+n = 1, . . . , N , can be chosen as N branches of analytic functions with respect to k j , j = 1, 2, 3.
+
+For a given mode ω(n)(k), we can then deﬁne the phase velocity v (n)
+
+p and the group velocity v (n)
+g :
+
+v (n)
+p (k) =
+
+ω(n)(k)
+|k|
+
+k
+|k|
+
+,
+
+g (k) = ∇kω(n)(k).
+v (n)
+
+Considering a layer in the direction e j , the necessary stability condition of the PML
+
+method reads
+
+∀ n = 1, . . . , N ∀ k ∈ (cid:82)3 : (v (n)
+
+p (k) · e j )(v (n)
+
+g (k) · e j ) ≥ 0.
+
+(9)
+
+For example, if the PML is applied in e1 direction, the necessary stability condition reads for all
+n = 1, . . . , N :
+
+k1
+ω(n)(k)
+
+∂ω(n)(k)
+∂k1
+
+≥ 0 ∀ k ∈ (cid:82)3.
+
+(10)
+
+The modes ω(n)(k) for which (9) holds are called forward in the e j direction, otherwise they are
+called backward in the e j direction. As shown in [2], this condition has a simple geometrical
+interpretation, expressing the fact that along the dispersive surfaces (i.e. level sets of ω(n)(k)), the
+phase and the group velocities are oriented in the same direction with respect to the e j direction.
+
+Éliane Bécache, Sonia Fliss, Maryna Kachanovska and Maria Kazakova
+
+253
+
+Figure 1. Solution of dispersion relation (3) for ε1 < ε2 < ε3.
+
+Since this condition is a necessary condition, we deduce that the existence of backward modes
+in the e j direction leads to instabilities of PMLs in the same direction. In the following, we will
+analyse the stability of the PMLs for (1) relying on the criterion presented above.
+
+3. Necessary condition on the tensor ε for the PML stability
+
+In this section, we are going to express the necessary stability condition of the PML method (9)
+in terms of the coeﬃcients of the dielectric tensor ε. This result is obtained from an analysis of
+the dispersion relation associated with (1). The following result establishes the necessary stability
+condition of the PML applied for (1) in e1 direction:
+
+Theorem 1. Let ε be a diagonal dielectric tensor with coeﬃcients εi , i = 1, 2, 3. If
+
+min(ε2, ε3) < ε1 < max(ε2, ε3)
+
+(11)
+
+then there exist backward propagating modes in the e1 direction. Otherwise there are no backward
+propagating waves in the e1 direction.
+Proof. It is easily seen that a harmonic plane wave of the form E (t , x) = (cid:101)E ei(ωt −k·x) is solution
+of (1) if and only if
+
+(cid:179)
+|k|2(cid:73) − ω2ε − kk
+
+(cid:62)(cid:180)
+
+(cid:101)E = 0.
+
+This means that a non trivial solution (cid:101)E exists if and only if the determinant F (ω, k) of the matrix
+|k|2(cid:73) − ω2ε − kk
+
+is zero, leading to the following dispersion relation
+
+(cid:62)
+
+where P (ω, k) is a biquadratic polynomial in ω given by
+
+F (ω, k) = 0 with F (ω, k) := ε1ε2ε3ω2P (ω, k),
+
+P (ω, k) = −ω4 + ω2
+
+(cid:181)
+k2
+1
+
+ε2 + ε3
+ε2ε3
+
++ k2
+2
+
+ε1 + ε3
+ε1ε3
+
++ k2
+3
+
+ε1 + ε2
+ε1ε2
+
+(cid:182)
+
+−
+
+k2
+1
+
++ k2
+3
+
++ k2
+2
+ε1ε2ε3
+
+3
+(cid:88)
+
+i =1
+
+εi k2
+i .
+
+(12)
+
+The four modes associated with
+
+P (ω, k) = 0
+
+are denoted by ω±
+everywhere diﬀerent modes, in the case when εi (cid:54)= ε j , for some i (cid:54)= j .
+
+j (k) := ±ω j (k), j = 1, 2. It is possible to prove that ω±
+
+We have to check that all the modes ω±
+
+equivalent to study the sign of the two quantities
+
+j (k) satisfy the condition (10). It is easy to see that it is
+
+(13)
+j (k) deﬁne four almost
+
+C j (k) := k1
+
+∂λ j (k)
+∂k1
+
+,
+
+j = 1, 2,
+
+(14)
+
+-10-50510-10-44vvgp32254
+
+Éliane Bécache, Sonia Fliss, Maryna Kachanovska and Maria Kazakova
+
+where λ j (k) := (ω±
+
+j (k))2 are deﬁned from (13) as
+
+λ j (k) =
+
+(cid:181)
+k2
+1
+
+1
+2
+
+ε2 + ε3
+ε2ε3
+
++ k2
+2
+
+ε1 + ε3
+ε1ε3
+
++ k2
+3
+
+ε1 + ε2
+ε1ε2
+
++ (−1) j (cid:112)∆(k)
+
+(cid:182)
+
+,
+
+j = 1, 2,
+
+(15)
+
+and the discriminant ∆(k) is given by
+
+∆(k) = K (k)2 + 4
+
+where
+
+2k2
+k2
+
+3(ε1 − ε2)(ε1 − ε3)
+ε2ε3
+
+ε2
+1
+
+,
+
+K (k) = k2
+1
+
+ε2 − ε3
+ε2ε3
+
++ k2
+2
+
+ε1 − ε3
+ε1ε3
+
++ k2
+3
+
+ε2 − ε1
+ε1ε2
+
+.
+
+(16)
+
+Let us now consider two cases.
+
+Case 1. ε1 = ε2 or ε1 = ε3. Without loss of generality we consider ε1 = ε2. Then ∆(k) = K (k)2 and
+K (k) = k2
+1
+
+so that
+
++ k2
+2
+
+ε1−ε3
+ε1ε3
+
+ε2−ε3
+ε2ε3
+
+λ1(k) =
+
++ k2
+3
+
+k2
+1
+
++ k2
+2
+ε1
+
+and λ2(k) =
+
+k2
+1
+
++ k2
+2
+ε3
+
++
+
+k2
+3
+ε1
+
+,
+
+from where by a straightforward computation, with (14), it follows that C j (k) ≥ 0 for j = 1, 2 and
+for all k ∈ (cid:82)3.
+
+Case 2. min(ε2, ε3) < ε1 < max(ε2, ε3). Again, without loss of generality, let us suppose that ε3 <
+ε1 < ε2. By using the identity for a, b, c > 0 : (a + b + c)2 − 4bc = (a + (
+c)2),
+we can easily deduce that ∆(k) ≥ 0 for all k ∈ (cid:82)3. Moreover, a direct computation yields
+
+c)2)(a + (
+
+b −
+
+b +
+
+(cid:112)
+
+(cid:112)
+
+(cid:112)
+
+(cid:112)
+
+C j (k) =
+
+2k2
+1
+(cid:112)
+∆(k)
+
+ε2ε3
+
+(cid:179)
+(ε2 + ε3)
+
+(cid:112)∆(k) + (−1) j (ε2 − ε3)K (k)
+
+(cid:180)
+
+.
+
+(17)
+
+Because ε3 < ε1 < ε2 we have K (k) > 0, and thus C2(k) ≥ 0 for all k ∈ (cid:82)3. It remains to study the
+sign of C1(k).
+
+Let us prove that there exists k
+
+∗
+∗ ∈ (cid:82)3, such that C1(k
+the continuity of C1 with respect to k). This is equivalent to showing the existence of k
+(k
+
+) < 0 (the result follows then from
+∗ =
+
+(cid:54)= 0 and
+
+∗
+
+3 ) ∈ (cid:82)3 such that k
+
+∗
+1 , k
+
+∗
+2 , k
+
+∗
+1
+
+∗
+(ε2 + ε3)2∆(k
+
+∗
+) − (ε2 − ε3)2K (k
+
+)2 < 0.
+
+(18)
+
+By denoting (cid:101)k2 = k2((ε1 − ε3)/ε1)1/2 and (cid:101)k3 = k3((ε2 − ε1)/ε1)1/2, we show that
+
+(ε2 + ε3)2∆(k) − (ε2 − ε3)2K (k) =
+
+4
+ε2ε3
+
+(cid:163)(k2
+
+1(ε2 − ε3) + (cid:101)k2
+2
+
+ε2 + (cid:101)k2
+3
+
+If we choose k
+
+∗
+2
+
+> 0 and k
+
+∗
+3
+
+> 0, this quantity has the sign of:
+
+k2
+1(ε2 − ε3) + ((cid:101)k2ε2 − (cid:101)k3ε3)((cid:101)k2 − (cid:101)k3).
+
+ε3)2 − (cid:101)k2
+
+2 (cid:101)k2
+
+3(ε2 + ε3)2(cid:164) .
+
+Éliane Bécache, Sonia Fliss, Maryna Kachanovska and Maria Kazakova
+
+255
+
+(a)
+
+(b)
+
+Figure 2. Snapshots of the electric ﬁeld component E1(t , x, y, 0) at (a) t = 2.5, (b) t = 4 for a
+medium with diagonal anisotropy deﬁned by ε1 = 10, ε2 = 20, ε3 = 1.
+
+∗
+We deduce that for k
+
+∗
+chosen such that k
+2
+(ε2 − ε1)1/2
+(ε1 − ε3)1/2
+
+∗
+3
+
+k
+
+∗
+3
+
+> 0, k
+ε3
+ε2
+
+< k
+
+> 0, (cid:101)k
+
+∗
+2
+
+< k
+
+∗
+3
+
+− (cid:101)k
+
+∗
+∗
+2
+3
+(ε2 − ε1)1/2
+(ε1 − ε3)1/2
+
+< 0 and (cid:101)k
+
+∗
+2
+
+ε2 − (cid:101)k
+
+∗
+3
+
+ε3 > 0, namely
+
+,
+
+(cid:3)
+
+and k
+
+∗
+1 small enough, (18) is satisﬁed. This ﬁnishes the proof.
+
+Remark 2. Since the proof is not speciﬁc to the e1 direction, we conclude that if ε1 (cid:54)= ε2 (cid:54)= ε3,
+backward waves will exist in one of the axis directions, namely in the one that corresponds to e j
+such that mink,k(cid:54)= j εk < ε j < maxk,k(cid:54)= j εk . On the other hand, if two of the coeﬃcients of ε are
+equal no backward waves exist.
+
+Note that the criterion (9) being a necessary stability condition, the classical PML method
+is unstable in the time-domain for a medium satisfying condition (11). Numerical simulations
+conﬁrm the instabilities of PML in the e1 direction (see Figure 2). Let us remark that in our
+numerical simulations we did not observe any instabilities appearing in the two other directions.
+A rigorous justiﬁcation of this fact is out of scope of the present note.
+
+Let us emphasize that the important (and surprising) result of the present study is that the
+classical Cartesian PML method may be unstable even in the case when the medium is described
+by a diagonal permittivity tensor. Since one faces instabilities in one of the coordinate directions
+if the medium satisﬁes the condition εi (cid:54)= ε j for i (cid:54)= j , an alternative approach to truncate the
+computational domain should be proposed. There exist several stabilisation techniques for
+some models with backward propagating modes, see [1] for some hyperbolic systems, [10] for
+advected acoustics, [9] for anisotropic acoustics, [11] for linear Euler equations, [4] for the models
+of dispersive metamaterials and [3] for strongly magnetized cold plasmas. However, because in
+the model we consider, for the same frequency both forward and backward propagating waves
+are present, those techniques seem to be inappropriate, and designing a new strategy remains an
+open question.
+
+References
+
+[1] D. Appelö, T. Hagstrom, G. Kreiss, “Perfectly matched layers for hyperbolic systems: general formulation, well-
+
+posedness, and stability”, SIAM J. Appl. Math. 67 (2006), no. 1, p. 1-23.
+
+[2] É. Bécache, S. Fauqueux, P. Joly, “Stability of perfectly matched layers, group velocities and anisotropic waves”, J.
+
+Comput. Phys. 188 (2003), no. 2, p. 399-433.
+
+[3] É. Bécache, P. Joly, M. Kachanovska, “Stable perfectly matched layers for a cold plasma in a strong background
+
+magnetic ﬁeld”, J. Comput. Phys. 341 (2017), p. 76-101.
+
+256
+
+Éliane Bécache, Sonia Fliss, Maryna Kachanovska and Maria Kazakova
+
+[4] É. Bécache, P. Joly, V. Vinoles, “On the analysis of perfectly matched layers for a class of dispersive media and
+
+application to negative index metamaterials”, Math. Comp. 87 (2018), no. 314, p. 2775-2810.
+
+[5] É. Bécache, M. Kachanovska, “Stability and Convergence Analysis of Time-domain Perfectly Matched Layers for The
+
+Wave Equation in Waveguides”, submitted, https://hal.archives-ouvertes.fr/hal-02536375, 2020.
+
+[6] J.-P. Bérenger, “A perfectly matched layer for the absorption of electromagnetic waves”, J. Comput. Phys. 114 (1994),
+
+no. 2, p. 185-200.
+
+[7] J.-P. Berenger, “Three-dimensional perfectly matched layer for the absorption of electromagnetic waves”, J. Comput.
+
+Phys. 127 (1996), no. 2, p. 363-379.
+
+[8] M. Born, E. Wolf, Principles of Optics: Electromagnetic Theory of Propagation, Interference and Diﬀraction of Light,
+
+7th ed., Cambridge University Press, 1999.
+
+[9] E. Demaldent, S. Imperiale, “Perfectly matched transmission problem with absorbing layers : application to
+
+anisotropic acoustics in convex polygonal domains”, Int. J. Numer. Meth. Engng. 96 (2013), no. 11, p. 689-711.
+[10] J. Diaz, P. Joly, “A time domain analysis of PML models in acoustics”, Comput. Methods Appl. Mech. Eng. 195 (2006),
+
+no. 29-32, p. 3820-3853.
+
+[11] F. Q. Hu, “A stable, perfectly matched layer for linearized Euler equations in unsplit physical variables”, J. Comput.
+
+Phys. 173 (2001), no. 2, p. 455-480.
+
+[12] H.-O. Kreiss, J. Lorenz, Initial-boundary value problems and the Navier–Stokes equations, vol. 47, Society for Indus-
+
+trial and Applied Mathematics, 1989.
+
+

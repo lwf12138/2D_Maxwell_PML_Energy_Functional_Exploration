@@ -1,0 +1,43 @@
+{
+  "schema_version": "iteris.agent_run_request.v0",
+  "run_id": "execute-20260714T103423926402Z-task-v6-literature-model-audit",
+  "executor": "codex",
+  "role": "execute",
+  "mode": "foundation",
+  "task_id": "task-v6-literature-model-audit",
+  "focus": "Read all thirteen mandated materials completely; establish the strict stretched-coordinate Maxwell--Debye model, traceability table, boundary/interface assumptions, and perfect-matching calculation.",
+  "project_path": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration",
+  "iteris_cli": "/Users/wcli/.local/share/iteris/venv/bin/iteris",
+  "detached": true,
+  "dry_run": false,
+  "created_at": "2026-07-14T10:34:23.927683Z",
+  "prompt_path": "artifacts/agent_runs/execute-20260714T103423926402Z-task-v6-literature-model-audit/prompt.md",
+  "output_markdown": "artifacts/agent_runs/execute-20260714T103423926402Z-task-v6-literature-model-audit/output.md",
+  "output_json": "artifacts/agent_runs/execute-20260714T103423926402Z-task-v6-literature-model-audit/output.json",
+  "status_path": "artifacts/agent_runs/execute-20260714T103423926402Z-task-v6-literature-model-audit/status.json",
+  "codex_log": "artifacts/agent_runs/execute-20260714T103423926402Z-task-v6-literature-model-audit/codex.log",
+  "codex_events": "artifacts/agent_runs/execute-20260714T103423926402Z-task-v6-literature-model-audit/codex.events.jsonl",
+  "codex_stderr": "artifacts/agent_runs/execute-20260714T103423926402Z-task-v6-literature-model-audit/codex.stderr.log",
+  "codex_log_manifest": "artifacts/agent_runs/execute-20260714T103423926402Z-task-v6-literature-model-audit/log_manifest.json",
+  "artifact_index": "artifacts/ARTIFACT_INDEX.jsonl",
+  "artifact_workspace": "artifacts/route_checks/task-v6-literature-model-audit/execute-20260714T103423926402Z-task-v6-literature-model-audit",
+  "artifact_manifest": "artifacts/route_checks/task-v6-literature-model-audit/execute-20260714T103423926402Z-task-v6-literature-model-audit/artifact_manifest.json",
+  "recommended_artifacts": {
+    "route_report": "artifacts/route_checks/task-v6-literature-model-audit/execute-20260714T103423926402Z-task-v6-literature-model-audit/route_report.md",
+    "source_notes": "artifacts/route_checks/task-v6-literature-model-audit/execute-20260714T103423926402Z-task-v6-literature-model-audit/source_notes.md"
+  },
+  "timeout_seconds": 7200,
+  "codex_command": [
+    "/Applications/ChatGPT.app/Contents/Resources/codex",
+    "exec",
+    "--json",
+    "-C",
+    "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration",
+    "-m",
+    "gpt-5.5",
+    "--config",
+    "model_reasoning_effort=high",
+    "--dangerously-bypass-approvals-and-sandbox",
+    "-"
+  ]
+}

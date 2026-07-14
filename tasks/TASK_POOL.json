@@ -1,7 +1,7 @@
 {
   "schema_version": "iteris.task_pool.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-07-09T04:20:54.130361Z",
+  "updated_at": "2026-07-14T10:48:07.574379Z",
   "active_frontier": "",
   "tasks": [
     {
@@ -313,6 +313,99 @@
       ],
       "created_at": "2026-07-09T03:44:22.236174Z",
       "updated_at": "2026-07-09T04:20:54.130353Z"
+    },
+    {
+      "schema_version": "iteris.task_pool_task.v0",
+      "task_id": "task-v6-literature-model-audit",
+      "mode": "foundation",
+      "objective": "Read all thirteen mandated materials completely; establish the strict stretched-coordinate Maxwell--Debye model, traceability table, boundary/interface assumptions, and perfect-matching calculation.",
+      "status": "done",
+      "priority": 300,
+      "dependencies": [],
+      "inputs": [
+        "references/nonlocal_memory_energy_strict_pml.pdf",
+        "references/variable_coefficient_baffet_energy.pdf"
+      ],
+      "expected_outputs": [
+        "artifacts/references/v6_literature_model_audit.md"
+      ],
+      "assigned_agent_run": "execute-20260714T103423926402Z-task-v6-literature-model-audit",
+      "notes": [
+        "Started inline after reading the authoritative v6 goal contract.",
+        "Harvested completed execute agent output; all thirteen mandated materials were fully read/extracted and compatibility report accepted."
+      ],
+      "created_at": "2026-07-14T10:33:42.488084Z",
+      "updated_at": "2026-07-14T10:48:07.167462Z"
+    },
+    {
+      "schema_version": "iteris.task_pool_task.v0",
+      "task_id": "task-v6-nonlocal-and-route-audit",
+      "mode": "proof",
+      "objective": "Re-derive the Baffet remainder and fully audit elliptic nonlocal, local-cross-term, and Gramian/memory routes including finite-dimensional necessary tests.",
+      "status": "done",
+      "priority": 290,
+      "dependencies": [
+        "task-v6-literature-model-audit"
+      ],
+      "inputs": [],
+      "expected_outputs": [
+        "artifacts/proofs/v6_nonlocal_route_audit.md"
+      ],
+      "assigned_agent_run": null,
+      "notes": [
+        "Inline dynamic audit found exact residual (lambda_t,grad z)+(lambda-u grad a,grad z_t); testing local, second-elliptic, temporal-primitive, and Gramian routes.",
+        "Completed full dynamic derivative and two repair attempts; strongest result is Level-B pointwise Schur Baffet theorem."
+      ],
+      "created_at": "2026-07-14T10:33:42.623630Z",
+      "updated_at": "2026-07-14T10:48:07.307771Z"
+    },
+    {
+      "schema_version": "iteris.task_pool_task.v0",
+      "task_id": "task-v6-machine-verification",
+      "mode": "proof",
+      "objective": "Create and run required Lean and SymPy verification artifacts for strict matching, Baffet remainder, nonlocal proxy derivatives, Schur identities, and random/adversarial tests.",
+      "status": "done",
+      "priority": 280,
+      "dependencies": [
+        "task-v6-nonlocal-and-route-audit"
+      ],
+      "inputs": [],
+      "expected_outputs": [
+        "results/v6_tex/NonlocalMemoryStrictPML.lean",
+        "results/v6_tex/nonlocal_memory_strict_pml_sympy.py",
+        "results/v6_tex/verification_outputs.md"
+      ],
+      "assigned_agent_run": null,
+      "notes": [
+        "SymPy and Lake/Mathlib Lean checks both pass; preparing reproducibility ledger.",
+        "SymPy exit 0, Lake/Mathlib Lean exit 0, and verification_outputs.md records versions and outputs."
+      ],
+      "created_at": "2026-07-14T10:33:42.758325Z",
+      "updated_at": "2026-07-14T10:48:07.438723Z"
+    },
+    {
+      "schema_version": "iteris.task_pool_task.v0",
+      "task_id": "task-v6-terminal-assembly",
+      "mode": "proof",
+      "objective": "Assemble the v6 Markdown/TeX/PDF reports and claims ledger, compile twice, verify durable facts, pass assembly plus goal-success or certified principled-stop verification, and finalize.",
+      "status": "running",
+      "priority": 270,
+      "dependencies": [
+        "task-v6-machine-verification"
+      ],
+      "inputs": [],
+      "expected_outputs": [
+        "results/v6_tex/nonlocal_memory_strict_pml_report.md",
+        "results/v6_tex/nonlocal_memory_strict_pml_analysis.tex",
+        "results/v6_tex/nonlocal_memory_strict_pml_analysis.pdf",
+        "results/v6_tex/claims_and_open_problems.md"
+      ],
+      "assigned_agent_run": null,
+      "notes": [
+        "Markdown, TeX, PDF, build log, machine files, and claims ledger created; TeX compiled cleanly twice."
+      ],
+      "created_at": "2026-07-14T10:33:42.895522Z",
+      "updated_at": "2026-07-14T10:48:07.574371Z"
     }
   ]
 }

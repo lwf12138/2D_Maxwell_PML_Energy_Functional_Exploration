@@ -1,0 +1,1380 @@
+空间变系数阻尼剖面下二维 Debye–PML 的 Baffet 型能量分
+
+析
+
+ReasLingo
+
+2026 年 6 月 23 日
+
+摘要
+
+本文继续分析当前项目中的二维 TM Maxwell–Debye–PML 模型和 Baffet 型 time-primitive
+
+能量，但不再假设阻尼剖面为常数。设
+
+σx = σx(x),
+
+σy = σy(y),
+
+且 σx, σy 2 W 1,∞。核心结论是：常系数 Baffet–Debye 能量在变系数 stretched PML 上的时
+间导数精确变为
+
+d
+dt
+
+EB(t) = (cid:0)D0(t) + Rσ(t) + B(t),
+
+Rσ(t) = (cid:0)
+
+u ra (cid:1) λ dxdy,
+
+Ω
+
+Z
+
+其中 a = σx + σy。该内部剩余项含有 ∂xσx 和 ∂yσy，且符号不定；仅有 σi (cid:21) 0、∂iσi (cid:21) 0
+或界面连续性均不能推出 E ′
+L∞ 足
+够小，则该余项可被耗散吸收，从而得到有条件单调性。一般变系数剖面只能由该能量得到
+
+B(t) (cid:20) 0。在角 PML 中若 a, b = σxσy 有正下界且 krak
+
+Gronwall 型稳定估计。若放弃严格 stretched-coordinate PML 而优先要求对任意变系数阻尼
+无条件单调，则可采用被动端口型能量；该能量对变系数无 rσ 余项，但不是本文前一报告
+中证明完美匹配的严格 stretched PML。
+
+目录
+
+1 Introduction
+
+2 Maxwell–Debye–PML model
+
+2.1 物理 Maxwell–Debye 方程 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+2.2 严格 stretched-coordinate PML 的 primitive 形式 . . . . . . . . . . . . . . . . . .
+
+2.3 未知量、边界和初值 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+3 Assumptions on variable damping profiles
+
+4 Review of the original Baffet energy
+
+5 Time derivative of the Baffet energy for variable coeﬀicients
+
+6 Analysis of the variable-coeﬀicient remainder terms
+
+1
+
+2
+
+2
+
+2
+
+3
+
+3
+
+4
+
+4
+
+5
+
+6
+
+1
+
+INTRODUCTION
+
+7 Failure mechanism or additional suﬀicient conditions
+
+7.1 Gronwall 型估计 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+7.2 小梯度条件下的条件单调性 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+8 Construction of a modified energy functional
+
+9 Positivity of the modified energy
+
+10 Monotonicity theorem
+
+11 Strict dissipation versus non-increasing energy
+
+12 Comparison between constant and variable damping
+
+13 Conclusions and open problems
+
+1 Introduction
+
+2
+
+7
+
+7
+
+7
+
+8
+
+8
+
+8
+
+9
+
+9
+
+10
+
+当前项目已有文件 perfect_matching_debye_pml_energy_analysis.tex 给出了常系数
+
+Baffet–Debye primitive 模型及能量恒等式；new_energy_functional_2d_debye_pml.tex 给出
+
+了一个能量耗散但一般不严格匹配的被动端口模型。本文只研究连续层面，不讨论离散误差。
+
+本文保持项目符号：E = Ez，H = (Hx, Hy)，P 为 Debye 极化，
+
+ε = ε0εr,∞,
+
+µ = µ0µr,
+
+κ = ε0(εr,s (cid:0) εr,∞),
+
+τ = τ0.
+
+假设 ε, µ, κ, τ > 0。PML 阻尼记为 σx, σy。
+
+本文结论分为三层：
+
+• 对严格 stretched-coordinate Baffet 模型，常系数能量在一般变系数阻尼下无条件单调性
+
+失败；
+
+• 在小梯度和正下界条件下，原 Baffet 能量有有条件单调性；
+
+• 若改用被动端口吸收层，则存在对任意非负变系数阻尼的无条件单调能量，但该模型不再
+
+是已证明的严格 stretched PML。
+
+2 Maxwell–Debye–PML model
+
+2.1 物理 Maxwell–Debye 方程
+
+在物理区域 Ωph，二维 TM Maxwell–Debye 方程为
+
+εEt + Pt = ∂xHy (cid:0) ∂yHx,
+
+µHx,t = (cid:0)∂yE,
+
+µHy,t = ∂xE,
+
+τ Pt + P = κE.
+
+(1)
+
+(2)
+
+(3)
+
+(4)
+
+2 MAXWELL–DEBYE–PML MODEL
+
+3
+
+自然能量满足
+
+Z
+
+(cid:0)
+
+Ω
+
+d
+dt
+
+1
+2
+
+εE2 + µH 2
+
+x + µH 2
+
+y + κ−1P 2
+
+(cid:1)
+
+dxdy +
+
+Z
+
+τ
+κ
+
+Ω
+
+P 2
+
+t dxdy = 边界通量.
+
+2.2 严格 stretched-coordinate PML 的 primitive 形式
+
+频域 stretched PML 使用
+
+Si(s, xi) = 1 +
+
+σi(xi)
+s
+
+,
+
+∂i 7! S−1
+
+i ∂i,
+
+i = x, y.
+
+Debye 响应保持为
+
+bP =
+
+κ
+1 + aus
+
+bE,
+
+εD(s) = ε +
+
+κ
+1 + aus
+
+.
+
+为获得能量法，引入 primitive 变量
+
+ut = E,
+
+qt = P,
+
+q + auP = κu.
+
+令
+
+并定义
+
+a(x, y) = σx(x) + σy(y),
+
+b(x, y) = σx(x)σy(y),
+
+Γ1 =
+
+!
+
+σx
+0
+
+0
+
+σy
+
+,
+
+Γ2 =
+
+σy (cid:0) σx
+0
+
+0
+σx (cid:0) σy
+
+!
+
+.
+
+辅助磁通量变量为
+
+λ = ru + ϕ,
+
+ϕt + Γ1ϕ = Γ2ru.
+
+本文研究的 Baffet–Debye primitive 方程是
+
+µfε(utt + aut + bu) + Pt + aP + bqg (cid:0) r (cid:1) λ = 0,
+
+ϕt + Γ1ϕ = Γ2ru,
+
+τ Pt + P = κut,
+
+qt = P,
+
+q + auP = κu.
+
+(5)
+
+(6)
+
+(7)
+
+(8)
+
+(9)
+
+(10)
+
+(11)
+
+(12)
+
+当 σx, σy 为常数时，这是当前项目报告中使用的 Baffet 型模型；当 σx = σx(x)、σy = σy(y) 时，
+频域中仍有
+
+∂xbu,
+
+bλy =
+
+Sy
+Sx
+
+Sx
+Sy
+
+∂y bu,
+
+bλx =
+
+从而二阶算子包含变系数通量散度。
+
+2.3 未知量、边界和初值
+
+未知量为
+
+u, E = ut, P,
+
+q, ϕ = (ϕx, ϕy),
+
+λ = (λx, λy).
+
+磁场可由 stretched 磁通量恢复；常系数频域关系为
+
+bλx = Syµ bHy,
+
+bλy = (cid:0)Sxµ bHx.
+
+ 
+ 
+3 ASSUMPTIONS ON VARIABLE DAMPING PROFILES
+
+4
+
+边界项统一写为
+
+Z
+
+B(t) =
+
+(ut + au)λ (cid:1) n ds.
+
+∂Ω
+
+在周期边界、界面通量成对抵消、或 primitive PEC 条件 u = 0 且 ut + au = 0 的外边界上，
+B(t) = 0。初值必须满足 Debye primitive 相容条件 q(0) + τ P (0) = κu(0)，并给定 ut(0) = E(0)。
+
+3 Assumptions on variable damping profiles
+
+本文区分如下假设。
+
+假设 1 (基本非负剖面). 区域 Ω = Ix (cid:2) Iy 有 Lipschitz 边界，
+
+σx 2 W 1,∞(Ix),
+
+σy 2 W 1,∞(Iy),
+
+σx, σy (cid:21) 0.
+
+允许物理区中 σx = σy = 0。此时 a, b 2 W 1,∞(Ω)，且
+
+ra = (σ′
+
+x(x), σ′
+
+y(y)).
+
+假设 2 (角 PML 正下界). 在待证明严格 Baffet 能量估计的子区域 Ωc 中存在常数
+
+0 < σ∗ (cid:20) σx(x), σy(y) (cid:20) σ∗ < 1.
+
+于是 a (cid:21) 2σ∗，b (cid:21) σ2
+
+∗。
+
+假设 3 (小梯度条件). 在 Ωc 中，krak
+
+L∞(Ωc) 足够小，具体阈值见定理 2。
+
+分片光滑阻尼可逐块使用下列计算，并在跳跃界面保留通量项。若 σi 在物理区与 PML 交
+界面不连续，则 ra 含分布项，能量推导会产生额外界面项；除非这些界面项符号可控，否则不
+
+能得到单调性。因此本文的强结论至少要求界面连续或逐块通量项可抵消。
+
+4 Review of the original Baffet energy
+
+常系数报告中的 Baffet–Debye 能量在变系数下自然写成点态带权积分。严格地说，该 prim-
+
+itive 能量应在 a > 0 的 PML 子区域使用；在物理区 a = 0 时应使用 Maxwell–Debye 自然能量，
+或把下式中 a−1Γ1、b/a 按 0 连续延拓并同时要求 PML 辅助变量无自由初值。定义
+
+α0 = 1 + 2aτ,
+
+β0 = a + bτ,
+
+γ0 = a2 + b(1 + aτ ).
+
+(13)
+
+在 a > 0 的区域中令
+
+EB(t) =
+
+Z
+
+h
+
+Ω
+
+1
+2
+
+µε(ut + au)2 + jλj2 + ϕT a−1Γ1ϕ + µεbu2
+
+α0P 2 + 2β0P q + γ0q2
+
+(cid:1)i
+
+dxdy.
+
++
+
+(cid:0)
+
+µ
+κ
+
+(14)
+
+若 a = 0，则 Γ1 = 0，上式中 a−1Γ1 按连续延拓取零；此时 primitive 变量 q, u 的某些 gauge 方
+向不由 Baffet 能量控制，物理能量应退化为 E, H, P 的自然能量。因此本文关于 EB 的正定性
+和单调性结论默认应用在 a > 0 的 PML 区域，或应用在物理区与 PML 区分块耦合且界面通量
+
+被单独处理的全局模型中。
+
+各项来源如下：µε(ut + au)2 来自主方程乘子 ut + au；jλj2 + ϕT a−1Γ1ϕ 来自 Baffet 磁通
+
+量抵消；µεbu2 是角 PML 零阶储能；P, q 二次型来自 Debye primitive 恒等式。
+
+5 TIME DERIVATIVE OF THE BAFFET ENERGY FOR VARIABLE COEFFICIENTS 5
+
+引理 1 (点态正定性). 若 a > 0、b (cid:21) 0、τ > 0，则 P, q 二次型矩阵
+
+MP q =
+
+!
+
+α0 β0
+β0 γ0
+
+正定。
+
+证明. 有 α0 = 1 + 2aτ > 0，且
+
+α0γ0 (cid:0) β2
+
+0 = b + abτ + 2a3τ + b(2a2 (cid:0) b)τ 2 > 0,
+
+因为 2a2 (cid:0) b = 2σ2
+
+x + 3σxσy + 2σ2
+y
+
+(cid:21) 0。由 Sylvester 判据得正定。
+
+5 Time derivative of the Baffet energy for variable coeﬀicients
+
+本节重新逐项计算，不引用常系数结论。
+
+引理 2 (主方程乘子恒等式). 令 W = ut + au。由于 a, b 与时间无关，沿 (9) 有
+
+Z
+
+1
+2
+
+d
+dt
+Z
+
+=
+
+(cid:0)
+
+µε
+
+W 2 + bu2
+
+(cid:1)
+
+Ω
+W r (cid:1) λdxdy (cid:0) µ
+
+Z
+
+dxdy +
+Z
+
+µεabu2dxdy
+
+Ω
+
+(Pt + aP + bq)W dxdy.
+
+进一步分部积分得
+
+其中
+
+Ω
+
+Z
+
+Ω
+
+Ω
+
+Z
+
+W r (cid:1) λ = (cid:0)
+
+rW (cid:1) λdxdy + B(t),
+
+Ω
+
+rW = rut + aru + ura.
+
+(15)
+
+(16)
+
+(17)
+
+证明. 展开 (utt + aut + bu)W = (Wt + bu)W ，并用 1
+新项是 (17) 中的 ura；常系数证明正是在此处隐含使用了 ra = 0。
+
+2 (bu2)t = buut。式 (16) 是散度定理。关键
+
+引理 3 (磁通量 Baffet 恒等式). 在 a > 0 处，沿 (10) 有点态恒等式
+
+(cid:0)
+
+∂t
+
+jλj2 + ϕT a−1Γ1ϕ
+
+1
+2
+= λ (cid:1) (rut + aru).
+
+(cid:1)
+
++ λT Γ1(I + a−1Γ1)λ +
+
+b
+a
+
+jruj2
+
+(18)
+
+证明. 只需逐分量验证。以 x 分量为例，记 d = ∂xu、λ = λx、ϕ = λ (cid:0) d。由 (10)，
+
+λt = dt + σyd (cid:0) σxλ,
+
+ϕt = σyd (cid:0) σxλ.
+
+于是
+
+λλt +
+
+σx
+a
+
+ϕϕt
+
+= λdt + σyλd (cid:0) σxλ2 +
+
+(cid:16)
+
+= λdt + aλd (cid:0) σx
+
+1 +
+
+σx
+a
+σx
+a
+
+(λ (cid:0) d)(σyd (cid:0) σxλ)
+(cid:17)
+λ2 (cid:0) b
+a
+
+d2.
+
+y 分量同理，将 σx 与 σy 交换。相加即得 (18)。注意该证明未对空间积分分部积分，因此不会
+产生 ∂x(a−1σx) 等项；变系数只通过 (17) 出现。
+
+ 
+6 ANALYSIS OF THE VARIABLE-COEFFICIENT REMAINDER TERMS
+
+6
+
+引理 4 (Debye primitive 恒等式). 沿 (11)–(12)，点态有
+
+(Pt + aP + bq) (τ Pt + (1 + aτ )P + aq)
+1
+2
+
+α0P 2 + 2β0P q + γ0q2
+
+∂t
+
+=
+
+(cid:0)
+
+(cid:1)
+
++ τ P 2
+
+t + τ (a2 (cid:0) b)P 2 + abq2.
+
+(19)
+
+证明. 利用 qt = P ，并注意 a, b, α0, β0, γ0 与时间无关，直接展开整理即可。
+
+由 Debye primitive 相容式可得
+
+W = ut + au =
+
+τ Pt + (1 + aτ )P + aq
+κ
+
+.
+
+(20)
+
+定理 1 (变系数 Baffet 能量恒等式). 在假设 1 下，令 Ω+ = f(x, y) : a(x, y) > 0g。设解在 Ω+
+上足够光滑且所有分部积分合法；若全局区域还含物理区 a = 0，则物理区使用 Maxwell–Debye
+自然能量并把界面通量计入边界项。则 (9)–(12) 在 Ω+ 上满足
+
+其中理想耗散项为
+
+d
+dt
+
+Z
+
+(cid:20)
+
+D0(t) =
+
+Ω+
+µ
+κ
+
++
+
+Z
+
+内部变系数余项为
+
+EB(t) = (cid:0)D0(t) + Rσ(t) + B(t),
+
+(cid:21)
+
+jruj2 + µεabu2
+
+dxdy
+
+b
+a
+
+λT Γ1(I + a−1Γ1)λ +
+Z
+
+τ P 2
+
+t + τ (a2 (cid:0) b)P 2 + abq2
+
+(cid:3)
+
+dxdy (cid:21) 0,
+
+(cid:2)
+
+Ω+
+
+Rσ(t) = (cid:0)
+
+ura (cid:1) λdxdy = (cid:0)
+
+Ω+
+
+Z
+
+(cid:0)
+
+u
+
+Ω+
+
+x(x)λx + σ′
+σ′
+
+y(y)λy
+
+(cid:1)
+
+dxdy,
+
+边界项为
+
+Z
+
+B(t) =
+
+∂Ω
+证明. 将引理 2–4 相加。由 (16)–(17) 得到 (cid:0)
+剩余正是 (cid:0)
+
+R
+
+(ut + au)λ (cid:1) nds.
+R
+
+ura (cid:1) λ。极化部分由 (20) 和 (19) 转化为 P, q 能量导数与正耗散。
+
+(rut + aru) (cid:1) λ 与磁通量恒等式右端完全抵消，
+
+6 Analysis of the variable-coeﬀicient remainder terms
+
+式 (23) 是变系数阻尼剖面的唯一内部新项，但它足以破坏无条件单调性。
+
+命题 1 (符号不定性). 即使 σx, σy (cid:21) 0 且 σ′
+
+x, σ′
+
+y
+
+(cid:21) 0，余项 Rσ 也没有固定符号。
+
+证明. 若在某个开集 O 中 ∂xσx > 0，取 u (cid:21) 0 支撑于 O。当 λx < 0 时，(cid:0)uσ′
+时，该项为负。变量 λ 是独立的 PML 状态变量，由初值和方程演化确定，符号不受 σ′
+性限制。因此 σ′
+i
+
+(cid:21) 0 不能推出 Rσ (cid:20) 0。
+
+xλx > 0；当 λx > 0
+x 的单调
+
+命题 2 (局部二次型障碍). 在忽略边界项并冻结其他变量后，u, λ 子块中的能量导数含有二次型
+
+其中 cu, cλ (cid:21) 0 来自 (22)。若 jraj2 > 4cucλ，该二次型不是半负定。
+
+(cid:0)cuu2 (cid:0) cλjλj2 (cid:0) ura (cid:1) λ,
+
+(21)
+
+(22)
+
+(23)
+
+(24)
+
+7 FAILURE MECHANISM OR ADDITIONAL SUFFICIENT CONDITIONS
+
+7
+
+证明. 沿 λ 平行于 (cid:0)ra 的方向，写 r = jλj、g = jraj，得到
+
+(cid:0)cuu2 (cid:0) cλr2 + gur.
+
+该二维二次型半负定当且仅当 g2 (cid:20) 4cucλ。若不满足，取 r = gu/(2cλ) 可使其为正。该计算说
+明大梯度阻尼剖面下当前 Baffet 能量导数不能由耗散项定号控制。
+
+因此，对一般非负 W 1,∞ 阻尼剖面，当前 Baffet 能量不能证明无条件单调不增。常系数证
+
+明失效的精确步骤是将 r(ut + au) 当成 rut + aru，忽略了 ura。
+
+7 Failure mechanism or additional suﬀicient conditions
+
+7.1 Gronwall 型估计
+
+若在某区域内 EB 控制 kuk 和 kλk，则
+
+jRσ(t)j (cid:20) krak
+
+L∞ kuk
+
+L2 kλk
+
+L2 (cid:20) CσEB(t).
+
+因此零边界通量时仅能推出
+
+E ′
+B(t) (cid:20) CσEB(t),
+
+EB(t) (cid:20) eCσtEB(0).
+
+这只是稳定性，不是能量单调性。
+
+7.2 小梯度条件下的条件单调性
+
+定理 2 (条件单调性). 在角 PML 子区域 Ωc 中假设 2 成立。设存在常数 mu, mλ > 0 使
+
+D0(t) (cid:21) mu kuk2
+
+L2(Ωc) + mλ kλk2
+
+L2(Ωc) + 其他非负项.
+
+若
+
+且边界通量非正，则存在 θ > 0 使
+
+krak2
+
+L∞(Ωc) < 4mumλ,
+
+d
+dt
+
+EB(t) + θD0(t) (cid:20) 0.
+
+证明. 由 Young 不等式，对任意 η > 0，
+
+jRσj (cid:20) ηmλ kλk2 +
+
+krak2
+4ηmλ
+
+L∞
+
+kuk2 .
+
+(25)
+
+(26)
+
+(27)
+
+(28)
+
+(29)
+
+按用户问题中的分类，严格 stretched-coordinate Baffet 能量在一般变系数阻尼下属于结论
+
+C：只能得到稳定性。若再加上角 PML 正下界和小梯度吸收条件，则属于结论 B：有条件单调性。
+
+结论 A 的无条件单调性仅对下文的端口型修改模型成立，而不适用于严格 stretched-coordinate
+Baffet 模型本身。若可选 η 2 (0, 1) 使第二个系数小于 (1 (cid:0) η)mu，即 (28)，则 jRσj 被 D0 的真
+子项吸收。代入 (21) 即得。
+
+该定理解释了为何 “缓慢变化” 的阻尼剖面可能仍可用于 Baffet 能量法。它也说明：需要的
+(cid:21) 0，而是 ra 相对于耗散强度足够小，并且耗散必须真正控制 u 和 λ。在边 PML 或
+
+不是 σ′
+i
+物理区，b = 0 或 a = 0 时这种控制可能退化。
+
+8 CONSTRUCTION OF A MODIFIED ENERGY FUNCTIONAL
+
+8
+
+8 Construction of a modified energy functional
+
+对严格 stretched-coordinate 模型，本文没有得到对任意 σi 2 W 1,∞ 都满足 E ′(t) (cid:20) 0 的局
+
+部正定二次能量。原因如下。若取
+
+EM (t) =
+
+Z
+
+1
+2
+
+Ω
+
+U T M (x, y)U dxdy,
+
+并令 M 依赖于 x, y，则主部空间分部积分会产生
+
+Z
+
+1
+2
+
+U T ∂x(M Ax)U dxdy,
+
+Ω
+
+Z
+
+1
+2
+
+Ω
+
+U T ∂y(M Ay)U dxdy,
+
+这与 (23) 是同类符号不定项。因此单靠点态 Lyapunov 矩阵不等式 M B + BT M (cid:21) 0 不足以证
+
+明变系数空间问题的单调性。
+
+若把目标改为 “任意非负变系数阻尼下无条件单调”，当前项目已有的被动端口模型给出一
+
+个可证明的修改能量。模型为
+
+(30)
+
+(31)
+
+(32)
+
+(33)
+
+(34)
+
+εEt + Pt + εσEE = ∂xWy (cid:0) ∂yWx,
+µWx,t + µσyWx = (cid:0)∂yE,
+
+µWy,t + µσxWy = ∂xE,
+
+τ Pt + P = κE.
+
+这里 Wx, Wy 是能量端口磁通量；在物理区 σx = σy = 0 时可识别为 Hx, Hy。取
+
+Eport(t) =
+
+Z
+
+(cid:0)
+
+Ω
+
+1
+2
+
+εE2 + µW 2
+
+x + µW 2
+
+y + κ−1P 2
+
+(cid:1)
+
+dxdy.
+
+该能量在 σi = 0 的物理区域不奇异，显式控制 E, W, P ，且 W = H 于无阻尼区域。
+
+9 Positivity of the modified energy
+
+定理 3 (端口能量正定性). 设 ε, µ, κ > 0。对 U = (E, Wx, Wy, P )T ，能量 (34) 满足
+
+c1 kU k2
+
+L2(Ω)
+
+(cid:20) Eport(t) (cid:20) c2 kU k2
+
+L2(Ω) ,
+
+其中
+
+c1 =
+
+1
+2
+
+minfε, µ, κ−1g,
+
+c2 =
+
+1
+2
+
+maxfε, µ, κ−1g.
+
+常数不依赖 σx, σy，也不需要阻尼正下界。
+
+证明. 能量矩阵为 diag(ε, µ, µ, κ−1)，其特征值正且与阻尼无关。
+
+10 Monotonicity theorem
+
+定理 4 (端口模型的无条件变系数单调性). 设 σx, σy, σE 2 L∞(Ω) 且非负。对 (30)–(33) 的光滑
+解，有
+Z
+
+d
+dt
+
+Eport(t) + Dport(t) =
+
+E(Wynx (cid:0) Wxny)ds,
+
+(35)
+
+∂Ω
+
+11 STRICT DISSIPATION VERSUS NON-INCREASING ENERGY
+
+9
+
+其中
+
+Dport(t) =
+
+Z
+
+(cid:16)
+
+Ω
+
+εσEE2 + µσyW 2
+
+x + µσxW 2
+
+y +
+
+(cid:17)
+
+τ
+κ
+
+P 2
+t
+
+dxdy (cid:21) 0.
+
+(36)
+
+在 PEC、周期或零通量边界下，E ′
+
+port(t) = (cid:0)Dport(t) (cid:20) 0。
+
+证明. 将 (30) 乘以 E，(31) 乘以 Wx，(32) 乘以 Wy 后积分。空间项满足
+
+Z
+
+Z
+
+Z
+
+Z
+
+E(∂xWy (cid:0) ∂yWx) +
+
+Wx∂yE (cid:0)
+
+Wy∂xE =
+
+E(Wynx (cid:0) Wxny)ds.
+
+∂Ω
+
+这里没有对含 σi 的项做空间分部积分，因此不出现 rσ。Debye 项由
+
+Z
+
+Z
+
+PtE =
+
+τ
+κ
+
+P 2
+
+t +
+
+1
+2κ
+
+d
+dt
+
+Z
+
+P 2
+
+给出耗散。合并即得。
+
+11 Strict dissipation versus non-increasing energy
+
+无论是条件 Baffet 能量还是端口能量，结论首先都是
+
+E ′(t) (cid:20) 0,
+
+即单调不增。严格下降 E ′(t) < 0 仅当相应耗散 D(t) > 0。若解处于耗散零空间，例如物理区内
+无阻尼 Maxwell 静态模、Pt = 0 的 Debye 平衡模、或边 PML primitive gauge 模式，则非零解
+也可能满足 D(t) = 0。指数衰减还需要额外可观测性估计 D(t) (cid:21) cE (t)，这通常依赖几何控制、
+
+全域阻尼、Poincare 型不等式或 LaSalle 不变性分析。
+
+12 Comparison between constant and variable damping
+
+阻尼类型
+
+Baffet 能量
+
+Baffet 能量
+
+是否有 rσ 小量条件
+
+可证结论
+
+DG 建议
+
+正定
+
+单调
+
+常数 σx, σy
+
+角 PML 正
+
+是
+
+否
+
+不需要
+
+定，边 PML
+
+半正定
+
+E ′
+B + D0 = B 可用 Baffet 能
+量
+
+分片常数
+
+每块同常数 块 内 是； 界
+
+界面跳跃项 需要界面处
+
+条 件 单 调 或
+
+通 量 需 匹 配
+
+面 需 通 量 抵
+
+理
+
+稳定
+
+primitive 能量
+
+光滑变系数
+
+正定性点态
+
+一般否
+
+消
+
+成立于 a >
+
+0
+
+同上
+
+单调递增剖面
+
+是，
+R
+(cid:0)
+
+ura (cid:1) λ
+
+通常需要
+
+Gronwall 稳
+
+若 严 格 PML，
+
+定
+
+需处理余项
+
+仍一般否
+
+是
+
+单调性本身
+
+不够
+
+不应忽略余项
+
+不 能 仅 凭
+σ′
+(cid:21) 0 断言
+i
+单调
+
+13 CONCLUSIONS AND OPEN PROBLEMS
+
+10
+
+一般非负剖面
+
+物 理 区
+
+否
+
+是
+
+大梯度可失
+
+败
+
+最多 E ′
+B
+CσEB
+
+(cid:20)
+
+若要无条件能
+
+量， 改 用 端 口
+
+模型
+
+primitive
+
+退化
+
+是
+
+小梯度角 PML
+
+有条件是
+
+是但可吸收 需要 (28)
+
+条件单调
+
+可作为局部稳
+
+定设计
+
+被动端口模型
+
+全域正定
+
+是
+
+否
+
+不需要
+
+无 条 件 单
+
+最适合能量稳
+
+调 但 非 严 格
+
+定 DG
+
+PML
+
+13 Conclusions and open problems
+
+本文对用户提出的问题作如下明确回答。
+
+1. 当前 Baffet 能量在一般 σx(x), σy(y) 下不再无条件单调不增。
+
+2. 常系数证明失效的步骤是 r(ut + au) = rut + aru；变系数下必须加上 ura。
+
+3. 由此出现符号不定项 Rσ = (cid:0)
+
+R
+
+u(σ′
+
+xλx + σ′
+
+yλy)。
+
+4. ∂xσx (cid:21) 0、∂yσy (cid:21) 0 不能保证该项非正，因为 λ 的符号不固定。
+
+5. 若 krak
+
+L∞ 相对于耗散强度足够小，并且角 PML 中 a, b 有正下界，则原 Baffet 能量仍
+
+可得到有条件单调性。
+
+6. 对一般非负变系数剖面，原 Baffet 能量最多自然给出 E ′
+
+B(t) (cid:20) CσEB(t)，即 Gronwall 稳
+
+定性，而非单调衰减。
+
+7. 若要求任意变系数阻尼下无条件单调，推荐能量为端口能量 (34)；它正定且显式控制 E, W, P ，
+
+在物理区 W = H。
+
+8. 端口能量满足 E ′
+
+port(t) = (cid:0)Dport(t) (cid:20) 0，但该模型一般不是此前证明完美匹配的严格
+
+stretched-coordinate PML。
+
+9. 得到的是单调不增，不是对所有非零解严格下降；严格下降需要 D(t) > 0，指数衰减还需
+
+要可观测性。
+
+10. 后续 DG 若首要目标是严格 stretched PML，应采用 Baffet 变量但必须在离散层面保留并
+控制 rσ 或界面余项；若首要目标是无条件离散能量稳定，则应采用端口能量结构。
+
+开放问题包括：为严格 stretched-coordinate 变系数 Debye PML 构造无小量条件的正定
+
+Lyapunov 泛函；处理边 PML 中 b = 0 的 primitive 退化；在分片光滑阻尼跳跃界面设计完全
+
+耗散的 DG 数值通量；以及将本文结论推广到 Cole–Cole 分数阶记忆模型。
+
+参考文献
+
+11
+
+参考文献
+
+[1] J.-P. Berenger, A perfectly matched layer for the absorption of electromagnetic waves, Jour-
+
+nal of Computational Physics, 1994.
+
+[2] P. Joly, An elementary introduction to the construction and the analysis of perfectly matched
+
+layers for time domain wave propagation, 2012.
+
+[3] D. Baffet, M. J. Grote, S. Imperiale, and M. Kachanovska, Energy decay and stability of a
+
+perfectly matched layer for the wave equation, Journal of Scientific Computing, 2019.
+
+[4] E. Becache, M. Kachanovska, and M. Wess, Convergence analysis of time-domain PMLs for
+
+2D electromagnetic wave propagation in dispersive waveguides, 2023.
+
+

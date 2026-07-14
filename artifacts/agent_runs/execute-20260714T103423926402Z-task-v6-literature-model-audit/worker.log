@@ -1,0 +1,3 @@
+started_at: 2026-07-14T10:34:23.928489Z
+command: /Users/wcli/.local/share/iteris/venv/bin/python -m iteris.agents.worker '/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/artifacts/agent_runs/execute-20260714T103423926402Z-task-v6-literature-model-audit'
+

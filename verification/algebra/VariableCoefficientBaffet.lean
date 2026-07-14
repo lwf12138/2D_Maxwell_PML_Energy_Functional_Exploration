@@ -1,13 +1,13 @@
+import Mathlib
+
 /-!
 Lean/Mathlib algebra targets for the v5 variable-coefficient Baffet-Debye
 analysis.
 
-The local Iteris environment used for this run does not provide a `lean`
-executable.  This file is still written as a Lean 4/Mathlib artifact for the
-requested checks; the run log records the actual command failure.
+This file should be checked with Lean 4 and Mathlib.  If an automated Iteris
+run reports `lean: command not found`, the usual cause is that the run
+environment did not include `$HOME/.elan/bin` in PATH.
 -/
-
-import Mathlib
 
 section RationalIdentities
 
@@ -63,7 +63,7 @@ theorem absorption_sum_of_squares_identity
 theorem absorption_quadratic_nonpos
     {m_u m_lambda g u lambda : ℝ}
     (hm_u : 0 < m_u)
-    (hm_lambda : 0 ≤ m_lambda)
+    (_hm_lambda : 0 ≤ m_lambda)
     (hg : g^2 ≤ 4 * m_u * m_lambda) :
     -m_u * u^2 - m_lambda * lambda^2 + g * u * lambda ≤ 0 := by
   have hcoef : 0 ≤ 4 * m_u * m_lambda - g^2 := by
@@ -87,9 +87,12 @@ theorem absorption_quadratic_nonpos
     exact hsos
   have hpos : 0 < 4 * m_u := by
     nlinarith
+  have hmul_comm :
+      0 ≤ (m_u * u^2 + m_lambda * lambda^2 - g * u * lambda) * (4 * m_u) := by
+    nlinarith [hmul]
   have hnonneg :
       0 ≤ m_u * u^2 + m_lambda * lambda^2 - g * u * lambda :=
-    nonneg_of_mul_nonneg_left hmul hpos
+    nonneg_of_mul_nonneg_left hmul_comm hpos
   nlinarith
 
 end RealAbsorption
