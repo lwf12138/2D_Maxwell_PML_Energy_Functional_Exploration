@@ -1,0 +1,31 @@
+{
+  "verification_report": {
+    "summary": "The terminal report is supported as an assembly of the two cited verified v6 facts and the accompanying TeX, PDF, machine-output, route-audit, literature-audit, and open-problems artifacts. It states the result at Level B only: strict separated-coordinate Maxwell-Debye PML branch-resolved inner-interface matching, exact Baffet identity with boundary/remainder terms, norm equivalence only on uniformly positive corner layers under compatibility, and monotonicity only under the stated pointwise Schur margin and nonpositive flux. It explicitly rejects the displayed elliptic correction by the verified full derivative residual, treats local and Gramian routes as failed/conditional rather than proved, and records open problems instead of claiming unconditional Level A. I reran the SymPy script and the Lake/Lean command; both exited 0, and the Lean file has no whole-word sorry/admit/axiom markers. The PDF artifact exists and the build log reports an 8-page output with no fatal compile error.",
+    "critical_errors": [],
+    "gaps": []
+  },
+  "verdict": "correct",
+  "repair_hints": "No repair needed for this assembly. Keep the Level-B scope, corner-domain/norm-equivalence hypotheses, a=0/interface caveats, finite-truncation caveat, and Gramian non-circularity caveat attached to downstream claims; do not cite this assembly as an unconditional Level-A energy theorem or as goal_success for the full all-profile problem.",
+  "checked_artifacts": [
+    ".iteris/goal_prompt.txt",
+    "results/v6_tex/nonlocal_memory_strict_pml_report.md",
+    "results/v6_tex/nonlocal_memory_strict_pml_analysis.tex",
+    "results/v6_tex/nonlocal_memory_strict_pml_analysis.pdf",
+    "results/v6_tex/nonlocal_memory_strict_pml_analysis_build.log",
+    "results/v6_tex/verification_outputs.md",
+    "results/v6_tex/claims_and_open_problems.md",
+    "results/v6_tex/NonlocalMemoryStrictPML.lean",
+    "results/v6_tex/nonlocal_memory_strict_pml_sympy.py",
+    "verification/results/verify-20260714T112741879698Z-fact-reverify-fact-2d_maxwell_pml_energy.json",
+    "verification/results/verify-20260714T112105126790Z-fact-verify-fact-2d_maxwell_pml_energy_f.json",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-v6-strict-matching-level-b.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-v6-elliptic-correction-residual.md",
+    "artifacts/proofs/v6_nonlocal_route_audit.md",
+    "artifacts/references/v6_literature_model_audit.md",
+    "references/references.bib"
+  ],
+  "checked_fact_ids": [
+    "fact:2d_maxwell_pml_energy_functional_exploration:v6-strict-matching-level-b",
+    "fact:2d_maxwell_pml_energy_functional_exploration:v6-elliptic-correction-residual"
+  ]
+}

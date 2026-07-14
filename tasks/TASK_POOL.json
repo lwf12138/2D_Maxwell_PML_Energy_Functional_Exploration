@@ -1,7 +1,7 @@
 {
   "schema_version": "iteris.task_pool.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-07-14T11:35:41.163903Z",
+  "updated_at": "2026-07-14T11:52:11.321039Z",
   "active_frontier": "",
   "tasks": [
     {
@@ -388,7 +388,7 @@
       "task_id": "task-v6-terminal-assembly",
       "mode": "proof",
       "objective": "Assemble the v6 Markdown/TeX/PDF reports and claims ledger, compile twice, verify durable facts, pass assembly plus goal-success or certified principled-stop verification, and finalize.",
-      "status": "running",
+      "status": "done",
       "priority": 270,
       "dependencies": [
         "task-v6-machine-verification"
@@ -403,10 +403,11 @@
       "assigned_agent_run": null,
       "notes": [
         "Markdown, TeX, PDF, build log, machine files, and claims ledger created; TeX compiled cleanly twice.",
-        "Both v6 facts verified and promoted; report fact index updated; starting assembly verification."
+        "Both v6 facts verified and promoted; report fact index updated; starting assembly verification.",
+        "Both facts promoted; assembly verify-20260714T113553444125Z passed; full-source goal-success verify-20260714T114324180024Z passed."
       ],
       "created_at": "2026-07-14T10:33:42.895522Z",
-      "updated_at": "2026-07-14T11:35:41.163895Z"
+      "updated_at": "2026-07-14T11:52:11.321029Z"
     }
   ]
 }

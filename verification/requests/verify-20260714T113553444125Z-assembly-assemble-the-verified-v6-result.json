@@ -1,0 +1,26 @@
+{
+  "schema_version": "iteris.verification_request.v0",
+  "request_id": "verify-20260714T113553444125Z-assembly-assemble-the-verified-v6-result",
+  "backend": "agent",
+  "executor": "codex",
+  "mode": "assembly",
+  "claim": "Assemble the verified v6 result for the continuous 2D separated-variable strict stretched-coordinate Maxwell-Debye PML: branch-resolved perfect matching, exact Baffet remainder and complete energy/dissipation/boundary formulas, Level-B pointwise-Schur monotonicity with norm-equivalence conditions and a=0 caveats, full rejection of the displayed elliptic correction, comparison of local/elliptic/Gramian routes, low-dimensional matrix tests, literature traceability, actual Lean/SymPy runs, clean TeX/PDF, and honest open problems.",
+  "artifacts": [
+    ".iteris/goal_prompt.txt",
+    "results/v6_tex/nonlocal_memory_strict_pml_analysis.tex",
+    "results/v6_tex/nonlocal_memory_strict_pml_analysis.pdf",
+    "results/v6_tex/verification_outputs.md",
+    "results/v6_tex/claims_and_open_problems.md",
+    "verification/results/verify-20260714T112741879698Z-fact-reverify-fact-2d_maxwell_pml_energy.json",
+    "verification/results/verify-20260714T112105126790Z-fact-verify-fact-2d_maxwell_pml_energy_f.json",
+    "results/v6_tex/nonlocal_memory_strict_pml_report.md"
+  ],
+  "fact_ids": [],
+  "target_artifact": "results/v6_tex/nonlocal_memory_strict_pml_report.md",
+  "created_at": "2026-07-14T11:35:53.444671Z",
+  "prompt_path": "verification/agent_runs/verify-20260714T113553444125Z-assembly-assemble-the-verified-v6-result/prompt.md",
+  "codex_log": "verification/agent_runs/verify-20260714T113553444125Z-assembly-assemble-the-verified-v6-result/codex.log",
+  "codex_events": "verification/agent_runs/verify-20260714T113553444125Z-assembly-assemble-the-verified-v6-result/codex.events.jsonl",
+  "codex_stderr": "verification/agent_runs/verify-20260714T113553444125Z-assembly-assemble-the-verified-v6-result/codex.stderr.log",
+  "codex_log_manifest": "verification/agent_runs/verify-20260714T113553444125Z-assembly-assemble-the-verified-v6-result/log_manifest.json"
+}

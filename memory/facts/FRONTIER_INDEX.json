@@ -1,77 +1,8 @@
 {
   "schema_version": "iteris.frontier_index.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-07-14T11:35:40.893829Z",
+  "updated_at": "2026-07-14T11:52:11.602109Z",
   "active_frontiers": [
-    {
-      "schema_version": "iteris.frontier_entry.v0",
-      "frontier_id": "auto-v6-terminal-assembly",
-      "title": "V6 Terminal Assembly",
-      "hypothesis": "Route inferred from facts, tasks, and artifacts matching `v6-terminal-assembly`.",
-      "summary": "1 fact(s), 0 blocker fact(s), 1 active task(s), 0 artifact(s).",
-      "status": "active",
-      "fact_ids": [
-        "fact:2d_maxwell_pml_energy_functional_exploration:v6-strict-matching-level-b"
-      ],
-      "blocker_fact_ids": [],
-      "task_ids": [
-        "task-v6-terminal-assembly"
-      ],
-      "active_tasks": [
-        "task-v6-terminal-assembly"
-      ],
-      "blocked_tasks": [],
-      "artifact_paths": [],
-      "verification_ids": [
-        "verify-20260714T112741879698Z-fact-reverify-fact-2d_maxwell_pml_energy"
-      ],
-      "agent_run_ids": [],
-      "open_questions": [
-        "Assemble the v6 Markdown/TeX/PDF reports and claims ledger, compile twice, verify durable facts, pass assembly plus goal-success or certified principled-stop verification, and finalize."
-      ],
-      "next_actions": [],
-      "recent_fact_summaries": [
-        {
-          "fact_id": "fact:2d_maxwell_pml_energy_functional_exploration:v6-strict-matching-level-b",
-          "status": "verified",
-          "claim_summary": "Strict variable-profile Maxwell-Debye PML is perfectly matched and has a Level-B pointwise-Schur monotone Baffet energy on uniformly positive corner layers."
-        }
-      ],
-      "task_status_counts": {
-        "running": 1
-      },
-      "evidence_terms": [
-        "debye",
-        "is",
-        "maxwell",
-        "perfectly",
-        "pml",
-        "profile",
-        "strict",
-        "variable"
-      ],
-      "explore_run_count": 0,
-      "last_explore_at": null,
-      "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-14T11:35:40.893646Z",
-      "health": {
-        "frontier_id": "auto-v6-terminal-assembly",
-        "title": "V6 Terminal Assembly",
-        "status": "active",
-        "fact_count": 1,
-        "blocker_count": 0,
-        "verified_count": 1,
-        "active_task_count": 1,
-        "ready_task_count": 0,
-        "artifact_count": 0,
-        "explore_run_count": 0,
-        "last_explore_at": null,
-        "cooldown_ok": true,
-        "explore_recommended": false,
-        "reason": "",
-        "recommended_focus": ""
-      }
-    },
     {
       "schema_version": "iteris.frontier_entry.v0",
       "frontier_id": "auto-stage3-repaired-model",
@@ -147,7 +78,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-14T11:35:40.893634Z",
+      "updated_at": "2026-07-14T11:52:11.601888Z",
       "health": {
         "frontier_id": "auto-stage3-repaired-model",
         "title": "Stage3 Repaired Model",
@@ -231,7 +162,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-14T11:35:40.893609Z",
+      "updated_at": "2026-07-14T11:52:11.601862Z",
       "health": {
         "frontier_id": "auto-alpha1-pml-cases",
         "title": "Alpha1 Pml Cases",
@@ -300,7 +231,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-14T11:35:40.893638Z",
+      "updated_at": "2026-07-14T11:52:11.601892Z",
       "health": {
         "frontier_id": "auto-stage3-perfect-matching",
         "title": "Stage3 Perfect Matching",
@@ -382,7 +313,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-14T11:35:40.893624Z",
+      "updated_at": "2026-07-14T11:52:11.601878Z",
       "health": {
         "frontier_id": "auto-v5-variable-coefficient",
         "title": "V5 Variable Coefficient",
@@ -447,7 +378,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-14T11:35:40.893642Z",
+      "updated_at": "2026-07-14T11:52:11.601896Z",
       "health": {
         "frontier_id": "auto-v6-nonlocal-proposed",
         "title": "V6 Nonlocal Proposed",
@@ -514,7 +445,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-14T11:35:40.893600Z",
+      "updated_at": "2026-07-14T11:52:11.601853Z",
       "health": {
         "frontier_id": "auto-alpha1-algebra-energy",
         "title": "Alpha1 Algebra Energy",
@@ -565,7 +496,7 @@
       "explore_run_count": 1,
       "last_explore_at": "2026-06-20T02:27:13.918334Z",
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-14T11:35:40.893681Z",
+      "updated_at": "2026-07-14T11:52:11.601939Z",
       "health": {
         "frontier_id": "auto-explore-second-stage",
         "title": "Explore Second Stage",
@@ -613,7 +544,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-14T11:35:40.893649Z",
+      "updated_at": "2026-07-14T11:52:11.601904Z",
       "health": {
         "frontier_id": "auto-final-energy-report",
         "title": "Final Energy Report",
@@ -677,7 +608,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-14T11:35:40.893628Z",
+      "updated_at": "2026-07-14T11:52:11.601882Z",
       "health": {
         "frontier_id": "auto-initial-exploration-run",
         "title": "Initial Exploration Run",
@@ -725,7 +656,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-14T11:35:40.893659Z",
+      "updated_at": "2026-07-14T11:52:11.601915Z",
       "health": {
         "frontier_id": "auto-new-energy-functional",
         "title": "New Energy Functional",
@@ -769,7 +700,7 @@
       "explore_run_count": 1,
       "last_explore_at": "2026-06-20T02:20:45.187532Z",
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-14T11:35:40.893676Z",
+      "updated_at": "2026-07-14T11:52:11.601934Z",
       "health": {
         "frontier_id": "auto-second-stage-constructive",
         "title": "Second Stage Constructive",
@@ -817,7 +748,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-14T11:35:40.893653Z",
+      "updated_at": "2026-07-14T11:52:11.601909Z",
       "health": {
         "frontier_id": "auto-stage2-final-report",
         "title": "Stage2 Final Report",
@@ -884,7 +815,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-14T11:35:40.893619Z",
+      "updated_at": "2026-07-14T11:52:11.601873Z",
       "health": {
         "frontier_id": "auto-stage2-repair-design",
         "title": "Stage2 Repair Design",
@@ -951,7 +882,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-14T11:35:40.893615Z",
+      "updated_at": "2026-07-14T11:52:11.601868Z",
       "health": {
         "frontier_id": "auto-stage3-final-report",
         "title": "Stage3 Final Report",
@@ -999,7 +930,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-14T11:35:40.893656Z",
+      "updated_at": "2026-07-14T11:52:11.601912Z",
       "health": {
         "frontier_id": "auto-stage3-literature-sources",
         "title": "Stage3 Literature Sources",
@@ -1061,7 +992,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-14T11:35:40.893663Z",
+      "updated_at": "2026-07-14T11:52:11.601919Z",
       "health": {
         "frontier_id": "auto-v6-literature-model",
         "title": "V6 Literature Model",
@@ -1109,7 +1040,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-14T11:35:40.893669Z",
+      "updated_at": "2026-07-14T11:52:11.601926Z",
       "health": {
         "frontier_id": "auto-v6-machine-verification",
         "title": "V6 Machine Verification",
@@ -1157,7 +1088,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-14T11:35:40.893666Z",
+      "updated_at": "2026-07-14T11:52:11.601923Z",
       "health": {
         "frontier_id": "auto-v6-nonlocal-re",
         "title": "V6 Nonlocal Re",
@@ -1165,6 +1096,73 @@
         "fact_count": 0,
         "blocker_count": 0,
         "verified_count": 0,
+        "active_task_count": 0,
+        "ready_task_count": 0,
+        "artifact_count": 0,
+        "explore_run_count": 0,
+        "last_explore_at": null,
+        "cooldown_ok": true,
+        "explore_recommended": false,
+        "reason": "",
+        "recommended_focus": ""
+      }
+    },
+    {
+      "schema_version": "iteris.frontier_entry.v0",
+      "frontier_id": "auto-v6-terminal-assembly",
+      "title": "V6 Terminal Assembly",
+      "hypothesis": "Route inferred from facts, tasks, and artifacts matching `v6-terminal-assembly`.",
+      "summary": "1 fact(s), 0 blocker fact(s), 0 active task(s), 0 artifact(s).",
+      "status": "promising",
+      "fact_ids": [
+        "fact:2d_maxwell_pml_energy_functional_exploration:v6-strict-matching-level-b"
+      ],
+      "blocker_fact_ids": [],
+      "task_ids": [
+        "task-v6-terminal-assembly"
+      ],
+      "active_tasks": [],
+      "blocked_tasks": [],
+      "artifact_paths": [],
+      "verification_ids": [
+        "verify-20260714T112741879698Z-fact-reverify-fact-2d_maxwell_pml_energy"
+      ],
+      "agent_run_ids": [],
+      "open_questions": [
+        "Assemble the v6 Markdown/TeX/PDF reports and claims ledger, compile twice, verify durable facts, pass assembly plus goal-success or certified principled-stop verification, and finalize."
+      ],
+      "next_actions": [],
+      "recent_fact_summaries": [
+        {
+          "fact_id": "fact:2d_maxwell_pml_energy_functional_exploration:v6-strict-matching-level-b",
+          "status": "verified",
+          "claim_summary": "Strict variable-profile Maxwell-Debye PML is perfectly matched and has a Level-B pointwise-Schur monotone Baffet energy on uniformly positive corner layers."
+        }
+      ],
+      "task_status_counts": {
+        "done": 1
+      },
+      "evidence_terms": [
+        "debye",
+        "is",
+        "maxwell",
+        "perfectly",
+        "pml",
+        "profile",
+        "strict",
+        "variable"
+      ],
+      "explore_run_count": 0,
+      "last_explore_at": null,
+      "generated_by": "frontier_refresh",
+      "updated_at": "2026-07-14T11:52:11.601900Z",
+      "health": {
+        "frontier_id": "auto-v6-terminal-assembly",
+        "title": "V6 Terminal Assembly",
+        "status": "promising",
+        "fact_count": 1,
+        "blocker_count": 0,
+        "verified_count": 1,
         "active_task_count": 0,
         "ready_task_count": 0,
         "artifact_count": 0,

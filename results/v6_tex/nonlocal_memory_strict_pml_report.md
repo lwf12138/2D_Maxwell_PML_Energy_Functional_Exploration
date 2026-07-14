@@ -383,3 +383,8 @@ perfect matching，并在明确小梯度/强制性条件下有自然范数等价
 
 因此量词没有缩小成 port layer，也没有把 Gronwall 写成衰减。最终等级是 Level B；
 一般非负变剖面的无条件显式单调能量仍为开放问题，而非本轮已证明的事实。
+
+最终 assembly verification 已通过：
+`verification/results/verify-20260714T113553444125Z-assembly-assemble-the-verified-v6-result.json`。
+针对 `.iteris/goal_prompt.txt` 完整量词范围的 goal-success verification 已通过：
+`verification/results/verify-20260714T114324180024Z-goal_success-execute-the-complete-v6-goa.json`。
