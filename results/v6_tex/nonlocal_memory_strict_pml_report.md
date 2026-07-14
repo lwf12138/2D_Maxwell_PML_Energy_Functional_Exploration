@@ -36,10 +36,10 @@ F'/eta=(lambda_t,grad z)+(lambda-u grad a,grad z_t),
 
 | fact id | 状态 | 证据/verification |
 |---|---|---|
-| `fact:2d_maxwell_pml_energy_functional_exploration:v6-strict-matching-level-b` | submitted | 本报告 §§2--4；`NonlocalMemoryStrictPML.lean`；`nonlocal_memory_strict_pml_sympy.py`；待 Iteris fact verification |
-| `fact:2d_maxwell_pml_energy_functional_exploration:v6-elliptic-correction-residual` | submitted | 本报告 §5；`artifacts/proofs/v6_nonlocal_route_audit.md`；Lean/SymPy；待 Iteris fact verification |
+| `fact:2d_maxwell_pml_energy_functional_exploration:v6-strict-matching-level-b` | verified | `verification/results/verify-20260714T112741879698Z-fact-reverify-fact-2d_maxwell_pml_energy.json` |
+| `fact:2d_maxwell_pml_energy_functional_exploration:v6-elliptic-correction-residual` | verified | `verification/results/verify-20260714T112105126790Z-fact-verify-fact-2d_maxwell_pml_energy_f.json` |
 
-最终装配只会在两项 fact 验证通过并 promote 后引用它们。
+两项 durable fact 均已通过真实 agent verification 并由 CLI promote。
 
 ## 1. 来源--公式/结论--用途追溯表
 

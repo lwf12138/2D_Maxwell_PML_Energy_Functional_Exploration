@@ -15,7 +15,7 @@ theorem schur_square_identity
   ring
 
 theorem schur_absorption
-    {mu ml g u l : ℝ} (hmu : 0 < mu) (hml : 0 ≤ ml)
+    {mu ml g u l : ℝ} (hmu : 0 < mu) (_hml : 0 ≤ ml)
     (hg : g^2 ≤ 4 * mu * ml) :
     -mu * u^2 - ml * l^2 + g * u * l ≤ 0 := by
   have hc : 0 ≤ 4 * mu * ml - g^2 := by nlinarith
@@ -37,7 +37,6 @@ theorem nonlocal_energy_expansion
       eta * (-(g * u * l) / ell + g^2 * u^2 / (2 * ell)) := by
   dsimp
   field_simp
-  ring
 
 theorem nonlocal_derivative_residual
     (eta ell g u ut l lt : ℝ) (hell : ell ≠ 0) :
@@ -79,14 +78,13 @@ theorem second_elliptic_proxy_derivative
     ell * (zt * p + z * pt) = g * (ut * l + u * lt) / ell := by
   dsimp
   field_simp
-  ring
 
 end NonlocalProxy
 
 section PositivityAndMatching
 
 theorem two_by_two_positive_sufficient
-    {a b c x y : ℝ} (ha : 0 < a) (hc : 0 < c)
+    {a b c x y : ℝ} (ha : 0 < a) (_hc : 0 < c)
     (hdet : b^2 < a * c) (hxy : x ≠ 0 ∨ y ≠ 0) :
     0 < a * x^2 + 2 * b * x * y + c * y^2 := by
   have hs : 0 < a * c - b^2 := by nlinarith
@@ -95,15 +93,16 @@ theorem two_by_two_positive_sufficient
         (a * x + b * y)^2 + (a * c - b^2) * y^2 := by ring
   by_cases hy : y = 0
   · subst y
-    simp only [ne_eq, or_false] at hxy
-    nlinarith [sq_pos_of_ne_zero hxy]
+    rcases hxy with hx | hy0
+    · simpa using mul_pos ha (sq_pos_of_ne_zero hx)
+    · exact (hy0 rfl).elim
   · have hy2 : 0 < y^2 := sq_pos_of_ne_zero hy
     have hr : 0 < (a * x + b * y)^2 + (a * c - b^2) * y^2 := by
       nlinarith [sq_nonneg (a * x + b * y)]
     nlinarith [hid]
 
 theorem admittance_equality_implies_zero_reflection
-    {Yp Y0 : ℂ} (hY : Yp = Y0) (hden : Y0 + Yp ≠ 0) :
+    {Yp Y0 : ℂ} (hY : Yp = Y0) (_hden : Y0 + Yp ≠ 0) :
     (Y0 - Yp) / (Y0 + Yp) = 0 := by
   rw [hY]
   simp

@@ -1,0 +1,23 @@
+{
+  "schema_version": "iteris.verification_request.v0",
+  "request_id": "verify-20260714T105405079580Z-fact-verify-fact-2d_maxwell_pml_energy_f",
+  "backend": "agent",
+  "executor": "codex",
+  "mode": "fact",
+  "claim": "Verify fact:2d_maxwell_pml_energy_functional_exploration:v6-strict-matching-level-b exactly as stated, including strict branch-resolved matching and the corner-domain pointwise-Schur Level-B energy theorem; reject any overclaim in variable-profile equivalence, norm coercivity, boundary/interface treatment, or finite truncation.",
+  "artifacts": [
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-v6-strict-matching-level-b.md",
+    "results/v6_tex/nonlocal_memory_strict_pml_report.md",
+    "results/v6_tex/nonlocal_memory_strict_pml_analysis.tex",
+    "results/v6_tex/verification_outputs.md",
+    "artifacts/references/v6_literature_model_audit.md"
+  ],
+  "fact_ids": [],
+  "target_artifact": null,
+  "created_at": "2026-07-14T10:54:05.080043Z",
+  "prompt_path": "verification/agent_runs/verify-20260714T105405079580Z-fact-verify-fact-2d_maxwell_pml_energy_f/prompt.md",
+  "codex_log": "verification/agent_runs/verify-20260714T105405079580Z-fact-verify-fact-2d_maxwell_pml_energy_f/codex.log",
+  "codex_events": "verification/agent_runs/verify-20260714T105405079580Z-fact-verify-fact-2d_maxwell_pml_energy_f/codex.events.jsonl",
+  "codex_stderr": "verification/agent_runs/verify-20260714T105405079580Z-fact-verify-fact-2d_maxwell_pml_energy_f/codex.stderr.log",
+  "codex_log_manifest": "verification/agent_runs/verify-20260714T105405079580Z-fact-verify-fact-2d_maxwell_pml_energy_f/log_manifest.json"
+}

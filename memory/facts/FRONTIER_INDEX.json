@@ -1,81 +1,66 @@
 {
   "schema_version": "iteris.frontier_index.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-07-09T04:06:39.294967Z",
+  "updated_at": "2026-07-14T11:35:40.893829Z",
   "active_frontiers": [
     {
       "schema_version": "iteris.frontier_entry.v0",
-      "frontier_id": "auto-v5-variable-coefficient",
-      "title": "V5 Variable Coefficient",
-      "hypothesis": "Route inferred from facts, tasks, and artifacts matching `v5-variable-coefficient`.",
-      "summary": "2 fact(s), 1 blocker fact(s), 1 active task(s), 0 artifact(s).",
+      "frontier_id": "auto-v6-terminal-assembly",
+      "title": "V6 Terminal Assembly",
+      "hypothesis": "Route inferred from facts, tasks, and artifacts matching `v6-terminal-assembly`.",
+      "summary": "1 fact(s), 0 blocker fact(s), 1 active task(s), 0 artifact(s).",
       "status": "active",
       "fact_ids": [
-        "fact:2d_maxwell_pml_energy_functional_exploration:port-layer-energy-not-pml",
-        "fact:2d_maxwell_pml_energy_functional_exploration:variable-baffet-remainder-small-gradient"
+        "fact:2d_maxwell_pml_energy_functional_exploration:v6-strict-matching-level-b"
       ],
-      "blocker_fact_ids": [
-        "fact:2d_maxwell_pml_energy_functional_exploration:port-layer-energy-not-pml"
-      ],
+      "blocker_fact_ids": [],
       "task_ids": [
-        "task-v5-variable-coefficient-baffet"
+        "task-v6-terminal-assembly"
       ],
       "active_tasks": [
-        "task-v5-variable-coefficient-baffet"
+        "task-v6-terminal-assembly"
       ],
       "blocked_tasks": [],
       "artifact_paths": [],
       "verification_ids": [
-        "verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi",
-        "verify-20260709T035701313438Z-fact-verify-the-variable-coefficient-baf"
+        "verify-20260714T112741879698Z-fact-reverify-fact-2d_maxwell_pml_energy"
       ],
       "agent_run_ids": [],
       "open_questions": [
-        "Verify variable-coefficient Baffet energy, port-layer matching, Lean/SymPy checks, TeX/PDF artifact, and v5 terminal report."
+        "Assemble the v6 Markdown/TeX/PDF reports and claims ledger, compile twice, verify durable facts, pass assembly plus goal-success or certified principled-stop verification, and finalize."
       ],
       "next_actions": [],
       "recent_fact_summaries": [
         {
-          "fact_id": "fact:2d_maxwell_pml_energy_functional_exploration:port-layer-energy-not-pml",
+          "fact_id": "fact:2d_maxwell_pml_energy_functional_exploration:v6-strict-matching-level-b",
           "status": "verified",
-          "claim_summary": "The port layer has a monotone energy but fails the strict PML admittance test for oblique modes."
-        },
-        {
-          "fact_id": "fact:2d_maxwell_pml_energy_functional_exploration:variable-baffet-remainder-small-gradient",
-          "status": "verified",
-          "claim_summary": "Variable-coefficient Baffet-Debye energy has an exact R_sigma remainder and only conditional small-gradient monotonicity."
+          "claim_summary": "Strict variable-profile Maxwell-Debye PML is perfectly matched and has a Level-B pointwise-Schur monotone Baffet energy on uniformly positive corner layers."
         }
       ],
       "task_status_counts": {
         "running": 1
       },
       "evidence_terms": [
-        "baffet",
-        "but",
-        "coefficient",
         "debye",
-        "energy",
-        "exact",
-        "fails",
-        "has",
-        "layer",
-        "monotone",
-        "port",
-        "sigma",
+        "is",
+        "maxwell",
+        "perfectly",
+        "pml",
+        "profile",
         "strict",
         "variable"
       ],
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-09T04:06:39.294784Z",
+      "updated_at": "2026-07-14T11:35:40.893646Z",
       "health": {
-        "frontier_id": "auto-v5-variable-coefficient",
-        "title": "V5 Variable Coefficient",
+        "frontier_id": "auto-v6-terminal-assembly",
+        "title": "V6 Terminal Assembly",
         "status": "active",
-        "fact_count": 2,
-        "blocker_count": 1,
-        "verified_count": 2,
+        "fact_count": 1,
+        "blocker_count": 0,
+        "verified_count": 1,
         "active_task_count": 1,
         "ready_task_count": 0,
         "artifact_count": 0,
@@ -162,7 +147,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-09T04:06:39.294795Z",
+      "updated_at": "2026-07-14T11:35:40.893634Z",
       "health": {
         "frontier_id": "auto-stage3-repaired-model",
         "title": "Stage3 Repaired Model",
@@ -246,7 +231,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-09T04:06:39.294766Z",
+      "updated_at": "2026-07-14T11:35:40.893609Z",
       "health": {
         "frontier_id": "auto-alpha1-pml-cases",
         "title": "Alpha1 Pml Cases",
@@ -315,10 +300,157 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-09T04:06:39.294800Z",
+      "updated_at": "2026-07-14T11:35:40.893638Z",
       "health": {
         "frontier_id": "auto-stage3-perfect-matching",
         "title": "Stage3 Perfect Matching",
+        "status": "blocked",
+        "fact_count": 1,
+        "blocker_count": 1,
+        "verified_count": 1,
+        "active_task_count": 0,
+        "ready_task_count": 0,
+        "artifact_count": 0,
+        "explore_run_count": 0,
+        "last_explore_at": null,
+        "cooldown_ok": true,
+        "explore_recommended": false,
+        "reason": "",
+        "recommended_focus": ""
+      }
+    },
+    {
+      "schema_version": "iteris.frontier_entry.v0",
+      "frontier_id": "auto-v5-variable-coefficient",
+      "title": "V5 Variable Coefficient",
+      "hypothesis": "Route inferred from facts, tasks, and artifacts matching `v5-variable-coefficient`.",
+      "summary": "2 fact(s), 1 blocker fact(s), 0 active task(s), 0 artifact(s).",
+      "status": "blocked",
+      "fact_ids": [
+        "fact:2d_maxwell_pml_energy_functional_exploration:port-layer-energy-not-pml",
+        "fact:2d_maxwell_pml_energy_functional_exploration:variable-baffet-remainder-small-gradient"
+      ],
+      "blocker_fact_ids": [
+        "fact:2d_maxwell_pml_energy_functional_exploration:port-layer-energy-not-pml"
+      ],
+      "task_ids": [
+        "task-v5-variable-coefficient-baffet"
+      ],
+      "active_tasks": [],
+      "blocked_tasks": [],
+      "artifact_paths": [],
+      "verification_ids": [
+        "verify-20260709T040228930557Z-fact-verify-the-port-layer-energy-identi",
+        "verify-20260709T035701313438Z-fact-verify-the-variable-coefficient-baf"
+      ],
+      "agent_run_ids": [],
+      "open_questions": [
+        "Verify variable-coefficient Baffet energy, port-layer matching, Lean/SymPy checks, TeX/PDF artifact, and v5 terminal report."
+      ],
+      "next_actions": [],
+      "recent_fact_summaries": [
+        {
+          "fact_id": "fact:2d_maxwell_pml_energy_functional_exploration:port-layer-energy-not-pml",
+          "status": "verified",
+          "claim_summary": "The port layer has a monotone energy but fails the strict PML admittance test for oblique modes."
+        },
+        {
+          "fact_id": "fact:2d_maxwell_pml_energy_functional_exploration:variable-baffet-remainder-small-gradient",
+          "status": "verified",
+          "claim_summary": "Variable-coefficient Baffet-Debye energy has an exact R_sigma remainder and only conditional small-gradient monotonicity."
+        }
+      ],
+      "task_status_counts": {
+        "done": 1
+      },
+      "evidence_terms": [
+        "baffet",
+        "but",
+        "coefficient",
+        "debye",
+        "energy",
+        "exact",
+        "fails",
+        "has",
+        "layer",
+        "monotone",
+        "port",
+        "sigma",
+        "strict",
+        "variable"
+      ],
+      "explore_run_count": 0,
+      "last_explore_at": null,
+      "generated_by": "frontier_refresh",
+      "updated_at": "2026-07-14T11:35:40.893624Z",
+      "health": {
+        "frontier_id": "auto-v5-variable-coefficient",
+        "title": "V5 Variable Coefficient",
+        "status": "blocked",
+        "fact_count": 2,
+        "blocker_count": 1,
+        "verified_count": 2,
+        "active_task_count": 0,
+        "ready_task_count": 0,
+        "artifact_count": 0,
+        "explore_run_count": 0,
+        "last_explore_at": null,
+        "cooldown_ok": true,
+        "explore_recommended": false,
+        "reason": "",
+        "recommended_focus": ""
+      }
+    },
+    {
+      "schema_version": "iteris.frontier_entry.v0",
+      "frontier_id": "auto-v6-nonlocal-proposed",
+      "title": "V6 Nonlocal Proposed",
+      "hypothesis": "Route inferred from facts, tasks, and artifacts matching `v6-nonlocal-proposed`.",
+      "summary": "1 fact(s), 1 blocker fact(s), 0 active task(s), 0 artifact(s).",
+      "status": "blocked",
+      "fact_ids": [
+        "fact:2d_maxwell_pml_energy_functional_exploration:v6-elliptic-correction-residual"
+      ],
+      "blocker_fact_ids": [
+        "fact:2d_maxwell_pml_energy_functional_exploration:v6-elliptic-correction-residual"
+      ],
+      "task_ids": [
+        "task-v6-nonlocal-and-route-audit"
+      ],
+      "active_tasks": [],
+      "blocked_tasks": [],
+      "artifact_paths": [],
+      "verification_ids": [
+        "verify-20260714T112105126790Z-fact-verify-fact-2d_maxwell_pml_energy_f"
+      ],
+      "agent_run_ids": [],
+      "open_questions": [],
+      "next_actions": [],
+      "recent_fact_summaries": [
+        {
+          "fact_id": "fact:2d_maxwell_pml_energy_functional_exploration:v6-elliptic-correction-residual",
+          "status": "verified",
+          "claim_summary": "The proposed static elliptic nonlocal correction does not cancel the variable Baffet remainder after complete time differentiation."
+        }
+      ],
+      "task_status_counts": {},
+      "evidence_terms": [
+        "cancel",
+        "correction",
+        "does",
+        "elliptic",
+        "nonlocal",
+        "not",
+        "proposed",
+        "static"
+      ],
+      "explore_run_count": 0,
+      "last_explore_at": null,
+      "generated_by": "frontier_refresh",
+      "updated_at": "2026-07-14T11:35:40.893642Z",
+      "health": {
+        "frontier_id": "auto-v6-nonlocal-proposed",
+        "title": "V6 Nonlocal Proposed",
         "status": "blocked",
         "fact_count": 1,
         "blocker_count": 1,
@@ -382,7 +514,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-09T04:06:39.294755Z",
+      "updated_at": "2026-07-14T11:35:40.893600Z",
       "health": {
         "frontier_id": "auto-alpha1-algebra-energy",
         "title": "Alpha1 Algebra Energy",
@@ -433,7 +565,7 @@
       "explore_run_count": 1,
       "last_explore_at": "2026-06-20T02:27:13.918334Z",
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-09T04:06:39.294827Z",
+      "updated_at": "2026-07-14T11:35:40.893681Z",
       "health": {
         "frontier_id": "auto-explore-second-stage",
         "title": "Explore Second Stage",
@@ -481,7 +613,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-09T04:06:39.294804Z",
+      "updated_at": "2026-07-14T11:35:40.893649Z",
       "health": {
         "frontier_id": "auto-final-energy-report",
         "title": "Final Energy Report",
@@ -545,7 +677,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-09T04:06:39.294789Z",
+      "updated_at": "2026-07-14T11:35:40.893628Z",
       "health": {
         "frontier_id": "auto-initial-exploration-run",
         "title": "Initial Exploration Run",
@@ -593,7 +725,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-09T04:06:39.294814Z",
+      "updated_at": "2026-07-14T11:35:40.893659Z",
       "health": {
         "frontier_id": "auto-new-energy-functional",
         "title": "New Energy Functional",
@@ -637,7 +769,7 @@
       "explore_run_count": 1,
       "last_explore_at": "2026-06-20T02:20:45.187532Z",
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-09T04:06:39.294822Z",
+      "updated_at": "2026-07-14T11:35:40.893676Z",
       "health": {
         "frontier_id": "auto-second-stage-constructive",
         "title": "Second Stage Constructive",
@@ -685,7 +817,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-09T04:06:39.294807Z",
+      "updated_at": "2026-07-14T11:35:40.893653Z",
       "health": {
         "frontier_id": "auto-stage2-final-report",
         "title": "Stage2 Final Report",
@@ -752,7 +884,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-09T04:06:39.294778Z",
+      "updated_at": "2026-07-14T11:35:40.893619Z",
       "health": {
         "frontier_id": "auto-stage2-repair-design",
         "title": "Stage2 Repair Design",
@@ -819,7 +951,7 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-09T04:06:39.294772Z",
+      "updated_at": "2026-07-14T11:35:40.893615Z",
       "health": {
         "frontier_id": "auto-stage3-final-report",
         "title": "Stage3 Final Report",
@@ -867,10 +999,168 @@
       "explore_run_count": 0,
       "last_explore_at": null,
       "generated_by": "frontier_refresh",
-      "updated_at": "2026-07-09T04:06:39.294811Z",
+      "updated_at": "2026-07-14T11:35:40.893656Z",
       "health": {
         "frontier_id": "auto-stage3-literature-sources",
         "title": "Stage3 Literature Sources",
+        "status": "stale",
+        "fact_count": 0,
+        "blocker_count": 0,
+        "verified_count": 0,
+        "active_task_count": 0,
+        "ready_task_count": 0,
+        "artifact_count": 0,
+        "explore_run_count": 0,
+        "last_explore_at": null,
+        "cooldown_ok": true,
+        "explore_recommended": false,
+        "reason": "",
+        "recommended_focus": ""
+      }
+    },
+    {
+      "schema_version": "iteris.frontier_entry.v0",
+      "frontier_id": "auto-v6-literature-model",
+      "title": "V6 Literature Model",
+      "hypothesis": "Route inferred from facts, tasks, and artifacts matching `v6-literature-model`.",
+      "summary": "0 fact(s), 0 blocker fact(s), 0 active task(s), 11 artifact(s).",
+      "status": "stale",
+      "fact_ids": [],
+      "blocker_fact_ids": [],
+      "task_ids": [
+        "task-v6-literature-model-audit"
+      ],
+      "active_tasks": [],
+      "blocked_tasks": [],
+      "artifact_paths": [
+        "artifacts/agent_runs/execute-20260714T103423926402Z-task-v6-literature-model-audit/output.md",
+        "artifacts/agent_runs/execute-20260714T103423926402Z-task-v6-literature-model-audit/output.json",
+        "artifacts/references/v6_literature_model_audit.md",
+        "artifacts/route_checks/task-v6-literature-model-audit/execute-20260714T103423926402Z-task-v6-literature-model-audit/route_report.md",
+        "artifacts/route_checks/task-v6-literature-model-audit/execute-20260714T103423926402Z-task-v6-literature-model-audit/source_notes.md",
+        "artifacts/route_checks/task-v6-literature-model-audit/execute-20260714T103423926402Z-task-v6-literature-model-audit/pdf_text/nonlocal_memory_energy_strict_pml.txt",
+        "artifacts/route_checks/task-v6-literature-model-audit/execute-20260714T103423926402Z-task-v6-literature-model-audit/pdf_text/variable_coefficient_baffet_energy.txt",
+        "artifacts/route_checks/task-v6-literature-model-audit/execute-20260714T103423926402Z-task-v6-literature-model-audit/pdf_text/baffet_2019.txt",
+        "artifacts/route_checks/task-v6-literature-model-audit/execute-20260714T103423926402Z-task-v6-literature-model-audit/pdf_text/joly_2012.txt",
+        "artifacts/route_checks/task-v6-literature-model-audit/execute-20260714T103423926402Z-task-v6-literature-model-audit/pdf_text/becache_2023.txt",
+        "artifacts/route_checks/task-v6-literature-model-audit/execute-20260714T103423926402Z-task-v6-literature-model-audit/pdf_text/becache_2021.txt"
+      ],
+      "verification_ids": [],
+      "agent_run_ids": [
+        "execute-20260714T103423926402Z-task-v6-literature-model-audit"
+      ],
+      "open_questions": [
+        "Read all thirteen mandated materials completely; establish the strict stretched-coordinate Maxwell--Debye model, traceability table, boundary/interface assumptions, and perfect-matching calculation."
+      ],
+      "next_actions": [],
+      "recent_fact_summaries": [],
+      "task_status_counts": {
+        "done": 1
+      },
+      "evidence_terms": [],
+      "explore_run_count": 0,
+      "last_explore_at": null,
+      "generated_by": "frontier_refresh",
+      "updated_at": "2026-07-14T11:35:40.893663Z",
+      "health": {
+        "frontier_id": "auto-v6-literature-model",
+        "title": "V6 Literature Model",
+        "status": "stale",
+        "fact_count": 0,
+        "blocker_count": 0,
+        "verified_count": 0,
+        "active_task_count": 0,
+        "ready_task_count": 0,
+        "artifact_count": 11,
+        "explore_run_count": 0,
+        "last_explore_at": null,
+        "cooldown_ok": true,
+        "explore_recommended": false,
+        "reason": "",
+        "recommended_focus": ""
+      }
+    },
+    {
+      "schema_version": "iteris.frontier_entry.v0",
+      "frontier_id": "auto-v6-machine-verification",
+      "title": "V6 Machine Verification",
+      "hypothesis": "Route inferred from facts, tasks, and artifacts matching `v6-machine-verification`.",
+      "summary": "0 fact(s), 0 blocker fact(s), 0 active task(s), 0 artifact(s).",
+      "status": "stale",
+      "fact_ids": [],
+      "blocker_fact_ids": [],
+      "task_ids": [
+        "task-v6-machine-verification"
+      ],
+      "active_tasks": [],
+      "blocked_tasks": [],
+      "artifact_paths": [],
+      "verification_ids": [],
+      "agent_run_ids": [],
+      "open_questions": [
+        "Create and run required Lean and SymPy verification artifacts for strict matching, Baffet remainder, nonlocal proxy derivatives, Schur identities, and random/adversarial tests."
+      ],
+      "next_actions": [],
+      "recent_fact_summaries": [],
+      "task_status_counts": {
+        "done": 1
+      },
+      "evidence_terms": [],
+      "explore_run_count": 0,
+      "last_explore_at": null,
+      "generated_by": "frontier_refresh",
+      "updated_at": "2026-07-14T11:35:40.893669Z",
+      "health": {
+        "frontier_id": "auto-v6-machine-verification",
+        "title": "V6 Machine Verification",
+        "status": "stale",
+        "fact_count": 0,
+        "blocker_count": 0,
+        "verified_count": 0,
+        "active_task_count": 0,
+        "ready_task_count": 0,
+        "artifact_count": 0,
+        "explore_run_count": 0,
+        "last_explore_at": null,
+        "cooldown_ok": true,
+        "explore_recommended": false,
+        "reason": "",
+        "recommended_focus": ""
+      }
+    },
+    {
+      "schema_version": "iteris.frontier_entry.v0",
+      "frontier_id": "auto-v6-nonlocal-re",
+      "title": "V6 Nonlocal Re",
+      "hypothesis": "Route inferred from facts, tasks, and artifacts matching `v6-nonlocal-re`.",
+      "summary": "0 fact(s), 0 blocker fact(s), 0 active task(s), 0 artifact(s).",
+      "status": "stale",
+      "fact_ids": [],
+      "blocker_fact_ids": [],
+      "task_ids": [
+        "task-v6-nonlocal-and-route-audit"
+      ],
+      "active_tasks": [],
+      "blocked_tasks": [],
+      "artifact_paths": [],
+      "verification_ids": [],
+      "agent_run_ids": [],
+      "open_questions": [
+        "Re-derive the Baffet remainder and fully audit elliptic nonlocal, local-cross-term, and Gramian/memory routes including finite-dimensional necessary tests."
+      ],
+      "next_actions": [],
+      "recent_fact_summaries": [],
+      "task_status_counts": {
+        "done": 1
+      },
+      "evidence_terms": [],
+      "explore_run_count": 0,
+      "last_explore_at": null,
+      "generated_by": "frontier_refresh",
+      "updated_at": "2026-07-14T11:35:40.893666Z",
+      "health": {
+        "frontier_id": "auto-v6-nonlocal-re",
+        "title": "V6 Nonlocal Re",
         "status": "stale",
         "fact_count": 0,
         "blocker_count": 0,

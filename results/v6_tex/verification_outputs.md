@@ -98,3 +98,11 @@ The file contains no `sorry`, `admit`, or custom axioms.  It checks:
 5. a sufficient `2 x 2` positive-definiteness theorem;
 6. `Y_+=Y_0` implies zero reflection coefficient;
 7. the local-cross-term derivative residual.
+
+Reproducibility note: the first adversarial Iteris fact verification exposed
+three Lean proof-script defects (`No goals to be solved` after two
+`field_simp` calls and a disjunction mismatch in the positivity proof).  Those
+defects were repaired.  The exact final-file rerun shown above then returned
+`EXIT_CODE=0` with empty Lean stdout/stderr.  The rejected verification is
+retained at
+`verification/results/verify-20260714T105405079580Z-fact-verify-fact-2d_maxwell_pml_energy_f.json`.

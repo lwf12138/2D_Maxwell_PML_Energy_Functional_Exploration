@@ -1,0 +1,38 @@
+{
+  "verification_report": {
+    "summary": "The core Level-B mathematical statement is largely supported within its stated conditional scope: the strict separated-profile primitive equivalence follows by multiplying the eliminated stretched Maxwell-Debye scalar equation by S_x S_y; the flat-interface matching calculation uses a fixed outgoing branch and gives equal admittance; the Baffet identity, R_sigma term, norm-equivalence caveats, edge/physical degeneracies, and pointwise Schur absorption are consistent with the written report, predecessor verified facts, rerun SymPy checks, and checked external anchors from Baffet 2019 and Joly 2012. The artifacts do not smuggle in finite-truncation reflectionlessness or unconditional all-profile monotonicity. However, the cited machine-verification evidence is false as currently stored: the report and verification_outputs.md claim the Lean file passes, but rerunning the stated Lake/Lean command in this workspace exits with errors. Because Lean/SymPy outputs are cited as evidence for the fact, the fact cannot be verified exactly as evidenced until the Lean artifact or the evidence claims are repaired.",
+    "critical_errors": [
+      {
+        "location": "results/v6_tex/verification_outputs.md:81; results/v6_tex/nonlocal_memory_strict_pml_report.md:367; results/v6_tex/nonlocal_memory_strict_pml_analysis.tex:42",
+        "issue": "These artifacts claim `cd lean_verification && lake env lean ../results/v6_tex/NonlocalMemoryStrictPML.lean` exits 0 and that the Lean file passes. Rerunning that exact command in the project exits 1 with Lean errors at `NonlocalMemoryStrictPML.lean:40:2` and `82:2` (`No goals to be solved`) and `99:33` (type mismatch using `hxy`). Thus the cited formal certificate is not reproducible and cannot support the fact as claimed."
+      }
+    ],
+    "gaps": []
+  },
+  "verdict": "wrong",
+  "repair_hints": "Fix `results/v6_tex/NonlocalMemoryStrictPML.lean` so the stated Lake command actually succeeds, then rerun it and update `results/v6_tex/verification_outputs.md` and the report. In particular, repair the two finished-proof/extra-tactic errors around lines 40 and 82 and the `two_by_two_positive_sufficient` proof around line 99. Alternatively, remove Lean from the cited support and explicitly downgrade the evidence to written derivation plus SymPy, then resubmit the fact with that narrower evidence statement.",
+  "checked_artifacts": [
+    "verification/agent_runs/verify-20260714T104946785581Z-fact-verify-fact-2d_maxwell_pml_energy_f/request.json",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-v6-strict-matching-level-b.md",
+    "results/v6_tex/nonlocal_memory_strict_pml_report.md",
+    "results/v6_tex/nonlocal_memory_strict_pml_analysis.tex",
+    "results/v6_tex/NonlocalMemoryStrictPML.lean",
+    "results/v6_tex/nonlocal_memory_strict_pml_sympy.py",
+    "results/v6_tex/verification_outputs.md",
+    "artifacts/references/v6_literature_model_audit.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-standard-stretched-pml-matching-and-1d-energy.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-baffet-primitive-stretched-debye-2d-energy.md",
+    "memory/facts/fact-2d_maxwell_pml_energy_functional_exploration-variable-baffet-remainder-small-gradient.md",
+    "verification/results/verify-20260620T064808296793Z-fact-the-standard-stretched-coordinate-m.json",
+    "verification/results/verify-20260620T072508563237Z-fact-a-baffet-type-time-primitive-standa.json",
+    "verification/results/verify-20260709T035701313438Z-fact-verify-the-variable-coefficient-baf.json",
+    "artifacts/route_checks/task-v6-literature-model-audit/execute-20260714T103423926402Z-task-v6-literature-model-audit/pdf_text/baffet_2019.txt",
+    "artifacts/route_checks/task-v6-literature-model-audit/execute-20260714T103423926402Z-task-v6-literature-model-audit/pdf_text/joly_2012.txt"
+  ],
+  "checked_fact_ids": [
+    "fact:2d_maxwell_pml_energy_functional_exploration:v6-strict-matching-level-b",
+    "fact:2d_maxwell_pml_energy_functional_exploration:standard-stretched-pml-matching-and-1d-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:baffet-primitive-stretched-debye-2d-energy",
+    "fact:2d_maxwell_pml_energy_functional_exploration:variable-baffet-remainder-small-gradient"
+  ]
+}

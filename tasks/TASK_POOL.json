@@ -1,7 +1,7 @@
 {
   "schema_version": "iteris.task_pool.v0",
   "project_id": "2d_maxwell_pml_energy_functional_exploration",
-  "updated_at": "2026-07-14T10:48:07.574379Z",
+  "updated_at": "2026-07-14T11:35:41.163903Z",
   "active_frontier": "",
   "tasks": [
     {
@@ -402,10 +402,11 @@
       ],
       "assigned_agent_run": null,
       "notes": [
-        "Markdown, TeX, PDF, build log, machine files, and claims ledger created; TeX compiled cleanly twice."
+        "Markdown, TeX, PDF, build log, machine files, and claims ledger created; TeX compiled cleanly twice.",
+        "Both v6 facts verified and promoted; report fact index updated; starting assembly verification."
       ],
       "created_at": "2026-07-14T10:33:42.895522Z",
-      "updated_at": "2026-07-14T10:48:07.574371Z"
+      "updated_at": "2026-07-14T11:35:41.163895Z"
     }
   ]
 }
