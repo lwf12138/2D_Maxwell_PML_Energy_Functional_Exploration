@@ -1,0 +1,17 @@
+{
+  "command": [
+    "sh",
+    "-c",
+    "command -v lean; command -v lake; command -v elan; elan --version; elan toolchain list; lean +leanprover/lean4:v4.31.0 --version; lake +leanprover/lean4:v4.31.0 --version"
+  ],
+  "command_display": "sh -c 'command -v lean; command -v lake; command -v elan; elan --version; elan toolchain list; lean +leanprover/lean4:v4.31.0 --version; lake +leanprover/lean4:v4.31.0 --version'",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/bin/sh",
+  "started_at": "2026-10-06T15:00:10.961344+08:00",
+  "output_file": "20261006T150010_961344_candidate_environment.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-06T15:00:11.304163+08:00",
+  "elapsed_seconds": 0.343
+}

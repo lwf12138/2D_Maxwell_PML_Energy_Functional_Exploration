@@ -1,0 +1,17 @@
+{
+  "command": [
+    "python3",
+    "-c",
+    "from pathlib import Path; import json,subprocess; scalar=Path(\"/Users/wcli/Desktop/资料/graduate_student/博/Lean_study/ScalarDissipation\"); old=Path.cwd().parent/\"lean_verification\"; print(\"Reference configs (read-only):\");\nfor d in [scalar,old]:\n print(str(d)); print((d/\"lean-toolchain\").read_text().strip()); m=json.loads((d/\"lake-manifest.json\").read_text()); print(next(p for p in m[\"packages\"] if p[\"name\"]==\"mathlib\"));\np=scalar/\".lake/packages/mathlib\"; subprocess.run([\"git\",\"-C\",str(p),\"rev-parse\",\"HEAD\",\"v4.31.0^{commit}\"],check=True); print((p/\"lean-toolchain\").read_text())"
+  ],
+  "command_display": "python3 -c 'from pathlib import Path; import json,subprocess; scalar=Path(\"/Users/wcli/Desktop/资料/graduate_student/博/Lean_study/ScalarDissipation\"); old=Path.cwd().parent/\"lean_verification\"; print(\"Reference configs (read-only):\");\nfor d in [scalar,old]:\n print(str(d)); print((d/\"lean-toolchain\").read_text().strip()); m=json.loads((d/\"lake-manifest.json\").read_text()); print(next(p for p in m[\"packages\"] if p[\"name\"]==\"mathlib\"));\np=scalar/\".lake/packages/mathlib\"; subprocess.run([\"git\",\"-C\",str(p),\"rev-parse\",\"HEAD\",\"v4.31.0^{commit}\"],check=True); print((p/\"lean-toolchain\").read_text())'",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/usr/bin/python3",
+  "started_at": "2026-10-06T15:03:10.215210+08:00",
+  "output_file": "20261006T150310_215210_reference_versions.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-06T15:03:10.252269+08:00",
+  "elapsed_seconds": 0.037
+}

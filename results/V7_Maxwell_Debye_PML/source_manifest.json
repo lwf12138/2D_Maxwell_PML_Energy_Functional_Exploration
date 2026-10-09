@@ -1,0 +1,56 @@
+{
+  "date": "2026-09-24",
+  "uploaded_archive": "2D_Maxwell_PML_Energy_Functional_Exploration_副本.zip",
+  "scope": "Core original/V6/review inputs were read; the archive was not treated as entirely verified. No archived code was executed. No source files were modified.",
+  "inspected_inputs": [
+    {
+      "relative_path": "sources/energy_functional_problem.tex",
+      "bytes": 13541,
+      "sha256": "1e09c1b702ced748ff0c4598ce2f578a8d55dd2f8b31599c7584b7d28bcf0e72",
+      "role": "research input"
+    },
+    {
+      "relative_path": "results/v6_tex/nonlocal_memory_strict_pml_analysis.tex",
+      "bytes": 18616,
+      "sha256": "418fbd9fda59e1e5b4dc9cb9b51c204843de06ad83caee8e7ed9e4bc83b1bec6",
+      "role": "research input"
+    },
+    {
+      "relative_path": "results/v6_tex/nonlocal_memory_strict_pml_report.md",
+      "bytes": 18760,
+      "sha256": "51283464aa453a51c22da841df6e547728350b767cf71e79750b628c10155198",
+      "role": "research input"
+    },
+    {
+      "relative_path": "results/v6_mathematical_completeness_review_20260924.md",
+      "bytes": 12182,
+      "sha256": "70174234f025aa23760cc18f0b429444116fbcdc3c42130bdcaff5f451531648",
+      "role": "research input"
+    },
+    {
+      "relative_path": "results/energy_functional_report.md",
+      "bytes": 9000,
+      "sha256": "c88d64dd76adadffce2fdeafbd9e9ff8f8fc6ebb12d79b4cf98cbc0a054c20ce",
+      "role": "research input"
+    },
+    {
+      "relative_path": "references/Baffet τ¡ë - 2019 - Energy Decay and Stability of a Perfectly Matched Layer For the Wave Equation.pdf",
+      "bytes": 3976867,
+      "sha256": "b8485ab2ec38a9b48bc918ad7ffa335265b0b35376f2f9ff3c3e678e9005e013",
+      "role": "primary paper checked; not redistributed"
+    },
+    {
+      "relative_path": "references/Be╠ücache τ¡ë - 2023 - Convergence analysis of time-domain PMLS for 2D electromagnetic wave propagation in dispersive waveg.pdf",
+      "bytes": 2082389,
+      "sha256": "b0e5aeac5334e4991354e3a2ff2e73ab4a4256d8edff6482dfbdcf280e099558",
+      "role": "primary paper checked; not redistributed"
+    }
+  ],
+  "additional_primary_source": {
+    "title": "Ludvigsson–Duru–Kreiss 2022",
+    "version": "arXiv:2206.08507v1",
+    "url": "https://arxiv.org/pdf/2206.08507v1",
+    "checked_sections": "equations (1)–(6), Theorem 1 at page 9, discussion at page 11"
+  },
+  "verification_scope": "Exact symbolic identities and parameter checks only; PDE proof is in the manuscript. No Lean run."
+}

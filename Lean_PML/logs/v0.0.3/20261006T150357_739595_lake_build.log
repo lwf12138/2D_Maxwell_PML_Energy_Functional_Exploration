@@ -1,0 +1,5 @@
+✔ [1963/1967] Built LeanPML.Tutorial.LocalEnergy (8.5s)
+✔ [1964/1967] Built LeanPML (1.6s)
+ℹ [1966/1967] Built Audit (1.6s)
+info: Audit.lean:12:0: 'LeanPML.Tutorial.hasDerivAt_energy' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (1967 jobs).

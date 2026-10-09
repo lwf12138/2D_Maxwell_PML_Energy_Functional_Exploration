@@ -1,0 +1,17 @@
+{
+  "command": [
+    "python3",
+    "-c",
+    "from pathlib import Path; import hashlib,json; root=Path.cwd(); files=[root/\"ROADMAP_lean_PML_revised.md\",*sorted((root/\"docs\").glob(\"*\")),Path(\"/Users/wcli/.elan/settings.toml\")]; scalar=Path(\"/Users/wcli/Desktop/资料/graduate_student/博/Lean_study/ScalarDissipation\"); old=root.parent/\"lean_verification\"; files += [d/n for d in (scalar,old) for n in (\"lean-toolchain\",\"lakefile.toml\",\"lake-manifest.json\")]; snapshot={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in files if p.is_file()}; out=root/\"logs/v0.0.3/input_hashes.json\"; out.write_text(json.dumps(snapshot,ensure_ascii=False,indent=2)+\"\\n\"); print(out.read_text()); agents=[str(p/\"AGENTS.md\") for p in [root,*root.parents] if (p/\"AGENTS.md\").is_file()]; print(\"Applicable AGENTS.md:\",agents)"
+  ],
+  "command_display": "python3 -c 'from pathlib import Path; import hashlib,json; root=Path.cwd(); files=[root/\"ROADMAP_lean_PML_revised.md\",*sorted((root/\"docs\").glob(\"*\")),Path(\"/Users/wcli/.elan/settings.toml\")]; scalar=Path(\"/Users/wcli/Desktop/资料/graduate_student/博/Lean_study/ScalarDissipation\"); old=root.parent/\"lean_verification\"; files += [d/n for d in (scalar,old) for n in (\"lean-toolchain\",\"lakefile.toml\",\"lake-manifest.json\")]; snapshot={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in files if p.is_file()}; out=root/\"logs/v0.0.3/input_hashes.json\"; out.write_text(json.dumps(snapshot,ensure_ascii=False,indent=2)+\"\\n\"); print(out.read_text()); agents=[str(p/\"AGENTS.md\") for p in [root,*root.parents] if (p/\"AGENTS.md\").is_file()]; print(\"Applicable AGENTS.md:\",agents)'",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/usr/bin/python3",
+  "started_at": "2026-10-06T15:01:30.026848+08:00",
+  "output_file": "20261006T150130_026848_input_snapshot.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-06T15:01:30.058040+08:00",
+  "elapsed_seconds": 0.031
+}

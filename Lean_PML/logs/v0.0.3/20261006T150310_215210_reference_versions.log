@@ -1,0 +1,11 @@
+fabf563a7c95a166b8d7b6efca11c8b4dc9d911f
+fabf563a7c95a166b8d7b6efca11c8b4dc9d911f
+Reference configs (read-only):
+/Users/wcli/Desktop/资料/graduate_student/博/Lean_study/ScalarDissipation
+leanprover/lean4:v4.31.0
+{'url': 'https://github.com/leanprover-community/mathlib4.git', 'type': 'git', 'subDir': None, 'scope': 'leanprover-community', 'rev': 'fabf563a7c95a166b8d7b6efca11c8b4dc9d911f', 'name': 'mathlib', 'manifestFile': 'lake-manifest.json', 'inputRev': 'v4.31.0', 'inherited': False, 'configFile': 'lakefile.lean'}
+/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/lean_verification
+leanprover/lean4:v4.31.0
+{'url': 'https://github.com/leanprover-community/mathlib4', 'type': 'git', 'subDir': None, 'scope': 'leanprover-community', 'rev': 'fabf563a7c95a166b8d7b6efca11c8b4dc9d911f', 'name': 'mathlib', 'manifestFile': 'lake-manifest.json', 'inputRev': 'v4.31.0', 'inherited': False, 'configFile': 'lakefile.lean'}
+leanprover/lean4:v4.31.0
+

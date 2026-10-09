@@ -1,0 +1,16 @@
+{
+  "command": [
+    "lake",
+    "build"
+  ],
+  "command_display": "lake build",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-06T15:03:57.739595+08:00",
+  "output_file": "20261006T150357_739595_lake_build.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-06T15:04:11.303526+08:00",
+  "elapsed_seconds": 13.564
+}

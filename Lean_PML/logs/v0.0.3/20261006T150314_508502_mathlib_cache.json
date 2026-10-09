@@ -1,0 +1,21 @@
+{
+  "command": [
+    "lake",
+    "exe",
+    "cache",
+    "get",
+    "Mathlib.Analysis.Calculus.Deriv.Pow",
+    "Mathlib.Analysis.Calculus.Deriv.Mul",
+    "Mathlib.Tactic.Ring"
+  ],
+  "command_display": "lake exe cache get Mathlib.Analysis.Calculus.Deriv.Pow Mathlib.Analysis.Calculus.Deriv.Mul Mathlib.Tactic.Ring",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-06T15:03:14.508502+08:00",
+  "output_file": "20261006T150314_508502_mathlib_cache.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-06T15:03:28.919400+08:00",
+  "elapsed_seconds": 14.412
+}

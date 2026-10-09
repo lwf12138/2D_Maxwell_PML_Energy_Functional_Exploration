@@ -1,0 +1,13 @@
+general constant-shift spatial identity: 0
+general constant-shift Debye identity: 0
+general constant-shift electric identity: 0
+compatibility-reduced polarization quadratic: 0
+V6 polarization determinant: 2*a0**3*tau + 2*a0**2*b0*tau**2 + a0*b0*tau - b0**2*tau**2 + b0
+magnetic mapping invariants: 0, 0
+example K= 48/pi**2 = 4.863416814832213
+example c= 1/128 S= 1/512 c_star= 0.00856736493150118
+coercivity loss 4*mu*A*c^2*C_P^2= 0.00014841970260108073
+electric E absorption: K*S^2= 1.855246282513509e-05
+Debye Pt absorption ratio= 0.91189065278104
+Debye Ptt absorption ratio= 0.1875
+ALL EXACT ALGEBRA CHECKS PASSED

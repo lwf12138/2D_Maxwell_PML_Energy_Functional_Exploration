@@ -10,3 +10,6 @@ __pycache__/
 # Local-only logs
 .iteris/logs/
 .iteris/codex_home/
+
+# macOS Finder metadata (local only)
+.DS_Store

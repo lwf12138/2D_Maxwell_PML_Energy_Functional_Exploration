@@ -1,0 +1,17 @@
+{
+  "command": [
+    "python3",
+    "-c",
+    "from pathlib import Path; import json,subprocess; m=json.loads(Path(\"lake-manifest.json\").read_text()); print(\"root:\",m[\"name\"]); print(\"project toolchain:\",Path(\"lean-toolchain\").read_text().strip());\nfor p in m[\"packages\"]:\n d=Path(\".lake/packages\")/p[\"name\"]; head=subprocess.check_output([\"git\",\"-C\",str(d),\"rev-parse\",\"HEAD\"],text=True).strip(); assert head==p[\"rev\"],p[\"name\"]; print(p[\"name\"],\"inputRev=\",p.get(\"inputRev\"),\"resolved=\",p[\"rev\"],\"checkout=\",head);\np=Path(\".lake/packages/mathlib\"); tag=subprocess.check_output([\"git\",\"-C\",str(p),\"rev-parse\",\"v4.31.0^{commit}\"],text=True).strip(); assert tag==\"fabf563a7c95a166b8d7b6efca11c8b4dc9d911f\"; assert (p/\"lean-toolchain\").read_text()==Path(\"lean-toolchain\").read_text(); print(\"mathlib v4.31.0 tag and toolchain match\")"
+  ],
+  "command_display": "python3 -c 'from pathlib import Path; import json,subprocess; m=json.loads(Path(\"lake-manifest.json\").read_text()); print(\"root:\",m[\"name\"]); print(\"project toolchain:\",Path(\"lean-toolchain\").read_text().strip());\nfor p in m[\"packages\"]:\n d=Path(\".lake/packages\")/p[\"name\"]; head=subprocess.check_output([\"git\",\"-C\",str(d),\"rev-parse\",\"HEAD\"],text=True).strip(); assert head==p[\"rev\"],p[\"name\"]; print(p[\"name\"],\"inputRev=\",p.get(\"inputRev\"),\"resolved=\",p[\"rev\"],\"checkout=\",head);\np=Path(\".lake/packages/mathlib\"); tag=subprocess.check_output([\"git\",\"-C\",str(p),\"rev-parse\",\"v4.31.0^{commit}\"],text=True).strip(); assert tag==\"fabf563a7c95a166b8d7b6efca11c8b4dc9d911f\"; assert (p/\"lean-toolchain\").read_text()==Path(\"lean-toolchain\").read_text(); print(\"mathlib v4.31.0 tag and toolchain match\")'",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/usr/bin/python3",
+  "started_at": "2026-10-06T15:03:28.832509+08:00",
+  "output_file": "20261006T150328_832509_dependency_lock.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-06T15:03:28.995259+08:00",
+  "elapsed_seconds": 0.161
+}

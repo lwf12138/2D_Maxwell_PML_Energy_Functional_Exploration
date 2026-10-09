@@ -1,0 +1,9 @@
+已记录 41 个受保护文件的初始 SHA-256。
+修改前快照: logs/v0.1.1/before_README.md
+修改前快照: logs/v0.1.1/before_PROGRESS.md
+修改前快照: logs/v0.1.1/before_LeanPML.lean
+修改前快照: logs/v0.1.1/before_Audit.lean
+适用 AGENTS.md:
+[]
+固定工具链: leanprover/lean4:v4.31.0
+当前路线图哈希: 7514ec9ef9f4e37e0945feb9b5d702e15318c6bcf7cde9c00ea3d6ab05045d83

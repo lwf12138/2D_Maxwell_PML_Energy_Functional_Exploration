@@ -1,0 +1,16 @@
+✔ [2110/2114] Built LeanPML.Tutorial.ScalarEnergy (4.0s)
+✔ [2111/2114] Built LeanPML (1.8s)
+ℹ [2113/2114] Built Audit (2.1s)
+info: Audit.lean:13:0: 'LeanPML.Tutorial.hasDerivAt_energy' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:15:0: 'LeanPML.Time.antitoneOn_Icc_of_hasDerivAt_nonpos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:16:0: 'LeanPML.Time.antitoneOn_Icc_self' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:18:0: 'LeanPML.Tutorial.energy_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:19:0: 'LeanPML.Tutorial.continuousOn_energy' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:20:0: 'LeanPML.Tutorial.hasDerivAt_energy_on_Ioo' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:21:0: 'LeanPML.Tutorial.energy_deriv_nonpos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:22:0: 'LeanPML.Tutorial.antitoneOn_energy_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:23:0: 'LeanPML.Tutorial.antitoneOn_energy' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:24:0: 'LeanPML.Tutorial.energy_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:26:0: 'LeanPML.Tutorial.exp_solves_negative_damping' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:27:0: 'LeanPML.Tutorial.negative_damping_counterexample' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (2114 jobs).

@@ -1,0 +1,9 @@
+ℹ [23/23] Replayed cache:exe
+info: stderr:
+ld64.lld: warning: directory not found for option -L/usr/local/lib
+Decompressing 145 already-cached file(s) (1945 already decompressed)
+Current branch: HEAD
+Using cache (Azure) from origin: (some leanprover-community/mathlib4)
+No files to download
+Decompressed 145 already-cached file(s)
+Completed successfully in 1017 ms!
