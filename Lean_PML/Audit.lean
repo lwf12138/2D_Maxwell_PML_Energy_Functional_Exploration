@@ -47,3 +47,32 @@ import LeanPML
 #print axioms LeanPML.Debye.example_initial
 #print axioms LeanPML.Debye.example_energy_antitone
 #print axioms LeanPML.Debye.example_energy_bounds
+
+-- v0.1.3：时间常值接口、三个不变量、初始兼容、零吸收与非零实例。
+#print axioms LeanPML.Time.eq_initial_on_Icc_zero
+#print axioms LeanPML.Time.eq_initial_of_hasDerivAt_zero
+#print axioms LeanPML.PML.hasDerivAt_CD_zero
+#print axioms LeanPML.PML.hasDerivAt_CZ1_zero
+#print axioms LeanPML.PML.hasDerivAt_CZ2_zero
+#print axioms LeanPML.PML.continuousOn_CD
+#print axioms LeanPML.PML.continuousOn_CZ1
+#print axioms LeanPML.PML.continuousOn_CZ2
+#print axioms LeanPML.PML.CD_eq_initial
+#print axioms LeanPML.PML.CZ1_eq_initial
+#print axioms LeanPML.PML.CZ2_eq_initial
+#print axioms LeanPML.PML.CD_compatibility
+#print axioms LeanPML.PML.CZ1_compatibility
+#print axioms LeanPML.PML.CZ2_compatibility
+#print axioms LeanPML.PML.Z1_eq_initial_of_zero_absorption
+#print axioms LeanPML.PML.Z2_eq_initial_of_zero_absorption
+#print axioms LeanPML.PML.Z1_zero_of_zero_absorption
+#print axioms LeanPML.PML.Z2_zero_of_zero_absorption
+#print axioms LeanPML.PML.hasDerivAt_exampleU
+#print axioms LeanPML.PML.hasDerivAt_exampleQ
+#print axioms LeanPML.PML.hasDerivAt_exampleZ1
+#print axioms LeanPML.PML.hasDerivAt_exampleZ2
+#print axioms LeanPML.PML.example_continuous
+#print axioms LeanPML.PML.example_polarization
+#print axioms LeanPML.PML.example_initial_compatibility
+#print axioms LeanPML.PML.example_nonzero_initial
+#print axioms LeanPML.PML.example_compatibility_on_Icc

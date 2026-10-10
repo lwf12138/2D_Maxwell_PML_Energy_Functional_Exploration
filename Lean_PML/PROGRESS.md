@@ -1,3 +1,120 @@
+# LeanPML 当前进度：v0.1.3
+
+用途：登记“真实时间不变量与模型接口练习”的实际实现、验证和边界，便于对照中文代码学习。更新日期：2026-10-10（Asia/Shanghai）。本节之后完整保留 v0.1.2 及更早进度原文，历史章节中的“本轮”“下一阶段”仅指其当时状态。
+
+**v0.1.3 已完成。** 默认构建、独立公理审计及非零正式实例均已实际通过；本轮没有进入 v0.2.1。
+
+## 交付与依赖
+
+- 新增 [Time/Constancy.lean](LeanPML/Time/Constancy.lean)：2 条真实时间常值定理，复用既有 `LeanPML.Time.antitoneOn_Icc_of_hasDerivAt_nonpos`；明确处理 $T=0$。
+- 新增 [PML/TimeInvariants.lean](LeanPML/PML/TimeInvariants.lean)：7 个定义、25 条定理。中文批注覆盖对象、真实求导、方程代入、区间常值、兼容保持、零吸收与非零实例。
+- [LeanPML.lean](LeanPML.lean) 增加两个正式导入；[Audit.lean](Audit.lean) 保留旧 32 条审计，增加全部 27 条新定理的审计，共 59 条。
+- [README.md](README.md) 提供假设表、公式推导、声明索引、阅读顺序、InfoView 操作、复现命令及 PML 对应范围。
+- 固定配置、既有 4 个证明模块、日志脚本、合同、清单与旧阶段日志保留；修改前 README、PROGRESS、入口和 Audit 原文保存在 [本阶段日志目录](logs/v0.1.3)。
+
+固定环境仍为 Lean `v4.31.0`（提交 `68218e876d2a38b1985b8590fff244a83c321783`）、Lake `5.0.0-src+68218e8`、mathlib `v4.31.0`（提交 `fabf563a7c95a166b8d7b6efca11c8b4dc9d911f`）。Lake 包版本 `0.0.3` 是原有工程元数据，不是研究阶段号。本轮未运行 `lake update`、安装工具或改变全局默认工具链。
+
+## 实际命题、假设和用途
+
+固定一个空间点，令 $u,q,E,P,Z_1,Z_2:\mathbb R\to\mathbb R$，$\epsilon,\kappa,\tau,b$ 是实常参数。恒等式无需符号条件，故覆盖物理范围 $\epsilon,\kappa,\tau>0,b\ge0$；未改变模型合同，也未要求 $b$ 在空间为常数。
+
+三个定义为
+
+$$
+C_D=q+\tau P-\kappa u,\qquad C_{z1}=Z_1+\epsilon bu,\qquad C_{z2}=Z_2+bq.
+$$
+
+| 保持定理（前缀 LeanPML.PML） | 连续性输入 | 内部真实方程输入 |
+|---|---|---|
+| `CD_eq_initial` | $u,q,P$ 在 $[0,T]$ 连续 | $u'=E,\ q'=P,\ \tau P'+P=\kappa E$ |
+| `CZ1_eq_initial` | $u,Z_1$ 在 $[0,T]$ 连续 | $u'=E,\ Z_1'=-\epsilon bE$ |
+| `CZ2_eq_initial` | $q,Z_2$ 在 $[0,T]$ 连续 | $q'=P,\ Z_2'=-bP$ |
+
+上述方程只要求 $t\in(0,T)$；全部以 `HasDerivAt` 输入，极化导数值通过 `∃ dP, HasDerivAt P dP t ∧ ...` 绑定到实际函数。另输入 $T\ge0,t\in[0,T]$，输出对应的 $C(t)=C(0)$。不输入目标零导数或全时段兼容，不增加 $E'$、$E$ 连续性、$\epsilon E'=-P'$ 或磁场条件。
+
+证明依赖依次为：
+
+1. `hasDerivAt_CD_zero`、`hasDerivAt_CZ1_zero`、`hasDerivAt_CZ2_zero`：用真实线性求导规则和原方程得到零导数；`ring` 仅负责代数。
+2. 三条 `continuousOn_*`：由参与该不变量的函数连续性得到不变量连续性，适用于任意集合。
+3. `Time.eq_initial_of_hasDerivAt_zero`：一般连续性及内部零导数 → $F,-F$ 单调不增 → $F(t)=F(0)$。单点分支调用 `eq_initial_on_Icc_zero`，不需要任何导数证据。
+4. 三条 `*_eq_initial`：把上述实际推导交给一般时间接口。
+5. 三条 `*_compatibility`：仅追加初值 $C(0)=0$，得到 $q+\tau P=\kappa u$、$Z_1=-\epsilon bu$、$Z_2=-bq$。
+6. 两条 `*_eq_initial_of_zero_absorption` 及两条 `*_zero_of_zero_absorption`：实例化 $b=0$，得到 $Z_i$ 保持初值及零初值保持。没有除以 $b$；只要求对应 $Z_i$ 的连续性与内部真实零导数。
+
+没有要求端点的普通双侧导数。函数的类型定义于实轴，不等于在实轴全域假设原方程。
+
+## 非零实例的验证内容
+
+复用 `LeanPML.Debye.exampleE`、`exampleP`，取 $\epsilon=\kappa=\tau=b=1$：
+
+$$
+E=e^{-2t},\quad P=-e^{-2t},\quad
+u=(1-e^{-2t})/2,\quad q=(1+e^{-2t})/2,\quad Z_1=-u,\quad Z_2=-q.
+$$
+
+4 条新 `hasDerivAt_example*` 证明 $u,q,Z_1,Z_2$ 的真实导数；`example_continuous` 给出四函数连续性；旧 Debye 模块提供 $E,P$ 的导数和连续性。`example_polarization` 从真实 $P'$ 证明本阶段所需极化方程，不输入另一条教学子系统方程。
+
+`example_initial_compatibility` 证明三个不变量的初值为零。`example_nonzero_initial` 精确证明 $P(0)=-1,q(0)=1,Z_2(0)=-1,q(0)\ne0$。原变量 $P,Z_2$ 非零，因此“零不变量”不等于“所有变量为零”。
+
+`example_compatibility_on_Icc` 的三个分支分别调用三个一般兼容保持定理，交付任意 $T\ge0$、$t\in[0,T]$ 的兼容关系。不是只做数值检查，也没有用定义的全时段代数化简替代主定理。实例已随默认构建和独立审计通过。
+
+## 命令与真实验证证据
+
+所有下列命令的工作目录均为：
+
+~~~text
+/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML
+~~~
+
+记录器是原有 [scripts/run_logged.py](scripts/run_logged.py)，调用形式为 `python3 scripts/run_logged.py --stage v0.1.3 标签 命令...`。每份 `.log` 是完整合并输出，同名 `.json` 保存命令、工作目录、执行时间、实际程序路径及退出码。
+
+| 实际动作／命令 | 退出码 | 完整输出与元数据 |
+|---|---:|---|
+| 输入快照 `python3 -c ...` | 0 | [输出](logs/v0.1.3/20261010T105711_227998_input_snapshot.log)／[完整命令和元数据](logs/v0.1.3/20261010T105711_227998_input_snapshot.json) |
+| `lake env lean --version` | 0 | [输出](logs/v0.1.3/20261010T105904_141610_lean_version.log)／[元数据](logs/v0.1.3/20261010T105904_141610_lean_version.json) |
+| `lake --version` | 0 | [输出](logs/v0.1.3/20261010T105904_141608_lake_version.log)／[元数据](logs/v0.1.3/20261010T105904_141608_lake_version.json) |
+| 首轮 `lake build` | 1 | [失败输出](logs/v0.1.3/20261010T110106_690944_lake_build.log)／[元数据](logs/v0.1.3/20261010T110106_690944_lake_build.json) |
+| 修复后 `lake build` | 0 | [成功输出](logs/v0.1.3/20261010T110154_522300_lake_build_retry.log)／[元数据](logs/v0.1.3/20261010T110154_522300_lake_build_retry.json) |
+| `lake env lean Audit.lean` | 0 | [完整公理输出](logs/v0.1.3/20261010T110440_468487_axioms_audit.log)／[元数据](logs/v0.1.3/20261010T110440_468487_axioms_audit.json) |
+
+首轮失败发生在 `Time/Constancy.lean:54`：对取负求导结果使用 `simpa only [neg_zero]` 后，Lean 报 `HasDerivAt (-F) 0 s` 与目标显式函数的类型匹配错误。改为 `(hderiv s hs).neg.congr_deriv (neg_zero : -(0 : ℝ) = 0)`，直接替换导数值，重建通过。数学假设、时间范围和结论均未改变。真实失败日志保留。
+
+最终默认构建输出 `Build completed successfully (2117 jobs).`，并明确列出新常值模块、新 PML 模块、`LeanPML` 与 `Audit`。正式导入链共 6 个模块，两个根入口都属于默认目标。
+
+独立审计共 59 条记录，包括新增 27 条；全部依赖仅为 `[propext, Classical.choice, Quot.sound]`。它们是标准基础公理，不是证明占位。没有 `sorryAx` 或自行引入的占位公理。
+
+补充文件与证据检查：首次检查器把 Audit 注释中的示意 `#print axioms` 也计入声明，导致计数断言失败；这是检查器的注释过滤问题，并非 Lean 构建或公理审计失败。修正为先去掉注释后计数，再次检查通过。保留 [检查器失败输出](logs/v0.1.3/20261010T111133_795594_final_checks.log)／[完整命令](logs/v0.1.3/20261010T111133_795594_final_checks.json)，以及 [最终检查输出](logs/v0.1.3/20261010T111152_959705_final_checks_retry.log)／[完整命令与退出码 0](logs/v0.1.3/20261010T111152_959705_final_checks_retry.json)。
+
+最终检查确认：91 项受保护文件字节未变，旧 PROGRESS 全文保留；6 个模块和两个入口的构建产物存在，59 条定理与审计逐项对应；全部 9 个依赖检出提交与锁定文件一致；正式代码无证明占位及自定义公理，新增文档链接有效、显示数学与代码分隔成对，v0.2.1 模块未创建。已保存 [交付文件哈希](logs/v0.1.3/verified_artifact_hashes.json)，覆盖已编译源码、README、配置及日志脚本；本 PROGRESS 的最后证据登记不计入该哈希表。
+
+## 来源核对、差异和阶段边界
+
+- 对照 [合同 §5.1–5.2](docs/model_contract.md)、[T02–T04](docs/theorem_inventory.md) 及 [scope](docs/scope.md) 核对符号和初值意义；这些文档与 v0.1.2 输入快照一致，未修改。
+- V7 正文 `results/V7_Maxwell_Debye_PML/V7_global_energy.md`（工程父目录下）的 SHA-256 仍为 `0a7f73a25cb119eeb75b3e7b3c3f2fbb3b319250f3354ed4dcad0ecff8eff4fb`，与来源清单一致。本阶段核对其 (2.4) 和兼容关系，不把此前纸面审查当成已完成的 Lean 证明。
+- 路线图当前 SHA-256 为 `ea0598a824d40ed1678b3b36e61a3329b9086625cc957839ca947b0acd6fb39e`，与 v0.1.2 快照中的 `f43c6bc2524262cd97ac4ee9a6768199c8fb5f3da39b732fe89b0b6c3a09d6c5` 不同。本轮按当前 v0.1.3 条目和用户指令实现，未直接沿用旧版本状态结论。
+- 具体状态差异：路线图第 474 行仍写 v0.1.2“待实现”，第 476–479 行任务已勾选；v0.1.3 第 488 行仍写“待实现”。[scope.md 第 124–126 行](docs/scope.md) 是 v0.0.2 的历史状态。它们的静态状态文字与后来构建进展不同，不影响本阶段数学假设；原文按要求保留，以本 PROGRESS 的实际证据登记当前完成情况。
+- T02 的时间积分提升未实现；T03 仅完成 V7 (2.4) 的三个固定空间点标量不变量，**没有整体标记五不变量条目完成**；T04 的八变量/primitive 双向等价仍未实现。
+- 两个磁辅助不变量 $C_x=Q_x-p\phi_y,C_y=Q_y+r\phi_x$、时间/空间导数交换、真实场空间、几乎处处意义和正则性、积分提升与原 PDE 对接均留待后续。
+- 当前允许任意初始常数的时间保持结论，没有扩展完整无源 PML 合同的兼容初值范围；也不包含一般解的存在唯一性或完整 PML 能量定理。
+
+## 复现、阅读与下一任务
+
+~~~sh
+cd '/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML'
+python3 scripts/run_logged.py --stage v0.1.3 lake_build lake build
+python3 scripts/run_logged.py --stage v0.1.3 axioms_audit lake env lean Audit.lean
+~~~
+
+先读 README 假设表，再读 Monotonicity → Constancy → TimeInvariants，最后看 Audit 和本记录。VS Code 打开整个工程，在 InfoView 中逐步看 `apply`、`rcases`、`congr_deriv`、`.trans hinit` 前后的目标，具体操作见 README。
+
+与 v0.1.2 的联系是实际极化方程、真实导数和闭区间分析接口；区别是 v0.1.2 得到能量非正导数与单调不增，本阶段得到线性不变量的零导数和兼容约束保持。本阶段不会新增能量严格递减结论。
+
+**下一阶段 v0.2.1 尚未开始。** 入口为 `PML/Coefficients.lean` 和 `PML/Weights.lean`：证明 $a=p+r,b=pr$ 的符号和精确小量估计，在零/单向/双向吸收分支定义权重，核验 $w_i$ 与 $\theta_i$ 的不同退化定义及界限。零吸收不能通过除以 $a$ 或 $b$ 跳过，也不能增加吸收正下界。本轮未创建这两个模块。
+
+---
+
+以下为此前进度原文，完整保留。
+
 # LeanPML 当前进度：v0.1.2
 
 用途：记录 Debye 时间子系统本阶段实际实现、验证和交接的范围。更新日期：2026-10-10（Asia/Shanghai）。下方 v0.1.1/v0.0.3 原文完整保留，其中“本轮”“下一阶段”等仅指历史日期。

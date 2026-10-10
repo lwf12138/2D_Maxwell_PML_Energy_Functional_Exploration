@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "<string>", line 56, in <module>
+AssertionError
+Protected files unchanged: 91 (old proofs/docs/logs, roadmap, pinned config, logger, external project config and elan settings).
+PROGRESS retains the complete previous text byte-for-byte.

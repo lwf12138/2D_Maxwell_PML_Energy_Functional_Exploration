@@ -1,0 +1,18 @@
+Protected files unchanged: 91 (old proofs/docs/logs, roadmap, pinned config, logger, external project config and elan settings).
+PROGRESS retains the complete previous text byte-for-byte.
+Formal build coverage: 6 modules + 2 root entries; all 8 .olean files present.
+Theorems: {"LeanPML/Debye/ScalarEnergy.lean": 20, "LeanPML/PML/TimeInvariants.lean": 25, "LeanPML/Time/Constancy.lean": 2, "LeanPML/Time/Monotonicity.lean": 2, "LeanPML/Tutorial/LocalEnergy.lean": 1, "LeanPML/Tutorial/ScalarEnergy.lean": 9, "LeanPML.lean": 0, "Audit.lean": 0}
+Audit coverage: all 59 theorems, including 27 new; no proof placeholders or custom axiom declarations in formal code.
+20261010T110106_690944_lake_build: command=lake build; cwd=/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML; exit=1
+20261010T110154_522300_lake_build_retry: command=lake build; cwd=/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML; exit=0
+20261010T110440_468487_axioms_audit: command=lake env lean Audit.lean; cwd=/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML; exit=0
+All 59 independent audit results have exactly the standard dependency set: propext, Classical.choice, Quot.sound.
+All 9 dependency checkout revisions match the unchanged manifest.
+Roadmap v0.1.2 snapshot hash: f43c6bc2524262cd97ac4ee9a6768199c8fb5f3da39b732fe89b0b6c3a09d6c5
+Roadmap current hash: ea0598a824d40ed1678b3b36e61a3329b9086625cc957839ca947b0acd6fb39e
+Contract/theorem inventory/scope match v0.1.2; V7 source matches source_inventory.
+V7 source: /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy.md 0a7f73a25cb119eeb75b3e7b3c3f2fbb3b319250f3354ed4dcad0ecff8eff4fb
+v0.2.1 implementation files have not been created.
+New README/PROGRESS links exist; display math and code fences are paired.
+Saved verified_artifact_hashes.json (compiled formal sources, README, pinned configuration and logger).
+v0.1.3 final checks passed.
