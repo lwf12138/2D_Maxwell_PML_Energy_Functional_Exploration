@@ -110,3 +110,23 @@ import LeanPML
 #print axioms LeanPML.PML.vanishingAbsorption_eventually_small
 #print axioms LeanPML.PML.energyWeights_on_family
 #print axioms LeanPML.PML.energyWeights_unbounded
+
+-- v0.2.2：代数辅助、真实求导、约束消元、四组系数界和非零路径实例。
+#print axioms LeanPML.PML.electric_rate_identity
+#print axioms LeanPML.PML.hasDerivAt_electricEnergyAlong
+#print axioms LeanPML.PML.deriv_exampleU
+#print axioms LeanPML.PML.hasDerivAt_deriv_exampleU
+#print axioms LeanPML.PML.hasDerivAt_electricEnergyAlong_exampleU
+#print axioms LeanPML.PML.deriv_exampleU_zero
+#print axioms LeanPML.PML.polar_constraint_derivative
+#print axioms LeanPML.PML.polar_shifted_constraint
+#print axioms LeanPML.PML.polar_rate_algebra
+#print axioms LeanPML.PML.hasDerivAt_polarQuadratic
+#print axioms LeanPML.PML.hasDerivAt_polarEnergy
+#print axioms LeanPML.PML.hasDerivAt_polarEnergy_on_Ioo
+#print axioms LeanPML.PML.polarQuadratic_eq_reduced
+#print axioms LeanPML.PML.polarEnergy_eq_reduced
+#print axioms LeanPML.PML.polar_coefficients_bounds_of_local_conditions
+#print axioms LeanPML.PML.polar_coefficients_bounds_of_threshold
+#print axioms LeanPML.PML.example_polar_path_compatible
+#print axioms LeanPML.PML.hasDerivAt_example_polarEnergy

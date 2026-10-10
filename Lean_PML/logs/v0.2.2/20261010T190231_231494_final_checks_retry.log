@@ -1,0 +1,11 @@
+受保护的来源、旧代码、历史日志及配置：149 项字节未变。
+旧 PROGRESS 全文和旧 Audit 审计保持原样。
+10 个正式模块及两个入口均有 olean；109 条正式定理逐项进入公理审计。
+正式源码无 sorry/admit/custom axiom；默认目标为 LeanPML、Audit。
+实际默认构建/独立审计均退出 0；无编译警告；标准公理依赖：Classical.choice, Quot.sound, propext
+新增 9 个定义、18 条定理；系数片段完整进入正式模块，代数辅助有调用者；未建 v0.2.3 模块。
+9 个依赖检出提交均与 manifest 一致；Lean/mathlib 固定版本未变。
+新增文档的本地链接、数学分隔与 UTF-8 内容检查通过。
+指南列出的 19 个 mathlib 声明名称及准确源码行均已核对。
+VS Code 命令核验：[{"command": "lean4.restartFile", "category": "Lean 4: Server", "title": "Restart File", "description": "Restarts the Lean server for the file that is currently focused, refreshing the dependencies."}, {"command": "lean4.displayGoal", "category": "Lean 4: InfoView", "title": "Display Goal", "description": "Display the goal and any messages at the current position in the infoview.", "icon": {"dark": "./media/display-goal-dark.svg", "light": "./media/display-goal-light.svg"}}]
+已保存已验证交付文件哈希；PROGRESS 最终验收登记不纳入此表。

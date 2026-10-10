@@ -1,0 +1,18 @@
+LeanPML/PML/LocalElectric.lean:72:4: error: Type mismatch: After simplification, term
+  HasDerivAt.pow h_deriv_v 2
+ has type
+  @HasDerivAt ℝ DenselyNormedField.toNontriviallyNormedField ℝ Real.normedCommRing.toAddCommGroup
+    (NormedAlgebra.toNormedSpace ℝ).toModule PseudoMetricSpace.toUniformSpace.toTopologicalSpace ⋯ (deriv v ^ 2)
+    (↑2 * vDot * vDDot) t
+but is expected to have type
+  @HasDerivAt ℝ DenselyNormedField.toNontriviallyNormedField ℝ Real.instAddCommGroup Semiring.toModule
+    PseudoMetricSpace.toUniformSpace.toTopologicalSpace ⋯ (fun s => deriv v s ^ 2) (2 * vDot * vDDot) t
+LeanPML/PML/LocalElectric.lean:75:4: error: Type mismatch: After simplification, term
+  HasDerivAt.pow h_v 2
+ has type
+  @HasDerivAt ℝ DenselyNormedField.toNontriviallyNormedField ℝ Real.normedCommRing.toAddCommGroup
+    (NormedAlgebra.toNormedSpace ℝ).toModule PseudoMetricSpace.toUniformSpace.toTopologicalSpace ⋯ (v ^ 2)
+    (↑2 * v t * vDot) t
+but is expected to have type
+  @HasDerivAt ℝ DenselyNormedField.toNontriviallyNormedField ℝ Real.instAddCommGroup Semiring.toModule
+    PseudoMetricSpace.toUniformSpace.toTopologicalSpace ⋯ (fun s => v s ^ 2) (2 * v t * vDot) t

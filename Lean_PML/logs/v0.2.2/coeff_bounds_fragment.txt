@@ -1,0 +1,124 @@
+/-- V7 第 8 节 (8.2) 的全部四组点态系数界。
+这里先使用 (5.4) 给出的中间条件：非负吸收、幅度上界、`ac-b≥0` 和
+`cτ≤1/4`。它们在后续 `polar_coefficients_bounds_of_threshold` 中由原参数推导，
+不是最终入口额外要求的结论。正性允许对不等式乘以 `c,τ` 而不反向；
+没有除以 `a` 或 `b`，所以包括零吸收。
+输出仅是实数系数上下界；尚未证明整个二次型或空间能量的正定性。 -/
+theorem polar_coefficients_bounds_of_local_conditions (a b c τ : ℝ)
+    (ha_nonneg : 0 ≤ a) (hb_nonneg : 0 ≤ b)
+    (hc_pos : 0 < c) (hτ_pos : 0 < τ)
+    (ha_le_half : a ≤ c / 2) (hb_le_sixteenth : b ≤ c ^ 2 / 16)
+    (hac_sub_b_nonneg : 0 ≤ a * c - b)
+    (hcτ_le_quarter : c * τ ≤ 1 / 4) :
+    (3 / 4 ≤ polarCoeffAR a b c τ ∧ polarCoeffAR a b c τ ≤ 5 / 4) ∧
+      (0 ≤ 1 - a * τ - b * τ ^ 2 ∧ 1 - a * τ - b * τ ^ 2 ≤ 1) ∧
+      (0 ≤ polarCoeffG a b c τ ∧ polarCoeffG a b c τ ≤ (37 / 64) * c ^ 2) ∧
+      (0 ≤ b + a * c ∧ b + a * c ≤ (9 / 16) * c ^ 2) := by
+  -- 先把时间尺度归一化：x=cτ∈[0,1/4]。下面不引入隐藏的参数结构。
+  have hcτ_nonneg : 0 ≤ c * τ := mul_nonneg hc_pos.le hτ_pos.le
+  have hcτ_sq_le : (c * τ) ^ 2 ≤ (1 : ℝ) / 16 := by
+    -- 非负的 x≤1/4 蕴含 x²≤1/16。
+    nlinarith only [hcτ_nonneg, hcτ_le_quarter]
+  have haτ_nonneg : 0 ≤ a * τ := mul_nonneg ha_nonneg hτ_pos.le
+  have haτ_le : a * τ ≤ (1 : ℝ) / 8 := by
+    have haτ_le_half_cτ : a * τ ≤ (c / 2) * τ :=
+      mul_le_mul_of_nonneg_right ha_le_half hτ_pos.le
+    nlinarith only [haτ_le_half_cτ, hcτ_le_quarter]
+  have hbτ_sq_nonneg : 0 ≤ b * τ ^ 2 := mul_nonneg hb_nonneg (sq_nonneg τ)
+  have hbτ_sq_le : b * τ ^ 2 ≤ (1 : ℝ) / 256 := by
+    have hbτ_sq_le_scaled : b * τ ^ 2 ≤ (c ^ 2 / 16) * τ ^ 2 :=
+      mul_le_mul_of_nonneg_right hb_le_sixteenth (sq_nonneg τ)
+    nlinarith only [hbτ_sq_le_scaled, hcτ_sq_le]
+  have hacτ_sq_le : a * c * τ ^ 2 ≤ (1 : ℝ) / 32 := by
+    -- acτ²=(aτ)(cτ)，用已经得到的两个非负上界相乘。
+    have hproduct_le : (a * τ) * (c * τ) ≤ (1 / 8 : ℝ) * (1 / 4) :=
+      mul_le_mul haτ_le hcτ_le_quarter hcτ_nonneg (by norm_num)
+    nlinarith only [hproduct_le]
+  have hbcτ_cube_nonneg : 0 ≤ b * c * τ ^ 3 := by positivity
+  have hbcτ_cube_le : b * c * τ ^ 3 ≤ (1 : ℝ) / 1024 := by
+    have hproduct_le : (b * τ ^ 2) * (c * τ) ≤ (1 / 256 : ℝ) * (1 / 4) :=
+      mul_le_mul hbτ_sq_le hcτ_le_quarter hcτ_nonneg (by norm_num)
+    nlinarith only [hproduct_le]
+
+  -- A_R 下界保留 1-cτ；其余 aτ、(ac-b)τ²、bcτ³ 均非负。
+  have hpositive_gap_scaled : 0 ≤ (a * c - b) * τ ^ 2 :=
+    mul_nonneg hac_sub_b_nonneg (sq_nonneg τ)
+  have hAR_lower : (3 : ℝ) / 4 ≤ polarCoeffAR a b c τ := by
+    dsimp [polarCoeffAR]
+    nlinarith only [haτ_nonneg, hpositive_gap_scaled, hbcτ_cube_nonneg, hcτ_le_quarter]
+  have ha_sub_c_scaled_nonpos : (a - c) * τ ≤ 0 := by
+    have ha_sub_c_nonpos : a - c ≤ 0 := by linarith only [ha_le_half, hc_pos]
+    exact mul_nonpos_of_nonpos_of_nonneg ha_sub_c_nonpos hτ_pos.le
+  have hAR_upper : polarCoeffAR a b c τ ≤ (5 : ℝ) / 4 := by
+    dsimp [polarCoeffAR]
+    -- 丢弃非正的 (a-c)τ 与 -bτ²，再用 1+1/32+1/1024≤5/4。
+    nlinarith only [ha_sub_c_scaled_nonpos, hbτ_sq_nonneg, hacτ_sq_le, hbcτ_cube_le]
+
+  have hcross_lower : 0 ≤ 1 - a * τ - b * τ ^ 2 := by
+    nlinarith only [haτ_le, hbτ_sq_le]
+  have hcross_upper : 1 - a * τ - b * τ ^ 2 ≤ 1 := by
+    nlinarith only [haτ_nonneg, hbτ_sq_nonneg]
+
+  -- G 和 b+ac 的估计回到未归一化的 c²；不需要吸收的正下界。
+  have hac_nonneg : 0 ≤ a * c := mul_nonneg ha_nonneg hc_pos.le
+  have hac_le : a * c ≤ c ^ 2 / 2 := by
+    have hscaled_half : a * c ≤ (c / 2) * c :=
+      mul_le_mul_of_nonneg_right ha_le_half hc_pos.le
+    nlinarith only [hscaled_half]
+  have hone_add_cτ_nonneg : 0 ≤ 1 + c * τ := by linarith only [hcτ_nonneg]
+  have hone_add_cτ_le : 1 + c * τ ≤ (5 : ℝ) / 4 := by
+    linarith only [hcτ_le_quarter]
+  have hb_factor_le : b * (1 + c * τ) ≤ (c ^ 2 / 16) * (5 / 4) :=
+    mul_le_mul hb_le_sixteenth hone_add_cτ_le hone_add_cτ_nonneg
+      (div_nonneg (sq_nonneg c) (by norm_num))
+  have hG_lower : 0 ≤ polarCoeffG a b c τ := by
+    exact add_nonneg hac_nonneg (mul_nonneg hb_nonneg hone_add_cτ_nonneg)
+  have hG_upper : polarCoeffG a b c τ ≤ (37 / 64 : ℝ) * c ^ 2 := by
+    dsimp [polarCoeffG]
+    -- c²/2+(c²/16)(5/4)=(37/64)c²，保留论文的精确常数。
+    nlinarith only [hac_le, hb_factor_le]
+  have hpotential_lower : 0 ≤ b + a * c := add_nonneg hb_nonneg hac_nonneg
+  have hpotential_upper : b + a * c ≤ (9 / 16 : ℝ) * c ^ 2 := by
+    nlinarith only [hb_le_sixteenth, hac_le]
+  exact ⟨⟨hAR_lower, hAR_upper⟩, ⟨hcross_lower, hcross_upper⟩,
+    ⟨hG_lower, hG_upper⟩, ⟨hpotential_lower, hpotential_upper⟩⟩
+
+/-- 从 V7 (5.2)–(5.3) 的原始参数条件推出 (8.2) 全部四组系数界。
+材料正参数保证阈值与时间尺度界可用；吸收只要求非负、各自不超过 S，
+且 S≤c/4，保留 p=r=0、单向和双向吸收。
+本入口调用 v0.2.1 的阈值等价及 (5.4) 推论，而不把 (8.2) 当作独立假设。
+CP 在此仍只是正参数，尚未兑现空间 Poincaré 不等式；
+本定理的输出将供后续二次型/空间能量估计使用。 -/
+theorem polar_coefficients_bounds_of_threshold (ε κ τ μ CP p r S c : ℝ)
+    (hε_pos : 0 < ε) (hκ_pos : 0 < κ) (hτ_pos : 0 < τ)
+    (hμ_pos : 0 < μ) (hCP_pos : 0 < CP) (hc_pos : 0 < c)
+    (hc_le_threshold : c ≤ threshold ε κ τ μ CP)
+    (hp_nonneg : 0 ≤ p) (hr_nonneg : 0 ≤ r)
+    (hp_le_S : p ≤ S) (hr_le_S : r ≤ S) (hS_le : S ≤ c / 4) :
+    (3 / 4 ≤ polarCoeffAR (absorptionSum p r) (absorptionProduct p r) c τ ∧
+      polarCoeffAR (absorptionSum p r) (absorptionProduct p r) c τ ≤ 5 / 4) ∧
+      (0 ≤ 1 - absorptionSum p r * τ - absorptionProduct p r * τ ^ 2 ∧
+        1 - absorptionSum p r * τ - absorptionProduct p r * τ ^ 2 ≤ 1) ∧
+      (0 ≤ polarCoeffG (absorptionSum p r) (absorptionProduct p r) c τ ∧
+        polarCoeffG (absorptionSum p r) (absorptionProduct p r) c τ ≤ (37 / 64) * c ^ 2) ∧
+      (0 ≤ absorptionProduct p r + absorptionSum p r * c ∧
+        absorptionProduct p r + absorptionSum p r * c ≤ (9 / 16) * c ^ 2) := by
+  have ha_nonneg : 0 ≤ absorptionSum p r :=
+    absorptionSum_nonneg p r hp_nonneg hr_nonneg
+  have hb_nonneg : 0 ≤ absorptionProduct p r :=
+    absorptionProduct_nonneg p r hp_nonneg hr_nonneg
+  have ha_le_half : absorptionSum p r ≤ c / 2 :=
+    absorptionSum_le_half p r S c hp_le_S hr_le_S hS_le
+  have hb_le_sixteenth : absorptionProduct p r ≤ c ^ 2 / 16 :=
+    absorptionProduct_le_c_sq_sixteenth p r S c hp_nonneg hr_nonneg hp_le_S hr_le_S hS_le
+  have hac_sub_b_nonneg : 0 ≤ absorptionSum p r * c - absorptionProduct p r :=
+    absorptionSum_mul_sub_product_nonneg p r c hp_nonneg hr_nonneg ha_le_half
+  -- c_mul_tau_bounds 内部调用 le_threshold_iff_explicit，将论文阈值
+  -- 转为 8cAτ≤κ，再推出 cτ≤κ/(8A)<1/16<1/4。
+  have hcτ_le_quarter : c * τ ≤ (1 : ℝ) / 4 :=
+    (c_mul_tau_bounds ε κ τ μ CP c
+      hε_pos hκ_pos hτ_pos hμ_pos hCP_pos hc_pos hc_le_threshold).2.2.2
+  exact polar_coefficients_bounds_of_local_conditions
+    (absorptionSum p r) (absorptionProduct p r) c τ
+    ha_nonneg hb_nonneg hc_pos hτ_pos ha_le_half hb_le_sixteenth
+    hac_sub_b_nonneg hcτ_le_quarter

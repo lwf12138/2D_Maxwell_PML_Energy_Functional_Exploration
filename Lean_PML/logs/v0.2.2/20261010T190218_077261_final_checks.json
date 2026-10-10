@@ -1,0 +1,17 @@
+{
+  "stage": "v0.2.2",
+  "command": [
+    "python3",
+    "logs/v0.2.2/final_checks.py"
+  ],
+  "command_display": "python3 logs/v0.2.2/final_checks.py",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/usr/bin/python3",
+  "started_at": "2026-10-10T19:02:18.077261+08:00",
+  "output_file": "20261010T190218_077261_final_checks.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 1,
+  "status": "finished",
+  "ended_at": "2026-10-10T19:02:18.111523+08:00",
+  "elapsed_seconds": 0.034
+}

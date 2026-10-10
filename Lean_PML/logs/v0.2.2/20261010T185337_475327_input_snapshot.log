@@ -1,0 +1,26 @@
+Protected input files: 149
+V7 SHA256: 0a7f73a25cb119eeb75b3e7b3c3f2fbb3b319250f3354ed4dcad0ecff8eff4fb
+Roadmap SHA256: 77364bd8edd1c12feef48b8f6688faa379f62a7caa742baba0cbe41032d51f90
+Preexisting diff:
+diff --git a/Lean_PML/ROADMAP_lean_PML_revised.md b/Lean_PML/ROADMAP_lean_PML_revised.md
+index 0a95076..c959b63 100644
+--- a/Lean_PML/ROADMAP_lean_PML_revised.md
++++ b/Lean_PML/ROADMAP_lean_PML_revised.md
+@@ -528,10 +528,10 @@ $$
+ 
+ 证明时优先使用前述等价的小量不等式，避免早期引入 `min` 和平方根；在参数皆正的假设下，另证与此最小值表达式的等价性。
+ 
+-- [ ] 证明 $a=p+r\ge0$、$b=pr\ge0$、$a=0\Rightarrow p=r=0$、$a\le c/2$、$ac-b\ge0$。
+-- [ ] 在 $a>0$ 定义 $w_x=(c-r)/a,w_y=(c-p)/a$，证明 $w_i\ge3/2$；在 $a=0$ 使用显式分支。
+-- [ ] 单独定义第 9 节所用 $\theta_i$：$a>0$ 时 $\sigma_i/a$，$a=0$ 时 $1/2$。不要与 V6 的零延拓权重混用。
+-- [ ] 证明耗散权重有界，而能量权重不必有界；禁止对全域直接 `field_simp` 而忽略零分母分支。
++- [x] 证明 $a=p+r\ge0$、$b=pr\ge0$、$a=0\Rightarrow p=r=0$、$a\le c/2$、$ac-b\ge0$。
++- [x] 在 $a>0$ 定义 $w_x=(c-r)/a,w_y=(c-p)/a$，证明 $w_i\ge3/2$；在 $a=0$ 使用显式分支。
++- [x] 单独定义第 9 节所用 $\theta_i$：$a>0$ 时 $\sigma_i/a$，$a=0$ 时 $1/2$。不要与 V6 的零延拓权重混用。
++- [x] 证明耗散权重有界，而能量权重不必有界；禁止对全域直接 `field_simp` 而忽略零分母分支。
+ 
+ **产物：**`PML/Coefficients.lean`、`PML/Weights.lean`。  
+ **验收：**三个测试 $p=r=0$、$p>0,r=0$、$p,r>0$ 均被覆盖；没有假设吸收有正下界。
+
+Changes relative to v0.2.1 protected input snapshot:
+/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/ROADMAP_lean_PML_revised.md 521bbb4fcad5d64159726f47ac2a694d282dbd0fc637ff025eaa0718fdffd63d -> 77364bd8edd1c12feef48b8f6688faa379f62a7caa742baba0cbe41032d51f90

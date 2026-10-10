@@ -1,3 +1,162 @@
+# LeanPML 当前进度：v0.2.2
+
+用途：记录“电块与极化块：代数层和求导层分开”的数学范围、正式实现、学习说明和真实验证。日期：2026-10-10（Asia/Shanghai）。下方保留此前 PROGRESS 全文；历史中的“当前”“下一阶段”仅指当时的阶段。
+
+**v0.2.2 已完成：全部本阶段数学任务、中文学习说明、默认构建、公理审计及末次文件核对均已通过。** 本轮没有进入 v0.2.3。
+
+## 新文件与实际结论
+
+- [LocalElectric.lean](LeanPML/PML/LocalElectric.lean)：3 个定义、6 条定理；V7 (7.3) 的数值恒等式、真实二阶时间路径求导及非零实例。
+- [LocalDebye.lean](LeanPML/PML/LocalDebye.lean)：6 个定义、12 条定理；(6.1) 兼容关系求导、(7.4) 真实求导、(8.1) 消元、(8.2) 全部四组系数界及非零实例。
+- [v0.2.2 阅读指南](docs/v0.2.2_reading_guide.md)：纸面公式、Lean 声明、假设用途、关键证明及 mathlib 源码位置。
+- [LeanPML.lean](LeanPML.lean) 新增两个导入；[Audit.lean](Audit.lean) 保留旧 91 条审计，新增全部 18 条，合计 109 条。
+- [README.md](README.md) 更新工程入口、阅读顺序和命令。旧 README、PROGRESS、两个入口与路线图快照保存在 [本阶段日志目录](logs/v0.2.2)。
+
+固定空间点的系数可以随空间变化，但在当前时间求导中不依赖时间。没有吸收正下界，没有除以 $a$ 或 $b$。纯恒等式不强加物理正性；系数估计则明确输入正性和小量条件。$C_P$ 仍是给定正参数，不是本阶段新证明的空间不等式。
+
+## 定义、定理、输入及调用关系
+
+所有新增声明均在 `LeanPML.PML` 命名空间。
+
+| 正式声明 | 数学含义、假设及依赖 |
+|---|---|
+| `electricEnergy`、`electricRemainder`、`electricEnergyAlong` | (7.3) 的 $F_e,D_e$ 及沿真实函数的定义；$F_e$ 带 $\epsilon/2$，速度槽明确使用 `deriv v` |
+| `electric_rate_identity` | 任意实数下的形式求导数值恒等式；由下一条调用，没有独立宣称可导 |
+| `hasDerivAt_electricEnergyAlong` | 一阶 `HasDerivAt v vDot t`、二阶 `HasDerivAt (deriv v) vDDot t` → $F_e'=\epsilon(v_{tt}+av_t+bv)(v_t+cv)-D_e$；逐项调用 mathlib 求导规则，再调用代数引理 |
+| `deriv_exampleU`、`hasDerivAt_deriv_exampleU` | 先由已有真实导数证据证明整个导数函数等于指数函数，再对该函数求导；单点速度等式没有被用来冒充二阶导数 |
+| `hasDerivAt_electricEnergyAlong_exampleU`、`deriv_exampleU_zero` | 一般电块定理的非零实际路径调用；初始真实速度为 1 |
+| `polarQuadratic`、`polarEnergy`、`polarRemainder`、`polarEnergyAlong` | (6.2)/(7.4) 的 $Q,F_D=Q/(2\kappa),D_D$ 及真实路径；不是 v0.1.2 教学 Debye 能量 |
+| `polarCoeffAR`、`polarCoeffG` | (8.1) 的 $A_R,G$；$A_R$ 不是材料 $A=\epsilon+2\kappa$ |
+| `polar_constraint_derivative` | $v',R',z'=R$ 的真实证据，加邻域兼容 → $\kappa v_t=R+\tau R_t$；用邻域换函数与导数唯一性，不需要参数正性 |
+| `polar_shifted_constraint` | 调用上一条并取邻域兼容在点上的值 → $\kappa(v_t+cv)=\tau R_t+(1+c\tau)R+cz$ |
+| `polar_rate_algebra` | $\kappa\ne0$ 和已求导约束的数值形式 → 代数率恒等式；供上层求导调用，先提供非零证据再消分母 |
+| `hasDerivAt_polarQuadratic` | $R',z'=R$ → $Q$ 的平方、交叉项逐项真实求导；不需要兼容或材料正性 |
+| `hasDerivAt_polarEnergy` | 三份导数证据、邻域兼容、$\kappa\ne0$ → $F_D'=(R_t+aR+bz)(v_t+cv)-D_D$；调用约束和代数层 |
+| `hasDerivAt_polarEnergy_on_Ioo` | $t\in(0,T)$，兼容只在 $(0,T)$ 内成立 → 上述局部求导；开集给出邻域，不增加端点或全实轴条件 |
+| `polarQuadratic_eq_reduced` | 单点 $z+\tau R=\kappa v$ → (8.1) 的精确 $Q$ 消元；这里没有求导，所以不需要邻域 |
+| `polarEnergy_eq_reduced` | 调用 $Q$ 消元、除以 $2\kappa$ 得 $F_D$ 表达式；等式两边使用 Lean 实数除法，恒等式本身不需 $\kappa\ne0$；物理解释仍为 $\kappa>0$ |
+| `polar_coefficients_bounds_of_local_conditions` | 明确列出 $a,b\ge0,c,\tau>0,a\le c/2,b\le c^2/16,ac-b\ge0,c\tau\le1/4$ → 全部 (8.2) |
+| `polar_coefficients_bounds_of_threshold` | 原材料正性、$0<c\le c_*$、$0\le p,r\le S\le c/4$ → 调用旧吸收界、`c_mul_tau_bounds` 和前一条；后者内部使用 `le_threshold_iff_explicit` |
+| `example_polar_path_compatible`、`hasDerivAt_example_polarEnergy` | 非零指数路径的真实兼容及一般极化块求导定理的实际调用 |
+
+(8.1) 准确重写的是 $Q$：
+
+$$
+Q=A_RR^2+2\kappa c(1-a\tau-b\tau^2)vR+\kappa^2Gv^2.
+$$
+
+(8.2) 的结论保留为
+
+$$
+\frac34\le A_R\le\frac54,\quad
+0\le1-a\tau-b\tau^2\le1,\quad
+0\le G\le\frac{37}{64}c^2,\quad
+0\le b+ac\le\frac9{16}c^2.
+$$
+
+证明将关键中间量显式命名：$a\tau\le1/8$、$b\tau^2\le1/256$、$ac\tau^2\le1/32$、$bc\tau^3\le1/1024$。最高入口未把这些中间结果当作独立原始假设；没有放宽论文常数。
+
+余项 $D_e,D_D$ 可能为负。完整 (6.2) 中这两块分别贡献 $\int_\Omega\mu F_e$、$\int_\Omega\mu F_D$；本轮没有进行该空间积分，也没有由局部等式推出能量正定或单调。
+
+## 非零路径与旧工作的衔接
+
+取 $\kappa=\tau=1$，
+
+$$
+v(t)=\frac{1-e^{-2t}}2,\quad R(t)=-e^{-2t},\quad z(t)=\frac{1+e^{-2t}}2.
+$$
+
+旧 v0.1.2–v0.1.3 提供实际函数及 $v_t=e^{-2t},R_t=2e^{-2t},z_t=R$ 的真实证据。本轮补充整个 `deriv exampleU` 的等式，再得到真实二阶导数；两块实例各自调用一般求导定理。兼容关系先按实际函数验证，随后提升为邻域相等，未跳过一般定理。
+
+已有 `example_nonzero_initial` 给 $R(0)=-1$；本轮另证 $v_t(0)=1$。该指数路径具有所需真实导数，故不是零函数的代数代入。它是局部时间路径实例，未验证完整二维 PDE、边界或空间正则性。
+
+对 $U_0$，本轮的 $v,R,z$ 对应 $u,P,q$，兼容关系对应 v0.1.3 的时间保持结论。本轮开区间入口可以接收其限制到内部的关系；一般函数空间版本、原八变量到 primitive 的连接仍未实现。本轮没有输入教学方程 $\epsilon E'=-P'$。
+
+## 实际构建与公理审计
+
+工具链固定：Lean `v4.31.0`，提交 `68218e876d2a38b1985b8590fff244a83c321783`；Lake `5.0.0-src+68218e8`；mathlib `v4.31.0`，提交 `fabf563a7c95a166b8d7b6efca11c8b4dc9d911f`。未更新依赖、全局默认工具链或包元数据。
+
+所有命令通过原 `scripts/run_logged.py --stage v0.2.2 标签 命令…` 从工程根目录运行：
+
+~~~text
+/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML
+~~~
+
+LOG 保留实际 stdout/stderr；同名 JSON 保留完整命令、工作目录、实际程序路径、退出码和执行时间。
+
+| 实际命令 | 退出码 | 完整输出／元数据 |
+|---|---:|---|
+| 输入哈希及快照脚本 | 0 | [LOG](logs/v0.2.2/20261010T185337_475327_input_snapshot.log)／[JSON](logs/v0.2.2/20261010T185337_475327_input_snapshot.json) |
+| `lake env lean --version` | 0 | [LOG](logs/v0.2.2/20261010T185519_661138_lean_version.log)／[JSON](logs/v0.2.2/20261010T185519_661138_lean_version.json) |
+| `lake --version` | 0 | [LOG](logs/v0.2.2/20261010T185519_661137_lake_version.log)／[JSON](logs/v0.2.2/20261010T185519_661137_lake_version.json) |
+| `lake env lean LeanPML/PML/LocalElectric.lean`，首轮 | 1 | [LOG](logs/v0.2.2/20261010T185417_628876_electric_check.log)／[JSON](logs/v0.2.2/20261010T185417_628876_electric_check.json) |
+| 同上，修复重试 | 0 | [LOG](logs/v0.2.2/20261010T185446_670197_electric_check_retry.log)／[JSON](logs/v0.2.2/20261010T185446_670197_electric_check_retry.json) |
+| `lake build LeanPML.PML.LocalElectric` | 0 | [LOG](logs/v0.2.2/20261010T185455_983903_electric_build.log)／[JSON](logs/v0.2.2/20261010T185455_983903_electric_build.json) |
+| `lake env lean logs/v0.2.2/coeff_bounds_check.lean` | 0 | [LOG](logs/v0.2.2/20261010T185441_222604_coeff_bounds_check.log)／[JSON](logs/v0.2.2/20261010T185441_222604_coeff_bounds_check.json) |
+| `lake env lean LeanPML/PML/LocalDebye.lean`，首轮 | 1 | [LOG](logs/v0.2.2/20261010T185507_232464_debye_check.log)／[JSON](logs/v0.2.2/20261010T185507_232464_debye_check.json) |
+| 同上，修复重试 | 0 | [LOG](logs/v0.2.2/20261010T185532_505132_debye_check_retry.log)／[JSON](logs/v0.2.2/20261010T185532_505132_debye_check_retry.json) |
+| `lake build LeanPML.PML.LocalDebye`，核心初版 | 0 | [LOG](logs/v0.2.2/20261010T185551_496522_debye_module_build.log)／[JSON](logs/v0.2.2/20261010T185551_496522_debye_module_build.json) |
+| `lake build`，整合最终正式模块 | 0 | [LOG](logs/v0.2.2/20261010T185648_883655_lake_build.log)／[JSON](logs/v0.2.2/20261010T185648_883655_lake_build.json) |
+| `lake env lean Audit.lean` | 0 | [LOG](logs/v0.2.2/20261010T185707_307274_axioms_audit.log)／[JSON](logs/v0.2.2/20261010T185707_307274_axioms_audit.json) |
+
+真实失败与修复：
+
+- 电块首轮的 `pow` 搭配 `simpa` 遇到函数幂、lambda 与目标表达式匹配问题；改为从求导证据用 `congr_deriv` 整理导数值后通过，没有改动数学结论。
+- 极化块首轮需显式调用 `Filter.EventuallyEq.symm`、`Filter.EventuallyEq.eq_of_nhds`，并区分函数括号的逐点改写和导数值的代数整理；修复后通过；同时将一次多余的 `<;>` 改为顺序 tactic，消除风格警告，没有关闭 linter。初始错误与警告全文未覆盖。
+- 系数界先在日志目录独立检查，再将同一证明合入正式 LocalDebye；草稿只保留为过程证据，正式入口不导入日志目录。
+- 整合时为极化二次型四个关键 `have`、函数改写 `hQ`、能量求导 `henergy` 添加明确命题类型，便于逐步查看 InfoView；随后实际运行默认构建。
+- 默认构建输出 `Build completed successfully (2121 jobs).`，重新构建两个新模块、根入口和 Audit，覆盖全部 10 个正式模块。
+- 独立审计全部 109 条输出均只有 `propext`、`Classical.choice`、`Quot.sound`；无 `sorryAx` 或自定义占位公理。三者为标准基础依赖，不是待填证明的借口，也不宣称“没有任何公理”。
+
+## 来源、历史与清单增量
+
+V7 正文哈希仍为 `0a7f73a25cb119eeb75b3e7b3c3f2fbb3b319250f3354ed4dcad0ecff8eff4fb`，与来源清单及 v0.2.1 快照一致。本轮重新对照 (6.1)、(6.2)、(7.3)、(7.4)、(8.1)、(8.2)，未发现这些公式的确定符号或常数冲突；此判断不是完整 V7 独立审稿结论。
+
+路线图本轮开始时哈希为 `77364bd8edd1c12feef48b8f6688faa379f62a7caa742baba0cbe41032d51f90`，此前 v0.2.1 快照为 `521bbb4fcad5d64159726f47ac2a694d282dbd0fc637ff025eaa0718fdffd63d`。[已保存的原有差异](logs/v0.2.2/roadmap_preexisting_diff.patch)仅是第 531–534 行 v0.2.1 四项复选框从未完成改为完成；第 508 行的“待实现”仍保留。v0.2.2 数学任务没有变化。本轮不改路线图，阶段完成状态以本进度为准。
+
+[输入快照](logs/v0.2.2/input_hashes.json)登记 149 项保护文件，包括 V7、合同、历史清单、旧代码、日志和配置。旧源码没有重构；修改前入口、README、PROGRESS 保留为本阶段快照。原 theorem_inventory 保留其历史“计划”文字，增量状态逐项登记如下：
+
+| 条目 | 本轮实际完成 | 尚未完成 |
+|---|---|---|
+| T13，(7.3) | 数值恒等式、实际时间路径与真实二阶导数的局部求导 | 空间函数路径、可积性、积分求导及 PDE 接入 |
+| T14，(7.4) | 邻域兼容的真实求导、极化块实际求导、开区间入口 | 场层兼容与时间导数接口、空间积分；不等于完成全部条目 |
+| T19，(8.1)–(8.2) | 固定点约束消元、原阈值入口及全部系数上下界 | 将点态结果用于空间能量估计的后续接口；未证明 T20 正定性 |
+
+关于“单点兼容不能直接求导”的语义要求已落实为邻域/开区间输入；关于 $Q,F_D,\mu$ 的因子区别已落实为独立定义。未新增磁场约束，未删除零吸收，未将余项非负或目标能量恒等式塞入假设。
+
+## 阅读、复现与下一阶段
+
+建议先读 [学习指南](docs/v0.2.2_reading_guide.md)，再读 `hasDerivAt_electricEnergyAlong`、`polar_constraint_derivative`、`polar_coefficients_bounds_of_threshold`，然后顺着调用读 Debye 求导、约束消元、实例与审计。
+
+在 VS Code 打开工程根目录，通过 `Lean 4: InfoView: Display Goal` 查看每一步；光标逐行经过 `have`/`calc`/`apply`/`rw`，悬停看类型、F12 看来源。新增导入后先构建，再用 `Lean 4: Server: Restart File` 刷新文件。
+
+~~~sh
+cd '/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML'
+python3 scripts/run_logged.py --stage v0.2.2 lake_build lake build
+python3 scripts/run_logged.py --stage v0.2.2 axioms_audit lake env lean Audit.lean
+~~~
+
+下一阶段 **v0.2.3：空间块与退化区**，计划建立 `PML/LocalSpatial.lean`，核验 V7 (7.1)–(7.2)。取 $h=\partial_i v,l=\Lambda_i,f=l-h$，分别处理正吸收与零吸收；零区须保留 $c|\nabla v|^2$，局部通量不能直接设为零。实际梯度与时间微分交换仍由后续空间分析兑现。本轮没有建立该模块。
+
+完整二维主定理还需要空间块、真实场空间和加权积分、Green/PEC、Poincaré、图范数控制、两层耗散闭合以及原系统与 primitive 的对应。本阶段也没有证明一般解存在唯一性或严格递减。
+
+## 最终验收
+
+**v0.2.2 已达到验收标准。** 两块真实求导、(8.1) 消元、(8.2) 四组界、原阈值入口、非零实际路径、中文说明均完成，并通过真实默认构建和独立公理审计。
+
+末次文件与记录检查：[成功输出](logs/v0.2.2/20261010T190231_231494_final_checks_retry.log)／[完整命令、目录及退出码](logs/v0.2.2/20261010T190231_231494_final_checks_retry.json)，退出码 0。核验了 149 项保护文件字节、旧进度/审计全文、10 个模块及两个入口的构建产物、109 条定理与审计输出逐项对应、9 个依赖检出提交、新文档链接和数学分隔、19 项 mathlib 源码行，以及本机 VS Code 的两条操作命令。
+
+检查脚本首次运行因本机 Python 没有 `tomllib` 而退出 1，见 [失败输出](logs/v0.2.2/20261010T190218_077261_final_checks.log)／[元数据](logs/v0.2.2/20261010T190218_077261_final_checks.json)。随后只用既有标准库读取所需的默认目标字段，未安装依赖；修复后重试通过。这不涉及 Lean 数学证明的改动。
+
+[交付文件哈希](logs/v0.2.2/verified_artifact_hashes.json)覆盖正式源码、README、阅读指南和固定配置；本 PROGRESS 的最后验收登记不在该哈希表中。[检查脚本](logs/v0.2.2/final_checks.py)保留以便复核。失败日志和中间模块检查全部保留，没有将未执行的命令标为通过。
+
+下一任务为 v0.2.3；本轮交接到此，未创建 `LocalSpatial.lean`，未提交或推送远端。
+
+
+---
+
+以下完整保留此前进度记录。
+
 # LeanPML 当前进度：v0.2.1
 
 用途：记录“系数条件、零吸收分支和精确小量条件”的实现、学习说明及实际验证证据。更新日期：2026-10-10（Asia/Shanghai）。下方完整保留 v0.1.3 及此前进度原文，其中“本轮”“下一阶段”仅指相应历史阶段。
