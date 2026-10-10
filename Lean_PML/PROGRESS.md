@@ -1,3 +1,139 @@
+# LeanPML 当前进度：v0.2.1
+
+用途：记录“系数条件、零吸收分支和精确小量条件”的实现、学习说明及实际验证证据。更新日期：2026-10-10（Asia/Shanghai）。下方完整保留 v0.1.3 及此前进度原文，其中“本轮”“下一阶段”仅指相应历史阶段。
+
+**v0.2.1 已完成。** 数学任务、中文代码与阅读说明、默认构建、独立公理审计及文档交叉核对均已完成。本轮没有进入 v0.2.2。
+
+## 交付文件及实际范围
+
+- [PML/Coefficients.lean](LeanPML/PML/Coefficients.lean)：5 个定义、17 条定理，覆盖 V7 (5.2)–(5.4) 的点态参数代数。
+- [PML/Weights.lean](LeanPML/PML/Weights.lean)：7 个定义、15 条定理，覆盖 (5.5) 的能量权重、(7.2) 的耗散分式、(9.2) 的分配权重以及四分支/无界族实例。
+- [中文阅读指南](docs/v0.2.1_reading_guide.md)：论文到 Lean 的对应、假设用途、三段关键证明、mathlib 源码位置和 InfoView 操作。
+- [LeanPML.lean](LeanPML.lean) 导入两个新模块；[Audit.lean](Audit.lean) 审计全部新增 32 条定理，保留旧 59 条，合计 91 条。
+- [README.md](README.md) 更新当前入口；本进度保留全部旧记录；[logs/v0.2.1](logs/v0.2.1) 保存命令、输出、元数据及修改前快照。
+
+所有代数对象都在固定空间点取值。$p,r$ 可以来自空间变系数场，不假设全域常吸收。$C_P>0$ 在本阶段仅是给定参数，不宣称证明了矩形 Poincaré 不等式。没有引入隐藏参数结构、全局吸收正下界或 PDE 能量结论作为假设。
+
+## 定义、假设、结论和依赖
+
+命名空间为 `LeanPML.PML`。具体输入与逐步说明以源码及阅读指南为准。
+
+| 来源与声明 | 输入／用途 → 结论 |
+|---|---|
+| `absorptionSum`、`absorptionProduct` | V7 第 1 节的 $a=p+r,b=pr$；用于 (5.4) 和权重分母 |
+| `materialA`、`scaleK`、`threshold` | (5.2) 的 $A,K,c_*$，定义不预设正性 |
+| `materialA_pos`、`scaleK_pos`、`threshold_pos` | 对应材料/域参数正性 → $A,K,c_*>0$；$\tau$ 不参与 $K$ 的正性引理 |
+| `le_inv_sqrt_iff` | $c\ge0,K>0$ → $c\le1/\sqrt K\iff c^2K\le1$，由 (5.2) 推出 |
+| `le_threshold_iff_explicit` | $\epsilon,\kappa,\tau,\mu,C_P,c>0$ → 论文阈值与三条显式小量不等式的双向等价 |
+| `absorptionSum_nonneg`、`absorptionProduct_nonneg`、`absorptionSum_eq_zero_iff` | $p,r\ge0$ → $a,b\ge0$，且 $a=0\iff p=r=0$ |
+| `absorptionSum_le_half` | $p,r\le S\le c/4$ → $a\le c/2$，不额外要求正吸收 |
+| `absorptionProduct_le_sum_sq_quarter` | 任意实数 $p,r$，由 $(p-r)^2\ge0$ → $b\le a^2/4$ |
+| `absorptionProduct_le_c_sq_sixteenth` | 非负吸收及幅度条件 → $b\le c^2/16$ |
+| `absorptionSum_mul_sub_product_nonneg` | 非负吸收、已推导的 $a\le c/2$ → $ac-b\ge0$；实际依赖前两项代数估计 |
+| `c_mul_tau_le_material_bound`、`material_bound_lt_sixteenth`、`c_mul_tau_bounds` | 显式条件及正材料，连接阈值等价 → $c\tau\le\kappa/(8A)<1/16<1/4$；严格界使用 $\epsilon>0$ |
+| `scale_mul_amplitude_sq_le_sixteenth` | $K,S\ge0,S\le c/4,c^2K\le1$ → $KS^2\le1/16$，合同 §4 的直接推论 |
+| `unit_material_smallness_example` | 全部材料及 $C_P$ 取 1、$c=1/576$ → 调用等价定理验证可行小量条件 |
+| `energyWeightX/Y`、`thetaX/Y` | (5.5)、(9.2) 前的分支定义，分别在零区取 0 和 $1/2$ |
+| `weights_of_sum_zero` | $a=0$ → 上述四个零区值；不除以 $a$ |
+| `energyWeights_lower_bound` | $a>0$、幅度条件 → $w_x,w_y\ge3/2$，仅正吸收分支 |
+| `theta_partition` | $p,r\ge0$ → $0\le\theta_x,\theta_y\le1$ 且和为 1，包含零区 |
+| `dissipationPlus/Minus` 及三条界定理 | 对应非负吸收、幅度与 $a>0$ → (7.2) 分式非负、上界 $c+S\le5c/4$ 或 $c$ |
+| 四个 `*_example`（zero_absorption、x_layer、y_layer、corner） | $c=4,S=1$、吸收为 0/1 → 调用一般分支定理并精确计算 $w,\theta$ |
+| `vanishingAbsorption`、`family_denominator_pos`、`vanishingAbsorption_bounds` | 固定 $c>0$，$p_n=c/(n+4)$ → 分母正、$0<p_n\le c/4$ |
+| `vanishingAbsorption_eventually_small` | $c,\delta>0$ → 存在 $N$ 使所有 $n\ge N$ 满足 $0<p_n<\delta$ |
+| `energyWeights_on_family`、`energyWeights_unbounded` | 参数族真实计算 → $w_x=n+4,w_y=n+3$，任意有限 $M$ 都被某项同时超过 |
+
+全部定理的假设都显式列出。$ac-b$ 引理中的 `ha_le_half` 是前一个引理从原幅度条件推出的中间接口，不是新增的模型假设。一般保持/能量时间引理本轮无需参与，因为本阶段不涉及时间路径求导；旧 v0.1.* 源码未重构。
+
+## 四分支、无界性与零区耗散
+
+四个权重实例取 $(p,r)=(0,0),(1,0),(0,1),(1,1)$，对应
+
+$$
+(w_x,w_y)=(0,0),(4,3),(3,4),(3/2,3/2),
+$$
+
+$$
+(\theta_x,\theta_y)=(1/2,1/2),(1,0),(0,1),(1/2,1/2).
+$$
+
+它们调用一般定理，且用精确数值验证所用幅度/分支假设；$c=4$ 的四点例子不宣称满足任意材料的完整小量条件。完整材料可行性由另一个 `unit_material_smallness_example` 验证：$A=3,K=24,c=1/576$。该例仍没有把 $C_P=1$ 解释成已证空间常数。
+
+在正分支，令 $s=\sigma_i,t=\sigma_j$ 或交换二者，分式界为
+
+$$
+0\le\frac{s(c+s)}{s+t}\le c+S\le5c/4,\qquad
+0\le\frac{s(c-s)}{s+t}\le c.
+$$
+
+这里分别使用 $c,s,t\ge0,s\le S$，或 $0\le s\le c,t\ge0$；始终先提供 $s+t>0$ 才用除法保序。没有要求吸收远离零。无界族固定 $c>0,S=c/4,r=0$，同时证明了趋零和任意 $M$ 的无界量词，而非仅做数值采样。
+
+V7 (7.2) 在 $Z=\{a=0\}$ 上保留独立的 $c|\nabla v|^2$。分式定义的总函数值不是完整耗散；没有通过零延拓删除这部分。此阶段只核验系数性质，完整空间局部恒等式与积分留待以后。
+
+## 固定环境与实际命令
+
+Lean `v4.31.0`（提交 `68218e876d2a38b1985b8590fff244a83c321783`），Lake `5.0.0-src+68218e8`，mathlib `v4.31.0`（提交 `fabf563a7c95a166b8d7b6efca11c8b4dc9d911f`）。依赖锁定及 Lake 包元数据 `0.0.3` 未变，本轮无安装、依赖更新或全局默认工具链修改。
+
+以下命令均通过原 [run_logged.py](scripts/run_logged.py) 在工程根目录执行：
+
+~~~text
+/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML
+~~~
+
+每次使用 `python3 scripts/run_logged.py --stage v0.2.1 标签 命令...`；完整命令、工作目录、实际程序路径、退出码及时间保存在同名 JSON，原始 stdout/stderr 合并输出保存在 LOG。
+
+| 实际命令 | 退出码 | 完整输出／元数据 |
+|---|---:|---|
+| `python3 -c …（输入快照）` | 0 | [LOG](logs/v0.2.1/20261010T163514_352590_input_snapshot.log)／[JSON](logs/v0.2.1/20261010T163514_352590_input_snapshot.json) |
+| `lake --version` | 0 | [LOG](logs/v0.2.1/20261010T163514_482563_lake_version.log)／[JSON](logs/v0.2.1/20261010T163514_482563_lake_version.json) |
+| `lake env lean --version` | 0 | [LOG](logs/v0.2.1/20261010T163514_482593_lean_version.log)／[JSON](logs/v0.2.1/20261010T163514_482593_lean_version.json) |
+| `lake env lean LeanPML/PML/Coefficients.lean` | 0 | [LOG](logs/v0.2.1/20261010T163711_696784_coefficients_check.log)／[JSON](logs/v0.2.1/20261010T163711_696784_coefficients_check.json) |
+| `lake build LeanPML.PML.Coefficients` | 0 | [LOG](logs/v0.2.1/20261010T163735_193113_coefficients_build.log)／[JSON](logs/v0.2.1/20261010T163735_193113_coefficients_build.json) |
+| `lake env lean LeanPML/PML/Weights.lean` | 1 | [LOG](logs/v0.2.1/20261010T164047_677105_weights_check.log)／[JSON](logs/v0.2.1/20261010T164047_677105_weights_check.json) |
+| `lake env lean LeanPML/PML/Weights.lean` | 0 | [LOG](logs/v0.2.1/20261010T164113_945466_weights_check_retry.log)／[JSON](logs/v0.2.1/20261010T164113_945466_weights_check_retry.json) |
+| `lake build` | 0 | [LOG](logs/v0.2.1/20261010T164149_807197_lake_build.log)／[JSON](logs/v0.2.1/20261010T164149_807197_lake_build.json) |
+| `lake build` | 0 | [LOG](logs/v0.2.1/20261010T164214_705177_lake_build_final.log)／[JSON](logs/v0.2.1/20261010T164214_705177_lake_build_final.json) |
+| `lake env lean Audit.lean` | 0 | [LOG](logs/v0.2.1/20261010T164229_853015_axioms_audit.log)／[JSON](logs/v0.2.1/20261010T164229_853015_axioms_audit.json) |
+
+真实修复记录：
+
+- 权重首轮检查退出 1：`energyWeights_on_family` 的 x 分支在 `field_simp` 后剩下 `c - 0 = c + 0 * (↑n + 4)`，尚未闭合。添加 `ring` 完成机械代数，未改变假设或结论。
+- 下一次检查和第一次默认构建已退出 0，但报告两处多余 `<;>` 的风格警告。改为普通顺序 `ring` 后再次实际构建，最终无这些警告；未关闭 linter。
+- 最终默认构建输出 `Build completed successfully (2119 jobs).`。Coefficients 已在本阶段单独实际构建，随后默认构建沿导入链检查新 Weights、根入口和 Audit，覆盖全部 8 个模块。
+- 独立公理审计包含全部 91 条定理，只有 `propext`、`Classical.choice`、`Quot.sound` 标准基础依赖，没有 `sorryAx` 或自定义占位公理。失败日志、带警告日志和最终成功结果均保留。
+
+最终文件与证据检查也已实际退出 0：[完整输出](logs/v0.2.1/20261010T164631_262704_final_checks.log)／[完整命令及元数据](logs/v0.2.1/20261010T164631_262704_final_checks.json)。它确认 116 项受保护文件字节未变、旧进度全文保留、8 个模块和两个入口的构建产物存在、91 条定理与审计逐项对应、9 个依赖检出提交与锁定配置一致，以及新文档链接和数学分隔有效。阅读指南引用的 11 个 mathlib 引理均核对了准确源码行。已保存 [已验证交付文件哈希](logs/v0.2.1/verified_artifact_hashes.json)，覆盖正式源码、README、阅读指南及配置；本 PROGRESS 的最终验收登记不纳入该哈希表。
+
+## 来源版本与历史记录
+
+- V7 正文 SHA-256 仍为 `0a7f73a25cb119eeb75b3e7b3c3f2fbb3b319250f3354ed4dcad0ecff8eff4fb`，与 [source_inventory 的 S2](docs/source_inventory.md) 一致。本轮重新阅读 §5.1、§7.1、§9.2，未把历史审查当成当前 Lean 证据。
+- 模型合同、theorem_inventory 和 scope 与 v0.1.3 输入快照一致，未修改其内容和历史状态。
+- 路线图本轮开始时的 SHA-256 为 `521bbb4fcad5d64159726f47ac2a694d282dbd0fc637ff025eaa0718fdffd63d`，v0.1.3 记录及当前 Git HEAD 为 `ea0598a824d40ed1678b3b36e61a3329b9086625cc957839ca947b0acd6fb39e`。已核对 [原有差异](logs/v0.2.1/roadmap_preexisting_diff.patch)：仅第 490–493 行 v0.1.3 四项勾选由空改成完成，第 488 行仍写“待实现”。这是原有状态文字差异，v0.2.1 数学任务没有改动；本轮保留原文件。
+- [输入哈希快照](logs/v0.2.1/input_hashes.json) 保护 116 项文件，包括原文、合同、路线图、旧代码/日志、配置、记录脚本及相关外部工程设置。修改前 README、PROGRESS、入口、Audit 和路线图正文也保存在本阶段目录。
+- 本节之后保留此前 PROGRESS 全文；[上一阶段 README](logs/v0.2.1/before_README.md) 也完整保留。未回写历史清单或覆盖旧验证日志。
+
+## 已完成部分与未完成接口
+
+本阶段完成 T09 的一般参数代数和 T10 的点态分支/系数部分。**没有整体标记 T10 完成**：加权空间、可测性、等价类、完备性和嵌入不在本轮范围。T08 的精确矩形 Poincaré、空间参数到 $L^\infty$ 幅度语义的连接仍待兑现。
+
+没有实现 PDE 能量恒等式、Green/PEC、原八变量与 primitive 等价、完整五不变量、一般解的存在唯一性或完整 PML 主定理。系数界是这些后续分析的可调用组成部分，不是完整二维 PML 证明。
+
+## 阅读、复现与下一任务
+
+建议先读 [阅读指南](docs/v0.2.1_reading_guide.md)，再依次打开 `absorptionSum_eq_zero_iff`、`energyWeights_lower_bound`、`le_threshold_iff_explicit`。指南区分 mathlib 的基础引理、既有工程与本轮新结果，并列出当前固定依赖的准确源码位置。InfoView 查看方法和每个关键 tactic 的作用均已说明。
+
+~~~sh
+cd '/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML'
+python3 scripts/run_logged.py --stage v0.2.1 lake_build lake build
+python3 scripts/run_logged.py --stage v0.2.1 axioms_audit lake env lean Audit.lean
+~~~
+
+**下一阶段 v0.2.2 尚未开始。** 入口为 `PML/LocalElectric.lean` 与 `PML/LocalDebye.lean`：对应 V7 (7.3)、(7.4)、(8.1)–(8.2)，完成电块、Debye 块、约束消元以及实际时间路径上的求导，并保持代数引理和真实分析层的区分。本轮未创建这两个模块。
+
+---
+
+以下为此前进度原文，完整保留。
+
 # LeanPML 当前进度：v0.1.3
 
 用途：登记“真实时间不变量与模型接口练习”的实际实现、验证和边界，便于对照中文代码学习。更新日期：2026-10-10（Asia/Shanghai）。本节之后完整保留 v0.1.2 及更早进度原文，历史章节中的“本轮”“下一阶段”仅指其当时状态。

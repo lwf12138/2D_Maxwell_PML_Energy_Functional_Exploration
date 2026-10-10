@@ -1,0 +1,19 @@
+{
+  "stage": "v0.2.1",
+  "command": [
+    "lake",
+    "env",
+    "lean",
+    "LeanPML/PML/Coefficients.lean"
+  ],
+  "command_display": "lake env lean LeanPML/PML/Coefficients.lean",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-10T16:37:11.696784+08:00",
+  "output_file": "20261010T163711_696784_coefficients_check.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-10T16:37:20.235422+08:00",
+  "elapsed_seconds": 8.537
+}

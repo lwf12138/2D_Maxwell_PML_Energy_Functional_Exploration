@@ -1,0 +1,10 @@
+LeanPML/PML/Weights.lean:274:2: error: unsolved goals
+case left
+c : ℝ
+hc_pos : 0 < c
+n : ℕ
+hp_pos : 0 < vanishingAbsorption c n
+ha_pos : 0 < absorptionSum (vanishingAbsorption c n) 0
+hc_ne : c ≠ 0
+hden_ne : ↑n + 4 ≠ 0
+⊢ c - 0 = c + 0 * (↑n + 4)

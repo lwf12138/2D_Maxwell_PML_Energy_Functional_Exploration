@@ -1,0 +1,14 @@
+Protected inputs unchanged: 116
+Previous PROGRESS retained byte-for-byte.
+Formal theorem counts: {"LeanPML/Debye/ScalarEnergy.lean": 20, "LeanPML/PML/Coefficients.lean": 17, "LeanPML/PML/TimeInvariants.lean": 25, "LeanPML/PML/Weights.lean": 15, "LeanPML/Time/Constancy.lean": 2, "LeanPML/Time/Monotonicity.lean": 2, "LeanPML/Tutorial/LocalEnergy.lean": 1, "LeanPML/Tutorial/ScalarEnergy.lean": 9, "LeanPML.lean": 0, "Audit.lean": 0}
+Build/audit coverage: 8 modules, 10 .olean entries, 91 theorems (32 new), 12 new definitions.
+20261010T164047_677105_weights_check exit= 1 command= lake env lean LeanPML/PML/Weights.lean cwd= /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML
+20261010T164214_705177_lake_build_final exit= 0 command= lake build cwd= /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML
+20261010T164229_853015_axioms_audit exit= 0 command= lake env lean Audit.lean cwd= /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML
+All independent audit outputs have only propext, Classical.choice, Quot.sound; no placeholders.
+All 9 dependency revisions match the preserved manifest.
+v0.2.2 modules not created.
+New docs links and math/code delimiters checked.
+11 cited mathlib lemma names verified at the exact documented source lines.
+Saved verified_artifact_hashes.json for compiled formal sources, README, guide and fixed configs.
+v0.2.1 final checks passed.

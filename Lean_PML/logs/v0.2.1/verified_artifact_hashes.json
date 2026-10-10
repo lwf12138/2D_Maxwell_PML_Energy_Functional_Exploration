@@ -1,0 +1,18 @@
+{
+  "LeanPML/Debye/ScalarEnergy.lean": "7ebb842dc8e7109802bb0db414b25947248dca52c77dbc01b4f01bc110c08741",
+  "LeanPML/PML/Coefficients.lean": "7a2d94389601e7fee33054d0b4cbcaba4a7ea31837dce8af9e9c19dec6dc68a6",
+  "LeanPML/PML/TimeInvariants.lean": "ad23ffe0b5fc1188cce91203989e7587d31a11aad3f1b77665f57f6b91efbba1",
+  "LeanPML/PML/Weights.lean": "25778077d06b427ee870843481c7d0d5614637063c0f49a8b21540617f8883ef",
+  "LeanPML/Time/Constancy.lean": "47680bb78e15e5fa05b9350ddb19117f2a7ae4ba5a132e9cd5ea422e6ac57437",
+  "LeanPML/Time/Monotonicity.lean": "70c9bad3378adfb332cc4b10e6e475a41352178899797eef07a203fb8e68aa25",
+  "LeanPML/Tutorial/LocalEnergy.lean": "810e8ef42c005661cb0eca9e6ba4527914cd782af7e30677b45e4bd772cac112",
+  "LeanPML/Tutorial/ScalarEnergy.lean": "465c567aa91d06d5e32c32b84d6082cb71834027177f8a390b8c9df9f59aaa41",
+  "LeanPML.lean": "7adcf9623dd3887b493046ef70702c61367bc4b7c439c01ff31215d14ae6c82d",
+  "Audit.lean": "eaf949f704bf5134ba8b7a6f892670656eaac106deb5624256fcf38843ba28a5",
+  "README.md": "80a03de30ee62809439b63898416ac1ca7b533bba60cdf2988a459bdfb4eab47",
+  "docs/v0.2.1_reading_guide.md": "36f62f5627f5764772f5d04e364774c4a5faa95fa12c5d66633d6008c37c5fd0",
+  "lean-toolchain": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee",
+  "lakefile.toml": "3a3ab926f99cfeb3ae9fa6309696858b0aabb7ce62469de72405a74dd64fab9e",
+  "lake-manifest.json": "6bd522ed18f94813b2e6fb5e7b9ea39d95a5098df2465acc0d815a09bb5dbf33",
+  "scripts/run_logged.py": "9f22cab7bc05f8e7b7e62009d33205fa57b733c51edd1b0af4ef0a19d67acee5"
+}

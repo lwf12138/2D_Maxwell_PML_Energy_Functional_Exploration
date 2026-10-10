@@ -76,3 +76,37 @@ import LeanPML
 #print axioms LeanPML.PML.example_initial_compatibility
 #print axioms LeanPML.PML.example_nonzero_initial
 #print axioms LeanPML.PML.example_compatibility_on_Icc
+
+-- v0.2.1：系数阈值双向等价、退化分支、权重界与无界族。
+#print axioms LeanPML.PML.materialA_pos
+#print axioms LeanPML.PML.scaleK_pos
+#print axioms LeanPML.PML.threshold_pos
+#print axioms LeanPML.PML.le_inv_sqrt_iff
+#print axioms LeanPML.PML.le_threshold_iff_explicit
+#print axioms LeanPML.PML.absorptionSum_nonneg
+#print axioms LeanPML.PML.absorptionProduct_nonneg
+#print axioms LeanPML.PML.absorptionSum_eq_zero_iff
+#print axioms LeanPML.PML.absorptionSum_le_half
+#print axioms LeanPML.PML.absorptionProduct_le_sum_sq_quarter
+#print axioms LeanPML.PML.absorptionProduct_le_c_sq_sixteenth
+#print axioms LeanPML.PML.absorptionSum_mul_sub_product_nonneg
+#print axioms LeanPML.PML.c_mul_tau_le_material_bound
+#print axioms LeanPML.PML.material_bound_lt_sixteenth
+#print axioms LeanPML.PML.c_mul_tau_bounds
+#print axioms LeanPML.PML.scale_mul_amplitude_sq_le_sixteenth
+#print axioms LeanPML.PML.unit_material_smallness_example
+#print axioms LeanPML.PML.weights_of_sum_zero
+#print axioms LeanPML.PML.energyWeights_lower_bound
+#print axioms LeanPML.PML.theta_partition
+#print axioms LeanPML.PML.dissipationPlus_bounds
+#print axioms LeanPML.PML.dissipationPlus_le_five_quarters
+#print axioms LeanPML.PML.dissipationMinus_bounds
+#print axioms LeanPML.PML.zero_absorption_example
+#print axioms LeanPML.PML.x_layer_example
+#print axioms LeanPML.PML.y_layer_example
+#print axioms LeanPML.PML.corner_example
+#print axioms LeanPML.PML.family_denominator_pos
+#print axioms LeanPML.PML.vanishingAbsorption_bounds
+#print axioms LeanPML.PML.vanishingAbsorption_eventually_small
+#print axioms LeanPML.PML.energyWeights_on_family
+#print axioms LeanPML.PML.energyWeights_unbounded

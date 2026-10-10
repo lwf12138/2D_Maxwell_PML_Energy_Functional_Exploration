@@ -5,10 +5,12 @@ import LeanPML.Tutorial.ScalarEnergy
 import LeanPML.Debye.ScalarEnergy
 import LeanPML.Time.Constancy
 import LeanPML.PML.TimeInvariants
+import LeanPML.PML.Coefficients
+import LeanPML.PML.Weights
 
 /-!
 # LeanPML 正式入口
 
-v0.1.3 加入固定空间点的三个真实时间不变量、初始兼容保持及非零实例。
+v0.2.1 加入固定空间点的系数小量条件、分支权重、有界耗散系数及无界能量权重实例。
 两个磁辅助不变量、实际场空间与二维 PML 主定理尚未实现。
 -/

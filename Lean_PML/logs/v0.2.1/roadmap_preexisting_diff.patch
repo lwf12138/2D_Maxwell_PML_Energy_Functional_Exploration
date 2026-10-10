@@ -1,0 +1,19 @@
+diff --git a/Lean_PML/ROADMAP_lean_PML_revised.md b/Lean_PML/ROADMAP_lean_PML_revised.md
+index 90b3fc5..0a95076 100644
+--- a/Lean_PML/ROADMAP_lean_PML_revised.md
++++ b/Lean_PML/ROADMAP_lean_PML_revised.md
+@@ -487,10 +487,10 @@ v0.3 与 v0.4 可以交替推进：每完成一条抽象空间接口，就尽快
+ **依赖：**v0.1.1–2。  
+ **当前状态：**待实现。
+ 
+-- [ ] 从 $u_t=E,q_t=P,\tau P_t+P=\kappa E$ 推出 $q+\tau P-\kappa u$ 为常数。
+-- [ ] 从 $Z_{1,t}=-\epsilon bE$ 推出 $Z_1+\epsilon bu$ 为常数；同样处理 $Z_2$。
+-- [ ] 区分“固定空间点的时间函数结果”与“真实场空间中的不变量”。前者可以先完成，后者在 v0.4 完成对应。
+-- [ ] 写一个中文说明：为什么普通变量名 `Pt` 不等于已经形式化 $P_t$。
++- [x] 从 $u_t=E,q_t=P,\tau P_t+P=\kappa E$ 推出 $q+\tau P-\kappa u$ 为常数。
++- [x] 从 $Z_{1,t}=-\epsilon bE$ 推出 $Z_1+\epsilon bu$ 为常数；同样处理 $Z_2$。
++- [x] 区分“固定空间点的时间函数结果”与“真实场空间中的不变量”。前者可以先完成，后者在 v0.4 完成对应。
++- [x] 写一个中文说明：为什么普通变量名 `Pt` 不等于已经形式化 $P_t$。
+ 
+ **产物：**`PML/TimeInvariants.lean`。  
+ **验收：**得到零初值不变量的保持结果；后续磁辅助不变量与空间对应列为明确待办。
