@@ -1,3 +1,156 @@
+# LeanPML 当前进度：v0.1.2
+
+用途：记录 Debye 时间子系统本阶段实际实现、验证和交接的范围。更新日期：2026-10-10（Asia/Shanghai）。下方 v0.1.1/v0.0.3 原文完整保留，其中“本轮”“下一阶段”等仅指历史日期。
+
+**v0.1.2 已完成。** 最终默认构建、独立公理审计和非零显式实例均实际通过；本轮没有进入 v0.1.3。
+
+## 交付文件与数学范围
+
+- 新建 [LeanPML/Debye/ScalarEnergy.lean](LeanPML/Debye/ScalarEnergy.lean)，命名空间 `LeanPML.Debye`，含 4 个定义和 20 条新定理，均有中文批注。
+- [LeanPML.lean](LeanPML.lean) 增加正式导入；[Audit.lean](Audit.lean) 增加全部 20 条审计，与旧定理合计 32 条。
+- [README.md](README.md) 更新命题/假设表、推导、显式实例、InfoView、复现命令和 PML 范围说明。
+- 本 PROGRESS 登记真实证据并保留完整历史；[logs/v0.1.2](logs/v0.1.2) 保存完整输出、元数据和修改前快照。
+- 重用 `LeanPML.Time.antitoneOn_Icc_of_hasDerivAt_nonpos` 与单点时间引理，未改动旧证明、固定配置或日志脚本。
+
+真实函数 $E,P:\mathbb R\to\mathbb R$，正材料 $\epsilon,\kappa,\tau$ 和 $T\ge0$。主定理只要求 $E,P$ 在 $[0,T]$ 连续，并在 $(0,T)$ 输入以下证据：
+
+```lean
+∀ t ∈ Set.Ioo 0 T, ∃ dE dP : ℝ,
+  HasDerivAt E dE t ∧ HasDerivAt P dP t ∧
+  ε * dE = -dP ∧ τ * dP + P t = κ * E t
+```
+
+能量和耗散具体定义为
+
+$$
+\mathcal E(t)=\frac{\epsilon E(t)^2+P(t)^2/\kappa}{2},
+\qquad
+\mathcal D(t)=\frac{(\kappa E(t)-P(t))^2}{\kappa\tau}.
+$$
+
+已经从上述真实方程证明内部的
+
+$$
+\mathcal E'(t)=-\frac\tau\kappa dP^2=-\mathcal D(t)\le0,
+$$
+
+以及 $[0,T]$ 上单调不增和 $0\le\mathcal E(t)\le\mathcal E(0)$。没有把这些结论放进主定理输入或“解”的定义。
+
+| 新声明（省略前缀 LeanPML.Debye） | 假设与依赖 → 结论 |
+|---|---|
+| `energy`、`dissipation` | 具体时间函数定义，无附带符号/能量律假设 |
+| `energy_nonneg` | $\epsilon,\kappa>0$ 和平方非负 → 能量非负，无 ODE 要求 |
+| `continuousOn_energy` | $E,P$ 在任意集合连续 → 能量在同集合连续 |
+| `hasDerivAt_energy_of_hasDerivAt` | 两个真实点导数 → 未代入方程的能量求导公式 |
+| `hasDerivAt_energy_rate` | 两个点导数、两方程、$\kappa\ne0$ → $-(\tau/\kappa)dP^2$ 的 HasDerivAt |
+| `dissipation_eq_rate` | 第二方程、$\kappa,\tau\ne0$ → $\mathcal D=(\tau/\kappa)dP^2$ |
+| `hasDerivAt_energy_dissipation` | 上述真实点导数与方程 → 导数为 $-\mathcal D$ |
+| `dissipation_nonneg` | $\kappa,\tau>0$，无 ODE 要求 → 耗散非负 |
+| `energy_deriv_nonpos` | 点导数、两方程、$\kappa,\tau>0$ → 实际能量导数非正 |
+| `hasDerivAt_energy_on_Ioo` | 内部 hODE、非零 $\kappa,\tau$ → 内部逐点真实能量导数 |
+| `antitoneOn_energy_zero` | 任意参数和函数，无连续/导数假设 → 单点区间单调性 |
+| `antitoneOn_energy` | 三正材料、$T\ge0$、原函数连续性与内部 hODE → 闭区间 AntitoneOn |
+| `energy_bounds` | 主定理输入及 $t\in[0,T]$ → 非负与初值上界 |
+| `exampleE`、`exampleP` | 非零显式函数定义 |
+| `hasDerivAt_exampleE`、`hasDerivAt_exampleP` | 链式法则及取负求导 → 全轴真实导数 |
+| `continuous_exampleE`、`continuous_exampleP` | 真实可导性 → 全轴连续性 |
+| `example_ode` | 已证明的导数证据及代数整理 → 实例两方程 |
+| `example_initial` | exp(0)=1 → E(0)=1、P(0)=-1、初能量=1 |
+| `example_energy_antitone` | $T\ge0$ → 将实例证据传给一般主定理 |
+| `example_energy_bounds` | $T\ge0,t\in[0,T]$ → 调用一般初值界并改写上界为 1 |
+
+$\epsilon>0$ 用于能量非负；主单调性定理中 `_hε` 保留物理范围，但不参与导数符号估计。$\kappa>0$ 用于能量中的 $P^2/\kappa$，与 $\tau>0$ 一起保证耗散分母为正。非零条件显式传给 `eq_div_iff` 和 `field_simp`。没有除以 $\epsilon$，局部求导恒等式无需假设 $\epsilon>0$。
+
+$T=0$ 独立使用单点时间引理；主证明零分支不读取连续性或内部导数。非退化区间调用 v0.1.1 的中值定理接口，未增加端点双侧导数或区间外方程。
+
+## 显式实例的实际验证范围
+
+对 $\epsilon=\kappa=\tau=1$、$E(t)=e^{-2t},P(t)=-e^{-2t}$，已经形式化：
+
+1. `HasDerivAt exampleE (-2 * exampleE t) t` 与 `HasDerivAt exampleP (2 * exampleE t) t`。
+2. 带这两条证据的存在量词形式原方程，及两个函数的连续性。
+3. 初始场值 $1,-1$ 和初能量 $1$，因此确为非零实例。
+4. 对任意 $T\ge0$，通过一般 `antitoneOn_energy` 和 `energy_bounds` 得到 $[0,T]$ 上单调性及 $0\le\mathcal E(t)\le1$。
+
+这些有名定理都在同一正式模块构建、在 Audit 中逐项审计。不是数值采样、普通代数变量检查或仅零解验证。实例为一个非零真实解提供见证，但没有证明一般初值问题的存在唯一性。
+
+## 环境、来源与保留范围
+
+本次重新实际读取版本：Lean `4.31.0`（提交 `68218e876d2a38b1985b8590fff244a83c321783`），Lake `5.0.0-src+68218e8`。mathlib 固定为 `v4.31.0`，提交 `fabf563a7c95a166b8d7b6efca11c8b4dc9d911f`。
+
+`lean-toolchain`、`lakefile.toml`、`lake-manifest.json` 均不改动；包元数据仍为 0.0.3，研究阶段为 v0.1.2。没有执行 `lake update`，没有改动 elan 全局设置或其他工程。缓存命令报告 2086 个文件已解压，无需新下载。
+
+未发现适用的 AGENTS.md。开始时 [input_hashes.json](logs/v0.1.2/input_hashes.json) 记录 68 个受保护文件；包括旧源码、固定配置、路线图、模型文档、日志脚本、旧日志和相关工程/全局设置。四个拟修改文件另外保存 `before_*` 快照。已有历史日志和旧 PROGRESS 原文继续保留。
+
+具体材料差异及处理：
+
+- 当前路线图 SHA-256 为 `f43c6bc2524262cd97ac4ee9a6768199c8fb5f3da39b732fe89b0b6c3a09d6c5`，不同于 v0.1.1 记录的 `7514ec9e…`。已重新读取 §3.1、v0.1.2 及相邻阶段；不根据旧哈希猜测全部文本改动。
+- 路线图第 460 行仍写 v0.1.1“待在新工程验收”，而第 462–465 行任务已勾选；v0.1.2 第 474 行仍为待实现。本轮保留路线图原文，以本进度和实际日志更新完成状态。
+- `docs/scope.md` 第 124–126 行属于 v0.0.2 交接；原 README 末尾和原 PROGRESS 的“v0.1.2 尚未开始”属于上一阶段。当前 README 已更新，旧 PROGRESS 作为历史保留。
+- `docs/scope.md` 第 74 行 Q01 区分点态 $EP_t$ 与空间积分/范数。当前只建立实值时间函数的平方能量推导，没有声称兑现空间积分版本。Q02–Q13 的 PML 接口不因本例通过而自动完成。
+
+本阶段未发现需要修改已接受数学合同的冲突；没有改动合同中的材料、吸收、边界或兼容初值条件。
+
+## 实际命令与完整日志
+
+全部命令工作目录为：
+
+```text
+/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML
+```
+
+使用 `python3 scripts/run_logged.py --stage v0.1.2 标签 命令...`。每条命令的参数列表、工作目录、退出码、开始/结束时间在 JSON 中，完整合并输出在同名 LOG 中。下表 Python 快照命令为简述，实际完整代码在其 JSON 参数中。
+
+| 实际操作/命令 | 退出码 | 完整输出 / 元数据 |
+|---|---|---|
+| `Python：受保护文件哈希、修改前快照` | 0 | [输出](logs/v0.1.2/20261010T005810_726205_input_snapshot.log) · [元数据](logs/v0.1.2/20261010T005810_726205_input_snapshot.json) |
+| `lake env lake --version` | 0 | [输出](logs/v0.1.2/20261010T005810_831764_lake_version.log) · [元数据](logs/v0.1.2/20261010T005810_831764_lake_version.json) |
+| `lake env lean --version` | 0 | [输出](logs/v0.1.2/20261010T005810_831842_lean_version.log) · [元数据](logs/v0.1.2/20261010T005810_831842_lean_version.json) |
+| `lake exe cache get Mathlib.Analysis.Calculus.Deriv.Pow Mathlib.Analysis.Calculus.Deriv.Mul Mathlib.Analysis.Calculus.Deriv.Add Mathlib.Analysis.SpecialFunctions.ExpDeriv Mathlib.Tactic.FieldSimp Mathlib.Tactic.Ring Mathlib.Tactic.NormNum` | 0 | [输出](logs/v0.1.2/20261010T005909_539572_mathlib_cache.log) · [元数据](logs/v0.1.2/20261010T005909_539572_mathlib_cache.json) |
+| `lake build` | 1 | [输出](logs/v0.1.2/20261010T010036_323185_lake_build.log) · [元数据](logs/v0.1.2/20261010T010036_323185_lake_build.json) |
+| `lake build` | 0 | [输出](logs/v0.1.2/20261010T010100_916130_lake_build_retry.log) · [元数据](logs/v0.1.2/20261010T010100_916130_lake_build_retry.json) |
+| `lake env lean Audit.lean` | 0 | [输出](logs/v0.1.2/20261010T010129_718599_axioms_audit.log) · [元数据](logs/v0.1.2/20261010T010129_718599_axioms_audit.json) |
+
+首轮 `lake build` 实际退出 1：`hasDerivAt_exampleE`、`hasDerivAt_exampleP` 中，`simpa` 未把目标里部分应用的显式函数定义展开到预期形式。修复为 `change` 显式给出函数，再用 `congr_deriv (by ring)` 对齐导数值；没有改函数、方程或假设。同时移除了 `field_simp` 已解决目标后的多余 `ring`，没有关闭检查器。失败输出与修复后成功输出均保留。
+
+缓存工具重放了 `ld64.lld: warning: directory not found for option -L/usr/local/lib`，命令本身退出 0。没有为该缓存链接警告改变全局目录或配置。最终正式构建无上述证明警告。
+
+最终构建明确记录 `Built LeanPML.Debye.ScalarEnergy`、`Built LeanPML`、`Built Audit`；旧模块作为未改动依赖参与默认构建。输出 `2115 jobs` 包含依赖任务，不是项目定理数。
+
+## 公理审计与验收
+
+末次检查实际退出 0：[完整输出](logs/v0.1.2/20261010T010604_033726_final_checks.log) · [命令、目录与退出码](logs/v0.1.2/20261010T010604_033726_final_checks.json)。确认 68 个受保护文件未变、旧 PROGRESS 原文完整保留、6 个正式模块有构建产物、全部 32 条定理进入审计、9 个依赖实际提交与 manifest 一致、当前文档链接有效。正式源码、README、固定配置和日志脚本的 [交付哈希](logs/v0.1.2/verified_artifact_hashes.json) 已保存；PROGRESS 因追加本段而不包含在该哈希表中。
+
+独立 `lake env lean Audit.lean` 实际输出全部 32 条定理的依赖，均为
+
+```text
+[propext, Classical.choice, Quot.sound]
+```
+
+这三项分别是命题外延性、经典选择和商类型基础原则；无 `sorryAx` 或自定义证明占位公理。不能把标准基础原则误报为“未完成证明”；也不能只看依赖列表而跳过实际命题语义。
+
+| v0.1.2 验收项 | 结果 |
+|---|---|
+| 真实 E、P、常参数、具体能量 | 4 个定义，命名空间与教学例分离 |
+| 两种真实耗散公式 | 从 HasDerivAt 与原方程推导，非零分母有显式证据 |
+| 能量非负、连续、耗散非负、实际导数非正 | 均实际形式化，符号不是输入的能量结论 |
+| 有限区间主定理与初值界 | 输入仅材料条件、T≥0、原函数连续性与内部 ODE |
+| T=0 与端点 | 单点分支无导数；不加端点普通双侧导数 |
+| 非零实际函数实例 | 真求导、真方程、连续性、初值及一般定理调用全部编译 |
+| 构建/审计 | 最终均退出 0，新模块与全部新定理实际进入检查 |
+| 中文说明与复现 | README、源码注释、InfoView 指南和日志齐全 |
+| 阶段边界 | 未建立时间不变量模块，未进入 v0.1.3 |
+
+## 距离完整 PML 及下一任务
+
+当前是给定解的时间先验能量估计与一个显式解的验证，允许等号；没有证明一般初值问题的存在唯一性、严格递减或完整二维 PML。此处的极化平方抵消是后续局部能量计算的基础，完整 PML 还需原八变量/提升等价、五不变量、空间 Green 与 PEC、时间空间导数交换、加权图范数与 Poincaré、两层耗散闭合及积分平衡。没有因此将旧 theorem_inventory 的完整 PDE 条目标为实现。
+
+**下一阶段 v0.1.3 尚未开始。** 计划入口 `LeanPML/PML/TimeInvariants.lean`，从真实 $u'=E,q'=P,\tau P'+P=\kappa E$ 推出 $q+\tau P-\kappa u$ 为时间常数；从 $Z_1'=-\epsilon bE,Z_2'=-bP$ 推出 $Z_1+\epsilon bu$、$Z_2+bq$ 为常数，并证明零初值保持。先处理固定空间点的时间函数，磁辅助与场空间对应留到后续阶段。本轮未创建此模块。
+
+---
+
+# v0.1.1 及更早历史记录（以下保留原文）
+
 # LeanPML 当前进度：v0.1.1
 
 用途：记录本阶段已经由 Lean 实际检查的命题、命令证据和范围，便于复现及继续学习。更新日期：2026-10-06（Asia/Shanghai）。下方 v0.0.3 原文作为历史保留；其中“本轮”和“尚未开始”仅指当时阶段。

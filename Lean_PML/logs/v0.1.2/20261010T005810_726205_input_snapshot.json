@@ -1,0 +1,18 @@
+{
+  "stage": "v0.1.2",
+  "command": [
+    "python3",
+    "-c",
+    "import hashlib,json\nfrom pathlib import Path\nroot=Path.cwd(); logs=root/\"logs/v0.1.2\"\nprotected=[root/n for n in [\"lean-toolchain\",\"lakefile.toml\",\"lake-manifest.json\",\"ROADMAP_lean_PML_revised.md\",\"scripts/run_logged.py\"]]\nprotected += list((root/\"LeanPML\").rglob(\"*.lean\"))\nprotected += [p for p in (root/\"docs\").rglob(\"*\") if p.is_file()]\nfor stage in [\"v0.0.3\",\"v0.1.1\"]:\n protected += [p for p in (root/\"logs\"/stage).rglob(\"*\") if p.is_file()]\nprotected += [Path.home()/\".elan/settings.toml\"]\nfor project in [Path(\"/Users/wcli/Desktop/资料/graduate_student/博/Lean_study/ScalarDissipation\"),root.parent/\"lean_verification\"]:\n protected += [project/n for n in [\"lean-toolchain\",\"lakefile.toml\",\"lake-manifest.json\"] if (project/n).is_file()]\nhashes={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in protected}\n(logs/\"input_hashes.json\").write_text(json.dumps(hashes,ensure_ascii=False,indent=2)+\"\\n\")\nfor name in [\"README.md\",\"PROGRESS.md\",\"LeanPML.lean\",\"Audit.lean\"]:\n (logs/(\"before_\"+name)).write_bytes((root/name).read_bytes())\nprint(\"已记录\",len(hashes),\"个受保护文件及四份修改前快照。\")\nprint(\"适用 AGENTS.md：已逐层及源码/文档/脚本目录核查，未发现。\")\nprint(\"路线图 SHA-256:\",hashes[str(root/\"ROADMAP_lean_PML_revised.md\")])\nfor name in [\"lean-toolchain\",\"lakefile.toml\"]:\n print(name);print((root/name).read_text())\n"
+  ],
+  "command_display": "python3 -c 'import hashlib,json\nfrom pathlib import Path\nroot=Path.cwd(); logs=root/\"logs/v0.1.2\"\nprotected=[root/n for n in [\"lean-toolchain\",\"lakefile.toml\",\"lake-manifest.json\",\"ROADMAP_lean_PML_revised.md\",\"scripts/run_logged.py\"]]\nprotected += list((root/\"LeanPML\").rglob(\"*.lean\"))\nprotected += [p for p in (root/\"docs\").rglob(\"*\") if p.is_file()]\nfor stage in [\"v0.0.3\",\"v0.1.1\"]:\n protected += [p for p in (root/\"logs\"/stage).rglob(\"*\") if p.is_file()]\nprotected += [Path.home()/\".elan/settings.toml\"]\nfor project in [Path(\"/Users/wcli/Desktop/资料/graduate_student/博/Lean_study/ScalarDissipation\"),root.parent/\"lean_verification\"]:\n protected += [project/n for n in [\"lean-toolchain\",\"lakefile.toml\",\"lake-manifest.json\"] if (project/n).is_file()]\nhashes={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in protected}\n(logs/\"input_hashes.json\").write_text(json.dumps(hashes,ensure_ascii=False,indent=2)+\"\\n\")\nfor name in [\"README.md\",\"PROGRESS.md\",\"LeanPML.lean\",\"Audit.lean\"]:\n (logs/(\"before_\"+name)).write_bytes((root/name).read_bytes())\nprint(\"已记录\",len(hashes),\"个受保护文件及四份修改前快照。\")\nprint(\"适用 AGENTS.md：已逐层及源码/文档/脚本目录核查，未发现。\")\nprint(\"路线图 SHA-256:\",hashes[str(root/\"ROADMAP_lean_PML_revised.md\")])\nfor name in [\"lean-toolchain\",\"lakefile.toml\"]:\n print(name);print((root/name).read_text())\n'",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/usr/bin/python3",
+  "started_at": "2026-10-10T00:58:10.726205+08:00",
+  "output_file": "20261010T005810_726205_input_snapshot.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-10T00:58:10.767713+08:00",
+  "elapsed_seconds": 0.041
+}

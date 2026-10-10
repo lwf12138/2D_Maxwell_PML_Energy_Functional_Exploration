@@ -1,0 +1,7 @@
+ℹ [23/23] Replayed cache:exe
+info: stderr:
+ld64.lld: warning: directory not found for option -L/usr/local/lib
+Current branch: HEAD
+Using cache (Azure) from origin: (some leanprover-community/mathlib4)
+No files to download
+Already decompressed 2086 file(s)

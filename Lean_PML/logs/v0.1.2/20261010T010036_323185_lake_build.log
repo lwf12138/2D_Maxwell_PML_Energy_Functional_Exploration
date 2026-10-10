@@ -1,0 +1,27 @@
+✖ [2111/2115] Building LeanPML.Debye.ScalarEnergy (9.3s)
+trace: .> LEAN_PATH=/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Cli/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/batteries/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Qq/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/aesop/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/proofwidgets/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/importGraph/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/plausible/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/mathlib/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean /Users/wcli/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/LeanPML/Debye/ScalarEnergy.lean -o /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/Debye/ScalarEnergy.olean -i /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/Debye/ScalarEnergy.ilean -c /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/Debye/ScalarEnergy.c --setup /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/Debye/ScalarEnergy.setup.json --json
+warning: LeanPML/Debye/ScalarEnergy.lean:92:26: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: LeanPML/Debye/ScalarEnergy.lean:92:26: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+error: LeanPML/Debye/ScalarEnergy.lean:193:2: Type mismatch: After simplification, term
+  HasDerivAt.exp h
+ has type
+  HasDerivAt (fun x => Real.exp (-(x * 2))) (-(2 * Real.exp (-(t * 2)))) t
+but is expected to have type
+  HasDerivAt exampleE (-(2 * Real.exp (-(t * 2)))) t
+error: LeanPML/Debye/ScalarEnergy.lean:198:2: Type mismatch: After simplification, term
+  HasDerivAt.neg (hasDerivAt_exampleE t)
+ has type
+  @HasDerivAt ℝ DenselyNormedField.toNontriviallyNormedField ℝ Real.normedAddCommGroup.toAddCommGroup
+    NormedField.toNormedSpace.toModule PseudoMetricSpace.toUniformSpace.toTopologicalSpace ⋯ (-exampleE)
+    (2 * exampleE t) t
+but is expected to have type
+  @HasDerivAt ℝ DenselyNormedField.toNontriviallyNormedField ℝ Real.instAddCommGroup Semiring.toModule
+    PseudoMetricSpace.toUniformSpace.toTopologicalSpace ⋯ exampleP (2 * exampleE t) t
+error: Lean exited with code 1
+Some required targets logged failures:
+- LeanPML.Debye.ScalarEnergy
+error: build failed

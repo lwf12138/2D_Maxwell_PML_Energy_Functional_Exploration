@@ -1,0 +1,25 @@
+已记录 68 个受保护文件及四份修改前快照。
+适用 AGENTS.md：已逐层及源码/文档/脚本目录核查，未发现。
+路线图 SHA-256: f43c6bc2524262cd97ac4ee9a6768199c8fb5f3da39b732fe89b0b6c3a09d6c5
+lean-toolchain
+leanprover/lean4:v4.31.0
+
+lakefile.toml
+name = "leanPML"
+version = "0.0.3"
+
+# 两个入口都属于默认构建；Audit 不是仅供手动运行的旁支文件。
+defaultTargets = ["LeanPML", "Audit"]
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+# mathlib v4.31.0 对应的精确提交；完整传递依赖由 lake-manifest.json 锁定。
+rev = "fabf563a7c95a166b8d7b6efca11c8b4dc9d911f"
+
+[[lean_lib]]
+name = "LeanPML"
+
+[[lean_lib]]
+name = "Audit"
+

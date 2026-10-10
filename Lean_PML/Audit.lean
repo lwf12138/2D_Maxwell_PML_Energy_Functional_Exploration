@@ -25,3 +25,25 @@ import LeanPML
 -- v0.1.1：修改耗散参数假设后的可编译对照例。
 #print axioms LeanPML.Tutorial.exp_solves_negative_damping
 #print axioms LeanPML.Tutorial.negative_damping_counterexample
+
+-- v0.1.2：Debye 真求导、耗散、区间估计及非零显式实例。
+#print axioms LeanPML.Debye.energy_nonneg
+#print axioms LeanPML.Debye.continuousOn_energy
+#print axioms LeanPML.Debye.hasDerivAt_energy_of_hasDerivAt
+#print axioms LeanPML.Debye.hasDerivAt_energy_rate
+#print axioms LeanPML.Debye.dissipation_eq_rate
+#print axioms LeanPML.Debye.hasDerivAt_energy_dissipation
+#print axioms LeanPML.Debye.dissipation_nonneg
+#print axioms LeanPML.Debye.energy_deriv_nonpos
+#print axioms LeanPML.Debye.hasDerivAt_energy_on_Ioo
+#print axioms LeanPML.Debye.antitoneOn_energy_zero
+#print axioms LeanPML.Debye.antitoneOn_energy
+#print axioms LeanPML.Debye.energy_bounds
+#print axioms LeanPML.Debye.hasDerivAt_exampleE
+#print axioms LeanPML.Debye.hasDerivAt_exampleP
+#print axioms LeanPML.Debye.continuous_exampleE
+#print axioms LeanPML.Debye.continuous_exampleP
+#print axioms LeanPML.Debye.example_ode
+#print axioms LeanPML.Debye.example_initial
+#print axioms LeanPML.Debye.example_energy_antitone
+#print axioms LeanPML.Debye.example_energy_bounds
