@@ -1,0 +1,169 @@
+import LeanPML.PML.LocalSpatial
+import Mathlib.Analysis.SpecialFunctions.ExpDeriv
+
+namespace LeanPML.PML
+
+/-!
+## 四分支与非零真实时间路径
+
+下面取 c=4、S=1，只检验 (5.3) 的吸收幅度限制和 (7.1)–(7.2) 的局部结论。
+这些数值并不声称对任意材料满足全部 (5.2) 阈值。x、y 边层分别计算，
+以检查“l² 用本方向吸收、h² 用另一方向吸收”的次序。
+-/
+
+/-- V7 (7.2) 的零吸收点态实例：p=r=0 时两个方向仍保留 4hᵢ²。
+输入 h、l 的数值任意；非负性调用一般定理，不以分式除零来替代零区公式。
+注意本结论只计算耗散密度，不从 p=r=0 推出 l=h。 -/
+theorem spatial_zero_absorption_example (hx hy lx ly : ℝ) :
+    spatialDissipation2D 4 0 0 hx hy lx ly = 4 * hx ^ 2 + 4 * hy ^ 2 ∧
+    0 ≤ spatialDissipation2D 4 0 0 hx hy lx ly := by
+  have h_density_nonneg : 0 ≤ spatialDissipation2D 4 0 0 hx hy lx ly :=
+    spatialDissipation2D_nonneg 4 0 0 1 hx hy lx ly
+      (by norm_num) (by norm_num) (by norm_num)
+      (by norm_num) (by norm_num) (by norm_num)
+  constructor
+  · calc
+      spatialDissipation2D 4 0 0 hx hy lx ly = 4 * (hx ^ 2 + hy ^ 2) :=
+        spatialDissipation2D_of_sum_zero 4 0 0 hx hy lx ly
+          (by norm_num [absorptionSum])
+      _ = 4 * hx ^ 2 + 4 * hy ^ 2 := by ring
+  · exact h_density_nonneg
+
+/-- V7 (7.2) 的 x 边层实例：p=1>0、r=0、S=1=c/4。
+x 方向留下 5lₓ²，y 方向留下 3hᵧ²，显示两个方向不能用同一个系数顺序。
+非负性来自一般点态定理，数值化简只核对精确展开。 -/
+theorem spatial_x_layer_example (hx hy lx ly : ℝ) :
+    spatialDissipation2D 4 1 0 hx hy lx ly = 5 * lx ^ 2 + 3 * hy ^ 2 ∧
+    0 ≤ spatialDissipation2D 4 1 0 hx hy lx ly := by
+  have h_x_nonneg : 0 ≤ spatialDissipation 4 1 0 hx lx :=
+    spatialDissipation_nonneg 4 1 0 1 hx lx
+      (by norm_num) (by norm_num) (by norm_num)
+      (by norm_num) (by norm_num) (by norm_num)
+  have h_y_nonneg : 0 ≤ spatialDissipation 4 0 1 hy ly :=
+    spatialDissipation_nonneg 4 0 1 1 hy ly
+      (by norm_num) (by norm_num) (by norm_num)
+      (by norm_num) (by norm_num) (by norm_num)
+  constructor
+  · norm_num [spatialDissipation2D, spatialDissipation,
+      dissipationPlus, dissipationMinus, absorptionSum]
+  · exact add_nonneg h_x_nonneg h_y_nonneg
+
+/-- V7 (7.2) 的 y 边层实例：p=0、r=1>0，幅度条件同上。
+此时精确留下 3hₓ²+5lᵧ²；与上一条交换 x、y，核验非对称边层没有漏项。 -/
+theorem spatial_y_layer_example (hx hy lx ly : ℝ) :
+    spatialDissipation2D 4 0 1 hx hy lx ly = 3 * hx ^ 2 + 5 * ly ^ 2 ∧
+    0 ≤ spatialDissipation2D 4 0 1 hx hy lx ly := by
+  have h_x_nonneg : 0 ≤ spatialDissipation 4 0 1 hx lx :=
+    spatialDissipation_nonneg 4 0 1 1 hx lx
+      (by norm_num) (by norm_num) (by norm_num)
+      (by norm_num) (by norm_num) (by norm_num)
+  have h_y_nonneg : 0 ≤ spatialDissipation 4 1 0 hy ly :=
+    spatialDissipation_nonneg 4 1 0 1 hy ly
+      (by norm_num) (by norm_num) (by norm_num)
+      (by norm_num) (by norm_num) (by norm_num)
+  constructor
+  · norm_num [spatialDissipation2D, spatialDissipation,
+      dissipationPlus, dissipationMinus, absorptionSum]
+  · exact add_nonneg h_x_nonneg h_y_nonneg
+
+/-- V7 (7.2) 的角层实例：p=r=1>0，S=1=c/4。
+两方向分别具有 5/2 的 l² 系数和 3/2 的 h² 系数；一般定理同时给出非负性。
+它补足双向吸收，但不替代前两条非对称方向检查。 -/
+theorem spatial_corner_example (hx hy lx ly : ℝ) :
+    spatialDissipation2D 4 1 1 hx hy lx ly =
+      (5 / 2 : ℝ) * (lx ^ 2 + ly ^ 2) + (3 / 2 : ℝ) * (hx ^ 2 + hy ^ 2) ∧
+    0 ≤ spatialDissipation2D 4 1 1 hx hy lx ly := by
+  have h_x_nonneg : 0 ≤ spatialDissipation 4 1 1 hx lx :=
+    spatialDissipation_nonneg 4 1 1 1 hx lx
+      (by norm_num) (by norm_num) (by norm_num)
+      (by norm_num) (by norm_num) (by norm_num)
+  have h_y_nonneg : 0 ≤ spatialDissipation 4 1 1 hy ly :=
+    spatialDissipation_nonneg 4 1 1 1 hy ly
+      (by norm_num) (by norm_num) (by norm_num)
+      (by norm_num) (by norm_num) (by norm_num)
+  constructor
+  · norm_num [spatialDissipation2D, spatialDissipation,
+      dissipationPlus, dissipationMinus, absorptionSum]
+    ring
+  · exact add_nonneg h_x_nonneg h_y_nonneg
+
+/-- 为检验 V7 (7.1) 构造的非零时间路径 l(t)=exp(-t)。
+与 h(t)=0、σᵢ=1、σⱼ=0 搭配，辅助方程为 l'=-l。
+这是时间路径实例的定义，不是完整二维 PDE 解。 -/
+noncomputable def spatialDecayPath (t : ℝ) : ℝ := Real.exp (-t)
+
+/-- 指数路径的真实导数。由 mathlib 的恒等函数、取负和 exp 求导规则构造；
+ring 只把链式法则产生的 exp(-t)·(-1) 整理为 -exp(-t)。 -/
+theorem hasDerivAt_spatialDecayPath (t : ℝ) :
+    HasDerivAt spatialDecayPath (-spatialDecayPath t) t := by
+  have h_exponent : HasDerivAt (fun s : ℝ => -s) (-1) t :=
+    (hasDerivAt_id t).neg
+  have h_exp := h_exponent.exp
+  exact h_exp.congr_deriv (by dsimp [spatialDecayPath]; ring)
+
+/-- V7 (7.1) 的非零正吸收路径调用：h=0、l=exp(-t)，c=4、σᵢ=1、σⱼ=0。
+先明确验证 h'=0 与 l'=0+σⱼh-σᵢl，再调用一般真实求导定理。
+结果为 F_sp'=-5 exp(-t)²；这个实例不承担空间梯度或 PDE 接口。 -/
+theorem hasDerivAt_spatial_positive_path (t : ℝ) :
+    HasDerivAt (spatialEnergy 4 1 0 (fun _ => 0) spatialDecayPath)
+      (-5 * (spatialDecayPath t) ^ 2) t := by
+  have h_h : HasDerivAt (fun _ : ℝ => (0 : ℝ)) 0 t :=
+    hasDerivAt_const t 0
+  have h_l : HasDerivAt spatialDecayPath
+      (0 + 0 * (0 : ℝ) - 1 * spatialDecayPath t) t := by
+    simpa using hasDerivAt_spatialDecayPath t
+  have h_local := hasDerivAt_spatialEnergy 4 1 0
+    (fun _ => 0) spatialDecayPath t 0 (by norm_num) (by norm_num) h_h h_l
+    (by norm_num [absorptionSum])
+  -- 求导已经完成；展开已证明的分支密度，把输出整理为本例的数值系数。
+  apply h_local.congr_deriv
+  norm_num [spatialDissipation, dissipationPlus, dissipationMinus, absorptionSum]
+
+/-- 正吸收实例确实不是零路径：l(0)=1，局部能量 F_sp(0)=5/2。
+这里只核对初值；随时间可导的核心证据是上一条一般定理的调用。 -/
+theorem spatial_positive_path_initial :
+    spatialDecayPath 0 = 1 ∧
+    spatialEnergy 4 1 0 (fun _ => 0) spatialDecayPath 0 = (5 / 2 : ℝ) := by
+  norm_num [spatialDecayPath, spatialEnergy, energyWeightX, absorptionSum]
+
+/-- 零区的非零路径 h(t)=l(t)=t+1，显式满足零辅助量 f=l-h=0。
+该条件由路径的定义保证，不能从 σᵢ=σⱼ=0 单独推出。 -/
+def spatialLinearPath (t : ℝ) : ℝ := t + 1
+
+/-- 上述零区路径的真实导数为 1。mathlib 的 add_const 表达常数项导数为零，
+保留原来的恒等函数导数；后面用它验证两个方向的辅助演化。 -/
+theorem hasDerivAt_spatialLinearPath (t : ℝ) :
+    HasDerivAt spatialLinearPath 1 t := by
+  exact (hasDerivAt_id t).add_const 1
+
+/-- V7 (7.1) 后零区公式的非零二维时间路径实例：
+两方向均取 h=l=t+1，p=r=0，c=4。
+调用一般二维分支求导定理；全程保留零区耗散，它与移位乘积中的相应项抵消。
+结论仅是时间分量能量导数 2(t+1)，不把这些路径命名为实际空间梯度。 -/
+theorem hasDerivAt_spatial_zero_path (t : ℝ) :
+    HasDerivAt
+      (spatialEnergy2D 4 0 0 spatialLinearPath spatialLinearPath
+        spatialLinearPath spatialLinearPath) (2 * (t + 1)) t := by
+  have h_path : HasDerivAt spatialLinearPath 1 t :=
+    hasDerivAt_spatialLinearPath t
+  have h_aux : HasDerivAt spatialLinearPath
+      (1 + 0 * spatialLinearPath t - 0 * spatialLinearPath t) t := by
+    simpa using h_path
+  have h_two := hasDerivAt_spatialEnergy2D 4 0 0
+    spatialLinearPath spatialLinearPath spatialLinearPath spatialLinearPath t 1 1
+    (by norm_num) (by norm_num) h_path h_aux h_path h_aux
+    (fun _ => ⟨rfl, rfl⟩)
+  -- 一般二维求导已经保留并相加两个方向；这里仅整理本例的导数值。
+  apply h_two.congr_deriv
+  norm_num [spatialDissipation2D, spatialDissipation, absorptionSum, spatialLinearPath]
+  ring
+
+/-- 零区时间路径的初值：每个分量等于 1，二维能量也等于 1。
+说明“零吸收且零辅助量”并不要求梯度分量路径为零。 -/
+theorem spatial_zero_path_initial :
+    spatialLinearPath 0 = 1 ∧
+    spatialEnergy2D 4 0 0 spatialLinearPath spatialLinearPath
+      spatialLinearPath spatialLinearPath 0 = 1 := by
+  norm_num [spatialLinearPath, spatialEnergy2D, spatialEnergy, energyWeightX, absorptionSum]
+
+end LeanPML.PML

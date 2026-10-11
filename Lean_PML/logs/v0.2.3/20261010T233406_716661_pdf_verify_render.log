@@ -1,0 +1,26 @@
+渲染命令： ["pdftoppm", "-f", "1", "-l", "1", "-scale-to", "1500", "-png", "-singlefile", "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf", "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v0.2.3/pdf/after-01"]
+渲染命令： ["pdftoppm", "-f", "7", "-l", "7", "-scale-to", "1500", "-png", "-singlefile", "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf", "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v0.2.3/pdf/after-07"]
+渲染命令： ["pdftoppm", "-f", "8", "-l", "8", "-scale-to", "1500", "-png", "-singlefile", "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf", "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v0.2.3/pdf/after-08"]
+渲染命令： ["pdftoppm", "-f", "10", "-l", "10", "-scale-to", "1500", "-png", "-singlefile", "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf", "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v0.2.3/pdf/after-10"]
+渲染命令： ["pdftoppm", "-f", "11", "-l", "11", "-scale-to", "1500", "-png", "-singlefile", "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf", "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v0.2.3/pdf/after-11"]
+{
+  "pages": 18,
+  "modified_pages": [
+    1,
+    7,
+    8,
+    10,
+    11
+  ],
+  "old_annotations": 126,
+  "total_annotations": 135,
+  "new_red_ticks": 4,
+  "old_red_ticks_preserved": 16,
+  "original_text_prefix_preserved_on_all_pages": true,
+  "old_annotations_preserved": true,
+  "source_files_unchanged": true,
+  "sha256_before": "066b6d82f7539c0270b343ab162f5553f8728f120ec03b34b8438dd467a31a1d",
+  "sha256_after": "0735771fa5d38adc70a74f21be3c109b490d1c91587414f874ac0c2d049409be",
+  "plan_sha256": "f2482fba0e9dbbb3f6a5b80e939204746588887aacb1993e5963075410c7611b",
+  "visual_review": "pending"
+}

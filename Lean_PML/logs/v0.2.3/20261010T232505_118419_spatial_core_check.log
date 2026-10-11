@@ -1,0 +1,26 @@
+✖ [2045/2045] Building LeanPML.PML.LocalSpatial (6.6s)
+trace: .> LEAN_PATH=/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Cli/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/batteries/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Qq/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/aesop/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/proofwidgets/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/importGraph/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/plausible/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/mathlib/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean /Users/wcli/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/LeanPML/PML/LocalSpatial.lean -o /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/LocalSpatial.olean -i /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/LocalSpatial.ilean -c /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/LocalSpatial.c --setup /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/LocalSpatial.setup.json --json
+error: LeanPML/PML/LocalSpatial.lean:85:13: Unknown identifier `mul_eq_mul_right`
+error: LeanPML/PML/LocalSpatial.lean:157:6: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  fun s => hx s ^ 2 / 2 + hy s ^ 2 / 2
+in the target expression
+  HasDerivAt ((fun s => hx s ^ 2 / 2) + fun s => hy s ^ 2 / 2)
+    ((Vx + c * hx t) * hx t - c * hx t ^ 2 + ((Vy + c * hy t) * hy t - c * hy t ^ 2)) t
+
+c : ℝ
+hx hy : ℝ → ℝ
+t Vx Vy : ℝ
+hhx : HasDerivAt hx Vx t
+hhy : HasDerivAt hy Vy t
+hx_energy : HasDerivAt (fun s => hx s ^ 2 / 2) ((Vx + c * hx t) * hx t - c * hx t ^ 2) t
+hy_energy : HasDerivAt (fun s => hy s ^ 2 / 2) ((Vy + c * hy t) * hy t - c * hy t ^ 2) t
+hsum :
+  HasDerivAt ((fun s => hx s ^ 2 / 2) + fun s => hy s ^ 2 / 2)
+    ((Vx + c * hx t) * hx t - c * hx t ^ 2 + ((Vy + c * hy t) * hy t - c * hy t ^ 2)) t
+hfunction : (fun s => hx s ^ 2 / 2 + hy s ^ 2 / 2) = fun s => (hx s ^ 2 + hy s ^ 2) / 2
+⊢ HasDerivAt (fun s => (hx s ^ 2 + hy s ^ 2) / 2)
+    ((Vx + c * hx t) * hx t + (Vy + c * hy t) * hy t - c * (hx t ^ 2 + hy t ^ 2)) t
+error: Lean exited with code 1
+Some required targets logged failures:
+- LeanPML.PML.LocalSpatial
+error: build failed

@@ -1,0 +1,12 @@
+194 项来源、旧源码、历史日志、配置与旧 PDF 备份字节未变。
+旧 PROGRESS 全文与旧 Audit 109 条审计原样保留。
+11 个模块与两个入口构建产物均新于源码；134 条正式定理完整进入默认构建和审计。
+正式源码没有 sorry、admit、自定义 axiom 或 sorryAx。
+默认构建与独立审计均退出0，无最终编译警告；仅依赖标准 propext、Classical.choice、Quot.sound。
+新增6定义、25定理；代数辅助有真实调用者，四区域和两条非零路径进入正式源码；未实现v0.2.4。
+固定工具链与9个依赖解析提交均未变。
+Traceback (most recent call last):
+  File "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v0.2.3/final_checks.py", line 93, in <module>
+    assert (p.parent/filepart).exists(),(p.name,target)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('v0.2.3_reading_guide.md', '0')

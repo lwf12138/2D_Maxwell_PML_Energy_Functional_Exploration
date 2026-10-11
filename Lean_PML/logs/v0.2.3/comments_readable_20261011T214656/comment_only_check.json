@@ -1,0 +1,12 @@
+{
+  "file": "LeanPML/PML/LocalSpatial.lean",
+  "comments_and_whitespace_only": true,
+  "comparison": "Comment-stripped sources identical except for one branch bullet/newline split; see noncomment_layout_diff.txt. Build passed.",
+  "initial_line_comparison": "Failed only because adding a comment split a branch bullet and have onto separate lines; no mathematical change.",
+  "before_sha256": "b372775bd413f25786c242ed9b6cc875e05e72ef88c50eb55c823a918daa0b59",
+  "after_sha256": "3275fcd9a1033a20675b4b3b37a5c85d76212941f1175f4e191e5d8ee7c84e4f",
+  "declarations": 31,
+  "build_log": "logs/v0.2.3/20261011T214957_195523_readable_comments_build.log",
+  "audited_declarations": 134,
+  "sorryAx": false
+}

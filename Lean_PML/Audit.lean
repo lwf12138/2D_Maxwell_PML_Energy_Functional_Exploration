@@ -130,3 +130,30 @@ import LeanPML
 #print axioms LeanPML.PML.polar_coefficients_bounds_of_threshold
 #print axioms LeanPML.PML.example_polar_path_compatible
 #print axioms LeanPML.PML.hasDerivAt_example_polarEnergy
+
+-- v0.2.3：只审计局部时间/代数层，不代表实际空间积分已经实现。
+#print axioms LeanPML.PML.spatial_weight_balance
+#print axioms LeanPML.PML.spatial_rate_identity
+#print axioms LeanPML.PML.hasDerivAt_spatialAuxiliary
+#print axioms LeanPML.PML.hasDerivAt_spatialEnergy_pos
+#print axioms LeanPML.PML.hasDerivAt_zeroSpatialComponent
+#print axioms LeanPML.PML.hasDerivAt_zeroSpatial2D
+#print axioms LeanPML.PML.zeroSpatial_compatibility_preserved
+#print axioms LeanPML.PML.hasDerivAt_spatialEnergy_zero
+#print axioms LeanPML.PML.hasDerivAt_spatialEnergy
+#print axioms LeanPML.PML.spatialDissipation_nonneg
+#print axioms LeanPML.PML.spatialDissipation2D_nonneg
+#print axioms LeanPML.PML.spatialDissipation2D_of_sum_zero
+#print axioms LeanPML.PML.energyWeightX_swap
+#print axioms LeanPML.PML.spatialEnergy2D_eq_sum
+#print axioms LeanPML.PML.hasDerivAt_spatialEnergy2D
+#print axioms LeanPML.PML.spatial_zero_absorption_example
+#print axioms LeanPML.PML.spatial_x_layer_example
+#print axioms LeanPML.PML.spatial_y_layer_example
+#print axioms LeanPML.PML.spatial_corner_example
+#print axioms LeanPML.PML.hasDerivAt_spatialDecayPath
+#print axioms LeanPML.PML.hasDerivAt_spatial_positive_path
+#print axioms LeanPML.PML.spatial_positive_path_initial
+#print axioms LeanPML.PML.hasDerivAt_spatialLinearPath
+#print axioms LeanPML.PML.hasDerivAt_spatial_zero_path
+#print axioms LeanPML.PML.spatial_zero_path_initial

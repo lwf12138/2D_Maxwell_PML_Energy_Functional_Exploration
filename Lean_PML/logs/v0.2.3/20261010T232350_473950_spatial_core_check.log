@@ -1,0 +1,20 @@
+LeanPML/PML/LocalSpatial.lean:85:13: error(lean.unknownIdentifier): Unknown identifier `mul_eq_mul_right`
+LeanPML/PML/LocalSpatial.lean:157:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  fun s => hx s ^ 2 / 2 + hy s ^ 2 / 2
+in the target expression
+  HasDerivAt ((fun s => hx s ^ 2 / 2) + fun s => hy s ^ 2 / 2)
+    ((Vx + c * hx t) * hx t - c * hx t ^ 2 + ((Vy + c * hy t) * hy t - c * hy t ^ 2)) t
+
+c : ℝ
+hx hy : ℝ → ℝ
+t Vx Vy : ℝ
+hhx : HasDerivAt hx Vx t
+hhy : HasDerivAt hy Vy t
+hx_energy : HasDerivAt (fun s => hx s ^ 2 / 2) ((Vx + c * hx t) * hx t - c * hx t ^ 2) t
+hy_energy : HasDerivAt (fun s => hy s ^ 2 / 2) ((Vy + c * hy t) * hy t - c * hy t ^ 2) t
+hsum :
+  HasDerivAt ((fun s => hx s ^ 2 / 2) + fun s => hy s ^ 2 / 2)
+    ((Vx + c * hx t) * hx t - c * hx t ^ 2 + ((Vy + c * hy t) * hy t - c * hy t ^ 2)) t
+hfunction : (fun s => hx s ^ 2 / 2 + hy s ^ 2 / 2) = fun s => (hx s ^ 2 + hy s ^ 2) / 2
+⊢ HasDerivAt (fun s => (hx s ^ 2 + hy s ^ 2) / 2)
+    ((Vx + c * hx t) * hx t + (Vy + c * hy t) * hy t - c * (hx t ^ 2 + hy t ^ 2)) t

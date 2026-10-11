@@ -1,0 +1,18 @@
+{
+  "stage": "v0.2.3",
+  "command": [
+    "lake",
+    "build",
+    "LeanPML.PML.LocalSpatial"
+  ],
+  "command_display": "lake build LeanPML.PML.LocalSpatial",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-10T23:25:05.118419+08:00",
+  "output_file": "20261010T232505_118419_spatial_core_check.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 1,
+  "status": "finished",
+  "ended_at": "2026-10-10T23:25:14.367900+08:00",
+  "elapsed_seconds": 9.249
+}

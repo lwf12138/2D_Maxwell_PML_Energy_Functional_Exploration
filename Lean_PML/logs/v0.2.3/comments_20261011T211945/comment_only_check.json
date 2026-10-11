@@ -1,0 +1,7 @@
+{
+  "only_comments_changed": true,
+  "before_sha256": "6d9794dc1c5c648844dd259d0e1152836c0c1880f8880a4186c423961ff200e4",
+  "after_sha256": "93ef638b1d8544eea8204f22315d5435a059868e53a5d02cf1dcd1e397c075a1",
+  "lean_code_sha256_excluding_comments": "29008cd210eaa6bb2b52cd539f2d39794454ab53c663490ef0e9076c01a1357a",
+  "declarations_with_added_formulas": 31
+}

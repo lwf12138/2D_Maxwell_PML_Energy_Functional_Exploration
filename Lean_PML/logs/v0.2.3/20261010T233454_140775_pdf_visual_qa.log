@@ -1,0 +1,43 @@
+视觉验收通过： [
+  {
+    "page": 1,
+    "printed_page": 1,
+    "render": "after-01.png",
+    "visible_checkmarks_and_chinese": true,
+    "no_clipping_or_overlap": true,
+    "original_pixels_unchanged_outside_annotation_boxes": true
+  },
+  {
+    "page": 7,
+    "printed_page": 7,
+    "render": "after-07.png",
+    "visible_checkmarks_and_chinese": true,
+    "no_clipping_or_overlap": true,
+    "original_pixels_unchanged_outside_annotation_boxes": true
+  },
+  {
+    "page": 8,
+    "printed_page": 8,
+    "render": "after-08.png",
+    "visible_checkmarks_and_chinese": true,
+    "no_clipping_or_overlap": true,
+    "original_pixels_unchanged_outside_annotation_boxes": true
+  },
+  {
+    "page": 10,
+    "printed_page": 10,
+    "render": "after-10.png",
+    "visible_checkmarks_and_chinese": true,
+    "no_clipping_or_overlap": true,
+    "original_pixels_unchanged_outside_annotation_boxes": true
+  },
+  {
+    "page": 11,
+    "printed_page": 11,
+    "render": "after-11.png",
+    "visible_checkmarks_and_chinese": true,
+    "no_clipping_or_overlap": true,
+    "original_pixels_unchanged_outside_annotation_boxes": true
+  }
+]
+其余13页内容流逐字节不变；全部18页原文字前缀、页框及126个原批注/链接已保留。

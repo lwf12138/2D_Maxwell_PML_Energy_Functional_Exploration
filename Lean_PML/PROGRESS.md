@@ -1,3 +1,176 @@
+2026-10-11 再次调整阅读注释：保留公式、出处和符号对应，在关键 `have` 旁补充求导、导数值改写、零区常值及二维合并的理由；简单实例仍保持简短。只修改注释及一处换行，没有改变定义、假设或证明内容。[变更核对](logs/v0.2.3/comments_readable_20261011T214656/comment_only_check.json)；[实际构建及默认审计](logs/v0.2.3/20261011T214957_195523_readable_comments_build.log)退出 0，134 条审计无 sorryAx。以下保留前两次注释调整的历史记录。
+
+2026-10-11 后续调整：按用户偏好，将 LocalSpatial 主要注释压至 1–4 行，保留公式、出处和必要条件；文件由 787 行缩至 484 行，证明代码逐字不变。[构建及默认审计通过](logs/v0.2.3/20261011T214335_015307_shortened_comments_build.log)，[变更核对](logs/v0.2.3/comments_short_20261011T214308/check.json)。
+
+# 2026-10-11：v0.2.3 注释阅读改进
+
+按用户要求，在 [LocalSpatial.lean](LeanPML/PML/LocalSpatial.lean) 全部 31 个定义/定理的注释中补充对应 PDF 的直接数学公式、实际页码、纸面符号与 Lean 参数的映射，区分原式、局部密度、推论和教学实例。重点展开 (7.1) 完整求导链、零区公式及 (7.2) 积分式与点态密度的差别。
+
+本次没有新增数学结果。去掉注释后，定义、假设和证明代码与修改前逐字一致，见 [仅注释变更检查](logs/v0.2.3/20261011T212242_049381_comments_only_check.log)；[修改前源码](logs/v0.2.3/comments_20261011T211945/before_LocalSpatial.lean)保留。PDF、原始材料、工具链和依赖未改。
+
+实际 [默认构建](logs/v0.2.3/20261011T212242_143462_comments_lake_build.log) 和 [独立审计](logs/v0.2.3/20261011T212322_994625_comments_axioms_audit.log) 都退出 0，全部 134 条审计通过，无 sorryAx，仅有原来的标准基础公理。历史日志及历史文件哈希保留，不用新注释覆盖旧快照；当前源码新哈希见 [注释检查记录](logs/v0.2.3/comments_20261011T211945/comment_only_check.json)。
+
+---
+
+# LeanPML 当前进度：v0.2.3
+
+用途：记录“空间块与退化区”的实际证明、中文学习材料、真实构建审计以及 PDF 标注证据。日期：2026-10-10（Asia/Shanghai）。下方完整保留旧 PROGRESS，历史中的“当前”和“下一阶段”只指当时的状态。
+
+**v0.2.3 已完成：数学任务、正式构建、公理审计、中文说明、PDF 标注、视觉验收和末次文件核对均通过。** 本轮没有实现 v0.2.4。
+
+## 新产物与数学结论
+
+- [LocalSpatial.lean](LeanPML/PML/LocalSpatial.lean)：6 个定义、25 条定理，全部进入正式导入和审计。其中 4 个密度定义、15 条核心定理；2 个路径定义、10 条实例定理。
+- [阅读指南](docs/v0.2.3_reading_guide.md)：论文到 Lean 对应、假设、正/零分支、方向次序、真实求导、InfoView 及准确 mathlib 源码位置。
+- [LeanPML.lean](LeanPML.lean) 接入模块；[Audit.lean](Audit.lean) 完整保留旧 109 条，再增加全部 25 条，共 134 条。
+- [README](README.md) 更新本阶段入口；旧 README、PROGRESS、入口、审计与路线图快照存于 [阶段日志](logs/v0.2.3)。
+- [PDF 标注账本](docs/pdf_formalization_marks.md)：逐项登记当前源码、完整定理名、页码、旧勾保留、新增范围、未完成接口和本次证据。
+
+本文件所有新定理均位于 `LeanPML.PML`。$h,l$ 是实际时间函数，$V$ 是由 `HasDerivAt h V t` 绑定的真实导数值，$f$ 直接取 $l-h$。吸收是固定空间点的值，时间不变，不要求全空间为常数。
+
+| 声明 | 来源、假设及结论 |
+|---|---|
+| `spatialEnergy`、`spatialEnergy2D` | (5.5)、(6.2)、(7.1)；含 $1/2$，空间部分不额外乘 $\mu$，未作积分 |
+| `spatialDissipation`、`spatialDissipation2D` | (7.2) 的点态分支密度；零区独立为 $ch_i^2$ |
+| `spatial_weight_balance` | $a>0$ → $\sigma_j+aw_i=c$；先给出 $a\ne0$ 再消分母 |
+| `spatial_rate_identity` | (7.1) 实数代数；调用平衡式，继而由真实求导调用 |
+| `hasDerivAt_spatialAuxiliary` | 原始 $h'=V,l'=V+\sigma_jh-\sigma_i l$ → $(l-h)'=\sigma_jh-\sigma_i l$ |
+| `hasDerivAt_spatialEnergy_pos` | 上述真实导数、$a>0$ → 正区能量真实导数；不假设目标公式 |
+| `hasDerivAt_zeroSpatialComponent`、`hasDerivAt_zeroSpatial2D` | (7.1) 后未编号公式；真实 $h_i'=V_i$ → 一/两个时间分量的平方能量导数 |
+| `zeroSpatial_compatibility_preserved` | §5.2 零区保持句；非负吸收、$a=0$、$T\ge0$、$h,l$ 闭区间连续、内部真实辅助演化、仅初始 $l(0)=h(0)$ → 整段 $l=h$ |
+| `hasDerivAt_spatialEnergy_zero` | 非负吸收、$a=0$、$l$ 的真实演化和当前 $l(t)=h(t)$ → 分支能量导数；没有对单点兼容求导 |
+| `hasDerivAt_spatialEnergy` | 非负吸收、两份真实导数、仅当 $a=0$ 要求兼容 → 两分支统一结论 |
+| `spatialDissipation_nonneg`、`spatialDissipation2D_nonneg` | $c>0$、$0\le p,r\le S\le c/4$ → 点态非负；实际调用 v0.2.1 系数界 |
+| `spatialDissipation2D_of_sum_zero` | $a=0$ → 零区密度等于 $c(h_x^2+h_y^2)$ |
+| `energyWeightX_swap`、`spatialEnergy2D_eq_sum` | (5.5)、(6.2) 推出的方向映射与能量分解；由二维求导调用 |
+| `hasDerivAt_spatialEnergy2D` | 两方向的四份真实导数、非负吸收及条件化零区兼容 → 二维时间结论，保留全部耦合项 |
+
+最高局部时间结论为
+
+$$
+F_{\mathrm{sp}}'
+=(V_x+ch_x)l_x+(V_y+ch_y)l_y-D_{\mathrm{sp}}.
+$$
+
+点态非负不等于单独空间块单调，耦合项仍需后续主方程和 Green 公式处理。原材料不一致处没有通过增加假设掩盖；本轮没有对 $w_i,p,r$ 作空间求导，没有吸收正下界。
+
+## 零区、方向和实例
+
+$x$ 方向 $(\sigma_i,\sigma_j)=(p,r)$，$y$ 方向 $(r,p)$；$l_i^2$ 系数使用本方向吸收，$h_i^2$ 使用另一方向吸收。正式代码显式复用 `energyWeightY` 并证明交换映射，避免仅以名称暗示方向。
+
+$p=r=0$ 只推出辅助量导数为零。零初值兼容及闭区间连续/内部演化才推出整段 $f=0$。复用 `Time.eq_initial_of_hasDerivAt_zero` 处理端点和 $T=0$，没有额外要求端点双侧导数或全实轴 ODE。局部零区求导只在导数数值中使用当前 $l=h$，没有把单点关系拿去求导。
+
+四条正式密度实例：
+
+| 定理 | 参数 $c=4,S=1$ | 精确结果 |
+|---|---|---|
+| `spatial_zero_absorption_example` | $p=r=0$ | $4h_x^2+4h_y^2$ |
+| `spatial_x_layer_example` | $p=1,r=0$ | $5l_x^2+3h_y^2$ |
+| `spatial_y_layer_example` | $p=0,r=1$ | $3h_x^2+5l_y^2$ |
+| `spatial_corner_example` | $p=r=1$ | $\frac52(l_x^2+l_y^2)+\frac32(h_x^2+h_y^2)$ |
+
+它们验证局部幅度条件并调用一般非负定理，不宣称这些数值对任意材料满足全部阈值。
+
+两条非零光滑时间路径各包含定义、真实导数、一般定理调用和非零初值：
+
+- `spatialDecayPath`、`hasDerivAt_spatialDecayPath`、`hasDerivAt_spatial_positive_path`、`spatial_positive_path_initial`：$h=0,l=e^{-t}$，正区导数为 $-5e^{-2t}$，初始 $l=1,F=5/2$。
+- `spatialLinearPath`、`hasDerivAt_spatialLinearPath`、`hasDerivAt_spatial_zero_path`、`spatial_zero_path_initial`：两方向 $h_i=l_i=t+1$，零区导数 $2(t+1)$，初始分量和二维能量为 1。
+
+这些是局部时间路径，未验证完整 PDE 解或解的存在唯一性。
+
+## 真实构建、公理审计和失败保留
+
+Lean `v4.31.0`（`68218e876d2a38b1985b8590fff244a83c321783`）、Lake `5.0.0-src+68218e8`、mathlib `v4.31.0`（`fabf563a7c95a166b8d7b6efca11c8b4dc9d911f`）保持固定。本阶段未安装/更新依赖，未改其他工程、全局工具链或 Lake 包元数据。
+
+所有下表命令都由原 `scripts/run_logged.py --stage v0.2.3` 在工程根目录执行；LOG 是完整 stdout/stderr，同名 JSON 含命令、实际工作目录、退出码、起止时间。表中的短标签不是用来替代元数据里的真实命令。
+
+| 实际记录 / 命令标签 | 退出码 | 完整输出与元数据 |
+|---|---:|---|
+| input_snapshot | 0 | [LOG](logs/v0.2.3/20261010T232231_591743_input_snapshot.log)／[JSON](logs/v0.2.3/20261010T232231_591743_input_snapshot.json) |
+| pdf_inspect | 0 | [LOG](logs/v0.2.3/20261010T232231_714148_pdf_inspect.log)／[JSON](logs/v0.2.3/20261010T232231_714148_pdf_inspect.json) |
+| lake env lean --version | 0 | [LOG](logs/v0.2.3/20261010T232330_615307_lean_version.log)／[JSON](logs/v0.2.3/20261010T232330_615307_lean_version.json) |
+| lake_version | 0 | [LOG](logs/v0.2.3/20261010T232330_615308_lake_version.log)／[JSON](logs/v0.2.3/20261010T232330_615308_lake_version.json) |
+| lake env lean LeanPML/PML/LocalSpatial.lean | 1 | [LOG](logs/v0.2.3/20261010T232350_473950_spatial_core_check.log)／[JSON](logs/v0.2.3/20261010T232350_473950_spatial_core_check.json) |
+| lake env lean logs/v0.2.3/spatial_path_derivatives_check.lean | 0 | [LOG](logs/v0.2.3/20261010T232351_036683_path_derivatives_check.log)／[JSON](logs/v0.2.3/20261010T232351_036683_path_derivatives_check.json) |
+| lake build LeanPML.PML.LocalSpatial | 1 | [LOG](logs/v0.2.3/20261010T232505_118419_spatial_core_check.log)／[JSON](logs/v0.2.3/20261010T232505_118419_spatial_core_check.json) |
+| lake build LeanPML.PML.LocalSpatial | 0 | [LOG](logs/v0.2.3/20261010T232537_821679_spatial_core_check.log)／[JSON](logs/v0.2.3/20261010T232537_821679_spatial_core_check.json) |
+| lake env lean logs/v0.2.3/spatial_examples_check.lean | 1 | [LOG](logs/v0.2.3/20261010T232603_895787_spatial_examples_check.log)／[JSON](logs/v0.2.3/20261010T232603_895787_spatial_examples_check.json) |
+| lake env lean logs/v0.2.3/spatial_examples_check.lean | 0 | [LOG](logs/v0.2.3/20261010T232630_563186_spatial_examples_check.log)／[JSON](logs/v0.2.3/20261010T232630_563186_spatial_examples_check.json) |
+| lake build | 1 | [LOG](logs/v0.2.3/20261010T232847_164311_lake_build.log)／[JSON](logs/v0.2.3/20261010T232847_164311_lake_build.json) |
+| lake env lean Audit.lean | 1 | [LOG](logs/v0.2.3/20261010T232859_298331_axioms_audit.log)／[JSON](logs/v0.2.3/20261010T232859_298331_axioms_audit.json) |
+| lake build | 0 | [LOG](logs/v0.2.3/20261010T232910_472603_lake_build_retry.log)／[JSON](logs/v0.2.3/20261010T232910_472603_lake_build_retry.json) |
+| lake env lean Audit.lean | 0 | [LOG](logs/v0.2.3/20261010T232931_121820_axioms_audit_retry.log)／[JSON](logs/v0.2.3/20261010T232931_121820_axioms_audit_retry.json) |
+| pdf_evidence_plan | 0 | [LOG](logs/v0.2.3/20261010T233059_003288_pdf_evidence_plan.log)／[JSON](logs/v0.2.3/20261010T233059_003288_pdf_evidence_plan.json) |
+| pdf_ledger | 0 | [LOG](logs/v0.2.3/20261010T233318_014924_pdf_ledger.log)／[JSON](logs/v0.2.3/20261010T233318_014924_pdf_ledger.json) |
+| pdf_operation_marker | 0 | [LOG](logs/v0.2.3/20261010T233326_737482_pdf_operation_marker.log)／[JSON](logs/v0.2.3/20261010T233326_737482_pdf_operation_marker.json) |
+| pdf_annotate | 1 | [LOG](logs/v0.2.3/20261010T233326_922813_pdf_annotate.log)／[JSON](logs/v0.2.3/20261010T233326_922813_pdf_annotate.json) |
+| pdf_annotate_retry | 0 | [LOG](logs/v0.2.3/20261010T233406_456228_pdf_annotate_retry.log)／[JSON](logs/v0.2.3/20261010T233406_456228_pdf_annotate_retry.json) |
+| pdf_verify_render | 0 | [LOG](logs/v0.2.3/20261010T233406_716661_pdf_verify_render.log)／[JSON](logs/v0.2.3/20261010T233406_716661_pdf_verify_render.json) |
+| pdf_visual_qa | 0 | [LOG](logs/v0.2.3/20261010T233454_140775_pdf_visual_qa.log)／[JSON](logs/v0.2.3/20261010T233454_140775_pdf_visual_qa.json) |
+
+真实失败及修复：
+
+1. 核心初稿中的函数和表达式与 lambda 目标形状不一致，且中间版本用了不存在的 `mul_eq_mul_right`。最终先给出显式函数类型，用合法的 `eq_div_iff` 与分母非零证据处理代数；没有放宽恒等式或增加目标假设。
+2. 实例首轮在 `norm_num` 已结束目标后多写了一条 `ring`，删除多余步骤后通过。
+3. 根入口整合时把新 `import` 放在模块说明之后，Lean 报“import 必须位于文件开头”；那次独立审计也因根模块产物缺失而失败。移入顶部导入区域后，默认构建与独立审计都重跑通过。旧审计没有删减。
+4. PDF 首次编辑已经完成文字/批注核对并写入目标，但在随后统计旧批注数量时遇到 pypdf 的间接对象 `len` 错误。修复统计取值；重试识别到同一计划已写入，直接跳过，未重复画勾。随后独立重新打开目标、核对全部页面、渲染和视觉验收均通过。首次失败输出未覆盖。
+
+最终默认构建输出 `Build completed successfully (2122 jobs).`，覆盖 11 个正式模块和两个入口。全部 134 条定理的独立公理输出均只含 `propext`、`Classical.choice`、`Quot.sound`，无 `sorryAx` 或自定义占位公理。标准基础依赖不等于未完成证明。
+
+## PDF 标注与验收
+
+只修改指定的 `V7_global_energy_副本.pdf`。原 PDF、MD、TEX、旧“标注前备份”和用户原有 126 个批注/链接全部保留。新备份为 [before_v0.2.3_20261010T232231.pdf](logs/v0.2.3/pdf/before_v0.2.3_20261010T232231.pdf)，哈希在 [backup.json](logs/v0.2.3/pdf/backup.json)。
+
+[账本](docs/pdf_formalization_marks.md)逐项重新核对已有 16 处标记，并登记 4 个新红勾：第 8 页未编号零区时间保持，第 10 页 (7.1) 正区和后续零区公式，第 11 页 (7.2) 点态子表达式。实际页序号与印刷页码一致。第 1 页加图例，第 7/8 页限定旧 (5.3)/(5.5) 勾只指阈值等价/零分支计算，第 11 页给旧 (7.3)/(7.4) 旁注补“积分待完成”。
+
+红勾以矢量线条绘制，中文字体嵌入；没有重排文档。修改页 1、7、8、10、11 均重新渲染并逐页检查，标记可见、没有裁切或覆盖。机器辅助核验也确认：标记矩形之外像素完全不变，其余 13 页内容流未变，全部 18 页原可选文本保留。[完整视觉与内容核验](logs/v0.2.3/pdf/verification.json)保存最终哈希和每页记录。
+
+[定位计划](logs/v0.2.3/pdf/annotation_plan.json)、[编辑脚本](logs/v0.2.3/pdf/annotate_pdf.py)及稳定标记 ID 保留，重跑同一计划不会重复叠加。PDF 图例和账本明确：定义/假设不是证明，局部时间不等于空间/PDE。
+
+## 来源版本和历史清单增量
+
+V7 MD 哈希仍为 `0a7f73a25cb119eeb75b3e7b3c3f2fbb3b319250f3354ed4dcad0ecff8eff4fb`，与清单和上一阶段相同。本次对照 (5.5)、(6.1)–(6.2)、(7.1)–(7.2) 及零区未编号公式，未发现需要调整已接受假设的差异。
+
+路线图当前哈希 `5b19f2895a88184b71ffa9da4a49d0c1888d99906f9bd5bd64e3450ba3b78f06`，上一阶段输入为 `77364bd8edd1c12feef48b8f6688faa379f62a7caa742baba0cbe41032d51f90`。[已有差异](logs/v0.2.3/roadmap_preexisting_diff.patch)仅为 v0.2.2 第 545–548 行四个勾选框变为完成，文字“待实现”仍保留；数学任务未变。本轮不改路线图，阶段状态以当前 PROGRESS 为准。
+
+[输入快照](logs/v0.2.3/input_hashes.json)登记 194 项保护文件：既有正式模块、历史清单/合同/范围、旧日志、原材料、配置和既有 PDF 备份。旧源码未作无关重构，历史账本不覆盖。
+
+| 清单条目 | 本轮增量 | 仍未完成 |
+|---|---|---|
+| T15，(7.1) | 权重平衡、代数恒等式、真实时间平方求导、两方向合成 | 真正梯度/通量场、混合导数交换、可测可积及积分求导 |
+| T15，零区 | 独立一/二维公式、兼容初值的时间保持、保留 $c|\nabla v|^2$ 的时间分量密度 | 原 PDE 兼容解类到这些路径的接口 |
+| T15，(7.2) | 分支点态耗散、零区值和非负性，复用系数界 | 完整空间积分、加权路径规则、Green/PEC；**整个 T15 未标完成** |
+| T13、T14、T19 | 未扩大 v0.2.2 范围；本次重新构建与审计旧结果以支持 PDF 旧勾 | 空间能量与范数接口仍待完成 |
+| T02–T04 | 不因零区兼容保持而宣称磁不变量或完整等价完成 | 两个磁辅助不变量、提升构造和原八变量对应 |
+
+未给 (6.7)–(6.10)、(7.5)–(7.8)、(9.5)–(9.7) 添加整体完成红勾。模型合同和历史 theorem_inventory 保持原样，本表只登记精确增量。
+
+## 学习、复现和下一阶段
+
+建议先读指南，再读 `hasDerivAt_spatialEnergy_pos`、`zeroSpatial_compatibility_preserved`、`hasDerivAt_spatialEnergy2D`。在 VS Code 用 `Lean 4: InfoView: Display Goal`，把光标放到具名 `have` 和 `calc` 前后看目标；F12 查看 mathlib。导入刷新使用保存、构建、`Lean 4: Server: Restart File`。
+
+~~~sh
+cd '/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML'
+python3 scripts/run_logged.py --stage v0.2.3 lake_build lake build
+python3 scripts/run_logged.py --stage v0.2.3 axioms_audit lake env lean Audit.lean
+~~~
+
+下一阶段仅为 **v0.2.4：单层能量不是终点**，入口计划是 `PML/Obstructions/SingleLayer.lean` 与 `docs/single_layer_failure.md`。对照 (6.2)、(7.7)、§11.1，核验特殊初始数据的单层耗散计算，并把初始导数计算与解存在性分开，再说明第二层通过 $\lambda_t(0)=\nabla f$ 提供的控制。本轮未创建这些产物，未提交或推送远端。
+
+## 最终验收
+
+**v0.2.3 已达到验收标准。** 本阶段全部数学任务、非零真实路径、可读性说明、默认构建、公理审计、PDF 逐项证据与视觉验收均已完成；交接于此，不进入 v0.2.4。
+
+[末次检查成功输出](logs/v0.2.3/20261010T233915_169415_final_checks_retry.log)／[命令、目录与退出码](logs/v0.2.3/20261010T233915_169415_final_checks_retry.json)，退出 0。检查覆盖 194 项保护文件、旧历史全文、11 个模块与两个入口、134 条定理和审计逐项对应、9 个锁定依赖、文档链接与数学分隔、12 项 mathlib 源码位置以及最终 PDF/账本/源码证据一致性。
+
+[首次末次检查日志](logs/v0.2.3/20261010T233856_282495_final_checks.log)退出 1：检查脚本将数学记号 $\mathcal D_c[U_0](0)$ 误识别为 Markdown 链接，找不到名为 `0` 的文件。修复为先排除数学区再扫描链接，重试通过；没有修改数学证明或放宽验收条件。
+
+[检查脚本](logs/v0.2.3/final_checks.py)与[交付哈希](logs/v0.2.3/verified_artifact_hashes.json)保留。哈希覆盖代码、README、阅读指南、PDF 账本、固定配置、最终 PDF 与标注证据；本段最后完成登记不纳入其自身哈希。
+
+---
+
+以下完整保留此前进度记录。
+
 # LeanPML 当前进度：v0.2.2
 
 用途：记录“电块与极化块：代数层和求导层分开”的数学范围、正式实现、学习说明和真实验证。日期：2026-10-10（Asia/Shanghai）。下方保留此前 PROGRESS 全文；历史中的“当前”“下一阶段”仅指当时的阶段。

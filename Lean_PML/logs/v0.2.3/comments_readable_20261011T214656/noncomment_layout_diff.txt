@@ -1,0 +1,15 @@
+--- 
+
++++ 
+
+@@ -159,7 +159,8 @@
+
+   · 
+     simpa only [spatialDissipation, if_pos ha_pos] using
+       hasDerivAt_spatialEnergy_pos c si sj h l t V ha_pos hh hl
+-  · have ha_zero : absorptionSum si sj = 0 :=
++  · 
++    have ha_zero : absorptionSum si sj = 0 :=
+       le_antisymm (le_of_not_gt ha_pos)
+         (absorptionSum_nonneg si sj hsi_nonneg hsj_nonneg)
+     have hcompat : l t = h t := hzero ha_zero

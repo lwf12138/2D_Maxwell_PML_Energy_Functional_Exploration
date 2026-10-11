@@ -1,0 +1,166 @@
+{
+  "pages": 18,
+  "modified_pages": [
+    1,
+    7,
+    8,
+    10,
+    11
+  ],
+  "old_annotations": 126,
+  "total_annotations": 135,
+  "new_annotations": [
+    {
+      "id": "LeanPML.v0.2.3.legend",
+      "page": 1,
+      "rect": [
+        67.0,
+        747.49,
+        317.0,
+        779.89
+      ],
+      "text": "v0.2.3 标注图例：红勾只对应旁注中的已验证结论。\n代数：实数恒等式与系数界；局部时间：真实时间函数的求导与保持。\n空间/PDE：场、积分与边界接口仍待完成；定义和假设不计证明。"
+    },
+    {
+      "id": "LeanPML.v0.2.3.clarify-threshold",
+      "page": 7,
+      "rect": [
+        7.0,
+        129.49,
+        41.0039062,
+        155.89
+      ],
+      "text": "(5.3) 为输入\n旧勾仅指\n阈值等价\n原标记保留。限定范围：(5.3) 仅 c≤c* 与 c²K≤1、8cAK≤κτ、8cAτ≤κ 的双向等价；L∞吸收场及空间幅度条件未在本阶段构造。\n待完成：(5.3) 本身是输入；尚无 L∞ 场和空间幅度模型"
+    },
+    {
+      "id": "LeanPML.v0.2.3.zero-preservation",
+      "page": 8,
+      "rect": [
+        534.0,
+        343.49,
+        587.0,
+        369.89
+      ],
+      "text": "§5.2：在 Z 上 φ_t=0，因此 φ₀=0 保持（未编号）\n固定点两个时间函数闭区间连续，内部真实辅助演化；非负吸收且 a=0，从初始 l(0)=h(0) 推出整段 l=h，包括 T=0。\n待完成：不是 (5.7) 一般积分解公式、五个不变量整体、加权正则性或 PDE 提升。\n\nLeanPML.PML.zeroSpatial_compatibility_preserved\n\n当前证据：\nlogs/v0.2.3/20261010T232910_472603_lake_build_retry.log\nlogs/v0.2.3/20261010T232931_121820_axioms_audit_retry.log"
+    },
+    {
+      "id": "LeanPML.v0.2.3.clarify-weight-definition",
+      "page": 8,
+      "rect": [
+        7.0,
+        707.49,
+        41.0039062,
+        733.89
+      ],
+      "text": "(5.5) 为定义\n旧勾仅指\n零分支计算\n原标记保留。限定范围：(5.5) w的正吸收分支和零延拓定义及分支性质；零区取0。尚未构造(5.6)的加权函数空间。\n待完成：定义本身不是待证结论；(5.6) 加权空间"
+    },
+    {
+      "id": "LeanPML.v0.2.3.spatial-positive",
+      "page": 10,
+      "rect": [
+        534.0,
+        130.49,
+        587.0,
+        156.89
+      ],
+      "text": "(7.1) 的正吸收分支\na>0 下权重平衡、数值恒等式，以及真实时间 h'=V、l'=V+σⱼh−σᵢl 推出的 Fsp 求导；包含两个方向。\n待完成：h 与真实空间梯度、混合导数交换、可测可积、空间积分、Green/PEC 未实现。\n\nLeanPML.PML.spatial_weight_balance\nLeanPML.PML.spatial_rate_identity\nLeanPML.PML.hasDerivAt_spatialAuxiliary\nLeanPML.PML.hasDerivAt_spatialEnergy_pos\nLeanPML.PML.hasDerivAt_spatialEnergy2D\n\n当前证据：\nlogs/v0.2.3/20261010T232910_472603_lake_build_retry.log\nlogs/v0.2.3/20261010T232931_121820_axioms_audit_retry.log"
+    },
+    {
+      "id": "LeanPML.v0.2.3.spatial-zero",
+      "page": 10,
+      "rect": [
+        534.0,
+        59.49,
+        587.0,
+        85.89
+      ],
+      "text": "(7.1) 后零吸收区未编号二维公式\nh 的实际时间导数给出 h²/2 和双分量平方和的导数；接回分支能量时明确需要 l=h，保留 c(hx²+hy²)。\n待完成：p=r=0 不自动给出兼容；完整 PDE 中零辅助量来源、实际梯度及空间积分仍待兑现。\n\nLeanPML.PML.hasDerivAt_zeroSpatialComponent\nLeanPML.PML.hasDerivAt_zeroSpatial2D\nLeanPML.PML.hasDerivAt_spatialEnergy_zero\nLeanPML.PML.zeroSpatial_compatibility_preserved\n\n当前证据：\nlogs/v0.2.3/20261010T232910_472603_lake_build_retry.log\nlogs/v0.2.3/20261010T232931_121820_axioms_audit_retry.log"
+    },
+    {
+      "id": "LeanPML.v0.2.3.spatial-pointwise",
+      "page": 11,
+      "rect": [
+        7.0,
+        720.49,
+        48.0,
+        746.89
+      ],
+      "text": "(7.2) 被积式的点态非负与独立零区密度（不是整式）\n0≤p,r≤S≤c/4、c>0 下，两个方向的分支密度非负；零区精确为 c(hx²+hy²)。\n待完成：该勾只指被积子表达式；没有完成 (7.2) 积分算子、可积性、加权路径求导或全域能量恒等式。\n\nLeanPML.PML.spatialDissipation_nonneg\nLeanPML.PML.spatialDissipation2D_nonneg\nLeanPML.PML.spatialDissipation2D_of_sum_zero\n\n当前证据：\nlogs/v0.2.3/20261010T232910_472603_lake_build_retry.log\nlogs/v0.2.3/20261010T232931_121820_axioms_audit_retry.log"
+    },
+    {
+      "id": "LeanPML.v0.2.3.electric-space-pending",
+      "page": 11,
+      "rect": [
+        549.0,
+        536.09,
+        580.0,
+        545.89
+      ],
+      "text": "积分待完成\n原标记保留。限定范围：(7.3) 电块代数与实际时间函数HasDerivAt求导。二阶证据直接针对deriv v；Fe含ε/2，完整能量还需μ和空间积分。De未宣称非负。\n待完成：实际场、μ 因子、空间积分；De 未证非负"
+    },
+    {
+      "id": "LeanPML.v0.2.3.polar-space-pending",
+      "page": 11,
+      "rect": [
+        549.0,
+        408.09,
+        580.0,
+        417.89
+      ],
+      "text": "积分待完成\n原标记保留。限定范围：(7.4) Q逐项真实求导，再由邻域兼容和κ≠0证明FD=Q/(2κ)的HasDerivAt恒等式；含开区间入口和非零路径实例。未乘μ、未空间积分；DD未宣称非负。\n待完成：实际场、μ 因子、空间积分；DD 未证非负"
+    }
+  ],
+  "new_red_ticks": 4,
+  "old_red_ticks_preserved": 16,
+  "original_text_prefix_preserved_on_all_pages": true,
+  "old_annotations_preserved": true,
+  "source_files_unchanged": true,
+  "sha256_before": "066b6d82f7539c0270b343ab162f5553f8728f120ec03b34b8438dd467a31a1d",
+  "sha256_after": "0735771fa5d38adc70a74f21be3c109b490d1c91587414f874ac0c2d049409be",
+  "plan_sha256": "f2482fba0e9dbbb3f6a5b80e939204746588887aacb1993e5963075410c7611b",
+  "visual_review": "passed",
+  "visual_review_method": "已逐页查看第1、7、8、10、11页最终渲染；红勾矢量和中文清晰、页边未裁切；机器验证标记盒以外像素完全不变及原文本无重叠。",
+  "visual_pages": [
+    {
+      "page": 1,
+      "printed_page": 1,
+      "render": "after-01.png",
+      "visible_checkmarks_and_chinese": true,
+      "no_clipping_or_overlap": true,
+      "original_pixels_unchanged_outside_annotation_boxes": true
+    },
+    {
+      "page": 7,
+      "printed_page": 7,
+      "render": "after-07.png",
+      "visible_checkmarks_and_chinese": true,
+      "no_clipping_or_overlap": true,
+      "original_pixels_unchanged_outside_annotation_boxes": true
+    },
+    {
+      "page": 8,
+      "printed_page": 8,
+      "render": "after-08.png",
+      "visible_checkmarks_and_chinese": true,
+      "no_clipping_or_overlap": true,
+      "original_pixels_unchanged_outside_annotation_boxes": true
+    },
+    {
+      "page": 10,
+      "printed_page": 10,
+      "render": "after-10.png",
+      "visible_checkmarks_and_chinese": true,
+      "no_clipping_or_overlap": true,
+      "original_pixels_unchanged_outside_annotation_boxes": true
+    },
+    {
+      "page": 11,
+      "printed_page": 11,
+      "render": "after-11.png",
+      "visible_checkmarks_and_chinese": true,
+      "no_clipping_or_overlap": true,
+      "original_pixels_unchanged_outside_annotation_boxes": true
+    }
+  ],
+  "unmodified_page_content_streams_unchanged": true
+}

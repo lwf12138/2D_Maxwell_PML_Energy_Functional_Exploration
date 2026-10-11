@@ -1,95 +1,101 @@
-# LeanPML：电块与极化块的局部真实求导
+# LeanPML：空间块与退化零区
 
-用途：作为 v0.2.2 的工程入口，说明 Lean 实际检查了什么、假设从哪里来，以及如何阅读和复现。逐步推导见 [中文阅读指南](docs/v0.2.2_reading_guide.md)，完整阶段记录与历史见 [PROGRESS.md](PROGRESS.md)。
+用途：说明 v0.2.3 实际形式化的结论、阅读顺序、真实验证和 PDF 红勾的范围。详细推导见 [中文阅读指南](docs/v0.2.3_reading_guide.md)，阶段记录与原有历史见 [PROGRESS.md](PROGRESS.md)，逐项 PDF 证据见 [标注账本](docs/pdf_formalization_marks.md)。
 
-本轮实现 V7 (7.3)、(7.4) 的局部真实时间求导，以及 (8.1) 的约束消元和 (8.2) 的全部系数界。默认构建与独立公理审计均已实际通过。这里的 $a,b$ 是固定空间点的时间不变参数，可以来自空间变系数场；尚未证明空间积分能量或二维 PML 单调性。
+本阶段完成 V7 (7.1) 正吸收与零吸收分支的**真实时间路径求导**，以及 (7.2) **点态耗散密度非负**。默认构建、独立公理审计、四区实例和非零路径均已通过。系数可以来自空间变系数场在某点的值，只在时间上固定；这里还没有实际空间梯度或完整二维 PDE 结论。
 
-## 论文公式与正式声明
+## 实现与假设
 
-两个新模块共 **9 个定义、18 条定理**，命名空间均为 `LeanPML.PML`。
+新增 [LocalSpatial.lean](LeanPML/PML/LocalSpatial.lean)，命名空间 `LeanPML.PML`，共 **6 个定义、25 条定理**。4 个核心定义描述单/双方向能量与分支耗散，2 个定义用于非零路径实例。
 
-| 来源 | 数学层次与主要声明 | 输入及作用 |
+| 来源与层次 | 主要定理 | 输入与结论 |
 |---|---|---|
-| (7.3) | [LocalElectric.lean](LeanPML/PML/LocalElectric.lean)：`electricEnergy`、`electricRemainder`、`electric_rate_identity` | 数值代数，参数可为任意实数；恒等式由真实求导定理调用 |
-| (7.3) | `hasDerivAt_electricEnergyAlong` | `HasDerivAt v vDot t` 与 `HasDerivAt (deriv v) vDDot t`；分别绑定一阶和真实二阶导数 |
-| (6.1)、(7.4) | [LocalDebye.lean](LeanPML/PML/LocalDebye.lean)：`polar_constraint_derivative`、`polar_shifted_constraint` | 三个函数的真实导数、$z'=R$，及邻域内 $z+\tau R=\kappa v$；推出两个导数约束 |
-| (7.4) | `polar_rate_algebra`、`hasDerivAt_polarQuadratic`、`hasDerivAt_polarEnergy` | 先逐项求导 $Q$，再用约束和代数恒等式；只为消分母额外要求 $\kappa\ne0$ |
-| (7.4) | `hasDerivAt_polarEnergy_on_Ioo` | 在 $t\in(0,T)$，兼容关系仅需在该开区间成立；不用端点双侧导数或区间外兼容 |
-| (8.1) | `polarQuadratic_eq_reduced`、`polarEnergy_eq_reduced` | 单点约束即可代数消元；第二条调用第一条，保留 $1/(2\kappa)$ |
-| (8.2) | `polar_coefficients_bounds_of_local_conditions` | 从列明的中间界推导四组系数上下界 |
-| (5.2)–(5.4) → (8.2) | `polar_coefficients_bounds_of_threshold` | 从原材料正性、$0<c\le c_*$、$0\le p,r\le S\le c/4$，调用 v0.2.1 推出全部中间条件 |
-| 正式实例 | `hasDerivAt_electricEnergyAlong_exampleU`、`hasDerivAt_example_polarEnergy` | 复用实际指数路径和导数证据，调用上述一般求导定理 |
+| (7.1)，代数 | `spatial_weight_balance`、`spatial_rate_identity` | $a=\sigma_i+\sigma_j>0$；证明 $\sigma_j+aw_i=c$ 及展开恒等式，供真实求导调用 |
+| §7.1，真实时间 | `hasDerivAt_spatialAuxiliary` | 从实际 $h'=V,l'=V+\sigma_jh-\sigma_i l$ 推出 $(l-h)'=\sigma_jh-\sigma_i l$ |
+| (7.1)，正区求导 | `hasDerivAt_spatialEnergy_pos` | 同上两份 `HasDerivAt` 和 $a>0$；逐项平方求导后调用代数层 |
+| §5.2 与零区兼容 | `zeroSpatial_compatibility_preserved` | 非负吸收、$a=0$、闭区间连续、内部真实演化、初始 $l(0)=h(0)$；推出全区间兼容，含 $T=0$ |
+| (7.1) 后未编号公式 | `hasDerivAt_zeroSpatialComponent`、`hasDerivAt_zeroSpatial2D` | 实际 $h_i'=V_i$；保留 $c(h_x^2+h_y^2)$ |
+| 两分支接合 | `hasDerivAt_spatialEnergy_zero`、`hasDerivAt_spatialEnergy` | 非负吸收；仅零区要求当前 $l=h$。零分支未对单点等式求导 |
+| (7.2)，点态 | `spatialDissipation_nonneg`、`spatialDissipation2D_nonneg` | $c>0$、$0\le p,r\le S\le c/4$；复用已有系数界推出非负，无吸收正下界 |
+| 二维时间版本 | `hasDerivAt_spatialEnergy2D` | 四份真实导数证据、非负吸收、条件化零区兼容；分别调用 $(p,r)$、$(r,p)$ |
 
-对应的求导结论是
-
-$$
-F_e'=\epsilon(v_{tt}+av_t+bv)(v_t+cv)-D_e,\qquad
-F_D'=(R_t+aR+bz)(v_t+cv)-D_D.
-$$
-
-$F_e$ 包含 $\epsilon/2$，$F_D=Q/(2\kappa)$；完整 (6.2) 中这两部分还须乘 $\mu$ 并作空间积分。$D_e,D_D$ 是恒等式余项，含 $a-c$ 等符号不定系数，本轮没有宣称各块非负或单调。
-
-(8.2) 保留论文精确常数：
+完整保留的局部等式为
 
 $$
-\frac34\le A_R\le\frac54,\quad
-0\le1-a\tau-b\tau^2\le1,\quad
-0\le G\le\frac{37}{64}c^2,\quad
-0\le b+ac\le\frac9{16}c^2.
+F_{\mathrm{sp}}'
+=(V_x+ch_x)l_x+(V_y+ch_y)l_y-D_{\mathrm{sp}}.
 $$
 
-$A_R$ 与材料常数 $A=\epsilon+2\kappa$ 分开定义。汇总定理没有把这些界当作模型输入，也没有除以 $a,b$，因此保留零吸收、单向吸收与双向吸收。$C_P>0$ 仍是给定参数，矩形 Poincaré 不等式尚待证明。
-
-## 阅读顺序与 InfoView
-
-先读 [阅读指南](docs/v0.2.2_reading_guide.md)，再按顺序阅读这三个声明，并回看它们上方的定义和辅助引理：
-
-1. `hasDerivAt_electricEnergyAlong`：看平方、交叉项、常数如何逐项求导，最后才调用代数恒等式。
-2. `polar_constraint_derivative`：看为什么“邻域相等 + 真实求导 + 导数唯一性”才允许对兼容关系求导。
-3. `polar_coefficients_bounds_of_threshold`：看原始假设如何经 v0.2.1 和局部系数引理得到 (8.2)。
-
-接着读 `hasDerivAt_polarEnergy`、约束消元和两条路径实例，最后查看 [正式入口](LeanPML.lean)、[Audit](Audit.lean) 与 [进度记录](PROGRESS.md)。旧阶段说明保留在 [v0.2.1 指南](docs/v0.2.1_reading_guide.md) 和 [上一版 README](logs/v0.2.2/before_README.md)。
-
-在 VS Code 中打开整个工程目录。打开 Lean 文件后，使用命令面板的 `Lean 4: InfoView: Display Goal`；将光标放到 `have`、`calc`、`apply` 或 `rw` 前后，比较上下文与 `⊢` 后的目标。悬停查看类型，F12 跳转定义。若新导入仍报旧错误，先在工程根目录运行 `lake build`，再用 `Lean 4: Server: Restart File` 重启当前文件的检查。无需更新依赖。
-
-## 非零路径验证了什么
-
-沿用 v0.1.3 的实际函数，取 $\kappa=\tau=1$：
+正区的单方向密度为
 
 $$
-v(t)=\frac{1-e^{-2t}}2,\qquad R(t)=-e^{-2t},\qquad
-z(t)=\frac{1+e^{-2t}}2.
+D_{\mathrm{sp},i}
+=\frac{\sigma_i(c+\sigma_i)}a l_i^2
++\frac{\sigma_j(c-\sigma_j)}a h_i^2.
 $$
 
-已有导数证据给出 $v_t=e^{-2t}$、$R_t=2e^{-2t}$、$z_t=R$。本轮证明整个导数函数 `deriv exampleU = Debye.exampleE`，据此再次求导；并证明邻域兼容，调用一般极化块定理。$R(0)=-1$ 的既有实例和本轮 $v_t(0)=1$ 排除了只验证零路径的情况。此例是局部时间路径，不是完整二维 PDE 解。
+零区独立取 $D_{\mathrm{sp},i}=ch_i^2$，没有把分式除零的值当成零区公式。$p=r=0$ 只使 $f=l-h$ 保持初值，必须另有初始兼容才能推出 $f=0$。耦合乘积仍在，所以点态耗散非负不表示这个空间块已经单调。
 
-这里的 $F_D$ 与 v0.1.2 的教学能量 $(\epsilon E^2+P^2/\kappa)/2$ 不同；本轮没有输入教学方程 $\epsilon E'=-P'$。
+## 实例与两个方向
 
-## 固定环境与复现
+代码使用 $c=4,S=1$，实际调用一般非负定理，并核验四类区域：
+
+| $(p,r)$ | 精确二维耗散 |
+|---|---|
+| $(0,0)$ | $4h_x^2+4h_y^2$ |
+| $(1,0)$ | $5l_x^2+3h_y^2$ |
+| $(0,1)$ | $3h_x^2+5l_y^2$ |
+| $(1,1)$ | $\frac52(l_x^2+l_y^2)+\frac32(h_x^2+h_y^2)$ |
+
+数值只验证局部幅度条件，不宣称对任意材料满足全部 $c_*$ 阈值。两种边层分别核对，避免对称实例掩盖方向错误。
+
+真实正区路径 $h=0,l=e^{-t}$ 满足辅助演化；调用一般求导得 $F_{\mathrm{sp},i}'=-5e^{-2t}$，初始能量 $5/2$。零区两个方向取 $h_i=l_i=t+1$，调用一般二维定理得 $F_{\mathrm{sp}}'=2(t+1)$，初始能量为 1。这些是非零**局部时间路径**，不是完整二维 PDE 解或一般存在性定理。
+
+## 建议阅读与 InfoView
+
+先读 [指南](docs/v0.2.3_reading_guide.md)，再在 [正式代码](LeanPML/PML/LocalSpatial.lean) 中按顺序读：
+
+1. `hasDerivAt_spatialEnergy_pos`：区分函数可导、导数值与代数整理。
+2. `zeroSpatial_compatibility_preserved`：区分初值条件与整段时间结论。
+3. `hasDerivAt_spatialEnergy2D`：检查方向交换、零区条件和保留下来的耦合项。
+
+随后读四区实例与非零路径，最后看 [正式入口](LeanPML.lean)、[公理审计](Audit.lean) 和 [PDF 账本](docs/pdf_formalization_marks.md)。前一阶段内容见 [v0.2.2 指南](docs/v0.2.2_reading_guide.md)、[原 README 快照](logs/v0.2.3/before_README.md)。
+
+在 VS Code 打开整个工程目录，使用 `Lean 4: InfoView: Display Goal`；把光标放在 `have`、`calc`、`apply`、`rw` 前后，查看上下文与 `⊢` 后的目标。悬停看类型，F12 跳到定义。新增导入未刷新时，先保存并构建，再用 `Lean 4: Server: Restart File`；无需更新依赖。
+
+## 实际验证与复现
 
 | 项目 | 固定值 |
 |---|---|
-| Lean | `leanprover/lean4:v4.31.0`，提交 `68218e876d2a38b1985b8590fff244a83c321783` |
+| Lean | `leanprover/lean4:v4.31.0`；提交 `68218e876d2a38b1985b8590fff244a83c321783` |
 | Lake | `5.0.0-src+68218e8` |
-| mathlib | `v4.31.0`，提交 `fabf563a7c95a166b8d7b6efca11c8b4dc9d911f` |
-| 配置 | [lean-toolchain](lean-toolchain)、[lakefile.toml](lakefile.toml)、[lake-manifest.json](lake-manifest.json) |
+| mathlib | `v4.31.0`；提交 `fabf563a7c95a166b8d7b6efca11c8b4dc9d911f` |
 
-本轮未更新依赖、全局工具链或 Lake 包元数据版本 `0.0.3`；研究阶段单独记录。
+未更新 [工具链](lean-toolchain)、[Lake 配置](lakefile.toml)、[依赖锁](lake-manifest.json) 或全局默认工具链。Lake 包元数据版本仍为 `0.0.3`，研究阶段另记。
 
 ~~~sh
 cd '/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML'
-python3 scripts/run_logged.py --stage v0.2.2 lake_build lake build
-python3 scripts/run_logged.py --stage v0.2.2 axioms_audit lake env lean Audit.lean
+python3 scripts/run_logged.py --stage v0.2.3 lake_build lake build
+python3 scripts/run_logged.py --stage v0.2.3 axioms_audit lake env lean Audit.lean
 ~~~
 
-也可直接执行 `lake build` 和 `lake env lean Audit.lean`。记录器按新时间戳保存完整输出和含命令、工作目录、退出码的 JSON，不覆盖旧日志。
+也可直接运行 `lake build`、`lake env lean Audit.lean`。日志脚本保存命令、工程目录、退出码和完整 stdout/stderr，新时间戳不会覆盖旧记录。
 
-实际 [默认构建](logs/v0.2.2/20261010T185648_883655_lake_build.log) 与 [独立审计](logs/v0.2.2/20261010T185707_307274_axioms_audit.log) 均退出 0；构建覆盖全部 10 个正式模块及两个入口。审计保留旧 91 条并新增 18 条，共 109 条；输出仅含 `propext`、`Classical.choice`、`Quot.sound`，没有 `sorryAx`。这些分别是命题外延性、经典选择、商类型基础依赖，不是本项目自设的证明占位公理。真实失败及修复记录见 PROGRESS。
+本次 [默认构建](logs/v0.2.3/20261010T232910_472603_lake_build_retry.log) 与 [独立审计](logs/v0.2.3/20261010T232931_121820_axioms_audit_retry.log) 均退出 0，覆盖 **11 个正式模块、根入口和 Audit**；旧 109 条加新 25 条，共 **134 条定理**。依赖仅有 `propext`、`Classical.choice`、`Quot.sound`，分别是命题外延性、经典选择和商类型的标准基础依赖；没有 `sorryAx` 或本项目自设占位公理。真实失败与修复保留在 [PROGRESS](PROGRESS.md)。
 
-新增正式文件时，要接入 `LeanPML.lean` 的导入链，在 `Audit.lean` 增加 `#print axioms 完整定理名`，再实际构建并审计。仅把文件放进目录不等于完成验证。
+增加正式文件后，要在 `LeanPML.lean` **顶部导入区域**接入模块，并在 `Audit.lean` 添加 `#print axioms 完整定理名`，重新实际构建和审计。文件仅仅存在于目录中不等于被检查。
 
-## 当前范围与下一入口
+## PDF 标注与阶段界限
 
-本轮只完成 T13、T14 的固定空间点真实时间版本，以及 T19 的约束消元和系数界；不改历史清单的原记录。空间积分、加权空间、Green/PEC、图范数正定性、两层耗散闭合和原八变量与场层 primitive 对应仍待完成。
+目标副本仍为 18 页，原 PDF/MD/TEX 与旧批注保持不变。本轮另存带时间戳的备份、核对旧 16 处标记，并新增 4 勾：
 
-下一步仅为 **v0.2.3：空间块与退化区**，计划入口 `PML/LocalSpatial.lean`：核验 (7.1)–(7.2)，分开 $a>0$ 与 $a=0$，保留零区 $c|\nabla v|^2$ 和局部通量。实际时间—空间微分交换仍属后续空间接口。本轮没有创建该模块。
+- 第 8 页未编号零区保持句：“时间保持；须初值 f=0；空间接口待证”。
+- 第 10 页 (7.1)：“局部时间版；空间接口待证；积分待完成”。
+- 第 10 页后续零区公式：“局部时间版；零区须兼容；空间接口待证”。
+- 第 11 页 (7.2) 被积子表达式：“点态非负；空间积分待完成”。
+
+第 1 页增加图例，第 7、8 页说明 (5.3) 是输入、(5.5) 是定义；保留旧勾并限定其代数子结论。第 11 页给旧 (7.3)、(7.4) 旁注补“积分待完成”。页序号与印刷页码相同。所有修改页已渲染检查，公式和已有文字没有被遮挡；详见 [账本](docs/pdf_formalization_marks.md) 与 [视觉核验](logs/v0.2.3/pdf/verification.json)。
+
+T15 只完成局部时间与点态部分。实际场、混合微分交换、可测可积、加权空间求导、空间积分、Green/PEC、Poincaré、图范数、两层闭合、两个磁不变量和原 PDE 对应均未完成；不能给 (6.7)–(6.10)、(7.5)–(7.8)、(9.5)–(9.7) 打整体完成勾。
+
+下一阶段 **v0.2.4「单层能量不是终点」**：整理 (6.2)、(7.7) 的符号不定余项，核验 §11.1 的初始耗散计算，区分该计算与解的存在性，再记录第二层提供的控制。计划入口为 `PML/Obstructions/SingleLayer.lean`、`docs/single_layer_failure.md`；本轮未实现。
