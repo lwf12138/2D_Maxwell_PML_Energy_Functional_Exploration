@@ -1,0 +1,5 @@
+'IntegralProbe.integrable_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IntegralProbe.integral_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IntegralProbe.integral_negative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IntegralProbe.rectangle_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IntegralProbe.secondLayer_integral' depends on axioms: [propext, Classical.choice, Quot.sound]

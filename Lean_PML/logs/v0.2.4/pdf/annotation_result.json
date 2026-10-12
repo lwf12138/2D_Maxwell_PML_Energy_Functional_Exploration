@@ -1,0 +1,136 @@
+{
+  "pages": 18,
+  "old_annotations": 135,
+  "new_annotations": 6,
+  "new_red_ticks": 4,
+  "modified_pages": [
+    15
+  ],
+  "unchanged_original_text_prefix": true,
+  "old_annotations_preserved": true,
+  "old_text_overlap_count": 0,
+  "sha256_before": "0735771fa5d38adc70a74f21be3c109b490d1c91587414f874ac0c2d049409be",
+  "sha256_after": "f318a9a0e4ac0721f61fffc601388e16be4e568b4efcbb3b2de3e9ad19a2b757",
+  "plan_sha256": "5575cc7d238a27becf8415bf643c28d8f258ea6f42886640338c15c2c329d200",
+  "draws": [
+    {
+      "x": 535,
+      "top": 654,
+      "font_size": 6.0,
+      "lines": [
+        "初始兼容",
+        "已核验",
+        "仅点态数值"
+      ],
+      "id": "initial-compatibility",
+      "page": 15,
+      "tick": true,
+      "scope": "§11.1 未编号初值行：仅对应初始兼容关系\nu₀=0、P₀=κξ、q₀=−τκξ、原辅助量与φ₀为零，ξ非零处p=r=0时，五个初始不变量的数值为零。只标兼容的代数核验，初值选择本身不算证明。\n待完成：磁不变量的时间保持、真实梯度/提升、完整兼容函数空间成员资格仍待完成。\n\nLeanPML.PML.Obstructions.initial_compatibility\n\n当前证据：\nlogs/v0.2.4/20261011T231924_138774_lake_build.log\nlogs/v0.2.4/20261011T231954_467990_axioms_audit.log",
+      "rect_top": [
+        534,
+        652,
+        581.0,
+        678.4
+      ]
+    },
+    {
+      "x": 535,
+      "top": 703,
+      "font_size": 6.0,
+      "lines": [
+        "点态初值代数",
+        "材料正性"
+      ],
+      "id": "initial-density",
+      "page": 15,
+      "tick": true,
+      "scope": "§11.1 未编号负耗散公式：点态初值密度\n三个旧块直接组合，κ≠0及ξ≠0处p=r=0推出D_initial(ξ)=−μc(ε+κ)ξ²；材料及c正性推出非正，ξ≠0时严格负。\n待完成：不是一条已存在的完整PDE解；完整空间能量律、初始解存在性未完成。\n\nLeanPML.PML.Obstructions.initialDissipation_eq\nLeanPML.PML.Obstructions.initialDissipation_nonpos\nLeanPML.PML.Obstructions.initialDissipation_neg\n\n当前证据：\nlogs/v0.2.4/20261011T231924_138774_lake_build.log\nlogs/v0.2.4/20261011T231954_467990_axioms_audit.log",
+      "rect_top": [
+        534,
+        701,
+        587.0,
+        719.2
+      ]
+    },
+    {
+      "x": 8,
+      "top": 703,
+      "font_size": 6.0,
+      "lines": [
+        "初值积分计算",
+        "须平方可积",
+        "严格负须正积分"
+      ],
+      "id": "initial-integral",
+      "page": 15,
+      "tick": true,
+      "scope": "§11.1 未编号负耗散公式：实际特殊初值积分\n实际测度m和函数f,p,r，平方可积与几乎处处支撑条件推出密度可积及∫D_initial=−μc(ε+κ)∫f²；包含全开矩形的二维Lebesgue限制测度入口。严格负额外要求∫f²>0。\n待完成：尚未形式化非零光滑紧支撑函数的正L²范数、Lp等价类范数接口；不是一般时间积分求导、PDE能量律或解存在。\n\nLeanPML.PML.Obstructions.initialDissipation_integral\nLeanPML.PML.Obstructions.initialDissipation_integral_neg\nLeanPML.PML.Obstructions.initialDissipation_rectangle_integral\n\n当前证据：\nlogs/v0.2.4/20261011T231924_138774_lake_build.log\nlogs/v0.2.4/20261011T231954_467990_axioms_audit.log",
+      "rect_top": [
+        7,
+        701,
+        66.0,
+        727.4
+      ]
+    },
+    {
+      "x": 535,
+      "top": 745,
+      "font_size": 6.0,
+      "lines": [
+        "分量及其积分",
+        "梯度接口",
+        "待完成"
+      ],
+      "id": "second-layer-components",
+      "page": 15,
+      "tick": true,
+      "scope": "§11.1 λ_t(0)=∇f 和 S₁(0)=c‖∇f‖²：仅分量接口与其积分\n真实HasDerivAt辅助演化在h₀=l₀=0时给l′(0)=V；复用零吸收空间耗散得c(gx²+gy²)。分量的独立支撑条件与平方可积性给实际分量积分c(∫gx²+∫gy²)。\n待完成：V、gx、gy与真实∂ᵢf的梯度对应、混合微分交换、梯度支撑性质、Poincaré和两层闭合未完成。\n\nLeanPML.PML.Obstructions.hasDerivAt_initial_flux\nLeanPML.PML.Obstructions.secondLayerSpatialInitial_zero\nLeanPML.PML.Obstructions.secondLayerSpatialInitial_eq\nLeanPML.PML.Obstructions.secondLayerSpatialInitial_integral\n\n当前证据：\nlogs/v0.2.4/20261011T231924_138774_lake_build.log\nlogs/v0.2.4/20261011T231954_467990_axioms_audit.log",
+      "rect_top": [
+        534,
+        743,
+        587.0,
+        769.4
+      ]
+    },
+    {
+      "id": "cross-reference",
+      "page": 15,
+      "x": 535,
+      "top": 618,
+      "font_size": 6.0,
+      "lines": [
+        "导数关系见",
+        "(7.6)；(7.7)",
+        "是耗散表达式"
+      ],
+      "tick": false,
+      "scope": "导数关系见\n(7.6)；(7.7)\n是耗散表达式",
+      "rect_top": [
+        534,
+        616,
+        572.0,
+        642.4
+      ]
+    },
+    {
+      "id": "scope",
+      "page": 15,
+      "x": 68,
+      "top": 810,
+      "font_size": 7.0,
+      "lines": [
+        "v0.2.4：红勾仅指初值代数、实际初值积分及分量版；完整 PDE 能量律与解存在性待完成。",
+        "真实局部时间求导已有证明；正文的完整空间能量初始增长仍是条件性解释。"
+      ],
+      "tick": false,
+      "scope": "v0.2.4：红勾仅指初值代数、实际初值积分及分量版；完整 PDE 能量律与解存在性待完成。\n真实局部时间求导已有证明；正文的完整空间能量初始增长仍是条件性解释。",
+      "rect_top": [
+        67,
+        808,
+        351.3515625,
+        828.2
+      ]
+    }
+  ],
+  "visual_review": "pending"
+}

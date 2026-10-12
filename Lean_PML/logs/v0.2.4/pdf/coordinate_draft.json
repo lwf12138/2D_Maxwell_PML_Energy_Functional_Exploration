@@ -1,0 +1,74 @@
+{
+  "stage": "v0.2.4",
+  "status": "draft_coordinates_only_not_verified_proofs",
+  "page": 15,
+  "printed_page": 15,
+  "proposed_marks": [
+    {
+      "id": "initial-compatibility",
+      "x": 535,
+      "top": 654,
+      "font_size": 6.0,
+      "lines": [
+        "初始兼容",
+        "已核验",
+        "点态初值"
+      ]
+    },
+    {
+      "id": "initial-density",
+      "x": 535,
+      "top": 704,
+      "font_size": 6.0,
+      "lines": [
+        "点态初值代数",
+        "材料正性"
+      ]
+    },
+    {
+      "id": "initial-integral",
+      "x": 8,
+      "top": 704,
+      "font_size": 6.0,
+      "lines": [
+        "初值积分计算",
+        "须平方可积",
+        "严格负须正积分"
+      ]
+    },
+    {
+      "id": "second-layer-components",
+      "x": 535,
+      "top": 745,
+      "font_size": 6.0,
+      "lines": [
+        "分量版",
+        "梯度接口",
+        "待完成"
+      ]
+    }
+  ],
+  "proposed_notes": [
+    {
+      "id": "cross-reference",
+      "x": 535,
+      "top": 618,
+      "font_size": 6.0,
+      "lines": [
+        "导数关系见",
+        "(7.6)；(7.7)",
+        "是耗散表达式"
+      ]
+    },
+    {
+      "id": "scope",
+      "x": 68,
+      "top": 810,
+      "font_size": 7.0,
+      "lines": [
+        "v0.2.4：本页只核验初值代数及积分；解存在性与完整 PDE 能量律待完成。",
+        "初始能量率为正是依赖完整能量律的条件性推论，本轮未标为 PDE 求导证明。"
+      ]
+    }
+  ]
+}

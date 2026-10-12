@@ -1219,3 +1219,19 @@ T18 + T27 + 时间积分接口 → T28 任意两时刻单调性/平衡
 7. 本轮没有为 T01–T37 创建任何新 Lean 声明；旧代码的范围与历史运行情况保持以 [claim_ledger.md](claim_ledger.md) 为准。
 
 本文件完成的是公式、语义、来源和依赖的清点；三份语义文档的总体验收及 v0.0.2 状态记录见 [scope.md](scope.md)。
+
+
+## v0.2.4 实现登记（2026-10-11，保留上述计划与历史）
+
+本阶段文件：[SingleLayer.lean](../LeanPML/PML/Obstructions/SingleLayer.lean)。实际构建与审计见 [构建](../logs/v0.2.4/20261011T231924_138774_lake_build.log)、[审计](../logs/v0.2.4/20261011T231954_467990_axioms_audit.log)。说明集中在 [single_layer_failure.md](single_layer_failure.md)。下面记录的是实际覆盖的子结论，未整体关闭 PDE 条目。
+
+| 条目 | 已实现部分 | 仍未完成 |
+|---|---|---|
+| T34：§11.1 未编号公式 | `LeanPML.PML.Obstructions.initial_compatibility` 核验五项初始数值；`initial_derivative_values` / `hasDerivAt_initial_fields_zero` 分开初始代数与真实导数；`initialDissipation_eq` / `_nonpos` / `_neg` 给点态精确值和符号 | 具体光滑非零紧支撑数据的全场资格、原解存在、PDE 初始端点解释 |
+| T34：实际积分子结论 | `LeanPML.PML.Obstructions.initialDissipation_integral` / `initialDissipation_rectangle_integral`：实际测度/全开矩形平方可积与 a.e. 支撑下的等式；`initialDissipation_integral_neg` 明确要求正平方积分 | 从具体非零光滑函数证明正平方积分；完整 PDE 能量积分求导 |
+| T34：局部时间子结论 | `LeanPML.PML.Obstructions.hasDerivAt_initial_localEnergy` 从真实局部导数和初值调用三块；`initial_localEnergy_rate_pos` 给导数值严格正性 | 不能据此将计划名 `PML.singleLayer_initialGrowth` 解释为已实现的完整 PDE 定理 |
+| T34：第二层控制 | `LeanPML.PML.Obstructions.hasDerivAt_initial_flux`；`secondLayerSpatialInitial_zero` / `_eq` / `_integral`，含独立分量支撑条件 | 实际空间梯度、混合微分交换、梯度支撑、Poincaré 和两层闭合 |
+| T02–T04：五不变量接口 | 仅新增上述特殊初始数值检查 | 两个磁不变量的时间保持和原 PDE / primitive 双向对应仍未完成 |
+| T13–T18：局部块到单层 | `singleLayerEnergy`、`singleLayerDissipation` 复用三块组合 (6.2)/(7.7)，初始局部真实求导有调用证据 | (7.5) Green、(7.6) 一般空间能量律、(7.8) 两层 PDE 恒等式尚未完成 |
+
+交叉引用核对：§11.1 原文将“精确导数”误指 (7.7)，实际为 (7.6)；(7.7) 是耗散表达式。§11.1 的负耗散式没有编号，§11.2 的 (11.1) 不属本阶段。原文与模型合同未改。

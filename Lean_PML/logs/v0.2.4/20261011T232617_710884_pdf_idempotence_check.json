@@ -1,0 +1,17 @@
+{
+  "stage": "v0.2.4",
+  "command": [
+    "/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "logs/v0.2.4/pdf/annotate_pdf.py"
+  ],
+  "command_display": "/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 logs/v0.2.4/pdf/annotate_pdf.py",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+  "started_at": "2026-10-11T23:26:17.710884+08:00",
+  "output_file": "20261011T232617_710884_pdf_idempotence_check.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-11T23:26:17.946437+08:00",
+  "elapsed_seconds": 0.235
+}

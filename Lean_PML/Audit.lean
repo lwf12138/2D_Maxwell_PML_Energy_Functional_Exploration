@@ -157,3 +157,25 @@ import LeanPML
 #print axioms LeanPML.PML.hasDerivAt_spatialLinearPath
 #print axioms LeanPML.PML.hasDerivAt_spatial_zero_path
 #print axioms LeanPML.PML.spatial_zero_path_initial
+
+-- v0.2.4：特殊初值、真实局部时间、实际积分；不代表 PDE 能量律或解存在性。
+#print axioms LeanPML.PML.Obstructions.absorption_mul_initial_zero
+#print axioms LeanPML.PML.Obstructions.initial_compatibility
+#print axioms LeanPML.PML.Obstructions.initial_derivative_values
+#print axioms LeanPML.PML.Obstructions.hasDerivAt_initial_fields_zero
+#print axioms LeanPML.PML.Obstructions.electricRemainder_initial
+#print axioms LeanPML.PML.Obstructions.polarRemainder_initial
+#print axioms LeanPML.PML.Obstructions.spatialDissipation_initial
+#print axioms LeanPML.PML.Obstructions.initialDissipation_eq
+#print axioms LeanPML.PML.Obstructions.initialDissipation_nonpos
+#print axioms LeanPML.PML.Obstructions.initialDissipation_neg
+#print axioms LeanPML.PML.Obstructions.singleLayerEnergy_initial
+#print axioms LeanPML.PML.Obstructions.hasDerivAt_initial_localEnergy
+#print axioms LeanPML.PML.Obstructions.initial_localEnergy_rate_pos
+#print axioms LeanPML.PML.Obstructions.initialDissipation_integral
+#print axioms LeanPML.PML.Obstructions.initialDissipation_integral_neg
+#print axioms LeanPML.PML.Obstructions.initialDissipation_rectangle_integral
+#print axioms LeanPML.PML.Obstructions.hasDerivAt_initial_flux
+#print axioms LeanPML.PML.Obstructions.secondLayerSpatialInitial_zero
+#print axioms LeanPML.PML.Obstructions.secondLayerSpatialInitial_eq
+#print axioms LeanPML.PML.Obstructions.secondLayerSpatialInitial_integral

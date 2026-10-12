@@ -1,0 +1,18 @@
+渲染命令： ["/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdftoppm", "-f", "15", "-l", "15", "-scale-to", "1800", "-png", "-singlefile", "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf", "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v0.2.4/pdf/after-15"]
+{
+  "page_count": 18,
+  "modified_pages": [
+    15
+  ],
+  "old_annotations": 135,
+  "new_red_ticks": 4,
+  "total_annotations": 141,
+  "unchanged_pages_text_equal": true,
+  "original_text_prefix_preserved": true,
+  "old_annotations_preserved": true,
+  "protected_files_unchanged": true,
+  "sha256_before": "0735771fa5d38adc70a74f21be3c109b490d1c91587414f874ac0c2d049409be",
+  "sha256_after": "f318a9a0e4ac0721f61fffc601388e16be4e568b4efcbb3b2de3e9ad19a2b757",
+  "plan_sha256": "5575cc7d238a27becf8415bf643c28d8f258ea6f42886640338c15c2c329d200",
+  "visual_review": "pending"
+}

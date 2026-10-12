@@ -1,0 +1,30 @@
+✖ [2605/2609] Building LeanPML.PML.Obstructions.SingleLayer (3.4s)
+trace: .> LEAN_PATH=/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Cli/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/batteries/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Qq/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/aesop/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/proofwidgets/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/importGraph/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/plausible/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/mathlib/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean /Users/wcli/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/LeanPML/PML/Obstructions/SingleLayer.lean -o /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/Obstructions/SingleLayer.olean -i /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/Obstructions/SingleLayer.ilean -c /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/Obstructions/SingleLayer.c --setup /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/Obstructions/SingleLayer.setup.json --json
+warning: LeanPML/PML/Obstructions/SingleLayer.lean:134:2: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+error: LeanPML/PML/Obstructions/SingleLayer.lean:154:4: 'change' tactic failed, pattern
+  μ * electricRemainder ε 0 0 c 0 ξ + μ * polarRemainder 0 0 c κ τ (κ * ξ) (-τ * κ * ξ) 0 +
+      spatialDissipation2D c 0 0 0 0 0 0 =
+    ?m.121
+is not definitionally equal to target
+  initialDissipation ε κ τ μ c 0 0 ξ = -μ * c * (ε + κ) * ξ ^ 2
+warning: LeanPML/PML/Obstructions/SingleLayer.lean:185:53: Variable name `hκ_ne` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/Obstructions/SingleLayer.lean:191:2: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+error: LeanPML/PML/Obstructions/SingleLayer.lean:247:2: 'change' tactic failed, pattern
+  HasDerivAt (singleLayerEnergyAlong ε κ τ μ c 0 0 v R z hx hy lx ly) ?m.458 0
+is not definitionally equal to target
+  HasDerivAt
+    (((fun y => μ * electricEnergyAlong ε 0 0 c v y) + fun y => μ * polarEnergyAlong 0 0 c κ τ R z y) +
+      spatialEnergy2D c 0 0 hx hy lx ly)
+    (μ * (ε * c * ξ ^ 2) + μ * (κ * c * ξ ^ 2) + 0) 0
+error: Lean exited with code 1
+Some required targets logged failures:
+- LeanPML.PML.Obstructions.SingleLayer
+error: build failed

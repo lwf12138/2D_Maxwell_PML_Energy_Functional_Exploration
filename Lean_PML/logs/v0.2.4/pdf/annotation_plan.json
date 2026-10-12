@@ -1,0 +1,172 @@
+{
+  "stage": "v0.2.4",
+  "page_count": 18,
+  "backup": {
+    "target": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf",
+    "backup": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v0.2.4/pdf/before_v0.2.4_20261011T232305.pdf",
+    "sha256_before": "0735771fa5d38adc70a74f21be3c109b490d1c91587414f874ac0c2d049409be",
+    "bytes_before": 907028
+  },
+  "build": "20261011T231924_138774_lake_build",
+  "audit": "20261011T231954_467990_axioms_audit",
+  "entries": [
+    {
+      "id": "initial-compatibility",
+      "page": 15,
+      "printed_page": 15,
+      "location": "§11.1 未编号初值行：仅对应初始兼容关系",
+      "type": "点态代数",
+      "module": "LeanPML/PML/Obstructions/SingleLayer.lean",
+      "theorems": [
+        "LeanPML.PML.Obstructions.initial_compatibility"
+      ],
+      "definitions": [],
+      "scope": "u₀=0、P₀=κξ、q₀=−τκξ、原辅助量与φ₀为零，ξ非零处p=r=0时，五个初始不变量的数值为零。只标兼容的代数核验，初值选择本身不算证明。",
+      "missing": "磁不变量的时间保持、真实梯度/提升、完整兼容函数空间成员资格仍待完成。",
+      "new_tick": true,
+      "draw": {
+        "x": 535,
+        "top": 654,
+        "font_size": 6.0,
+        "lines": [
+          "初始兼容",
+          "已核验",
+          "仅点态数值"
+        ]
+      },
+      "source_sha256": "8a081c68fa0228d81479fd464dd9bd4cb4d466fb23b3b0f3fa3dc71a6c395f6d",
+      "build_log": "logs/v0.2.4/20261011T231924_138774_lake_build.log",
+      "audit_log": "logs/v0.2.4/20261011T231954_467990_axioms_audit.log"
+    },
+    {
+      "id": "initial-density",
+      "page": 15,
+      "printed_page": 15,
+      "location": "§11.1 未编号负耗散公式：点态初值密度",
+      "type": "点态代数",
+      "module": "LeanPML/PML/Obstructions/SingleLayer.lean",
+      "theorems": [
+        "LeanPML.PML.Obstructions.initialDissipation_eq",
+        "LeanPML.PML.Obstructions.initialDissipation_nonpos",
+        "LeanPML.PML.Obstructions.initialDissipation_neg"
+      ],
+      "definitions": [],
+      "scope": "三个旧块直接组合，κ≠0及ξ≠0处p=r=0推出D_initial(ξ)=−μc(ε+κ)ξ²；材料及c正性推出非正，ξ≠0时严格负。",
+      "missing": "不是一条已存在的完整PDE解；完整空间能量律、初始解存在性未完成。",
+      "new_tick": true,
+      "draw": {
+        "x": 535,
+        "top": 703,
+        "font_size": 6.0,
+        "lines": [
+          "点态初值代数",
+          "材料正性"
+        ]
+      },
+      "source_sha256": "8a081c68fa0228d81479fd464dd9bd4cb4d466fb23b3b0f3fa3dc71a6c395f6d",
+      "build_log": "logs/v0.2.4/20261011T231924_138774_lake_build.log",
+      "audit_log": "logs/v0.2.4/20261011T231954_467990_axioms_audit.log"
+    },
+    {
+      "id": "initial-integral",
+      "page": 15,
+      "printed_page": 15,
+      "location": "§11.1 未编号负耗散公式：实际特殊初值积分",
+      "type": "实际积分",
+      "module": "LeanPML/PML/Obstructions/SingleLayer.lean",
+      "theorems": [
+        "LeanPML.PML.Obstructions.initialDissipation_integral",
+        "LeanPML.PML.Obstructions.initialDissipation_integral_neg",
+        "LeanPML.PML.Obstructions.initialDissipation_rectangle_integral"
+      ],
+      "definitions": [],
+      "scope": "实际测度m和函数f,p,r，平方可积与几乎处处支撑条件推出密度可积及∫D_initial=−μc(ε+κ)∫f²；包含全开矩形的二维Lebesgue限制测度入口。严格负额外要求∫f²>0。",
+      "missing": "尚未形式化非零光滑紧支撑函数的正L²范数、Lp等价类范数接口；不是一般时间积分求导、PDE能量律或解存在。",
+      "new_tick": true,
+      "draw": {
+        "x": 8,
+        "top": 703,
+        "font_size": 6.0,
+        "lines": [
+          "初值积分计算",
+          "须平方可积",
+          "严格负须正积分"
+        ]
+      },
+      "source_sha256": "8a081c68fa0228d81479fd464dd9bd4cb4d466fb23b3b0f3fa3dc71a6c395f6d",
+      "build_log": "logs/v0.2.4/20261011T231924_138774_lake_build.log",
+      "audit_log": "logs/v0.2.4/20261011T231954_467990_axioms_audit.log"
+    },
+    {
+      "id": "second-layer-components",
+      "page": 15,
+      "printed_page": 15,
+      "location": "§11.1 λ_t(0)=∇f 和 S₁(0)=c‖∇f‖²：仅分量接口与其积分",
+      "type": "真实局部时间；分量代数；实际分量积分",
+      "module": "LeanPML/PML/Obstructions/SingleLayer.lean",
+      "theorems": [
+        "LeanPML.PML.Obstructions.hasDerivAt_initial_flux",
+        "LeanPML.PML.Obstructions.secondLayerSpatialInitial_zero",
+        "LeanPML.PML.Obstructions.secondLayerSpatialInitial_eq",
+        "LeanPML.PML.Obstructions.secondLayerSpatialInitial_integral"
+      ],
+      "definitions": [],
+      "scope": "真实HasDerivAt辅助演化在h₀=l₀=0时给l′(0)=V；复用零吸收空间耗散得c(gx²+gy²)。分量的独立支撑条件与平方可积性给实际分量积分c(∫gx²+∫gy²)。",
+      "missing": "V、gx、gy与真实∂ᵢf的梯度对应、混合微分交换、梯度支撑性质、Poincaré和两层闭合未完成。",
+      "new_tick": true,
+      "draw": {
+        "x": 535,
+        "top": 745,
+        "font_size": 6.0,
+        "lines": [
+          "分量及其积分",
+          "梯度接口",
+          "待完成"
+        ]
+      },
+      "source_sha256": "8a081c68fa0228d81479fd464dd9bd4cb4d466fb23b3b0f3fa3dc71a6c395f6d",
+      "build_log": "logs/v0.2.4/20261011T231924_138774_lake_build.log",
+      "audit_log": "logs/v0.2.4/20261011T231954_467990_axioms_audit.log"
+    }
+  ],
+  "notes": [
+    {
+      "id": "cross-reference",
+      "page": 15,
+      "x": 535,
+      "top": 618,
+      "font_size": 6.0,
+      "lines": [
+        "导数关系见",
+        "(7.6)；(7.7)",
+        "是耗散表达式"
+      ]
+    },
+    {
+      "id": "scope",
+      "page": 15,
+      "x": 68,
+      "top": 810,
+      "font_size": 7.0,
+      "lines": [
+        "v0.2.4：红勾仅指初值代数、实际初值积分及分量版；完整 PDE 能量律与解存在性待完成。",
+        "真实局部时间求导已有证明；正文的完整空间能量初始增长仍是条件性解释。"
+      ]
+    }
+  ],
+  "font": "/System/Library/Fonts/Supplemental/Arial Unicode.ttf",
+  "modified_pages": [
+    15
+  ],
+  "protected_hashes": {
+    "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/ROADMAP_lean_PML_revised.md": "2bfa4204cf4a823523e1b7c1f50f897e1e716391c0554763f040fb8417809b2f",
+    "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/docs/model_contract.md": "27fdc413425e2b65f0b31a4c4a533d5f52eb24a4af30f18f5fae080a1846fc23",
+    "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy.md": "0a7f73a25cb119eeb75b3e7b3c3f2fbb3b319250f3354ed4dcad0ecff8eff4fb",
+    "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy.tex": "7345e2f2b8558df5f68252985d119465085b01aa8005b0f7c861f0831ab6387a",
+    "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy.pdf": "c6c9978af6d3fbc54ef76b02a5d509e6dda169795c6181d64c7c56ccbe4e3aaa",
+    "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/proof_audit.md": "a2b2ac0a54c5dd8e0fa43c45d4a21185b5d433d5a94c4fb0680f41baec7ffa9a"
+  },
+  "current_audited_theorems": 154,
+  "old_mark_entries_rechecked": 20,
+  "old_annotations_preserved_count": 135
+}

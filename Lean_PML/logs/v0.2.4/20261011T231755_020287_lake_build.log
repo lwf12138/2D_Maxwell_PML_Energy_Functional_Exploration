@@ -1,0 +1,20 @@
+✖ [2605/2609] Building LeanPML.PML.Obstructions.SingleLayer (6.4s)
+trace: .> LEAN_PATH=/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Cli/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/batteries/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Qq/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/aesop/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/proofwidgets/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/importGraph/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/plausible/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/mathlib/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean /Users/wcli/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/LeanPML/PML/Obstructions/SingleLayer.lean -o /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/Obstructions/SingleLayer.olean -i /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/Obstructions/SingleLayer.ilean -c /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/Obstructions/SingleLayer.c --setup /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/Obstructions/SingleLayer.setup.json --json
+warning: LeanPML/PML/Obstructions/SingleLayer.lean:185:53: Variable name `hκ_ne` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+error: LeanPML/PML/Obstructions/SingleLayer.lean:251:2: Type mismatch: After simplification, term
+  hsum_normalized
+ has type
+  HasDerivAt
+    (((fun y => μ * electricEnergy ε 0 0 c (v y) (deriv v y)) + fun y => μ * polarEnergy 0 0 c κ τ (R y) (z y)) +
+      spatialEnergy2D c 0 0 hx hy lx ly)
+    (μ * c * (ε + κ) * ξ ^ 2) 0
+but is expected to have type
+  HasDerivAt (singleLayerEnergyAlong ε κ τ μ c 0 0 v R z hx hy lx ly) (μ * c * (ε + κ) * ξ ^ 2) 0
+error: Lean exited with code 1
+Some required targets logged failures:
+- LeanPML.PML.Obstructions.SingleLayer
+error: build failed

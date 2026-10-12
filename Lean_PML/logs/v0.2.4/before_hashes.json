@@ -1,0 +1,18 @@
+{
+  "lean-toolchain": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee",
+  "lakefile.toml": "3a3ab926f99cfeb3ae9fa6309696858b0aabb7ce62469de72405a74dd64fab9e",
+  "lake-manifest.json": "6bd522ed18f94813b2e6fb5e7b9ea39d95a5098df2465acc0d815a09bb5dbf33",
+  "ROADMAP_lean_PML_revised.md": "2bfa4204cf4a823523e1b7c1f50f897e1e716391c0554763f040fb8417809b2f",
+  "docs/model_contract.md": "27fdc413425e2b65f0b31a4c4a533d5f52eb24a4af30f18f5fae080a1846fc23",
+  "docs/scope.md": "dff8fc9bf26935a12927a2c05950b44431020d5eb8e022f7c8565a9ec054b539",
+  "README.md": "8a251b50e0578c58be5b5251fea71d75db060e98fc13b5c44733fe695c787b25",
+  "PROGRESS.md": "c49507c2c2d9c872ce32d6c0c0021f30c9fa903e654c6103541a0769d4926cdd",
+  "LeanPML.lean": "45929ace120324a7bc5de248c90c344460127c110c18ca19bdef42237f010d6c",
+  "Audit.lean": "f703495fb1b33c064b322c42cda5a2a46fc47dede80af5a922a4a96a17e07aad",
+  "docs/source_inventory.md": "d8305aa7dcadf956703277a4f60b12a0b763442cf2e189b08154b329f73baadc",
+  "docs/theorem_inventory.md": "f4f6b28ffc3f6591e541ff5f11a5178cc2701286df3f4f657c564e32ec12eecd",
+  "docs/pdf_formalization_marks.md": "1e1090b7535ddda9c57dfe5af8555c939e910a76524341180084234900e041ef",
+  "../results/V7_Maxwell_Debye_PML/V7_global_energy.md": "0a7f73a25cb119eeb75b3e7b3c3f2fbb3b319250f3354ed4dcad0ecff8eff4fb",
+  "../results/V7_Maxwell_Debye_PML/V7_global_energy.tex": "7345e2f2b8558df5f68252985d119465085b01aa8005b0f7c861f0831ab6387a",
+  "../results/V7_Maxwell_Debye_PML/V7_global_energy.pdf": "c6c9978af6d3fbc54ef76b02a5d509e6dda169795c6181d64c7c56ccbe4e3aaa"
+}

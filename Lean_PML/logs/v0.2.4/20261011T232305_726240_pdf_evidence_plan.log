@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v0.2.4/pdf/build_mark_plan.py", line 78, in <module>
+    old_annotations_preserved_count=sum(len(p.get("/Annots",[])) for p in PdfReader(target).pages))
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v0.2.4/pdf/build_mark_plan.py", line 78, in <genexpr>
+    old_annotations_preserved_count=sum(len(p.get("/Annots",[])) for p in PdfReader(target).pages))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: object of type 'IndirectObject' has no len()
