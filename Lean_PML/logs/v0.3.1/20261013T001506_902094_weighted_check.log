@@ -1,0 +1,56 @@
+LeanPML/Analysis/WeightedL2.lean:42:14: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ↑↑X x
+in the target expression
+  (↑↑X + ↑↑Y) x = 0
+
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+w : α → ℝ
+X Y : ↥(Lp ℝ 2 ν)
+hX : X ∈ {X | ∀ᵐ (x : α) ∂ν, w x = 0 → ↑↑X x = 0}
+hY : Y ∈ {X | ∀ᵐ (x : α) ∂ν, w x = 0 → ↑↑X x = 0}
+x : α
+hx : w x = 0 → ↑↑X x = 0
+hy : w x = 0 → ↑↑Y x = 0
+hsum : ↑↑(X + Y) x = (↑↑X + ↑↑Y) x
+hw : w x = 0
+⊢ (↑↑X + ↑↑Y) x = 0
+LeanPML/Analysis/WeightedL2.lean:104:37: error: don't know how to synthesize placeholder for argument `hbound`
+context:
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+w : α → ℝ
+hw : Measurable w
+hgap : ∀ (x : α), w x = 0 ∨ 1 ≤ w x
+X : ↥(WeightedL2 ν w)
+⊢ ∀ (x : α), |(√(w x))⁻¹| ≤ 1
+LeanPML/Analysis/WeightedL2.lean:134:2: error: Type mismatch: After simplification, term
+  norm_boundedMul_le ν (fun x => (√(w x))⁻¹) (Measurable.inv (Measurable.sqrt hw)) 1
+    (fun x => inv_sqrt_abs_le_one (hgap x)) ↑X
+ has type
+  @LE.le ℝ Real.instLE ‖(boundedMul ν (fun x => (√(w x))⁻¹) ⋯ 1 ⋯) ↑X‖ ‖↑X‖
+but is expected to have type
+  @LE.le ℝ Real.instLE ‖(physicalL2 ν w hw hgap) X‖ ‖X‖
+LeanPML/Analysis/WeightedL2.lean:264:15: error(lean.invalidField): Invalid field `congr`: The environment does not contain `And.congr`, so it is not possible to project the field `congr` from an expression
+  Lp.memLp ?m.51
+of type
+  AEStronglyMeasurable ↑↑?m.51 ?m.49 ∧ eLpNorm ↑↑?m.51 ?m.48 ?m.49 < ∞
+LeanPML/Analysis/WeightedL2.lean:307:6: error: Type mismatch: After simplification, term
+  hx
+ has type
+  ↑↑(M X) x = 0
+but is expected to have type
+  ↑↑X x = 0
+LeanPML/Analysis/WeightedL2.lean:346:2: error: Type mismatch: After simplification, term
+  HasDerivAt.smul_const (hasDerivAt_id t) (weightedConstant ν w hw_ne)
+ has type
+  @HasDerivAt ℝ DenselyNormedField.toNontriviallyNormedField (↥(WeightedL2 ν w))
+    (WeightedL2 ν w).normedAddCommGroup.toAddCommGroup (WeightedL2 ν w).normedSpace.toModule
+    PseudoMetricSpace.toUniformSpace.toTopologicalSpace ⋯ (fun y => id y • weightedConstant ν w hw_ne)
+    (weightedConstant ν w hw_ne) t
+but is expected to have type
+  @HasDerivAt ℝ DenselyNormedField.toNontriviallyNormedField (↥(WeightedL2 ν w)) (WeightedL2 ν w).addCommGroup
+    (WeightedL2 ν w).module instTopologicalSpaceSubtype ⋯ (fun s => s • weightedConstant ν w hw_ne)
+    (weightedConstant ν w hw_ne) t

@@ -1,0 +1,45 @@
+{
+  "stage": "v0.3.1",
+  "status": "passed",
+  "formal_modules": 18,
+  "new_theorems": 109,
+  "old_theorems": 154,
+  "audited_theorems": 263,
+  "standard_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "build": "20261013T002136_137117_lake_build",
+  "audit": "20261013T002105_759533_axioms_audit",
+  "protected_unchanged": [
+    "lean-toolchain",
+    "lakefile.toml",
+    "lake-manifest.json",
+    "ROADMAP_lean_PML_revised.md",
+    "docs/model_contract.md",
+    "docs/scope.md",
+    "docs/source_inventory.md"
+  ],
+  "source_hashes": {
+    "LeanPML/Analysis/EnergyCalculus.lean": "8f43f309fda52d0f6214489701683e5002441a4f401fd30b6c4a82a9a2b3cb22",
+    "LeanPML/Analysis/WeightedL2.lean": "6be3ed7daca127d0a07aa79fe7dcc3ff0a65d43599f3229ee8a6549a280fab08",
+    "LeanPML/PML/Energy.lean": "b5b806f793284bc5bd64f5d8e6c5d9f17e19f78d84ffe7932a4e74d5aab3d042",
+    "LeanPML/PML/EnergyIntegrals.lean": "85370f6dcf41408132e79f4eb8ccbba2e1dc0f4a1f2b842601237026517dc540",
+    "LeanPML/PML/SpatialCoefficients.lean": "07223cf17bdbf48daff2078f543070d760d1dc5464f47a8c2b8d0d0438e84392",
+    "LeanPML/PML/State.lean": "3949faa23565d376c62fe4b24bfabffe723cf8c7359ebf4a126f0191d18c18b2"
+  },
+  "pdf_pages": 18,
+  "pdf_modified_pages": [
+    8,
+    9,
+    11,
+    12
+  ],
+  "pdf_sha256": "9b55183d444b9efa91e873dbbef1d7e73756962106f9c51d0de108f78b49c2ac",
+  "old_pdf_annotations_preserved": 141,
+  "total_pdf_annotations": 150,
+  "history_preserved": true,
+  "new_document_links_valid": true,
+  "no_placeholders": true
+}

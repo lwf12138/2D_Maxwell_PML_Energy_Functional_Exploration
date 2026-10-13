@@ -1,0 +1,174 @@
+[
+  {
+    "x": 535,
+    "top": 213,
+    "font_size": 6,
+    "lines": [
+      "加权空间嵌入",
+      "含零区处理"
+    ],
+    "id": "weighted-embedding",
+    "page": 8,
+    "tick": true,
+    "rect_top": [
+      534,
+      211,
+      587.0,
+      229.2
+    ],
+    "overlap": []
+  },
+  {
+    "x": 535,
+    "top": 432,
+    "font_size": 6,
+    "lines": [
+      "积分/内积表示",
+      "非 PDE 能量律"
+    ],
+    "id": "energy-integral-inner",
+    "page": 9,
+    "tick": true,
+    "rect_top": [
+      534,
+      430,
+      590.6708984375,
+      448.2
+    ],
+    "overlap": []
+  },
+  {
+    "x": 8,
+    "top": 170,
+    "font_size": 6,
+    "lines": [
+      "加权空间求导",
+      "需该空间",
+      "路径可导"
+    ],
+    "id": "weighted-time",
+    "page": 11,
+    "tick": true,
+    "rect_top": [
+      7,
+      168,
+      60.0,
+      194.4
+    ],
+    "overlap": []
+  },
+  {
+    "x": 535,
+    "top": 97,
+    "font_size": 6,
+    "lines": [
+      "分量积分非负",
+      "真实梯度",
+      "接口待完成"
+    ],
+    "id": "spatial-integral",
+    "page": 11,
+    "tick": true,
+    "rect_top": [
+      534,
+      95,
+      587.0,
+      121.4
+    ],
+    "overlap": []
+  },
+  {
+    "id": "weighted-model",
+    "page": 8,
+    "x": 68,
+    "top": 233,
+    "font_size": 6.5,
+    "lines": [
+      "v0.3.1：实际加权 L² 闭子空间及零延拓；(5.5)–(5.6) 定义录入本身不计证明。"
+    ],
+    "tick": false,
+    "rect_top": [
+      67,
+      231,
+      290.384033203125,
+      241.5
+    ],
+    "overlap": []
+  },
+  {
+    "id": "states-energy-definitions",
+    "page": 9,
+    "x": 68,
+    "top": 810,
+    "font_size": 7,
+    "lines": [
+      "v0.3.1：(6.2)–(6.5) 已建立实际 L² / 积分定义；图范数零分离及 PDE 能量律待完成。"
+    ],
+    "tick": false,
+    "rect_top": [
+      67,
+      808,
+      329.5859375,
+      819.0
+    ],
+    "overlap": []
+  },
+  {
+    "id": "spatial-scope-update",
+    "page": 11,
+    "x": 68,
+    "top": 810,
+    "font_size": 6.5,
+    "lines": [
+      "v0.3.1 新勾限实际分量积分/范数路径求导；旧勾保留历史范围，Green/PEC 与 PDE 能量律未完成。"
+    ],
+    "tick": false,
+    "rect_top": [
+      67,
+      808,
+      356.837646484375,
+      818.5
+    ],
+    "overlap": []
+  },
+  {
+    "id": "dissipation-definition",
+    "page": 11,
+    "x": 535,
+    "top": 735,
+    "font_size": 6,
+    "lines": [
+      "(7.7) 实际",
+      "积分定义",
+      "符号未定"
+    ],
+    "tick": false,
+    "rect_top": [
+      534,
+      733,
+      562.00390625,
+      759.4
+    ],
+    "overlap": []
+  },
+  {
+    "id": "two-layer-definition",
+    "page": 12,
+    "x": 535,
+    "top": 170,
+    "font_size": 6,
+    "lines": [
+      "左式实际定义",
+      "右式能量律",
+      "仍待完成"
+    ],
+    "tick": false,
+    "rect_top": [
+      534,
+      168,
+      572.0,
+      194.4
+    ],
+    "overlap": []
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "stage": "v0.3.1",
+  "page_count": 18,
+  "backup": {
+    "target": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf",
+    "backup": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v0.3.1/pdf/before_v0.3.1_20261013T002329.pdf",
+    "sha256_before": "f318a9a0e4ac0721f61fffc601388e16be4e568b4efcbb3b2de3e9ad19a2b757",
+    "bytes_before": 918843
+  },
+  "build": "20261013T002136_137117_lake_build",
+  "audit": "20261013T002105_759533_axioms_audit",
+  "font": "/System/Library/Fonts/Supplemental/Arial Unicode.ttf",
+  "modified_pages": [
+    8,
+    9,
+    11,
+    12
+  ],
+  "current_audited_theorems": 263,
+  "old_mark_entries_rechecked": 24,
+  "old_annotations_preserved_count": 141
+}

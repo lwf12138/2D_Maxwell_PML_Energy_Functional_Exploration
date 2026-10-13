@@ -1,0 +1,44 @@
+✔ [2865/2866] Built LeanPML.PML.Energy (8.5s)
+✖ [2866/2866] Building LeanPML.PML.EnergyIntegrals (2.5s)
+trace: .> LEAN_PATH=/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Cli/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/batteries/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Qq/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/aesop/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/proofwidgets/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/importGraph/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/plausible/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/mathlib/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean /Users/wcli/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/LeanPML/PML/EnergyIntegrals.lean -o /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/EnergyIntegrals.olean -i /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/EnergyIntegrals.ilean -c /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/EnergyIntegrals.c --setup /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/EnergyIntegrals.setup.json --json
+warning: LeanPML/PML/EnergyIntegrals.lean:49:84: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: LeanPML/PML/EnergyIntegrals.lean:83:66: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+error: LeanPML/PML/EnergyIntegrals.lean:138:20: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ∫ (a : α),
+    ↑↑U.Λx a ^ 2 + ↑↑U.Λy a ^ 2 + C.wx a * ↑↑((physicalL2 ν C.wx ⋯ ⋯) U.ψx) a ^ 2 +
+      C.wy a * ↑↑((physicalL2 ν C.wy ⋯ ⋯) U.ψy) a ^ 2 ∂ν
+in the target expression
+  fieldSpatial U =
+    (∫ (a : α),
+        ↑↑U.Λx a ^ 2 + ↑↑U.Λy a ^ 2 + C.wx a * ↑↑((physicalX ν C) U.ψx) a ^ 2 +
+          C.wy a * ↑↑((physicalY ν C) U.ψy) a ^ 2 ∂ν) /
+      2
+
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+C : SpatialAbsorption α
+U : FieldState ν C.wx C.wy
+hx : Integrable (fun x => ↑↑U.Λx x ^ 2) ν
+hy : Integrable (fun x => ↑↑U.Λy x ^ 2) ν
+hψx : Integrable (fun x => C.wx x * ↑↑((physicalL2 ν C.wx ⋯ ⋯) U.ψx) x ^ 2) ν
+hψy : Integrable (fun x => C.wy x * ↑↑((physicalL2 ν C.wy ⋯ ⋯) U.ψy) x ^ 2) ν
+⊢ fieldSpatial U =
+    (∫ (a : α),
+        ↑↑U.Λx a ^ 2 + ↑↑U.Λy a ^ 2 + C.wx a * ↑↑((physicalX ν C) U.ψx) a ^ 2 +
+          C.wy a * ↑↑((physicalY ν C) U.ψy) a ^ 2 ∂ν) /
+      2
+warning: LeanPML/PML/EnergyIntegrals.lean:299:46: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: LeanPML/PML/EnergyIntegrals.lean:327:60: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+error: Lean exited with code 1
+Some required targets logged failures:
+- LeanPML.PML.EnergyIntegrals
+error: build failed

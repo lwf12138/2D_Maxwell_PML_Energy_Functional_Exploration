@@ -1,0 +1,17 @@
+{
+  "stage": "v0.3.1",
+  "command": [
+    "/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "logs/v0.3.1/pdf/preflight_coordinates.py"
+  ],
+  "command_display": "/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 logs/v0.3.1/pdf/preflight_coordinates.py",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+  "started_at": "2026-10-13T00:22:57.414649+08:00",
+  "output_file": "20261013T002257_414649_pdf_coordinates_retry.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-13T00:22:57.727084+08:00",
+  "elapsed_seconds": 0.312
+}

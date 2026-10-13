@@ -1,0 +1,19 @@
+{
+  "stage": "v0.3.1",
+  "command": [
+    "lake",
+    "env",
+    "lean",
+    "LeanPML/PML/EnergyIntegrals.lean"
+  ],
+  "command_display": "lake env lean LeanPML/PML/EnergyIntegrals.lean",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-13T00:19:01.921582+08:00",
+  "output_file": "20261013T001901_921582_energy_integrals_compile_retry2.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 1,
+  "status": "finished",
+  "ended_at": "2026-10-13T00:19:03.826404+08:00",
+  "elapsed_seconds": 1.904
+}

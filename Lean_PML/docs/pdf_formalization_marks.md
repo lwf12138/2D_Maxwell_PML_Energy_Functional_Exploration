@@ -1,3 +1,96 @@
+# PDF 形式化标注账本（截至 v0.3.1）
+
+用途：把红勾连接到实际可编译定理、当前审计及准确范围。定义录入不算证明；真实空间积分/内积求导仍不等于 PDE 能量律。
+
+## v0.3.1 新增记录：实际 L²、加权表示与积分求导（2026-10-13）
+
+本节为追加记录；下面 v0.2.4、v0.2.3 及注释修订历史全部保留。本轮只修改实际/印刷第 **8、9、11、12 页**，新增 **4 个矢量红勾和 5 个定义/范围说明**。
+
+### 当前证据与来源版本
+
+- **B31**：[正式构建](../logs/v0.3.1/20261013T002136_137117_lake_build.log)／[命令、目录、退出码](../logs/v0.3.1/20261013T002136_137117_lake_build.json)，退出 0。
+- **A31**：[独立公理审计](../logs/v0.3.1/20261013T002105_759533_axioms_audit.log)／[命令、目录、退出码](../logs/v0.3.1/20261013T002105_759533_axioms_audit.json)，退出 0。
+- 本次审计 263 条定理（旧 154 条、新 109 条），无 sorryAx，仅标准 propext、Classical.choice、Quot.sound。主要新定理已在正式导入链中。
+- [机器证据计划](../logs/v0.3.1/pdf/annotation_plan.json)逐项核对新勾定理的完整名称、源文件哈希和本次审计；同时重新核对旧 24 项标注的全部定理仍在本次审计中。
+- [来源核对](../logs/v0.3.1/pdf/source_review.md)、[源文件哈希](../logs/v0.3.1/pdf/input_hashes.json)、[页码和旧批注快照](../logs/v0.3.1/pdf/read_only_inspection.json)：V7 MD/TEX/原 PDF、模型合同、工具链与依赖锁定均未变。
+- 路线图进入本轮前只把 v0.2.4 四项改为已勾选；v0.3.1–v0.3.3 文字未改，见[差异记录](../logs/v0.3.1/pdf/roadmap_preexisting_diff.patch)。没有用历史勾选代替本轮构建。
+- §11.1 的既有交叉引用疑点保留：(7.6) 是能量导数关系，(7.7) 是耗散定义。本轮未修改原文。
+
+### 四个新红勾
+
+#### v0.3.1 / weighted-embedding
+
+- 页码：实际第 **8** 页；印刷页码 **8**。
+- 定位：(5.6) 后“该空间连续嵌入 L²(Ω)²”。
+- 类别：**实际 L² 分析；连续嵌入**。
+- Lean 文件：[Energy.lean](../LeanPML/PML/Energy.lean)。
+- 完整定理名：`LeanPML.PML.auxiliary_embedding_square`、`LeanPML.PML.physical_zero_on_absorption_zero`。
+- 实际假设和结论：实际加权空间使用 √wψ 的 L² 闭子空间；恢复映射在全域 ν-a.e. 上定义，零吸收区为零，两个分量满足普通 L² 平方和不超过加权平方和。可测性和正区权重间隙由 SpatialAbsorption 原始条件推导。
+- 未完成接口：具体矩形 Sobolev/零迹/真实弱梯度及演化保持仍待完成；本勾不覆盖 (5.7)–(5.8)。
+- PDF 旁注：**✓ 加权空间嵌入；含零区处理**。
+- 证据：**B31 + A31**。
+
+#### v0.3.1 / energy-integral-inner
+
+- 页码：实际第 **9** 页；印刷页码 **9**。
+- 定位：(6.2) 实际积分/内积表示及由该式推出的路径求导（原文未单列）。
+- 类别：**实际积分；实际 L²/加权空间时间求导**。
+- Lean 文件：[EnergyIntegrals.lean](../LeanPML/PML/EnergyIntegrals.lean)。
+- 完整定理名：`LeanPML.PML.fieldEnergyDensity_integrable`、`LeanPML.PML.fieldEnergy_eq_integral`、`LeanPML.PML.hasDerivAt_integral_fieldEnergy`。
+- 实际假设和结论：真实 FieldState 的三个旧块密度可积，F_c 的内积表达与整个 ν 空间上的密度积分相等；各分量在其实际普通/加权空间中 HasDerivAt 时，积分能量导数为 fieldEnergyRate。未交换未经证明的逐点导数与积分。
+- 未完成接口：primitive 方程、真实梯度、Green/PEC 尚未代入，导数未化为 −D_c；不代表正定性、图范数等价或 PDE 能量律。
+- PDF 旁注：**✓ 积分/内积表示；非 PDE 能量律**。
+- 证据：**B31 + A31**。
+
+#### v0.3.1 / weighted-time
+
+- 页码：实际第 **11** 页；印刷页码 **11**。
+- 定位：(7.2) 后“加权空间的时间链式法则由 ψ∈C¹(L²_w) 保证”。
+- 类别：**实际加权空间时间求导**。
+- Lean 文件：[WeightedL2.lean](../LeanPML/Analysis/WeightedL2.lean)。
+- 完整定理名：`LeanPML.Analysis.hasDerivAt_weighted_half_norm_sq`、`LeanPML.Analysis.hasDerivAt_physicalL2`。
+- 实际假设和结论：在已构造的实际加权内积空间上，由 HasDerivAt X Xdot t 推出 ‖X‖²/2 的导数为内积，并由连续恢复映射得到物理 L² 路径导数。需要该加权范数下的导数，普通 L²/逐点可导不能代替。
+- 未完成接口：一般辅助 PDE 的加权正则性传播、真实空间梯度和 Green/PEC 仍待完成；不把本链式法则等同于整个 (7.2) 能量恒等式。
+- PDF 旁注：**✓ 加权空间求导；需该空间；路径可导**。
+- 证据：**B31 + A31**。
+
+#### v0.3.1 / spatial-integral
+
+- 页码：实际第 **11** 页；印刷页码 **11**。
+- 定位：(7.2) 的 L² 分量密度积分与非负子结论。
+- 类别：**实际积分；分量耗散非负**。
+- Lean 文件：[EnergyIntegrals.lean](../LeanPML/PML/EnergyIntegrals.lean)。
+- 完整定理名：`LeanPML.PML.fieldSpatialDissipation_integrable`、`LeanPML.PML.fieldSpatialDissipation_eq_integral`、`LeanPML.PML.fieldSpatialDissipation_nonneg`、`LeanPML.PML.fieldSpatialDissipation_of_zeroAbsorption`。
+- 实际假设和结论：四个有界可测耗散系数按方向乘实际 L² 分量平方，密度可积且积分非负；全零吸收 a.e. 时 S=c(‖h_x‖²+‖h_y‖²)。h=Λ−ψ 是 L² 分量，零区贡献保留。
+- 未完成接口：真实 h=∂ᵢv 接口未实现；本轮未单独形式化 Ω₊/Z 两个限制积分的分区等式，也未证明空间块与 primitive/Green 组合后的能量律。
+- PDF 旁注：**✓ 分量积分非负；真实梯度；接口待完成**。
+- 证据：**B31 + A31**。
+
+### 实际空间、定义说明与未完成部分
+
+- [WeightedL2.lean](../LeanPML/Analysis/WeightedL2.lean) 中 `LeanPML.Analysis.weightedSubspace_isClosed`、`weighted_completeSpace` 已证明平方根坐标空间为闭子空间并完备；`physicalL2_injective`、`physicalL2_weightedOfFunction`、`weightedOfFunction_congr` 处理双向恢复和代表元独立；`weighted_norm_sq_eq_integral`、`weighted_inner_eq_integral` 给出实际加权积分表示。它们均在 A31 中；本勾没有假设 w 本质有界。
+- [SpatialCoefficients.lean](../LeanPML/PML/SpatialCoefficients.lean) 用实际可测 p/r 和原始幅度条件构造系数；分离入口保留 p(x)、r(y)，a.e. 入口选择等价的良好代表。ν 可以取整个开矩形限制测度，未缩域。
+- 第 8 页 (5.5)–(5.6) 增加实际加权表示说明，**定义本身不打完成勾**。新增嵌入勾与已有“下界/无界；系数性质”勾分别对应分析和点态代数。
+- 第 9 页页底说明 (6.2)–(6.5) 已有实际 L²/积分定义。`FieldState` 的 V 是速度坐标；`StateHasDerivAt` 绑定各分量真实导数，`SameSourcePath` 连接同一来源的两层；内部的导数层时间关系另经邻域等式推出。空间域/弱梯度/零迹仍是显式 Conditional 接口。
+- (6.4) 的 `energy7` 和 (6.5) 的 `graphSquare7` 使用 `scaleK` 与同源路径。`graphSquare` 仍是图范数平方候选，未证明其零分离或能量双边估计。
+- 第 11 页 (7.7) 只标“实际积分定义；符号未定”。`fieldDissipationDensity_integrable`、`fieldDissipation_eq_integral` 已连接旧三个块和实际积分，但 D_c 不被声明非负。
+- 第 12 页 (7.8) 只标“左式实际定义；右式能量律仍待完成”。`twoLayerDissipation_integrable`、`twoLayerDissipation_eq_integral` 保证定义合法；`dissipation7` 用同源 first.R/second.R 表示 P_t/P_tt，未证明 D₇ 非负或 E₇′=−D₇。
+- 第 11 页旧“空间积分待完成”“仅系数界；非空间积分”批注完整保留；页底新增 v0.3.1 限定，说明新勾覆盖实际分量积分和范数路径求导，旧勾保留历史范围。没有把新证明扩大为 primitive/Green 组合后的恒等式。
+- **不打完成勾：** (6.7)–(6.10)、(7.5)–(7.8) 的完整能量律、(9.5)–(9.7)、具体梯度/零迹/Green/Poincaré、完整 PDE 对应、解存在唯一性。T10、T11、T12、T15、T17、T18 仍按已实现子结论逐项登记，不整体标记完成。
+
+### 备份、编辑、视觉验收与可重复性
+
+- 新建[修改前副本](../logs/v0.3.1/pdf/before_v0.3.1_20261013T002329.pdf)；[备份信息](../logs/v0.3.1/pdf/backup.json)。旧阶段及用户原有备份未覆盖。
+- 修改前 SHA-256：`f318a9a0e4ac0721f61fffc601388e16be4e568b4efcbb3b2de3e9ad19a2b757`。
+- 修改后 SHA-256：`9b55183d444b9efa91e873dbbef1d7e73756962106f9c51d0de108f78b49c2ac`。
+- [标注证据脚本](../logs/v0.3.1/pdf/build_mark_plan.py)、[矢量编辑脚本](../logs/v0.3.1/pdf/annotate_pdf.py)、[重新打开/渲染脚本](../logs/v0.3.1/pdf/verify_pdf.py)和[视觉/像素核验脚本](../logs/v0.3.1/pdf/record_visual_qa.py)保留；稳定标记 ID 与计划哈希防止重复叠加。
+- [编辑日志](../logs/v0.3.1/20261013T002336_826429_pdf_annotate.log)、[重新打开及渲染日志](../logs/v0.3.1/20261013T002342_329628_pdf_verify_render.log)、[视觉验收日志](../logs/v0.3.1/20261013T002436_189341_pdf_visual_qa.log)均退出 0；[机器验收](../logs/v0.3.1/pdf/verification.json)、[逐页视觉记录](../logs/v0.3.1/pdf/visual_review.json)。
+- 18 页、页面尺寸与页序不变；原文可选文本保留，141 项旧批注/链接全部保留；新增 9 项后总计 150 项。
+- 已打开并逐页检查全部修改页 8、9、11、12。侧栏 6pt、说明 6.5–7pt 的嵌入中文和矢量勾清晰；没有裁切或遮挡正文、公式、编号、页码及旧批注。标记框之外渲染像素完全相同；其余 14 页内容流字节相同。
+- 只读准备曾因脚本名 inspect.py 遮蔽标准库而失败，改名后成功；定位预检曾发现第 11 页页底说明碰页码，在编辑前下移修复。两类失败和成功日志均保留，未把未运行或失败命令登记为通过。
+
+---
+
 # PDF 形式化标注账本（截至 v0.2.4）
 
 用途：把 PDF 旁的每个红勾连接到当前可编译的 Lean 定理、实际公理审计和明确的范围限制。定义与假设的录入不算证明；局部时间结论不算完整空间/PDE 结论。

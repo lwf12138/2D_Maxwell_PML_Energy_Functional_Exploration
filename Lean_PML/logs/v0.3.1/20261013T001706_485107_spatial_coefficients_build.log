@@ -1,0 +1,22 @@
+⚠ [2857/2857] Built LeanPML.PML.SpatialCoefficients (2.0s)
+warning: LeanPML/PML/SpatialCoefficients.lean:361:18: Variable name `x` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/SpatialCoefficients.lean:362:18: Variable name `x` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/SpatialCoefficients.lean:363:16: Variable name `x` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/SpatialCoefficients.lean:364:16: Variable name `x` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Build completed successfully (2857 jobs).

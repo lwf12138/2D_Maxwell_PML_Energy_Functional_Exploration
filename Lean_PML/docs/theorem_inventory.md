@@ -1235,3 +1235,38 @@ T18 + T27 + 时间积分接口 → T28 任意两时刻单调性/平衡
 | T13–T18：局部块到单层 | `singleLayerEnergy`、`singleLayerDissipation` 复用三块组合 (6.2)/(7.7)，初始局部真实求导有调用证据 | (7.5) Green、(7.6) 一般空间能量律、(7.8) 两层 PDE 恒等式尚未完成 |
 
 交叉引用核对：§11.1 原文将“精确导数”误指 (7.7)，实际为 (7.6)；(7.7) 是耗散表达式。§11.1 的负耗散式没有编号，§11.2 的 (11.1) 不属本阶段。原文与模型合同未改。
+
+
+## v0.3.1 追加实现记录：实际空间、合法积分与时间求导（2026-10-13）
+
+本节追加本轮证据，不回写旧条目的计划状态或覆盖历史。新增六个正式模块：
+[EnergyCalculus](../LeanPML/Analysis/EnergyCalculus.lean)、[WeightedL2](../LeanPML/Analysis/WeightedL2.lean)、
+[SpatialCoefficients](../LeanPML/PML/SpatialCoefficients.lean)、[State](../LeanPML/PML/State.lean)、
+[Energy](../LeanPML/PML/Energy.lean)、[EnergyIntegrals](../LeanPML/PML/EnergyIntegrals.lean)。
+下表短名在代码中的统一前缀为 `LeanPML.PML`，加权分析结论前缀为 `LeanPML.Analysis`。
+
+| 条目 | 本阶段实际完成 | 输入、依赖及仍未完成的部分 |
+|---|---|---|
+| T10，(5.5)–(5.6) | 实际 L² 子空间 `WeightedL2`：保存 √wψ 的全域 a.e. 商类；`weightedSubspace_isClosed`、`weighted_completeSpace`、`physicalL2_injective`、`physicalL2_norm_sq_le`、精确加权积分公式 | 实际可测 w，零区为零及正区 w≥1 的条件。PML 通过旧 w≥3/2 推出该下界；无 w 上界。空间系数 a.e. 代表用 `SpatialAbsorption.ofAE_p_ae/ofAE_r_ae` 接通。两种分配权重与后续加权空间估计不得因此整体算完成 |
+| T11，(6.1)–(6.5) | `FieldState` 的实际坐标、`PolarConstraint`、单层/两层能量定义及密度可积；`fieldEnergy_eq_integral` 精确对应旧块；`graphSquare/graphSquare7` 是候选平方 | 普通槽属于 L²，加权槽属于上述具体空间；系数由原始非负与幅度条件构造。真实弱梯度/零迹、图范数分离及双边估计仍待实现，不对任意状态安装范数 |
+| T12，(6.3)、(6.6) | `StateHasDerivAt`、`SameSourcePath`；`sameSource_coordinates` 和 `sameSource_first_coordinates_of_mem_interior`，从真实路径导数与邻域等式得到两层时间坐标对应 | first.R=P_t、second.R=P_tt 有实际 L² 导数证据；内部条件用于对邻域恒等式求导。尚未由论文完整 Sobolev 正则性推导此接口，也未证明导数层满足同一 primitive 方程 |
+| T15，(7.2) | 四个有界耗散系数方向正确；`fieldSpatialDissipation_integrable/eq_integral/nonneg`；`fieldSpatialDissipation_of_zeroAbsorption` 给出全零区 c(‖hₓ‖²+‖hᵧ‖²) 的实际积分 | h=Λ−ψ 是实际 L² 分量，尚需空间接口证明是 ∇v。全域分支未删除零区；未证明 Green/PEC、由辅助演化导出的空间块能量律或一般分区积分定理 |
+| T17，(7.6)–(7.7) | `fieldDissipationDensity_integrable`、`fieldDissipation_eq_integral`；`hasDerivAt_fieldEnergy` 与 `hasDerivAt_integral_fieldEnergy` 给出真正空间能量求导 | 输入各实际空间分量（含加权分量）的 HasDerivAt。导数是明确内积表达式，不是 −D_c；primitive 演化与 Green 尚未代入，(7.6) 未完成 |
+| T18，(7.8) | `energy7`、`dissipation7` 使用同源路径与同一 `scaleK`；`twoLayerDissipation_eq_integral`；`hasDerivAt_energy7` 为真实和式求导 | 定义与求导表达式已建立；两层同系统、零迹、完整 E₇′=−D₇、D₇≥0 和时间单调性均未完成 |
+
+### 实际假设与接口账本
+
+1. **已构造的空间**：`ScalarL2 ν = Lp ℝ 2 ν`；二维量由两个标量 L² 分量表示，平方和单独写出。加权平方根坐标为 L² 的闭子空间；使用完备性时可写 `letI := weighted_completeSpace ν w hw`。
+2. **系数**：`SpatialAbsorption` 存 c>0、p/r 可测非负及 p,r≤S≤c/4。只记录原始条件，所有多项式乘子界、w 下界、零区识别及耗散界均由定理/构造证明。矩形入口 `rectangleMeasure` 使用整个开矩形二维 Lebesgue 限制测度；`separated` 保留 p(x)、r(y)。W¹∞ 的弱空间导数尚未实现。
+3. **路径**：`StateHasDerivAt` 在普通/加权空间中分别给出导数。`SameSourcePath` 使用时间集合 I，不把内部条件变成整个实轴条件；只有 t∈interior I 才对层间坐标等式求导。未使用目标能量律作为输入。
+4. **空间接口**：`ConditionalSpatialDomain` 仅有受限定义域与两个线性分量算子。`FieldSpatialConstraint` 固定采用真实零延拓映射表达 Λ=空间分量+ψ。尚无具体矩形 H₀¹、弱梯度、H(div)、零迹、Green 或 Poincaré 的实现。
+5. **积分**：F_c、S、D_c、D₇ 的密度可积与内积对应均已证明。S 是实际分量积分非负；D_c/D₇ 只定义且可积，不附带非负结论。没有把不可积函数积分的总定义当作合法性依据。
+6. **求导**：普通/加权内积规则直接在实际空间上使用，未假设点态导数可与积分交换。`hasDerivAt_integral_fieldEnergy` 是分析链式法则，不是 PDE 能量律。
+7. **调用实例**：`SpaceExample.hasDerivAt_energy`、`SpaceExample.energy_nonconstant` 使用单位开矩形实际测度、非零加权 seed 和非恒定路径。实例不声称满足空间约束或完整 PDE。
+8. **下一阶段接口**：v0.3.2 应在以上真实空间/路径基础上代入 primitive 演化与明确 Green/零迹条件，证明能量律；不得把最终导数关系放入模型结构。
+
+### 验证与来源
+
+新增 109 条定理进入审计，连同旧 154 条共 263 条。正式构建及独立公理审计均实际通过；最终日志链接见 [README](../README.md) 与 [PROGRESS](../PROGRESS.md)，新增声明完整清单见 [new_theorems.json](../logs/v0.3.1/new_theorems.json)。标准依赖为 propext、Classical.choice、Quot.sound，没有 sorryAx 或自设占位公理。
+
+V7 md/tex/原 PDF、模型合同和锁定配置与上一阶段相同。路线图在进入本轮前只勾选 v0.2.4 四项，v0.3.1–v0.3.3 数学任务没有变化，本轮不改路线图。具体差异及哈希见 [来源核对](../logs/v0.3.1/pdf/source_review.md)。旧 T15/T17 中“积分待完成”等文字保留为历史；只有本表明确列出的积分/求导子结论更新状态，整个 T10/T11/T12/T15/T17/T18 不整体标为完成。

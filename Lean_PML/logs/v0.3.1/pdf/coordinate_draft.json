@@ -1,0 +1,102 @@
+{
+  "stage": "v0.3.1",
+  "status": "定位草稿；尚未绑定已通过定理，不可据此编辑",
+  "candidates": [
+    {
+      "id": "weighted-embedding",
+      "page": 8,
+      "location": "(5.6) 后连续嵌入句",
+      "x": 535,
+      "top": 213,
+      "font_size": 6,
+      "lines": [
+        "加权空间嵌入",
+        "含零区处理"
+      ]
+    },
+    {
+      "id": "energy-integral-inner",
+      "page": 9,
+      "location": "(6.2) 表达式右侧",
+      "x": 535,
+      "top": 432,
+      "font_size": 6,
+      "lines": [
+        "积分/内积表示",
+        "非能量律"
+      ]
+    },
+    {
+      "id": "weighted-time",
+      "page": 11,
+      "location": "(7.2) 后链式法则说明",
+      "x": 8,
+      "top": 170,
+      "font_size": 6,
+      "lines": [
+        "加权空间求导",
+        "需该空间",
+        "路径可导"
+      ]
+    },
+    {
+      "id": "spatial-integral",
+      "page": 11,
+      "location": "(7.2) 被积式/分量积分",
+      "x": 535,
+      "top": 97,
+      "font_size": 6,
+      "lines": [
+        "分量积分非负",
+        "真实梯度",
+        "接口待完成"
+      ]
+    }
+  ],
+  "definition_notes": [
+    {
+      "id": "weighted-model",
+      "page": 8,
+      "x": 68,
+      "top": 233,
+      "font_size": 6.5,
+      "lines": [
+        "v0.3.1：实际加权表示与嵌入；定义本身不计证明。"
+      ]
+    },
+    {
+      "id": "states-energy-definitions",
+      "page": 9,
+      "x": 68,
+      "top": 810,
+      "font_size": 7,
+      "lines": [
+        "v0.3.1：(6.2)–(6.5) 建立实际 L² / 积分定义；图范数零分离与 PDE 能量律仍待完成。"
+      ]
+    },
+    {
+      "id": "dissipation-definition",
+      "page": 11,
+      "x": 535,
+      "top": 735,
+      "font_size": 6,
+      "lines": [
+        "(7.7) 实际",
+        "积分定义",
+        "非非负结论"
+      ]
+    },
+    {
+      "id": "two-layer-definition",
+      "page": 12,
+      "x": 535,
+      "top": 170,
+      "font_size": 6,
+      "lines": [
+        "左式实际定义",
+        "右式能量律",
+        "仍待完成"
+      ]
+    }
+  ]
+}

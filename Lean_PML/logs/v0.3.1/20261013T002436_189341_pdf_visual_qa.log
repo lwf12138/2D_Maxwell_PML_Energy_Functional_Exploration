@@ -1,0 +1,59 @@
+{
+  "status": "passed",
+  "page_count": 18,
+  "reviewed_pages": [
+    {
+      "page": 8,
+      "printed_page": 8,
+      "image": "after-08.png",
+      "visually_opened": true,
+      "red_tick_visible": true,
+      "scope_text_readable": true,
+      "clipping": false,
+      "formula_or_old_annotation_overlap": false,
+      "outside_mark_pixels_changed": false
+    },
+    {
+      "page": 9,
+      "printed_page": 9,
+      "image": "after-09.png",
+      "visually_opened": true,
+      "red_tick_visible": true,
+      "scope_text_readable": true,
+      "clipping": false,
+      "formula_or_old_annotation_overlap": false,
+      "outside_mark_pixels_changed": false
+    },
+    {
+      "page": 11,
+      "printed_page": 11,
+      "image": "after-11.png",
+      "visually_opened": true,
+      "red_tick_visible": true,
+      "scope_text_readable": true,
+      "clipping": false,
+      "formula_or_old_annotation_overlap": false,
+      "outside_mark_pixels_changed": false
+    },
+    {
+      "page": 12,
+      "printed_page": 12,
+      "image": "after-12.png",
+      "visually_opened": true,
+      "red_tick_visible": true,
+      "scope_text_readable": true,
+      "clipping": false,
+      "formula_or_old_annotation_overlap": false,
+      "outside_mark_pixels_changed": false
+    }
+  ],
+  "font": "嵌入 Arial Unicode.ttf，矢量折线红勾",
+  "font_sizes": "侧栏6pt；页间/页底说明6.5–7pt",
+  "original_text_preserved": true,
+  "old_annotations_preserved": 141,
+  "new_annotations": 9,
+  "new_ticks": 4,
+  "total_annotations": 150,
+  "unmodified_page_content_streams_equal": true,
+  "sha256": "9b55183d444b9efa91e873dbbef1d7e73756962106f9c51d0de108f78b49c2ac"
+}

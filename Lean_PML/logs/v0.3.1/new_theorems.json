@@ -1,0 +1,547 @@
+[
+  {
+    "name": "LeanPML.Analysis.memLp_bounded_mul",
+    "file": "LeanPML/Analysis/EnergyCalculus.lean",
+    "line": 38
+  },
+  {
+    "name": "LeanPML.Analysis.coeFn_boundedMul",
+    "file": "LeanPML/Analysis/EnergyCalculus.lean",
+    "line": 94
+  },
+  {
+    "name": "LeanPML.Analysis.norm_boundedMul_le",
+    "file": "LeanPML/Analysis/EnergyCalculus.lean",
+    "line": 101
+  },
+  {
+    "name": "LeanPML.Analysis.integrable_product",
+    "file": "LeanPML/Analysis/EnergyCalculus.lean",
+    "line": 111
+  },
+  {
+    "name": "LeanPML.Analysis.inner_eq_integral",
+    "file": "LeanPML/Analysis/EnergyCalculus.lean",
+    "line": 116
+  },
+  {
+    "name": "LeanPML.Analysis.norm_sq_eq_integral",
+    "file": "LeanPML/Analysis/EnergyCalculus.lean",
+    "line": 122
+  },
+  {
+    "name": "LeanPML.Analysis.integrable_boundedMul_product",
+    "file": "LeanPML/Analysis/EnergyCalculus.lean",
+    "line": 129
+  },
+  {
+    "name": "LeanPML.Analysis.inner_boundedMul_eq_integral",
+    "file": "LeanPML/Analysis/EnergyCalculus.lean",
+    "line": 141
+  },
+  {
+    "name": "LeanPML.Analysis.hasDerivAt_inner",
+    "file": "LeanPML/Analysis/EnergyCalculus.lean",
+    "line": 159
+  },
+  {
+    "name": "LeanPML.Analysis.hasDerivAt_half_norm_sq",
+    "file": "LeanPML/Analysis/EnergyCalculus.lean",
+    "line": 168
+  },
+  {
+    "name": "LeanPML.Analysis.hasDerivAt_operator",
+    "file": "LeanPML/Analysis/EnergyCalculus.lean",
+    "line": 176
+  },
+  {
+    "name": "LeanPML.Analysis.hasDerivAt_operator_inner",
+    "file": "LeanPML/Analysis/EnergyCalculus.lean",
+    "line": 183
+  },
+  {
+    "name": "LeanPML.Analysis.hasDerivAt_operator_quadratic",
+    "file": "LeanPML/Analysis/EnergyCalculus.lean",
+    "line": 194
+  },
+  {
+    "name": "LeanPML.Analysis.weightedOfFunction_coe",
+    "file": "LeanPML/Analysis/WeightedL2.lean",
+    "line": 65
+  },
+  {
+    "name": "LeanPML.Analysis.weighted_eq_zero_of_weight_zero",
+    "file": "LeanPML/Analysis/WeightedL2.lean",
+    "line": 72
+  },
+  {
+    "name": "LeanPML.Analysis.inv_sqrt_abs_le_one",
+    "file": "LeanPML/Analysis/WeightedL2.lean",
+    "line": 81
+  },
+  {
+    "name": "LeanPML.Analysis.physicalL2_coe",
+    "file": "LeanPML/Analysis/WeightedL2.lean",
+    "line": 100
+  },
+  {
+    "name": "LeanPML.Analysis.physicalL2_zero_on_zero",
+    "file": "LeanPML/Analysis/WeightedL2.lean",
+    "line": 108
+  },
+  {
+    "name": "LeanPML.Analysis.sqrt_mul_physicalL2",
+    "file": "LeanPML/Analysis/WeightedL2.lean",
+    "line": 117
+  },
+  {
+    "name": "LeanPML.Analysis.physicalL2_norm_le",
+    "file": "LeanPML/Analysis/WeightedL2.lean",
+    "line": 131
+  },
+  {
+    "name": "LeanPML.Analysis.physicalL2_norm_sq_le",
+    "file": "LeanPML/Analysis/WeightedL2.lean",
+    "line": 140
+  },
+  {
+    "name": "LeanPML.Analysis.physicalL2_injective",
+    "file": "LeanPML/Analysis/WeightedL2.lean",
+    "line": 147
+  },
+  {
+    "name": "LeanPML.Analysis.weighted_square_ae",
+    "file": "LeanPML/Analysis/WeightedL2.lean",
+    "line": 159
+  },
+  {
+    "name": "LeanPML.Analysis.integrable_weighted_square",
+    "file": "LeanPML/Analysis/WeightedL2.lean",
+    "line": 173
+  },
+  {
+    "name": "LeanPML.Analysis.weighted_norm_sq_eq_integral",
+    "file": "LeanPML/Analysis/WeightedL2.lean",
+    "line": 180
+  },
+  {
+    "name": "LeanPML.Analysis.weighted_product_ae",
+    "file": "LeanPML/Analysis/WeightedL2.lean",
+    "line": 191
+  },
+  {
+    "name": "LeanPML.Analysis.integrable_weighted_product",
+    "file": "LeanPML/Analysis/WeightedL2.lean",
+    "line": 208
+  },
+  {
+    "name": "LeanPML.Analysis.weighted_inner_eq_integral",
+    "file": "LeanPML/Analysis/WeightedL2.lean",
+    "line": 215
+  },
+  {
+    "name": "LeanPML.Analysis.hasDerivAt_weighted_half_norm_sq",
+    "file": "LeanPML/Analysis/WeightedL2.lean",
+    "line": 227
+  },
+  {
+    "name": "LeanPML.Analysis.hasDerivAt_physicalL2",
+    "file": "LeanPML/Analysis/WeightedL2.lean",
+    "line": 235
+  },
+  {
+    "name": "LeanPML.Analysis.physicalL2_weightedOfFunction",
+    "file": "LeanPML/Analysis/WeightedL2.lean",
+    "line": 245
+  },
+  {
+    "name": "LeanPML.Analysis.memLp_of_weighted",
+    "file": "LeanPML/Analysis/WeightedL2.lean",
+    "line": 261
+  },
+  {
+    "name": "LeanPML.Analysis.weightedOfFunction_congr",
+    "file": "LeanPML/Analysis/WeightedL2.lean",
+    "line": 270
+  },
+  {
+    "name": "LeanPML.Analysis.weightedSubspace_isClosed",
+    "file": "LeanPML/Analysis/WeightedL2.lean",
+    "line": 283
+  },
+  {
+    "name": "LeanPML.Analysis.weighted_completeSpace",
+    "file": "LeanPML/Analysis/WeightedL2.lean",
+    "line": 317
+  },
+  {
+    "name": "LeanPML.Analysis.weightedConstant_ne_zero",
+    "file": "LeanPML/Analysis/WeightedL2.lean",
+    "line": 334
+  },
+  {
+    "name": "LeanPML.Analysis.hasDerivAt_weighted_linear",
+    "file": "LeanPML/Analysis/WeightedL2.lean",
+    "line": 347
+  },
+  {
+    "name": "LeanPML.Analysis.weighted_linear_nonconstant",
+    "file": "LeanPML/Analysis/WeightedL2.lean",
+    "line": 353
+  },
+  {
+    "name": "LeanPML.Analysis.hasDerivAt_weighted_linear_energy",
+    "file": "LeanPML/Analysis/WeightedL2.lean",
+    "line": 358
+  },
+  {
+    "name": "LeanPML.Analysis.BoundedCoefficient.const_value",
+    "file": "LeanPML/PML/SpatialCoefficients.lean",
+    "line": 72
+  },
+  {
+    "name": "LeanPML.Analysis.BoundedCoefficient.add_value",
+    "file": "LeanPML/PML/SpatialCoefficients.lean",
+    "line": 73
+  },
+  {
+    "name": "LeanPML.Analysis.BoundedCoefficient.sub_value",
+    "file": "LeanPML/PML/SpatialCoefficients.lean",
+    "line": 75
+  },
+  {
+    "name": "LeanPML.Analysis.BoundedCoefficient.mul_value",
+    "file": "LeanPML/PML/SpatialCoefficients.lean",
+    "line": 77
+  },
+  {
+    "name": "LeanPML.Analysis.BoundedCoefficient.integrable_product",
+    "file": "LeanPML/PML/SpatialCoefficients.lean",
+    "line": 86
+  },
+  {
+    "name": "LeanPML.Analysis.BoundedCoefficient.inner_operator",
+    "file": "LeanPML/PML/SpatialCoefficients.lean",
+    "line": 91
+  },
+  {
+    "name": "LeanPML.PML.SpatialAbsorption.a_measurable",
+    "file": "LeanPML/PML/SpatialCoefficients.lean",
+    "line": 131
+  },
+  {
+    "name": "LeanPML.PML.SpatialAbsorption.b_measurable",
+    "file": "LeanPML/PML/SpatialCoefficients.lean",
+    "line": 133
+  },
+  {
+    "name": "LeanPML.PML.SpatialAbsorption.wx_measurable",
+    "file": "LeanPML/PML/SpatialCoefficients.lean",
+    "line": 138
+  },
+  {
+    "name": "LeanPML.PML.SpatialAbsorption.wy_measurable",
+    "file": "LeanPML/PML/SpatialCoefficients.lean",
+    "line": 143
+  },
+  {
+    "name": "LeanPML.PML.SpatialAbsorption.wx_gap",
+    "file": "LeanPML/PML/SpatialCoefficients.lean",
+    "line": 149
+  },
+  {
+    "name": "LeanPML.PML.SpatialAbsorption.wy_gap",
+    "file": "LeanPML/PML/SpatialCoefficients.lean",
+    "line": 160
+  },
+  {
+    "name": "LeanPML.PML.SpatialAbsorption.wx_eq_zero_iff",
+    "file": "LeanPML/PML/SpatialCoefficients.lean",
+    "line": 171
+  },
+  {
+    "name": "LeanPML.PML.SpatialAbsorption.wy_eq_zero_iff",
+    "file": "LeanPML/PML/SpatialCoefficients.lean",
+    "line": 185
+  },
+  {
+    "name": "LeanPML.PML.SpatialAbsorption.pCoeff_value",
+    "file": "LeanPML/PML/SpatialCoefficients.lean",
+    "line": 220
+  },
+  {
+    "name": "LeanPML.PML.SpatialAbsorption.rCoeff_value",
+    "file": "LeanPML/PML/SpatialCoefficients.lean",
+    "line": 221
+  },
+  {
+    "name": "LeanPML.PML.SpatialAbsorption.aCoeff_value",
+    "file": "LeanPML/PML/SpatialCoefficients.lean",
+    "line": 222
+  },
+  {
+    "name": "LeanPML.PML.SpatialAbsorption.bCoeff_value",
+    "file": "LeanPML/PML/SpatialCoefficients.lean",
+    "line": 223
+  },
+  {
+    "name": "LeanPML.PML.SpatialAbsorption.plusValue_bounds",
+    "file": "LeanPML/PML/SpatialCoefficients.lean",
+    "line": 246
+  },
+  {
+    "name": "LeanPML.PML.SpatialAbsorption.minusValue_bounds",
+    "file": "LeanPML/PML/SpatialCoefficients.lean",
+    "line": 258
+  },
+  {
+    "name": "LeanPML.PML.SpatialAbsorption.plusX_nonneg",
+    "file": "LeanPML/PML/SpatialCoefficients.lean",
+    "line": 301
+  },
+  {
+    "name": "LeanPML.PML.SpatialAbsorption.plusY_nonneg",
+    "file": "LeanPML/PML/SpatialCoefficients.lean",
+    "line": 303
+  },
+  {
+    "name": "LeanPML.PML.SpatialAbsorption.minusX_nonneg",
+    "file": "LeanPML/PML/SpatialCoefficients.lean",
+    "line": 305
+  },
+  {
+    "name": "LeanPML.PML.SpatialAbsorption.minusY_nonneg",
+    "file": "LeanPML/PML/SpatialCoefficients.lean",
+    "line": 307
+  },
+  {
+    "name": "LeanPML.PML.SpatialAbsorption.spatialDissipation_eq",
+    "file": "LeanPML/PML/SpatialCoefficients.lean",
+    "line": 312
+  },
+  {
+    "name": "LeanPML.PML.SpatialAbsorption.ofAE_p_ae",
+    "file": "LeanPML/PML/SpatialCoefficients.lean",
+    "line": 369
+  },
+  {
+    "name": "LeanPML.PML.SpatialAbsorption.ofAE_r_ae",
+    "file": "LeanPML/PML/SpatialCoefficients.lean",
+    "line": 378
+  },
+  {
+    "name": "LeanPML.PML.sameSource_coordinates",
+    "file": "LeanPML/PML/State.lean",
+    "line": 73
+  },
+  {
+    "name": "LeanPML.PML.sameSource_first_coordinates_of_mem_interior",
+    "file": "LeanPML/PML/State.lean",
+    "line": 86
+  },
+  {
+    "name": "LeanPML.PML.hasDerivAt_fieldElectric",
+    "file": "LeanPML/PML/Energy.lean",
+    "line": 153
+  },
+  {
+    "name": "LeanPML.PML.hasDerivAt_fieldPolar",
+    "file": "LeanPML/PML/Energy.lean",
+    "line": 166
+  },
+  {
+    "name": "LeanPML.PML.hasDerivAt_fieldSpatial",
+    "file": "LeanPML/PML/Energy.lean",
+    "line": 179
+  },
+  {
+    "name": "LeanPML.PML.hasDerivAt_fieldEnergy",
+    "file": "LeanPML/PML/Energy.lean",
+    "line": 192
+  },
+  {
+    "name": "LeanPML.PML.hasDerivAt_sameSourceEnergy",
+    "file": "LeanPML/PML/Energy.lean",
+    "line": 204
+  },
+  {
+    "name": "LeanPML.PML.auxiliaryPath_hasDerivAt",
+    "file": "LeanPML/PML/Energy.lean",
+    "line": 228
+  },
+  {
+    "name": "LeanPML.PML.fieldEnergy_auxiliaryState",
+    "file": "LeanPML/PML/Energy.lean",
+    "line": 238
+  },
+  {
+    "name": "LeanPML.PML.hasDerivAt_auxiliaryPath_energy",
+    "file": "LeanPML/PML/Energy.lean",
+    "line": 245
+  },
+  {
+    "name": "LeanPML.PML.auxiliaryPath_energy_nonconstant",
+    "file": "LeanPML/PML/Energy.lean",
+    "line": 257
+  },
+  {
+    "name": "LeanPML.PML.physical_zero_on_absorption_zero",
+    "file": "LeanPML/PML/Energy.lean",
+    "line": 272
+  },
+  {
+    "name": "LeanPML.PML.auxiliary_embedding_square",
+    "file": "LeanPML/PML/Energy.lean",
+    "line": 285
+  },
+  {
+    "name": "LeanPML.PML.hasDerivAt_energy7",
+    "file": "LeanPML/PML/Energy.lean",
+    "line": 314
+  },
+  {
+    "name": "LeanPML.PML.SpaceExample.measure_univ",
+    "file": "LeanPML/PML/Energy.lean",
+    "line": 335
+  },
+  {
+    "name": "LeanPML.PML.SpaceExample.wx_value",
+    "file": "LeanPML/PML/Energy.lean",
+    "line": 348
+  },
+  {
+    "name": "LeanPML.PML.SpaceExample.seed_ne_zero",
+    "file": "LeanPML/PML/Energy.lean",
+    "line": 358
+  },
+  {
+    "name": "LeanPML.PML.SpaceExample.hasDerivAt_energy",
+    "file": "LeanPML/PML/Energy.lean",
+    "line": 363
+  },
+  {
+    "name": "LeanPML.PML.SpaceExample.energy_nonconstant",
+    "file": "LeanPML/PML/Energy.lean",
+    "line": 369
+  },
+  {
+    "name": "LeanPML.Analysis.BoundedCoefficient.integrable_square",
+    "file": "LeanPML/PML/EnergyIntegrals.lean",
+    "line": 26
+  },
+  {
+    "name": "LeanPML.Analysis.BoundedCoefficient.inner_operator_square",
+    "file": "LeanPML/PML/EnergyIntegrals.lean",
+    "line": 31
+  },
+  {
+    "name": "LeanPML.PML.fieldElectric_integrable",
+    "file": "LeanPML/PML/EnergyIntegrals.lean",
+    "line": 42
+  },
+  {
+    "name": "LeanPML.PML.fieldElectric_eq_integral",
+    "file": "LeanPML/PML/EnergyIntegrals.lean",
+    "line": 56
+  },
+  {
+    "name": "LeanPML.PML.fieldPolar_integrable",
+    "file": "LeanPML/PML/EnergyIntegrals.lean",
+    "line": 77
+  },
+  {
+    "name": "LeanPML.PML.fieldPolar_eq_integral",
+    "file": "LeanPML/PML/EnergyIntegrals.lean",
+    "line": 91
+  },
+  {
+    "name": "LeanPML.PML.fieldSpatial_integrable",
+    "file": "LeanPML/PML/EnergyIntegrals.lean",
+    "line": 120
+  },
+  {
+    "name": "LeanPML.PML.fieldSpatial_eq_integral",
+    "file": "LeanPML/PML/EnergyIntegrals.lean",
+    "line": 130
+  },
+  {
+    "name": "LeanPML.PML.fieldEnergyDensity_eq_blocks",
+    "file": "LeanPML/PML/EnergyIntegrals.lean",
+    "line": 149
+  },
+  {
+    "name": "LeanPML.PML.fieldEnergyDensity_integrable",
+    "file": "LeanPML/PML/EnergyIntegrals.lean",
+    "line": 162
+  },
+  {
+    "name": "LeanPML.PML.fieldEnergy_eq_integral",
+    "file": "LeanPML/PML/EnergyIntegrals.lean",
+    "line": 175
+  },
+  {
+    "name": "LeanPML.PML.fieldSpatialDissipation_integrable",
+    "file": "LeanPML/PML/EnergyIntegrals.lean",
+    "line": 205
+  },
+  {
+    "name": "LeanPML.PML.fieldSpatialDissipation_eq_integral",
+    "file": "LeanPML/PML/EnergyIntegrals.lean",
+    "line": 218
+  },
+  {
+    "name": "LeanPML.PML.fieldSpatialDissipation_nonneg",
+    "file": "LeanPML/PML/EnergyIntegrals.lean",
+    "line": 233
+  },
+  {
+    "name": "LeanPML.PML.fieldSpatialDissipation_of_zeroAbsorption",
+    "file": "LeanPML/PML/EnergyIntegrals.lean",
+    "line": 244
+  },
+  {
+    "name": "LeanPML.PML.fieldElectricRemainder_integrable",
+    "file": "LeanPML/PML/EnergyIntegrals.lean",
+    "line": 294
+  },
+  {
+    "name": "LeanPML.PML.fieldElectricRemainder_eq_integral",
+    "file": "LeanPML/PML/EnergyIntegrals.lean",
+    "line": 305
+  },
+  {
+    "name": "LeanPML.PML.fieldPolarRemainder_integrable",
+    "file": "LeanPML/PML/EnergyIntegrals.lean",
+    "line": 320
+  },
+  {
+    "name": "LeanPML.PML.fieldPolarRemainder_eq_integral",
+    "file": "LeanPML/PML/EnergyIntegrals.lean",
+    "line": 334
+  },
+  {
+    "name": "LeanPML.PML.fieldDissipationDensity_integrable",
+    "file": "LeanPML/PML/EnergyIntegrals.lean",
+    "line": 353
+  },
+  {
+    "name": "LeanPML.PML.fieldDissipation_eq_integral",
+    "file": "LeanPML/PML/EnergyIntegrals.lean",
+    "line": 362
+  },
+  {
+    "name": "LeanPML.PML.twoLayerDissipation_integrable",
+    "file": "LeanPML/PML/EnergyIntegrals.lean",
+    "line": 384
+  },
+  {
+    "name": "LeanPML.PML.twoLayerDissipation_eq_integral",
+    "file": "LeanPML/PML/EnergyIntegrals.lean",
+    "line": 392
+  },
+  {
+    "name": "LeanPML.PML.hasDerivAt_integral_fieldEnergy",
+    "file": "LeanPML/PML/EnergyIntegrals.lean",
+    "line": 406
+  }
+]

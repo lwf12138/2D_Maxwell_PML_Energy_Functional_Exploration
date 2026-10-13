@@ -1,0 +1,293 @@
+LeanPML/PML/EnergyIntegrals.lean:44:84: error: unsolved goals
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+C : SpatialAbsorption α
+ε : ℝ
+U : FieldState ν C.wx C.wy
+hvelocity : Integrable (fun x => ↑↑U.V x ^ 2) ν
+hcross : Integrable (fun x => 2 * C.c * (↑↑U.v x * ↑↑U.V x)) ν
+hquadratic : Integrable (fun x => (electricCoefficient C).value x * ↑↑U.v x ^ 2) ν
+⊢ (fun x => ε / 2 * (↑↑U.V x ^ 2 + 2 * (C.c * (↑↑U.v x * ↑↑U.V x)) + (C.b x + C.a x * C.c) * ↑↑U.v x ^ 2)) = fun x =>
+    ε / 2 *
+      (((fun x => ↑↑U.V x ^ 2) + fun x => 2 * (C.c * (↑↑U.v x * ↑↑U.V x))) + fun x =>
+          (C.b x + C.a x * C.c) * ↑↑U.v x ^ 2)
+        x
+LeanPML/PML/EnergyIntegrals.lean:70:36: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ∫ (a : α),
+    ((fun x => ↑↑U.V x ^ 2) + fun x => 2 * C.c * (↑↑U.v x * ↑↑U.V x)) a +
+      (electricCoefficient C).value a * ↑↑U.v a ^ 2 ∂ν
+in the target expression
+  fieldElectric ν C ε U =
+    ε / 2 * ∫ (a : α), ↑↑U.V a ^ 2 + 2 * C.c * (↑↑U.v a * ↑↑U.V a) + (electricCoefficient C).value a * ↑↑U.v a ^ 2 ∂ν
+
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+C : SpatialAbsorption α
+ε : ℝ
+U : FieldState ν C.wx C.wy
+hvelocity : Integrable (fun x => ↑↑U.V x ^ 2) ν
+hcross : Integrable (fun x => 2 * C.c * (↑↑U.v x * ↑↑U.V x)) ν
+hquadratic : Integrable (fun x => (electricCoefficient C).value x * ↑↑U.v x ^ 2) ν
+hdensity :
+  (fun x => electricEnergy ε (C.a x) (C.b x) C.c (↑↑U.v x) (↑↑U.V x)) = fun x =>
+    ε / 2 * (↑↑U.V x ^ 2 + 2 * C.c * (↑↑U.v x * ↑↑U.V x) + (electricCoefficient C).value x * ↑↑U.v x ^ 2)
+⊢ fieldElectric ν C ε U =
+    ε / 2 * ∫ (a : α), ↑↑U.V a ^ 2 + 2 * C.c * (↑↑U.v a * ↑↑U.V a) + (electricCoefficient C).value a * ↑↑U.v a ^ 2 ∂ν
+LeanPML/PML/EnergyIntegrals.lean:79:83: error: unsolved goals
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+C : SpatialAbsorption α
+κ τ : ℝ
+U : FieldState ν C.wx C.wy
+hR : Integrable (fun x => (polarRCoefficient C τ).value x * ↑↑U.R x ^ 2) ν
+hRz : Integrable (fun x => 2 * ((polarCrossCoefficient C τ).value x * ↑↑U.R x * ↑↑U.z x)) ν
+hz : Integrable (fun x => (polarZCoefficient C τ).value x * ↑↑U.z x ^ 2) ν
+⊢ (fun x =>
+      ((1 + (C.a x + C.c) * τ) * ↑↑U.R x ^ 2 + 2 * ((C.c + C.b x * τ) * (↑↑U.R x * ↑↑U.z x)) +
+          (C.a x * C.c + C.b x * (1 + C.c * τ)) * ↑↑U.z x ^ 2) /
+        (2 * κ)) =
+    fun x =>
+    (((fun x => (1 + (C.a x + C.c) * τ) * ↑↑U.R x ^ 2) + fun x => 2 * ((C.c + C.b x * τ) * (↑↑U.R x * ↑↑U.z x))) +
+          fun x => (C.a x * C.c + C.b x * (1 + C.c * τ)) * ↑↑U.z x ^ 2)
+        x /
+      (2 * κ)
+LeanPML/PML/EnergyIntegrals.lean:107:30: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ∫ (a : α),
+    ((fun x => (polarRCoefficient C τ).value x * ↑↑U.R x ^ 2) + fun x =>
+          2 * ((polarCrossCoefficient C τ).value x * ↑↑U.R x * ↑↑U.z x))
+        a +
+      (polarZCoefficient C τ).value a * ↑↑U.z a ^ 2 ∂ν
+in the target expression
+  fieldPolar ν C κ τ U =
+    (∫ (a : α),
+        (polarRCoefficient C τ).value a * ↑↑U.R a ^ 2 + 2 * ((polarCrossCoefficient C τ).value a * ↑↑U.R a * ↑↑U.z a) +
+          (polarZCoefficient C τ).value a * ↑↑U.z a ^ 2 ∂ν) /
+      (2 * κ)
+
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+C : SpatialAbsorption α
+κ τ : ℝ
+U : FieldState ν C.wx C.wy
+hR : Integrable (fun x => (polarRCoefficient C τ).value x * ↑↑U.R x ^ 2) ν
+hRz : Integrable (fun x => 2 * ((polarCrossCoefficient C τ).value x * ↑↑U.R x * ↑↑U.z x)) ν
+hz : Integrable (fun x => (polarZCoefficient C τ).value x * ↑↑U.z x ^ 2) ν
+hdensity :
+  (fun x => polarEnergy (C.a x) (C.b x) C.c κ τ (↑↑U.R x) (↑↑U.z x)) = fun x =>
+    ((polarRCoefficient C τ).value x * ↑↑U.R x ^ 2 + 2 * ((polarCrossCoefficient C τ).value x * ↑↑U.R x * ↑↑U.z x) +
+        (polarZCoefficient C τ).value x * ↑↑U.z x ^ 2) /
+      (2 * κ)
+⊢ fieldPolar ν C κ τ U =
+    (∫ (a : α),
+        (polarRCoefficient C τ).value a * ↑↑U.R a ^ 2 + 2 * ((polarCrossCoefficient C τ).value a * ↑↑U.R a * ↑↑U.z a) +
+          (polarZCoefficient C τ).value a * ↑↑U.z a ^ 2 ∂ν) /
+      (2 * κ)
+LeanPML/PML/EnergyIntegrals.lean:138:20: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ∫ (a : α),
+    (((fun x => ↑↑U.Λx x ^ 2) + fun x => ↑↑U.Λy x ^ 2) + fun x => C.wx x * ↑↑((physicalL2 ν C.wx ⋯ ⋯) U.ψx) x ^ 2) a +
+      C.wy a * ↑↑((physicalL2 ν C.wy ⋯ ⋯) U.ψy) a ^ 2 ∂ν
+in the target expression
+  fieldSpatial U =
+    (∫ (a : α),
+        ↑↑U.Λx a ^ 2 + ↑↑U.Λy a ^ 2 + C.wx a * ↑↑((physicalX ν C) U.ψx) a ^ 2 +
+          C.wy a * ↑↑((physicalY ν C) U.ψy) a ^ 2 ∂ν) /
+      2
+
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+C : SpatialAbsorption α
+U : FieldState ν C.wx C.wy
+hx : Integrable (fun x => ↑↑U.Λx x ^ 2) ν
+hy : Integrable (fun x => ↑↑U.Λy x ^ 2) ν
+hψx : Integrable (fun x => C.wx x * ↑↑((physicalL2 ν C.wx ⋯ ⋯) U.ψx) x ^ 2) ν
+hψy : Integrable (fun x => C.wy x * ↑↑((physicalL2 ν C.wy ⋯ ⋯) U.ψy) x ^ 2) ν
+⊢ fieldSpatial U =
+    (∫ (a : α),
+        ↑↑U.Λx a ^ 2 + ↑↑U.Λy a ^ 2 + C.wx a * ↑↑((physicalX ν C) U.ψx) a ^ 2 +
+          C.wy a * ↑↑((physicalY ν C) U.ψy) a ^ 2 ∂ν) /
+      2
+LeanPML/PML/EnergyIntegrals.lean:169:2: error: Tactic `apply` failed: could not unify the conclusion of `@funext`
+  ?f = ?g
+with the goal
+  SeminormedAddGroup.toContinuousENorm = NormedAddCommGroup.toENormedAddCommMonoid.toContinuousENorm
+
+Note: The full type of `@funext` is
+  ∀ {α : Sort ?u.37} {β : α → Sort ?u.36} {f g : (x : α) → β x}, (∀ (x : α), f x = g x) → f = g
+
+case e'_3
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+C : SpatialAbsorption α
+ε κ τ μ : ℝ
+U : FieldState ν C.wx C.wy
+he : Integrable (fun x => μ * electricEnergy ε (C.a x) (C.b x) C.c (↑↑U.v x) (↑↑U.V x)) ν
+hD : Integrable (fun x => μ * polarEnergy (C.a x) (C.b x) C.c κ τ (↑↑U.R x) (↑↑U.z x)) ν
+hsp : Integrable (fieldSpatialDensity ν C U) ν
+⊢ SeminormedAddGroup.toContinuousENorm = NormedAddCommGroup.toENormedAddCommMonoid.toContinuousENorm
+LeanPML/PML/EnergyIntegrals.lean:183:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ∫ (a : α),
+    ((fun x => μ * electricEnergy ε (C.a x) (C.b x) C.c (↑↑U.v x) (↑↑U.V x)) + fun x =>
+          μ * polarEnergy (C.a x) (C.b x) C.c κ τ (↑↑U.R x) (↑↑U.z x))
+        a +
+      fieldSpatialDensity ν C U a ∂ν
+in the target expression
+  fieldEnergy ν C ε κ τ μ U =
+    ∫ (x : α),
+      μ * electricEnergy ε (C.a x) (C.b x) C.c (↑↑U.v x) (↑↑U.V x) +
+          μ * polarEnergy (C.a x) (C.b x) C.c κ τ (↑↑U.R x) (↑↑U.z x) +
+        fieldSpatialDensity ν C U x ∂ν
+
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+C : SpatialAbsorption α
+ε κ τ μ : ℝ
+U : FieldState ν C.wx C.wy
+he : Integrable (fun x => μ * electricEnergy ε (C.a x) (C.b x) C.c (↑↑U.v x) (↑↑U.V x)) ν
+hD : Integrable (fun x => μ * polarEnergy (C.a x) (C.b x) C.c κ τ (↑↑U.R x) (↑↑U.z x)) ν
+hsp : Integrable (fieldSpatialDensity ν C U) ν
+⊢ fieldEnergy ν C ε κ τ μ U =
+    ∫ (x : α),
+      μ * electricEnergy ε (C.a x) (C.b x) C.c (↑↑U.v x) (↑↑U.V x) +
+          μ * polarEnergy (C.a x) (C.b x) C.c κ τ (↑↑U.R x) (↑↑U.z x) +
+        fieldSpatialDensity ν C U x ∂ν
+LeanPML/PML/EnergyIntegrals.lean:213:2: error: Tactic `apply` failed: could not unify the conclusion of `@funext`
+  ?f = ?g
+with the goal
+  SeminormedAddGroup.toContinuousENorm = NormedAddCommGroup.toENormedAddCommMonoid.toContinuousENorm
+
+Note: The full type of `@funext` is
+  ∀ {α : Sort ?u.41} {β : α → Sort ?u.40} {f g : (x : α) → β x}, (∀ (x : α), f x = g x) → f = g
+
+case e'_3
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+C : SpatialAbsorption α
+U : FieldState ν C.wx C.wy
+hlx : Integrable (fun x => C.plusX.value x * ↑↑U.Λx x ^ 2) ν
+hhx : Integrable (fun x => C.minusX.value x * ↑↑(spatialComponentX U) x ^ 2) ν
+hly : Integrable (fun x => C.plusY.value x * ↑↑U.Λy x ^ 2) ν
+hhy : Integrable (fun x => C.minusY.value x * ↑↑(spatialComponentY U) x ^ 2) ν
+⊢ SeminormedAddGroup.toContinuousENorm = NormedAddCommGroup.toENormedAddCommMonoid.toContinuousENorm
+LeanPML/PML/EnergyIntegrals.lean:226:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ∫ (a : α),
+    (((fun x => C.plusX.value x * ↑↑U.Λx x ^ 2) + fun x => C.minusX.value x * ↑↑(spatialComponentX U) x ^ 2) + fun x =>
+          C.plusY.value x * ↑↑U.Λy x ^ 2)
+        a +
+      C.minusY.value a * ↑↑(spatialComponentY U) a ^ 2 ∂ν
+in the target expression
+  fieldSpatialDissipation ν C U =
+    ∫ (x : α),
+      C.plusX.value x * ↑↑U.Λx x ^ 2 + C.minusX.value x * ↑↑(spatialComponentX U) x ^ 2 +
+          C.plusY.value x * ↑↑U.Λy x ^ 2 +
+        C.minusY.value x * ↑↑(spatialComponentY U) x ^ 2 ∂ν
+
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+C : SpatialAbsorption α
+U : FieldState ν C.wx C.wy
+hlx : Integrable (fun x => C.plusX.value x * ↑↑U.Λx x ^ 2) ν
+hhx : Integrable (fun x => C.minusX.value x * ↑↑(spatialComponentX U) x ^ 2) ν
+hly : Integrable (fun x => C.plusY.value x * ↑↑U.Λy x ^ 2) ν
+hhy : Integrable (fun x => C.minusY.value x * ↑↑(spatialComponentY U) x ^ 2) ν
+⊢ fieldSpatialDissipation ν C U =
+    ∫ (x : α),
+      C.plusX.value x * ↑↑U.Λx x ^ 2 + C.minusX.value x * ↑↑(spatialComponentX U) x ^ 2 +
+          C.plusY.value x * ↑↑U.Λy x ^ 2 +
+        C.minusY.value x * ↑↑(spatialComponentY U) x ^ 2 ∂ν
+LeanPML/PML/EnergyIntegrals.lean:296:87: error: unsolved goals
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+C : SpatialAbsorption α
+ε : ℝ
+U : FieldState ν C.wx C.wy
+hV : Integrable (fun x => (C.aCoeff.sub (BoundedCoefficient.const C.c)).value x * ↑↑U.V x ^ 2) ν
+hv : Integrable (fun x => (bcCoefficient C).value x * ↑↑U.v x ^ 2) ν
+⊢ (fun x => ε * ((C.a x - C.c) * ↑↑U.V x ^ 2 + C.b x * C.c * ↑↑U.v x ^ 2)) = fun x =>
+    ε * ((fun x => (C.a x - C.c) * ↑↑U.V x ^ 2) + fun x => C.b x * C.c * ↑↑U.v x ^ 2) x
+LeanPML/PML/EnergyIntegrals.lean:323:37: error: unsolved goals
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+C : SpatialAbsorption α
+κ τ : ℝ
+U : FieldState ν C.wx C.wy
+Rdot : ↥(ScalarL2 ν)
+hRt : Integrable (fun x => τ * ↑↑Rdot x ^ 2) ν
+hR : Integrable (fun x => (polarRemainderCoefficient C τ).value x * ↑↑U.R x ^ 2) ν
+hz : Integrable (fun x => (bcCoefficient C).value x * ↑↑U.z x ^ 2) ν
+⊢ (fun x =>
+      (τ * ↑↑Rdot x ^ 2 + (C.a x - C.c + τ * (C.a x * C.c - C.b x)) * ↑↑U.R x ^ 2 + C.b x * C.c * ↑↑U.z x ^ 2) / κ) =
+    fun x =>
+    (((fun x => τ * ↑↑Rdot x ^ 2) + fun x => (C.a x - C.c + τ * (C.a x * C.c - C.b x)) * ↑↑U.R x ^ 2) + fun x =>
+          C.b x * C.c * ↑↑U.z x ^ 2)
+        x /
+      κ
+LeanPML/PML/EnergyIntegrals.lean:347:30: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ∫ (a : α),
+    ((fun x => τ * ↑↑Rdot x ^ 2) + fun x => (polarRemainderCoefficient C τ).value x * ↑↑U.R x ^ 2) a +
+      (bcCoefficient C).value a * ↑↑U.z a ^ 2 ∂ν
+in the target expression
+  fieldPolarRemainder ν C κ τ U Rdot =
+    (∫ (a : α),
+        τ * ↑↑Rdot a ^ 2 + (polarRemainderCoefficient C τ).value a * ↑↑U.R a ^ 2 +
+          (bcCoefficient C).value a * ↑↑U.z a ^ 2 ∂ν) /
+      κ
+
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+C : SpatialAbsorption α
+κ τ : ℝ
+U : FieldState ν C.wx C.wy
+Rdot : ↥(ScalarL2 ν)
+hRt : Integrable (fun x => τ * ↑↑Rdot x ^ 2) ν
+hR : Integrable (fun x => (polarRemainderCoefficient C τ).value x * ↑↑U.R x ^ 2) ν
+hz : Integrable (fun x => (bcCoefficient C).value x * ↑↑U.z x ^ 2) ν
+hdensity :
+  (fun x => polarRemainder (C.a x) (C.b x) C.c κ τ (↑↑U.R x) (↑↑U.z x) (↑↑Rdot x)) = fun x =>
+    (τ * ↑↑Rdot x ^ 2 + (polarRemainderCoefficient C τ).value x * ↑↑U.R x ^ 2 +
+        (bcCoefficient C).value x * ↑↑U.z x ^ 2) /
+      κ
+⊢ fieldPolarRemainder ν C κ τ U Rdot =
+    (∫ (a : α),
+        τ * ↑↑Rdot a ^ 2 + (polarRemainderCoefficient C τ).value a * ↑↑U.R a ^ 2 +
+          (bcCoefficient C).value a * ↑↑U.z a ^ 2 ∂ν) /
+      κ
+LeanPML/PML/EnergyIntegrals.lean:372:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ∫ (a : α),
+    ((fun x => μ * electricRemainder ε (C.a x) (C.b x) C.c (↑↑U.v x) (↑↑U.V x)) + fun x =>
+          μ * polarRemainder (C.a x) (C.b x) C.c κ τ (↑↑U.R x) (↑↑U.z x) (↑↑Rdot x))
+        a +
+      fieldSpatialDissipationDensity ν C U a ∂ν
+in the target expression
+  fieldDissipation ν C ε κ τ μ U Rdot =
+    ∫ (x : α),
+      μ * electricRemainder ε (C.a x) (C.b x) C.c (↑↑U.v x) (↑↑U.V x) +
+          μ * polarRemainder (C.a x) (C.b x) C.c κ τ (↑↑U.R x) (↑↑U.z x) (↑↑Rdot x) +
+        fieldSpatialDissipationDensity ν C U x ∂ν
+
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+C : SpatialAbsorption α
+ε κ τ μ : ℝ
+U : FieldState ν C.wx C.wy
+Rdot : ↥(ScalarL2 ν)
+he : Integrable (fun x => μ * electricRemainder ε (C.a x) (C.b x) C.c (↑↑U.v x) (↑↑U.V x)) ν
+hD : Integrable (fun x => μ * polarRemainder (C.a x) (C.b x) C.c κ τ (↑↑U.R x) (↑↑U.z x) (↑↑Rdot x)) ν
+hsp : Integrable (fieldSpatialDissipationDensity ν C U) ν
+⊢ fieldDissipation ν C ε κ τ μ U Rdot =
+    ∫ (x : α),
+      μ * electricRemainder ε (C.a x) (C.b x) C.c (↑↑U.v x) (↑↑U.V x) +
+          μ * polarRemainder (C.a x) (C.b x) C.c κ τ (↑↑U.R x) (↑↑U.z x) (↑↑Rdot x) +
+        fieldSpatialDissipationDensity ν C U x ∂ν

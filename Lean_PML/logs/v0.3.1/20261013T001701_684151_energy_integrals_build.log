@@ -1,0 +1,123 @@
+⚠ [2859/2866] Replayed LeanPML.PML.SpatialCoefficients
+warning: LeanPML/PML/SpatialCoefficients.lean:351:10: Variable name `ν` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/SpatialCoefficients.lean:361:18: Variable name `x` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/SpatialCoefficients.lean:362:18: Variable name `x` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/SpatialCoefficients.lean:363:16: Variable name `x` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/SpatialCoefficients.lean:364:16: Variable name `x` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✖ [2865/2866] Building LeanPML.PML.Energy (3.7s)
+trace: .> LEAN_PATH=/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Cli/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/batteries/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Qq/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/aesop/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/proofwidgets/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/importGraph/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/plausible/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/mathlib/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean /Users/wcli/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/LeanPML/PML/Energy.lean -o /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/Energy.olean -i /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/Energy.ilean -c /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/Energy.c --setup /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/Energy.setup.json --json
+error: LeanPML/PML/Energy.lean:248:31: unsolved goals
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+C : SpatialAbsorption α
+ε κ τ μ : ℝ
+X : ↥(WeightedL2 ν C.wx)
+t : ℝ
+henergy :
+  HasDerivAt (fun s => fieldEnergy ν C ε κ τ μ (auxiliaryPath ν C X s))
+    (fieldEnergyRate ν C ε κ τ μ (auxiliaryPath ν C X t) (auxiliaryState ν C X)) t
+⊢ (t + 1) * ‖↑X‖ ^ 2 = ⟪(t + 1) • ↑X, ↑X⟫_ℝ
+warning: LeanPML/PML/Energy.lean:253:35: This simp argument is unused:
+  real_inner_self_eq_norm_sq
+
+Hint: Omit it from the simp argument list.
+  simp [fieldEnergyRate, electricRate, polarRate, spatialRate, auxiliaryPath, a̵u̵x̵i̵l̵i̵a̵r̵y̵S̵t̵a̵t̵e̵,̵ ̵r̵e̵a̵l̵_̵i̵n̵n̵e̵r̵_̵s̵e̵l̵f̵_̵e̵q̵_̵n̵o̵r̵m̵_̵s̵q̵]̵a̲u̲x̲i̲l̲i̲a̲r̲y̲S̲t̲a̲t̲e̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: LeanPML/PML/Energy.lean:265:2: linarith failed to find a contradiction
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+C : SpatialAbsorption α
+ε κ τ μ : ℝ
+X : ↥(WeightedL2 ν C.wx)
+hX_ne : X ≠ 0
+hnorm_pos : 0 < ‖X‖
+a✝ : (2 * ‖↑X‖) ^ 2 / 2 ≤ ‖↑X‖ ^ 2 / 2
+⊢ False
+failed
+error: LeanPML/PML/Energy.lean:280:47: Invalid `←` modifier: `SpatialAbsorption.a` is a declaration name to be unfolded
+
+Hint: The simplifier cannot "refold" definitions by name. Use `rw` for this instead,
+                      or use the `←` simp modifier with an equational lemma for `SpatialAbsorption.a`.
+error: LeanPML/PML/Energy.lean:279:32: unsolved goals
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+C : SpatialAbsorption α
+U : FieldState ν C.wx C.wy
+hx : ∀ᵐ (x : α) ∂ν, C.wx x = 0 → ↑↑((physicalL2 ν C.wx ⋯ ⋯) U.ψx) x = 0
+hy : ∀ᵐ (x : α) ∂ν, C.wy x = 0 → ↑↑((physicalL2 ν C.wy ⋯ ⋯) U.ψy) x = 0
+x : α
+hx_zero : C.wx x = 0 → ↑↑((physicalL2 ν C.wx ⋯ ⋯) U.ψx) x = 0
+hy_zero : C.wy x = 0 → ↑↑((physicalL2 ν C.wy ⋯ ⋯) U.ψy) x = 0
+ha_zero : C.a x = 0
+⊢ 0 < absorptionSum (C.p x) (C.r x) → C.c - C.r x = 0 ∨ absorptionSum (C.p x) (C.r x) = 0
+error: LeanPML/PML/Energy.lean:282:47: Invalid `←` modifier: `SpatialAbsorption.a` is a declaration name to be unfolded
+
+Hint: The simplifier cannot "refold" definitions by name. Use `rw` for this instead,
+                      or use the `←` simp modifier with an equational lemma for `SpatialAbsorption.a`.
+error: LeanPML/PML/Energy.lean:281:32: unsolved goals
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+C : SpatialAbsorption α
+U : FieldState ν C.wx C.wy
+hx : ∀ᵐ (x : α) ∂ν, C.wx x = 0 → ↑↑((physicalL2 ν C.wx ⋯ ⋯) U.ψx) x = 0
+hy : ∀ᵐ (x : α) ∂ν, C.wy x = 0 → ↑↑((physicalL2 ν C.wy ⋯ ⋯) U.ψy) x = 0
+x : α
+hx_zero : C.wx x = 0 → ↑↑((physicalL2 ν C.wx ⋯ ⋯) U.ψx) x = 0
+hy_zero : C.wy x = 0 → ↑↑((physicalL2 ν C.wy ⋯ ⋯) U.ψy) x = 0
+ha_zero : C.a x = 0
+hwx_zero : C.wx x = 0
+⊢ 0 < absorptionSum (C.p x) (C.r x) → C.c - C.p x = 0 ∨ absorptionSum (C.p x) (C.r x) = 0
+warning: LeanPML/PML/Energy.lean:280:70: This simp argument is unused:
+  ha_zero
+
+Hint: Omit it from the simp argument list.
+  simp [SpatialAbsorption.wx, energyWeightX, ← SpatialAbsorption.a,̵ ̵h̵a̵_̵z̵e̵r̵o̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/Energy.lean:282:70: This simp argument is unused:
+  ha_zero
+
+Hint: Omit it from the simp argument list.
+  simp [SpatialAbsorption.wy, energyWeightY, ← SpatialAbsorption.a,̵ ̵h̵a̵_̵z̵e̵r̵o̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: LeanPML/PML/Energy.lean:337:46: Unknown identifier `MeasureTheory.volume_eq_prod`
+error: LeanPML/PML/Energy.lean:336:41: unsolved goals
+⊢ volume (Set.Ioo 0 1 ×ˢ Set.Ioo 0 1) = 1
+warning: LeanPML/PML/Energy.lean:338:4: This simp argument is unused:
+  Measure.prod_prod
+
+Hint: Omit it from the simp argument list.
+  simp [ν, rectangleMeasure, rectangleDomain, MeasureTheory.volume_eq_prod,̵
+  ̵ ̵ ̵ ̵ ̵M̵e̵a̵s̵u̵r̵e̵.̵p̵r̵o̵d̵_̵p̵r̵o̵d̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: Lean exited with code 1
+Some required targets logged failures:
+- LeanPML.PML.Energy
+error: build failed

@@ -1,3 +1,72 @@
+# 2026-10-13：v0.3.1 实际内积、加权状态与能量定义
+
+用途：记录本阶段真实函数空间、合法积分、时间求导、构建/审计及 PDF 范围标注。下方旧阶段记录完整保留，“当前/下一阶段”均指记录当时。
+
+**v0.3.1 已完成。** 新增六个正式模块，109 条定理；保留旧 154 条审计，共 263 条实际公理输出。本轮未进入 v0.3.2，没有更新 Lean/mathlib、修改路线图、提交或推送，也没有新建 reading_guide。
+
+## 实际实现与假设
+
+- [EnergyCalculus](LeanPML/Analysis/EnergyCalculus.lean)：实际 `Lp ℝ 2 ν`，有界可测系数的连续乘法、L² 乘积可积、积分/内积对应和真实内积路径求导。
+- [WeightedL2](LeanPML/Analysis/WeightedL2.lean)：V7 (5.6) 的平方根坐标闭子空间；a.e. 零区条件、完备性、代表元独立、双向恢复、连续单射嵌入和平方范数控制、加权积分及时间求导。只需可测权重与零区/正区下界，不假设权重有界或吸收正下界。
+- [SpatialCoefficients](LeanPML/PML/SpatialCoefficients.lean)：实际可测 p/r，原非负与幅度条件推出权重间隙及四耗散系数；`ofAE` 选择满足全点界的 a.e. 等价代表；分离变量构造和整个开矩形二维 Lebesgue 测度入口。
+- [State](LeanPML/PML/State.lean)：瞬时场坐标、极化代数约束、真实普通/加权空间分量导数、同源两层。内部时间点使用邻域等式证明导数层坐标对应。条件性空间域未冒称已实现 Sobolev/零迹。
+- [Energy](LeanPML/PML/Energy.lean)：(6.2) F_c、(6.4) E₇、(6.5) 图范数平方候选、逐项内积真实求导、单位矩形非零非恒定加权路径实例。`energy7` 固定使用论文 `scaleK` 和同源路径。
+- [EnergyIntegrals](LeanPML/PML/EnergyIntegrals.lean)：旧三块密度实际可积、F_c 的积分/内积精确对应；(7.2) L² 分量耗散积分非负、全零吸收仍有 c(‖hₓ‖²+‖hᵧ‖²)；(7.7)/(7.8) D_c/D₇ 合法积分及同源定义；真实积分形式的能量求导。
+
+完整假设、定义对应、阅读顺序和 InfoView/F12 方法集中于 [README](README.md)。现有 [定理/接口清单](docs/theorem_inventory.md)逐项追加 T10、T11、T12、T15、T17、T18 的完成范围；这些整条 PDE 条目没有整体标成完成。
+
+本轮真正证明
+$\|\psi\|_2^2\le\|X\|_2^2=\int w\psi^2$，其中 $X=\sqrt w\psi$；
+以及 $F_c$ 等于旧局部密度积分，沿实际空间路径可导。导数仍是明确内积表达式 `fieldEnergyRate`，**不是** $-D_c$。$D_c,D_7$ 没有非负承诺；图范数平方候选没有未经证明的零分离或双边估计。
+
+实例：单位开矩形上的加权平方根 seed=1，$p=1,r=0,c=4$；加权坐标路径 $X_x(t)=(t+1)\mathrm{seed}$ 对应物理 $\psi_x(t)=(t+1)/2$。实际证明成员资格、非零、真实导数及能量非恒定，并调用通用单层求导。它不声称满足空间约束或完整 PDE。
+
+## 实际验证与保留记录
+
+- [最终默认 lake build](logs/v0.3.1/20261013T002136_137117_lake_build.log)／[完整命令、目录、退出码](logs/v0.3.1/20261013T002136_137117_lake_build.json)：退出 0，2872 个构建任务。18 个项目模块、根入口和 Audit 均在正式导入/默认构建范围。
+- [独立公理审计](logs/v0.3.1/20261013T002105_759533_axioms_audit.log)／[元数据](logs/v0.3.1/20261013T002105_759533_axioms_audit.json)：退出 0，263 条实际结果；仅标准 `propext`、`Classical.choice`、`Quot.sound`，没有 `sorryAx` 或自设占位公理。
+- [新增定理完整索引](logs/v0.3.1/new_theorems.json)：109 个完整名、所属文件和行号，全部出现在审计结果中。Audit 顶部注释也含“#print axioms”字样，因此不能把文本行数直接当作定理数。
+- [首次整体成功](logs/v0.3.1/20261013T002043_718503_lake_build.log) 后，只更新根入口的阶段说明，再得到上述最终默认构建；数学源码没有再变动。
+- 真实失败包括首次导入未有 .olean、L² a.e. 函数加法需展开、当前 API 名称与类型推断、代表函数/子空间范数化简；已修复且未放宽命题。初次过量 import 拉入无关 tactic 模块，主动中断后收窄到所需固定模块；中断、后续依赖成功及所有失败日志都保留，没有升级依赖。
+- PDF 首次定位预检发现页底说明与页码相交，在编辑前调整；失败与修复日志同样保留。初始 PDF 检查的运行环境问题也有原始日志，不把失败写成成功。
+
+复现：
+
+~~~sh
+cd '/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML'
+python3 scripts/run_logged.py --stage v0.3.1 lake_build lake build
+python3 scripts/run_logged.py --stage v0.3.1 axioms_audit lake env lean Audit.lean
+~~~
+
+[最终交付核对](logs/v0.3.1/20261013T002703_882103_final_checks.log)退出 0；[结果 JSON](logs/v0.3.1/final_checks.json)记录导入/审计覆盖、源文件哈希、保护文件与历史保留。
+
+## PDF、来源与视觉验收
+
+只修改 [指定 PDF 副本](../results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf)，实际页序与印刷页码均为 **8、9、11、12**。新增 4 个有范围的矢量红勾：
+
+| 页 | 定位 | 本轮限定 |
+|---|---|---|
+| 8 | (5.6) 后嵌入结论 | 加权空间嵌入；含零区处理 |
+| 9 | (6.2) | 积分/内积表示；非 PDE 能量律 |
+| 11 | 加权空间时间链式法则说明 | 加权空间求导；需该空间路径可导 |
+| 11 | (7.2) 的子结论 | 分量积分非负；真实梯度接口待完成 |
+
+另有 5 处定义/历史范围说明，不加完成勾；第 12 页 (7.8) 明确区分左半实际定义与右半待完成能量律。原 18 页、可选正文、页面框与 141 项旧批注保留，当前共 150 项批注。四个修改页均重新渲染，并逐页检查新勾、字体、裁切与遮挡。没有给 (6.7)–(6.10)、(7.5)–(7.8) 的完整能量律或 (9.5)–(9.7) 打完成勾。
+
+[新备份](logs/v0.3.1/pdf/before_v0.3.1_20261013T002329.pdf)未覆盖历史备份，修改前 SHA-256 为 `f318a9a0e4ac0721f61fffc601388e16be4e568b4efcbb3b2de3e9ad19a2b757`；最终为 `9b55183d444b9efa91e873dbbef1d7e73756962106f9c51d0de108f78b49c2ac`。
+
+[PDF 编辑日志](logs/v0.3.1/20261013T002336_826429_pdf_annotate.log)、[重新打开/渲染日志](logs/v0.3.1/20261013T002342_329628_pdf_verify_render.log)、[机器验证](logs/v0.3.1/pdf/verification.json)和[视觉验收](logs/v0.3.1/pdf/visual_review.json)均已留档。逐项定理、输入范围与未完成接口见 [既有 PDF 标注账本](docs/pdf_formalization_marks.md)，脚本和坐标放在 [PDF 日志目录](logs/v0.3.1/pdf)。
+
+[来源核对](logs/v0.3.1/pdf/source_review.md)：原 V7 md/tex/pdf、模型合同和固定配置与 v0.2.4 相同。路线图在本轮前仅勾选 v0.2.4 四项，已保存差异；本轮没有改路线图。§11.1 关于 (7.6)/(7.7) 的旧交叉引用疑点保留。没有静默修改数学假设。
+
+## 未完成接口与交接
+
+尚未构造具体矩形弱梯度、零迹、H(div)、Green/PEC、时间/空间微分交换，也未证明论文完整正则性可推出本轮所有空间路径证据。尚无两层同 primitive 方程证明、图范数零分离与双边估计、Poincaré、完整 D₇ 非负、最终能量单调性，或原八变量 PDE 解存在唯一性。
+
+下一阶段 **v0.3.2** 的入口为本轮实际空间、`StateHasDerivAt`、`SameSourcePath`、`hasDerivAt_integral_fieldEnergy` 及 v0.2 局部块。在明确的 primitive/Green/零迹接口下，目标是推出单层和两层能量律；目标能量恒等式仍必须作为结论。本轮交接于此。
+
+---
+
 # 2026-10-11：v0.2.4 单层能量不是终点
 
 用途：记录本阶段实际证明、构建/审计和带范围 PDF 标注。下方原进度完整保留，其中“当前”“下一阶段”均指历史记录当时。

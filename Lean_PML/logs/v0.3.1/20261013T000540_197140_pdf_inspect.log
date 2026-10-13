@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v0.3.1/pdf/inspect.py", line 3, in <module>
+    from pypdf import PdfReader
+  File "/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/pypdf/__init__.py", line 11, in <module>
+    from ._doc_common import DocumentInformation
+  File "/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/pypdf/_doc_common.py", line 42, in <module>
+    from ._encryption import Encryption
+  File "/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/pypdf/_encryption.py", line 46, in <module>
+    from ._utils import logger_warning
+  File "/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/pypdf/_utils.py", line 37, in <module>
+    from dataclasses import dataclass
+  File "/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/dataclasses.py", line 5, in <module>
+    import inspect
+  File "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v0.3.1/pdf/inspect.py", line 3, in <module>
+    from pypdf import PdfReader
+ImportError: cannot import name 'PdfReader' from partially initialized module 'pypdf' (most likely due to a circular import) (/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/pypdf/__init__.py)

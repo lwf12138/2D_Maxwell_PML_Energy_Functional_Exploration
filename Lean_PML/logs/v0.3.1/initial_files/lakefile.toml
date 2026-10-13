@@ -1,0 +1,17 @@
+name = "leanPML"
+version = "0.0.3"
+
+# 两个入口都属于默认构建；Audit 不是仅供手动运行的旁支文件。
+defaultTargets = ["LeanPML", "Audit"]
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+# mathlib v4.31.0 对应的精确提交；完整传递依赖由 lake-manifest.json 锁定。
+rev = "fabf563a7c95a166b8d7b6efca11c8b4dc9d911f"
+
+[[lean_lib]]
+name = "LeanPML"
+
+[[lean_lib]]
+name = "Audit"

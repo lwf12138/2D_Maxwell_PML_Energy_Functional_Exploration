@@ -1,0 +1,516 @@
+LeanPML/PML/SpatialCoefficients.lean:52:15: error(lean.unknownIdentifier): Unknown identifier `abs_add`
+LeanPML/PML/SpatialCoefficients.lean:109:17: error: typeclass instance problem is stuck
+  MeasurableSpace ?m.6
+
+Note: Lean will not try to resolve this typeclass instance problem because the type argument to `MeasurableSpace` is a metavariable. This argument must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+LeanPML/PML/SpatialCoefficients.lean:121:11: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:123:11: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:125:12: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:127:12: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:129:26: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:131:26: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:136:27: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:141:27: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:147:20: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:158:20: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:169:28: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:183:28: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:198:16: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:203:14: error: unsolved goals
+α : Type u_1
+inst✝ : MeasurableSpace α
+x✝ : Sort ?u.4
+SpatialAbsorption : x✝
+C : sorry
+x : α
+⊢ |sorry x| ≤ |sorry|
+LeanPML/PML/SpatialCoefficients.lean:206:16: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:211:14: error: unsolved goals
+α : Type u_1
+inst✝ : MeasurableSpace α
+x✝ : Sort ?u.4
+SpatialAbsorption : x✝
+C : sorry
+x : α
+⊢ |sorry x| ≤ |sorry|
+LeanPML/PML/SpatialCoefficients.lean:214:16: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:216:16: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:218:34: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:219:34: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:220:34: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:221:34: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:224:14: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:224:37: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:238:27: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:240:28: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:244:30: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:247:8: error: Failed to rewrite using equation theorems for `plusValue`
+LeanPML/PML/SpatialCoefficients.lean:251:8: error: Failed to rewrite using equation theorems for `plusValue`
+LeanPML/PML/SpatialCoefficients.lean:247:8: warning: declaration uses `sorry`
+LeanPML/PML/SpatialCoefficients.lean:256:31: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:259:8: error: Failed to rewrite using equation theorems for `minusValue`
+LeanPML/PML/SpatialCoefficients.lean:267:8: error: Failed to rewrite using equation theorems for `minusValue`
+LeanPML/PML/SpatialCoefficients.lean:259:8: warning: declaration uses `sorry`
+LeanPML/PML/SpatialCoefficients.lean:271:15: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:282:16: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:294:15: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:296:16: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:298:26: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:300:26: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:302:27: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:304:27: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:309:35: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  α
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/SpatialCoefficients.lean:315:13: error(lean.unknownIdentifier): Unknown identifier `a`
+LeanPML/PML/SpatialCoefficients.lean:317:35: error(lean.unknownIdentifier): Unknown identifier `a`
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+LeanPML/PML/SpatialCoefficients.lean:314:2: error: unsolved goals
+case pos
+α : Type u_1
+inst✝ : MeasurableSpace α
+x✝ : Sort u_2
+SpatialAbsorption : x✝
+C : sorry
+x : α
+hx hy lx ly : ℝ
+ha_pos ha_swap : True
+⊢ dissipationPlus (sorry ()) (sorry ()) (sorry ()) * lx ^ 2 +
+          dissipationPlus (sorry ()) (sorry ()) (sorry ()) * ly ^ 2 +
+        dissipationMinus (sorry ()) (sorry ()) (sorry ()) * hx ^ 2 +
+      dissipationMinus (sorry ()) (sorry ()) (sorry ()) * hy ^ 2 =
+    lx ^ 2 * sorry () + hx ^ 2 * sorry () + ly ^ 2 * sorry () + hy ^ 2 * sorry ()
+LeanPML/PML/SpatialCoefficients.lean:320:13: error(lean.unknownIdentifier): Unknown identifier `a`
+LeanPML/PML/SpatialCoefficients.lean:322:35: error(lean.unknownIdentifier): Unknown identifier `a`
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+LeanPML/PML/SpatialCoefficients.lean:319:2: error: unsolved goals
+case neg
+α : Type u_1
+inst✝ : MeasurableSpace α
+x✝ : Sort u_2
+SpatialAbsorption : x✝
+C : sorry
+x : α
+hx hy lx ly : ℝ
+ha_pos ha_swap : True
+⊢ sorry () * hx ^ 2 = sorry () * hx ^ 2 + sorry () * lx ^ 2 + sorry () * ly ^ 2
+LeanPML/PML/SpatialCoefficients.lean:316:52: warning: declaration uses `sorry`
+LeanPML/PML/SpatialCoefficients.lean:316:59: warning: declaration uses `sorry`
+LeanPML/PML/SpatialCoefficients.lean:316:67: warning: declaration uses `sorry`
+LeanPML/PML/SpatialCoefficients.lean:316:74: warning: declaration uses `sorry`
+LeanPML/PML/SpatialCoefficients.lean:317:29: warning: declaration uses `sorry`
+LeanPML/PML/SpatialCoefficients.lean:316:52: warning: This simp argument is unused:
+  plusX
+
+Hint: Omit it from the simp argument list.
+  simp [spatialDissipation2D, spatialDissipation, p̵l̵u̵s̵X̵,̵ ̵minusX, plusY, minusY, plusValue, minusValue,
+  ̲  ̲ ̲ ̲ ̲ ̲swap, a, ha_pos, ha_swap] at *
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/PML/SpatialCoefficients.lean:316:59: warning: This simp argument is unused:
+  minusX
+
+Hint: Omit it from the simp argument list.
+  simp [spatialDissipation2D, spatialDissipation, plusX, m̵i̵n̵u̵s̵X̵,̵ ̵plusY, minusY, plusValue, minusValue,
+  ̲  ̲ ̲ ̲ ̲ ̲swap, a, ha_pos, ha_swap] at *
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/PML/SpatialCoefficients.lean:316:67: warning: This simp argument is unused:
+  plusY
+
+Hint: Omit it from the simp argument list.
+  simp [spatialDissipation2D, spatialDissipation, plusX, minusX, p̵l̵u̵s̵Y̵,̵ ̵minusY, plusValue, minusValue,
+  ̲  ̲ ̲ ̲ ̲ ̲swap, a, ha_pos, ha_swap] at *
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/PML/SpatialCoefficients.lean:316:74: warning: This simp argument is unused:
+  minusY
+
+Hint: Omit it from the simp argument list.
+  simp [spatialDissipation2D, spatialDissipation, plusX, minusX, plusY, m̵i̵n̵u̵s̵Y̵,̵plusValue, minusValue,
+  ̲  ̲ ̲ ̲ ̲ ̲swap, a, ha_pos, ha_swap] at *
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/PML/SpatialCoefficients.lean:317:6: warning: This simp argument is unused:
+  plusValue
+
+Hint: Omit it from the simp argument list.
+  simp [spatialDissipation2D, spatialDissipation, plusX, minusX, plusY, minusY,
+  ̵  ̵ ̵ ̵ ̵ ̵p̵l̵u̵s̵V̵a̵l̵u̵e̵,̵ ̵minusValue, swap,
+  ̲  ̲ ̲ ̲ ̲ ̲a, ha_pos, ha_swap] at *
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/PML/SpatialCoefficients.lean:317:17: warning: This simp argument is unused:
+  minusValue
+
+Hint: Omit it from the simp argument list.
+  simp [spatialDissipation2D, spatialDissipation, plusX, minusX, plusY, minusY, plusValue, m̵i̵n̵u̵s̵V̵a̵l̵u̵e̵,̵ ̵swap,
+  ̲  ̲ ̲ ̲ ̲ ̲a, ha_pos, ha_swap] at *
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/PML/SpatialCoefficients.lean:317:29: warning: This simp argument is unused:
+  swap
+
+Hint: Omit it from the simp argument list.
+  simp [spatialDissipation2D, spatialDissipation, plusX, minusX, plusY, minusY,
+  ̵  ̵ ̵ ̵ ̵ ̵plusValue,
+  ̲  ̲ ̲ ̲ ̲ ̲minusValue, s̵w̵ap̵, a̵,̵ ̵ha_pos, ha_swap] at *
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/PML/SpatialCoefficients.lean:321:52: warning: This simp argument is unused:
+  plusX
+
+Hint: Omit it from the simp argument list.
+  simp [spatialDissipation2D, spatialDissipation, p̵l̵u̵s̵X̵,̵ ̵minusX, plusY, minusY, plusValue, minusValue,
+  ̲  ̲ ̲ ̲ ̲ ̲swap, a, ha_pos, ha_swap] at *
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/PML/SpatialCoefficients.lean:321:59: warning: This simp argument is unused:
+  minusX
+
+Hint: Omit it from the simp argument list.
+  simp [spatialDissipation2D, spatialDissipation, plusX, m̵i̵n̵u̵s̵X̵,̵ ̵plusY, minusY, plusValue, minusValue,
+  ̲  ̲ ̲ ̲ ̲ ̲swap, a, ha_pos, ha_swap] at *
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/PML/SpatialCoefficients.lean:321:67: warning: This simp argument is unused:
+  plusY
+
+Hint: Omit it from the simp argument list.
+  simp [spatialDissipation2D, spatialDissipation, plusX, minusX, p̵l̵u̵s̵Y̵,̵ ̵minusY, plusValue, minusValue,
+  ̲  ̲ ̲ ̲ ̲ ̲swap, a, ha_pos, ha_swap] at *
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/PML/SpatialCoefficients.lean:321:74: warning: This simp argument is unused:
+  minusY
+
+Hint: Omit it from the simp argument list.
+  simp [spatialDissipation2D, spatialDissipation, plusX, minusX, plusY, m̵i̵n̵u̵s̵Y̵,̵plusValue, minusValue,
+  ̲  ̲ ̲ ̲ ̲ ̲swap, a, ha_pos, ha_swap] at *
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/PML/SpatialCoefficients.lean:322:6: warning: This simp argument is unused:
+  plusValue
+
+Hint: Omit it from the simp argument list.
+  simp [spatialDissipation2D, spatialDissipation, plusX, minusX, plusY, minusY,
+  ̵  ̵ ̵ ̵ ̵ ̵p̵l̵u̵s̵V̵a̵l̵u̵e̵,̵ ̵minusValue, swap,
+  ̲  ̲ ̲ ̲ ̲ ̲a, ha_pos, ha_swap] at *
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/PML/SpatialCoefficients.lean:322:17: warning: This simp argument is unused:
+  minusValue
+
+Hint: Omit it from the simp argument list.
+  simp [spatialDissipation2D, spatialDissipation, plusX, minusX, plusY, minusY, plusValue, m̵i̵n̵u̵s̵V̵a̵l̵u̵e̵,̵ ̵swap,
+  ̲  ̲ ̲ ̲ ̲ ̲a, ha_pos, ha_swap] at *
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/PML/SpatialCoefficients.lean:322:29: warning: This simp argument is unused:
+  swap
+
+Hint: Omit it from the simp argument list.
+  simp [spatialDissipation2D, spatialDissipation, plusX, minusX, plusY, minusY,
+  ̵  ̵ ̵ ̵ ̵ ̵plusValue,
+  ̲  ̲ ̲ ̲ ̲ ̲minusValue, s̵w̵ap̵, a̵,̵ ̵ha_pos, ha_swap] at *
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/PML/SpatialCoefficients.lean:331:24: error: Function expected at
+  SpatialAbsorption
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  (ℝ × ℝ)
+
+Hint: The identifier `SpatialAbsorption` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.

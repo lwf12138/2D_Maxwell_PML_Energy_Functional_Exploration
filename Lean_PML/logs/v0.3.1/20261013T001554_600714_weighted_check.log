@@ -1,0 +1,4 @@
+LeanPML/Analysis/WeightedL2.lean:265:15: error(lean.invalidField): Invalid field `congr_ae`: The environment does not contain `And.congr_ae`, so it is not possible to project the field `congr_ae` from an expression
+  Lp.memLp ?m.51
+of type
+  AEStronglyMeasurable ↑↑?m.51 ?m.49 ∧ eLpNorm ↑↑?m.51 ?m.48 ?m.49 < ∞

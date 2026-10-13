@@ -1,0 +1,76 @@
+LeanPML/PML/SpatialCoefficients.lean:252:28: error: Application type mismatch: The argument
+  add_le_add_left (le_abs_self C.S) C.c
+has type
+  C.S + C.c ≤ |C.S| + C.c
+but is expected to have type
+  C.c + C.S ≤ C.c + |C.S|
+in the application
+  LE.le.trans hb.right (add_le_add_left (le_abs_self C.S) C.c)
+LeanPML/PML/SpatialCoefficients.lean:288:6: error: Type mismatch: After simplification, term
+  Measurable.div (Measurable.mul C.r_measurable (Measurable.sub measurable_const C.r_measurable)) (a_measurable C)
+ has type
+  Measurable fun a => C.r a * (?m.61 - C.r a) / C.a a
+but is expected to have type
+  Measurable fun x => dissipationMinus C.c (C.r x) (C.p x)
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+LeanPML/PML/SpatialCoefficients.lean:316:2: error: unsolved goals
+case pos
+α : Type u_1
+inst✝ : MeasurableSpace α
+C : SpatialAbsorption α
+x : α
+hx hy lx ly : ℝ
+ha_pos : 0 < absorptionSum (C.p x) (C.r x)
+ha_swap : True
+⊢ (if 0 < absorptionSum (C.p x) (C.r x) then
+          dissipationPlus C.c (C.p x) (C.r x) * lx ^ 2 + dissipationMinus C.c (C.r x) (C.p x) * hx ^ 2
+        else hx ^ 2 * C.c) +
+        dissipationPlus C.c (C.r x) (C.p x) * ly ^ 2 +
+      dissipationMinus C.c (C.p x) (C.r x) * hy ^ 2 =
+    (dissipationPlus C.c (C.r x) (C.p x) * ly ^ 2 + dissipationMinus C.c (C.p x) (C.r x) * hy ^ 2 +
+        if 0 < absorptionSum (C.p x) (C.r x) then dissipationPlus C.c (C.p x) (C.r x) * lx ^ 2 else 0) +
+      if 0 < absorptionSum (C.p x) (C.r x) then dissipationMinus C.c (C.r x) (C.p x) * hx ^ 2 else hx ^ 2 * C.c
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+LeanPML/PML/SpatialCoefficients.lean:321:2: error: unsolved goals
+case neg
+α : Type u_1
+inst✝ : MeasurableSpace α
+C : SpatialAbsorption α
+x : α
+hx hy lx ly : ℝ
+ha_pos : absorptionSum (C.p x) (C.r x) ≤ 0
+ha_swap : True
+⊢ (if 0 < absorptionSum (C.p x) (C.r x) then
+      dissipationPlus C.c (C.p x) (C.r x) * lx ^ 2 + dissipationMinus C.c (C.r x) (C.p x) * hx ^ 2
+    else hx ^ 2 * C.c) =
+    (if 0 < absorptionSum (C.p x) (C.r x) then dissipationPlus C.c (C.p x) (C.r x) * lx ^ 2 else 0) +
+      if 0 < absorptionSum (C.p x) (C.r x) then dissipationMinus C.c (C.r x) (C.p x) * hx ^ 2 else hx ^ 2 * C.c
+LeanPML/PML/SpatialCoefficients.lean:318:59: warning: declaration uses `sorry`
+LeanPML/PML/SpatialCoefficients.lean:319:38: warning: This simp argument is unused:
+  ha_pos
+
+Hint: Omit it from the simp argument list.
+  simp [spatialDissipation2D, spatialDissipation, plusX, minusX, plusY, minusY,
+  ̵  ̵ ̵ ̵ ̵ ̵plusValue,
+  ̲  ̲ ̲ ̲ ̲ ̲minusValue, swap, a, ha_p̵o̵s,̵ ̵h̵a̵_̵s̵wap] at *
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/PML/SpatialCoefficients.lean:324:38: warning: This simp argument is unused:
+  ha_pos
+
+Hint: Omit it from the simp argument list.
+  simp [spatialDissipation2D, spatialDissipation, plusX, minusX, plusY, minusY,
+  ̵  ̵ ̵ ̵ ̵ ̵plusValue,
+  ̲  ̲ ̲ ̲ ̲ ̲minusValue, swap, a, ha_p̵o̵s,̵ ̵h̵a̵_̵s̵wap] at *
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

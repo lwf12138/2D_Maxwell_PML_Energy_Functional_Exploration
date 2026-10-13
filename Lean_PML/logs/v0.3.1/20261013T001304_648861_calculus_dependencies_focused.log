@@ -1,0 +1,4 @@
+✔ [2813/2815] Built Mathlib.Analysis.Matrix.Order (2.9s)
+✔ [2814/2815] Built Mathlib.Analysis.InnerProductSpace.GramMatrix (2.3s)
+✔ [2815/2815] Built Mathlib.MeasureTheory.Function.L2Space (2.3s)
+Build completed successfully (2815 jobs).

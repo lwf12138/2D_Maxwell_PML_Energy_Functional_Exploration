@@ -1,0 +1,15 @@
+{
+  "lean-toolchain": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee",
+  "lakefile.toml": "3a3ab926f99cfeb3ae9fa6309696858b0aabb7ce62469de72405a74dd64fab9e",
+  "lake-manifest.json": "6bd522ed18f94813b2e6fb5e7b9ea39d95a5098df2465acc0d815a09bb5dbf33",
+  "ROADMAP_lean_PML_revised.md": "d41e13d336308f7bd82421a540d089b6e37897373bdf670f7f33403d34d89924",
+  "docs/model_contract.md": "27fdc413425e2b65f0b31a4c4a533d5f52eb24a4af30f18f5fae080a1846fc23",
+  "docs/scope.md": "dff8fc9bf26935a12927a2c05950b44431020d5eb8e022f7c8565a9ec054b539",
+  "docs/source_inventory.md": "d8305aa7dcadf956703277a4f60b12a0b763442cf2e189b08154b329f73baadc",
+  "LeanPML.lean": "030cda545c7362b884df79539173b29a8d6064c72bbdae54ca38bee6b2a175c6",
+  "Audit.lean": "fefcae651531cf5f389be6d3aa0942deab37d7901fc10db8b85c82b1c488a1fc",
+  "README.md": "3ffc5233582a850888b830b5f7a8f691ac66aac1edf3551f620d4b9209085233",
+  "PROGRESS.md": "097c7167420ec28939cba6d3dbb7afec1194c5aa4d1f773a6a0151e804337f0b",
+  "docs/theorem_inventory.md": "a4c3ea89dfe6d1ded96e1262e0966f5041798329911d3bfcf3c60fa7ed63a8e4",
+  "docs/pdf_formalization_marks.md": "1719b9986c4b2a60579030669f0e0731b016cbdfb88821cf3fa9ff000d09223b"
+}

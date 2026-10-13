@@ -1,0 +1,18 @@
+{
+  "stage": "v0.3.1",
+  "command": [
+    "lake",
+    "build",
+    "LeanPML.PML.SpatialCoefficients"
+  ],
+  "command_display": "lake build LeanPML.PML.SpatialCoefficients",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-13T00:17:30.693918+08:00",
+  "output_file": "20261013T001730_693918_spatial_coefficients_build.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-13T00:17:40.171420+08:00",
+  "elapsed_seconds": 9.491
+}

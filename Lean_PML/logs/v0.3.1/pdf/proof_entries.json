@@ -1,0 +1,177 @@
+{
+  "status": "等待最终构建审计；此文件本身不是验证证据",
+  "entries": [
+    {
+      "id": "weighted-embedding",
+      "page": 8,
+      "printed_page": 8,
+      "location": "(5.6) 后“该空间连续嵌入 L²(Ω)²”",
+      "type": "实际 L² 分析；连续嵌入",
+      "module": "LeanPML/PML/Energy.lean",
+      "theorems": [
+        "LeanPML.PML.auxiliary_embedding_square",
+        "LeanPML.PML.physical_zero_on_absorption_zero"
+      ],
+      "definitions": [
+        "LeanPML.Analysis.WeightedL2",
+        "LeanPML.Analysis.physicalL2"
+      ],
+      "scope": "实际加权空间使用 √wψ 的 L² 闭子空间；恢复映射在全域 ν-a.e. 上定义，零吸收区为零，两个分量满足普通 L² 平方和不超过加权平方和。可测性和正区权重间隙由 SpatialAbsorption 原始条件推导。",
+      "missing": "具体矩形 Sobolev/零迹/真实弱梯度及演化保持仍待完成；本勾不覆盖 (5.7)–(5.8)。",
+      "new_tick": true,
+      "draw": {
+        "x": 535,
+        "top": 213,
+        "font_size": 6,
+        "lines": [
+          "加权空间嵌入",
+          "含零区处理"
+        ]
+      }
+    },
+    {
+      "id": "energy-integral-inner",
+      "page": 9,
+      "printed_page": 9,
+      "location": "(6.2) 实际积分/内积表示及由该式推出的路径求导（原文未单列）",
+      "type": "实际积分；实际 L²/加权空间时间求导",
+      "module": "LeanPML/PML/EnergyIntegrals.lean",
+      "theorems": [
+        "LeanPML.PML.fieldEnergyDensity_integrable",
+        "LeanPML.PML.fieldEnergy_eq_integral",
+        "LeanPML.PML.hasDerivAt_integral_fieldEnergy"
+      ],
+      "definitions": [
+        "LeanPML.PML.fieldEnergy",
+        "LeanPML.PML.fieldEnergyDensity"
+      ],
+      "scope": "真实 FieldState 的三个旧块密度可积，F_c 的内积表达与整个 ν 空间上的密度积分相等；各分量在其实际普通/加权空间中 HasDerivAt 时，积分能量导数为 fieldEnergyRate。未交换未经证明的逐点导数与积分。",
+      "missing": "primitive 方程、真实梯度、Green/PEC 尚未代入，导数未化为 −D_c；不代表正定性、图范数等价或 PDE 能量律。",
+      "new_tick": true,
+      "draw": {
+        "x": 535,
+        "top": 432,
+        "font_size": 6,
+        "lines": [
+          "积分/内积表示",
+          "非 PDE 能量律"
+        ]
+      }
+    },
+    {
+      "id": "weighted-time",
+      "page": 11,
+      "printed_page": 11,
+      "location": "(7.2) 后“加权空间的时间链式法则由 ψ∈C¹(L²_w) 保证”",
+      "type": "实际加权空间时间求导",
+      "module": "LeanPML/Analysis/WeightedL2.lean",
+      "theorems": [
+        "LeanPML.Analysis.hasDerivAt_weighted_half_norm_sq",
+        "LeanPML.Analysis.hasDerivAt_physicalL2"
+      ],
+      "definitions": [
+        "LeanPML.Analysis.WeightedL2"
+      ],
+      "scope": "在已构造的实际加权内积空间上，由 HasDerivAt X Xdot t 推出 ‖X‖²/2 的导数为内积，并由连续恢复映射得到物理 L² 路径导数。需要该加权范数下的导数，普通 L²/逐点可导不能代替。",
+      "missing": "一般辅助 PDE 的加权正则性传播、真实空间梯度和 Green/PEC 仍待完成；不把本链式法则等同于整个 (7.2) 能量恒等式。",
+      "new_tick": true,
+      "draw": {
+        "x": 8,
+        "top": 170,
+        "font_size": 6,
+        "lines": [
+          "加权空间求导",
+          "需该空间",
+          "路径可导"
+        ]
+      }
+    },
+    {
+      "id": "spatial-integral",
+      "page": 11,
+      "printed_page": 11,
+      "location": "(7.2) 的 L² 分量密度积分与非负子结论",
+      "type": "实际积分；分量耗散非负",
+      "module": "LeanPML/PML/EnergyIntegrals.lean",
+      "theorems": [
+        "LeanPML.PML.fieldSpatialDissipation_integrable",
+        "LeanPML.PML.fieldSpatialDissipation_eq_integral",
+        "LeanPML.PML.fieldSpatialDissipation_nonneg",
+        "LeanPML.PML.fieldSpatialDissipation_of_zeroAbsorption"
+      ],
+      "definitions": [
+        "LeanPML.PML.fieldSpatialDissipation",
+        "LeanPML.PML.fieldSpatialDissipationDensity"
+      ],
+      "scope": "四个有界可测耗散系数按方向乘实际 L² 分量平方，密度可积且积分非负；全零吸收 a.e. 时 S=c(‖h_x‖²+‖h_y‖²)。h=Λ−ψ 是 L² 分量，零区贡献保留。",
+      "missing": "真实 h=∂ᵢv 接口未实现；本轮未单独形式化 Ω₊/Z 两个限制积分的分区等式，也未证明空间块与 primitive/Green 组合后的能量律。",
+      "new_tick": true,
+      "draw": {
+        "x": 535,
+        "top": 97,
+        "font_size": 6,
+        "lines": [
+          "分量积分非负",
+          "真实梯度",
+          "接口待完成"
+        ]
+      }
+    }
+  ],
+  "notes": [
+    {
+      "id": "weighted-model",
+      "page": 8,
+      "x": 68,
+      "top": 233,
+      "font_size": 6.5,
+      "lines": [
+        "v0.3.1：实际加权 L² 闭子空间及零延拓；(5.5)–(5.6) 定义录入本身不计证明。"
+      ]
+    },
+    {
+      "id": "states-energy-definitions",
+      "page": 9,
+      "x": 68,
+      "top": 810,
+      "font_size": 7,
+      "lines": [
+        "v0.3.1：(6.2)–(6.5) 已建立实际 L² / 积分定义；图范数零分离及 PDE 能量律待完成。"
+      ]
+    },
+    {
+      "id": "spatial-scope-update",
+      "page": 11,
+      "x": 68,
+      "top": 810,
+      "font_size": 6.5,
+      "lines": [
+        "v0.3.1 新勾限实际分量积分/范数路径求导；旧勾保留历史范围，Green/PEC 与 PDE 能量律未完成。"
+      ]
+    },
+    {
+      "id": "dissipation-definition",
+      "page": 11,
+      "x": 535,
+      "top": 735,
+      "font_size": 6,
+      "lines": [
+        "(7.7) 实际",
+        "积分定义",
+        "符号未定"
+      ]
+    },
+    {
+      "id": "two-layer-definition",
+      "page": 12,
+      "x": 535,
+      "top": 170,
+      "font_size": 6,
+      "lines": [
+        "左式实际定义",
+        "右式能量律",
+        "仍待完成"
+      ]
+    }
+  ]
+}

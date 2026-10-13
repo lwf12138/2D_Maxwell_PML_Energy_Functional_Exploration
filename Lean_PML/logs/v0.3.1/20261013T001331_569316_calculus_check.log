@@ -1,0 +1,67 @@
+LeanPML/Analysis/EnergyCalculus.lean:62:23: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ↑↑(MemLp.toLp (fun x => m x * ↑↑f x) ⋯) x
+in the target expression
+  m x * ↑↑(f + g) x = (↑↑(MemLp.toLp (fun x => m x * ↑↑f x) ⋯) + ↑↑(MemLp.toLp (fun x => m x * ↑↑g x) ⋯)) x
+
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+m : α → ℝ
+hm : Measurable m
+C : ℝ
+hbound : ∀ (x : α), |m x| ≤ C
+f g : ↥(ScalarL2 ν)
+x : α
+hsum : ↑↑(MemLp.toLp (fun x => m x * ↑↑(f + g) x) ⋯) x = m x * ↑↑(f + g) x
+hf : ↑↑(MemLp.toLp (fun x => m x * ↑↑f x) ⋯) x = m x * ↑↑f x
+hg : ↑↑(MemLp.toLp (fun x => m x * ↑↑g x) ⋯) x = m x * ↑↑g x
+hfg : ↑↑(f + g) x = (↑↑f + ↑↑g) x
+hresult :
+  ↑↑(MemLp.toLp (fun x => m x * ↑↑f x) ⋯ + MemLp.toLp (fun x => m x * ↑↑g x) ⋯) x =
+    (↑↑(MemLp.toLp (fun x => m x * ↑↑f x) ⋯) + ↑↑(MemLp.toLp (fun x => m x * ↑↑g x) ⋯)) x
+⊢ m x * ↑↑(f + g) x = (↑↑(MemLp.toLp (fun x => m x * ↑↑f x) ⋯) + ↑↑(MemLp.toLp (fun x => m x * ↑↑g x) ⋯)) x
+LeanPML/Analysis/EnergyCalculus.lean:72:12: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ↑↑(r • MemLp.toLp (fun x => m x * ↑↑f x) ⋯) x
+in the target expression
+  m x * ↑↑(r • f) x = ↑↑((RingHom.id ℝ) r • MemLp.toLp (fun x => m x * ↑↑f x) ⋯) x
+
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+m : α → ℝ
+hm : Measurable m
+C : ℝ
+hbound : ∀ (x : α), |m x| ≤ C
+r : ℝ
+f : ↥(ScalarL2 ν)
+x : α
+hr : ↑↑(MemLp.toLp (fun x => m x * ↑↑(r • f) x) ⋯) x = m x * ↑↑(r • f) x
+hf : ↑↑(MemLp.toLp (fun x => m x * ↑↑f x) ⋯) x = m x * ↑↑f x
+hrf : ↑↑(r • f) x = r * ↑↑f x
+hresult : ↑↑(r • MemLp.toLp (fun x => m x * ↑↑f x) ⋯) x = r * ↑↑(MemLp.toLp (fun x => m x * ↑↑f x) ⋯) x
+⊢ m x * ↑↑(r • f) x = ↑↑((RingHom.id ℝ) r • MemLp.toLp (fun x => m x * ↑↑f x) ⋯) x
+LeanPML/Analysis/EnergyCalculus.lean:110:14: error(lean.unknownIdentifier): Unknown constant `Real.inner_eq_mul`
+LeanPML/Analysis/EnergyCalculus.lean:110:2: error: Type mismatch: After simplification, term
+  L2.integrable_inner f g
+ has type
+  Integrable (fun x => ⟪↑↑f x, ↑↑g x⟫_ℝ) ν
+but is expected to have type
+  Integrable (fun x => ↑↑f x * ↑↑g x) ν
+LeanPML/Analysis/EnergyCalculus.lean:115:27: error(lean.unknownIdentifier): Unknown constant `Real.inner_eq_mul`
+LeanPML/Analysis/EnergyCalculus.lean:114:36: error: unsolved goals
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+f g : ↥(ScalarL2 ν)
+⊢ ∫ (a : α), ⟪↑↑f a, ↑↑g a⟫_ℝ ∂ν = ∫ (x : α), ↑↑f x * ↑↑g x ∂ν
+LeanPML/Analysis/EnergyCalculus.lean:115:46: warning: This simp argument is unused:
+  mul_comm
+
+Hint: Omit it from the simp argument list.
+  simp only [L2.inner_def, Real.inner_eq_mul,̵ ̵m̵u̵l̵_̵c̵o̵m̵m̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/Analysis/EnergyCalculus.lean:169:20: error(lean.invalidField): Invalid field `div_const`: The environment does not contain `HasFDerivAtFilter.div_const`, so it is not possible to project the field `div_const` from an expression
+  HasDerivAt.norm_sq hX
+of type
+  HasFDerivAtFilter (fun x => ‖X x‖ ^ 2) (ContinuousLinearMap.toSpanSingleton ℝ (2 * ⟪X t, Xdot⟫_ℝ)) (nhds t ×ˢ pure t)

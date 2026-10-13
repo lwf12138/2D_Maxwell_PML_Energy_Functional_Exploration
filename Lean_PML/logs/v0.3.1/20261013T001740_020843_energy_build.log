@@ -1,0 +1,10 @@
+⚠ [2865/2865] Built LeanPML.PML.Energy (3.6s)
+warning: LeanPML/PML/Energy.lean:253:57: This simp argument is unused:
+  real_inner_self_eq_norm_sq
+
+Hint: Omit it from the simp argument list.
+  simp [fieldEnergyRate, electricRate, polarRate, spatialRate, auxiliaryPath, auxiliaryState,
+  ̲  ̲ ̲ ̲r̵e̵a̵l̵_̵i̵n̵n̵e̵r̵_̵s̵m̵u̵l̵_̵l̵e̵f̵t̵,̵ ̵r̵e̵a̵l̵_̵i̵n̵n̵e̵r̵_̵s̵e̵l̵f̵_̵e̵q̵_̵n̵o̵r̵m̵_̵s̵q̵]̵r̲e̲a̲l̲_̲i̲n̲n̲e̲r̲_̲s̲m̲u̲l̲_̲l̲e̲f̲t̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+Build completed successfully (2865 jobs).

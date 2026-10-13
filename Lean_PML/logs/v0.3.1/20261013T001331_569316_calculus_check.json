@@ -1,0 +1,19 @@
+{
+  "stage": "v0.3.1",
+  "command": [
+    "lake",
+    "env",
+    "lean",
+    "LeanPML/Analysis/EnergyCalculus.lean"
+  ],
+  "command_display": "lake env lean LeanPML/Analysis/EnergyCalculus.lean",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-13T00:13:31.569316+08:00",
+  "output_file": "20261013T001331_569316_calculus_check.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 1,
+  "status": "finished",
+  "ended_at": "2026-10-13T00:13:40.649988+08:00",
+  "elapsed_seconds": 9.08
+}

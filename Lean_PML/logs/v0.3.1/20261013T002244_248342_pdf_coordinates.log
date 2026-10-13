@@ -1,0 +1,14 @@
+weighted-embedding [534, 211, 587.0, 229.2] []
+energy-integral-inner [534, 430, 590.6708984375, 448.2] []
+weighted-time [7, 168, 60.0, 194.4] []
+spatial-integral [534, 95, 587.0, 121.4] []
+weighted-model [67, 231, 290.384033203125, 241.5] []
+states-energy-definitions [67, 808, 329.5859375, 819.0] []
+spatial-scope-update [67, 804, 356.837646484375, 814.5] ['1', '1']
+dissipation-definition [534, 733, 562.00390625, 759.4] []
+two-layer-definition [534, 168, 572.0, 194.4] []
+Traceback (most recent call last):
+  File "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v0.3.1/pdf/preflight_coordinates.py", line 26, in <module>
+    assert not any(d['overlap']for d in draws)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

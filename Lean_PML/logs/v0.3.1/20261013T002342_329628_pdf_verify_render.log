@@ -1,0 +1,24 @@
+渲染命令： ["/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdftoppm", "-f", "8", "-l", "8", "-scale-to", "1800", "-png", "-singlefile", "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf", "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v0.3.1/pdf/after-08"]
+渲染命令： ["/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdftoppm", "-f", "9", "-l", "9", "-scale-to", "1800", "-png", "-singlefile", "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf", "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v0.3.1/pdf/after-09"]
+渲染命令： ["/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdftoppm", "-f", "11", "-l", "11", "-scale-to", "1800", "-png", "-singlefile", "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf", "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v0.3.1/pdf/after-11"]
+渲染命令： ["/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdftoppm", "-f", "12", "-l", "12", "-scale-to", "1800", "-png", "-singlefile", "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf", "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v0.3.1/pdf/after-12"]
+{
+  "page_count": 18,
+  "modified_pages": [
+    8,
+    9,
+    11,
+    12
+  ],
+  "old_annotations": 141,
+  "new_red_ticks": 4,
+  "total_annotations": 150,
+  "unchanged_pages_text_equal": true,
+  "original_text_prefix_preserved": true,
+  "old_annotations_preserved": true,
+  "protected_files_unchanged": true,
+  "sha256_before": "f318a9a0e4ac0721f61fffc601388e16be4e568b4efcbb3b2de3e9ad19a2b757",
+  "sha256_after": "9b55183d444b9efa91e873dbbef1d7e73756962106f9c51d0de108f78b49c2ac",
+  "plan_sha256": "048f8327ca479d95a0e6639c87ca1bcf66084701bd51a81fadc6c55ffddb2f69",
+  "visual_review": "pending"
+}
