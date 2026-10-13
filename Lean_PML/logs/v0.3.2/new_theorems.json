@@ -1,0 +1,127 @@
+[
+  {
+    "name": "LeanPML.PML.boundary_eq_zero_of_trace_zero_Conditional",
+    "file": "LeanPML/PML/BalanceInterfaces.lean",
+    "line": 49
+  },
+  {
+    "name": "LeanPML.PML.green_multiplier_Conditional",
+    "file": "LeanPML/PML/BalanceInterfaces.lean",
+    "line": 59
+  },
+  {
+    "name": "LeanPML.PML.boundary_multiplier_zero_Conditional",
+    "file": "LeanPML/PML/BalanceInterfaces.lean",
+    "line": 77
+  },
+  {
+    "name": "LeanPML.PML.base_velocity_eq_first_position_Conditional",
+    "file": "LeanPML/PML/BalanceInterfaces.lean",
+    "line": 130
+  },
+  {
+    "name": "LeanPML.PML.polarConstraint_derivative_Conditional",
+    "file": "LeanPML/PML/PrimitiveEvolution.lean",
+    "line": 22
+  },
+  {
+    "name": "LeanPML.PML.hasDerivAt_primitiveMain",
+    "file": "LeanPML/PML/PrimitiveEvolution.lean",
+    "line": 40
+  },
+  {
+    "name": "LeanPML.PML.primitiveMain_first_Conditional",
+    "file": "LeanPML/PML/PrimitiveEvolution.lean",
+    "line": 71
+  },
+  {
+    "name": "LeanPML.PML.derivative_eq_of_eventuallyEq_Conditional",
+    "file": "LeanPML/PML/PrimitiveEvolution.lean",
+    "line": 91
+  },
+  {
+    "name": "LeanPML.PML.primitive_first_Conditional",
+    "file": "LeanPML/PML/PrimitiveEvolution.lean",
+    "line": 102
+  },
+  {
+    "name": "LeanPML.PML.spatial_rate_add_dissipation_pointwise",
+    "file": "LeanPML/PML/SpatialBalance.lean",
+    "line": 21
+  },
+  {
+    "name": "LeanPML.PML.spatialRate_add_dissipation",
+    "file": "LeanPML/PML/SpatialBalance.lean",
+    "line": 60
+  },
+  {
+    "name": "LeanPML.Analysis.BoundedCoefficient.coe_operator",
+    "file": "LeanPML/PML/BalanceBlocks.lean",
+    "line": 20
+  },
+  {
+    "name": "LeanPML.Analysis.BoundedCoefficient.inner_swap",
+    "file": "LeanPML/PML/BalanceBlocks.lean",
+    "line": 25
+  },
+  {
+    "name": "LeanPML.Analysis.BoundedCoefficient.operator_add",
+    "file": "LeanPML/PML/BalanceBlocks.lean",
+    "line": 33
+  },
+  {
+    "name": "LeanPML.Analysis.BoundedCoefficient.operator_sub",
+    "file": "LeanPML/PML/BalanceBlocks.lean",
+    "line": 43
+  },
+  {
+    "name": "LeanPML.Analysis.BoundedCoefficient.operator_const",
+    "file": "LeanPML/PML/BalanceBlocks.lean",
+    "line": 53
+  },
+  {
+    "name": "LeanPML.Analysis.BoundedCoefficient.operator_mul_const",
+    "file": "LeanPML/PML/BalanceBlocks.lean",
+    "line": 60
+  },
+  {
+    "name": "LeanPML.Analysis.BoundedCoefficient.operator_const_mul",
+    "file": "LeanPML/PML/BalanceBlocks.lean",
+    "line": 70
+  },
+  {
+    "name": "LeanPML.PML.electricRate_add_remainder",
+    "file": "LeanPML/PML/BalanceBlocks.lean",
+    "line": 87
+  },
+  {
+    "name": "LeanPML.PML.polarRate_add_remainder",
+    "file": "LeanPML/PML/BalanceBlocks.lean",
+    "line": 105
+  },
+  {
+    "name": "LeanPML.PML.fieldEnergyRate_blocks",
+    "file": "LeanPML/PML/BalanceBlocks.lean",
+    "line": 143
+  },
+  {
+    "name": "LeanPML.PML.fieldEnergyRate_boundary_Conditional",
+    "file": "LeanPML/PML/BalanceAbstract.lean",
+    "line": 26
+  },
+  {
+    "name": "LeanPML.PML.hasDerivAt_fieldEnergy_boundary_Conditional",
+    "file": "LeanPML/PML/BalanceAbstract.lean",
+    "line": 70
+  },
+  {
+    "name": "LeanPML.PML.hasDerivAt_fieldEnergy_zeroTrace_Conditional",
+    "file": "LeanPML/PML/BalanceAbstract.lean",
+    "line": 94
+  },
+  {
+    "name": "LeanPML.PML.hasDerivAt_energy7_Conditional",
+    "file": "LeanPML/PML/BalanceAbstract.lean",
+    "line": 122
+  }
+]

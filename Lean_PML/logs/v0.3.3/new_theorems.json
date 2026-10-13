@@ -1,0 +1,142 @@
+[
+  {
+    "name": "LeanPML.PML.spatialBudget_nonneg",
+    "file": "LeanPML/PML/Coercivity.lean",
+    "line": 55
+  },
+  {
+    "name": "LeanPML.PML.norm_sub_sq_le_twice",
+    "file": "LeanPML/PML/Coercivity.lean",
+    "line": 62
+  },
+  {
+    "name": "LeanPML.PML.gradient_square_le_spatialBudget",
+    "file": "LeanPML/PML/Coercivity.lean",
+    "line": 71
+  },
+  {
+    "name": "LeanPML.PML.state_norm_sq_le_spatialBudget",
+    "file": "LeanPML/PML/Coercivity.lean",
+    "line": 89
+  },
+  {
+    "name": "LeanPML.PML.electric_energy_bounds_pointwise",
+    "file": "LeanPML/PML/Coercivity.lean",
+    "line": 108
+  },
+  {
+    "name": "LeanPML.PML.polar_energy_bounds_pointwise",
+    "file": "LeanPML/PML/Coercivity.lean",
+    "line": 124
+  },
+  {
+    "name": "LeanPML.PML.polarConstraint_ae",
+    "file": "LeanPML/PML/Coercivity.lean",
+    "line": 171
+  },
+  {
+    "name": "LeanPML.PML.fieldElectric_bounds",
+    "file": "LeanPML/PML/Coercivity.lean",
+    "line": 181
+  },
+  {
+    "name": "LeanPML.PML.fieldPolar_bounds",
+    "file": "LeanPML/PML/Coercivity.lean",
+    "line": 217
+  },
+  {
+    "name": "LeanPML.PML.graphSquare_nonneg",
+    "file": "LeanPML/PML/Coercivity.lean",
+    "line": 253
+  },
+  {
+    "name": "LeanPML.PML.spatialBudget_le_graphSquare",
+    "file": "LeanPML/PML/Coercivity.lean",
+    "line": 260
+  },
+  {
+    "name": "LeanPML.PML.fieldEnergy_bounds_Conditional",
+    "file": "LeanPML/PML/Coercivity.lean",
+    "line": 271
+  },
+  {
+    "name": "LeanPML.PML.energy7_bounds_Conditional",
+    "file": "LeanPML/PML/Coercivity.lean",
+    "line": 323
+  },
+  {
+    "name": "LeanPML.PML.graphSquare_zero_Conditional",
+    "file": "LeanPML/PML/Coercivity.lean",
+    "line": 348
+  },
+  {
+    "name": "LeanPML.PML.fieldEnergy_zero_Conditional",
+    "file": "LeanPML/PML/Coercivity.lean",
+    "line": 399
+  },
+  {
+    "name": "LeanPML.PML.energy7_zero_Conditional",
+    "file": "LeanPML/PML/Coercivity.lean",
+    "line": 413
+  },
+  {
+    "name": "LeanPML.PML.stateCoercivityConstraints_of_GreenTrace",
+    "file": "LeanPML/PML/Coercivity.lean",
+    "line": 451
+  },
+  {
+    "name": "LeanPML.PML.base_coercivityConstraints_of_GreenTrace",
+    "file": "LeanPML/PML/Coercivity.lean",
+    "line": 467
+  },
+  {
+    "name": "LeanPML.PML.first_coercivityConstraints_of_GreenTrace",
+    "file": "LeanPML/PML/Coercivity.lean",
+    "line": 487
+  },
+  {
+    "name": "LeanPML.PML.reconstructQ_eq_z",
+    "file": "LeanPML/PML/PhysicalControl.lean",
+    "line": 59
+  },
+  {
+    "name": "LeanPML.PML.reconstruct_magnetic",
+    "file": "LeanPML/PML/PhysicalControl.lean",
+    "line": 68
+  },
+  {
+    "name": "LeanPML.PML.norm_sub_sq_le_two",
+    "file": "LeanPML/PML/PhysicalControl.lean",
+    "line": 75
+  },
+  {
+    "name": "LeanPML.PML.coefficient_operator_norm_sq_le",
+    "file": "LeanPML/PML/PhysicalControl.lean",
+    "line": 85
+  },
+  {
+    "name": "LeanPML.PML.p_operator_norm_sq_le",
+    "file": "LeanPML/PML/PhysicalControl.lean",
+    "line": 95
+  },
+  {
+    "name": "LeanPML.PML.r_operator_norm_sq_le",
+    "file": "LeanPML/PML/PhysicalControl.lean",
+    "line": 102
+  },
+  {
+    "name": "LeanPML.PML.b_operator_norm_sq_le",
+    "file": "LeanPML/PML/PhysicalControl.lean",
+    "line": 110
+  },
+  {
+    "name": "LeanPML.PML.physicalControl_of_graph_bound",
+    "file": "LeanPML/PML/PhysicalControl.lean",
+    "line": 151
+  },
+  {
+    "name": "LeanPML.PML.physicalControl_Conditional",
+    "file": "LeanPML/PML/PhysicalControl.lean",
+    "line": 267
+  }
+]

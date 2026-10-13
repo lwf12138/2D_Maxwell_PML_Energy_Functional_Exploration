@@ -1,0 +1,443 @@
+{
+  "entries": [
+    {
+      "id": "graph-bound",
+      "page": 10,
+      "location": "(6.7)",
+      "module": "LeanPML/PML/Coercivity.lean",
+      "theorems": [
+        "LeanPML.PML.energy7_bounds_Conditional",
+        "LeanPML.PML.energy7_zero_Conditional"
+      ],
+      "scope": "实际同源两层能量与同一 graphSquare7 的精确 1/4、1 双边界；材料正性、原阈值、两层极化/空间约束及零迹 Poincaré 接口下成立，能量零则两层全部坐标零。",
+      "missing": "具体矩形 Poincaré、完整原 PDE 对应；不是裸八变量范数等价或单调性。",
+      "x": 535,
+      "top": 209,
+      "lines": [
+        "条件性图范数界",
+        "Poincaré 接口"
+      ],
+      "font_size": 5.1,
+      "printed_page": 10,
+      "type": "条件性空间结论",
+      "new_tick": true,
+      "draw": {
+        "x": 535,
+        "top": 209,
+        "lines": [
+          "条件性图范数界",
+          "Poincaré 接口"
+        ],
+        "font_size": 5.1
+      }
+    },
+    {
+      "id": "physical-fields",
+      "page": 10,
+      "location": "(6.10)",
+      "module": "LeanPML/PML/PhysicalControl.lean",
+      "theorems": [
+        "LeanPML.PML.physicalControl_Conditional"
+      ],
+      "scope": "PhysicalControlBounds.physical：实际 L² 重构 E、H、P 的原常数控制 (4/μ)E7；由同源图界与材料条件推得。",
+      "missing": "原八变量 PDE 与 primitive 双向等价、提升唯一性。",
+      "x": 535,
+      "top": 387,
+      "lines": [
+        "兼容重构下",
+        "L² 控制"
+      ],
+      "font_size": 5.7,
+      "printed_page": 10,
+      "type": "条件性空间结论",
+      "new_tick": true,
+      "draw": {
+        "x": 535,
+        "top": 387,
+        "lines": [
+          "兼容重构下",
+          "L² 控制"
+        ],
+        "font_size": 5.7
+      }
+    },
+    {
+      "id": "single-balance",
+      "page": 11,
+      "location": "(7.6)，并使用 (7.7) 既有定义",
+      "module": "LeanPML/PML/BalanceAbstract.lean",
+      "theorems": [
+        "LeanPML.PML.hasDerivAt_fieldEnergy_boundary_Conditional",
+        "LeanPML.PML.hasDerivAt_fieldEnergy_zeroTrace_Conditional"
+      ],
+      "scope": "已有真实空间能量和耗散，从 StateHasDerivAt、primitive 主/辅助演化、兼容及空间导数关系与一般 Green 接口推出含边界 HasDerivAt；零迹下边界消失。",
+      "missing": "具体矩形域/Green/迹与正则性实例；不表示 D_c≥0。",
+      "x": 535,
+      "top": 679,
+      "lines": [
+        "条件性空间",
+        "能量恒等式",
+        "Green/正则性",
+        "接口"
+      ],
+      "font_size": 5.3,
+      "printed_page": 11,
+      "type": "条件性空间结论／真实时间求导",
+      "new_tick": true,
+      "draw": {
+        "x": 535,
+        "top": 679,
+        "lines": [
+          "条件性空间",
+          "能量恒等式",
+          "Green/正则性",
+          "接口"
+        ],
+        "font_size": 5.3
+      }
+    },
+    {
+      "id": "two-balance",
+      "page": 12,
+      "location": "(7.8) 右侧真实两层能量恒等式",
+      "module": "LeanPML/PML/BalanceAbstract.lean",
+      "theorems": [
+        "LeanPML.PML.hasDerivAt_energy7_Conditional"
+      ],
+      "scope": "从 I 内原层 primitive 演化，经同源真实邻域求导推出导数层同系统，两层分别零迹，固定同一K，实际证明 HasDerivAt energy7 (-dissipation7) t，t∈interior I。",
+      "missing": "具体矩形 Green/迹/微分交换仍是接口；没有 D7≥0、积分平衡或时间单调性。",
+      "x": 7,
+      "top": 171,
+      "lines": [
+        "条件性两层",
+        "恒等式",
+        "需空间接口",
+        "未证耗散闭合"
+      ],
+      "font_size": 5.3,
+      "printed_page": 12,
+      "type": "条件性空间结论／真实时间求导",
+      "new_tick": true,
+      "draw": {
+        "x": 7,
+        "top": 171,
+        "lines": [
+          "条件性两层",
+          "恒等式",
+          "需空间接口",
+          "未证耗散闭合"
+        ],
+        "font_size": 5.3
+      }
+    },
+    {
+      "id": "spatial-control",
+      "page": 12,
+      "location": "(8.3)",
+      "module": "LeanPML/PML/Coercivity.lean",
+      "theorems": [
+        "LeanPML.PML.gradient_square_le_spatialBudget",
+        "LeanPML.PML.state_norm_sq_le_spatialBudget"
+      ],
+      "scope": "实际加权零延拓与 Λ=∇v+ψ 推出梯度平方≤2B_sp；一般零迹 Poincaré 接口下进一步得到位移平方≤2CP²B_sp。",
+      "missing": "梯度和 Poincaré 的具体矩形实现；第二条不代表已经证明 Poincaré 本身。",
+      "x": 535,
+      "top": 455,
+      "lines": [
+        "空间约束下",
+        "梯度控制",
+        "函数控制需",
+        "Poincaré 接口"
+      ],
+      "font_size": 5.3,
+      "printed_page": 12,
+      "type": "条件性空间结论",
+      "new_tick": true,
+      "draw": {
+        "x": 535,
+        "top": 455,
+        "lines": [
+          "空间约束下",
+          "梯度控制",
+          "函数控制需",
+          "Poincaré 接口"
+        ],
+        "font_size": 5.3
+      }
+    },
+    {
+      "id": "lower-bound",
+      "page": 12,
+      "location": "§8.1 末尾未编号 F_c≥N²/4",
+      "module": "LeanPML/PML/Coercivity.lean",
+      "theorems": [
+        "LeanPML.PML.fieldEnergy_bounds_Conditional"
+      ],
+      "scope": "由旧约束消元、原阈值推出系数界、实际可积密度 Young 估计与零迹 Poincaré 吸收，证明 N²/4≤F_c。",
+      "missing": "具体矩形 Poincaré；非任意独立点态矩阵正定。",
+      "x": 535,
+      "top": 689,
+      "lines": [
+        "条件性下界",
+        "Poincaré 接口"
+      ],
+      "font_size": 5.3,
+      "printed_page": 12,
+      "type": "条件性空间结论",
+      "new_tick": true,
+      "draw": {
+        "x": 535,
+        "top": 689,
+        "lines": [
+          "条件性下界",
+          "Poincaré 接口"
+        ],
+        "font_size": 5.3
+      }
+    },
+    {
+      "id": "upper-bound",
+      "page": 13,
+      "location": "§8.2 末尾未编号 F_c≤N²",
+      "module": "LeanPML/PML/Coercivity.lean",
+      "theorems": [
+        "LeanPML.PML.fieldEnergy_bounds_Conditional"
+      ],
+      "scope": "同一能量/图平方的精确上界；使用原材料与阈值，保留零状态。原文末尾严格 <B_sp 在 B_sp=0 不成立，正式证明采用足够的非严格估计。",
+      "missing": "具体矩形 Poincaré。原文严格号未改动，疑点已记账。",
+      "x": 535,
+      "top": 200,
+      "lines": [
+        "条件性上界",
+        "Poincaré 接口"
+      ],
+      "font_size": 5.3,
+      "printed_page": 13,
+      "type": "条件性空间结论",
+      "new_tick": true,
+      "draw": {
+        "x": 535,
+        "top": 200,
+        "lines": [
+          "条件性上界",
+          "Poincaré 接口"
+        ],
+        "font_size": 5.3
+      }
+    },
+    {
+      "id": "aux-u-phi",
+      "page": 13,
+      "location": "(8.4)",
+      "module": "LeanPML/PML/PhysicalControl.lean",
+      "theorems": [
+        "LeanPML.PML.physicalControl_Conditional"
+      ],
+      "scope": "PhysicalControlBounds.displacement、auxiliary：u 平方≤8CP²E7、物理φ平方和≤4E7。 从原材料阈值、受约束同源图界及实际L²有界乘子推得。",
+      "missing": "给定兼容提升的重构控制；完整原 PDE 等价及提升规范唯一性仍待完成。",
+      "x": 535,
+      "top": 313,
+      "lines": [
+        "兼容重构下",
+        "L² 控制"
+      ],
+      "font_size": 5.7,
+      "printed_page": 13,
+      "type": "条件性空间结论",
+      "new_tick": true,
+      "draw": {
+        "x": 535,
+        "top": 313,
+        "lines": [
+          "兼容重构下",
+          "L² 控制"
+        ],
+        "font_size": 5.7
+      }
+    },
+    {
+      "id": "aux-q",
+      "page": 13,
+      "location": "(8.5)",
+      "module": "LeanPML/PML/PhysicalControl.lean",
+      "theorems": [
+        "LeanPML.PML.physicalControl_Conditional"
+      ],
+      "scope": "PhysicalControlBounds.primitivePolar：实际 q=κu−τP，精确系数16κ²CP²+8κτ²/μ。 从原材料阈值、受约束同源图界及实际L²有界乘子推得。",
+      "missing": "给定兼容提升的重构控制；完整原 PDE 等价及提升规范唯一性仍待完成。",
+      "x": 535,
+      "top": 339,
+      "lines": [
+        "兼容重构下",
+        "L² 控制"
+      ],
+      "font_size": 5.7,
+      "printed_page": 13,
+      "type": "条件性空间结论",
+      "new_tick": true,
+      "draw": {
+        "x": 535,
+        "top": 339,
+        "lines": [
+          "兼容重构下",
+          "L² 控制"
+        ],
+        "font_size": 5.7
+      }
+    },
+    {
+      "id": "aux-z1",
+      "page": 13,
+      "location": "(8.6)",
+      "module": "LeanPML/PML/PhysicalControl.lean",
+      "theorems": [
+        "LeanPML.PML.physicalControl_Conditional"
+      ],
+      "scope": "PhysicalControlBounds.electricMemory：实际 Z1=−εbu，精确8ε²S⁴CP²E7。 从原材料阈值、受约束同源图界及实际L²有界乘子推得。",
+      "missing": "给定兼容提升的重构控制；完整原 PDE 等价及提升规范唯一性仍待完成。",
+      "x": 535,
+      "top": 365,
+      "lines": [
+        "兼容重构下",
+        "L² 控制"
+      ],
+      "font_size": 5.7,
+      "printed_page": 13,
+      "type": "条件性空间结论",
+      "new_tick": true,
+      "draw": {
+        "x": 535,
+        "top": 365,
+        "lines": [
+          "兼容重构下",
+          "L² 控制"
+        ],
+        "font_size": 5.7
+      }
+    },
+    {
+      "id": "aux-z2",
+      "page": 13,
+      "location": "(8.7)",
+      "module": "LeanPML/PML/PhysicalControl.lean",
+      "theorems": [
+        "LeanPML.PML.physicalControl_Conditional"
+      ],
+      "scope": "PhysicalControlBounds.polarMemory：实际 Z2=−bq，精确S⁴(16κ²CP²+8κτ²/μ)E7。 从原材料阈值、受约束同源图界及实际L²有界乘子推得。",
+      "missing": "给定兼容提升的重构控制；完整原 PDE 等价及提升规范唯一性仍待完成。",
+      "x": 535,
+      "top": 391,
+      "lines": [
+        "兼容重构下",
+        "L² 控制"
+      ],
+      "font_size": 5.7,
+      "printed_page": 13,
+      "type": "条件性空间结论",
+      "new_tick": true,
+      "draw": {
+        "x": 535,
+        "top": 391,
+        "lines": [
+          "兼容重构下",
+          "L² 控制"
+        ],
+        "font_size": 5.7
+      }
+    },
+    {
+      "id": "aux-qxy",
+      "page": 13,
+      "location": "(8.8)",
+      "module": "LeanPML/PML/PhysicalControl.lean",
+      "theorems": [
+        "LeanPML.PML.physicalControl_Conditional"
+      ],
+      "scope": "PhysicalControlBounds.magneticAuxiliary：Qx=pφy、Qy=−rφx，平方和≤4S²E7，方向与缩放正确。 从原材料阈值、受约束同源图界及实际L²有界乘子推得。",
+      "missing": "给定兼容提升的重构控制；完整原 PDE 等价及提升规范唯一性仍待完成。",
+      "x": 535,
+      "top": 418,
+      "lines": [
+        "兼容重构下",
+        "L² 控制"
+      ],
+      "font_size": 5.7,
+      "printed_page": 13,
+      "type": "条件性空间结论",
+      "new_tick": true,
+      "draw": {
+        "x": 535,
+        "top": 418,
+        "lines": [
+          "兼容重构下",
+          "L² 控制"
+        ],
+        "font_size": 5.7
+      }
+    }
+  ],
+  "notes": [
+    {
+      "id": "green-interface",
+      "page": 11,
+      "x": 535,
+      "top": 611,
+      "font_size": 5.5,
+      "lines": [
+        "Green 接口",
+        "具体矩形证明",
+        "待完成"
+      ]
+    },
+    {
+      "id": "scope-10",
+      "page": 10,
+      "x": 68,
+      "top": 13,
+      "font_size": 6.2,
+      "lines": [
+        "v0.3.2–3：条件性空间结论；具体矩形接口、耗散闭合与时间单调性仍待完成。"
+      ]
+    },
+    {
+      "id": "scope-11",
+      "page": 11,
+      "x": 68,
+      "top": 13,
+      "font_size": 6.2,
+      "lines": [
+        "v0.3.2：旧勾保留历史范围；现已接通实际空间块，Green 与正则性仍为输入接口。"
+      ]
+    },
+    {
+      "id": "scope-12",
+      "page": 12,
+      "x": 68,
+      "top": 13,
+      "font_size": 6.2,
+      "lines": [
+        "v0.3.2–3：(7.8) 右式现已条件性证明；右侧旧注保留为历史，不包含耗散非负。"
+      ]
+    },
+    {
+      "id": "scope-13",
+      "page": 13,
+      "x": 68,
+      "top": 13,
+      "font_size": 6.2,
+      "lines": [
+        "v0.3.3：重构控制依赖约束与 Poincaré；完整模型等价、最终单调性仍待完成。"
+      ]
+    },
+    {
+      "id": "zero-state-correction",
+      "page": 13,
+      "x": 68,
+      "top": 235,
+      "font_size": 6.2,
+      "lines": [
+        "§8.2：B_sp=0 时严格号不成立；Lean 使用所需非严格估计，保留零状态与原常数。"
+      ]
+    }
+  ]
+}

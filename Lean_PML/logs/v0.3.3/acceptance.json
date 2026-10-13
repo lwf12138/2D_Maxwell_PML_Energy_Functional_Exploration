@@ -1,0 +1,11 @@
+{
+  "stage": "v0.3.3",
+  "stage_status": "completed",
+  "build": "20261013T100156_159842_lake_build",
+  "audit": "20261013T100321_602582_axioms_audit",
+  "new_theorems": 28,
+  "audited_total": 316,
+  "mathematics": "8.3; exact single/two-layer bounds; zero separation; 6.10 and 8.4–8.8 actual L2 reconstruction",
+  "scope": "conditional on explicit Poincare and constraints; concrete rectangle and full PDE equivalence remain",
+  "pdf": "passed; 12 new scoped ticks and 6 notes across stages"
+}

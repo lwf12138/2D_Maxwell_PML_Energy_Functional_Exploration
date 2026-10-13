@@ -1270,3 +1270,48 @@ T18 + T27 + 时间积分接口 → T28 任意两时刻单调性/平衡
 新增 109 条定理进入审计，连同旧 154 条共 263 条。正式构建及独立公理审计均实际通过；最终日志链接见 [README](../README.md) 与 [PROGRESS](../PROGRESS.md)，新增声明完整清单见 [new_theorems.json](../logs/v0.3.1/new_theorems.json)。标准依赖为 propext、Classical.choice、Quot.sound，没有 sorryAx 或自设占位公理。
 
 V7 md/tex/原 PDF、模型合同和锁定配置与上一阶段相同。路线图在进入本轮前只勾选 v0.2.4 四项，v0.3.1–v0.3.3 数学任务没有变化，本轮不改路线图。具体差异及哈希见 [来源核对](../logs/v0.3.1/pdf/source_review.md)。旧 T15/T17 中“积分待完成”等文字保留为历史；只有本表明确列出的积分/求导子结论更新状态，整个 T10/T11/T12/T15/T17/T18 不整体标为完成。
+
+
+## v0.3.2–v0.3.3 追加记录：实际空间条件定理（2026-10-13）
+
+保留上文各阶段当时的范围，不整体覆盖 T 条目。当前声明均以前缀 `LeanPML.PML` 给出；有界实系数算子辅助结果位于 `LeanPML.Analysis.BoundedCoefficient`。它们操作 v0.3.1 的实际 L²、WeightedL2、FieldState、energy7、graphSquare7、dissipation7，而非任意实数代理。
+
+| 条目／来源 | 本轮实际定理及类别 | 原始输入、依赖与剩余接口 |
+|---|---|---|
+| T12，(6.3) | `primitiveMain_first_Conditional`、`primitive_first_Conditional`：真实空间时间求导 | 原层在 I 内的 primitive 方程；SameSourcePath 的真实普通/加权导数；显式梯度/散度交换。输出导数层同系统，仅用于 `interior I`。具体正则性推出交换仍待 v0.4.3 |
+| T13–T15，(7.1)–(7.4) | `electricRate_add_remainder`、`polarRate_add_remainder`、`spatialRate_add_dissipation`、`fieldEnergyRate_blocks`：实际 L²/加权内积抵消 | 电/极化沿用旧块和已证积分定义；实有界乘子自伴和双线性。空间块经可积加权乘积与 a.e. 演化调用旧点态恒等式。零区由物理恢复映射处理，保留 c‖h‖²；没有除以全域吸收下界 |
+| T16，(7.5) | `green_multiplier_Conditional`、`boundary_multiplier_zero_Conditional`：一般 Green 输入的测试/零迹推论 | Green 仍是输入，不是已证明矩形 Green；测试 v、V 在梯度域，Λ 在散度域，迹与边界双配对独立于能量 |
+| T17，(7.6)–(7.7) | `hasDerivAt_fieldEnergy_boundary_Conditional`、`hasDerivAt_fieldEnergy_zeroTrace_Conditional`：真实条件性单层空间能量律 | StateHasDerivAt、primitive 主方程和辅助演化、兼容及其求导、空间关系；κ≠0。低层输入的已导关系在最终同源入口由邻域真实求导取得 |
+| T18，(7.8) | `hasDerivAt_energy7_Conditional`：真实条件性两层能量恒等式 | 只输入原层系统，先调用 T12 导出 first 系统；原层 u/E 和导数层 E/E_t 零迹均使用。固定 K=scaleK。没有 D₇≥0、时间积分平衡或单调性结论 |
+| T19，(8.1)–(8.2) | `polar_energy_bounds_pointwise`、`fieldPolar_bounds`：约束消元后的 Young 及实际积分估计 | 调用旧 `polarEnergy_eq_reduced`、`polar_coefficients_bounds_of_threshold`；原参数阈值推出系数界，兼容从商类转成 a.e. 等式，不直接假设待证界 |
+| T20，(8.3)、§8.1–§8.2 | `gradient_square_le_spatialBudget`、`state_norm_sq_le_spatialBudget`、`fieldEnergy_bounds_Conditional` | 空间约束、已证加权嵌入与零区处理；后两者还用零迹 Poincaré。原材料正性、c≤c_* 推出 c²K≤1，得到精确 N²/4≤F_c≤N² |
+| T21，(6.7) | `energy7_bounds_Conditional`、`graphSquare_zero_Conditional`、`fieldEnergy_zero_Conditional`、`energy7_zero_Conditional` | 同一参数/系数、同源两层分别满足约束。零能量推出全部受控场坐标为零；未安装完整 Norm 实例，不是任意独立点态分量正定 |
+| T29，(6.10)、(8.4)–(8.8) | `physicalControl_Conditional` 的 `PhysicalControlBounds` 七个字段 | 由前述图界及空间控制推出，实际有界乘子重构 Q/Z、实际 L² 磁场缩放，常数逐项保持。原 PDE 双向等价及提升唯一性尚未完成 |
+
+### 本轮空间接口账本（字段是条件，不计为已证分析定理）
+
+| 当前接口 | 数学内容和定义域 | 用途 | 后续具体兑现 |
+|---|---|---|---|
+| `ConditionalGreenDomain.spatial` | 普通 L² 的子模定义域、两个线性梯度分量 | 主方程乘子、空间约束及(8.3) | v0.4.1 具体矩形梯度及零迹域 |
+| `fluxDomain/divergence` | 两个 L² 通量分量组成的受限定义域、线性散度 | primitive 主方程；不要求全 L² 有界 | v0.4.1 H(div) 或光滑通量表示 |
+| `trace/boundary/green` | 域上迹、独立边界数据空间及双线性配对；一般 $\langle v,\mathrm{div}\Lambda\rangle=-\langle\nabla v,\Lambda\rangle+\mathrm{boundary}$ | (7.5)→(7.6)；没有定义成能量残差 | v0.4.1–2 四边迹/Green/PEC |
+| `ConditionalSpatialPath` 域内匹配 | 域内 v/V、通量路径仅在 I 内匹配同源状态；导数是实际 L² 意义 | 合法选择测试函数及散度域成员 | v0.4.3 从正则性构造 |
+| `grad_baseX/Y,grad_firstX/Y,div_base` | 梯度/散度与时间导数的真实 HasDerivAt 交换 | 原层演化求导、导数层空间约束求导 | v0.4.3 |
+| 四个 `trace_*` | u、E、E、E_t 零迹 | 两层边界分别为零 | v0.4.3 从提升初值与可微 PEC 证明 |
+| `ConditionalPoincare.estimate` | 零迹子域上一般函数平方由梯度平方控制 | (8.3)、交叉项吸收、v 的零分离 | v0.4.2；精确 C_P 仍未证明 |
+
+`ConditionalPoincare.ofGreenTrace` 用同一个迹算子的核建立零迹子域。`stateCoercivityConstraints_of_GreenTrace` 及 base/first 桥接使两个阶段的接口一致；它们没有证明一般矩形 Poincaré。
+
+### 原状态控制的准确解释
+
+`physicalControl_of_graph_bound` 是低层计算引理，可输入已经推得的中间图界；正式入口 `physicalControl_Conditional` 实际调用 `energy7_bounds_Conditional` 和 `state_norm_sq_le_spatialBudget`，没有永久把目标控制式作为输入。
+
+`PhysicalControlBounds.physical` 对应 (6.10)，`displacement/auxiliary` 对应 (8.4)，`primitivePolar` 对应 (8.5)，`electricMemory` 对应 (8.6)，`polarMemory` 对应 (8.7)，`magneticAuxiliary` 对应 (8.8)。q 的重构值另证等于 z；Q_x 用 pφ_y，Q_y 用 −rφ_x。这里只控制给定兼容提升的重构，不关闭 T02–T07/T04 的完整原模型等价链。
+
+### 来源细节与验证
+
+V7 md/tex/原 PDF、模型合同及锁文件字节未变；本轮路线图入场仅有用户已有 v0.3.1 勾选差异。§8.2 最后严格 $<B_{\rm sp}$ 在 B_sp=0 时不成立；代码使用充分的非严格估计，保持原 1/4、1 常数和零状态。详见 [来源复核](../logs/v0.3.3/pdf/source_review.md)。
+
+[v0.3.2 构建](../logs/v0.3.2/20261013T095839_225389_lake_build.log)／[独立审计](../logs/v0.3.2/20261013T100104_046897_axioms_audit.log)；[v0.3.3 构建](../logs/v0.3.3/20261013T100156_159842_lake_build.log)／[独立审计](../logs/v0.3.3/20261013T100321_602582_axioms_audit.log)。四条命令均退出 0。v0.3.2 审计 288 条，v0.3.3 审计 316 条（保留旧 263 条，分别增加 25、28 条）；仅标准基础公理。失败及修复过程保存在对应 logs 目录。
+
+T22–T28 的 (9.5)–(9.7)、完整耗散非负、时间单调及积分平衡仍未实现；本轮止于 v0.3.3。

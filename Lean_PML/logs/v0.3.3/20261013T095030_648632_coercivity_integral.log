@@ -1,0 +1,79 @@
+LeanPML/PML/Coercivity.lean:149:8: warning: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+LeanPML/PML/Coercivity.lean:162:53: warning: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+LeanPML/PML/Coercivity.lean:168:57: warning: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+LeanPML/PML/Coercivity.lean:149:8: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+LeanPML/PML/Coercivity.lean:162:53: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+LeanPML/PML/Coercivity.lean:168:57: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+LeanPML/PML/Coercivity.lean:207:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ∫ (a : α), ε / 2 * ↑↑U.V a ^ 2 - 2 * ε * C.c ^ 2 * ↑↑U.v a ^ 2 ∂ν
+in the target expression
+  ∫ (x : α), ((fun x => ε / 2 * ↑↑U.V x ^ 2) - fun x => 2 * ε * C.c ^ 2 * ↑↑U.v x ^ 2) x ∂ν ≤
+    ∫ (x : α), 2 * electricEnergy ε (C.a x) (C.b x) C.c (↑↑U.v x) (↑↑U.V x) ∂ν
+
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+C : SpatialAbsorption α
+ε κ τ μ CP : ℝ
+hp : CoercivityParameters C ε κ τ μ CP
+U : FieldState ν C.wx C.wy
+hV : Integrable (fun x => ↑↑U.V x ^ 2) ν
+hv : Integrable (fun x => ↑↑U.v x ^ 2) ν
+henergy : Integrable (fun x => 2 * electricEnergy ε (C.a x) (C.b x) C.c (↑↑U.v x) (↑↑U.V x)) ν
+hpoint :
+  ∀ (x : α),
+    ε / 2 * ↑↑U.V x ^ 2 - 2 * ε * C.c ^ 2 * ↑↑U.v x ^ 2 ≤ 2 * electricEnergy ε (C.a x) (C.b x) C.c (↑↑U.v x) (↑↑U.V x) ∧
+      2 * electricEnergy ε (C.a x) (C.b x) C.c (↑↑U.v x) (↑↑U.V x) ≤ 2 * ε * ↑↑U.V x ^ 2 + 3 * ε * C.c ^ 2 * ↑↑U.v x ^ 2
+hlower :
+  ∫ (x : α), ((fun x => ε / 2 * ↑↑U.V x ^ 2) - fun x => 2 * ε * C.c ^ 2 * ↑↑U.v x ^ 2) x ∂ν ≤
+    ∫ (x : α), 2 * electricEnergy ε (C.a x) (C.b x) C.c (↑↑U.v x) (↑↑U.V x) ∂ν
+hupper :
+  ∫ (x : α), 2 * electricEnergy ε (C.a x) (C.b x) C.c (↑↑U.v x) (↑↑U.V x) ∂ν ≤
+    ∫ (x : α), ((fun x => 2 * ε * ↑↑U.V x ^ 2) + fun x => 3 * ε * C.c ^ 2 * ↑↑U.v x ^ 2) x ∂ν
+⊢ ε / 2 * ‖U.V‖ ^ 2 - 2 * ε * C.c ^ 2 * ‖U.v‖ ^ 2 ≤ 2 * fieldElectric ν C ε U ∧
+    2 * fieldElectric ν C ε U ≤ 2 * ε * ‖U.V‖ ^ 2 + 3 * ε * C.c ^ 2 * ‖U.v‖ ^ 2
+LeanPML/PML/Coercivity.lean:243:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ∫ (a : α), 1 / (2 * κ) * ↑↑U.R a ^ 2 - 4 * κ * C.c ^ 2 * ↑↑U.v a ^ 2 ∂ν
+in the target expression
+  ∫ (x : α), ((fun x => 1 / (2 * κ) * ↑↑U.R x ^ 2) - fun x => 4 * κ * C.c ^ 2 * ↑↑U.v x ^ 2) x ∂ν ≤
+    ∫ (x : α), 2 * polarEnergy (C.a x) (C.b x) C.c κ τ (↑↑U.R x) (↑↑U.z x) ∂ν
+
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+C : SpatialAbsorption α
+ε κ τ μ CP : ℝ
+hp : CoercivityParameters C ε κ τ μ CP
+U : FieldState ν C.wx C.wy
+hcompat : PolarConstraint κ τ U
+hR : Integrable (fun x => ↑↑U.R x ^ 2) ν
+hv : Integrable (fun x => ↑↑U.v x ^ 2) ν
+henergy : Integrable (fun x => 2 * polarEnergy (C.a x) (C.b x) C.c κ τ (↑↑U.R x) (↑↑U.z x)) ν
+hpoint :
+  ∀ᵐ (x : α) ∂ν,
+    1 / (2 * κ) * ↑↑U.R x ^ 2 - 4 * κ * C.c ^ 2 * ↑↑U.v x ^ 2 ≤
+        2 * polarEnergy (C.a x) (C.b x) C.c κ τ (↑↑U.R x) (↑↑U.z x) ∧
+      2 * polarEnergy (C.a x) (C.b x) C.c κ τ (↑↑U.R x) (↑↑U.z x) ≤ 2 / κ * ↑↑U.R x ^ 2 + 3 * κ * C.c ^ 2 * ↑↑U.v x ^ 2
+hlower :
+  ∫ (x : α), ((fun x => 1 / (2 * κ) * ↑↑U.R x ^ 2) - fun x => 4 * κ * C.c ^ 2 * ↑↑U.v x ^ 2) x ∂ν ≤
+    ∫ (x : α), 2 * polarEnergy (C.a x) (C.b x) C.c κ τ (↑↑U.R x) (↑↑U.z x) ∂ν
+hupper :
+  ∫ (x : α), 2 * polarEnergy (C.a x) (C.b x) C.c κ τ (↑↑U.R x) (↑↑U.z x) ∂ν ≤
+    ∫ (x : α), ((fun x => 2 / κ * ↑↑U.R x ^ 2) + fun x => 3 * κ * C.c ^ 2 * ↑↑U.v x ^ 2) x ∂ν
+⊢ 1 / (2 * κ) * ‖U.R‖ ^ 2 - 4 * κ * C.c ^ 2 * ‖U.v‖ ^ 2 ≤ 2 * fieldPolar ν C κ τ U ∧
+    2 * fieldPolar ν C κ τ U ≤ 2 / κ * ‖U.R‖ ^ 2 + 3 * κ * C.c ^ 2 * ‖U.v‖ ^ 2
+LeanPML/PML/Coercivity.lean:289:35: error: failed to prove positivity/nonnegativity/nonzeroness
+LeanPML/PML/Coercivity.lean:295:33: error: failed to prove positivity/nonnegativity/nonzeroness
+LeanPML/PML/Coercivity.lean:298:66: error: failed to prove positivity/nonnegativity/nonzeroness

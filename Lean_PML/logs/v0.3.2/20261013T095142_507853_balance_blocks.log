@@ -1,0 +1,100 @@
+LeanPML/PML/BalanceBlocks.lean:96:27: warning: This simp argument is unused:
+  ← real_inner_self_eq_norm_sq
+
+Hint: Omit it from the simp argument list.
+  simp only [electricRate, fieldElectricRemainder, electricCoefficient, bcCoefficient, hv,
+      BoundedCoefficient.operator_add, BoundedCoefficient.operator_sub,
+      BoundedCoefficient.operator_const, BoundedCoefficient.operator_mul_const,
+  ̵  ̵ ̵ ̵inner_add_left,
+  ̲  ̲ ̲ ̲inner_add_right, inner_sub_left, real_inner_smul_left,
+  ̵  ̵ ̵ ̵real_inner_smul_right,̵ ̵←̵ ̵r̵e̵a̵l̵_̵i̵n̵n̵e̵r̵_̵s̵e̵l̵f̵_̵e̵q̵_̵n̵o̵r̵m̵_̵s̵q̵]
+
+Note: Simp arguments with `←` have the additional effect of removing the other direction from the simp set, even if the simp argument itself is unused. If the hint above does not work, try replacing `←` with `-` to only get that effect and silence this warning.
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/PML/BalanceBlocks.lean:131:4: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ⟪(C.bCoeff.operator ν) dU.R, U.R⟫_ℝ
+in the target expression
+  (1 * ⟪U.R, dU.R⟫_ℝ + τ * (⟪(C.aCoeff.operator ν) U.R, dU.R⟫_ℝ + C.c * ⟪U.R, dU.R⟫_ℝ) +
+              (1 * ⟪dU.R, U.R⟫_ℝ + τ * (⟪(C.aCoeff.operator ν) U.R, dU.R⟫_ℝ + C.c * ⟪dU.R, U.R⟫_ℝ)) +
+            2 *
+              (C.c * ⟪U.R, U.R⟫_ℝ + τ * ⟪(C.bCoeff.operator ν) U.R, U.R⟫_ℝ +
+                (C.c * ⟪dU.R, U.z⟫_ℝ + τ * ⟪(C.bCoeff.operator ν) dU.R, U.z⟫_ℝ)) +
+          (C.c * ⟪(C.aCoeff.operator ν) U.R, U.z⟫_ℝ + (1 + C.c * τ) * ⟪(C.bCoeff.operator ν) U.z, U.R⟫_ℝ +
+            (C.c * ⟪(C.aCoeff.operator ν) U.R, U.z⟫_ℝ + (1 + C.c * τ) * ⟪(C.bCoeff.operator ν) U.R, U.z⟫_ℝ))) /
+        (2 * κ) +
+      (τ * ⟪dU.R, dU.R⟫_ℝ +
+            (⟪(C.aCoeff.operator ν) U.R, U.R⟫_ℝ - C.c * ⟪U.R, U.R⟫_ℝ +
+              τ * (C.c * ⟪(C.aCoeff.operator ν) U.R, U.R⟫_ℝ - ⟪(C.bCoeff.operator ν) U.R, U.R⟫_ℝ)) +
+          C.c * ⟪(C.bCoeff.operator ν) U.z, U.z⟫_ℝ) /
+        κ =
+    κ⁻¹ * (⟪dU.R, U.R⟫_ℝ + τ * ⟪dU.R, dU.R⟫_ℝ) +
+          κ⁻¹ * (⟪(C.aCoeff.operator ν) U.R, U.R⟫_ℝ + τ * ⟪(C.aCoeff.operator ν) U.R, dU.R⟫_ℝ) +
+        κ⁻¹ * (⟪(C.bCoeff.operator ν) U.z, U.R⟫_ℝ + τ * ⟪(C.bCoeff.operator ν) U.z, dU.R⟫_ℝ) +
+      (C.c * (κ⁻¹ * (⟪dU.R, U.z⟫_ℝ + τ * ⟪dU.R, U.R⟫_ℝ)) +
+          C.c * (κ⁻¹ * (⟪(C.aCoeff.operator ν) U.R, U.z⟫_ℝ + τ * ⟪(C.aCoeff.operator ν) U.R, U.R⟫_ℝ)) +
+        C.c * (κ⁻¹ * (⟪(C.bCoeff.operator ν) U.z, U.z⟫_ℝ + τ * ⟪(C.bCoeff.operator ν) U.z, U.R⟫_ℝ)))
+
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+C : SpatialAbsorption α
+κ τ : ℝ
+U dU : FieldState ν C.wx C.wy
+hκ_ne : κ ≠ 0
+hv : dU.v = U.V
+hz : dU.z = U.R
+hcompat : PolarConstraint κ τ U
+hderived : PolarConstraint κ τ dU
+hposition : U.v = κ⁻¹ • (U.z + τ • U.R)
+hvelocity : U.V = κ⁻¹ • (U.R + τ • dU.R)
+⊢ (1 * ⟪U.R, dU.R⟫_ℝ + τ * (⟪(C.aCoeff.operator ν) U.R, dU.R⟫_ℝ + C.c * ⟪U.R, dU.R⟫_ℝ) +
+              (1 * ⟪dU.R, U.R⟫_ℝ + τ * (⟪(C.aCoeff.operator ν) U.R, dU.R⟫_ℝ + C.c * ⟪dU.R, U.R⟫_ℝ)) +
+            2 *
+              (C.c * ⟪U.R, U.R⟫_ℝ + τ * ⟪(C.bCoeff.operator ν) U.R, U.R⟫_ℝ +
+                (C.c * ⟪dU.R, U.z⟫_ℝ + τ * ⟪(C.bCoeff.operator ν) dU.R, U.z⟫_ℝ)) +
+          (C.c * ⟪(C.aCoeff.operator ν) U.R, U.z⟫_ℝ + (1 + C.c * τ) * ⟪(C.bCoeff.operator ν) U.z, U.R⟫_ℝ +
+            (C.c * ⟪(C.aCoeff.operator ν) U.R, U.z⟫_ℝ + (1 + C.c * τ) * ⟪(C.bCoeff.operator ν) U.R, U.z⟫_ℝ))) /
+        (2 * κ) +
+      (τ * ⟪dU.R, dU.R⟫_ℝ +
+            (⟪(C.aCoeff.operator ν) U.R, U.R⟫_ℝ - C.c * ⟪U.R, U.R⟫_ℝ +
+              τ * (C.c * ⟪(C.aCoeff.operator ν) U.R, U.R⟫_ℝ - ⟪(C.bCoeff.operator ν) U.R, U.R⟫_ℝ)) +
+          C.c * ⟪(C.bCoeff.operator ν) U.z, U.z⟫_ℝ) /
+        κ =
+    κ⁻¹ * (⟪dU.R, U.R⟫_ℝ + τ * ⟪dU.R, dU.R⟫_ℝ) +
+          κ⁻¹ * (⟪(C.aCoeff.operator ν) U.R, U.R⟫_ℝ + τ * ⟪(C.aCoeff.operator ν) U.R, dU.R⟫_ℝ) +
+        κ⁻¹ * (⟪(C.bCoeff.operator ν) U.z, U.R⟫_ℝ + τ * ⟪(C.bCoeff.operator ν) U.z, dU.R⟫_ℝ) +
+      (C.c * (κ⁻¹ * (⟪dU.R, U.z⟫_ℝ + τ * ⟪dU.R, U.R⟫_ℝ)) +
+          C.c * (κ⁻¹ * (⟪(C.aCoeff.operator ν) U.R, U.z⟫_ℝ + τ * ⟪(C.aCoeff.operator ν) U.R, U.R⟫_ℝ)) +
+        C.c * (κ⁻¹ * (⟪(C.bCoeff.operator ν) U.z, U.z⟫_ℝ + τ * ⟪(C.bCoeff.operator ν) U.z, U.R⟫_ℝ)))
+LeanPML/PML/BalanceBlocks.lean:126:43: warning: This simp argument is unused:
+  map_add
+
+Hint: Omit it from the simp argument list.
+  simp only [polarRate, fieldPolarRemainder, polarRCoefficient,
+  ̵  ̵ ̵ ̵polarCrossCoefficient,
+  ̲  ̲ ̲ ̲polarZCoefficient, polarRemainderCoefficient,
+  ̵  ̵ ̵ ̵bcCoefficient, hz, hposition, hvelocity,
+      BoundedCoefficient.operator_add, BoundedCoefficient.operator_sub,
+      BoundedCoefficient.operator_const, BoundedCoefficient.operator_mul_const,
+      BoundedCoefficient.operator_const_mul, map_a̵d̵d̵,̵ ̵m̵a̵p̵_̵smul,
+  ̵  ̵ ̵ ̵inner_add_left, inner_add_right,
+  ̲  ̲ ̲ ̲inner_sub_left,
+  ̵  ̵ ̵ ̵real_inner_smul_left, real_inner_smul_right, ← real_inner_self_eq_norm_sq]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/PML/BalanceBlocks.lean:126:52: warning: This simp argument is unused:
+  map_smul
+
+Hint: Omit it from the simp argument list.
+  simp only [polarRate, fieldPolarRemainder, polarRCoefficient,
+  ̵  ̵ ̵ ̵polarCrossCoefficient,
+  ̲  ̲ ̲ ̲polarZCoefficient, polarRemainderCoefficient,
+  ̵  ̵ ̵ ̵bcCoefficient, hz, hposition, hvelocity,
+      BoundedCoefficient.operator_add, BoundedCoefficient.operator_sub,
+      BoundedCoefficient.operator_const, BoundedCoefficient.operator_mul_const,
+      BoundedCoefficient.operator_const_mul, map_add, m̵a̵p̵_̵s̵m̵u̵l̵,̵
+  ̵ ̵ ̵ ̵ ̵inner_add_left, inner_add_right, inner_sub_left,
+      real_inner_smul_left, real_inner_smul_right, ← real_inner_self_eq_norm_sq]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

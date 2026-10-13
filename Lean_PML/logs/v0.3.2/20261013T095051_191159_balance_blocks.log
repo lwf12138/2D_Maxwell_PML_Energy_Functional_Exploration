@@ -1,0 +1,36 @@
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+LeanPML/PML/BalanceBlocks.lean:91:30: error: unsolved goals
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+C : SpatialAbsorption α
+ε : ℝ
+U dU : FieldState ν C.wx C.wy
+hv : dU.v = U.V
+⊢ ε * ⟪U.V, dU.V⟫_ℝ + ε * C.c * ⟪U.v, dU.V⟫_ℝ + ε * C.c * ⟪U.V, (C.aCoeff.operator ν) U.v⟫_ℝ +
+          ε * ⟪U.V, (C.bCoeff.operator ν) U.v⟫_ℝ +
+        ε * ⟪U.V, (C.aCoeff.operator ν) U.V⟫_ℝ +
+      ε * ⟪U.v, ((bcCoefficient C).operator ν) U.v⟫_ℝ =
+    ε * ⟪U.V, dU.V⟫_ℝ + ε * C.c * ⟪U.v, dU.V⟫_ℝ + ε * C.c * ⟪U.V, (C.aCoeff.operator ν) U.v⟫_ℝ +
+          ε * C.c * ⟪U.v, (C.bCoeff.operator ν) U.v⟫_ℝ +
+        ε * ⟪U.V, (C.bCoeff.operator ν) U.v⟫_ℝ +
+      ε * ⟪U.V, (C.aCoeff.operator ν) U.V⟫_ℝ
+LeanPML/PML/BalanceBlocks.lean:96:27: warning: This simp argument is unused:
+  ← real_inner_self_eq_norm_sq
+
+Hint: Omit it from the simp argument list.
+  simp only [electricRate, fieldElectricRemainder, electricCoefficient, hv,
+      BoundedCoefficient.operator_add, BoundedCoefficient.operator_sub,
+      BoundedCoefficient.operator_const, BoundedCoefficient.operator_mul_const,
+  ̵  ̵ ̵ ̵inner_add_left,
+  ̲  ̲ ̲ ̲inner_add_right, inner_sub_left, real_inner_smul_left,
+  ̵  ̵ ̵ ̵real_inner_smul_right,̵ ̵←̵ ̵r̵e̵a̵l̵_̵i̵n̵n̵e̵r̵_̵s̵e̵l̵f̵_̵e̵q̵_̵n̵o̵r̵m̵_̵s̵q̵]
+
+Note: Simp arguments with `←` have the additional effect of removing the other direction from the simp set, even if the simp argument itself is unused. If the hint above does not work, try replacing `←` with `-` to only get that effect and silence this warning.
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

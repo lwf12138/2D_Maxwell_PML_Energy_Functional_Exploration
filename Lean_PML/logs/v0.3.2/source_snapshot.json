@@ -1,0 +1,15 @@
+{
+  "time": "2026-10-13T09:52:41.464328",
+  "hashes": {
+    "lean-toolchain": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee",
+    "lakefile.toml": "3a3ab926f99cfeb3ae9fa6309696858b0aabb7ce62469de72405a74dd64fab9e",
+    "lake-manifest.json": "6bd522ed18f94813b2e6fb5e7b9ea39d95a5098df2465acc0d815a09bb5dbf33",
+    "ROADMAP_lean_PML_revised.md": "87b017582fcaccbe86d695a42c6fecdbfb67e7b5a1fb835f8e044dee53bd916d",
+    "docs/model_contract.md": "27fdc413425e2b65f0b31a4c4a533d5f52eb24a4af30f18f5fae080a1846fc23",
+    "../results/V7_Maxwell_Debye_PML/V7_global_energy.md": "0a7f73a25cb119eeb75b3e7b3c3f2fbb3b319250f3354ed4dcad0ecff8eff4fb",
+    "../results/V7_Maxwell_Debye_PML/V7_global_energy.tex": "7345e2f2b8558df5f68252985d119465085b01aa8005b0f7c861f0831ab6387a",
+    "../results/V7_Maxwell_Debye_PML/V7_global_energy.pdf": "c6c9978af6d3fbc54ef76b02a5d509e6dda169795c6181d64c7c56ccbe4e3aaa",
+    "../results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf": "9b55183d444b9efa91e873dbbef1d7e73756962106f9c51d0de108f78b49c2ac"
+  },
+  "applicable_instructions": {}
+}

@@ -1,0 +1,58 @@
+✖ [2870/2871] Building LeanPML.PML.BalanceBlocks (12s)
+trace: .> LEAN_PATH=/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Cli/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/batteries/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Qq/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/aesop/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/proofwidgets/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/importGraph/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/plausible/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/mathlib/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean /Users/wcli/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/LeanPML/PML/BalanceBlocks.lean -o /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/BalanceBlocks.olean -i /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/BalanceBlocks.ilean -c /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/BalanceBlocks.c --setup /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/BalanceBlocks.setup.json --json
+error: LeanPML/PML/BalanceBlocks.lean:167:2: linarith failed to find a contradiction
+case h1
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+C : SpatialAbsorption α
+ε κ τ μ : ℝ
+U dU : FieldState ν C.wx C.wy
+gx gy : ↥(ScalarL2 ν)
+hκ_ne : κ ≠ 0
+hv : dU.v = U.V
+hz : dU.z = U.R
+hcompat : PolarConstraint κ τ U
+hderived : PolarConstraint κ τ dU
+hψx : (physicalX ν C) dU.ψx = (C.rCoeff.operator ν) (spatialComponentX U) - (C.pCoeff.operator ν) U.Λx
+hψy : (physicalY ν C) dU.ψy = (C.pCoeff.operator ν) (spatialComponentY U) - (C.rCoeff.operator ν) U.Λy
+hΛx : dU.Λx = gx + (physicalX ν C) dU.ψx
+hΛy : dU.Λy = gy + (physicalY ν C) dU.ψy
+helectric :
+  electricRate ν C ε U dU + fieldElectricRemainder ν C ε U =
+    ε * ⟪dU.V + (C.aCoeff.operator ν) U.V + (C.bCoeff.operator ν) U.v, U.V + C.c • U.v⟫_ℝ
+hpolar :
+  polarRate ν C κ τ U dU + fieldPolarRemainder ν C κ τ U dU.R =
+    ⟪dU.R + (C.aCoeff.operator ν) U.R + (C.bCoeff.operator ν) U.z, U.V + C.c • U.v⟫_ℝ
+hspatial :
+  spatialRate U dU + fieldSpatialDissipation ν C U =
+    ⟪gx + C.c • spatialComponentX U, U.Λx⟫_ℝ + ⟪gy + C.c • spatialComponentY U, U.Λy⟫_ℝ
+hμelectric :
+  μ * (electricRate ν C ε U dU + fieldElectricRemainder ν C ε U) =
+    μ *
+      (ε *
+        (⟪dU.V, U.V + C.c • U.v⟫_ℝ + ⟪(C.aCoeff.operator ν) U.V, U.V + C.c • U.v⟫_ℝ +
+          ⟪(C.bCoeff.operator ν) U.v, U.V + C.c • U.v⟫_ℝ))
+hμpolar :
+  μ * (polarRate ν C κ τ U dU + fieldPolarRemainder ν C κ τ U dU.R) =
+    μ *
+      (⟪dU.R, U.V + C.c • U.v⟫_ℝ + ⟪(C.aCoeff.operator ν) U.R, U.V + C.c • U.v⟫_ℝ +
+        ⟪(C.bCoeff.operator ν) U.z, U.V + C.c • U.v⟫_ℝ)
+a✝ :
+  μ * electricRate ν C ε U dU + μ * polarRate ν C κ τ U dU + spatialRate U dU +
+      (μ * fieldElectricRemainder ν C ε U + μ * fieldPolarRemainder ν C κ τ U dU.R + fieldSpatialDissipation ν C U) <
+    μ *
+          (ε *
+                  (⟪dU.V, U.V + C.c • U.v⟫_ℝ + ⟪(C.aCoeff.operator ν) U.V, U.V + C.c • U.v⟫_ℝ +
+                    ⟪(C.bCoeff.operator ν) U.v, U.V + C.c • U.v⟫_ℝ) +
+                ⟪dU.R, U.V + C.c • U.v⟫_ℝ +
+              ⟪(C.aCoeff.operator ν) U.R, U.V + C.c • U.v⟫_ℝ +
+            ⟪(C.bCoeff.operator ν) U.z, U.V + C.c • U.v⟫_ℝ) +
+        (⟪gx, U.Λx⟫_ℝ + C.c * ⟪spatialComponentX U, U.Λx⟫_ℝ) +
+      (⟪gy, U.Λy⟫_ℝ + C.c * ⟪spatialComponentY U, U.Λy⟫_ℝ)
+⊢ False
+failed
+error: Lean exited with code 1
+Some required targets logged failures:
+- LeanPML.PML.BalanceBlocks
+error: build failed

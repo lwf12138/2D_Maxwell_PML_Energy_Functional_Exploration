@@ -1,0 +1,109 @@
+{
+  "stages": {
+    "v0.3.2": {
+      "build": "20261013T095839_225389_lake_build",
+      "audit": "20261013T100104_046897_axioms_audit",
+      "audited": 288,
+      "preserved_failed_commands": [
+        {
+          "file": "20261013T095037_367571_primitive_check.json",
+          "exit_code": 1
+        },
+        {
+          "file": "20261013T095051_191159_balance_blocks.json",
+          "exit_code": 1
+        },
+        {
+          "file": "20261013T095142_507853_balance_blocks.json",
+          "exit_code": 1
+        },
+        {
+          "file": "20261013T095229_745140_interfaces_build.json",
+          "exit_code": 1
+        },
+        {
+          "file": "20261013T095507_679114_spatial_balance.json",
+          "exit_code": 1
+        },
+        {
+          "file": "20261013T095529_634352_spatial_balance.json",
+          "exit_code": 1
+        },
+        {
+          "file": "20261013T095807_642719_balance_complete.json",
+          "exit_code": 1
+        }
+      ]
+    },
+    "v0.3.3": {
+      "build": "20261013T100156_159842_lake_build",
+      "audit": "20261013T100321_602582_axioms_audit",
+      "audited": 316,
+      "preserved_failed_commands": [
+        {
+          "file": "20261013T094810_326663_coercivity_initial.json",
+          "exit_code": 1
+        },
+        {
+          "file": "20261013T095030_648632_coercivity_integral.json",
+          "exit_code": 1
+        },
+        {
+          "file": "20261013T095439_349726_coercivity_trace_bridge.json",
+          "exit_code": 1
+        },
+        {
+          "file": "20261013T101149_369714_final_checks.json",
+          "exit_code": 1
+        }
+      ]
+    }
+  },
+  "protected_files_unchanged": {
+    "lean-toolchain": true,
+    "lakefile.toml": true,
+    "lake-manifest.json": true,
+    "ROADMAP_lean_PML_revised.md": true,
+    "docs/model_contract.md": true,
+    "../results/V7_Maxwell_Debye_PML/V7_global_energy.md": true,
+    "../results/V7_Maxwell_Debye_PML/V7_global_energy.tex": true,
+    "../results/V7_Maxwell_Debye_PML/V7_global_energy.pdf": true
+  },
+  "formal_modules": [
+    "LeanPML",
+    "LeanPML.Analysis.EnergyCalculus",
+    "LeanPML.Analysis.WeightedL2",
+    "LeanPML.Debye.ScalarEnergy",
+    "LeanPML.PML.BalanceAbstract",
+    "LeanPML.PML.BalanceBlocks",
+    "LeanPML.PML.BalanceInterfaces",
+    "LeanPML.PML.Coefficients",
+    "LeanPML.PML.Coercivity",
+    "LeanPML.PML.Energy",
+    "LeanPML.PML.EnergyIntegrals",
+    "LeanPML.PML.LocalDebye",
+    "LeanPML.PML.LocalElectric",
+    "LeanPML.PML.LocalSpatial",
+    "LeanPML.PML.Obstructions.SingleLayer",
+    "LeanPML.PML.PhysicalControl",
+    "LeanPML.PML.PrimitiveEvolution",
+    "LeanPML.PML.SpatialBalance",
+    "LeanPML.PML.SpatialCoefficients",
+    "LeanPML.PML.State",
+    "LeanPML.PML.TimeInvariants",
+    "LeanPML.PML.Weights",
+    "LeanPML.Time.Constancy",
+    "LeanPML.Time.Monotonicity",
+    "LeanPML.Tutorial.LocalEnergy",
+    "LeanPML.Tutorial.ScalarEnergy"
+  ],
+  "project_module_count_without_root": 25,
+  "audited_formal_names": 316,
+  "new_public_theorems": 53,
+  "placeholder_scan": "passed",
+  "all_new_modules_imported": true,
+  "history_preserved": true,
+  "new_links_valid": true,
+  "pdf_verification": "passed",
+  "next_stage": "v0.3.4 not implemented"
+}

@@ -1,0 +1,53 @@
+LeanPML/PML/Coercivity.lean:47:51: error(lean.invalidField): Invalid field `domain`: The environment does not contain `LeanPML.PML.ConditionalSpatialConstraint.domain`, so it is not possible to project the field `domain` from an expression
+  spatial
+of type
+  ConditionalSpatialConstraint spatial✝ (physicalX ν C) (physicalY ν C) U
+LeanPML/PML/Coercivity.lean:89:8: warning: declaration uses `sorry`
+LeanPML/PML/Coercivity.lean:112:47: error: failed to prove positivity/nonnegativity/nonzeroness
+LeanPML/PML/Coercivity.lean:135:59: error: failed to prove positivity/nonnegativity/nonzeroness
+LeanPML/PML/Coercivity.lean:160:50: error: No goals to be solved
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+LeanPML/PML/Coercivity.lean:162:15: error: unsolved goals
+a b c κ τ v R z : ℝ
+hκ : 0 < κ
+hcompat : z + τ * R = κ * v
+hAR : 3 / 4 ≤ polarCoeffAR a b c τ ∧ polarCoeffAR a b c τ ≤ 5 / 4
+hB : 0 ≤ 1 - a * τ - b * τ ^ 2 ∧ 1 - a * τ - b * τ ^ 2 ≤ 1
+hG : 0 ≤ polarCoeffG a b c τ ∧ polarCoeffG a b c τ ≤ 37 / 64 * c ^ 2
+B : ℝ := 1 - a * τ - b * τ ^ 2
+hBsq : B ^ 2 ≤ 1
+hBscaled : (κ * c * v) ^ 2 * B ^ 2 ≤ (κ * c * v) ^ 2 * 1
+hARlower : 3 / 4 * R ^ 2 ≤ polarCoeffAR a b c τ * R ^ 2
+hARupper : polarCoeffAR a b c τ * R ^ 2 ≤ 5 / 4 * R ^ 2
+hGlower : 0 ≤ κ ^ 2 * polarCoeffG a b c τ * v ^ 2
+hGupper : κ ^ 2 * (polarCoeffG a b c τ * v ^ 2) ≤ κ ^ 2 * (37 / 64 * c ^ 2 * v ^ 2)
+hyoungLower : 0 ≤ (R + 4 * κ * c * B * v) ^ 2
+hyoungUpper : 0 ≤ (R - 2 * κ * c * B * v) ^ 2
+hreduce :
+  polarEnergy a b c κ τ R z =
+    (polarCoeffAR a b c τ * R ^ 2 + 2 * κ * c * (1 - a * τ - b * τ ^ 2) * v * R + κ ^ 2 * polarCoeffG a b c τ * v ^ 2) /
+      (2 * κ)
+hscaled :
+  κ * (2 * polarEnergy a b c κ τ R z) =
+    polarCoeffAR a b c τ * R ^ 2 + 2 * κ * c * B * v * R + κ ^ 2 * polarCoeffG a b c τ * v ^ 2
+hlower : 1 / 2 * R ^ 2 - 4 * κ ^ 2 * c ^ 2 * v ^ 2 ≤ κ * (2 * polarEnergy a b c κ τ R z)
+hupper : κ * (2 * polarEnergy a b c κ τ R z) ≤ 2 * R ^ 2 + 3 * κ ^ 2 * c ^ 2 * v ^ 2
+⊢ κ * polarEnergy a b c κ τ R z * 2 = ?m.1156
+LeanPML/PML/Coercivity.lean:159:6: error: invalid 'calc' step, left-hand side is
+  (1 / (2 * κ) * R ^ 2 - 4 * κ * c ^ 2 * v ^ 2) * κ : ℝ
+but is expected to be
+  κ * (1 / (2 * κ) * R ^ 2 - 4 * κ * c ^ 2 * v ^ 2) : ℝ
+LeanPML/PML/Coercivity.lean:165:6: error: invalid 'calc' step, left-hand side is
+  2 * polarEnergy a b c κ τ R z * κ : ℝ
+but is expected to be
+  κ * (2 * polarEnergy a b c κ τ R z) : ℝ
+LeanPML/PML/Coercivity.lean:167:6: error: invalid 'calc' step, right-hand side is
+  (2 / κ * R ^ 2 + 3 * κ * c ^ 2 * v ^ 2) * κ : ℝ
+but is expected to be
+  κ * (2 / κ * R ^ 2 + 3 * κ * c ^ 2 * v ^ 2) : ℝ
+LeanPML/PML/Coercivity.lean:167:54: error: No goals to be solved

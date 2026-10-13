@@ -1,0 +1,19 @@
+{
+  "stage": "v0.3.2",
+  "command": [
+    "lake",
+    "build",
+    "LeanPML.PML.BalanceInterfaces",
+    "LeanPML.PML.PrimitiveEvolution"
+  ],
+  "command_display": "lake build LeanPML.PML.BalanceInterfaces LeanPML.PML.PrimitiveEvolution",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-13T09:54:38.750866+08:00",
+  "output_file": "20261013T095438_750866_interfaces_build.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-13T09:55:49.685618+08:00",
+  "elapsed_seconds": 70.933
+}

@@ -1,0 +1,20 @@
+{
+  "stage": "v0.3.2",
+  "mathematics_build_audit": "passed",
+  "build": "20261013T095839_225389_lake_build",
+  "audit": "20261013T100104_046897_axioms_audit",
+  "audited_total": 288,
+  "new_theorems": 25,
+  "scope": "conditional actual L2 balance; concrete rectangle interfaces pending",
+  "pdf": "passed; combined scoped marks in logs/v0.3.3/pdf/verification.json",
+  "source_hashes": {
+    "LeanPML.lean": "132ea1efd14a696558190163ba191c384b42b8e97cc8f5d71e539e1bd1538ec2",
+    "Audit.lean": "23153790e7811073a5c593ad2fe243f25a735853c2ffb02e3a059785186de6aa",
+    "LeanPML/PML/BalanceInterfaces.lean": "ce888afcf6a7f81e03c1f478199d9b388f914171480cbd866b5c2cbd71921e9a",
+    "LeanPML/PML/PrimitiveEvolution.lean": "0b2f6aee29bfd30a505e1e8881348eeb378cf7775c5e8e4fee2f2f6ba36bf6a9",
+    "LeanPML/PML/SpatialBalance.lean": "0ea0dfdf07fa6e3f4c3bb838280b9a6b030d997f7e7c69c49a780f02e172906e",
+    "LeanPML/PML/BalanceBlocks.lean": "d8b208a38858bf04b067cea7e97f4728fa191afe34130078990b0b398c572843",
+    "LeanPML/PML/BalanceAbstract.lean": "8adb3558e5e487befcb337791da05c8e16947fb10700a7c0ae126a7bbe099d3f"
+  },
+  "stage_status": "completed"
+}

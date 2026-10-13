@@ -1,0 +1,5 @@
+LeanPML/PML/PrimitiveEvolution.lean:33:42: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  hnear
+has type
+  (𝓝 t).1 {x | (fun s => PolarConstraint κ τ (U s)) x}
+which does not have the necessary form.

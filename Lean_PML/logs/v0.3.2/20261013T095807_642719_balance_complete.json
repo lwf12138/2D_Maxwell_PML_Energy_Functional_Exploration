@@ -1,0 +1,18 @@
+{
+  "stage": "v0.3.2",
+  "command": [
+    "lake",
+    "build",
+    "LeanPML.PML.BalanceAbstract"
+  ],
+  "command_display": "lake build LeanPML.PML.BalanceAbstract",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-13T09:58:07.642719+08:00",
+  "output_file": "20261013T095807_642719_balance_complete.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 1,
+  "status": "finished",
+  "ended_at": "2026-10-13T09:58:25.190975+08:00",
+  "elapsed_seconds": 17.548
+}

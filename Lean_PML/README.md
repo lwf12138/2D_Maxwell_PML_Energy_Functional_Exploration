@@ -1,130 +1,158 @@
-# LeanPML：实际空间、加权状态与能量求导
+# LeanPML：条件性能量恒等式、图范数与原状态控制
 
-用途：说明 v0.3.1 如何将 v0.2 的点态公式接入真实 L² 商空间、空间积分及时间求导。学习说明集中在本文件和代码批注；历史 README 见 [入场快照](logs/v0.3.1/initial_files/README.md)，各阶段记录完整保留于 [PROGRESS](PROGRESS.md)。
+用途：把 V7 §7–§8 的纸面证明与实际 Lean 声明对应起来。历史 README 保存在 [v0.3.2 入场快照](logs/v0.3.2/initial_files/README.md)，历次阶段记录见 [PROGRESS](PROGRESS.md)。
 
-**v0.3.1 已完成：实际构建、公理审计、调用实例与 PDF 验收均通过。** 本轮只到 v0.3.1；没有推进 primitive/Green 能量律。固定 Lean v4.31.0、mathlib 提交 `fabf563a7c95a166b8d7b6efca11c8b4dc9d911f`，未更新依赖。
+**v0.3.2、v0.3.3 已分别通过验收。** 本轮止于 v0.3.3；没有实现 v0.3.4 的梯度估计、耗散闭合或最终单调性。固定 Lean v4.31.0、mathlib `fabf563a7c95a166b8d7b6efca11c8b4dc9d911f`，锁文件未改。
 
-## 本轮实际增加了什么
+## 先读三条主要声明
 
-| 文件 | 实际对象或结论 | 对应来源 |
-|---|---|---|
-| [EnergyCalculus](LeanPML/Analysis/EnergyCalculus.lean) | mathlib 的 `Lp ℝ 2 ν`、有界可测系数乘法、交叉项可积、积分/内积、真实时间求导 | 由 (6.2) 推出，原文未单列的分析步骤 |
-| [WeightedL2](LeanPML/Analysis/WeightedL2.lean) | 平方根坐标闭子空间、完备性、a.e. 重建、连续单射零延拓、加权范数积分与求导 | (5.5)–(5.6)，§7.1 加权链式法则 |
-| [SpatialCoefficients](LeanPML/PML/SpatialCoefficients.lean) | 实际可测 p、r、原始幅度条件、分离变量/矩形入口、正确方向的有界耗散系数 | (5.3)、(5.5)、(7.2) |
-| [State](LeanPML/PML/State.lean) | 实际场状态、代数约束、分量路径导数、同源两层、标明条件性的空间算子域 | (6.1)、(6.3)、(6.6) 的时间接口 |
-| [Energy](LeanPML/PML/Energy.lean) | F_c、E₇、图范数平方候选、真实空间能量求导、单位矩形非零加权路径实例 | (6.2)–(6.5)，仅定义与内积求导 |
-| [EnergyIntegrals](LeanPML/PML/EnergyIntegrals.lean) | 旧块密度可积及积分对应、S 的分量积分非负、D_c/D₇ 合法积分、积分形式求导 | (6.2)、(7.2)、(7.7)–(7.8) 的定义部分 |
+1. [hasDerivAt_energy7_Conditional](LeanPML/PML/BalanceAbstract.lean)：从同源真实路径、原层 primitive 演化和列明的空间接口，推出 $\mathcal E_7'=-\mathcal D_7$。
+2. [fieldEnergy_bounds_Conditional](LeanPML/PML/Coercivity.lean)：从参数阈值、极化与空间约束、零迹 Poincaré，得到 $N(U)^2/4\le F_c[U]\le N(U)^2$。
+3. [physicalControl_Conditional](LeanPML/PML/PhysicalControl.lean)：把同一两层能量用于实际 L² 重构场，得到 (6.10)、(8.4)–(8.8)。
 
-测度用 $\nu$，材料参数仍用 $\mu$。矩形入口为整个
-$\Omega=(x_0,x_1)\times(y_0,y_1)$ 上的二维 Lebesgue 限制测度，包含物理区、边层与角层。一般测度空间上的引理允许更一般可测系数；`SpatialAbsorption.separated` 明确恢复 $p=p(x),r=r(y)$ 的物理模型。`ofAE` 通过截断选择全点满足幅度条件的可测代表，并证明与原函数 a.e. 相同；这没有把合同的几乎处处条件加强为新的物理限制。W¹∞ 空间导数及其用途仍待后续实现。
+读主声明时先看输入与结论，再沿 F12 回看所调用的具名 `have`。推荐文件顺序为：
 
-## 无界权重和零区如何同时保留
+`BalanceInterfaces → PrimitiveEvolution → SpatialBalance / BalanceBlocks → BalanceAbstract → Coercivity → PhysicalControl`。
 
-令 $Z=\{p+r=0\}$。加权状态保存的坐标是
+若尚不熟悉实际空间，先回看 [WeightedL2](LeanPML/Analysis/WeightedL2.lean)、[State](LeanPML/PML/State.lean)、[Energy](LeanPML/PML/Energy.lean) 和 [EnergyIntegrals](LeanPML/PML/EnergyIntegrals.lean)。本轮沿用这些定义，没有另设任意实数 F、D、N。
 
-$$
-X=\sqrt{w}\,\psi\in L^2(\Omega,\nu),\qquad X=0\quad \nu\text{-a.e. 于 }Z.
-$$
+## v0.3.2：怎样从演化得到真实能量律
 
-这是普通 L² 中的具体子空间。它等于“乘以零区示性函数”的有界算子之核，因此闭且完备，继承真实内积。物理辅助场通过
-
-$$
-\psi=(\sqrt w)^{-1}X,\qquad \psi=0\text{ 于 }Z
-$$
-
-恢复。正区 $w\ge 3/2$ 来自 v0.2.1，故逆平方根不超过 1；零区用单独的 a.e. 条件处理。已证明
-
-$$
-\|\psi\|_{L^2}^2\le \|X\|_{L^2}^2
-=\int_\Omega w\psi^2\,d\nu.
-$$
-
-代码同时证明恢复映射是单射、原函数与平方根坐标可以双向恢复、代表元 a.e. 相等不改变状态。这里没有假设 $w$ 有界，也没有对所有普通 L² 函数构造 $\psi\mapsto w\psi$ 的有界算子。只有 $a,b$ 及其有界多项式系数使用 `boundedMul`。
-
-全零吸收时加权辅助空间只有零元；普通场仍存在，空间耗散仍保留 $c(\|h_x\|_2^2+\|h_y\|_2^2)$。两个标量分量的平方范数明确相加，不使用普通乘积类型的 max 范数冒充欧氏范数。
-
-## 从状态槽到真实时间导数
-
-`FieldState` 保存 $v,V,R,z,\psi_x,\psi_y,\Lambda_x,\Lambda_y$。状态槽 $V$ 本身不证明 $V=v_t$；`StateHasDerivAt` 对每个分量提供实际空间范数中的 `HasDerivAt`。加权分量的证据必须在加权空间中成立，逐点可导或普通 L² 可导不能替代。
-
-`SameSourcePath` 保存 base、first、second 及真实导数：
-
-| 论文对象 | Lean 对应 |
+| 文件 | 对应论文与实际工作 |
 |---|---|
-| $U_0=(u,P,q,\varphi)$，速度 $E$，通量 $\lambda$ | `base`：v=u、V=E、R=P、z=q、ψ=φ、Λ=λ |
-| $U_1=(E,P_t,P,\varphi_t)$，速度 $E_t$，通量 $\lambda_t$ | `first`：各槽确实来自 base 的导数 |
-| $U_0$ 耗散中的 $R_t=P_t$ | `first.R` |
-| $U_1$ 耗散中的 $R_t=P_{tt}$ | `second.R` |
+| [BalanceInterfaces](LeanPML/PML/BalanceInterfaces.lean) | (7.5) 的条件性梯度域、散度域、迹与独立边界双线性配对；空间/时间交换与两层零迹 |
+| [PrimitiveEvolution](LeanPML/PML/PrimitiveEvolution.lean) | (6.1)、(6.3)：对邻域内的真实 L² 方程求导，证明导数层满足同样演化 |
+| [SpatialBalance](LeanPML/PML/SpatialBalance.lean) | (7.1)–(7.2)：实际加权内积转成可积乘积积分，按正/零吸收分支抵消 |
+| [BalanceBlocks](LeanPML/PML/BalanceBlocks.lean) | (7.3)–(7.4)：固定实系数乘子自伴，内积展开及极化约束消元；组合三个既有块 |
+| [BalanceAbstract](LeanPML/PML/BalanceAbstract.lean) | (7.6) 的真实单层含边界/零迹求导；(7.8) 的同源两层恒等式 |
 
-导数唯一性给出 first.v=base.V、first.z=base.R。在时间集合内部，对这些邻域等式求导可继续得到导数层的时间坐标对应；不能仅对一个时刻的等式求导。**“导数层满足同一 primitive 系统”仍未证明。**
-
-空间分量目前具体取 $h_i=\Lambda_i-\psi_i\in L^2$。`FieldSpatialConstraint` 使用已构造的零延拓映射连接条件性空间域。该域有明确算子定义域，但尚不是已实现的矩形 H₀¹、弱梯度或零迹；没有把任意 L² 有界算子命名为已实现的 Grad。
-
-## 能量、积分与求导分别证明了什么
-
-$F_c=\mu F_e+\mu F_D+F_{\rm sp}$；电块已包含 $\epsilon/2$，极化块已包含 $1/(2\kappa)$，空间块每项含 $1/2$。`fieldEnergy_eq_integral` 将新的内积定义与旧 `singleLayerEnergy` 密度精确连接；不是另造一套能量。
-
-可积性分别来自普通 L² 平方、L²×L² 的交叉乘积、有界可测系数，以及实际加权成员资格。`fieldEnergyDensity_integrable` 先证明可积，积分表示再拆分求和，不依赖不可积函数积分的总定义。
-
-`hasDerivAt_fieldEnergy` 和 `hasDerivAt_integral_fieldEnergy` 从各分量的真实空间导数推出
+单层实际输入是
 
 $$
-\frac{d}{dt}F_c(U(t))
-=\mu\,\mathrm{electricRate}(U,\dot U)
-+\mu\,\mathrm{polarRate}(U,\dot U)
-+\mathrm{spatialRate}(U,\dot U).
+\mu[\epsilon(v_{tt}+a v_t+bv)+R_t+aR+bz]=\operatorname{div}\Lambda,
+\quad z_t=R,\quad z+\tau R=\kappa v,
 $$
 
-例如固定系数算子 $M$ 的交叉项满足
-$(\langle MX,Y\rangle)'=\langle MX,\dot Y\rangle+\langle M\dot X,Y\rangle$；
-空间平方项贡献 $\langle\Lambda_i,\dot\Lambda_i\rangle+
-\langle\psi_i,\dot\psi_i\rangle_w$。这是空间内积求导，不是先逐点微分再未经证明地交换积分。
+以及 $\Lambda=\nabla v+\psi$、$\psi_{x,t}=r\,\partial_xv-p\Lambda_x$、$\psi_{y,t}=p\,\partial_yv-r\Lambda_y$。代码里所有槽都属于已有实际 L²/加权空间；`StateHasDerivAt` 把导数槽绑定到真实空间范数中的导数。没有加入教学子系统的 $\epsilon E'=-P'$。
 
-论文记号 $N_0^2,N_1^2$ 分别是 `graphSquare` 在 `path.base t`、`path.first t` 上的值；$S_0,S_1$ 分别是 `fieldSpatialDissipation ν C (path.base t)` 与 `fieldSpatialDissipation ν C (path.first t)`。这些都是同一实际空间表达式在同源两层上的应用，没有再传入未解释的实数槽。
+`fieldEnergyRate_blocks` 保留
+$\langle \mathrm{primitiveMain},V+cv\rangle+
+\sum_i\langle \partial_iV+c\partial_iv,\Lambda_i\rangle$。
+随后用一般 Green 关系得到
 
-单层 $D_c$、两层 $D_7$ 已定义为合法积分，**没有证明它们非负**。只证明 (7.2) 的 L² 分量空间耗散积分非负，且全零分支仍有 $c|h|^2$。图范数平方候选 $N^2$ 不直接含独立 $v,z$，尚未对任意原始状态安装范数结构，也没有证明双边能量估计。
+$$
+\operatorname{HasDerivAt}\!\left(t\mapsto F_c[U(t)],
+-D_c[U]+\langle V+cv,\Lambda\cdot n\rangle_{\partial\Omega},t\right).
+$$
 
-材料常数在物理模型中为正；线性积分/求导恒等式对更一般实常数也成立，因此低层分析定理不强加无用正性假设。论文 $K=8\mu(\epsilon+2\kappa)C_P^2$ 在 `energy7` 等专用组合中固定；$C_P$ 仍是参数，并未证明矩形 Poincaré。
+Green 的边界配对独立给出，未定义成能量残差。零迹通过迹与配对的线性性消去。电块已经包含 $\epsilon/2$，极化块包含 $1/(2\kappa)$；两者外乘 $\mu$，空间块不外乘 $\mu$。低层恒等式只需 $\kappa\ne0$，不需要全部小量或材料正性条件。
 
-实例 `SpaceExample.hasDerivAt_energy` 位于整个单位矩形，取 $c=4,p=1,r=0$。平方根坐标 seed=1 是实际非零加权成员，加权坐标路径 $X_x(t)=(t+1)\,\mathrm{seed}$ 非恒定，对应物理分量 $\psi_x(t)=(t+1)/2$，实际调用单层能量求导定理。该实例只检验空间能量计算接口，不声称满足 PDE 或空间兼容约束。
+`primitive_first_Conditional` 从时间集合 I 内原层方程推出内部时刻的导数层方程。使用邻域等式、真实导数唯一性、固定系数乘法以及明确的梯度/散度交换，不能只对单点等式求导。第二层极化与空间约束在开集 `interior I` 上再次求导，因而所需高阶条件没有省略。原层的 $u,E$ 和导数层的 $E,E_t$ 零迹各自使用。
 
-## 建议先读这三条声明
+最终 `hasDerivAt_energy7_Conditional` 复用 `hasDerivAt_energy7`，由两层真实单层结论识别其导数值，固定同一个 $K=8\mu(\epsilon+2\kappa)C_P^2$，得到
 
-1. `LeanPML.Analysis.physicalL2_norm_sq_le`：从权重下界得到实际嵌入；先看紧邻的 `physicalL2` 定义。
-2. `LeanPML.PML.fieldEnergy_eq_integral`：内积能量与旧密度积分一一对应；可沿调用回看每块的可积性。
-3. `LeanPML.PML.hasDerivAt_fieldEnergy`：如何把内积、加权范数求导组装成整个单层求导；再看积分版本及矩形实例。
+$$
+\operatorname{HasDerivAt}(\mathcal E_7,-\mathcal D_7(t),t).
+$$
 
-建议文件顺序：SpatialCoefficients 的原始参数 → WeightedL2 → State → Energy 的定义 → EnergyIntegrals 的表示定理 → Energy 的求导与实例。EnergyCalculus 是被调用的基础工具，可按 F12 从使用处跳转，不必一开始逐条读完。
+这个定理没有假设或证明 $\mathcal D_7\ge0$。因此现在仍不能宣布 $\mathcal E_7$ 单调不增。
 
-VS Code 打开整个工程目录。在 Lean 文件里运行 `Lean 4: InfoView: Display Goal`，把光标停在 `have`、`filter_upwards`、`rw`、`exact` 前后，看上下文与 `⊢`。`filter_upwards` 把多个 a.e. 事实在同一满测集上合并；`ring` 只整理已经建立分析依据后的实数代数。F12 跳至项目或 mathlib 声明，悬停查看参数。保存文件、运行构建后，若导入仍旧，执行 `Lean 4: Server: Restart File`；无需重新安装或更新依赖。
+## 哪些空间内容仍是条件接口
 
-关键 mathlib 声明（相对工程根目录的固定源码）：
+| 接口 | 数学内容与使用处 | 当前状态／后续 |
+|---|---|---|
+| `ConditionalSpatialDomain.domain`、`componentX/Y` | 受限梯度定义域和线性分量，连接 $\Lambda=\nabla v+\psi$ | 具体矩形弱/光滑梯度待 v0.4.1 |
+| `ConditionalGreenDomain.fluxDomain/divergence` | 受限散度定义域及线性散度，主方程右侧 | 具体 H(div) 或光滑通量待 v0.4.1 |
+| `trace/boundary/green` | 一般测试函数与通量的 Green 公式，边界空间及独立双线性配对 | 当前输入；具体矩形迹与 Green 待 v0.4.1–2 |
+| `ConditionalSpatialPath` 的域成员及匹配等式 | 域内路径在 I 内对应实际 $u,E,E_t,\lambda,\lambda_t$ | 当前正则性输入，不能从路径名称推断 |
+| `grad_baseX/Y, grad_firstX/Y, div_base` | 实际 L² 的梯度/散度与时间求导交换 | 当前输入；v0.4.3 从具体正则性证明 |
+| `trace_base_v/V, trace_first_v/V` | 原层 $u,E$、导数层 $E,E_t$ 各自零迹 | 当前输入；v0.4.3 从提升、PEC 及时间正则性证明 |
+| `ConditionalPoincare.estimate` | 零迹梯度定义域上的 $\|v\|^2\le C_P^2\|\nabla v\|^2$ | 当前输入；精确矩形常数待 v0.4.2 |
 
-- `MeasureTheory.Lp`、`Lp.ext`、`Lp.memLp`：`.lake/packages/mathlib/Mathlib/MeasureTheory/Function/LpSpace/Basic.lean`。
-- `MeasureTheory.L2.inner_def`、`L2.integrable_inner`、`MemLp.integrable_sq`：`.../MeasureTheory/Function/L2Space.lean`。
-- `HasDerivAt.inner`、`HasDerivAt.norm_sq`：`.../Analysis/InnerProductSpace/Calculus.lean`。
-- `ContinuousLinearMap.hasFDerivAt`：`.../Analysis/Calculus/FDeriv/Linear.lean`。
-- `integral_add`、`integral_const_mul`、`integral_congr_ae`：`.../MeasureTheory/Integral/Bochner/Basic.lean`。
-- `Measure.prod_prod`：`.../MeasureTheory/Measure/Prod.lean`；`Real.volume_Ioo`：`.../MeasureTheory/Measure/Lebesgue/Basic.lean`。
+已证明的是这些接口**成立时的结论**，不是接口字段本身。梯度和散度没有被当作整个 L² 上的有界算子。`ConditionalPoincare.ofGreenTrace` 明确取 `ker G.trace` 为零迹子域，桥接两阶段同一套边界含义；它不从 Green 推出 Poincaré。
 
-## 复现与验证记录
+## v0.3.3：空间约束为什么不可省
+
+令 $B_{\rm sp}=\|\Lambda\|^2+\|\psi\|_w^2$。已有加权恢复映射给出 $\|\psi\|_2^2\le\|\psi\|_w^2$，再用 $\nabla v=\Lambda-\psi$ 得到 (8.3)：
+
+$$
+\|\nabla v\|^2\le 2B_{\rm sp},\qquad
+\|v\|^2\le2C_P^2B_{\rm sp}.
+$$
+
+第二条还需要上述零迹 Poincaré 接口。正吸收处的 $w_i\ge1$ 不被错误地搬到零区；零区由加权恢复的 a.e. 零延拓处理。无界 w 只由加权空间承载，所有普通 L² 系数乘子都是已证有界的 a、b 等。
+
+`CoercivityParameters` 只记录材料正性、$C_P>0$ 和原阈值 $c\le c_*$；吸收非负及幅度条件来自 `SpatialAbsorption`。主定理依次调用 (8.1) 极化消元、(8.2) 系数界、Young 估计、实际可积密度的积分序关系，以及 $c^2K\le1$。不利项
+$2\mu(\epsilon+2\kappa)c^2\|v\|^2$ 被吸收到 $B_{\rm sp}/2$，得到精确的
+
+$$
+\frac14N(U)^2\le F_c[U]\le N(U)^2,\qquad
+\frac14(N_0^2+KN_1^2)\le\mathcal E_7\le N_0^2+KN_1^2.
+$$
+
+**原文细节：** §8.2 最后写的严格 $3(\epsilon+\kappa)B_{\rm sp}/(4A)<B_{\rm sp}$ 在 $B_{\rm sp}=0$ 时不成立。代码使用目标所需的非严格估计，保留零状态和原常数；源文未改。
+
+`graphSquare_zero_Conditional`、`fieldEnergy_zero_Conditional`、`energy7_zero_Conditional` 分别说明图平方、单层能量、两层能量为零时，受约束状态的八个实际坐标为零。其中 v 的零性要用 Poincaré，z 的零性要用极化约束。这不是任意独立点态分量的矩阵正定，也没有为候选平方表达式安装未经证明的 Norm 实例。
+
+## 原八变量及辅助变量受到什么控制
+
+`PhysicalControl.lean` 的重构使用真实 L² 标量乘法与有界空间系数乘子：
+
+$$
+E=U_0.V,\quad P=U_0.R,\quad
+H_x=-\Lambda_y/\mu,\quad H_y=\Lambda_x/\mu,\quad
+q=\kappa u-\tau P,
+$$
+$$
+Z_1=-\epsilon bu,\quad Z_2=-bq,\quad
+Q_x=p\phi_y,\quad Q_y=-r\phi_x.
+$$
+
+在极化兼容下另证重构 q 等于状态坐标 z；磁场缩放关系也实际核验。`physicalControl_Conditional` 的输出 `PhysicalControlBounds` 逐项为：
+
+| 论文 | 输出字段与精确结论 |
+|---|---|
+| (6.10) | `physical`：$\epsilon\|E\|^2+\mu(\|H_x\|^2+\|H_y\|^2)+\kappa^{-1}\|P\|^2\le(4/\mu)\mathcal E_7$ |
+| (8.4) | `displacement/auxiliary`：$\|u\|^2\le8C_P^2\mathcal E_7$，$\|\phi\|^2\le4\mathcal E_7$ |
+| (8.5) | `primitivePolar`：$\|q\|^2\le(16\kappa^2C_P^2+8\kappa\tau^2/\mu)\mathcal E_7$ |
+| (8.6) | `electricMemory`：$\|Z_1\|^2\le8\epsilon^2S^4C_P^2\mathcal E_7$ |
+| (8.7) | `polarMemory`：$\|Z_2\|^2\le S^4(16\kappa^2C_P^2+8\kappa\tau^2/\mu)\mathcal E_7$ |
+| (8.8) | `magneticAuxiliary`：$\|Q_x\|^2+\|Q_y\|^2\le4S^2\mathcal E_7$ |
+
+这是给定兼容提升的单向 L² 控制。原八变量 PDE 与 primitive 的完整双向等价、全部五不变量的场层证明、提升规范唯一性、解存在唯一性仍未完成。也没有反向的任意裸八变量 L² 上界。
+
+## 学习操作与复现
+
+在 VS Code 中打开整个工程。保存 Lean 文件，把光标依次放在 `have`、`rw`、`filter_upwards`、`calc` 前后，在 InfoView 看上下文和 `⊢`；如果未显示，执行 `Lean 4: InfoView: Display Goal`。F12 跳转到声明，悬停核对隐式参数。构建后导入未刷新时执行 `Lean 4: Server: Restart File`，必要时重新打开文件；不要更新依赖来处理缓存。
+
+关键固定版 mathlib 位置：
+
+- `HasDerivAt.unique`、`HasDerivAt.congr_of_eventuallyEq`：`.lake/packages/mathlib/Mathlib/Analysis/Calculus/Deriv/Basic.lean`。
+- `HasFDerivAt.comp_hasDerivAt`：`.../Analysis/Calculus/Deriv/Comp.lean`。
+- `HasDerivAt.inner / norm_sq`：`.../Analysis/InnerProductSpace/Calculus.lean`。
+- `integral_mono_ae`（当前第 617 行）、`integral_add`、`integral_congr_ae`：`.../MeasureTheory/Integral/Bochner/Basic.lean`。
+- `Lp.coeFn_add / coeFn_smul / ext`：`.../MeasureTheory/Function/LpSpace/Basic.lean`。
+
+mathlib 提供微积分与测度基础；本项目 v0.3.1 提供具体加权空间、合法积分和能量求导；本轮新增的是 primitive/Green 抵消、约束下能量上下界与重构控制。`ring` 整理代数，`linarith/nlinarith` 合并已建立的等式或不等式，不能替代空间分析接口。
 
 ~~~sh
 cd '/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML'
-python3 scripts/run_logged.py --stage v0.3.1 lake_build lake build
-python3 scripts/run_logged.py --stage v0.3.1 axioms_audit lake env lean Audit.lean
+python3 scripts/run_logged.py --stage v0.3.2 lake_build lake build
+python3 scripts/run_logged.py --stage v0.3.2 axioms_audit lake env lean Audit.lean
+python3 scripts/run_logged.py --stage v0.3.3 lake_build lake build
+python3 scripts/run_logged.py --stage v0.3.3 axioms_audit lake env lean Audit.lean
 ~~~
 
-[最终构建](logs/v0.3.1/20261013T002136_137117_lake_build.log)与[独立公理审计](logs/v0.3.1/20261013T002105_759533_axioms_audit.log)均退出 0。正式导入包含 18 个项目模块，审计旧 154 条与新增 109 条，共 263 条实际结果；没有占位公理。修改页均已渲染检查，见 [PDF 验收](logs/v0.3.1/pdf/verification.json)。
+当前树包含两个阶段；重新运行会检查完整当前工程。每次生成独立日志和 JSON，不覆盖历史。主要定理均由 `LeanPML.lean` 的正式导入链进入默认构建，`Audit.lean` 保留旧审计并增加本轮声明。标准 `propext`、`Classical.choice`、`Quot.sound` 允许，检查没有 `sorryAx` 或自定义占位公理。
 
-实际失败及成功检查全部保存在 [logs/v0.3.1](logs/v0.3.1)，每个 JSON 保存命令、工作目录、退出码与对应完整输出。早期新 import 缺失缓存、API 改写及实例推断失败均保留；曾主动中断过量导入的依赖构建，再收窄 import 编译固定版本，没有改锁文件。
+[v0.3.2 构建](logs/v0.3.2/20261013T095839_225389_lake_build.log)／[独立审计](logs/v0.3.2/20261013T100104_046897_axioms_audit.log)；[v0.3.3 构建](logs/v0.3.3/20261013T100156_159842_lake_build.log)／[独立审计](logs/v0.3.3/20261013T100321_602582_axioms_audit.log)。四条命令均退出 0。v0.3.2 审计 288 条，v0.3.3 审计 316 条（保留旧 263 条，分别增加 25、28 条）；仅标准基础公理。失败及修复过程保存在对应 logs 目录。
 
-[最终交付核对](logs/v0.3.1/final_checks.json)同时检查导入覆盖、全部新增审计、受保护文件哈希、历史保留和文档链接。
+## PDF 与下一阶段
 
-新增正式模块须接入 `LeanPML.lean` 导入链，在 `Audit.lean` 添加相应完整定理名后实际构建、审计。标准 `propext`、`Classical.choice`、`Quot.sound` 不属于占位证明；检查要求没有 `sorryAx` 或自定义占位公理。
+[指定 PDF 副本](../results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf)已更新：第 10–13 页新增 12 个带范围红勾、6 条说明。18 页、150 项既有批注与正文保留，共 168 项批注；四页渲染检查通过，见 [PDF 验收](logs/v0.3.3/pdf/verification.json)。标记分别覆盖 (6.7)、(6.10)、(7.6)、(7.8)、(8.3)、§8.1–§8.2 与 (8.4)–(8.8) 的条件性结论。Green 本身只作接口说明，旧“待完成”文字保留并说明历史属性。
 
-## PDF、范围与下一阶段
+[定理与接口清单](docs/theorem_inventory.md)、[结论账本](docs/claim_ledger.md)、[PDF 标注账本](docs/pdf_formalization_marks.md)逐项登记当前条件性范围，不覆盖旧历史。具体矩形空间分析尚待 v0.4，原模型完整对应亦未完成。
 
-[PDF 账本](docs/pdf_formalization_marks.md)区分定义录入、实际分析结论与完整 PDE 结论；[指定副本](../results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf)已在最终构建/审计通过后更新。本阶段在第 8、9、11 页新增 4 个有范围红勾，分别标加权嵌入、实际积分表示、加权路径求导和空间分量积分非负；第 8、9、11、12 页另有定义/范围说明。18 页及 141 项旧批注保留，共 150 项批注。没有标能量律、正定性或单调性全部完成。
-
-下一阶段 **v0.3.2** 的入口为 `StateHasDerivAt`、`hasDerivAt_integral_fieldEnergy` 及各旧局部块：输入真正的 primitive 演化和逐项列出的 Green/零迹接口，证明单层导数关系，并证明同源导数层满足相同演化。具体矩形弱梯度/零迹、时间与空间微分交换、Green/PEC、Poincaré、图范数双边估计、完整两层耗散非负、最终单调性，以及原八变量对应/解存在唯一性仍未完成。本轮不实现这些下一阶段内容。
+下一阶段 **v0.3.4** 入口是现有 primitive 辅助演化、同源导数层、实际空间耗散以及 `θ_x,θ_y` 分配权重。目标为 (9.5) 的
+$\|\nabla E\|^2\le3J(U_1)+3S^2J(U_0)$，
+并证明 $\mathscr S[U]\ge(c-S)J(U)\ge3cJ(U)/4$；本轮没有实现这些结果。之后 v0.3.5 才闭合耗散预算并证明单调性和积分平衡。

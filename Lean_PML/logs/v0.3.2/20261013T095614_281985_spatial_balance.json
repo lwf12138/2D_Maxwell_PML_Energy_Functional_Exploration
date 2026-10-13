@@ -1,0 +1,19 @@
+{
+  "stage": "v0.3.2",
+  "command": [
+    "lake",
+    "env",
+    "lean",
+    "LeanPML/PML/SpatialBalance.lean"
+  ],
+  "command_display": "lake env lean LeanPML/PML/SpatialBalance.lean",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-13T09:56:14.281985+08:00",
+  "output_file": "20261013T095614_281985_spatial_balance.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-13T09:56:23.986631+08:00",
+  "elapsed_seconds": 9.704
+}

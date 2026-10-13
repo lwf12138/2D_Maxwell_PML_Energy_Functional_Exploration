@@ -1,0 +1,38 @@
+{
+  "method": "Poppler 150 dpi PNG; root inspected every modified page with view_image",
+  "pages": {
+    "10": {
+      "render": "after-10.png",
+      "tick_visible": true,
+      "scope_readable": true,
+      "formula_uncovered": true,
+      "no_clipping": true,
+      "old_annotations_preserved": true
+    },
+    "11": {
+      "render": "after-11.png",
+      "tick_visible": true,
+      "scope_readable": true,
+      "formula_uncovered": true,
+      "no_clipping": true,
+      "old_annotations_preserved": true
+    },
+    "12": {
+      "render": "after-12.png",
+      "tick_visible": true,
+      "scope_readable": true,
+      "formula_uncovered": true,
+      "no_clipping": true,
+      "old_annotations_preserved": true
+    },
+    "13": {
+      "render": "after-13.png",
+      "tick_visible": true,
+      "scope_readable": true,
+      "formula_uncovered": true,
+      "no_clipping": true,
+      "old_annotations_preserved": true
+    }
+  },
+  "notes": "p11旧“积分待完成”和p12旧“右式能量律待完成”保留；新增顶部说明其历史属性与当前条件性范围。"
+}

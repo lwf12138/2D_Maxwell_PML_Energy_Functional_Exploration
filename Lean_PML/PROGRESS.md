@@ -1,3 +1,59 @@
+# 2026-10-13：v0.3.2–v0.3.3 分阶段验收完成
+
+用途：记录本轮真实条件性能量律、图范数与重构控制的实现和验证；下方全部历史原样保留。当前止于 v0.3.3，未进入 v0.3.4，没有提交、推送、依赖更新或新增 reading_guide。
+
+## v0.3.2：已完成
+
+新增五个正式模块：[BalanceInterfaces](LeanPML/PML/BalanceInterfaces.lean)、[PrimitiveEvolution](LeanPML/PML/PrimitiveEvolution.lean)、[SpatialBalance](LeanPML/PML/SpatialBalance.lean)、[BalanceBlocks](LeanPML/PML/BalanceBlocks.lean)、[BalanceAbstract](LeanPML/PML/BalanceAbstract.lean)，新增 25 条公开定理。
+
+实际完成：从原层 primitive 演化和真实普通/加权 L² 导数出发，组合既有三个块；一般 Green 下得到 (7.6) 含边界真实求导，零迹下消去边界。对邻域内原方程真实求导，推出同源导数层同系统，并逐层使用 u/E/E_t 零迹，最终证明 (7.8) 的 `HasDerivAt energy7 (-dissipation7 …) t`。只输入原层系统，不把 first 层 PDE 或目标能量律作为独立假设。
+
+条件接口为受限梯度/散度域、迹与独立边界配对、一般 Green、梯度/散度时间交换以及两层域成员与零迹。具体矩形实现待 v0.4.1–3。未证明 D₇≥0 或单调性。
+
+- [默认构建](logs/v0.3.2/20261013T095839_225389_lake_build.log)／[命令与退出码](logs/v0.3.2/20261013T095839_225389_lake_build.json)：退出 0，2877 个任务。
+- [独立公理审计](logs/v0.3.2/20261013T100104_046897_axioms_audit.log)／[元数据](logs/v0.3.2/20261013T100104_046897_axioms_audit.json)：退出 0，共 288 条结果（原 263 + 新 25）。
+- [新增定理索引](logs/v0.3.2/new_theorems.json)、[阶段验收](logs/v0.3.2/acceptance.json)。
+- 编译修复包括有界系数的 bc 展开、自伴内积方向、空间块配对展开及导入产物缺失；实际失败与修复日志均保留。未放宽数学结论。
+
+## v0.3.3：已完成
+
+新增 [Coercivity](LeanPML/PML/Coercivity.lean)、[PhysicalControl](LeanPML/PML/PhysicalControl.lean)，新增 28 条公开定理；两个阶段共新增 53 条。实际完成：
+
+1. (8.3)：空间约束与已有零延拓嵌入推出梯度控制；明确零迹 Poincaré 下推出位移控制。
+2. (8.1) 消元、(8.2) 原阈值系数界、Young 与实际积分序关系，得到单层精确 $N^2/4\le F_c\le N^2$。
+3. 同一参数、同源两层得到 (6.7)；图平方或能量为零时全部受约束坐标为零。不安装未经证明的 Norm 实例。
+4. 实际 L² 重构得到 (6.10)、(8.4)–(8.8)，保持所有原常数、Q 方向及 μ/ε/κ 缩放。低层中间图界在正式入口中从原参数与约束推出。
+5. `ConditionalPoincare.ofGreenTrace` 用迹算子之核统一两个阶段的零迹接口；未声称由 Green 已证 Poincaré。
+
+- [默认构建](logs/v0.3.3/20261013T100156_159842_lake_build.log)／[命令与退出码](logs/v0.3.3/20261013T100156_159842_lake_build.json)：退出 0，2879 个任务，包含全部 v0.3.2 模块。
+- [独立公理审计](logs/v0.3.3/20261013T100321_602582_axioms_audit.log)／[元数据](logs/v0.3.3/20261013T100321_602582_axioms_audit.json)：退出 0，共 316 条结果。
+- [新增定理索引](logs/v0.3.3/new_theorems.json)、[阶段验收](logs/v0.3.3/acceptance.json)。
+- 两次审计只出现标准 propext、Classical.choice、Quot.sound，没有 sorryAx 或自定义占位公理。
+- 真实失败保存在各阶段目录，包括一次并行开发中短暂缺失 .olean，随后转为串行整体验证；锁文件与数学条件未改。
+
+原文 §8.2 末尾严格 $<B_{\rm sp}$ 在零状态下不成立。本轮使用目标所需非严格估计，保留零状态和原 1/4、1 常数。V7 md/tex/原 PDF 与上阶段一致；入场路线图仅有用户已有 v0.3.1 五个复选框变动，本轮没有改路线图。见 [入场哈希](logs/v0.3.2/source_snapshot.json) 和 [来源复核](logs/v0.3.3/pdf/source_review.md)。
+
+## PDF 与最终保护检查
+
+在两阶段实际构建/审计通过后才编辑指定副本。18 页与原 150 项批注完整保留，在实际/印刷第 10–13 页新增 12 个范围红勾和 6 条说明，共 168 项批注。原始 md/tex/pdf 未动。旧“待完成”标记原样保留，并增加当前范围说明。
+
+- 第 10 页：(6.7) 条件性图范数界、(6.10) 兼容重构 L² 控制。
+- 第 11 页：(7.6) 条件性空间能量恒等式；(7.5) 只标 Green 接口说明。
+- 第 12 页：(7.8) 条件性两层恒等式、(8.3) 空间约束/Poincaré 控制、§8.1 条件性下界。
+- 第 13 页：§8.2 条件性上界、(8.4)–(8.8) 逐项重构控制及严格号的零状态说明。
+- 未给 (6.8)–(6.9)、(9.5)–(9.7)、耗散非负或最终单调性添加整体完成勾。
+
+[PDF 账本](docs/pdf_formalization_marks.md)逐项给公式、完整 Lean 名称、实际假设、剩余接口和证据。
+[备份及哈希](logs/v0.3.3/pdf/backup.json)、[标注计划](logs/v0.3.3/pdf/annotation_plan.json)、[结构/证据验证](logs/v0.3.3/pdf/verification.json)、[四页视觉验收](logs/v0.3.3/pdf/visual_review.json)均已保存；定位检查无原文遮挡，150 dpi 图逐页检查无裁切或字体缺失。
+
+[最终一致性检查](logs/v0.3.3/final_checks.json)核对正式导入、全部审计、保护文件、历史保留与链接。说明集中在 [README](README.md)；实际接口在 [theorem_inventory](docs/theorem_inventory.md)、[claim_ledger](docs/claim_ledger.md)追加登记。
+
+## 下一阶段（本轮未开始）
+
+v0.3.4：从辅助演化和同源梯度关系构造 J 的实际积分，使用 θ 分配权重推导 (9.5)，包括零吸收分支及 S≥3cJ/4。两类耗散预算闭合、单调性和积分平衡留到 v0.3.5。具体矩形 Green/Poincaré/迹与微分交换、完整原 PDE 对应和提升唯一性仍待后续。
+
+---
+
 # 2026-10-13：v0.3.1 实际内积、加权状态与能量定义
 
 用途：记录本阶段真实函数空间、合法积分、时间求导、构建/审计及 PDF 范围标注。下方旧阶段记录完整保留，“当前/下一阶段”均指记录当时。

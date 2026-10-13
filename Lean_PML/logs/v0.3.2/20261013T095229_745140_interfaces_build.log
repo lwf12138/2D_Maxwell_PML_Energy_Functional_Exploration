@@ -1,0 +1,31 @@
+✖ [2867/2868] Building LeanPML.PML.BalanceInterfaces (28s)
+trace: .> LEAN_PATH=/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Cli/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/batteries/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Qq/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/aesop/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/proofwidgets/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/importGraph/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/plausible/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/mathlib/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean /Users/wcli/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/LeanPML/PML/BalanceInterfaces.lean -o /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/BalanceInterfaces.olean -i /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/BalanceInterfaces.ilean -c /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/BalanceInterfaces.c --setup /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/BalanceInterfaces.setup.json --json
+error: LeanPML/PML/BalanceInterfaces.lean:71:6: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ⟪?y, G.divergence Λ⟫_ℝ
+in the target expression
+  ⟪G.divergence Λ, ↑V + c • ↑v⟫_ℝ + ⟪G.spatial.componentX V + c • G.spatial.componentX v, (↑Λ).1⟫_ℝ +
+      ⟪G.spatial.componentY V + c • G.spatial.componentY v, (↑Λ).2⟫_ℝ =
+    (G.boundary (G.trace (V + c • v))) Λ
+
+α : Type u_1
+inst✝² : MeasurableSpace α
+ν : Measure α
+Boundary : Type u_2
+inst✝¹ : AddCommGroup Boundary
+inst✝ : Module ℝ Boundary
+G : ConditionalGreenDomain ν Boundary
+c : ℝ
+v V : ↥G.spatial.domain
+Λ : ↥G.fluxDomain
+hgreen :
+  ⟪↑V + c • ↑v, G.divergence Λ⟫_ℝ =
+    -⟪G.spatial.componentX V + c • G.spatial.componentX v, (↑Λ).1⟫_ℝ -
+        ⟪G.spatial.componentY V + c • G.spatial.componentY v, (↑Λ).2⟫_ℝ +
+      (G.boundary (G.trace V) + c • G.boundary (G.trace v)) Λ
+⊢ ⟪G.divergence Λ, ↑V + c • ↑v⟫_ℝ + ⟪G.spatial.componentX V + c • G.spatial.componentX v, (↑Λ).1⟫_ℝ +
+      ⟪G.spatial.componentY V + c • G.spatial.componentY v, (↑Λ).2⟫_ℝ =
+    (G.boundary (G.trace (V + c • v))) Λ
+error: Lean exited with code 1
+Some required targets logged failures:
+- LeanPML.PML.BalanceInterfaces
+error: build failed

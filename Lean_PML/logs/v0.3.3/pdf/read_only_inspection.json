@@ -1,0 +1,70 @@
+{
+  "pages": 18,
+  "annotations": 150,
+  "10": {
+    "size": [
+      595.28,
+      841.89
+    ],
+    "annotations": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "(7.1) 的正吸收分支\na>0 下权重平衡、数值恒等式，以及真实时间 h'=V、l'=V+σⱼh−σᵢl 推出的 Fsp 求导；包含两个方向。\n待完成：h 与真实空间梯度、混合导数交换、可测可积、空间积分、Green/PEC 未实现。\n\nLeanPML.PML.spatial_weight_balance\nLeanPML.PML.spatial_rate_identity\nLeanPML.PML.hasDerivAt_spatialAuxiliary\nLeanPML.PML.hasDerivAt_spatialEnergy_pos\nLeanPML.PML.hasDerivAt_spatialEnergy2D\n\n当前证据：\nlogs/v0.2.3/20261010T232910_472603_lake_build_retry.log\nlogs/v0.2.3/20261010T232931_121820_axioms_audit_retry.log",
+      "(7.1) 后零吸收区未编号二维公式\nh 的实际时间导数给出 h²/2 和双分量平方和的导数；接回分支能量时明确需要 l=h，保留 c(hx²+hy²)。\n待完成：p=r=0 不自动给出兼容；完整 PDE 中零辅助量来源、实际梯度及空间积分仍待兑现。\n\nLeanPML.PML.hasDerivAt_zeroSpatialComponent\nLeanPML.PML.hasDerivAt_zeroSpatial2D\nLeanPML.PML.hasDerivAt_spatialEnergy_zero\nLeanPML.PML.zeroSpatial_compatibility_preserved\n\n当前证据：\nlogs/v0.2.3/20261010T232910_472603_lake_build_retry.log\nlogs/v0.2.3/20261010T232931_121820_axioms_audit_retry.log"
+    ]
+  },
+  "11": {
+    "size": [
+      595.28,
+      841.89
+    ],
+    "annotations": [
+      "",
+      "",
+      "",
+      "(7.2) 仅分式耗散系数非负及有界性已证；未证明空间积分或全域恒等式。零区c|∇v|²仍按原文保留。\n\n模块：LeanPML/PML/Weights.lean\n定理命名空间：LeanPML.PML\n声明：dissipationPlus_bounds; dissipationPlus_le_five_quarters; dissipationMinus_bounds\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。",
+      "(7.3) 电块代数与实际时间函数HasDerivAt求导。二阶证据直接针对deriv v；Fe含ε/2，完整能量还需μ和空间积分。De未宣称非负。\n\n模块：LeanPML/PML/LocalElectric.lean\n定理命名空间：LeanPML.PML\n声明：electric_rate_identity; hasDerivAt_electricEnergyAlong; hasDerivAt_electricEnergyAlong_exampleU\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。",
+      "由真实导数与邻域内z+τR=κv，推出κv_t=R+τR_t，再推出移位约束。单点兼容不足以求导。\n\n模块：LeanPML/PML/LocalDebye.lean\n定理命名空间：LeanPML.PML\n声明：polar_constraint_derivative; polar_shifted_constraint\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。",
+      "(7.4) Q逐项真实求导，再由邻域兼容和κ≠0证明FD=Q/(2κ)的HasDerivAt恒等式；含开区间入口和非零路径实例。未乘μ、未空间积分；DD未宣称非负。\n\n模块：LeanPML/PML/LocalDebye.lean\n定理命名空间：LeanPML.PML\n声明：polar_rate_algebra; hasDerivAt_polarQuadratic; hasDerivAt_polarEnergy; hasDerivAt_polarEnergy_on_Ioo; hasDerivAt_example_polarEnergy\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。",
+      "(7.2) 被积式的点态非负与独立零区密度（不是整式）\n0≤p,r≤S≤c/4、c>0 下，两个方向的分支密度非负；零区精确为 c(hx²+hy²)。\n待完成：该勾只指被积子表达式；没有完成 (7.2) 积分算子、可积性、加权路径求导或全域能量恒等式。\n\nLeanPML.PML.spatialDissipation_nonneg\nLeanPML.PML.spatialDissipation2D_nonneg\nLeanPML.PML.spatialDissipation2D_of_sum_zero\n\n当前证据：\nlogs/v0.2.3/20261010T232910_472603_lake_build_retry.log\nlogs/v0.2.3/20261010T232931_121820_axioms_audit_retry.log",
+      "积分待完成\n原标记保留。限定范围：(7.3) 电块代数与实际时间函数HasDerivAt求导。二阶证据直接针对deriv v；Fe含ε/2，完整能量还需μ和空间积分。De未宣称非负。\n待完成：实际场、μ 因子、空间积分；De 未证非负",
+      "积分待完成\n原标记保留。限定范围：(7.4) Q逐项真实求导，再由邻域兼容和κ≠0证明FD=Q/(2κ)的HasDerivAt恒等式；含开区间入口和非零路径实例。未乘μ、未空间积分；DD未宣称非负。\n待完成：实际场、μ 因子、空间积分；DD 未证非负",
+      "(7.2) 后“加权空间的时间链式法则由 ψ∈C¹(L²_w) 保证”\n在已构造的实际加权内积空间上，由 HasDerivAt X Xdot t 推出 ‖X‖²/2 的导数为内积，并由连续恢复映射得到物理 L² 路径导数。需要该加权范数下的导数，普通 L²/逐点可导不能代替。\n待完成：一般辅助 PDE 的加权正则性传播、真实空间梯度和 Green/PEC 仍待完成；不把本链式法则等同于整个 (7.2) 能量恒等式。\n\nLeanPML.Analysis.hasDerivAt_weighted_half_norm_sq\nLeanPML.Analysis.hasDerivAt_physicalL2\n\n当前证据：\nlogs/v0.3.1/20261013T002136_137117_lake_build.log\nlogs/v0.3.1/20261013T002105_759533_axioms_audit.log",
+      "(7.2) 的 L² 分量密度积分与非负子结论\n四个有界可测耗散系数按方向乘实际 L² 分量平方，密度可积且积分非负；全零吸收 a.e. 时 S=c(‖h_x‖²+‖h_y‖²)。h=Λ−ψ 是 L² 分量，零区贡献保留。\n待完成：真实 h=∂ᵢv 接口未实现；本轮未单独形式化 Ω₊/Z 两个限制积分的分区等式，也未证明空间块与 primitive/Green 组合后的能量律。\n\nLeanPML.PML.fieldSpatialDissipation_integrable\nLeanPML.PML.fieldSpatialDissipation_eq_integral\nLeanPML.PML.fieldSpatialDissipation_nonneg\nLeanPML.PML.fieldSpatialDissipation_of_zeroAbsorption\n\n当前证据：\nlogs/v0.3.1/20261013T002136_137117_lake_build.log\nlogs/v0.3.1/20261013T002105_759533_axioms_audit.log",
+      "v0.3.1 新勾限实际分量积分/范数路径求导；旧勾保留历史范围，Green/PEC 与 PDE 能量律未完成。",
+      "(7.7) 实际\n积分定义\n符号未定"
+    ]
+  },
+  "12": {
+    "size": [
+      595.28,
+      841.89
+    ],
+    "annotations": [
+      "",
+      "",
+      "",
+      "(8.1) 在单点z+τR=κv下精确重写Q，及由调用者得到FD表达式（仍除以2κ）。不是完整能量正定性。\n\n模块：LeanPML/PML/LocalDebye.lean\n定理命名空间：LeanPML.PML\n声明：polarQuadratic_eq_reduced; polarEnergy_eq_reduced\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。",
+      "(8.2) 全部四组界，保留3/4、5/4、37/64、9/16；最高入口从材料正性、c≤c*及吸收幅度推导中间界，没有预设目标界。\n\n模块：LeanPML/PML/LocalDebye.lean\n定理命名空间：LeanPML.PML\n声明：polar_coefficients_bounds_of_local_conditions; polar_coefficients_bounds_of_threshold\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。",
+      "左式实际定义\n右式能量律\n仍待完成"
+    ]
+  },
+  "13": {
+    "size": [
+      595.28,
+      841.89
+    ],
+    "annotations": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  }
+}

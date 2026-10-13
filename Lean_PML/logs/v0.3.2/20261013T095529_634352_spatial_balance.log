@@ -1,0 +1,42 @@
+LeanPML/PML/SpatialBalance.lean:90:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ∫ (a : α),
+    ↑↑U.Λx a * ↑↑dU.Λx a + ↑↑U.Λy a * ↑↑dU.Λy a +
+        C.wx a * ↑↑((physicalL2 ν C.wx ⋯ ⋯) U.ψx) a * ↑↑((physicalL2 ν C.wx ⋯ ⋯) dU.ψx) a +
+      C.wy a * ↑↑((physicalL2 ν C.wy ⋯ ⋯) U.ψy) a * ↑↑((physicalL2 ν C.wy ⋯ ⋯) dU.ψy) a ∂ν
+in the target expression
+  ∫ (x : α), ↑↑U.Λx x * ↑↑dU.Λx x ∂ν + ∫ (x : α), ↑↑U.Λy x * ↑↑dU.Λy x ∂ν +
+        ∫ (x : α), C.wx x * ↑↑((physicalL2 ν C.wx ⋯ ⋯) U.ψx) x * ↑↑((physicalL2 ν C.wx ⋯ ⋯) dU.ψx) x ∂ν +
+      ∫ (x : α), C.wy x * ↑↑((physicalL2 ν C.wy ⋯ ⋯) U.ψy) x * ↑↑((physicalL2 ν C.wy ⋯ ⋯) dU.ψy) x ∂ν =
+    ∫ (x : α),
+      ↑↑U.Λx x * ↑↑dU.Λx x + ↑↑U.Λy x * ↑↑dU.Λy x + C.wx x * ↑↑((physicalX ν C) U.ψx) x * ↑↑((physicalX ν C) dU.ψx) x +
+        C.wy x * ↑↑((physicalY ν C) U.ψy) x * ↑↑((physicalY ν C) dU.ψy) x ∂ν
+
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+C : SpatialAbsorption α
+U dU : FieldState ν C.wx C.wy
+gx gy : ↥(ScalarL2 ν)
+hψx : (physicalX ν C) dU.ψx = (C.rCoeff.operator ν) (spatialComponentX U) - (C.pCoeff.operator ν) U.Λx
+hψy : (physicalY ν C) dU.ψy = (C.pCoeff.operator ν) (spatialComponentY U) - (C.rCoeff.operator ν) U.Λy
+hΛx : dU.Λx = gx + (physicalX ν C) dU.ψx
+hΛy : dU.Λy = gy + (physicalY ν C) dU.ψy
+rate : α → ℝ :=
+  fun x =>
+    ↑↑U.Λx x * ↑↑dU.Λx x + ↑↑U.Λy x * ↑↑dU.Λy x + C.wx x * ↑↑((physicalX ν C) U.ψx) x * ↑↑((physicalX ν C) dU.ψx) x +
+      C.wy x * ↑↑((physicalY ν C) U.ψy) x * ↑↑((physicalY ν C) dU.ψy) x
+flux : α → ℝ :=
+  fun x => (↑↑gx x + C.c * ↑↑(spatialComponentX U) x) * ↑↑U.Λx x + (↑↑gy x + C.c * ↑↑(spatialComponentY U) x) * ↑↑U.Λy x
+hlx_integrable : Integrable (fun x => ↑↑U.Λx x * ↑↑dU.Λx x) ν
+hly_integrable : Integrable (fun x => ↑↑U.Λy x * ↑↑dU.Λy x) ν
+hwx_integrable :
+  Integrable (fun x => C.wx x * ↑↑((physicalL2 ν C.wx ⋯ ⋯) U.ψx) x * ↑↑((physicalL2 ν C.wx ⋯ ⋯) dU.ψx) x) ν
+hwy_integrable :
+  Integrable (fun x => C.wy x * ↑↑((physicalL2 ν C.wy ⋯ ⋯) U.ψy) x * ↑↑((physicalL2 ν C.wy ⋯ ⋯) dU.ψy) x) ν
+hrate_integrable : Integrable rate ν
+⊢ ∫ (x : α), ↑↑U.Λx x * ↑↑dU.Λx x ∂ν + ∫ (x : α), ↑↑U.Λy x * ↑↑dU.Λy x ∂ν +
+        ∫ (x : α), C.wx x * ↑↑((physicalL2 ν C.wx ⋯ ⋯) U.ψx) x * ↑↑((physicalL2 ν C.wx ⋯ ⋯) dU.ψx) x ∂ν +
+      ∫ (x : α), C.wy x * ↑↑((physicalL2 ν C.wy ⋯ ⋯) U.ψy) x * ↑↑((physicalL2 ν C.wy ⋯ ⋯) dU.ψy) x ∂ν =
+    ∫ (x : α),
+      ↑↑U.Λx x * ↑↑dU.Λx x + ↑↑U.Λy x * ↑↑dU.Λy x + C.wx x * ↑↑((physicalX ν C) U.ψx) x * ↑↑((physicalX ν C) dU.ψx) x +
+        C.wy x * ↑↑((physicalY ν C) U.ψy) x * ↑↑((physicalY ν C) dU.ψy) x ∂ν

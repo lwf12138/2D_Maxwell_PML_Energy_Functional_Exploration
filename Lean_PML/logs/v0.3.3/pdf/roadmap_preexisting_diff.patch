@@ -1,0 +1,21 @@
+diff --git a/Lean_PML/ROADMAP_lean_PML_revised.md b/Lean_PML/ROADMAP_lean_PML_revised.md
+index 1fb2685..106335b 100644
+--- a/Lean_PML/ROADMAP_lean_PML_revised.md
++++ b/Lean_PML/ROADMAP_lean_PML_revised.md
+@@ -592,11 +592,11 @@ $$
+ 
+ 优先采用 $L^2$ 场与加权 $L^2$ 场的真实内积结构；空间梯度、散度及其定义域暂由显式接口表示。不要为一个证明提前建设过度通用的 PDE 框架。
+ 
+-- [ ] 定义普通标量/向量 $L^2$、加权空间 $L_w^2$，或分步先建立其可调用表示。
+-- [ ] 若加权空间的具体构造尚未完成，明确把它放在接口清单，不能把形式参数叫 `WeightedL2` 就称已构造。
+-- [ ] 定义一层状态中的 $v,v_t,R,z,\psi,\Lambda$ 及约束。$v_t$ 如果先作为状态坐标，必须有路径接口证明它确实是 $v$ 的导数。
+-- [ ] 定义 $\mathcal F_c$、$\mathcal E_7$、$N_0,N_1$、$\mathscr S_0,\mathscr S_1$ 与 $\mathcal D_7$，不把它们当作任意未解释标量。
+-- [ ] 使用实际内积求导处理时间路径；连续主线不要求构造有限维大矩阵。
++- [x] 定义普通标量/向量 $L^2$、加权空间 $L_w^2$，或分步先建立其可调用表示。
++- [x] 若加权空间的具体构造尚未完成，明确把它放在接口清单，不能把形式参数叫 `WeightedL2` 就称已构造。
++- [x] 定义一层状态中的 $v,v_t,R,z,\psi,\Lambda$ 及约束。$v_t$ 如果先作为状态坐标，必须有路径接口证明它确实是 $v$ 的导数。
++- [x] 定义 $\mathcal F_c$、$\mathcal E_7$、$N_0,N_1$、$\mathscr S_0,\mathscr S_1$ 与 $\mathcal D_7$，不把它们当作任意未解释标量。
++- [x] 使用实际内积求导处理时间路径；连续主线不要求构造有限维大矩阵。
+ 
+ **产物：**`Analysis/EnergyCalculus.lean`、`PML/State.lean`、`PML/Energy.lean`。  
+ **验收：**能从每一能量项追踪到物理变量/提升变量；无界 $w_i$ 未被当作普通 $L^2$ 上的有界乘法算子。
