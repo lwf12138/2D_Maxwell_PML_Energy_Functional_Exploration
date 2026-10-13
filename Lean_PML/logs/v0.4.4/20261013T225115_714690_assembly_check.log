@@ -1,0 +1,12 @@
+LeanPML/Rectangle/InterfaceAssembly.lean:172:2: error: Type mismatch: After simplification, term
+  hmain
+ has type
+  @Filter.EventuallyEq (ℝ × ℝ) ℝ (ae D.measure)
+    ↑↑(μ •
+          (ε • (dU.V + (C.aCoeff.operator D.measure) U.V + (C.bCoeff.operator D.measure) U.v) + dU.R +
+              (C.aCoeff.operator D.measure) U.R +
+            (C.bCoeff.operator D.measure) U.z))
+    fun z => μ * (ε * (↑ds.V z + C.a z * ↑s.V z + C.b z * ↑s.v z) + ↑ds.R z + C.a z * ↑s.R z + C.b z * ↑s.z z)
+but is expected to have type
+  @Filter.EventuallyEq (ℝ × ℝ) ℝ (ae D.measure) ↑↑(primitiveMain D.measure C ε μ U dU) fun x =>
+    μ * (ε * (↑ds.V x + C.a x * ↑s.V x + C.b x * ↑s.v x) + ↑ds.R x + C.a x * ↑s.R x + C.b x * ↑s.z x)

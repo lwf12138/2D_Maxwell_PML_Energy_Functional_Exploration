@@ -1,0 +1,12 @@
+LeanPML/Rectangle/HistoryL2.lean:41:4: error(lean.unknownIdentifier): Unknown constant `ContinuousMap.intervalIntegral_comp_comm`
+
+Note: Inferred this name from the expected resulting type of `.intervalIntegral_comp_comm`:
+  C(↑D.closedSet, ℝ)
+LeanPML/Rectangle/HistoryL2.lean:39:48: error: unsolved goals
+D : Rect
+F : ℝ → SmoothField
+f₀ : SmoothField
+t : ℝ
+hintegrable : IntervalIntegrable (fun s => (restrictContinuous D) (F s)) volume 0 t
+z : ↑D.closedSet
+⊢ (continuousHistory D F f₀ t) z = integralLift (fun s x => ↑(F s) x) (↑f₀) t ↑z

@@ -1,0 +1,47 @@
+{
+  "stage": "v0.4_alignment",
+  "status": "passed",
+  "scope": "所选强光滑/一致范数/加权正则性下的v0.4对齐；未实施v0.5",
+  "verified_at": "2026-10-14T00:04:35.379514+08:00",
+  "build": "logs/v0.4_alignment/20261014T000055_917026_lake_build.log",
+  "audit": "logs/v0.4_alignment/20261014T000341_178705_axioms_audit.log",
+  "type_review": "logs/v0.4_alignment/20261014T000341_178709_interface_types.log",
+  "build_exit_code": 0,
+  "audit_exit_code": 0,
+  "type_review_exit_code": 0,
+  "audited_declarations": 590,
+  "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "sorryAx": false,
+  "source_placeholder_scan": "passed",
+  "new_modules": [
+    "LeanPML/Rectangle/ParameterCertificate.lean",
+    "LeanPML/PML/ClassicalSystem.lean",
+    "LeanPML/Rectangle/RegionalCoefficients.lean"
+  ],
+  "semantic_review": "logs/v0.4_alignment/semantic_review.md",
+  "retained_failures": [
+    {
+      "metadata": "logs/v0.4_alignment/20261013T235413_068427_pdf_inspect.json",
+      "exit_code": 1,
+      "command": "/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 logs/v0.4_alignment/pdf/inspect_before.py"
+    },
+    {
+      "metadata": "logs/v0.4_alignment/20261013T235537_204886_regional_coefficients_export.json",
+      "exit_code": 1,
+      "command": "lake env lean -o .lake/build/lib/lean/LeanPML/Rectangle/RegionalCoefficients.olean LeanPML/Rectangle/RegionalCoefficients.lean"
+    }
+  ],
+  "pdf": "pending",
+  "not_claimed": [
+    "V7精确π常数",
+    "弱H1/Hdiv/W1∞范围",
+    "加权正则性自动传播",
+    "提升规范唯一性",
+    "解存在唯一性",
+    "v0.5具体先验主定理发布"
+  ]
+}

@@ -1,0 +1,57 @@
+logs/v0.4.2/EdgeScratch.lean:22:8: error: Application type mismatch: The argument
+  Continuous.intervalIntegrable
+    (Continuous.mul (ContinuousMap.continuous (ContinuousMap.IccExtend hab u))
+      (ContinuousMap.continuous (ContinuousMap.IccExtend hab v)))
+has type
+  ∀ (a_1 b_1 : ℝ),
+    IntervalIntegrable (⇑(ContinuousMap.IccExtend hab u) * ⇑(ContinuousMap.IccExtend hab v)) ?m.276 a_1 b_1
+but is expected to have type
+  IntervalIntegrable ?m.239 ?m.241 ?m.237 ?m.238
+in the application
+  intervalIntegral.integral_add
+    (Continuous.intervalIntegrable
+      (Continuous.mul (ContinuousMap.continuous (ContinuousMap.IccExtend hab u))
+        (ContinuousMap.continuous (ContinuousMap.IccExtend hab v))))
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+logs/v0.4.2/EdgeScratch.lean:28:57: error: unsolved goals
+a b : ℝ
+hab : a ≤ b
+u : C(↑(Icc a b), ℝ)
+r : ℝ
+v : C(↑(Icc a b), ℝ)
+s : ℝ
+⊢ u (projIcc a b hab s) * r * v (projIcc a b hab s) =
+    r * (ContinuousMap.IccExtend hab u) s * (ContinuousMap.IccExtend hab v) s
+logs/v0.4.2/EdgeScratch.lean:45:6: error: Application type mismatch: The argument
+  Continuous.intervalIntegrable
+    (Continuous.mul (ContinuousMap.continuous (ContinuousMap.IccExtend hab u))
+      (ContinuousMap.continuous (ContinuousMap.IccExtend hab w)))
+has type
+  ∀ (a_1 b_1 : ℝ),
+    IntervalIntegrable (⇑(ContinuousMap.IccExtend hab u) * ⇑(ContinuousMap.IccExtend hab w)) ?m.610 a_1 b_1
+but is expected to have type
+  IntervalIntegrable ?m.573 ?m.575 ?m.571 ?m.572
+in the application
+  intervalIntegral.integral_add
+    (Continuous.intervalIntegrable
+      (Continuous.mul (ContinuousMap.continuous (ContinuousMap.IccExtend hab u))
+        (ContinuousMap.continuous (ContinuousMap.IccExtend hab w))))
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+logs/v0.4.2/EdgeScratch.lean:52:55: error: unsolved goals
+a b : ℝ
+hab : a ≤ b
+r : ℝ
+u w : C(↑(Icc a b), ℝ)
+s : ℝ
+⊢ r * u (projIcc a b hab s) * w (projIcc a b hab s) =
+    r * (ContinuousMap.IccExtend hab u) s * (ContinuousMap.IccExtend hab w) s

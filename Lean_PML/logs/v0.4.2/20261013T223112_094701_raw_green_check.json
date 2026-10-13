@@ -1,0 +1,19 @@
+{
+  "stage": "v0.4.2",
+  "command": [
+    "lake",
+    "env",
+    "lean",
+    "logs/v0.4.2/GreenScratch.lean"
+  ],
+  "command_display": "lake env lean logs/v0.4.2/GreenScratch.lean",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-13T22:31:12.094701+08:00",
+  "output_file": "20261013T223112_094701_raw_green_check.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 1,
+  "status": "finished",
+  "ended_at": "2026-10-13T22:31:23.384426+08:00",
+  "elapsed_seconds": 11.288
+}

@@ -1,0 +1,13 @@
+LeanPML/PML/OriginalAssembly.lean:40:2: error: `simp` made no progress
+LeanPML/PML/OriginalAssembly.lean:156:4: error: Type mismatch
+  hasDerivAt_spaceFDeriv_of_timeDeriv ?m.33 t X (1, 0) (Eventually.of_forall fun Y => ?m.44)
+has type
+  HasDerivAt (fun s => (fderiv ℝ (?m.31 s) X) (1, 0)) ((fderiv ℝ (?m.32 t) X) (1, 0)) t
+but is expected to have type
+  HasDerivAt (fun s => dx (↑(B.v.value s)) X) (dx (↑(B.v.first t)) X) t
+LeanPML/PML/OriginalAssembly.lean:157:38: error: Type mismatch
+  B.v.deriv_value t Y
+has type
+  HasDerivAt (fun s => ↑(B.v.value s) Y) (↑(B.v.first t) Y) t
+but is expected to have type
+  HasDerivAt (fun s => ?m.31 s Y) (?m.32 t Y) t

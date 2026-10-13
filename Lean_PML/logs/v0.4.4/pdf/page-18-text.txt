@@ -1,0 +1,64 @@
+                                                                                  
+                                                                                  
+         V7：Maxwell–Debye PML 全域能量                               2026-09-24       
+                                                                                  
+                                                                                  
+         以及二维示例的参数不等式。结果记录在          verification_output.txt。这些是代数和参数核验，          
+                                                                                  
+         不是  PDE 能量定理的机器形式化。全域      Green 公式、Poincaré、加权空间解释、式    (9.5)、耗         
+         散闭合及时间积分均由本文人工证明。本次未运行            Lean，也没有把   “假设 E′ (cid:20) 0 再形式化单调   
+         性” 当作核心证明。                                                               
+                                                                                  
+                                                                                  
+                                                                                  
+                                     参考文献                                         
+                                                                                  
+                                                                                  
+         [1] D. H. Baffet, M. J. Grote, S. Imperiale, M. Kachanovska. Energy Decay and Sta-
+            bility of a Perfectly Matched Layer For the Wave Equation. Journal of Scientific
+            Computing,81(2019),2237–2270.DOI:10.1007/s10915-019-01089-9.核对版本：     
+                                                                                  
+            HAL hal-01865484v2，正文 §2.1, Theorem 2.1。                              
+                                                                                  
+         [2] É. Bécache, M. Kachanovska, M. Wess. Convergence analysis of time-domain
+            PMLs  for 2D electromagnetic wave propagation in dispersive waveguides.
+            ESAIM: M2AN, 57 (2023), 2451–2491. DOI: 10.1051/m2an/2023060. 核对范围：   
+                                                                                  
+            §§2.2–2.3, (7)–(15), Assumptions 2.9–2.10, Theorem 2.11。              
+                                                                                  
+         [3] G. Ludvigsson, K. Duru, G. Kreiss. On energy-stable and high order finite el-
+            ement methods for the wave equation in heterogeneous media with perfectly
+                                                                                  
+            matched layers. arXiv:2206.08507v1 (2022). 核对范围：§2, §4, Theorem 1（第 9 
+            页）、其后讨论（第     11 页）。                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                        18                                        
+                                                                                  
+                                                                                  

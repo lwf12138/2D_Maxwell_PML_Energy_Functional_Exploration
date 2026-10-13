@@ -21,8 +21,8 @@ def main():
         if len(args) < 2:
             sys.exit("--stage 后需要版本号，例如 v0.1.1。")
         stage, args = args[1], args[2:]
-    if not re.fullmatch(r"v[0-9]+\.[0-9]+\.[0-9]+", stage):
-        sys.exit("阶段格式应为 v0.1.1 等版本号。")
+    if not re.fullmatch(r"v[0-9]+\.[0-9]+(?:\.[0-9]+|_[A-Za-z0-9_-]+)", stage):
+        sys.exit("阶段格式应为 v0.1.1 或 v0.4_alignment 等安全阶段名。")
     if len(args) < 2:
         sys.exit("用法: python3 scripts/run_logged.py [--stage v0.1.1] 标签 命令 [参数 ...]")
     label, *command = args

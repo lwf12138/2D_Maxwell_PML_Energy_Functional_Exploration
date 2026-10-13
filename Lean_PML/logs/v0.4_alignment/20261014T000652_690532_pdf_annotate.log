@@ -1,0 +1,20 @@
+{
+  "pages": 18,
+  "old_annotations": 195,
+  "added_annotations": 5,
+  "added_red_ticks": 1,
+  "annotations_after": 200,
+  "modified_pages": [
+    3,
+    4,
+    7,
+    15
+  ],
+  "original_text_preserved": true,
+  "old_annotations_preserved": true,
+  "text_and_annotation_overlap": 0,
+  "sha256_before": "9021fff043b09278fd918dc4ef0342a0295e3aa7941e52825f59a286fd71a8f3",
+  "sha256_after": "b7cff33c435944c4c24bf5327246015523368c7015e3b6fb6b65348f8fc5819d",
+  "plan_sha256": "8fa6f6f713fc620a6c0a7078a42edfbbfa73ba38bc4803832496e90525f4e05e",
+  "visual_review": "pending"
+}

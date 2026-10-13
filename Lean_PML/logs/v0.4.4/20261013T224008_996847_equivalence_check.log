@@ -1,0 +1,44 @@
+LeanPML/PML/Equivalence.lean:58:4: error: linarith failed to find a contradiction
+case refine_1.h1
+ε κ τ μ : ℝ
+p r : ℝ → ℝ
+F : OriginalFields
+u₀ q₀ : Point → ℝ
+t : ℝ
+X : Point
+hE : Continuous fun s => F.E s X
+hP : Continuous fun s => F.P s X
+hOriginal : OriginalAt ε κ τ μ p r F t X
+hcompatible : CompatibleAt F (lift F μ u₀ q₀) ε κ τ p r t X
+hgradX : HasDerivAt (fun s => spaceDx (integralLift F.E u₀) s X) (spaceDx F.E t X) t
+hgradY : HasDerivAt (fun s => spaceDy (integralLift F.E u₀) s X) (spaceDy F.E t X) t
+hφ :
+  HasDerivAt (fun s => (lift F μ u₀ q₀).φx s X) (-(p X.1 - r X.2) * (lift F μ u₀ q₀).Λx t X + F.Qy t X) t ∧
+    HasDerivAt (fun s => (lift F μ u₀ q₀).φy s X) ((p X.1 - r X.2) * (lift F μ u₀ q₀).Λy t X - F.Qx t X) t
+hmain :
+  ε * dt F.E t X =
+    spaceDx F.Hy t X - spaceDy F.Hx t X - ε * (p X.1 + r X.2) * F.E t X - dt F.P t X - (p X.1 + r X.2) * F.P t X +
+        -ε * (p X.1 * r X.2) * integralLift F.E u₀ t X +
+      -(p X.1 * r X.2) * integralLift F.P q₀ t X
+a✝ :
+  μ *
+      (ε * (dt F.E t X + (p X.1 + r X.2) * F.E t X + p X.1 * r X.2 * integralLift F.E u₀ t X) + dt F.P t X +
+          (p X.1 + r X.2) * F.P t X +
+        p X.1 * r X.2 * integralLift F.P q₀ t X) <
+    μ * (spaceDx F.Hy t X - spaceDy F.Hx t X)
+⊢ False
+failed
+LeanPML/PML/Equivalence.lean:122:8: error: unexpected token 'λ'; expected ':=' or '|'
+LeanPML/PML/Equivalence.lean:122:7: error: Missing cases:
+LeanPML/PML/Equivalence.lean:121:58: error: unsolved goals
+ε κ τ μ : ℝ
+p r : ℝ → ℝ
+U : PrimitiveFields
+t : ℝ
+X : Point
+hμ : μ ≠ 0
+hat : PrimitiveAt ε κ τ μ p r U t X
+hnear : ∀ᶠ (s : ℝ) in 𝓝 t, PrimitiveAt ε κ τ μ p r U s X
+hgradX : HasDerivAt (fun s => spaceDx U.u s X) (spaceDx U.E t X) t
+hgradY : HasDerivAt (fun s => spaceDy U.u s X) (spaceDy U.E t X) t
+⊢ OriginalAt ε κ τ μ p r (reconstruct U ε μ p r) t X

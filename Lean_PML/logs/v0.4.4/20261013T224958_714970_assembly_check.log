@@ -1,0 +1,32 @@
+LeanPML/Rectangle/InterfaceAssembly.lean:114:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ⟨U.v, hmem⟩
+in the target expression
+  U.Λx = (spatialDomain D).componentX ⟨U.v, hmem⟩ + (physicalX D.measure C) U.ψx
+
+case refine_1
+D : Rect
+C : SpatialAbsorption (ℝ × ℝ)
+U : FieldState D.measure C.wx C.wy
+s : SmoothStateCoordinates
+hrep : StateRepresented D C U s
+hX : ∀ x ∈ D.openSet, ↑s.Λx x = dx (↑s.v) x + ↑s.ψx x
+hY : ∀ x ∈ D.openSet, ↑s.Λy x = dy (↑s.v) x + ↑s.ψy x
+hmem : U.v ∈ (spatialDomain D).domain
+harg : ⟨U.v, hmem⟩ = (fieldOfSmooth D) s.v
+⊢ U.Λx = (spatialDomain D).componentX ⟨U.v, hmem⟩ + (physicalX D.measure C) U.ψx
+LeanPML/Rectangle/InterfaceAssembly.lean:124:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ⟨U.v, hmem⟩
+in the target expression
+  U.Λy = (spatialDomain D).componentY ⟨U.v, hmem⟩ + (physicalY D.measure C) U.ψy
+
+case refine_2
+D : Rect
+C : SpatialAbsorption (ℝ × ℝ)
+U : FieldState D.measure C.wx C.wy
+s : SmoothStateCoordinates
+hrep : StateRepresented D C U s
+hX : ∀ x ∈ D.openSet, ↑s.Λx x = dx (↑s.v) x + ↑s.ψx x
+hY : ∀ x ∈ D.openSet, ↑s.Λy x = dy (↑s.v) x + ↑s.ψy x
+hmem : U.v ∈ (spatialDomain D).domain
+harg : ⟨U.v, hmem⟩ = (fieldOfSmooth D) s.v
+⊢ U.Λy = (spatialDomain D).componentY ⟨U.v, hmem⟩ + (physicalY D.measure C) U.ψy

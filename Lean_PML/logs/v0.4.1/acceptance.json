@@ -1,0 +1,23 @@
+{
+  "stage": "v0.4.1",
+  "status": "passed",
+  "mathematical_scope": "具体矩形光滑延拓类；非弱H1/Hdiv理论",
+  "build": "logs/v0.4.1/20261013T224101_375806_lake_build.log",
+  "audit": "logs/v0.4.1/20261013T224142_908894_axioms_audit.log",
+  "build_exit_code": 0,
+  "audit_exit_code": 0,
+  "audited_declarations": 410,
+  "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "sorryAx": false,
+  "sources": {
+    "LeanPML/Rectangle/Domain.lean": "6961af4f6b9e5d47ff3d773557d59778f6ab630d70e096c023685e3a563bc9d0",
+    "LeanPML/Rectangle/Fields.lean": "282409219402b5e0c415b4487bc76925389382cbf27b0e4cb6e50a7452947fd7",
+    "LeanPML/Rectangle/Boundary.lean": "c2dc823a7d1a76a1f8be7d502a16e29f79e26a902d63aee4a2d807bd443268b0"
+  },
+  "poincare": null,
+  "remaining_stages": "v0.4.3/v0.4.4 总装尚在进行，不能由本文件判整个v0.4完成"
+}

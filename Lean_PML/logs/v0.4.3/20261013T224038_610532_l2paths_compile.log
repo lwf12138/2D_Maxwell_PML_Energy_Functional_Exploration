@@ -1,0 +1,18 @@
+LeanPML/Rectangle/L2Paths.lean:68:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ↑↑((toLp 2 D.measure ℝ) ((extendContinuous D) ((restrictContinuous D) f))) z
+in the target expression
+  ↑↑((continuousToL2 D) ((restrictContinuous D) f)) z = ↑↑((SmoothField.toL2 D) f) z
+
+D : Rect
+f : SmoothField
+hext :
+  ↑↑((toLp 2 D.measure ℝ) ((extendContinuous D) ((restrictContinuous D) f))) =ᵐ[D.measure]
+    ⇑((extendContinuous D) ((restrictContinuous D) f))
+hmem : ∀ᵐ (z : ℝ × ℝ) ∂D.measure, z ∈ D.closedSet
+z : ℝ × ℝ
+hzext :
+  ↑↑((toLp 2 D.measure ℝ) ((extendContinuous D) ((restrictContinuous D) f))) z =
+    ((extendContinuous D) ((restrictContinuous D) f)) z
+hzf : ↑↑((SmoothField.toL2 D) f) z = ↑f z
+hz : z ∈ D.closedSet
+⊢ ↑↑((continuousToL2 D) ((restrictContinuous D) f)) z = ↑↑((SmoothField.toL2 D) f) z

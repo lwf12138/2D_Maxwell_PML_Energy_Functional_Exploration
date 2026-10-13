@@ -1,0 +1,16 @@
+{
+  "build": {
+    "command_display": "lake build",
+    "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+    "exit_code": 0,
+    "started_at": "2026-10-13T23:08:22.044824+08:00",
+    "status": "finished"
+  },
+  "audit": {
+    "command_display": "lake env lean Audit.lean",
+    "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+    "exit_code": 0,
+    "started_at": "2026-10-13T23:11:44.117778+08:00",
+    "status": "finished"
+  }
+}

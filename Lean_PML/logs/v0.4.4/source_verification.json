@@ -1,0 +1,215 @@
+{
+  "unchanged_count": 42,
+  "unchanged": {
+    "lean-toolchain": {
+      "before": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee",
+      "after": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee"
+    },
+    "lakefile.toml": {
+      "before": "3a3ab926f99cfeb3ae9fa6309696858b0aabb7ce62469de72405a74dd64fab9e",
+      "after": "3a3ab926f99cfeb3ae9fa6309696858b0aabb7ce62469de72405a74dd64fab9e"
+    },
+    "lake-manifest.json": {
+      "before": "6bd522ed18f94813b2e6fb5e7b9ea39d95a5098df2465acc0d815a09bb5dbf33",
+      "after": "6bd522ed18f94813b2e6fb5e7b9ea39d95a5098df2465acc0d815a09bb5dbf33"
+    },
+    "ROADMAP_lean_PML_revised.md": {
+      "before": "9a6438549e4d49714b915bd9632d13eab7f1b5164df1741d190dc97640be3659",
+      "after": "9a6438549e4d49714b915bd9632d13eab7f1b5164df1741d190dc97640be3659"
+    },
+    "scripts/run_logged.py": {
+      "before": "9f22cab7bc05f8e7b7e62009d33205fa57b733c51edd1b0af4ef0a19d67acee5",
+      "after": "9f22cab7bc05f8e7b7e62009d33205fa57b733c51edd1b0af4ef0a19d67acee5"
+    },
+    "docs/single_layer_failure.md": {
+      "before": "3b80848f90f79bfcc15f756f9fce8b85897494f5dd9089f3482ad704f7fd7d49",
+      "after": "3b80848f90f79bfcc15f756f9fce8b85897494f5dd9089f3482ad704f7fd7d49"
+    },
+    "docs/v0.2.2_reading_guide.md": {
+      "before": "816818e0bbcd4f7939ae4de3f0322ddc70a258e09da6225fe711b4d50a044fbd",
+      "after": "816818e0bbcd4f7939ae4de3f0322ddc70a258e09da6225fe711b4d50a044fbd"
+    },
+    "docs/scope.md": {
+      "before": "dff8fc9bf26935a12927a2c05950b44431020d5eb8e022f7c8565a9ec054b539",
+      "after": "dff8fc9bf26935a12927a2c05950b44431020d5eb8e022f7c8565a9ec054b539"
+    },
+    "docs/v0.2.3_reading_guide.md": {
+      "before": "d0ae5323a39828f2630c18123126ed947c4777b0201cf34c2579f06ce1398b63",
+      "after": "d0ae5323a39828f2630c18123126ed947c4777b0201cf34c2579f06ce1398b63"
+    },
+    "docs/model_contract.md": {
+      "before": "27fdc413425e2b65f0b31a4c4a533d5f52eb24a4af30f18f5fae080a1846fc23",
+      "after": "27fdc413425e2b65f0b31a4c4a533d5f52eb24a4af30f18f5fae080a1846fc23"
+    },
+    "docs/v0.2.1_reading_guide.md": {
+      "before": "36f62f5627f5764772f5d04e364774c4a5faa95fa12c5d66633d6008c37c5fd0",
+      "after": "36f62f5627f5764772f5d04e364774c4a5faa95fa12c5d66633d6008c37c5fd0"
+    },
+    "LeanPML/Tutorial/LocalEnergy.lean": {
+      "before": "810e8ef42c005661cb0eca9e6ba4527914cd782af7e30677b45e4bd772cac112",
+      "after": "810e8ef42c005661cb0eca9e6ba4527914cd782af7e30677b45e4bd772cac112"
+    },
+    "LeanPML/Tutorial/ScalarEnergy.lean": {
+      "before": "465c567aa91d06d5e32c32b84d6082cb71834027177f8a390b8c9df9f59aaa41",
+      "after": "465c567aa91d06d5e32c32b84d6082cb71834027177f8a390b8c9df9f59aaa41"
+    },
+    "LeanPML/Analysis/EnergyCalculus.lean": {
+      "before": "8f43f309fda52d0f6214489701683e5002441a4f401fd30b6c4a82a9a2b3cb22",
+      "after": "8f43f309fda52d0f6214489701683e5002441a4f401fd30b6c4a82a9a2b3cb22"
+    },
+    "LeanPML/Analysis/WeightedL2.lean": {
+      "before": "6be3ed7daca127d0a07aa79fe7dcc3ff0a65d43599f3229ee8a6549a280fab08",
+      "after": "6be3ed7daca127d0a07aa79fe7dcc3ff0a65d43599f3229ee8a6549a280fab08"
+    },
+    "LeanPML/Time/Constancy.lean": {
+      "before": "47680bb78e15e5fa05b9350ddb19117f2a7ae4ba5a132e9cd5ea422e6ac57437",
+      "after": "47680bb78e15e5fa05b9350ddb19117f2a7ae4ba5a132e9cd5ea422e6ac57437"
+    },
+    "LeanPML/Time/Monotonicity.lean": {
+      "before": "70c9bad3378adfb332cc4b10e6e475a41352178899797eef07a203fb8e68aa25",
+      "after": "70c9bad3378adfb332cc4b10e6e475a41352178899797eef07a203fb8e68aa25"
+    },
+    "LeanPML/PML/Energy.lean": {
+      "before": "b5b806f793284bc5bd64f5d8e6c5d9f17e19f78d84ffe7932a4e74d5aab3d042",
+      "after": "b5b806f793284bc5bd64f5d8e6c5d9f17e19f78d84ffe7932a4e74d5aab3d042"
+    },
+    "LeanPML/PML/EnergyIntegrals.lean": {
+      "before": "85370f6dcf41408132e79f4eb8ccbba2e1dc0f4a1f2b842601237026517dc540",
+      "after": "85370f6dcf41408132e79f4eb8ccbba2e1dc0f4a1f2b842601237026517dc540"
+    },
+    "LeanPML/PML/BalanceAbstract.lean": {
+      "before": "8adb3558e5e487befcb337791da05c8e16947fb10700a7c0ae126a7bbe099d3f",
+      "after": "8adb3558e5e487befcb337791da05c8e16947fb10700a7c0ae126a7bbe099d3f"
+    },
+    "LeanPML/PML/MainAbstract.lean": {
+      "before": "47b278c96a5d67d6bec24a2214830ae9094284e2b06840394b5cabf95e6a71d4",
+      "after": "47b278c96a5d67d6bec24a2214830ae9094284e2b06840394b5cabf95e6a71d4"
+    },
+    "LeanPML/PML/SpatialBalance.lean": {
+      "before": "0ea0dfdf07fa6e3f4c3bb838280b9a6b030d997f7e7c69c49a780f02e172906e",
+      "after": "0ea0dfdf07fa6e3f4c3bb838280b9a6b030d997f7e7c69c49a780f02e172906e"
+    },
+    "LeanPML/PML/Coefficients.lean": {
+      "before": "7a2d94389601e7fee33054d0b4cbcaba4a7ea31837dce8af9e9c19dec6dc68a6",
+      "after": "7a2d94389601e7fee33054d0b4cbcaba4a7ea31837dce8af9e9c19dec6dc68a6"
+    },
+    "LeanPML/PML/LocalSpatial.lean": {
+      "before": "4830378ceb947d7e0c5f349cb06963cf2cfe9e9d265e6dee93448b84719917b4",
+      "after": "4830378ceb947d7e0c5f349cb06963cf2cfe9e9d265e6dee93448b84719917b4"
+    },
+    "LeanPML/PML/TimeInvariants.lean": {
+      "before": "ad23ffe0b5fc1188cce91203989e7587d31a11aad3f1b77665f57f6b91efbba1",
+      "after": "ad23ffe0b5fc1188cce91203989e7587d31a11aad3f1b77665f57f6b91efbba1"
+    },
+    "LeanPML/PML/PrimitiveEvolution.lean": {
+      "before": "0b2f6aee29bfd30a505e1e8881348eeb378cf7775c5e8e4fee2f2f6ba36bf6a9",
+      "after": "0b2f6aee29bfd30a505e1e8881348eeb378cf7775c5e8e4fee2f2f6ba36bf6a9"
+    },
+    "LeanPML/PML/GradientControl.lean": {
+      "before": "63d6cbb810c2e23f77039120ca28f454f44f54b0aeb30e201cae25b94d7fe81a",
+      "after": "63d6cbb810c2e23f77039120ca28f454f44f54b0aeb30e201cae25b94d7fe81a"
+    },
+    "LeanPML/PML/SpatialCoefficients.lean": {
+      "before": "07223cf17bdbf48daff2078f543070d760d1dc5464f47a8c2b8d0d0438e84392",
+      "after": "07223cf17bdbf48daff2078f543070d760d1dc5464f47a8c2b8d0d0438e84392"
+    },
+    "LeanPML/PML/LocalDebye.lean": {
+      "before": "12ad851667c4434f7542f9402fa395017e54ea083442558d76445e343399bb10",
+      "after": "12ad851667c4434f7542f9402fa395017e54ea083442558d76445e343399bb10"
+    },
+    "LeanPML/PML/LocalElectric.lean": {
+      "before": "d5eb935b44f2cb3f372d3a527f3dca0858908423d719d3203f583f8c8de60f1d",
+      "after": "d5eb935b44f2cb3f372d3a527f3dca0858908423d719d3203f583f8c8de60f1d"
+    },
+    "LeanPML/PML/State.lean": {
+      "before": "3949faa23565d376c62fe4b24bfabffe723cf8c7359ebf4a126f0191d18c18b2",
+      "after": "3949faa23565d376c62fe4b24bfabffe723cf8c7359ebf4a126f0191d18c18b2"
+    },
+    "LeanPML/PML/PhysicalControl.lean": {
+      "before": "e20d6fd889b662f824c048a05f2408180b679b570efd788a27df8f19c49a4595",
+      "after": "e20d6fd889b662f824c048a05f2408180b679b570efd788a27df8f19c49a4595"
+    },
+    "LeanPML/PML/Coercivity.lean": {
+      "before": "0f7102688b3921fea128f8978874e4feea34cd3082b228c732f6019471d87e04",
+      "after": "0f7102688b3921fea128f8978874e4feea34cd3082b228c732f6019471d87e04"
+    },
+    "LeanPML/PML/DissipationClosure.lean": {
+      "before": "d2e5333aed6a733c28396a95fdd52e53b483f5fc011f9485c3a6d4112188aa7d",
+      "after": "d2e5333aed6a733c28396a95fdd52e53b483f5fc011f9485c3a6d4112188aa7d"
+    },
+    "LeanPML/PML/BalanceBlocks.lean": {
+      "before": "d8b208a38858bf04b067cea7e97f4728fa191afe34130078990b0b398c572843",
+      "after": "d8b208a38858bf04b067cea7e97f4728fa191afe34130078990b0b398c572843"
+    },
+    "LeanPML/PML/BalanceInterfaces.lean": {
+      "before": "ce888afcf6a7f81e03c1f478199d9b388f914171480cbd866b5c2cbd71921e9a",
+      "after": "ce888afcf6a7f81e03c1f478199d9b388f914171480cbd866b5c2cbd71921e9a"
+    },
+    "LeanPML/PML/Weights.lean": {
+      "before": "25778077d06b427ee870843481c7d0d5614637063c0f49a8b21540617f8883ef",
+      "after": "25778077d06b427ee870843481c7d0d5614637063c0f49a8b21540617f8883ef"
+    },
+    "LeanPML/PML/Obstructions/SingleLayer.lean": {
+      "before": "8e9b79481591141e797f72e522bb334d851eb6a1b8bc45046c2a77d38bb232e7",
+      "after": "8e9b79481591141e797f72e522bb334d851eb6a1b8bc45046c2a77d38bb232e7"
+    },
+    "LeanPML/Debye/ScalarEnergy.lean": {
+      "before": "7ebb842dc8e7109802bb0db414b25947248dca52c77dbc01b4f01bc110c08741",
+      "after": "7ebb842dc8e7109802bb0db414b25947248dca52c77dbc01b4f01bc110c08741"
+    },
+    "../results/V7_Maxwell_Debye_PML/V7_global_energy.md": {
+      "before": "0a7f73a25cb119eeb75b3e7b3c3f2fbb3b319250f3354ed4dcad0ecff8eff4fb",
+      "after": "0a7f73a25cb119eeb75b3e7b3c3f2fbb3b319250f3354ed4dcad0ecff8eff4fb"
+    },
+    "../results/V7_Maxwell_Debye_PML/V7_global_energy.tex": {
+      "before": "7345e2f2b8558df5f68252985d119465085b01aa8005b0f7c861f0831ab6387a",
+      "after": "7345e2f2b8558df5f68252985d119465085b01aa8005b0f7c861f0831ab6387a"
+    },
+    "../results/V7_Maxwell_Debye_PML/V7_global_energy.pdf": {
+      "before": "c6c9978af6d3fbc54ef76b02a5d509e6dda169795c6181d64c7c56ccbe4e3aaa",
+      "after": "c6c9978af6d3fbc54ef76b02a5d509e6dda169795c6181d64c7c56ccbe4e3aaa"
+    }
+  },
+  "authorized_changed": {
+    "README.md": {
+      "before": "7b2fa781819ebc2c2c2c63bf83d56bc9424ef7f501e34826d32b0c7b39e972d4",
+      "after": "ea6646cf5ccaf1a5b8d4953fb58bc3c731ed9a9d3be6a5dd0db996af42a5df91"
+    },
+    "PROGRESS.md": {
+      "before": "a90b5c9c7ce0753cdb7467515b12d0a0b8c252b98709f2b259d34885ba65d41d",
+      "after": "62cab35965badb418b4915e3175c7fba3fa3bc593e0c80913006b18c7633ed92"
+    },
+    "LeanPML.lean": {
+      "before": "0387e10af3314522a9d6478eccfa0c237f331f917f71bf2c12970167df2815a3",
+      "after": "f8babd973d711e474e0076fb5f3f9542b9b7589a351c5941a465b389c5fd1b8b"
+    },
+    "Audit.lean": {
+      "before": "0031c8c14ce1f3958a9c35cded5551e52aee45ee4034fb0c08ea094e3f9da9a6",
+      "after": "af113970335e88fd40f858300fa67a95c779b4b3969454a6018578e36409aedf"
+    },
+    "docs/theorem_inventory.md": {
+      "before": "4b0eff4e36d1392964a5730b0d1119ca62a55fb0dd161682249600ed94a51681",
+      "after": "3d5a7c9fe415ff9d4ba079a16ff3af76e383cee59b6ccd26a216963442d7f8a3"
+    },
+    "docs/source_inventory.md": {
+      "before": "d8305aa7dcadf956703277a4f60b12a0b763442cf2e189b08154b329f73baadc",
+      "after": "714c4f0c22e37149ac80e0321ce227ee5e66523924f1d2f6bd45c4caf3d6832b"
+    },
+    "docs/claim_ledger.md": {
+      "before": "76eeb5d1159c004cbeab369d4e4869f030a6ec6d4836e6b9030831adbcf927a2",
+      "after": "c3db98c5c85b200a71521530ddd9f881f541cd1685c888ad49e20fb3a6cbd88d"
+    },
+    "docs/pdf_formalization_marks.md": {
+      "before": "1877a9bd9259667756801ff4ffd0650be67705b158d5dfe27b1c19a13a54bd65",
+      "after": "d48227d7050eadad98eded9df5a8f55ebc4930543f26d5e7524f375c596bf4ff"
+    },
+    "../results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf": {
+      "before": "66c0f5dd32a1a983412a08eea40e3cd5d890f3dd987dbfe7e2bb4c7a5ddce1b3",
+      "after": "9021fff043b09278fd918dc4ef0342a0295e3aa7941e52825f59a286fd71a8f3"
+    }
+  },
+  "unexpected_changed": [],
+  "roadmap_status": "§10各阶段与§17.2仍写待实现；本轮保留原文，实际状态用新源码/日志登记。",
+  "constant_difference": "CP=2Lx保守版；原文精确π公式不变",
+  "scope_difference": "全空间/全时间技术光滑延拓、C(K)统一和加权路径正则性强于原V7；PDE仍仅Ioo0T×Ω"
+}

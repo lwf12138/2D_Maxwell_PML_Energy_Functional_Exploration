@@ -1,0 +1,53 @@
+logs/v0.4.2/GreenScratch.lean:48:15: warning: `ContinuousLinearMap.add_apply` has been deprecated: Use `add_apply` instead
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.add_apply` to `add_apply x`).
+logs/v0.4.2/GreenScratch.lean:48:46: warning: `ContinuousLinearMap.smul_apply` has been deprecated: Use `smul_apply` instead
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.smul_apply` to `smul_apply x`).
+logs/v0.4.2/GreenScratch.lean:58:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ∫ (a : ℝ × ℝ) in Icc a b,
+    ((fun z => f z * ((fderiv ℝ X z) (1, 0) + (fderiv ℝ Y z) (0, 1))) + fun z => (fderiv ℝ f z) (1, 0) * X z) a +
+      (fderiv ℝ f a) (0, 1) * Y a
+in the target expression
+  ∫ (x : ℝ × ℝ) in Icc a b,
+      f x * ((fderiv ℝ X x) (1, 0) + (fderiv ℝ Y x) (0, 1)) + (fderiv ℝ f x) (1, 0) * X x +
+        (fderiv ℝ f x) (0, 1) * Y x =
+    (((∫ (x : ℝ) in a.1..b.1, f (x, b.2) * Y (x, b.2)) - ∫ (x : ℝ) in a.1..b.1, f (x, a.2) * Y (x, a.2)) +
+        ∫ (y : ℝ) in a.2..b.2, f (b.1, y) * X (b.1, y)) -
+      ∫ (y : ℝ) in a.2..b.2, f (a.1, y) * X (a.1, y)
+
+a b : ℝ × ℝ
+hab : a ≤ b
+f X Y : ℝ × ℝ → ℝ
+hf : ContDiff ℝ ∞ f
+hX : ContDiff ℝ ∞ X
+hY : ContDiff ℝ ∞ Y
+hdf : Differentiable ℝ f
+hdX : Differentiable ℝ X
+hdY : Differentiable ℝ Y
+hfx : Continuous fun z => (fderiv ℝ f z) (1, 0)
+hfy : Continuous fun z => (fderiv ℝ f z) (0, 1)
+hXx : Continuous fun z => (fderiv ℝ X z) (1, 0)
+hYy : Continuous fun z => (fderiv ℝ Y z) (0, 1)
+hprodX : ContDiff ℝ ∞ fun z => f z * X z
+hprodY : ContDiff ℝ ∞ fun z => f z * Y z
+hdiv_cont : Continuous fun z => (fderiv ℝ (fun z => f z * X z) z) (1, 0) + (fderiv ℝ (fun z => f z * Y z) z) (0, 1)
+hexpand :
+  ∀ (z : ℝ × ℝ),
+    (fderiv ℝ (fun z => f z * X z) z) (1, 0) + (fderiv ℝ (fun z => f z * Y z) z) (0, 1) =
+      f z * ((fderiv ℝ X z) (1, 0) + (fderiv ℝ Y z) (0, 1)) + (fderiv ℝ f z) (1, 0) * X z + (fderiv ℝ f z) (0, 1) * Y z
+hgreen :
+  ∫ (x : ℝ × ℝ) in Icc a b,
+      f x * ((fderiv ℝ X x) (1, 0) + (fderiv ℝ Y x) (0, 1)) + (fderiv ℝ f x) (1, 0) * X x +
+        (fderiv ℝ f x) (0, 1) * Y x =
+    (((∫ (x : ℝ) in a.1..b.1, f (x, b.2) * Y (x, b.2)) - ∫ (x : ℝ) in a.1..b.1, f (x, a.2) * Y (x, a.2)) +
+        ∫ (y : ℝ) in a.2..b.2, f (b.1, y) * X (b.1, y)) -
+      ∫ (y : ℝ) in a.2..b.2, f (a.1, y) * X (a.1, y)
+hiMain : Integrable (fun z => f z * ((fderiv ℝ X z) (1, 0) + (fderiv ℝ Y z) (0, 1))) (volume.restrict (Icc a b))
+hiX : Integrable (fun z => (fderiv ℝ f z) (1, 0) * X z) (volume.restrict (Icc a b))
+hiY : Integrable (fun z => (fderiv ℝ f z) (0, 1) * Y z) (volume.restrict (Icc a b))
+⊢ ∫ (z : ℝ × ℝ) in Icc a b, f z * ((fderiv ℝ X z) (1, 0) + (fderiv ℝ Y z) (0, 1)) =
+    ((-∫ (z : ℝ × ℝ) in Icc a b, (fderiv ℝ f z) (1, 0) * X z) - ∫ (z : ℝ × ℝ) in Icc a b, (fderiv ℝ f z) (0, 1) * Y z) +
+      ((((∫ (x : ℝ) in a.1..b.1, f (x, b.2) * Y (x, b.2)) - ∫ (x : ℝ) in a.1..b.1, f (x, a.2) * Y (x, a.2)) +
+          ∫ (y : ℝ) in a.2..b.2, f (b.1, y) * X (b.1, y)) -
+        ∫ (y : ℝ) in a.2..b.2, f (a.1, y) * X (a.1, y))

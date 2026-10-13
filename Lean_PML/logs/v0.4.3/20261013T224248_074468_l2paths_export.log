@@ -1,0 +1,21 @@
+LeanPML/Rectangle/L2Paths.lean:134:4: error: Type mismatch: After simplification, term
+  HasDerivAt.differentiableAt hlinear
+ has type
+  @DifferentiableAt ℝ DenselyNormedField.toNontriviallyNormedField ℝ NormedField.toNormedCommRing.toAddCommGroup
+    Semiring.toModule PseudoMetricSpace.toUniformSpace.toTopologicalSpace (ContinuousField D)
+    ContinuousMap.instNormedAddCommGroup.toAddCommGroup ContinuousMap.normedSpace.toModule
+    PseudoMetricSpace.toUniformSpace.toTopologicalSpace (fun y => id y • (restrictContinuous D) (rectangleBubble D)) t
+but is expected to have type
+  @DifferentiableAt ℝ DenselyNormedField.toNontriviallyNormedField ℝ Real.instAddCommGroup Semiring.toModule
+    PseudoMetricSpace.toUniformSpace.toTopologicalSpace (ContinuousField D) ContinuousMap.instAddCommGroupContinuousMap
+    ContinuousMap.module ContinuousMap.compactOpen (fun s => s • (restrictContinuous D) (rectangleBubble D)) t
+LeanPML/Rectangle/L2Paths.lean:136:4: error: Type mismatch: After simplification, term
+  HasDerivAt.mul_const (hasDerivAt_id t) (↑(rectangleBubble D) ↑z)
+ has type
+  @HasDerivAt ℝ DenselyNormedField.toNontriviallyNormedField ℝ Real.normedCommRing.toAddCommGroup
+    (NormedAlgebra.toNormedSpace ℝ).toModule PseudoMetricSpace.toUniformSpace.toTopologicalSpace ⋯
+    (fun y => id y * ↑(rectangleBubble D) ↑z) (↑(rectangleBubble D) ↑z) t
+but is expected to have type
+  @HasDerivAt ℝ DenselyNormedField.toNontriviallyNormedField ℝ Real.instAddCommGroup Semiring.toModule
+    PseudoMetricSpace.toUniformSpace.toTopologicalSpace ⋯ (fun s => ↑(s • rectangleBubble D) ↑z)
+    (↑(rectangleBubble D) ↑z) t

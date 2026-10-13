@@ -1,0 +1,6 @@
+LeanPML/Rectangle/BoundaryTime.lean:89:4: error: Type mismatch: After simplification, term
+  hu₀
+ has type
+  ZeroBoundary D u₀
+but is expected to have type
+  ZeroBoundary D (integralLift E u₀ 0)

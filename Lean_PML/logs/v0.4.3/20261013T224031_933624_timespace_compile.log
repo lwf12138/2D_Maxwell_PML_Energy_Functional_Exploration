@@ -1,0 +1,76 @@
+LeanPML/Rectangle/TimeSpace.lean:60:16: error: don't know how to synthesize implicit argument `x`
+  @ContDiffAt.isSymmSndFDerivAt ℝ DenselyNormedField.toNontriviallyNormedField (ℝ × X) ℝ Prod.normedAddCommGroup
+    Prod.normedSpace Real.normedAddCommGroup RCLike.toInnerProductSpaceReal.toNormedSpace (Function.uncurry F) ?m.373 ∞
+    (ContDiff.contDiffAt hF)
+    (Eq.mpr (id (congrFun' (congrArg LE.le minSmoothness_of_isRCLikeNormedField) ∞)) (WithTop.coe_le_coe.mpr le_top))
+    (1, 0) (0, v)
+context:
+X : Type u_1
+inst✝¹ : NormedAddCommGroup X
+inst✝ : NormedSpace ℝ X
+F : ℝ → X → ℝ
+hF : ContDiff ℝ ∞ (Function.uncurry F)
+t : ℝ
+x v : X
+g : ℝ × X → ℝ := ⋯
+hsecond : Differentiable ℝ (fderiv ℝ g)
+heval : ∀ (w : ℝ × X), HasFDerivAt (fun z => (fderiv ℝ g z) w) ((fderiv ℝ (fderiv ℝ g) (t, x)).flip w) (t, x)
+hcurve : HasDerivAt (fun s => (s, x)) (1, 0) t
+htime :
+  HasDerivAt ((fun z => (fderiv ℝ g z) (0, v)) ∘ fun s => (s, x)) (((fderiv ℝ (fderiv ℝ g) (t, x)).flip (0, v)) (1, 0))
+    t
+hspace :
+  HasFDerivAt ((fun z => (fderiv ℝ g z) (1, 0)) ∘ Prod.mk t)
+    ((fderiv ℝ (fderiv ℝ g) (t, x)).flip (1, 0) ∘SL ContinuousLinearMap.inr ℝ ℝ X) x
+hspace_value :
+  (fderiv ℝ ((fun z => (fderiv ℝ g z) (1, 0)) ∘ Prod.mk t) x) v =
+    ((fderiv ℝ (fderiv ℝ g) (t, x)).flip (1, 0) ∘SL ContinuousLinearMap.inr ℝ ℝ X) v
+⊢ ℝ × X
+LeanPML/Rectangle/TimeSpace.lean:60:16: error: don't know how to synthesize implicit argument `x`
+  @ContDiff.contDiffAt ℝ DenselyNormedField.toNontriviallyNormedField (ℝ × X) Prod.normedAddCommGroup Prod.normedSpace ℝ
+    Real.normedAddCommGroup RCLike.toInnerProductSpaceReal.toNormedSpace (Function.uncurry F) ?m.373 ∞ hF
+context:
+X : Type u_1
+inst✝¹ : NormedAddCommGroup X
+inst✝ : NormedSpace ℝ X
+F : ℝ → X → ℝ
+hF : ContDiff ℝ ∞ (Function.uncurry F)
+t : ℝ
+x v : X
+g : ℝ × X → ℝ := ⋯
+hsecond : Differentiable ℝ (fderiv ℝ g)
+heval : ∀ (w : ℝ × X), HasFDerivAt (fun z => (fderiv ℝ g z) w) ((fderiv ℝ (fderiv ℝ g) (t, x)).flip w) (t, x)
+hcurve : HasDerivAt (fun s => (s, x)) (1, 0) t
+htime :
+  HasDerivAt ((fun z => (fderiv ℝ g z) (0, v)) ∘ fun s => (s, x)) (((fderiv ℝ (fderiv ℝ g) (t, x)).flip (0, v)) (1, 0))
+    t
+hspace :
+  HasFDerivAt ((fun z => (fderiv ℝ g z) (1, 0)) ∘ Prod.mk t)
+    ((fderiv ℝ (fderiv ℝ g) (t, x)).flip (1, 0) ∘SL ContinuousLinearMap.inr ℝ ℝ X) x
+hspace_value :
+  (fderiv ℝ ((fun z => (fderiv ℝ g z) (1, 0)) ∘ Prod.mk t) x) v =
+    ((fderiv ℝ (fderiv ℝ g) (t, x)).flip (1, 0) ∘SL ContinuousLinearMap.inr ℝ ℝ X) v
+⊢ ℝ × X
+LeanPML/Rectangle/TimeSpace.lean:60:7: error: failed to infer `have` declaration type
+LeanPML/Rectangle/TimeSpace.lean:47:62: error: unsolved goals
+X : Type u_1
+inst✝¹ : NormedAddCommGroup X
+inst✝ : NormedSpace ℝ X
+F : ℝ → X → ℝ
+hF : ContDiff ℝ ∞ (Function.uncurry F)
+t : ℝ
+x v : X
+g : ℝ × X → ℝ := Function.uncurry F
+hsecond : Differentiable ℝ (fderiv ℝ g)
+heval : ∀ (w : ℝ × X), HasFDerivAt (fun z => (fderiv ℝ g z) w) ((fderiv ℝ (fderiv ℝ g) (t, x)).flip w) (t, x)
+hcurve : HasDerivAt (fun s => (s, x)) (1, 0) t
+htime :
+  HasDerivAt ((fun z => (fderiv ℝ g z) (0, v)) ∘ fun s => (s, x)) (((fderiv ℝ (fderiv ℝ g) (t, x)).flip (0, v)) (1, 0))
+    t
+hspace :
+  HasFDerivAt ((fun z => (fderiv ℝ g z) (1, 0)) ∘ Prod.mk t)
+    ((fderiv ℝ (fderiv ℝ g) (t, x)).flip (1, 0) ∘SL ContinuousLinearMap.inr ℝ ℝ X) x
+hspace_value :
+  (fderiv ℝ ((fun z => (fderiv ℝ g z) (1, 0)) ∘ Prod.mk t) x) v =
+    ((fderiv ℝ (fderiv ℝ g) (t, x)).flip (1, 0) ∘SL ContinuousLinearMap.inr ℝ ℝ X) v
+⊢ HasDerivAt (fun s => (fderiv ℝ (F s) x) v) ((fderiv ℝ (fun y => deriv (fun s => F s y) t) x) v) t

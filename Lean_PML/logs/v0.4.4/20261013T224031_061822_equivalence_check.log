@@ -1,0 +1,10 @@
+LeanPML/PML/Equivalence.lean:136:4: error: 'change' tactic failed, pattern
+  ε * dt U.E t X = spaceDx (fun s Y => 1 / μ * U.Λx s Y) t X - spaceDy (fun s Y => -1 / μ * U.Λy s Y) t X - ?m.398
+is not definitionally equal to target
+  ε * dt (reconstruct U ε μ p r).E t X =
+    spaceDx (reconstruct U ε μ p r).Hy t X - spaceDy (reconstruct U ε μ p r).Hx t X -
+              ε * (p X.1 + r X.2) * (reconstruct U ε μ p r).E t X -
+            dt (reconstruct U ε μ p r).P t X -
+          (p X.1 + r X.2) * (reconstruct U ε μ p r).P t X +
+        (reconstruct U ε μ p r).Z1 t X +
+      (reconstruct U ε μ p r).Z2 t X

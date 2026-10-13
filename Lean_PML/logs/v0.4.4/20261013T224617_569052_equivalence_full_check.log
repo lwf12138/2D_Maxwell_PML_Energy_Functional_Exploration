@@ -1,0 +1,93 @@
+LeanPML/PML/Equivalence.lean:185:19: error: type expected, got
+  (ContDiff ℝ : WithTop ℕ∞ → (?m.50 → ?m.53) → Prop)
+LeanPML/PML/Equivalence.lean:185:30: error: expected token
+LeanPML/PML/Equivalence.lean:190:26: error: expected token
+LeanPML/PML/Equivalence.lean:198:16: error: Function expected at
+  OriginalLiftRegular
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  F
+
+Hint: The identifier `OriginalLiftRegular` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/Equivalence.lean:211:16: error: Function expected at
+  OriginalLiftRegular
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  F
+
+Hint: The identifier `OriginalLiftRegular` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/Equivalence.lean:212:87: error: unsolved goals
+x✝ : Sort u_1
+OriginalLiftRegular : x✝
+Ω : Set Point
+ε κ τ μ T : ℝ
+p r : ℝ → ℝ
+F : OriginalFields
+u₀ q₀ : Point → ℝ
+hT : 0 ≤ T
+hregular : sorry
+hOriginal : OriginalOn Ω T ε κ τ μ p r F
+t : ℝ
+ht : t ∈ Icc 0 T
+X : Point
+hX : X ∈ Ω
+hφx : Continuous fun s => (lift F μ u₀ q₀).φx s X
+hφy : Continuous fun s => (lift F μ u₀ q₀).φy s X
+⊢ InvariantsEqualInitial F (lift F μ u₀ q₀) ε κ τ p r t X
+LeanPML/PML/Equivalence.lean:232:16: error: Function expected at
+  OriginalLiftRegular
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  F
+
+Hint: The identifier `OriginalLiftRegular` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/Equivalence.lean:234:77: error: unsolved goals
+x✝ : Sort u_1
+OriginalLiftRegular : x✝
+Ω : Set Point
+ε κ τ μ T : ℝ
+p r : ℝ → ℝ
+F : OriginalFields
+u₀ q₀ : Point → ℝ
+hT : 0 ≤ T
+hregular : sorry
+hOriginal : OriginalOn Ω T ε κ τ μ p r F
+hinitial : ∀ X ∈ Ω, InitialCompatible F (lift F μ u₀ q₀) ε κ τ p r X
+t : ℝ
+ht : t ∈ Icc 0 T
+X : Point
+hX : X ∈ Ω
+⊢ CompatibleAt F (lift F μ u₀ q₀) ε κ τ p r t X
+LeanPML/PML/Equivalence.lean:245:16: error: Function expected at
+  OriginalLiftRegular
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  F
+
+Hint: The identifier `OriginalLiftRegular` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/Equivalence.lean:247:52: error: unsolved goals
+x✝ : Sort u_1
+OriginalLiftRegular : x✝
+Ω : Set Point
+ε κ τ μ T : ℝ
+p r : ℝ → ℝ
+F : OriginalFields
+u₀ q₀ : Point → ℝ
+hT : 0 ≤ T
+hregular : sorry
+hOriginal : OriginalOn Ω T ε κ τ μ p r F
+hinitial : ∀ X ∈ Ω, InitialCompatible F (lift F μ u₀ q₀) ε κ τ p r X
+t : ℝ
+ht : t ∈ Ioo 0 T
+X : Point
+hX : X ∈ Ω
+⊢ PrimitiveAt ε κ τ μ p r (lift F μ u₀ q₀) t X
+LeanPML/PML/Equivalence.lean:260:26: error: expected token

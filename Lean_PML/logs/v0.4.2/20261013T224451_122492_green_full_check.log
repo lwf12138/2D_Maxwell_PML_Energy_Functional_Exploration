@@ -1,0 +1,19 @@
+LeanPML/Rectangle/Green.lean:301:2: error: Type mismatch: After simplification, term
+  hraw
+ has type
+  ∫ (z : ℝ × ℝ) in Icc (D.xlo, D.ylo) (D.xhi, D.yhi), ↑f z * ((fderiv ℝ (↑X) z) (1, 0) + (fderiv ℝ (↑Y) z) (0, 1)) =
+    ((-∫ (z : ℝ × ℝ) in Icc (D.xlo, D.ylo) (D.xhi, D.yhi), (fderiv ℝ (↑f) z) (1, 0) * ↑X z) -
+        ∫ (z : ℝ × ℝ) in Icc (D.xlo, D.ylo) (D.xhi, D.yhi), (fderiv ℝ (↑f) z) (0, 1) * ↑Y z) +
+      ((((∫ (x : ℝ) in D.xlo..D.xhi, ↑f (x, D.yhi) * ↑Y (x, D.yhi)) -
+            ∫ (x : ℝ) in D.xlo..D.xhi, ↑f (x, D.ylo) * ↑Y (x, D.ylo)) +
+          ∫ (y : ℝ) in D.ylo..D.yhi, ↑f (D.xhi, y) * ↑X (D.xhi, y)) -
+        ∫ (y : ℝ) in D.ylo..D.yhi, ↑f (D.xlo, y) * ↑X (D.xlo, y))
+but is expected to have type
+  ∫ (z : ℝ × ℝ) in Icc (D.xlo, D.ylo) (D.xhi, D.yhi),
+      ↑f z * ((fderiv ℝ (↑X) z) (1, 0) + (fderiv ℝ (↑Y) z) (0, 1)) ∂volume =
+    -∫ (z : ℝ × ℝ) in Icc (D.xlo, D.ylo) (D.xhi, D.yhi), (fderiv ℝ (↑f) z) (1, 0) * ↑X z ∂volume -
+        ∫ (z : ℝ × ℝ) in Icc (D.xlo, D.ylo) (D.xhi, D.yhi), (fderiv ℝ (↑f) z) (0, 1) * ↑Y z ∂volume +
+      (((∫ (y : ℝ) in D.ylo..D.yhi, ↑f (D.xhi, y) * ↑X (D.xhi, y)) -
+          ∫ (y : ℝ) in D.ylo..D.yhi, ↑f (D.xlo, y) * ↑X (D.xlo, y)) +
+        ((∫ (x : ℝ) in D.xlo..D.xhi, ↑f (x, D.yhi) * ↑Y (x, D.yhi)) -
+          ∫ (x : ℝ) in D.xlo..D.xhi, ↑f (x, D.ylo) * ↑Y (x, D.ylo)))

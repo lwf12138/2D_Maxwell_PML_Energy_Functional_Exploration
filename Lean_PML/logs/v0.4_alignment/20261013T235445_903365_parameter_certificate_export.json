@@ -1,0 +1,23 @@
+{
+  "stage": "v0.4_alignment",
+  "command": [
+    "lake",
+    "env",
+    "lean",
+    "-o",
+    ".lake/build/lib/lean/LeanPML/Rectangle/ParameterCertificate.olean",
+    "-i",
+    ".lake/build/lib/lean/LeanPML/Rectangle/ParameterCertificate.ilean",
+    "LeanPML/Rectangle/ParameterCertificate.lean"
+  ],
+  "command_display": "lake env lean -o .lake/build/lib/lean/LeanPML/Rectangle/ParameterCertificate.olean -i .lake/build/lib/lean/LeanPML/Rectangle/ParameterCertificate.ilean LeanPML/Rectangle/ParameterCertificate.lean",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-13T23:54:45.903365+08:00",
+  "output_file": "20261013T235445_903365_parameter_certificate_export.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-13T23:54:53.875864+08:00",
+  "elapsed_seconds": 7.972
+}

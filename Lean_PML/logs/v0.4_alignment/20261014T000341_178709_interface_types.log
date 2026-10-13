@@ -1,0 +1,270 @@
+structure LeanPML.Rectangle.RegionalAbsorption (D : LeanPML.Rectangle.Rect) : Type
+number of parameters: 1
+fields:
+  LeanPML.Rectangle.RegionalAbsorption.c : ℝ
+  LeanPML.Rectangle.RegionalAbsorption.S : ℝ
+  LeanPML.Rectangle.RegionalAbsorption.c_pos : 0 < self.c
+  LeanPML.Rectangle.RegionalAbsorption.p : ℝ → ℝ
+  LeanPML.Rectangle.RegionalAbsorption.r : ℝ → ℝ
+  LeanPML.Rectangle.RegionalAbsorption.p_smooth : ContDiff ℝ (↑⊤) self.p
+  LeanPML.Rectangle.RegionalAbsorption.r_smooth : ContDiff ℝ (↑⊤) self.r
+  LeanPML.Rectangle.RegionalAbsorption.p_bounds : ∀ x ∈ Set.Icc D.xlo D.xhi, 0 ≤ self.p x ∧ self.p x ≤ self.S
+  LeanPML.Rectangle.RegionalAbsorption.r_bounds : ∀ y ∈ Set.Icc D.ylo D.yhi, 0 ≤ self.r y ∧ self.r y ≤ self.S
+  LeanPML.Rectangle.RegionalAbsorption.S_le_quarter : self.S ≤ self.c / 4
+constructor:
+  LeanPML.Rectangle.RegionalAbsorption.mk {D : LeanPML.Rectangle.Rect} (c S : ℝ) (c_pos : 0 < c) (p r : ℝ → ℝ)
+    (p_smooth : ContDiff ℝ (↑⊤) p) (r_smooth : ContDiff ℝ (↑⊤) r)
+    (p_bounds : ∀ x ∈ Set.Icc D.xlo D.xhi, 0 ≤ p x ∧ p x ≤ S) (r_bounds : ∀ y ∈ Set.Icc D.ylo D.yhi, 0 ≤ r y ∧ r y ≤ S)
+    (S_le_quarter : S ≤ c / 4) : LeanPML.Rectangle.RegionalAbsorption D
+structure LeanPML.PML.Concrete.OriginalClassicalOn (Ω : Set LeanPML.PML.Concrete.Point) (T ε κ τ μ : ℝ) (p r : ℝ → ℝ)
+  (F : LeanPML.PML.Concrete.OriginalFields) : Prop
+number of parameters: 9
+fields:
+  LeanPML.PML.Concrete.OriginalClassicalOn.equations : LeanPML.PML.Concrete.OriginalOn Ω T ε κ τ μ p r F
+  LeanPML.PML.Concrete.OriginalClassicalOn.spatial : LeanPML.PML.Concrete.OriginalSpatialOn Ω T F
+constructor:
+  LeanPML.PML.Concrete.OriginalClassicalOn.mk {Ω : Set LeanPML.PML.Concrete.Point} {T ε κ τ μ : ℝ} {p r : ℝ → ℝ}
+    {F : LeanPML.PML.Concrete.OriginalFields} (equations : LeanPML.PML.Concrete.OriginalOn Ω T ε κ τ μ p r F)
+    (spatial : LeanPML.PML.Concrete.OriginalSpatialOn Ω T F) :
+    LeanPML.PML.Concrete.OriginalClassicalOn Ω T ε κ τ μ p r F
+structure LeanPML.PML.Concrete.PrimitiveClassicalOn (Ω : Set LeanPML.PML.Concrete.Point) (T ε κ τ μ : ℝ) (p r : ℝ → ℝ)
+  (U : LeanPML.PML.Concrete.PrimitiveFields) : Prop
+number of parameters: 9
+fields:
+  LeanPML.PML.Concrete.PrimitiveClassicalOn.equations : LeanPML.PML.Concrete.PrimitiveOn Ω T ε κ τ μ p r U
+  LeanPML.PML.Concrete.PrimitiveClassicalOn.spatial : LeanPML.PML.Concrete.PrimitiveSpatialOn Ω T U
+constructor:
+  LeanPML.PML.Concrete.PrimitiveClassicalOn.mk {Ω : Set LeanPML.PML.Concrete.Point} {T ε κ τ μ : ℝ} {p r : ℝ → ℝ}
+    {U : LeanPML.PML.Concrete.PrimitiveFields} (equations : LeanPML.PML.Concrete.PrimitiveOn Ω T ε κ τ μ p r U)
+    (spatial : LeanPML.PML.Concrete.PrimitiveSpatialOn Ω T U) :
+    LeanPML.PML.Concrete.PrimitiveClassicalOn Ω T ε κ τ μ p r U
+structure LeanPML.Rectangle.SmoothTimeJet : Type
+number of parameters: 0
+fields:
+  LeanPML.Rectangle.SmoothTimeJet.value : ℝ → LeanPML.Rectangle.SmoothField
+  LeanPML.Rectangle.SmoothTimeJet.first : ℝ → LeanPML.Rectangle.SmoothField
+  LeanPML.Rectangle.SmoothTimeJet.second : ℝ → LeanPML.Rectangle.SmoothField
+  LeanPML.Rectangle.SmoothTimeJet.joint_value : ContDiff ℝ ↑⊤ fun z => ↑(self.value z.1) z.2
+  LeanPML.Rectangle.SmoothTimeJet.joint_first : ContDiff ℝ ↑⊤ fun z => ↑(self.first z.1) z.2
+  LeanPML.Rectangle.SmoothTimeJet.deriv_value : ∀ (t : ℝ) (x : ℝ × ℝ),
+      HasDerivAt (fun s => ↑(self.value s) x) (↑(self.first t) x) t
+  LeanPML.Rectangle.SmoothTimeJet.deriv_first : ∀ (t : ℝ) (x : ℝ × ℝ),
+      HasDerivAt (fun s => ↑(self.first s) x) (↑(self.second t) x) t
+constructor:
+  LeanPML.Rectangle.SmoothTimeJet.mk (value first second : ℝ → LeanPML.Rectangle.SmoothField)
+    (joint_value : ContDiff ℝ ↑⊤ fun z => ↑(value z.1) z.2) (joint_first : ContDiff ℝ ↑⊤ fun z => ↑(first z.1) z.2)
+    (deriv_value : ∀ (t : ℝ) (x : ℝ × ℝ), HasDerivAt (fun s => ↑(value s) x) (↑(first t) x) t)
+    (deriv_first : ∀ (t : ℝ) (x : ℝ × ℝ), HasDerivAt (fun s => ↑(first s) x) (↑(second t) x) t) :
+    LeanPML.Rectangle.SmoothTimeJet
+structure LeanPML.Rectangle.UniformTimeJet (D : LeanPML.Rectangle.Rect) (J : LeanPML.Rectangle.SmoothTimeJet) : Prop
+number of parameters: 2
+fields:
+  LeanPML.Rectangle.UniformTimeJet.continuous_value : Continuous fun t =>
+      (LeanPML.Rectangle.restrictContinuous D) (J.value t)
+  LeanPML.Rectangle.UniformTimeJet.continuous_first : Continuous fun t =>
+      (LeanPML.Rectangle.restrictContinuous D) (J.first t)
+  LeanPML.Rectangle.UniformTimeJet.continuous_second : Continuous fun t =>
+      (LeanPML.Rectangle.restrictContinuous D) (J.second t)
+  LeanPML.Rectangle.UniformTimeJet.differentiable_value : Differentiable ℝ fun t =>
+      (LeanPML.Rectangle.restrictContinuous D) (J.value t)
+  LeanPML.Rectangle.UniformTimeJet.differentiable_first : Differentiable ℝ fun t =>
+      (LeanPML.Rectangle.restrictContinuous D) (J.first t)
+  LeanPML.Rectangle.UniformTimeJet.differentiable_dx_value : Differentiable ℝ fun t =>
+      (LeanPML.Rectangle.restrictContinuous D) (J.value t).derivativeX
+  LeanPML.Rectangle.UniformTimeJet.differentiable_dy_value : Differentiable ℝ fun t =>
+      (LeanPML.Rectangle.restrictContinuous D) (J.value t).derivativeY
+  LeanPML.Rectangle.UniformTimeJet.differentiable_dx_first : Differentiable ℝ fun t =>
+      (LeanPML.Rectangle.restrictContinuous D) (J.first t).derivativeX
+  LeanPML.Rectangle.UniformTimeJet.differentiable_dy_first : Differentiable ℝ fun t =>
+      (LeanPML.Rectangle.restrictContinuous D) (J.first t).derivativeY
+constructor:
+  LeanPML.Rectangle.UniformTimeJet.mk {D : LeanPML.Rectangle.Rect} {J : LeanPML.Rectangle.SmoothTimeJet}
+    (continuous_value : Continuous fun t => (LeanPML.Rectangle.restrictContinuous D) (J.value t))
+    (continuous_first : Continuous fun t => (LeanPML.Rectangle.restrictContinuous D) (J.first t))
+    (continuous_second : Continuous fun t => (LeanPML.Rectangle.restrictContinuous D) (J.second t))
+    (differentiable_value : Differentiable ℝ fun t => (LeanPML.Rectangle.restrictContinuous D) (J.value t))
+    (differentiable_first : Differentiable ℝ fun t => (LeanPML.Rectangle.restrictContinuous D) (J.first t))
+    (differentiable_dx_value :
+      Differentiable ℝ fun t => (LeanPML.Rectangle.restrictContinuous D) (J.value t).derivativeX)
+    (differentiable_dy_value :
+      Differentiable ℝ fun t => (LeanPML.Rectangle.restrictContinuous D) (J.value t).derivativeY)
+    (differentiable_dx_first :
+      Differentiable ℝ fun t => (LeanPML.Rectangle.restrictContinuous D) (J.first t).derivativeX)
+    (differentiable_dy_first :
+      Differentiable ℝ fun t => (LeanPML.Rectangle.restrictContinuous D) (J.first t).derivativeY) :
+    LeanPML.Rectangle.UniformTimeJet D J
+structure LeanPML.Rectangle.WeightedJetRegular (D : LeanPML.Rectangle.Rect) (w : ℝ × ℝ → ℝ)
+  (J : LeanPML.Rectangle.SmoothTimeJet) : Prop
+number of parameters: 3
+fields:
+  LeanPML.Rectangle.WeightedJetRegular.mem_value : ∀ (t : ℝ),
+      MeasureTheory.MemLp (fun x => √(w x) * ↑(J.value t) x) 2 D.measure
+  LeanPML.Rectangle.WeightedJetRegular.mem_first : ∀ (t : ℝ),
+      MeasureTheory.MemLp (fun x => √(w x) * ↑(J.first t) x) 2 D.measure
+  LeanPML.Rectangle.WeightedJetRegular.mem_second : ∀ (t : ℝ),
+      MeasureTheory.MemLp (fun x => √(w x) * ↑(J.second t) x) 2 D.measure
+  LeanPML.Rectangle.WeightedJetRegular.continuous_value : Continuous fun t =>
+      LeanPML.Analysis.weightedOfFunction D.measure w ↑(J.value t) ⋯
+  LeanPML.Rectangle.WeightedJetRegular.continuous_first : Continuous fun t =>
+      LeanPML.Analysis.weightedOfFunction D.measure w ↑(J.first t) ⋯
+  LeanPML.Rectangle.WeightedJetRegular.differentiable_value : Differentiable ℝ fun t =>
+      LeanPML.Analysis.weightedOfFunction D.measure w ↑(J.value t) ⋯
+  LeanPML.Rectangle.WeightedJetRegular.differentiable_first : Differentiable ℝ fun t =>
+      LeanPML.Analysis.weightedOfFunction D.measure w ↑(J.first t) ⋯
+constructor:
+  LeanPML.Rectangle.WeightedJetRegular.mk {D : LeanPML.Rectangle.Rect} {w : ℝ × ℝ → ℝ}
+    {J : LeanPML.Rectangle.SmoothTimeJet}
+    (mem_value : ∀ (t : ℝ), MeasureTheory.MemLp (fun x => √(w x) * ↑(J.value t) x) 2 D.measure)
+    (mem_first : ∀ (t : ℝ), MeasureTheory.MemLp (fun x => √(w x) * ↑(J.first t) x) 2 D.measure)
+    (mem_second : ∀ (t : ℝ), MeasureTheory.MemLp (fun x => √(w x) * ↑(J.second t) x) 2 D.measure)
+    (continuous_value : Continuous fun t => LeanPML.Analysis.weightedOfFunction D.measure w ↑(J.value t) ⋯)
+    (continuous_first : Continuous fun t => LeanPML.Analysis.weightedOfFunction D.measure w ↑(J.first t) ⋯)
+    (differentiable_value : Differentiable ℝ fun t => LeanPML.Analysis.weightedOfFunction D.measure w ↑(J.value t) ⋯)
+    (differentiable_first : Differentiable ℝ fun t => LeanPML.Analysis.weightedOfFunction D.measure w ↑(J.first t) ⋯) :
+    LeanPML.Rectangle.WeightedJetRegular D w J
+structure LeanPML.Rectangle.SmoothStateRegular (D : LeanPML.Rectangle.Rect) (C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ))
+  (B : LeanPML.Rectangle.SmoothStateData) : Prop
+number of parameters: 3
+fields:
+  LeanPML.Rectangle.SmoothStateRegular.v : LeanPML.Rectangle.UniformTimeJet D B.v
+  LeanPML.Rectangle.SmoothStateRegular.V : LeanPML.Rectangle.UniformTimeJet D B.V
+  LeanPML.Rectangle.SmoothStateRegular.R : LeanPML.Rectangle.UniformTimeJet D B.R
+  LeanPML.Rectangle.SmoothStateRegular.z : LeanPML.Rectangle.UniformTimeJet D B.z
+  LeanPML.Rectangle.SmoothStateRegular.Λx : LeanPML.Rectangle.UniformTimeJet D B.Λx
+  LeanPML.Rectangle.SmoothStateRegular.Λy : LeanPML.Rectangle.UniformTimeJet D B.Λy
+  LeanPML.Rectangle.SmoothStateRegular.φx : LeanPML.Rectangle.UniformTimeJet D B.φx
+  LeanPML.Rectangle.SmoothStateRegular.φy : LeanPML.Rectangle.UniformTimeJet D B.φy
+  LeanPML.Rectangle.SmoothStateRegular.weightedX : LeanPML.Rectangle.WeightedJetRegular D C.wx B.φx
+  LeanPML.Rectangle.SmoothStateRegular.weightedY : LeanPML.Rectangle.WeightedJetRegular D C.wy B.φy
+constructor:
+  LeanPML.Rectangle.SmoothStateRegular.mk {D : LeanPML.Rectangle.Rect} {C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)}
+    {B : LeanPML.Rectangle.SmoothStateData} (v : LeanPML.Rectangle.UniformTimeJet D B.v)
+    (V : LeanPML.Rectangle.UniformTimeJet D B.V) (R : LeanPML.Rectangle.UniformTimeJet D B.R)
+    (z : LeanPML.Rectangle.UniformTimeJet D B.z) (Λx : LeanPML.Rectangle.UniformTimeJet D B.Λx)
+    (Λy : LeanPML.Rectangle.UniformTimeJet D B.Λy) (φx : LeanPML.Rectangle.UniformTimeJet D B.φx)
+    (φy : LeanPML.Rectangle.UniformTimeJet D B.φy) (weightedX : LeanPML.Rectangle.WeightedJetRegular D C.wx B.φx)
+    (weightedY : LeanPML.Rectangle.WeightedJetRegular D C.wy B.φy) : LeanPML.Rectangle.SmoothStateRegular D C B
+structure LeanPML.PML.Concrete.OriginalLiftRegular (F : LeanPML.PML.Concrete.OriginalFields)
+  (u₀ : LeanPML.PML.Concrete.Point → ℝ) : Prop
+number of parameters: 2
+fields:
+  LeanPML.PML.Concrete.OriginalLiftRegular.E_cont : ∀ (X : LeanPML.PML.Concrete.Point), Continuous fun t => F.E t X
+  LeanPML.PML.Concrete.OriginalLiftRegular.P_cont : ∀ (X : LeanPML.PML.Concrete.Point), Continuous fun t => F.P t X
+  LeanPML.PML.Concrete.OriginalLiftRegular.Hx_cont : ∀ (X : LeanPML.PML.Concrete.Point), Continuous fun t => F.Hx t X
+  LeanPML.PML.Concrete.OriginalLiftRegular.Hy_cont : ∀ (X : LeanPML.PML.Concrete.Point), Continuous fun t => F.Hy t X
+  LeanPML.PML.Concrete.OriginalLiftRegular.Z1_cont : ∀ (X : LeanPML.PML.Concrete.Point), Continuous fun t => F.Z1 t X
+  LeanPML.PML.Concrete.OriginalLiftRegular.Z2_cont : ∀ (X : LeanPML.PML.Concrete.Point), Continuous fun t => F.Z2 t X
+  LeanPML.PML.Concrete.OriginalLiftRegular.Qx_cont : ∀ (X : LeanPML.PML.Concrete.Point), Continuous fun t => F.Qx t X
+  LeanPML.PML.Concrete.OriginalLiftRegular.Qy_cont : ∀ (X : LeanPML.PML.Concrete.Point), Continuous fun t => F.Qy t X
+  LeanPML.PML.Concrete.OriginalLiftRegular.history_smooth : ContDiff ℝ (↑⊤)
+      (Function.uncurry (LeanPML.PML.Concrete.integralLift F.E u₀))
+constructor:
+  LeanPML.PML.Concrete.OriginalLiftRegular.mk {F : LeanPML.PML.Concrete.OriginalFields}
+    {u₀ : LeanPML.PML.Concrete.Point → ℝ} (E_cont : ∀ (X : LeanPML.PML.Concrete.Point), Continuous fun t => F.E t X)
+    (P_cont : ∀ (X : LeanPML.PML.Concrete.Point), Continuous fun t => F.P t X)
+    (Hx_cont : ∀ (X : LeanPML.PML.Concrete.Point), Continuous fun t => F.Hx t X)
+    (Hy_cont : ∀ (X : LeanPML.PML.Concrete.Point), Continuous fun t => F.Hy t X)
+    (Z1_cont : ∀ (X : LeanPML.PML.Concrete.Point), Continuous fun t => F.Z1 t X)
+    (Z2_cont : ∀ (X : LeanPML.PML.Concrete.Point), Continuous fun t => F.Z2 t X)
+    (Qx_cont : ∀ (X : LeanPML.PML.Concrete.Point), Continuous fun t => F.Qx t X)
+    (Qy_cont : ∀ (X : LeanPML.PML.Concrete.Point), Continuous fun t => F.Qy t X)
+    (history_smooth : ContDiff ℝ (↑⊤) (Function.uncurry (LeanPML.PML.Concrete.integralLift F.E u₀))) :
+    LeanPML.PML.Concrete.OriginalLiftRegular F u₀
+structure LeanPML.PML.Concrete.LiftIdentified (B : LeanPML.Rectangle.SmoothStateData)
+  (F : LeanPML.PML.Concrete.OriginalFields) (μ : ℝ) (u₀ q₀ : LeanPML.PML.Concrete.Point → ℝ) : Prop
+number of parameters: 5
+fields:
+  LeanPML.PML.Concrete.LiftIdentified.v : (fun t X => ↑(B.v.value t) X) = (LeanPML.PML.Concrete.lift F μ u₀ q₀).u
+  LeanPML.PML.Concrete.LiftIdentified.V : (fun t X => ↑(B.V.value t) X) = (LeanPML.PML.Concrete.lift F μ u₀ q₀).E
+  LeanPML.PML.Concrete.LiftIdentified.R : (fun t X => ↑(B.R.value t) X) = (LeanPML.PML.Concrete.lift F μ u₀ q₀).P
+  LeanPML.PML.Concrete.LiftIdentified.z : (fun t X => ↑(B.z.value t) X) = (LeanPML.PML.Concrete.lift F μ u₀ q₀).q
+  LeanPML.PML.Concrete.LiftIdentified.Λx : (fun t X => ↑(B.Λx.value t) X) = (LeanPML.PML.Concrete.lift F μ u₀ q₀).Λx
+  LeanPML.PML.Concrete.LiftIdentified.Λy : (fun t X => ↑(B.Λy.value t) X) = (LeanPML.PML.Concrete.lift F μ u₀ q₀).Λy
+  LeanPML.PML.Concrete.LiftIdentified.φx : (fun t X => ↑(B.φx.value t) X) = (LeanPML.PML.Concrete.lift F μ u₀ q₀).φx
+  LeanPML.PML.Concrete.LiftIdentified.φy : (fun t X => ↑(B.φy.value t) X) = (LeanPML.PML.Concrete.lift F μ u₀ q₀).φy
+constructor:
+  LeanPML.PML.Concrete.LiftIdentified.mk {B : LeanPML.Rectangle.SmoothStateData}
+    {F : LeanPML.PML.Concrete.OriginalFields} {μ : ℝ} {u₀ q₀ : LeanPML.PML.Concrete.Point → ℝ}
+    (v : (fun t X => ↑(B.v.value t) X) = (LeanPML.PML.Concrete.lift F μ u₀ q₀).u)
+    (V : (fun t X => ↑(B.V.value t) X) = (LeanPML.PML.Concrete.lift F μ u₀ q₀).E)
+    (R : (fun t X => ↑(B.R.value t) X) = (LeanPML.PML.Concrete.lift F μ u₀ q₀).P)
+    (z : (fun t X => ↑(B.z.value t) X) = (LeanPML.PML.Concrete.lift F μ u₀ q₀).q)
+    (Λx : (fun t X => ↑(B.Λx.value t) X) = (LeanPML.PML.Concrete.lift F μ u₀ q₀).Λx)
+    (Λy : (fun t X => ↑(B.Λy.value t) X) = (LeanPML.PML.Concrete.lift F μ u₀ q₀).Λy)
+    (φx : (fun t X => ↑(B.φx.value t) X) = (LeanPML.PML.Concrete.lift F μ u₀ q₀).φx)
+    (φy : (fun t X => ↑(B.φy.value t) X) = (LeanPML.PML.Concrete.lift F μ u₀ q₀).φy) :
+    LeanPML.PML.Concrete.LiftIdentified B F μ u₀ q₀
+LeanPML.Rectangle.RegionalAbsorption.originalRegionalFiniteIntervalProblem {D : LeanPML.Rectangle.Rect}
+  (R : LeanPML.Rectangle.RegionalAbsorption D) (ε κ τ μ T : ℝ) (F : LeanPML.PML.Concrete.OriginalFields)
+  (u₀ q₀ : LeanPML.PML.Concrete.Point → ℝ) (B : LeanPML.Rectangle.SmoothStateData)
+  (reg : LeanPML.Rectangle.SmoothStateRegular D R.coefficients B)
+  (hid : LeanPML.PML.Concrete.LiftIdentified B F μ u₀ q₀) (hT : 0 ≤ T) (hμ : μ ≠ 0)
+  (hregular : LeanPML.PML.Concrete.OriginalLiftRegular F u₀)
+  (hOriginal : LeanPML.PML.Concrete.OriginalOn D.openSet T ε κ τ μ R.p R.r F)
+  (hinitial :
+    ∀ X ∈ D.openSet, LeanPML.PML.Concrete.InitialCompatible F (LeanPML.PML.Concrete.lift F μ u₀ q₀) ε κ τ R.p R.r X)
+  (hφzero :
+    ∀ X ∈ D.openSet,
+      R.p X.1 + R.r X.2 = 0 →
+        (LeanPML.PML.Concrete.lift F μ u₀ q₀).φx 0 X = 0 ∧ (LeanPML.PML.Concrete.lift F μ u₀ q₀).φy 0 X = 0)
+  (hPEC : LeanPML.PML.Concrete.OriginalRectPEC D T F) (hu₀ : LeanPML.Rectangle.ZeroBoundary D u₀)
+  (hdegenerate : T = 0 → LeanPML.PML.Concrete.InitialDerivativeCompatible D R.coefficients B κ τ) :
+  LeanPML.PML.FiniteIntervalProblemConditional (LeanPML.Rectangle.greenDomain D) R.coefficients ε κ τ μ
+    (LeanPML.Rectangle.poincareConstant D) T ⋯
+LeanPML.Rectangle.RegionalAbsorption.originalRegionalFiniteIntervalProblem_second_R_continuous
+  {D : LeanPML.Rectangle.Rect} (R : LeanPML.Rectangle.RegionalAbsorption D) (ε κ τ μ T : ℝ)
+  (F : LeanPML.PML.Concrete.OriginalFields) (u₀ q₀ : LeanPML.PML.Concrete.Point → ℝ)
+  (B : LeanPML.Rectangle.SmoothStateData) (reg : LeanPML.Rectangle.SmoothStateRegular D R.coefficients B)
+  (hid : LeanPML.PML.Concrete.LiftIdentified B F μ u₀ q₀) (hT : 0 ≤ T) (hμ : μ ≠ 0)
+  (hregular : LeanPML.PML.Concrete.OriginalLiftRegular F u₀)
+  (hOriginal : LeanPML.PML.Concrete.OriginalOn D.openSet T ε κ τ μ R.p R.r F)
+  (hinitial :
+    ∀ X ∈ D.openSet, LeanPML.PML.Concrete.InitialCompatible F (LeanPML.PML.Concrete.lift F μ u₀ q₀) ε κ τ R.p R.r X)
+  (hφzero :
+    ∀ X ∈ D.openSet,
+      R.p X.1 + R.r X.2 = 0 →
+        (LeanPML.PML.Concrete.lift F μ u₀ q₀).φx 0 X = 0 ∧ (LeanPML.PML.Concrete.lift F μ u₀ q₀).φy 0 X = 0)
+  (hPEC : LeanPML.PML.Concrete.OriginalRectPEC D T F) (hu₀ : LeanPML.Rectangle.ZeroBoundary D u₀)
+  (hdegenerate : T = 0 → LeanPML.PML.Concrete.InitialDerivativeCompatible D R.coefficients B κ τ) :
+  ContinuousOn
+    (fun t =>
+      ((R.originalRegionalFiniteIntervalProblem ε κ τ μ T F u₀ q₀ B reg hid hT hμ hregular hOriginal hinitial hφzero
+                hPEC hu₀ hdegenerate).path.second
+          t).R)
+    (Set.Icc 0 T)
+LeanPML.PML.Concrete.original_to_primitive_classical_rectangle (D : LeanPML.Rectangle.Rect) (ε κ τ μ T : ℝ)
+  (p r : ℝ → ℝ) (F : LeanPML.PML.Concrete.OriginalFields) (u₀ q₀ : LeanPML.PML.Concrete.Point → ℝ) (hT : 0 ≤ T)
+  (hregular : LeanPML.PML.Concrete.OriginalLiftRegular F u₀)
+  (hclassical : LeanPML.PML.Concrete.OriginalClassicalOn D.openSet T ε κ τ μ p r F)
+  (hinitial :
+    ∀ X ∈ D.openSet, LeanPML.PML.Concrete.InitialCompatible F (LeanPML.PML.Concrete.lift F μ u₀ q₀) ε κ τ p r X)
+  (hPEC : LeanPML.PML.Concrete.OriginalRectPEC D T F) (hu₀ : LeanPML.Rectangle.ZeroBoundary D u₀) :
+  LeanPML.PML.Concrete.PrimitiveClassicalOn D.openSet T ε κ τ μ p r (LeanPML.PML.Concrete.lift F μ u₀ q₀) ∧
+    (∀ t ∈ Set.Icc 0 T, LeanPML.Rectangle.ZeroBoundary D ((LeanPML.PML.Concrete.lift F μ u₀ q₀).u t)) ∧
+      ∀ t ∈ Set.Icc 0 T, LeanPML.Rectangle.ZeroBoundary D ((LeanPML.PML.Concrete.lift F μ u₀ q₀).E t)
+LeanPML.PML.Concrete.primitive_to_original_classical_rectangle (D : LeanPML.Rectangle.Rect) (ε κ τ μ T : ℝ)
+  (p r : ℝ → ℝ) (U : LeanPML.PML.Concrete.PrimitiveFields) (hμ : μ ≠ 0)
+  (hsmooth : ContDiff ℝ (↑⊤) (Function.uncurry U.u))
+  (hclassical : LeanPML.PML.Concrete.PrimitiveClassicalOn D.openSet T ε κ τ μ p r U)
+  (hPEC : ∀ t ∈ Set.Icc 0 T, LeanPML.Rectangle.ZeroBoundary D (U.E t)) :
+  LeanPML.PML.Concrete.OriginalClassicalOn D.openSet T ε κ τ μ p r (LeanPML.PML.Concrete.reconstruct U ε μ p r) ∧
+    LeanPML.PML.Concrete.OriginalRectPEC D T (LeanPML.PML.Concrete.reconstruct U ε μ p r)
+LeanPML.Rectangle.ParameterCertificate.unitSquare_parameter_certificate :
+  0 < 1 ∧
+    LeanPML.Rectangle.poincareConstant LeanPML.Rectangle.ParameterCertificate.unitSquare = 4 ∧
+      LeanPML.PML.materialA 1 1 = 3 ∧
+        LeanPML.PML.scaleK 1 1 1
+              (LeanPML.Rectangle.poincareConstant LeanPML.Rectangle.ParameterCertificate.unitSquare) =
+            384 ∧
+          0 < LeanPML.Rectangle.poincareConstant LeanPML.Rectangle.ParameterCertificate.unitSquare ∧
+            0 < LeanPML.PML.materialA 1 1 ∧
+              0 <
+                  LeanPML.PML.scaleK 1 1 1
+                    (LeanPML.Rectangle.poincareConstant LeanPML.Rectangle.ParameterCertificate.unitSquare) ∧
+                0 < LeanPML.Rectangle.ParameterCertificate.smallC ∧
+                  0 < LeanPML.Rectangle.ParameterCertificate.amplitudeS ∧
+                    LeanPML.Rectangle.ParameterCertificate.amplitudeS ≤
+                        LeanPML.Rectangle.ParameterCertificate.smallC / 4 ∧
+                      LeanPML.Rectangle.ParameterCertificate.smallC ≤
+                        LeanPML.PML.threshold 1 1 1 1
+                          (LeanPML.Rectangle.poincareConstant LeanPML.Rectangle.ParameterCertificate.unitSquare)

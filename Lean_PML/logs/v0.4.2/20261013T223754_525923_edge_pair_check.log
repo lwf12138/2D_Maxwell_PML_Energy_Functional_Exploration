@@ -1,0 +1,14 @@
+logs/v0.4.2/EdgeScratch.lean:32:8: error: `dsimp` made no progress
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+logs/v0.4.2/EdgeScratch.lean:35:6: error: Type mismatch
+  intervalIntegral.integral_const_mul ?m.440 ?m.441
+has type
+  ∫ (x : ℝ) in ?m.435..?m.436, ?m.440 * ?m.441 x ∂?m.437 = ?m.440 * ∫ (x : ℝ) in ?m.435..?m.436, ?m.441 x ∂?m.437
+but is expected to have type
+  ∫ (s : ℝ) in a..b, r * ((ContinuousMap.IccExtend hab u) s * (ContinuousMap.IccExtend hab v) s) =
+    (∫ (s : ℝ) in a..b, (ContinuousMap.IccExtend hab u) s * (ContinuousMap.IccExtend hab v) s) * (RingHom.id ℝ) r

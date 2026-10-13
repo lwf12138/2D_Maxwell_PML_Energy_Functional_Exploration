@@ -1,0 +1,39 @@
+{
+  "status": "passed",
+  "reviewed_at": "2026-10-14T00:10:43.962652+08:00",
+  "method": "主代理逐页查看最终PDF经Poppler重新渲染的144dpi整页图，结合脚本原文字符/旧批注矩形无重叠检查",
+  "pages": [
+    {
+      "actual_page": 3,
+      "printed_page": 3,
+      "image": "final-03.png",
+      "sha256": "07fa6a3f676d09c7a156603a408a7514fdb697153d65875689ba57b94cefda7c",
+      "observation": "页顶空间可导限定清晰，与原页眉/标题及旧八式红勾均无重叠。"
+    },
+    {
+      "actual_page": 4,
+      "printed_page": 4,
+      "image": "final-04.png",
+      "sha256": "21b73ad0e17cb12e4a7d4ceb18d9140e5f7b4e4cff2636db40b8f8ec2840965b",
+      "observation": "两条页顶说明分别保留；新增古典范围说明位于旧说明与2.2标题间，文字未裁切，原公式/旧标记可读。"
+    },
+    {
+      "actual_page": 7,
+      "printed_page": 7,
+      "image": "final-07.png",
+      "sha256": "4d702741f29ae2881eeaae8f06e438fe328cfec2765158d7c3bb2440b6f70ee7",
+      "observation": "左侧区域幅度说明位于空白页边，未盖住5.2/5.3或旧输入标记；右侧保守Poincare说明保持。"
+    },
+    {
+      "actual_page": 15,
+      "printed_page": 15,
+      "image": "final-15.png",
+      "sha256": "db32965829bd9d2d3e25ad11737391c92a66cea414526449b214b64c3de3d015",
+      "observation": "§10末尾空白处的独立证书红勾及旧c失效说明清晰；未给原10.1/10.2打完成勾，11节标题/旧11.1标记完整。"
+    }
+  ],
+  "clipping": false,
+  "new_text_overlap": false,
+  "old_annotations_preserved": true,
+  "pages_count": 18
+}

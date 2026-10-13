@@ -1,0 +1,22 @@
+LeanPML/Rectangle/InterfaceAssembly.lean:333:4: error: Type mismatch: After simplification, term
+  hmain
+ has type
+  @Eq ℝ
+    (μ *
+      (ε *
+              (Concrete.dt (fun t x => ↑(B.V.value t) x) t x + (p x.1 + r x.2) * ↑(B.V.value t) x +
+                p x.1 * r x.2 * ↑(B.v.value t) x) +
+            Concrete.dt (fun t x => ↑(B.R.value t) x) t x +
+          (p x.1 + r x.2) * ↑(B.R.value t) x +
+        p x.1 * r x.2 * ↑(B.z.value t) x))
+    ((fderiv ℝ (fun x => ↑(B.Λx.value t) x) x) (1, 0) + (fderiv ℝ (fun x => ↑(B.Λy.value t) x) x) (0, 1))
+but is expected to have type
+  @Eq ℝ
+    (μ *
+      (ε *
+              (Concrete.dt (fun t x => ↑(B.V.value t) x) t x + (p x.1 + r x.2) * ↑(B.V.value t) x +
+                p x.1 * r x.2 * ↑(B.v.value t) x) +
+            Concrete.dt (fun t x => ↑(B.R.value t) x) t x +
+          (p x.1 + r x.2) * ↑(B.R.value t) x +
+        p x.1 * r x.2 * ↑(B.z.value t) x))
+    ((fderiv ℝ (↑(smoothCoordinatesBase B t).Λx) x) (1, 0) + (fderiv ℝ (↑(smoothCoordinatesBase B t).Λy) x) (0, 1))

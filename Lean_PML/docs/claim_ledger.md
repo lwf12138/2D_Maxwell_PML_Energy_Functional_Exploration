@@ -119,3 +119,40 @@ V7 当前纸面主张依赖：
 因此可以称为**明确分析接口下的条件性单调能量先验定理**。还不能称为“原八变量二维 PDE 已完整形式化”：具体矩形 Green、迹、精确 Poincaré、微分交换及原模型/primitive 双向对应仍未完成，提升唯一性和解存在唯一性也未完成。没有严格衰减结论，没有以有限时间估计证明全局解存在，没有扩大原小幅度范围。
 
 本轮结束于 v0.3.5。下一入口 v0.4.1 仅是具体矩形光滑场、方向导数和四边边界/零迹表示；未提前实现。逐项依赖见 [定理清单新增记录](theorem_inventory.md)，PDF 的范围说明与旧批注更新见 [标注账本](pdf_formalization_marks.md)。
+
+
+## v0.4 增量：具体光滑矩形与原系统接口（保留上述历史）
+
+本次四阶段分别通过实际完整构建、公理审计与最终假设检查。证据按 [v0.4.1](../logs/v0.4.1/acceptance.json)、[v0.4.2](../logs/v0.4.2/acceptance.json)、[v0.4.3](../logs/v0.4.3/acceptance.json)、[v0.4.4](../logs/v0.4.4/acceptance.json) 保存；准确命令、目录、退出码和完整输出均在所链接日志。没有将旧“待实现”文字直接当作当前状态，也没有覆盖历史。
+
+| 原条目/公式 | 当前新增实际证据 | 范围与剩余部分 |
+|---|---|---|
+| T01；(1.1)、(2.1)–(2.2) | `Concrete.OriginalAt/OriginalOn` 建模全部八式，真实 HasDerivAt 和 fderiv；`OriginalRectPEC` 全四边 PEC | 定义不是无条件证明；选定光滑表示保证导数对象的分析解释。归一化 ε=ε₀ε∞、κ=ε₀(ε_s−ε∞)、μ=μ₀μ_r，p=σ_x/ε₀、r=σ_y/ε₀，Z/Q 不另外缩放 |
+| T02；(2.3) | `Concrete.integralLift_initial/hasDerivAt_integralLift`；`Rectangle.toL2_integralLift_on_Icc` | 实际历史积分与 L² Bochner 积分连接；u₀/q₀任意固定初始原函数，不默认零 |
+| T03；(2.4) | `Concrete.five_invariants_on_Icc`、`five_invariants_toLp_eq_of_continuous` | 全部五个真实时间不变量，包括两个磁辅助量；任意初始常数场可随空间变化。不是仅点态代数，也不等于原变量全零 |
+| T04；(2.5)、(2.6)、命题2.1 | `Concrete.original_to_primitive_rectangle`、`primitive_to_original_rectangle`、`reconstruct_lift_eqOn`、`lift_reconstruct_eqOn` | 初始零兼容后双向恢复全部八式及 PEC；固定 u₀/q₀，正则性显式。primitive 回环的空间梯度识别在内部；非零不变量附加源项系统未实现 |
+| T05；§5.2 零区 | `Concrete.original_zero_region_preserved`、`original_smoothZeroOn`、`original_static_closed` | 原场 φ₀=0 与原演化推出全区间保持，再内部求导得到加权三层零值；T=0 的首层初始图条件单列 |
+| T08；(5.1) | `Rectangle.poincare_estimate/poincareDomain`、`scaleK_rectangle`、`threshold_rectangle_pos` | **保守版** CP=2Lx；K=32μ(ε+2κ)Lx²，c_*同步该值。未证明原精确 π 常数，不登记原式完整完成 |
+| T10、T12；(5.5)–(5.6)、(6.3)/(6.6) | `Rectangle.hasDerivAt_weighted_smooth`、`hasDerivAt_jet_gradientX/Y`、`hasDerivAt_jet_divergence`、`smoothSpatialPath` | 真实函数↔普通/加权L²及混合交换；统一和加权正则性仍是输入。(5.7)/(5.8)自动传播未证 |
+| T16；(7.5) | `Rectangle.green_L2/greenDomain`、`boundary_multiplier_zero`、`twoLayer_zeroBoundary` | 已证明具体光滑矩形四边 Green，域/迹良定义并线性；两层 PEC 消去来自真实求导。不是一般弱 Green，T=0闭端点E_t迹须额外初始迹条件 |
+| T11、T17–T29 的具体接口 | `Concrete.originalFiniteIntervalProblem_separated`、`originalFiniteIntervalProblem_second_R_continuous` | 从原八式、初始兼容、实际历史识别、PEC、强正则性产生旧有限区间问题；Green、Poincaré、交换、全时段静态/零区不再外传为目标假设。既有能量结论未在本轮另行发布为v0.5主定理 |
+| T30–T31、T06–T07 | 暂不升级为完整完成 | v0.5.1最终具体先验定理发布、弱空间完整范围、加权传播、提升规范唯一性仍各有边界 |
+
+表中 `Concrete.*` 完整前缀为 `LeanPML.PML.Concrete.`，`Rectangle.*` 为 `LeanPML.Rectangle.`。代码位于 [Rectangle](../LeanPML/Rectangle) 和 [OriginalAssembly](../LeanPML/PML/OriginalAssembly.lean) 导入链；逐项哈希与实际声明名见最终验收/源码。
+
+最高入口的输入审查另见 [独立语义记录](../logs/v0.4.4/semantic_review_geometry.md)。`SmoothZeroOn`、`SmoothStaticAt` 是中间桥接需要的结论包，最终入口由原方程证明填入；不可只看结构名字或 #print axioms 就视其为已证。`SmoothStateRegular` 只给真实成员资格、连续性与可微性。光滑延拓和 C(K) 条件比完整 V7 弱范围强，且不要求延拓域外满足 PDE。
+
+## 2026-10-14：v0.4 对齐的逐项追加
+
+以下均为本轮实际源码、构建、公理和类型复核；不覆盖上方历史。证明范围明细见 [对齐记录](../logs/v0.4_alignment/alignment_record.md)，成功日志及哈希见 [本轮验收](../logs/v0.4_alignment/acceptance.json)。
+
+| 对应条目/来源 | 本轮准确声明 | 本轮结论与范围 |
+|---|---|---|
+| T08–T09；(5.1)保守版、(5.2)–(5.3)、§10对照 | `LeanPML.Rectangle.ParameterCertificate.unitSquare_parameter_certificate`、`unitSquare_explicit_smallness`、`oldC_not_le_threshold` | 真实矩形CP4/A3/K384及新精确参数证书补齐；旧c在新常数下8cAK=72>1。未证明原(5.1)π常数，未升级原(10.1)/(10.2)例子 |
+| T09–T10；(5.3)/(5.5) | `LeanPML.Rectangle.RegionalAbsorption.coefficients_eq_closed`、`coefficients_ae`、`weights_ae`、`weighted_memLp_iff` | 原p/r仅闭坐标区间界，内部有界代表域内/a.e.一致；无吸收正下界、无权重本质有界输入 |
+| T11、T18；(6.2)/(7.7) | 同前缀 `energyDensity_integrable`、`fieldEnergy_eq_regional_integral`、`dissipationDensity_integrable`、`fieldDissipation_eq_regional_integral` | 已有实际能量/耗散等于原区域系数的合法全矩形积分；不是另建无联系能量，也不是新增PDE能量律 |
+| T01、T04；(2.1)–(2.6) | `LeanPML.PML.Concrete.original_to_primitive_classical_rectangle`、`primitive_to_original_classical_rectangle`、`originalClassicalOn_of_liftIdentified` | 原E/H及primitive u/E/Λ有实际空间可导证据；旧低层式仍是表达式。由已有光滑识别派生证据；双向含八式/PEC，仍为所选强正则类 |
+| T11–T12及具体总装 | `LeanPML.Rectangle.RegionalAbsorption.originalRegionalFiniteIntervalProblem`、`originalRegionalFiniteIntervalProblem_second_R_continuous` | 从原区域系数方程经古典包装接入已证Green/Poincare，给P_tt连续性；全时段兼容/能量不在最终输入。还没有发布v0.5.1主定理 |
+| (6.6)范围说明 | SmoothPaths/StatePaths/WeightedCalculus中文说明更正 | 联合C∞、一致范数、加权成员及路径正则性是额外技术输入，不由弱论文条件推出。传播、弱范围、提升规范和适定性仍未完成 |
+
+新增源码位于 [ParameterCertificate](../LeanPML/Rectangle/ParameterCertificate.lean)、[ClassicalSystem](../LeanPML/PML/ClassicalSystem.lean)、[RegionalCoefficients](../LeanPML/Rectangle/RegionalCoefficients.lean)。旧v0.4.2“完成”漏数值证书的登记已作本次追加更正；旧日志与验收文件保留，不能将本轮结果倒写到旧证据中。

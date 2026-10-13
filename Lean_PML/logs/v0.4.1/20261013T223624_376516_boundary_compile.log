@@ -1,0 +1,24 @@
+LeanPML/Rectangle/Boundary.lean:30:11: warning: Variable name `f` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+LeanPML/Rectangle/Boundary.lean:30:13: warning: Variable name `g` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+LeanPML/Rectangle/Boundary.lean:31:12: warning: Variable name `c` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+LeanPML/Rectangle/Boundary.lean:31:14: warning: Variable name `f` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+LeanPML/Rectangle/Boundary.lean:140:4: error: 'change' tactic failed, pattern
+  D.xlo < (D.xlo + D.xhi) / 2 ∧ (D.xlo + D.xhi) / 2 < D.xhi ∧ ?m.74
+is not definitionally equal to target
+  ((D.xlo + D.xhi) / 2, (D.ylo + D.yhi) / 2) ∈ D.openSet

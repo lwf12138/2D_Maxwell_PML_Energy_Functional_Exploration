@@ -1,0 +1,11 @@
+{
+  "all_four_stages_passed": true,
+  "audited_declarations": 538,
+  "new_theorems": 157,
+  "new_formal_files": 17,
+  "all_new_theorems_audited": true,
+  "all_files_in_default_import_chain": true,
+  "protected_sources_and_locks_and_old_proofs_unchanged": true,
+  "pdf_structure_and_visual_passed": true,
+  "no_v0.5_implementation": true
+}

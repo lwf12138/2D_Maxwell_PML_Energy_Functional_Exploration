@@ -1,0 +1,14 @@
+{
+  "reviewed_at": "2026-10-14T00:00:45.692019+08:00",
+  "files": {
+    "LeanPML/Rectangle/RegionalCoefficients.lean": "f7a5bf667a9dc9d5914f63c9747b95372227922de41912fcf6a8a44ff0277623",
+    "LeanPML/PML/ClassicalSystem.lean": "63ea7a2dae932b24c15bf71f10711bdcd8c0754177b43e917d503f8305125d8a",
+    "LeanPML/Rectangle/ParameterCertificate.lean": "afbcb8afbe20c9042ca9726e7c7849d42e257c28eb60462a5646d24e225223d4",
+    "LeanPML/PML/OriginalAssembly.lean": "e4bb5214237490b05b608fc289f67aa84e550e8cb9ac2266a94ed4bce674572e",
+    "LeanPML/PML/Equivalence.lean": "7f2b492a0f843dce1eda7521d9ca06f4c5c12fa02371e27a81082f3146965010",
+    "LeanPML/Rectangle/StatePaths.lean": "915c8204230cbb954cfe4403be3b3ce7c7ac9cc24ba78ca824b9066f906c9850",
+    "LeanPML/Rectangle/SmoothPaths.lean": "aa905c50a6618435f1c021c3473ddc0777f9d140c6aabd07c0fb899b0e9a2288"
+  },
+  "scope": "independent semantic/type review, not full build attestation",
+  "issues_requiring_fix": []
+}

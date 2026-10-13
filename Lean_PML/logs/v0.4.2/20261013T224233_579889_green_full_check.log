@@ -1,0 +1,13 @@
+LeanPML/Rectangle/Green.lean:273:26: error: Tactic `clear` failed: target depends on 'h✝¹'
+
+D : Rect
+f : SmoothField
+fst✝ snd✝ : ↥(ScalarL2 D.measure)
+right✝ : (fst✝, snd✝).2 ∈ ↑(fieldDomain D)
+X : SmoothField
+h✝¹ : (SmoothField.toL2 D) X = (fst✝, snd✝).1
+h✝ : (SmoothField.toL2 D) X = fst✝
+⊢ ⟪↑⟨(SmoothField.toL2 D) f, ⋯⟩, (divergence D) ⟨(fst✝, snd✝), ⋯⟩⟫_ℝ =
+    -⟪(spatialDomain D).componentX ⟨(SmoothField.toL2 D) f, ⋯⟩, (↑⟨(fst✝, snd✝), ⋯⟩).1⟫_ℝ -
+        ⟪(spatialDomain D).componentY ⟨(SmoothField.toL2 D) f, ⋯⟩, (↑⟨(fst✝, snd✝), ⋯⟩).2⟫_ℝ +
+      ((boundaryForm D) ((trace D) ⟨(SmoothField.toL2 D) f, ⋯⟩)) ⟨(fst✝, snd✝), ⋯⟩

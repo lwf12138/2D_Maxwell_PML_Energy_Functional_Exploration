@@ -1,0 +1,31 @@
+'LeanPML.Rectangle.ParameterCertificate.unitSquare_sideLengths' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'LeanPML.Rectangle.ParameterCertificate.poincareConstant_unitSquare' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'LeanPML.Rectangle.ParameterCertificate.materialA_unit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.Rectangle.ParameterCertificate.scaleK_unitSquare' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.Rectangle.ParameterCertificate.smallC_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.Rectangle.ParameterCertificate.amplitudeS_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.Rectangle.ParameterCertificate.amplitudeS_eq_quarter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'LeanPML.Rectangle.ParameterCertificate.unitSquare_explicit_smallness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'LeanPML.Rectangle.ParameterCertificate.unitSquare_le_threshold' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'LeanPML.Rectangle.ParameterCertificate.unitSquare_parameter_certificate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'LeanPML.Rectangle.ParameterCertificate.oldC_material_condition_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'LeanPML.Rectangle.ParameterCertificate.oldC_fails_material_condition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'LeanPML.Rectangle.ParameterCertificate.oldC_not_le_threshold' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

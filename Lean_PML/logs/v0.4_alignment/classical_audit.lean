@@ -1,0 +1,18 @@
+import LeanPML.PML.ClassicalSystem
+
+#print axioms LeanPML.PML.Concrete.hasDerivAt_spaceDx_of_differentiable
+#print axioms LeanPML.PML.Concrete.hasDerivAt_spaceDy_of_differentiable
+#print axioms LeanPML.PML.Concrete.OriginalClassicalOn.spatial_derivatives
+#print axioms LeanPML.PML.Concrete.differentiableAt_space_of_joint_smooth
+#print axioms LeanPML.PML.Concrete.lift_spatialOn
+#print axioms LeanPML.PML.Concrete.original_to_primitive_classical
+#print axioms LeanPML.PML.Concrete.reconstruct_spatialOn
+#print axioms LeanPML.PML.Concrete.primitive_to_original_classical
+#print axioms LeanPML.PML.Concrete.originalSpatialOn_of_liftIdentified
+#print axioms LeanPML.PML.Concrete.originalClassicalOn_of_liftIdentified
+#print axioms LeanPML.PML.Concrete.smoothPrimitiveFields_spatialOn
+#print axioms LeanPML.PML.Concrete.original_to_primitive_classical_rectangle
+#print axioms LeanPML.PML.Concrete.primitive_to_original_classical_rectangle
+#print axioms LeanPML.PML.Concrete.originalClassicalFiniteIntervalProblem_second_R_continuous
+#print axioms LeanPML.PML.Concrete.originalClassicalFiniteIntervalProblem
+#print axioms LeanPML.PML.Concrete.originalClassicalFiniteIntervalProblem_of_liftIdentified

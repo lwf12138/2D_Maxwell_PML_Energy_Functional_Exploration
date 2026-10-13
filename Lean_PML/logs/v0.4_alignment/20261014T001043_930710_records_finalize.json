@@ -1,0 +1,17 @@
+{
+  "stage": "v0.4_alignment",
+  "command": [
+    "python3",
+    "logs/v0.4_alignment/finalize_records.py"
+  ],
+  "command_display": "python3 logs/v0.4_alignment/finalize_records.py",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/usr/bin/python3",
+  "started_at": "2026-10-14T00:10:43.930710+08:00",
+  "output_file": "20261014T001043_930710_records_finalize.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-14T00:10:43.971277+08:00",
+  "elapsed_seconds": 0.04
+}

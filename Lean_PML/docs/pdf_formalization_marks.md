@@ -755,3 +755,58 @@
 - [标注脚本](../logs/v0.3.5/pdf/annotate_pdf.py)使用独立阶段 ID 和计划哈希，完全相同计划重跑直接跳过；目标发生外部修改时停止，不覆盖新批注。
 - [编辑日志](../logs/v0.3.5/20261013T214910_164598_pdf_annotate.log)、[渲染日志](../logs/v0.3.5/20261013T214930_701266_pdf_render.log)、[最终复核日志](../logs/v0.3.5/20261013T215008_802109_pdf_verify.log)。
 - [最终目标 PDF](../../results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf)。原始 V7 md/tex/pdf、路线图、模型合同和依赖锁文件哈希全部保持。
+
+
+## v0.4：光滑矩形接口与完整场层映射的增量标注
+
+本轮在最终全工程构建、公理审计与定理类型核验之后，只编辑指定副本。四子阶段分别完成；不是 v0.5 最终具体能量定理的发布。旧批注全部保留，旧“点态/待完成”作为历史范围，新标记明确覆盖本轮的所选光滑类。
+
+- 实际页序与印刷页码均为 3、4、7、8、10、11；总页数保持18。
+- 原183个批注/链接完整保留，新增8个矢量红勾及4条无勾说明，总195个批注；无原文文字、页序、MediaBox/CropBox变化。
+- 本轮 C_P=2L_x 是已证保守常数，K=32μ(ε+2κ)L_x²，阈值同步该常数；原 (5.1) 的精确 π 常数不打完成勾。
+- 技术全空间/全时间光滑延拓、C(K)一致范数和加权成员/路径正则性强于 V7 弱类；原PDE仍仅在(0,T)×Ω。未证明加权传播、弱Green、提升规范唯一性、解存在唯一性。
+
+实际证据：[最终构建](../logs/v0.4.4/20261013T230822_044824_lake_build.log) / [完整公理审计](../logs/v0.4.4/20261013T231144_117778_axioms_audit.log)；另有[定理类型输出](../logs/v0.4.4/20261013T231145_231939_interface_types.log)与[独立语义检查](../logs/v0.4.4/semantic_review_geometry.md)。
+
+| 实际页/印刷页 | 定位 | 类型与本轮标记 | Lean完整声明名和源码 | 已证范围及剩余接口 |
+|---|---|---|---|---|
+| 3/3 | (2.1) | 真实光滑场方程对应；✓ 光滑 primitive；重构核验；八条方程 | `LeanPML.PML.Concrete.original_reconstruct_at`<br>`LeanPML.PML.Concrete.primitive_to_original_rectangle`<br>[Equivalence.lean](../LeanPML/PML/Equivalence.lean) | 八条方程为原解输入；勾仅表示从光滑 primitive 重构的满足性，非解存在。 |
+| 4/4 | (2.3) | 真实历史/时间及L²积分；✓ 历史提升；初值与求导 | `LeanPML.PML.Concrete.integralLift_initial`<br>`LeanPML.PML.Concrete.hasDerivAt_integralLift`<br>`LeanPML.Rectangle.toL2_integralLift_on_Icc`<br>[OriginalSystem.lean](../LeanPML/PML/OriginalSystem.lean) / [HistoryL2.lean](../LeanPML/Rectangle/HistoryL2.lean) | 真实点态时间积分初值、内部求导；C(K) 连续正则性下与 L² Bochner 历史积分相等。定义本身不计证明。 |
+| 4/4 | (2.4) | 真实场时间保持；✓ 五个时间；不变量；光滑场版 | `LeanPML.PML.Concrete.five_invariants_on_Icc`<br>`LeanPML.PML.Concrete.five_invariants_toLp_eq_of_continuous`<br>[Equivalence.lean](../LeanPML/PML/Equivalence.lean) | 从原八式、真实历史提升及混合微分推出任意初始不变量场的保持；实际 L² 表示一致。旧三个点态批注保留。 |
+| 4/4 | (2.5) | 初始兼容保持/场重构；✓ 初始兼容；保持与重构；光滑场版 | `LeanPML.PML.Concrete.compatible_lift_on_Icc`<br>`LeanPML.PML.Concrete.reconstruct_lift_eqOn`<br>[Equivalence.lean](../LeanPML/PML/Equivalence.lean) | 仅初始五不变量为零作输入，推出全区间兼容及四辅助量重构；不是零解。 |
+| 4/4 | (2.6)、命题 2.1 | 光滑场双向对应；✓ 双向八方程；光滑类；固定初始；原函数 | `LeanPML.PML.Concrete.original_to_primitive_rectangle`<br>`LeanPML.PML.Concrete.primitive_to_original_rectangle`<br>`LeanPML.PML.Concrete.lift_reconstruct_eqOn`<br>[Equivalence.lean](../LeanPML/PML/Equivalence.lean) | 所选光滑类，固定初始原函数；包含反向四辅助方程。无解存在唯一性或提升规范唯一性结论。 |
+| 7/7 | (5.1) | 具体空间不等式；保守常数说明；无勾：v0.4 保守版；C_P = 2Lx；非原精确值 | `LeanPML.Rectangle.poincare_estimate`<br>`LeanPML.Rectangle.scaleK_rectangle`<br>[Poincare.lean](../LeanPML/Rectangle/Poincare.lean) | 已证明同一迹核上的 CP=2Lx，从而 K=32μ(ε+2κ)Lx²；未证明原文精确 π 常数，无完成勾。 |
+| 8/8 | §5.2 五不变量保持段后的零区保持（未编号） | 真实原場时间保持；✓ 原场零区；保持；须初始φ=0 | `LeanPML.PML.Concrete.original_zero_region_preserved`<br>[Equivalence.lean](../LeanPML/PML/Equivalence.lean) | 从原方程、历史提升、五初始兼容及零区 φ₀=0 推出 φ=0；保留一般空间区域，不声称(5.7)/(5.8)传播。 |
+| 10/10 | (6.6) | 正则性输入；无勾说明；无勾：v0.4 输入；光滑/加权；正则性；非自动传播 | `LeanPML.Rectangle.hasDerivAt_toL2_of_pointwise`<br>`LeanPML.Rectangle.hasDerivAt_weighted_smooth`<br>[L2Paths.lean](../LeanPML/Rectangle/L2Paths.lean) / [WeightedCalculus.lean](../LeanPML/PML/WeightedCalculus.lean) | 选用 C∞ 空间延拓、C(K) 的统一时间正则性及实际加权路径可微作为强于 V7 弱类的条件；已证明到普通/加权路径导数的连接。假设不打勾。 |
+| 11/11 | (7.2) 后加权链式法则说明（未编号） | 真实加权时间求导；✓ 加权路径；真实场恢复；需加权可导 | `LeanPML.Rectangle.weighted_smooth_recovery`<br>`LeanPML.Rectangle.hasDerivAt_weighted_smooth`<br>[WeightedCalculus.lean](../LeanPML/PML/WeightedCalculus.lean) | 实际加权坐标恢复为所选光滑辅助场，普通 L² 导数由真实 C(K) 路径识别；加权范数正则性仍是输入，非自动传播。 |
+| 11/11 | (7.5) | 具体光滑空间/边界结论；✓ 矩形光滑；四边 Green；两层 PEC；边界消去 | `LeanPML.Rectangle.green_L2`<br>`LeanPML.Rectangle.greenDomain`<br>`LeanPML.Rectangle.boundary_multiplier_zero`<br>`LeanPML.Rectangle.twoLayer_zeroBoundary`<br>[Green.lean](../LeanPML/Rectangle/Green.lean) / [BoundaryTime.lean](../LeanPML/Rectangle/BoundaryTime.lean) | 真实全矩形四边公式，右−左+上−下；u₀零迹+PEC推出u迹，内部真实求导推出E_t迹。另要求闭端点E_t迹时，T=0须初始导数迹。弱H₀¹–H(div) Green未证明。 |
+
+以上定理均在正式 LeanPML 导入链和最终 Audit 中；可从PDF红字范围区域打开批注，查看完整声明名及证据。仅作为方程/定义输入的 (2.1)、(2.2)、(2.3)、(6.6) 不因此得到无条件证明；(2.1) 勾只表示重构满足八式，(2.3) 勾只表示实际积分初值与求导。
+
+旧范围核对：第4页原 CD/CZ1/CZ2 点态勾保留，由新“五个光滑场版”补全本轮范围；第8页原零区点态标记保留，新增原场保持。第11页旧“Green具体矩形证明待完成”保留，页顶新增“光滑矩形已接通，弱空间未完成”说明。第10页既有 (6.7)–(6.10) 仍为条件性结果；本轮只在(6.6)旁说明强正则性输入。第7页旧CP自由参数的历史系数标记保留，新注明确本轮CP实例化。未给 (5.7)/(5.8)、弱空间、规范唯一性、适定性、严格衰减或完美匹配增加勾。
+
+两层迹的准确时间范围：u的闭区间迹来自u₀迹+真实历史+PEC；E是PEC输入；E_t在内部由真实求导得到。若另要求闭区间E_t迹，T>0通过连续延拓，T=0必须给初始导数迹条件。有限区间主框架仅需内部E_t迹，不能用空内部方程推出端点事实。
+
+原场八槽往返恢复在闭区间；底层 primitive 八槽往返在开区间，历史u/q在闭区间。最高光滑原系统装配另已证明闭区间静态约束。固定初始原函数的历史构造不等于提升规范唯一性。
+
+修改前SHA256：`66c0f5dd32a1a983412a08eea40e3cd5d890f3dd987dbfe7e2bb4c7a5ddce1b3`；最终SHA256：`9021fff043b09278fd918dc4ef0342a0295e3aa7941e52825f59a286fd71a8f3`。
+
+记录：[备份与哈希](../logs/v0.4.4/pdf/backup.json)、[定位/源码/定理计划](../logs/v0.4.4/pdf/annotation_plan.json)、[标注脚本](../logs/v0.4.4/pdf/annotate_pdf.py)、[结构检查](../logs/v0.4.4/pdf/annotation_result.json)、[逐页视觉验收](../logs/v0.4.4/pdf/visual_review.json)。稳定ID确保重跑不叠加；脚本校验输入哈希，不会覆盖别人的后续批注。
+
+## 2026-10-14：v0.4 对齐修复标注追加
+
+本轮只追加；旧195个批注全部保持，原文/页序/版框不变。最终18页，增加5项，其中1个矢量红勾，其余为限定说明。编辑前备份及哈希见 [backup](../logs/v0.4_alignment/pdf/backup.json)，首次版式预检失败的备份信息另存 [attempt01](../logs/v0.4_alignment/pdf/attempt01_backup.json)。
+
+构建证据：[lake build](../logs/v0.4_alignment/20261014T000055_917026_lake_build.log)；公理审计：[Audit](../logs/v0.4_alignment/20261014T000341_178705_axioms_audit.log)；类型/假设复核：[实际类型](../logs/v0.4_alignment/20261014T000341_178709_interface_types.log)、[独立审查](../logs/v0.4_alignment/semantic_review.md)。结构及逐页视觉检查通过：[检查](../logs/v0.4_alignment/pdf/annotation_result.json)、[视觉](../logs/v0.4_alignment/pdf/visual_review.json)。
+
+| 实际/印刷页 | 公式或定位 | 类型/新增标记 | 完整声明与文件 | 准确范围及剩余接口 |
+|---|---|---|---|---|
+| 3/3 | (2.1)：旧光滑重构核验的接口限定 | 说明，无新勾：v0.4 对齐：古典包装显式给出 E、Hx、Hy 的空间可导证据；八方程输入本身不保证空间光滑。 | `LeanPML.PML.Concrete.originalClassicalOn_of_liftIdentified`<br>`LeanPML.PML.Concrete.primitive_to_original_classical_rectangle`<br>[ClassicalSystem.lean](../LeanPML/PML/ClassicalSystem.lean) | 原式定义不打新勾。旧高层的光滑代表原已成立，本次正式推出空间DifferentiableAt及坐标HasDerivAt，并给带PEC反向古典包装；不是认为底层fderiv等式自动可导。 |
+| 4/4 | (2.6)、命题2.1：旧双向光滑标注补充 | 说明，无新勾：对齐补充：古典双向映射已显式携带真实空间可导；仅所选强光滑类，非完整弱解理论。 | `LeanPML.PML.Concrete.original_to_primitive_classical_rectangle`<br>`LeanPML.PML.Concrete.primitive_to_original_classical_rectangle`<br>`LeanPML.Rectangle.RegionalAbsorption.originalRegionalFiniteIntervalProblem`<br>[ClassicalSystem.lean](../LeanPML/PML/ClassicalSystem.lean)<br>[RegionalCoefficients.lean](../LeanPML/Rectangle/RegionalCoefficients.lean) | 现有红勾保留。准确包装同时携带原E/H与primitive u/E/Λ可导；推荐入口由光滑识别及μ非零生成空间证据，域内改写原系数，实际调用古典链。初值、PEC、强正则性仍需声明；未发布v0.5主定理。 |
+| 7/7 | (5.2)–(5.3)：物理幅度域范围 | 说明，无新勾：对齐：幅度界 / 仅闭坐标区间 / 域外截回代表 / 积分 a.e. 一致 | `LeanPML.Rectangle.RegionalAbsorption.coefficients_eq_closed`<br>`LeanPML.Rectangle.RegionalAbsorption.coefficients_ae`<br>`LeanPML.Rectangle.RegionalAbsorption.weighted_memLp_iff`<br>`LeanPML.Rectangle.RegionalAbsorption.fieldEnergy_eq_regional_integral`<br>`LeanPML.Rectangle.RegionalAbsorption.fieldDissipation_eq_regional_integral`<br>[RegionalCoefficients.lean](../LeanPML/Rectangle/RegionalCoefficients.lean) | 假设范围说明，不给假设打完成勾。原p/r非负/幅度仅Icc坐标区间；内部截回代表与原场在闭矩形和体积分a.e.一致，权重/成员/能量耗散可积积分正式连接。保留全零、边层、角层，原技术延拓不需域外物理幅度界。 |
+| 15/15 | §10参数例旁的本轮替代证书（原文未单列） | ✓ 对齐证书：C_P=4，K=384；c=1/16384，S=1/65536（保守 C_P=2Lx）。 | `LeanPML.Rectangle.ParameterCertificate.unitSquare_parameter_certificate`<br>`LeanPML.Rectangle.ParameterCertificate.unitSquare_explicit_smallness`<br>`LeanPML.Rectangle.ParameterCertificate.unitSquare_le_threshold`<br>[ParameterCertificate.lean](../LeanPML/Rectangle/ParameterCertificate.lean) | 只对本轮实际(-1,1)^2及ε=κ=τ=μ=1参数证书打勾：CP4、A3、K384；三条显式界依次3/2097152、9/16、3/2048≤1，并调用阈值等价。不是原(10.1)/(10.2)配置完成勾，不含二维剖面、初值族或解存在。 |
+| 15/15 | (10.1)旧例与保守常数的区别 | 说明，无新勾：原(10.1)未沿用：在 K=384 下，旧 c=1/128 使 8cAK=72>1；这不否定原精确π常数例。 | `LeanPML.Rectangle.ParameterCertificate.oldC_material_condition_value`<br>`LeanPML.Rectangle.ParameterCertificate.oldC_not_le_threshold`<br>[ParameterCertificate.lean](../LeanPML/Rectangle/ParameterCertificate.lean) | 正式反证说明旧c不能迁移至本轮保守CP。保留原论文配置与全部原批注；原(5.1)精确π常数仍未证明。 |
+
+修改前SHA256：`9021fff043b09278fd918dc4ef0342a0295e3aa7941e52825f59a286fd71a8f3`；修改后：`b7cff33c435944c4c24bf5327246015523368c7015e3b6fb6b65348f8fc5819d`。定位与稳定ID见 [annotation_plan](../logs/v0.4_alignment/pdf/annotation_plan.json)，重跑会识别同ID而不叠加。原第3/4页红勾的低层引用范围容易被理解为方程自带空间可导，本轮追加古典包装声明，未删除旧记录。第7页保留“CP=2Lx非原精确值”；第15页新勾明确属于替代证书，不标原数值例完成。第10页既有“光滑/加权输入、非自动传播”说明仍准确，无新结论可勾，故只更新代码/账本说明。
+
+本轮没有给v0.5具体主定理、精确π常数、弱理论、传播、提升唯一性或解存在唯一性增加完成标记。

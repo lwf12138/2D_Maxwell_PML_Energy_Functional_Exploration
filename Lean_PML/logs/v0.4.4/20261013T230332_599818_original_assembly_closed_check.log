@@ -1,0 +1,25 @@
+LeanPML/PML/OriginalAssembly.lean:169:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  fun s => dx (↑(B.v.value s)) X + ↑(B.φx.value s) X
+in the target expression
+  HasDerivAt ((fun s => dx (↑(B.v.value s)) X) + fun s => ↑(B.φx.value s) X) (dx (↑(B.v.first t)) X + ↑(B.φx.first t) X)
+    t
+
+B : SmoothStateData
+F : OriginalFields
+μ : ℝ
+u₀ q₀ : Point → ℝ
+hid : LiftIdentified B F μ u₀ q₀
+t : ℝ
+X : Point
+hxgrad : HasDerivAt (fun s => dx (↑(B.v.value s)) X) (dx (↑(B.v.first t)) X) t
+hygrad : HasDerivAt (fun s => dy (↑(B.v.value s)) X) (dy (↑(B.v.first t)) X) t
+hxfunction : (fun s => ↑(B.Λx.value s) X) = fun s => dx (↑(B.v.value s)) X + ↑(B.φx.value s) X
+hyfunction : (fun s => ↑(B.Λy.value s) X) = fun s => dy (↑(B.v.value s)) X + ↑(B.φy.value s) X
+hxderiv :
+  HasDerivAt ((fun s => dx (↑(B.v.value s)) X) + fun s => ↑(B.φx.value s) X) (dx (↑(B.v.first t)) X + ↑(B.φx.first t) X)
+    t
+hyderiv :
+  HasDerivAt ((fun s => dy (↑(B.v.value s)) X) + fun s => ↑(B.φy.value s) X) (dy (↑(B.v.first t)) X + ↑(B.φy.first t) X)
+    t
+⊢ ↑(B.Λx.first t) X = dx (↑(B.v.first t)) X + ↑(B.φx.first t) X ∧
+    ↑(B.Λy.first t) X = dy (↑(B.v.first t)) X + ↑(B.φy.first t) X

@@ -1,0 +1,89 @@
+LeanPML/Rectangle/Fields.lean:31:27: error: Application type mismatch: The argument
+  hf
+has type
+  a✝ ∈ {f | ContDiff ℝ ∞ f}
+but is expected to have type
+  ContDiff ?m.22 ?m.30 ?m.31
+in the application
+  ContDiff.add hf
+LeanPML/Rectangle/Fields.lean:30:15: error: Type mismatch
+  contDiff_const
+has type
+  ContDiff ?m.33 ?m.41 fun x => ?m.42
+but is expected to have type
+  0 ∈ {f | ContDiff ℝ ∞ f}
+LeanPML/Rectangle/Fields.lean:32:29: error: Application type mismatch: The argument
+  hf
+has type
+  f ∈ {f | ContDiff ℝ ∞ f}
+but is expected to have type
+  ContDiff ?m.46 ?m.54 ?m.59
+in the application
+  ContDiff.const_smul c hf
+LeanPML/Rectangle/Fields.lean:40:69: error: Application type mismatch: The argument
+  f.property
+has type
+  ↑f ∈ smoothFields
+but is expected to have type
+  ContDiff ?m.8 ?m.17 ?m.16
+in the application
+  ContDiff.continuous f.property
+LeanPML/Rectangle/Fields.lean:43:2: error: Application type mismatch: The argument
+  f.property
+has type
+  ↑f ∈ smoothFields
+but is expected to have type
+  ContDiff ?m.13 ?m.22 ?m.21
+in the application
+  ContDiff.differentiable f.property
+LeanPML/Rectangle/Fields.lean:43:29: error: unsolved goals
+f : SmoothField
+⊢ ¬?m.22 = 0
+LeanPML/Rectangle/Fields.lean:150:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  fderiv ℝ (↑f + ↑g) z
+in the target expression
+  (fderiv ℝ (fun z => ↑f z + ↑g z) z) (1, 0) = ↑(f.derivativeX + g.derivativeX) z
+
+f g : SmoothField
+z : ℝ × ℝ
+⊢ (fderiv ℝ (fun z => ↑f z + ↑g z) z) (1, 0) = ↑(f.derivativeX + g.derivativeX) z
+LeanPML/Rectangle/Fields.lean:156:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  fderiv ℝ (c • ↑f) z
+in the target expression
+  (fderiv ℝ (fun z => c • ↑f z) z) (1, 0) = ↑((RingHom.id ℝ) c • f.derivativeX) z
+
+c : ℝ
+f : SmoothField
+z : ℝ × ℝ
+⊢ (fderiv ℝ (fun z => c • ↑f z) z) (1, 0) = ↑((RingHom.id ℝ) c • f.derivativeX) z
+LeanPML/Rectangle/Fields.lean:166:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  fderiv ℝ (↑f + ↑g) z
+in the target expression
+  (fderiv ℝ (fun z => ↑f z + ↑g z) z) (0, 1) = ↑(f.derivativeY + g.derivativeY) z
+
+f g : SmoothField
+z : ℝ × ℝ
+⊢ (fderiv ℝ (fun z => ↑f z + ↑g z) z) (0, 1) = ↑(f.derivativeY + g.derivativeY) z
+LeanPML/Rectangle/Fields.lean:172:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  fderiv ℝ (c • ↑f) z
+in the target expression
+  (fderiv ℝ (fun z => c • ↑f z) z) (0, 1) = ↑((RingHom.id ℝ) c • f.derivativeY) z
+
+c : ℝ
+f : SmoothField
+z : ℝ × ℝ
+⊢ (fderiv ℝ (fun z => c • ↑f z) z) (0, 1) = ↑((RingHom.id ℝ) c • f.derivativeY) z
+LeanPML/Rectangle/Fields.lean:234:19: error: don't know how to synthesize placeholder for argument `hindependent`
+context:
+D : Rect
+f : SmoothField
+⊢ ∀ (f g : SmoothField),
+    (SmoothField.toL2 D) f = (SmoothField.toL2 D) g →
+      (SmoothField.toL2 D ∘ₗ SmoothField.derivativeXLinear) f = (SmoothField.toL2 D ∘ₗ SmoothField.derivativeXLinear) g
+LeanPML/Rectangle/Fields.lean:240:19: error: don't know how to synthesize placeholder for argument `hindependent`
+context:
+D : Rect
+f : SmoothField
+⊢ ∀ (f g : SmoothField),
+    (SmoothField.toL2 D) f = (SmoothField.toL2 D) g →
+      (SmoothField.toL2 D ∘ₗ SmoothField.derivativeYLinear) f = (SmoothField.toL2 D ∘ₗ SmoothField.derivativeYLinear) g

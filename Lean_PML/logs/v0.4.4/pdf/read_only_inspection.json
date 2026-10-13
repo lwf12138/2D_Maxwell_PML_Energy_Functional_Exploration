@@ -1,0 +1,1288 @@
+{
+  "target": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf",
+  "sha256": "66c0f5dd32a1a983412a08eea40e3cd5d890f3dd987dbfe7e2bb4c7a5ddce1b3",
+  "pages": 18,
+  "annotations": [
+    {
+      "page": 1,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[68.031, 335.178, 237.122, 350.855]",
+      "/Contents": ""
+    },
+    {
+      "page": 1,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[68.031, 303.667, 278.569, 319.343]",
+      "/Contents": ""
+    },
+    {
+      "page": 1,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[84.395, 283.064, 207.668, 298.74]",
+      "/Contents": ""
+    },
+    {
+      "page": 1,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[84.395, 262.461, 218.577, 278.137]",
+      "/Contents": ""
+    },
+    {
+      "page": 1,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[84.395, 241.858, 262.213, 257.535]",
+      "/Contents": ""
+    },
+    {
+      "page": 1,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[68.031, 210.346, 269.85, 226.023]",
+      "/Contents": ""
+    },
+    {
+      "page": 1,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[68.031, 178.834, 355.247, 194.511]",
+      "/Contents": ""
+    },
+    {
+      "page": 1,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[84.395, 158.232, 240.395, 173.908]",
+      "/Contents": ""
+    },
+    {
+      "page": 1,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[84.395, 137.629, 276.713, 153.305]",
+      "/Contents": ""
+    },
+    {
+      "page": 1,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[68.031, 106.117, 226.213, 121.793]",
+      "/Contents": ""
+    },
+    {
+      "page": 1,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[84.395, 85.514, 229.486, 101.191]",
+      "/Contents": ""
+    },
+    {
+      "page": 1,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[84.395, 64.911, 229.486, 80.588]",
+      "/Contents": ""
+    },
+    {
+      "page": 1,
+      "/NM": "LeanPML.v0.2.3.legend",
+      "/Subtype": "/Square",
+      "/Rect": "[67, 747.49, 317, 779.89]",
+      "/Contents": "v0.2.3 标注图例：红勾只对应旁注中的已验证结论。\n代数：实数恒等式与系数界；局部时间：真实时间函数的求导与保持。\n空间/PDE：场、积分与边界接口仍待完成；定义和假设不计证明。"
+    },
+    {
+      "page": 2,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[84.395, 759.779, 207.668, 775.456]",
+      "/Contents": ""
+    },
+    {
+      "page": 2,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[68.031, 728.267, 169.702, 743.944]",
+      "/Contents": ""
+    },
+    {
+      "page": 2,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[68.031, 696.756, 280.759, 712.432]",
+      "/Contents": ""
+    },
+    {
+      "page": 2,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[84.395, 676.153, 218.577, 691.829]",
+      "/Contents": ""
+    },
+    {
+      "page": 2,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[84.395, 655.55, 260.317, 671.226]",
+      "/Contents": ""
+    },
+    {
+      "page": 2,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[84.395, 634.947, 255.912, 650.624]",
+      "/Contents": ""
+    },
+    {
+      "page": 2,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[68.031, 603.435, 237.122, 619.112]",
+      "/Contents": ""
+    },
+    {
+      "page": 2,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[84.395, 582.833, 131.304, 598.509]",
+      "/Contents": ""
+    },
+    {
+      "page": 2,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[84.395, 562.23, 131.304, 577.906]",
+      "/Contents": ""
+    },
+    {
+      "page": 2,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[84.395, 541.627, 207.668, 557.303]",
+      "/Contents": ""
+    },
+    {
+      "page": 2,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[68.031, 510.115, 303.845, 525.792]",
+      "/Contents": ""
+    },
+    {
+      "page": 2,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[84.395, 489.512, 207.668, 505.189]",
+      "/Contents": ""
+    },
+    {
+      "page": 2,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[84.395, 468.91, 311.549, 484.586]",
+      "/Contents": ""
+    },
+    {
+      "page": 2,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[84.395, 448.307, 245.94, 463.983]",
+      "/Contents": ""
+    },
+    {
+      "page": 2,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[68.031, 416.795, 244.212, 432.471]",
+      "/Contents": ""
+    },
+    {
+      "page": 2,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[68.031, 385.283, 241.394, 400.96]",
+      "/Contents": ""
+    },
+    {
+      "page": 2,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[84.395, 364.68, 247.588, 380.357]",
+      "/Contents": ""
+    },
+    {
+      "page": 2,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[84.395, 344.078, 296.062, 359.754]",
+      "/Contents": ""
+    },
+    {
+      "page": 2,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[84.395, 323.475, 266.867, 339.151]",
+      "/Contents": ""
+    },
+    {
+      "page": 2,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[68.031, 291.963, 252.303, 307.639]",
+      "/Contents": ""
+    },
+    {
+      "page": 2,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[68.031, 260.451, 263.079, 276.127]",
+      "/Contents": ""
+    },
+    {
+      "page": 2,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[68.031, 228.939, 193.486, 244.616]",
+      "/Contents": ""
+    },
+    {
+      "page": 3,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[136.954, 654.909, 154.303, 667.608]",
+      "/Contents": ""
+    },
+    {
+      "page": 3,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[245.043, 654.909, 251.984, 667.608]",
+      "/Contents": ""
+    },
+    {
+      "page": 3,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[257.438, 654.909, 264.379, 667.608]",
+      "/Contents": ""
+    },
+    {
+      "page": 4,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[228.712, 449.938, 246.061, 462.636]",
+      "/Contents": ""
+    },
+    {
+      "page": 4,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[195.755, 258.722, 213.104, 271.421]",
+      "/Contents": ""
+    },
+    {
+      "page": 4,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[283.097, 258.722, 300.446, 271.421]",
+      "/Contents": ""
+    },
+    {
+      "page": 4,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[319.867, 258.722, 337.216, 271.421]",
+      "/Contents": ""
+    },
+    {
+      "page": 4,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[483.573, 258.722, 500.922, 271.421]",
+      "/Contents": ""
+    },
+    {
+      "page": 4,
+      "/NM": "",
+      "/Subtype": "/Square",
+      "/Rect": "[532, 636.89, 594, 660.89]",
+      "/Contents": "(2.4) 仅 CD：固定空间点的真实导数为零和区间常值；初始零兼容推出全时段兼容。u,q的积分构造、函数空间尚未形式化。\n\n模块：LeanPML/PML/TimeInvariants.lean\n定理命名空间：LeanPML.PML\n声明：hasDerivAt_CD_zero; CD_eq_initial; CD_compatibility\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。"
+    },
+    {
+      "page": 4,
+      "/NM": "",
+      "/Subtype": "/Square",
+      "/Rect": "[532, 615.89, 594, 639.89]",
+      "/Contents": "(2.4) 仅 CZ1、CZ2 的真实求导及常值保持，允许 b=0。磁辅助不变量 Cx、Cy 尚未形式化。\n\n模块：LeanPML/PML/TimeInvariants.lean\n定理命名空间：LeanPML.PML\n声明：hasDerivAt_CZ1_zero; hasDerivAt_CZ2_zero; CZ1_eq_initial; CZ2_eq_initial\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。"
+    },
+    {
+      "page": 4,
+      "/NM": "",
+      "/Subtype": "/Square",
+      "/Rect": "[532, 413.89, 594, 437.89]",
+      "/Contents": "(2.5) 仅 Z1=-εbu、Z2=-bq 的固定空间点版本，从初始兼容和原时间方程推出全时段兼容。Qx,Qy重构与完整时域等价未完成。\n\n模块：LeanPML/PML/TimeInvariants.lean\n定理命名空间：LeanPML.PML\n声明：CZ1_compatibility; CZ2_compatibility; Z1_zero_of_zero_absorption; Z2_zero_of_zero_absorption\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。"
+    },
+    {
+      "page": 5,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[158.772, 464.745, 176.121, 477.444]",
+      "/Contents": ""
+    },
+    {
+      "page": 6,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[168.651, 760.327, 175.592, 773.025]",
+      "/Contents": ""
+    },
+    {
+      "page": 6,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[471.847, 615.048, 489.196, 627.747]",
+      "/Contents": ""
+    },
+    {
+      "page": 6,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[503.163, 615.048, 520.512, 627.747]",
+      "/Contents": ""
+    },
+    {
+      "page": 6,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[152.119, 597.434, 169.468, 610.133]",
+      "/Contents": ""
+    },
+    {
+      "page": 6,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[383.359, 268.578, 400.708, 281.277]",
+      "/Contents": ""
+    },
+    {
+      "page": 7,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[86.664, 692.872, 104.013, 705.57]",
+      "/Contents": ""
+    },
+    {
+      "page": 7,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[359.025, 408.232, 376.374, 420.931]",
+      "/Contents": ""
+    },
+    {
+      "page": 7,
+      "/NM": "",
+      "/Subtype": "/Square",
+      "/Rect": "[532, 165.89, 594, 189.89]",
+      "/Contents": "(5.2) A、K、c* 的定义及正性已验证；CP只是给定正参数。(5.1)的矩形Poincaré不等式尚未证明。\n\n模块：LeanPML/PML/Coefficients.lean\n定理命名空间：LeanPML.PML\n声明：materialA_pos; scaleK_pos; threshold_pos\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。"
+    },
+    {
+      "page": 7,
+      "/NM": "",
+      "/Subtype": "/Square",
+      "/Rect": "[532, 125.89, 594, 149.89]",
+      "/Contents": "(5.3) 仅 c≤c* 与 c²K≤1、8cAK≤κτ、8cAτ≤κ 的双向等价；L∞吸收场及空间幅度条件未在本阶段构造。\n\n模块：LeanPML/PML/Coefficients.lean\n定理命名空间：LeanPML.PML\n声明：le_threshold_iff_explicit\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。"
+    },
+    {
+      "page": 7,
+      "/NM": "",
+      "/Subtype": "/Square",
+      "/Rect": "[532, 60.89, 594, 84.89]",
+      "/Contents": "(5.4) 从非负p,r、幅度限制和精确阈值推出所列 a,b,ac-b,c²K,cτ 的界。是固定空间点的实数代数，保留零吸收。\n\n模块：LeanPML/PML/Coefficients.lean\n定理命名空间：LeanPML.PML\n声明：absorptionSum_le_half; absorptionProduct_le_c_sq_sixteenth; absorptionSum_mul_sub_product_nonneg; le_threshold_iff_explicit; c_mul_tau_bounds\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。"
+    },
+    {
+      "page": 7,
+      "/NM": "LeanPML.v0.2.3.clarify-threshold",
+      "/Subtype": "/Square",
+      "/Rect": "[7, 129.49, 41.0039062, 155.89]",
+      "/Contents": "(5.3) 为输入\n旧勾仅指\n阈值等价\n原标记保留。限定范围：(5.3) 仅 c≤c* 与 c²K≤1、8cAK≤κτ、8cAτ≤κ 的双向等价；L∞吸收场及空间幅度条件未在本阶段构造。\n待完成：(5.3) 本身是输入；尚无 L∞ 场和空间幅度模型"
+    },
+    {
+      "page": 8,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[108.447, 498.986, 125.796, 511.685]",
+      "/Contents": ""
+    },
+    {
+      "page": 8,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[505.962, 498.986, 512.902, 511.685]",
+      "/Contents": ""
+    },
+    {
+      "page": 8,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[116.884, 424.247, 134.234, 436.946]",
+      "/Contents": ""
+    },
+    {
+      "page": 8,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[309.328, 360.114, 326.677, 372.813]",
+      "/Contents": ""
+    },
+    {
+      "page": 8,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[117.154, 169.667, 134.503, 182.366]",
+      "/Contents": ""
+    },
+    {
+      "page": 8,
+      "/NM": "",
+      "/Subtype": "/Square",
+      "/Rect": "[532, 708.89, 594, 732.89]",
+      "/Contents": "(5.5) w的正吸收分支和零延拓定义及分支性质；零区取0。尚未构造(5.6)的加权函数空间。\n\n模块：LeanPML/PML/Weights.lean\n定理命名空间：LeanPML.PML\n声明：energyWeightX; energyWeightY; weights_of_sum_zero\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。"
+    },
+    {
+      "page": 8,
+      "/NM": "",
+      "/Subtype": "/Square",
+      "/Rect": "[532, 678.89, 594, 702.89]",
+      "/Contents": "正吸收分支w≥3/2，及满足幅度限制的趋零吸收族无统一有限上界。下界不适用于零延拓；未证明加权空间嵌入。\n\n模块：LeanPML/PML/Weights.lean\n定理命名空间：LeanPML.PML\n声明：energyWeights_lower_bound; energyWeights_unbounded\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。"
+    },
+    {
+      "page": 8,
+      "/NM": "LeanPML.v0.2.3.zero-preservation",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 343.49, 587, 369.89]",
+      "/Contents": "§5.2：在 Z 上 φ_t=0，因此 φ₀=0 保持（未编号）\n固定点两个时间函数闭区间连续，内部真实辅助演化；非负吸收且 a=0，从初始 l(0)=h(0) 推出整段 l=h，包括 T=0。\n待完成：不是 (5.7) 一般积分解公式、五个不变量整体、加权正则性或 PDE 提升。\n\nLeanPML.PML.zeroSpatial_compatibility_preserved\n\n当前证据：\nlogs/v0.2.3/20261010T232910_472603_lake_build_retry.log\nlogs/v0.2.3/20261010T232931_121820_axioms_audit_retry.log"
+    },
+    {
+      "page": 8,
+      "/NM": "LeanPML.v0.2.3.clarify-weight-definition",
+      "/Subtype": "/Square",
+      "/Rect": "[7, 707.49, 41.0039062, 733.89]",
+      "/Contents": "(5.5) 为定义\n旧勾仅指\n零分支计算\n原标记保留。限定范围：(5.5) w的正吸收分支和零延拓定义及分支性质；零区取0。尚未构造(5.6)的加权函数空间。\n待完成：定义本身不是待证结论；(5.6) 加权空间"
+    },
+    {
+      "page": 8,
+      "/NM": "LeanPML.v0.3.1.weighted-embedding",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 612.69, 587, 630.89]",
+      "/Contents": "(5.6) 后“该空间连续嵌入 L²(Ω)²”\n实际加权空间使用 √wψ 的 L² 闭子空间；恢复映射在全域 ν-a.e. 上定义，零吸收区为零，两个分量满足普通 L² 平方和不超过加权平方和。可测性和正区权重间隙由 SpatialAbsorption 原始条件推导。\n待完成：具体矩形 Sobolev/零迹/真实弱梯度及演化保持仍待完成；本勾不覆盖 (5.7)–(5.8)。\n\nLeanPML.PML.auxiliary_embedding_square\nLeanPML.PML.physical_zero_on_absorption_zero\n\n当前证据：\nlogs/v0.3.1/20261013T002136_137117_lake_build.log\nlogs/v0.3.1/20261013T002105_759533_axioms_audit.log"
+    },
+    {
+      "page": 8,
+      "/NM": "LeanPML.v0.3.1.weighted-model",
+      "/Subtype": "/Square",
+      "/Rect": "[67, 600.39, 290.384033, 610.89]",
+      "/Contents": "v0.3.1：实际加权 L² 闭子空间及零延拓；(5.5)–(5.6) 定义录入本身不计证明。"
+    },
+    {
+      "page": 9,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[278.772, 731.23, 296.121, 743.929]",
+      "/Contents": ""
+    },
+    {
+      "page": 9,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[97.573, 336.138, 114.922, 348.836]",
+      "/Contents": ""
+    },
+    {
+      "page": 9,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[312.381, 199.071, 329.73, 211.77]",
+      "/Contents": ""
+    },
+    {
+      "page": 9,
+      "/NM": "LeanPML.v0.3.1.energy-integral-inner",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 393.69, 590.670898, 411.89]",
+      "/Contents": "(6.2) 实际积分/内积表示及由该式推出的路径求导（原文未单列）\n真实 FieldState 的三个旧块密度可积，F_c 的内积表达与整个 ν 空间上的密度积分相等；各分量在其实际普通/加权空间中 HasDerivAt 时，积分能量导数为 fieldEnergyRate。未交换未经证明的逐点导数与积分。\n待完成：primitive 方程、真实梯度、Green/PEC 尚未代入，导数未化为 −D_c；不代表正定性、图范数等价或 PDE 能量律。\n\nLeanPML.PML.fieldEnergyDensity_integrable\nLeanPML.PML.fieldEnergy_eq_integral\nLeanPML.PML.hasDerivAt_integral_fieldEnergy\n\n当前证据：\nlogs/v0.3.1/20261013T002136_137117_lake_build.log\nlogs/v0.3.1/20261013T002105_759533_axioms_audit.log"
+    },
+    {
+      "page": 9,
+      "/NM": "LeanPML.v0.3.1.states-energy-definitions",
+      "/Subtype": "/Square",
+      "/Rect": "[67, 22.89, 329.585938, 33.89]",
+      "/Contents": "v0.3.1：(6.2)–(6.5) 已建立实际 L² / 积分定义；图范数零分离及 PDE 能量律待完成。"
+    },
+    {
+      "page": 10,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[483.801, 760.327, 501.15, 773.025]",
+      "/Contents": ""
+    },
+    {
+      "page": 10,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[119.392, 648.009, 136.741, 660.708]",
+      "/Contents": ""
+    },
+    {
+      "page": 10,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[203.266, 648.009, 220.615, 660.708]",
+      "/Contents": ""
+    },
+    {
+      "page": 10,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[141.675, 590.878, 159.024, 603.577]",
+      "/Contents": ""
+    },
+    {
+      "page": 10,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[315.331, 590.878, 322.272, 603.577]",
+      "/Contents": ""
+    },
+    {
+      "page": 10,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[130.879, 381.904, 148.228, 394.603]",
+      "/Contents": ""
+    },
+    {
+      "page": 10,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[190.435, 346.676, 207.784, 359.375]",
+      "/Contents": ""
+    },
+    {
+      "page": 10,
+      "/NM": "LeanPML.v0.2.3.spatial-positive",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 130.49, 587, 156.89]",
+      "/Contents": "(7.1) 的正吸收分支\na>0 下权重平衡、数值恒等式，以及真实时间 h'=V、l'=V+σⱼh−σᵢl 推出的 Fsp 求导；包含两个方向。\n待完成：h 与真实空间梯度、混合导数交换、可测可积、空间积分、Green/PEC 未实现。\n\nLeanPML.PML.spatial_weight_balance\nLeanPML.PML.spatial_rate_identity\nLeanPML.PML.hasDerivAt_spatialAuxiliary\nLeanPML.PML.hasDerivAt_spatialEnergy_pos\nLeanPML.PML.hasDerivAt_spatialEnergy2D\n\n当前证据：\nlogs/v0.2.3/20261010T232910_472603_lake_build_retry.log\nlogs/v0.2.3/20261010T232931_121820_axioms_audit_retry.log"
+    },
+    {
+      "page": 10,
+      "/NM": "LeanPML.v0.2.3.spatial-zero",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 59.49, 587, 85.89]",
+      "/Contents": "(7.1) 后零吸收区未编号二维公式\nh 的实际时间导数给出 h²/2 和双分量平方和的导数；接回分支能量时明确需要 l=h，保留 c(hx²+hy²)。\n待完成：p=r=0 不自动给出兼容；完整 PDE 中零辅助量来源、实际梯度及空间积分仍待兑现。\n\nLeanPML.PML.hasDerivAt_zeroSpatialComponent\nLeanPML.PML.hasDerivAt_zeroSpatial2D\nLeanPML.PML.hasDerivAt_spatialEnergy_zero\nLeanPML.PML.zeroSpatial_compatibility_preserved\n\n当前证据：\nlogs/v0.2.3/20261010T232910_472603_lake_build_retry.log\nlogs/v0.2.3/20261010T232931_121820_axioms_audit_retry.log"
+    },
+    {
+      "page": 10,
+      "/NM": "LeanPML.v0.3.3.graph-bound",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 618.49, 586.7, 634.89]",
+      "/Contents": "(6.7)\n实际同源两层能量与同一 graphSquare7 的精确 1/4、1 双边界；材料正性、原阈值、两层极化/空间约束及零迹 Poincaré 接口下成立，能量零则两层全部坐标零。\n待完成：具体矩形 Poincaré、完整原 PDE 对应；不是裸八变量范数等价或单调性。\n\nLeanPML.PML.energy7_bounds_Conditional\nLeanPML.PML.energy7_zero_Conditional\n\n当前证据：\nlogs/v0.3.3/20261013T100156_159842_lake_build.log\nlogs/v0.3.3/20261013T100321_602582_axioms_audit.log"
+    },
+    {
+      "page": 10,
+      "/NM": "LeanPML.v0.3.3.physical-fields",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 439.29, 579.5, 456.89]",
+      "/Contents": "(6.10)\nPhysicalControlBounds.physical：实际 L² 重构 E、H、P 的原常数控制 (4/μ)E7；由同源图界与材料条件推得。\n待完成：原八变量 PDE 与 primitive 双向等价、提升唯一性。\n\nLeanPML.PML.physicalControl_Conditional\n\n当前证据：\nlogs/v0.3.3/20261013T100156_159842_lake_build.log\nlogs/v0.3.3/20261013T100321_602582_axioms_audit.log"
+    },
+    {
+      "page": 10,
+      "/NM": "LeanPML.v0.3.3.scope-10",
+      "/Subtype": "/Square",
+      "/Rect": "[67, 820.69, 284.637695, 830.89]",
+      "/Contents": "v0.3.2–3：条件性空间结论；具体矩形接口、耗散闭合与时间单调性仍待完成。"
+    },
+    {
+      "page": 10,
+      "/NM": "LeanPML.v0.3.5.main-dissipation",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 551.49, 581, 577.89]",
+      "/Contents": "(6.8)\n(6.8) 的精确剩余耗散下界与非负性；原层演化、同源真实路径和共同迹 Poincaré 下，时间在内部。\n待完成：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。\n\nLeanPML.PML.dissipation7_lower_Conditional\nLeanPML.PML.dissipation7_nonneg_Conditional\n\n当前证据：\nlogs/v0.3.5/20261013T214810_766115_lake_build.log\nlogs/v0.3.5/20261013T214845_382134_axioms_audit.log"
+    },
+    {
+      "page": 10,
+      "/NM": "LeanPML.v0.3.5.main-balance",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 489.49, 581, 515.89]",
+      "/Contents": "(6.9)\n(6.9) 有限闭区间单调不增与真实时间积分平衡；两层分量闭区间连续和静态兼容，内部真实演化；积分平衡另需 second.R=P_tt 连续。\n待完成：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。\n\nLeanPML.PML.energy7_antitoneOn_Conditional\nLeanPML.PML.energy7_integral_balance_Conditional\nLeanPML.PML.main_energy_estimate_Conditional\n\n当前证据：\nlogs/v0.3.5/20261013T214810_766115_lake_build.log\nlogs/v0.3.5/20261013T214845_382134_axioms_audit.log"
+    },
+    {
+      "page": 10,
+      "/NM": "LeanPML.v0.3.5.legend10",
+      "/Subtype": "/Square",
+      "/Rect": "[67, 788.89, 355.705078, 798.89]",
+      "/Contents": "v0.3.4–5：条件性主结论已闭合；矩形 Green、Poincaré、迹和微分交换仍须证明。顶部旧说明保留为历史。"
+    },
+    {
+      "page": 11,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[97.573, 518.501, 114.922, 531.2]",
+      "/Contents": ""
+    },
+    {
+      "page": 11,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[474.323, 184.551, 491.672, 197.25]",
+      "/Contents": ""
+    },
+    {
+      "page": 11,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[505.639, 184.551, 522.988, 197.25]",
+      "/Contents": ""
+    },
+    {
+      "page": 11,
+      "/NM": "",
+      "/Subtype": "/Square",
+      "/Rect": "[532, 659.89, 594, 683.89]",
+      "/Contents": "(7.2) 仅分式耗散系数非负及有界性已证；未证明空间积分或全域恒等式。零区c|∇v|²仍按原文保留。\n\n模块：LeanPML/PML/Weights.lean\n定理命名空间：LeanPML.PML\n声明：dissipationPlus_bounds; dissipationPlus_le_five_quarters; dissipationMinus_bounds\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。"
+    },
+    {
+      "page": 11,
+      "/NM": "",
+      "/Subtype": "/Square",
+      "/Rect": "[532, 545.89, 594, 569.89]",
+      "/Contents": "(7.3) 电块代数与实际时间函数HasDerivAt求导。二阶证据直接针对deriv v；Fe含ε/2，完整能量还需μ和空间积分。De未宣称非负。\n\n模块：LeanPML/PML/LocalElectric.lean\n定理命名空间：LeanPML.PML\n声明：electric_rate_identity; hasDerivAt_electricEnergyAlong; hasDerivAt_electricEnergyAlong_exampleU\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。"
+    },
+    {
+      "page": 11,
+      "/NM": "",
+      "/Subtype": "/Square",
+      "/Rect": "[532, 494.89, 594, 518.89]",
+      "/Contents": "由真实导数与邻域内z+τR=κv，推出κv_t=R+τR_t，再推出移位约束。单点兼容不足以求导。\n\n模块：LeanPML/PML/LocalDebye.lean\n定理命名空间：LeanPML.PML\n声明：polar_constraint_derivative; polar_shifted_constraint\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。"
+    },
+    {
+      "page": 11,
+      "/NM": "",
+      "/Subtype": "/Square",
+      "/Rect": "[532, 418.89, 594, 442.89]",
+      "/Contents": "(7.4) Q逐项真实求导，再由邻域兼容和κ≠0证明FD=Q/(2κ)的HasDerivAt恒等式；含开区间入口和非零路径实例。未乘μ、未空间积分；DD未宣称非负。\n\n模块：LeanPML/PML/LocalDebye.lean\n定理命名空间：LeanPML.PML\n声明：polar_rate_algebra; hasDerivAt_polarQuadratic; hasDerivAt_polarEnergy; hasDerivAt_polarEnergy_on_Ioo; hasDerivAt_example_polarEnergy\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。"
+    },
+    {
+      "page": 11,
+      "/NM": "LeanPML.v0.2.3.spatial-pointwise",
+      "/Subtype": "/Square",
+      "/Rect": "[7, 720.49, 48, 746.89]",
+      "/Contents": "(7.2) 被积式的点态非负与独立零区密度（不是整式）\n0≤p,r≤S≤c/4、c>0 下，两个方向的分支密度非负；零区精确为 c(hx²+hy²)。\n待完成：该勾只指被积子表达式；没有完成 (7.2) 积分算子、可积性、加权路径求导或全域能量恒等式。\n\nLeanPML.PML.spatialDissipation_nonneg\nLeanPML.PML.spatialDissipation2D_nonneg\nLeanPML.PML.spatialDissipation2D_of_sum_zero\n\n当前证据：\nlogs/v0.2.3/20261010T232910_472603_lake_build_retry.log\nlogs/v0.2.3/20261010T232931_121820_axioms_audit_retry.log"
+    },
+    {
+      "page": 11,
+      "/NM": "LeanPML.v0.2.3.electric-space-pending",
+      "/Subtype": "/Square",
+      "/Rect": "[549, 536.09, 580, 545.89]",
+      "/Contents": "积分待完成\n原标记保留。限定范围：(7.3) 电块代数与实际时间函数HasDerivAt求导。二阶证据直接针对deriv v；Fe含ε/2，完整能量还需μ和空间积分。De未宣称非负。\n待完成：实际场、μ 因子、空间积分；De 未证非负"
+    },
+    {
+      "page": 11,
+      "/NM": "LeanPML.v0.2.3.polar-space-pending",
+      "/Subtype": "/Square",
+      "/Rect": "[549, 408.09, 580, 417.89]",
+      "/Contents": "积分待完成\n原标记保留。限定范围：(7.4) Q逐项真实求导，再由邻域兼容和κ≠0证明FD=Q/(2κ)的HasDerivAt恒等式；含开区间入口和非零路径实例。未乘μ、未空间积分；DD未宣称非负。\n待完成：实际场、μ 因子、空间积分；DD 未证非负"
+    },
+    {
+      "page": 11,
+      "/NM": "LeanPML.v0.3.1.weighted-time",
+      "/Subtype": "/Square",
+      "/Rect": "[7, 647.49, 60, 673.89]",
+      "/Contents": "(7.2) 后“加权空间的时间链式法则由 ψ∈C¹(L²_w) 保证”\n在已构造的实际加权内积空间上，由 HasDerivAt X Xdot t 推出 ‖X‖²/2 的导数为内积，并由连续恢复映射得到物理 L² 路径导数。需要该加权范数下的导数，普通 L²/逐点可导不能代替。\n待完成：一般辅助 PDE 的加权正则性传播、真实空间梯度和 Green/PEC 仍待完成；不把本链式法则等同于整个 (7.2) 能量恒等式。\n\nLeanPML.Analysis.hasDerivAt_weighted_half_norm_sq\nLeanPML.Analysis.hasDerivAt_physicalL2\n\n当前证据：\nlogs/v0.3.1/20261013T002136_137117_lake_build.log\nlogs/v0.3.1/20261013T002105_759533_axioms_audit.log"
+    },
+    {
+      "page": 11,
+      "/NM": "LeanPML.v0.3.1.spatial-integral",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 720.49, 587, 746.89]",
+      "/Contents": "(7.2) 的 L² 分量密度积分与非负子结论\n四个有界可测耗散系数按方向乘实际 L² 分量平方，密度可积且积分非负；全零吸收 a.e. 时 S=c(‖h_x‖²+‖h_y‖²)。h=Λ−ψ 是 L² 分量，零区贡献保留。\n待完成：真实 h=∂ᵢv 接口未实现；本轮未单独形式化 Ω₊/Z 两个限制积分的分区等式，也未证明空间块与 primitive/Green 组合后的能量律。\n\nLeanPML.PML.fieldSpatialDissipation_integrable\nLeanPML.PML.fieldSpatialDissipation_eq_integral\nLeanPML.PML.fieldSpatialDissipation_nonneg\nLeanPML.PML.fieldSpatialDissipation_of_zeroAbsorption\n\n当前证据：\nlogs/v0.3.1/20261013T002136_137117_lake_build.log\nlogs/v0.3.1/20261013T002105_759533_axioms_audit.log"
+    },
+    {
+      "page": 11,
+      "/NM": "LeanPML.v0.3.1.spatial-scope-update",
+      "/Subtype": "/Square",
+      "/Rect": "[67, 23.39, 356.837646, 33.89]",
+      "/Contents": "v0.3.1 新勾限实际分量积分/范数路径求导；旧勾保留历史范围，Green/PEC 与 PDE 能量律未完成。"
+    },
+    {
+      "page": 11,
+      "/NM": "LeanPML.v0.3.1.dissipation-definition",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 82.49, 562.003906, 108.89]",
+      "/Contents": "(7.7) 实际\n积分定义\n符号未定"
+    },
+    {
+      "page": 11,
+      "/NM": "LeanPML.v0.3.3.single-balance",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 133.09, 583.102783, 164.89]",
+      "/Contents": "(7.6)，并使用 (7.7) 既有定义\n已有真实空间能量和耗散，从 StateHasDerivAt、primitive 主/辅助演化、兼容及空间导数关系与一般 Green 接口推出含边界 HasDerivAt；零迹下边界消失。\n待完成：具体矩形域/Green/迹与正则性实例；不表示 D_c≥0。\n\nLeanPML.PML.hasDerivAt_fieldEnergy_boundary_Conditional\nLeanPML.PML.hasDerivAt_fieldEnergy_zeroTrace_Conditional\n\n当前证据：\nlogs/v0.3.3/20261013T100156_159842_lake_build.log\nlogs/v0.3.3/20261013T100321_602582_axioms_audit.log"
+    },
+    {
+      "page": 11,
+      "/NM": "LeanPML.v0.3.3.green-interface",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 207.99, 569, 232.89]",
+      "/Contents": "Green 接口\n具体矩形证明\n待完成"
+    },
+    {
+      "page": 11,
+      "/NM": "LeanPML.v0.3.3.scope-11",
+      "/Subtype": "/Square",
+      "/Rect": "[67, 820.69, 297.04375, 830.89]",
+      "/Contents": "v0.3.2：旧勾保留历史范围；现已接通实际空间块，Green 与正则性仍为输入接口。"
+    },
+    {
+      "page": 12,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[428.38, 760.327, 445.729, 773.025]",
+      "/Contents": ""
+    },
+    {
+      "page": 12,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[97.573, 479.714, 114.922, 492.413]",
+      "/Contents": ""
+    },
+    {
+      "page": 12,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[224.011, 238.98, 241.36, 251.679]",
+      "/Contents": ""
+    },
+    {
+      "page": 12,
+      "/NM": "",
+      "/Subtype": "/Square",
+      "/Rect": "[532, 543.89, 594, 567.89]",
+      "/Contents": "(8.1) 在单点z+τR=κv下精确重写Q，及由调用者得到FD表达式（仍除以2κ）。不是完整能量正定性。\n\n模块：LeanPML/PML/LocalDebye.lean\n定理命名空间：LeanPML.PML\n声明：polarQuadratic_eq_reduced; polarEnergy_eq_reduced\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。"
+    },
+    {
+      "page": 12,
+      "/NM": "",
+      "/Subtype": "/Square",
+      "/Rect": "[532, 443.89, 594, 467.89]",
+      "/Contents": "(8.2) 全部四组界，保留3/4、5/4、37/64、9/16；最高入口从材料正性、c≤c*及吸收幅度推导中间界，没有预设目标界。\n\n模块：LeanPML/PML/LocalDebye.lean\n定理命名空间：LeanPML.PML\n声明：polar_coefficients_bounds_of_local_conditions; polar_coefficients_bounds_of_threshold\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。"
+    },
+    {
+      "page": 12,
+      "/NM": "LeanPML.v0.3.1.two-layer-definition",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 647.49, 572, 673.89]",
+      "/Contents": "左式实际定义\n右式能量律\n仍待完成"
+    },
+    {
+      "page": 12,
+      "/NM": "LeanPML.v0.3.3.two-balance",
+      "/Subtype": "/Square",
+      "/Rect": "[6, 641.09, 54.8, 672.89]",
+      "/Contents": "(7.8) 右侧真实两层能量恒等式\n从 I 内原层 primitive 演化，经同源真实邻域求导推出导数层同系统，两层分别零迹，固定同一K，实际证明 HasDerivAt energy7 (-dissipation7) t，t∈interior I。\n待完成：具体矩形 Green/迹/微分交换仍是接口；没有 D7≥0、积分平衡或时间单调性。\n\nLeanPML.PML.hasDerivAt_energy7_Conditional\n\n当前证据：\nlogs/v0.3.3/20261013T100156_159842_lake_build.log\nlogs/v0.3.3/20261013T100321_602582_axioms_audit.log"
+    },
+    {
+      "page": 12,
+      "/NM": "LeanPML.v0.3.3.spatial-control",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 357.09, 583.99043, 388.89]",
+      "/Contents": "(8.3)\n实际加权零延拓与 Λ=∇v+ψ 推出梯度平方≤2B_sp；一般零迹 Poincaré 接口下进一步得到位移平方≤2CP²B_sp。\n待完成：梯度和 Poincaré 的具体矩形实现；第二条不代表已经证明 Poincaré 本身。\n\nLeanPML.PML.gradient_square_le_spatialBudget\nLeanPML.PML.state_norm_sq_le_spatialBudget\n\n当前证据：\nlogs/v0.3.3/20261013T100156_159842_lake_build.log\nlogs/v0.3.3/20261013T100321_602582_axioms_audit.log"
+    },
+    {
+      "page": 12,
+      "/NM": "LeanPML.v0.3.3.lower-bound",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 138.09, 583.99043, 154.89]",
+      "/Contents": "§8.1 末尾未编号 F_c≥N²/4\n由旧约束消元、原阈值推出系数界、实际可积密度 Young 估计与零迹 Poincaré 吸收，证明 N²/4≤F_c。\n待完成：具体矩形 Poincaré；非任意独立点态矩阵正定。\n\nLeanPML.PML.fieldEnergy_bounds_Conditional\n\n当前证据：\nlogs/v0.3.3/20261013T100156_159842_lake_build.log\nlogs/v0.3.3/20261013T100321_602582_axioms_audit.log"
+    },
+    {
+      "page": 12,
+      "/NM": "LeanPML.v0.3.3.scope-12",
+      "/Subtype": "/Square",
+      "/Rect": "[67, 820.69, 286.708398, 830.89]",
+      "/Contents": "v0.3.2–3：(7.8) 右式现已条件性证明；右侧旧注保留为历史，不包含耗散非负。"
+    },
+    {
+      "page": 12,
+      "/NM": "LeanPML.v0.3.5.history12",
+      "/Subtype": "/Square",
+      "/Rect": "[67, 788.89, 351.348633, 798.89]",
+      "/Contents": "v0.3.4–5 更新：耗散闭合、有限区间单调性与积分平衡已在分析接口下证明；既有待完成旁注保留为历史。"
+    },
+    {
+      "page": 13,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[97.573, 674.085, 114.922, 686.783]",
+      "/Contents": ""
+    },
+    {
+      "page": 13,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[119.392, 614.767, 136.741, 627.466]",
+      "/Contents": ""
+    },
+    {
+      "page": 13,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[302.853, 546.147, 327.142, 558.846]",
+      "/Contents": ""
+    },
+    {
+      "page": 13,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[240.142, 384.156, 257.491, 396.854]",
+      "/Contents": ""
+    },
+    {
+      "page": 13,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[219.039, 136.98, 236.388, 149.679]",
+      "/Contents": ""
+    },
+    {
+      "page": 13,
+      "/NM": "LeanPML.v0.3.3.upper-bound",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 627.09, 583.99043, 643.89]",
+      "/Contents": "§8.2 末尾未编号 F_c≤N²\n同一能量/图平方的精确上界；使用原材料与阈值，保留零状态。原文末尾严格 <B_sp 在 B_sp=0 不成立，正式证明采用足够的非严格估计。\n待完成：具体矩形 Poincaré。原文严格号未改动，疑点已记账。\n\nLeanPML.PML.fieldEnergy_bounds_Conditional\n\n当前证据：\nlogs/v0.3.3/20261013T100156_159842_lake_build.log\nlogs/v0.3.3/20261013T100321_602582_axioms_audit.log"
+    },
+    {
+      "page": 13,
+      "/NM": "LeanPML.v0.3.3.aux-u-phi",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 513.29, 579.5, 530.89]",
+      "/Contents": "(8.4)\nPhysicalControlBounds.displacement、auxiliary：u 平方≤8CP²E7、物理φ平方和≤4E7。 从原材料阈值、受约束同源图界及实际L²有界乘子推得。\n待完成：给定兼容提升的重构控制；完整原 PDE 等价及提升规范唯一性仍待完成。\n\nLeanPML.PML.physicalControl_Conditional\n\n当前证据：\nlogs/v0.3.3/20261013T100156_159842_lake_build.log\nlogs/v0.3.3/20261013T100321_602582_axioms_audit.log"
+    },
+    {
+      "page": 13,
+      "/NM": "LeanPML.v0.3.3.aux-q",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 487.29, 579.5, 504.89]",
+      "/Contents": "(8.5)\nPhysicalControlBounds.primitivePolar：实际 q=κu−τP，精确系数16κ²CP²+8κτ²/μ。 从原材料阈值、受约束同源图界及实际L²有界乘子推得。\n待完成：给定兼容提升的重构控制；完整原 PDE 等价及提升规范唯一性仍待完成。\n\nLeanPML.PML.physicalControl_Conditional\n\n当前证据：\nlogs/v0.3.3/20261013T100156_159842_lake_build.log\nlogs/v0.3.3/20261013T100321_602582_axioms_audit.log"
+    },
+    {
+      "page": 13,
+      "/NM": "LeanPML.v0.3.3.aux-z1",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 461.29, 579.5, 478.89]",
+      "/Contents": "(8.6)\nPhysicalControlBounds.electricMemory：实际 Z1=−εbu，精确8ε²S⁴CP²E7。 从原材料阈值、受约束同源图界及实际L²有界乘子推得。\n待完成：给定兼容提升的重构控制；完整原 PDE 等价及提升规范唯一性仍待完成。\n\nLeanPML.PML.physicalControl_Conditional\n\n当前证据：\nlogs/v0.3.3/20261013T100156_159842_lake_build.log\nlogs/v0.3.3/20261013T100321_602582_axioms_audit.log"
+    },
+    {
+      "page": 13,
+      "/NM": "LeanPML.v0.3.3.aux-z2",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 435.29, 579.5, 452.89]",
+      "/Contents": "(8.7)\nPhysicalControlBounds.polarMemory：实际 Z2=−bq，精确S⁴(16κ²CP²+8κτ²/μ)E7。 从原材料阈值、受约束同源图界及实际L²有界乘子推得。\n待完成：给定兼容提升的重构控制；完整原 PDE 等价及提升规范唯一性仍待完成。\n\nLeanPML.PML.physicalControl_Conditional\n\n当前证据：\nlogs/v0.3.3/20261013T100156_159842_lake_build.log\nlogs/v0.3.3/20261013T100321_602582_axioms_audit.log"
+    },
+    {
+      "page": 13,
+      "/NM": "LeanPML.v0.3.3.aux-qxy",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 408.29, 579.5, 425.89]",
+      "/Contents": "(8.8)\nPhysicalControlBounds.magneticAuxiliary：Qx=pφy、Qy=−rφx，平方和≤4S²E7，方向与缩放正确。 从原材料阈值、受约束同源图界及实际L²有界乘子推得。\n待完成：给定兼容提升的重构控制；完整原 PDE 等价及提升规范唯一性仍待完成。\n\nLeanPML.PML.physicalControl_Conditional\n\n当前证据：\nlogs/v0.3.3/20261013T100156_159842_lake_build.log\nlogs/v0.3.3/20261013T100321_602582_axioms_audit.log"
+    },
+    {
+      "page": 13,
+      "/NM": "LeanPML.v0.3.3.scope-13",
+      "/Subtype": "/Square",
+      "/Rect": "[67, 820.69, 285.682129, 830.89]",
+      "/Contents": "v0.3.3：重构控制依赖约束与 Poincaré；完整模型等价、最终单调性仍待完成。"
+    },
+    {
+      "page": 13,
+      "/NM": "LeanPML.v0.3.3.zero-state-correction",
+      "/Subtype": "/Square",
+      "/Rect": "[67, 598.69, 298.957031, 608.89]",
+      "/Contents": "§8.2：B_sp=0 时严格号不成立；Lean 使用所需非严格估计，保留零状态与原常数。"
+    },
+    {
+      "page": 13,
+      "/NM": "LeanPML.v0.3.5.preliminary",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 99.49, 575, 125.89]",
+      "/Contents": "(9.1)\n由实际场单层余项积分与真实兼容求导，得到 (9.1)，保留两项负项；未把单层耗散非负作为输入。\n待完成：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。\n\nLeanPML.PML.fieldDissipation_lower\nLeanPML.PML.debye_relations_Conditional\nLeanPML.PML.dissipation7_preliminary_Conditional\n\n当前证据：\nlogs/v0.3.5/20261013T214810_766115_lake_build.log\nlogs/v0.3.5/20261013T214845_382134_axioms_audit.log"
+    },
+    {
+      "page": 13,
+      "/NM": "LeanPML.v0.3.5.legend13",
+      "/Subtype": "/Square",
+      "/Rect": "[67, 788.89, 339.348633, 798.89]",
+      "/Contents": "v0.3.4–5：抽象分析接口下已闭合耗散与单调性；上方旧“待完成”文字为历史状态，非具体 PDE 完成。"
+    },
+    {
+      "page": 14,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[302.126, 660.178, 319.475, 672.877]",
+      "/Contents": ""
+    },
+    {
+      "page": 14,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[295.942, 564, 313.291, 576.699]",
+      "/Contents": ""
+    },
+    {
+      "page": 14,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[237.905, 429.193, 255.254, 441.892]",
+      "/Contents": ""
+    },
+    {
+      "page": 14,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[86.664, 244.12, 104.013, 256.819]",
+      "/Contents": ""
+    },
+    {
+      "page": 14,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[97.573, 129.667, 114.922, 142.366]",
+      "/Contents": ""
+    },
+    {
+      "page": 14,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[134.344, 129.667, 151.693, 142.366]",
+      "/Contents": ""
+    },
+    {
+      "page": 14,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[199.867, 129.667, 217.217, 142.366]",
+      "/Contents": ""
+    },
+    {
+      "page": 14,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[104.529, 83.073, 111.469, 95.772]",
+      "/Contents": ""
+    },
+    {
+      "page": 14,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[199.706, 83.073, 217.056, 95.772]",
+      "/Contents": ""
+    },
+    {
+      "page": 14,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[257.809, 83.073, 275.158, 95.772]",
+      "/Contents": ""
+    },
+    {
+      "page": 14,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[450.939, 83.073, 468.288, 95.772]",
+      "/Contents": ""
+    },
+    {
+      "page": 14,
+      "/NM": "",
+      "/Subtype": "/Square",
+      "/Rect": "[532, 724.89, 594, 748.89]",
+      "/Contents": "(9.2)前的θ分支定义、0≤θ≤1及θx+θy=1；零区各取1/2。J的空间积分、(9.3)、(9.5)未形式化。\n\n模块：LeanPML/PML/Weights.lean\n定理命名空间：LeanPML.PML\n声明：thetaX; thetaY; theta_partition\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。"
+    },
+    {
+      "page": 14,
+      "/NM": "",
+      "/Subtype": "/Square",
+      "/Rect": "[532, 354.89, 594, 378.89]",
+      "/Contents": "本句中KS²≤1/16的系数代数已证；(9.6)完整空间估计及耗散分配未证明。\n\n模块：LeanPML/PML/Coefficients.lean\n定理命名空间：LeanPML.PML\n声明：scale_mul_amplitude_sq_le_sixteenth\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。"
+    },
+    {
+      "page": 14,
+      "/NM": "LeanPML.v0.3.5.j-analysis",
+      "/Subtype": "/Square",
+      "/Rect": "[3, 690.69, 53, 708.89]",
+      "/Contents": "(9.2) 的可积性、非负性子结论\n实际 L² 与有界 θ 系数下，J 密度可积、内积/积分相等且非负；零区密度为两个梯度表达分量平方和。红勾不表示定义本身是证明。\n待完成：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。\n\nLeanPML.PML.fieldJ_integrable\nLeanPML.PML.fieldJ_eq_integral\nLeanPML.PML.fieldJ_nonneg\nLeanPML.PML.fieldJDensity_zero_region\n\n当前证据：\nlogs/v0.3.4/20261013T214336_169080_lake_build.log\nlogs/v0.3.4/20261013T214424_960799_axioms_audit.log"
+    },
+    {
+      "page": 14,
+      "/NM": "LeanPML.v0.3.5.spatial-j",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 626.49, 581, 652.89]",
+      "/Contents": "(9.3)\n(9.3) 的两个实际积分下界；非负吸收和幅度限制，空间表达 h=Λ−ψ，零区恢复 ψ=0。\n待完成：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。\n\nLeanPML.PML.fieldSpatialDissipation_ge_J\n\n当前证据：\nlogs/v0.3.4/20261013T214336_169080_lake_build.log\nlogs/v0.3.4/20261013T214424_960799_axioms_audit.log"
+    },
+    {
+      "page": 14,
+      "/NM": "LeanPML.v0.3.5.gradient-evolution",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 577.49, 587, 603.89]",
+      "/Contents": "(9.4)\n(9.4) 从原层辅助演化和同源真实导数推出；依赖受限梯度域、空间约束及沿路径时间交换接口。\n待完成：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。\n\nLeanPML.PML.gradient_evolution_Conditional\n\n当前证据：\nlogs/v0.3.4/20261013T214336_169080_lake_build.log\nlogs/v0.3.4/20261013T214424_960799_axioms_audit.log"
+    },
+    {
+      "page": 14,
+      "/NM": "LeanPML.v0.3.5.gradient-control",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 465.49, 587, 491.89]",
+      "/Contents": "(9.5)\n(9.5) 从 (9.4)、θ 的两种系数估计和三项平方估计，经合法实际 L² 积分得到；覆盖零区、双边层和角层。\n待完成：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。\n\nLeanPML.PML.field_gradient_control\nLeanPML.PML.gradient_control_Conditional\n\n当前证据：\nlogs/v0.3.4/20261013T214336_169080_lake_build.log\nlogs/v0.3.4/20261013T214424_960799_axioms_audit.log"
+    },
+    {
+      "page": 14,
+      "/NM": "LeanPML.v0.3.5.spatial-absorption",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 397.49, 575, 423.89]",
+      "/Contents": "(9.6)\n(9.6) 由共同迹核的 Poincaré、(9.3)、(9.5) 与原阈值推出；非空空间载体仅用于从0≤p≤S取得S≥0。\n待完成：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。\n\nLeanPML.PML.scale_amplitude_chain\nLeanPML.PML.spatial_absorption_Conditional\nLeanPML.PML.spatial_absorption_half_Conditional\n\n当前证据：\nlogs/v0.3.5/20261013T214810_766115_lake_build.log\nlogs/v0.3.5/20261013T214845_382134_axioms_audit.log"
+    },
+    {
+      "page": 14,
+      "/NM": "LeanPML.v0.3.5.debye-absorption",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 144.49, 581, 170.89]",
+      "/Contents": "(9.7)\n(9.7) 由邻域兼容的两次真实求导得到 κ E_t=P_t+τP_tt，再从原阈值的两条材料条件分别吸收。\n待完成：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。\n\nLeanPML.PML.debye_relations_Conditional\nLeanPML.PML.debye_absorption_split\nLeanPML.PML.debye_absorption_Conditional\n\n当前证据：\nlogs/v0.3.5/20261013T214810_766115_lake_build.log\nlogs/v0.3.5/20261013T214845_382134_axioms_audit.log"
+    },
+    {
+      "page": 14,
+      "/NM": "LeanPML.v0.3.5.remainder-budget",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 99.49, 587, 125.89]",
+      "/Contents": "(9.7) 后未编号剩余耗散下界\n同时扣除不同负项，保留空间耗散1/2与 μτ/(4κ) 的 Debye 平方预算；不是重复使用同一正项。\n待完成：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。\n\nLeanPML.PML.dissipation7_lower_Conditional\nLeanPML.PML.dissipation7_nonneg_Conditional\n\n当前证据：\nlogs/v0.3.5/20261013T214810_766115_lake_build.log\nlogs/v0.3.5/20261013T214845_382134_axioms_audit.log"
+    },
+    {
+      "page": 14,
+      "/NM": "LeanPML.v0.3.5.legend14",
+      "/Subtype": "/Square",
+      "/Rect": "[67, 788.89, 348.014648, 798.89]",
+      "/Contents": "条件性：Lean 已证明列明接口下的结论；不表示具体矩形接口或解存在唯一性已证明。旧系数标记保留。"
+    },
+    {
+      "page": 14,
+      "/NM": "LeanPML.v0.3.5.j-definition",
+      "/Subtype": "/Square",
+      "/Rect": "[535, 687.69, 573, 705.89]",
+      "/Contents": "J定义已录入\n另证可积非负"
+    },
+    {
+      "page": 15,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[196.426, 211.514, 213.775, 224.213]",
+      "/Contents": ""
+    },
+    {
+      "page": 15,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[126.045, 193.9, 132.985, 206.599]",
+      "/Contents": ""
+    },
+    {
+      "page": 15,
+      "/NM": "LeanPML.v0.2.4.initial-compatibility",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 163.49, 581, 189.89]",
+      "/Contents": "§11.1 未编号初值行：仅对应初始兼容关系\nu₀=0、P₀=κξ、q₀=−τκξ、原辅助量与φ₀为零，ξ非零处p=r=0时，五个初始不变量的数值为零。只标兼容的代数核验，初值选择本身不算证明。\n待完成：磁不变量的时间保持、真实梯度/提升、完整兼容函数空间成员资格仍待完成。\n\nLeanPML.PML.Obstructions.initial_compatibility\n\n当前证据：\nlogs/v0.2.4/20261011T231924_138774_lake_build.log\nlogs/v0.2.4/20261011T231954_467990_axioms_audit.log"
+    },
+    {
+      "page": 15,
+      "/NM": "LeanPML.v0.2.4.initial-density",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 122.69, 587, 140.89]",
+      "/Contents": "§11.1 未编号负耗散公式：点态初值密度\n三个旧块直接组合，κ≠0及ξ≠0处p=r=0推出D_initial(ξ)=−μc(ε+κ)ξ²；材料及c正性推出非正，ξ≠0时严格负。\n待完成：不是一条已存在的完整PDE解；完整空间能量律、初始解存在性未完成。\n\nLeanPML.PML.Obstructions.initialDissipation_eq\nLeanPML.PML.Obstructions.initialDissipation_nonpos\nLeanPML.PML.Obstructions.initialDissipation_neg\n\n当前证据：\nlogs/v0.2.4/20261011T231924_138774_lake_build.log\nlogs/v0.2.4/20261011T231954_467990_axioms_audit.log"
+    },
+    {
+      "page": 15,
+      "/NM": "LeanPML.v0.2.4.initial-integral",
+      "/Subtype": "/Square",
+      "/Rect": "[7, 114.49, 66, 140.89]",
+      "/Contents": "§11.1 未编号负耗散公式：实际特殊初值积分\n实际测度m和函数f,p,r，平方可积与几乎处处支撑条件推出密度可积及∫D_initial=−μc(ε+κ)∫f²；包含全开矩形的二维Lebesgue限制测度入口。严格负额外要求∫f²>0。\n待完成：尚未形式化非零光滑紧支撑函数的正L²范数、Lp等价类范数接口；不是一般时间积分求导、PDE能量律或解存在。\n\nLeanPML.PML.Obstructions.initialDissipation_integral\nLeanPML.PML.Obstructions.initialDissipation_integral_neg\nLeanPML.PML.Obstructions.initialDissipation_rectangle_integral\n\n当前证据：\nlogs/v0.2.4/20261011T231924_138774_lake_build.log\nlogs/v0.2.4/20261011T231954_467990_axioms_audit.log"
+    },
+    {
+      "page": 15,
+      "/NM": "LeanPML.v0.2.4.second-layer-components",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 72.49, 587, 98.89]",
+      "/Contents": "§11.1 λ_t(0)=∇f 和 S₁(0)=c‖∇f‖²：仅分量接口与其积分\n真实HasDerivAt辅助演化在h₀=l₀=0时给l′(0)=V；复用零吸收空间耗散得c(gx²+gy²)。分量的独立支撑条件与平方可积性给实际分量积分c(∫gx²+∫gy²)。\n待完成：V、gx、gy与真实∂ᵢf的梯度对应、混合微分交换、梯度支撑性质、Poincaré和两层闭合未完成。\n\nLeanPML.PML.Obstructions.hasDerivAt_initial_flux\nLeanPML.PML.Obstructions.secondLayerSpatialInitial_zero\nLeanPML.PML.Obstructions.secondLayerSpatialInitial_eq\nLeanPML.PML.Obstructions.secondLayerSpatialInitial_integral\n\n当前证据：\nlogs/v0.2.4/20261011T231924_138774_lake_build.log\nlogs/v0.2.4/20261011T231954_467990_axioms_audit.log"
+    },
+    {
+      "page": 15,
+      "/NM": "LeanPML.v0.2.4.cross-reference",
+      "/Subtype": "/Square",
+      "/Rect": "[534, 199.49, 572, 225.89]",
+      "/Contents": "导数关系见\n(7.6)；(7.7)\n是耗散表达式"
+    },
+    {
+      "page": 15,
+      "/NM": "LeanPML.v0.2.4.scope",
+      "/Subtype": "/Square",
+      "/Rect": "[67, 13.69, 351.351562, 33.89]",
+      "/Contents": "v0.2.4：红勾仅指初值代数、实际初值积分及分量版；完整 PDE 能量律与解存在性待完成。\n真实局部时间求导已有证明；正文的完整空间能量初始增长仍是条件性解释。"
+    },
+    {
+      "page": 16,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[108.071, 472.775, 132.361, 485.474]",
+      "/Contents": ""
+    },
+    {
+      "page": 16,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[274.766, 65.459, 281.707, 78.158]",
+      "/Contents": ""
+    },
+    {
+      "page": 17,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[119.637, 672.257, 126.578, 684.955]",
+      "/Contents": ""
+    },
+    {
+      "page": 17,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[395.759, 545.182, 402.699, 557.88]",
+      "/Contents": ""
+    },
+    {
+      "page": 17,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[191.801, 447.822, 209.15, 460.521]",
+      "/Contents": ""
+    },
+    {
+      "page": 17,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[195.268, 412.594, 212.617, 425.293]",
+      "/Contents": ""
+    },
+    {
+      "page": 17,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[337.714, 412.594, 355.063, 425.293]",
+      "/Contents": ""
+    },
+    {
+      "page": 17,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[392.688, 412.594, 410.037, 425.293]",
+      "/Contents": ""
+    },
+    {
+      "page": 17,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[444.894, 374.377, 462.243, 387.076]",
+      "/Contents": ""
+    },
+    {
+      "page": 17,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[86.664, 339.149, 110.954, 351.848]",
+      "/Contents": ""
+    },
+    {
+      "page": 17,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[108.809, 283.319, 126.158, 296.017]",
+      "/Contents": ""
+    },
+    {
+      "page": 17,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[428.65, 283.319, 445.999, 296.017]",
+      "/Contents": ""
+    },
+    {
+      "page": 17,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[251.288, 192.26, 268.637, 204.959]",
+      "/Contents": ""
+    },
+    {
+      "page": 17,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[502.475, 94.9, 519.824, 107.599]",
+      "/Contents": ""
+    },
+    {
+      "page": 17,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[97.436, 77.286, 114.785, 89.985]",
+      "/Contents": ""
+    },
+    {
+      "page": 17,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[185.709, 77.286, 203.058, 89.985]",
+      "/Contents": ""
+    },
+    {
+      "page": 17,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[301.302, 77.286, 318.651, 89.985]",
+      "/Contents": ""
+    },
+    {
+      "page": 18,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[484.96, 742.713, 502.309, 755.411]",
+      "/Contents": ""
+    },
+    {
+      "page": 18,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[311.528, 592.511, 474.142, 605.21]",
+      "/Contents": ""
+    },
+    {
+      "page": 18,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[340.306, 513.089, 472.169, 525.788]",
+      "/Contents": ""
+    },
+    {
+      "page": 18,
+      "/NM": "",
+      "/Subtype": "/Link",
+      "/Rect": "[181.23, 433.667, 293.081, 446.365]",
+      "/Contents": ""
+    }
+  ]
+}

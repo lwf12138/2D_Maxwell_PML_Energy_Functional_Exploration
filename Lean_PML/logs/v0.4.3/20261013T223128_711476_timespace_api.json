@@ -1,0 +1,19 @@
+{
+  "stage": "v0.4.3",
+  "command": [
+    "lake",
+    "env",
+    "lean",
+    "logs/v0.4.3/Api.lean"
+  ],
+  "command_display": "lake env lean logs/v0.4.3/Api.lean",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-13T22:31:28.711476+08:00",
+  "output_file": "20261013T223128_711476_timespace_api.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 1,
+  "status": "finished",
+  "ended_at": "2026-10-13T22:31:30.665677+08:00",
+  "elapsed_seconds": 1.953
+}

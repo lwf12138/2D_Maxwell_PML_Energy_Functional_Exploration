@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "audited_declarations": 590,
+  "formal_sources_verified": 50,
+  "protected_files_unchanged": 10,
+  "all_legacy_audit_text_preserved": true,
+  "document_links": "passed",
+  "pdf_pages": 18,
+  "pdf_old_annotations_preserved": true,
+  "pdf_new_annotations": 5,
+  "retained_failure_count": 4,
+  "ready_for_v051": "yes, for the explicitly selected strong smooth/weighted class; not the complete weak V7 range"
+}

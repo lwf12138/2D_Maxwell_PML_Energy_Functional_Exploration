@@ -1,0 +1,73 @@
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+LeanPML/Rectangle/Green.lean:179:18: error: unsolved goals
+D : Rect
+B C N : BoundaryData D
+⊢ {
+        toFun := fun N =>
+          ((edgePair D.ylo D.yhi ⋯) B.1) N.1 + ((edgePair D.ylo D.yhi ⋯) C.1) N.1 -
+                      ((edgePair D.ylo D.yhi ⋯) B.2.1) N.2.1 -
+                    ((edgePair D.ylo D.yhi ⋯) C.2.1) N.2.1 +
+                  ((edgePair D.xlo D.xhi ⋯) B.2.2.1) N.2.2.1 +
+                ((edgePair D.xlo D.xhi ⋯) C.2.2.1) N.2.2.1 -
+              ((edgePair D.xlo D.xhi ⋯) B.2.2.2) N.2.2.2 -
+            ((edgePair D.xlo D.xhi ⋯) C.2.2.2) N.2.2.2,
+        map_add' := ⋯ }
+      N =
+    {
+          toFun := fun N =>
+            ((edgePair D.ylo D.yhi ⋯) B.1) N.1 - ((edgePair D.ylo D.yhi ⋯) B.2.1) N.2.1 +
+                ((edgePair D.xlo D.xhi ⋯) B.2.2.1) N.2.2.1 -
+              ((edgePair D.xlo D.xhi ⋯) B.2.2.2) N.2.2.2,
+          map_add' := ⋯ }
+        N +
+      {
+          toFun := fun N =>
+            ((edgePair D.ylo D.yhi ⋯) C.1) N.1 - ((edgePair D.ylo D.yhi ⋯) C.2.1) N.2.1 +
+                ((edgePair D.xlo D.xhi ⋯) C.2.2.1) N.2.2.1 -
+              ((edgePair D.xlo D.xhi ⋯) C.2.2.2) N.2.2.2,
+          map_add' := ⋯ }
+        N
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+LeanPML/Rectangle/Green.lean:185:19: error: unsolved goals
+D : Rect
+r : ℝ
+B N : BoundaryData D
+⊢ {
+        toFun := fun N =>
+          r * ((edgePair D.ylo D.yhi ⋯) B.1) N.1 - r * ((edgePair D.ylo D.yhi ⋯) B.2.1) N.2.1 +
+              r * ((edgePair D.xlo D.xhi ⋯) B.2.2.1) N.2.2.1 -
+            r * ((edgePair D.xlo D.xhi ⋯) B.2.2.2) N.2.2.2,
+        map_add' := ⋯ }
+      N =
+    r *
+      {
+          toFun := fun N =>
+            ((edgePair D.ylo D.yhi ⋯) B.1) N.1 - ((edgePair D.ylo D.yhi ⋯) B.2.1) N.2.1 +
+                ((edgePair D.xlo D.xhi ⋯) B.2.2.1) N.2.2.1 -
+              ((edgePair D.xlo D.xhi ⋯) B.2.2.2) N.2.2.2,
+          map_add' := ⋯ }
+        N
+LeanPML/Rectangle/Green.lean:182:54: warning: This simp argument is unused:
+  LinearMap.smul_apply
+
+Hint: Omit it from the simp argument list.
+  simp only [LinearMap.coe_mk, LinearMap.add_apply,̵ ̵L̵i̵n̵e̵a̵r̵M̵a̵p̵.̵s̵m̵u̵l̵_̵a̵p̵p̵l̵y̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/Rectangle/Green.lean:188:33: warning: This simp argument is unused:
+  LinearMap.add_apply
+
+Hint: Omit it from the simp argument list.
+  simp only [LinearMap.coe_mk, LinearMap.a̵d̵d̵_̵a̵p̵p̵l̵y̵,̵ ̵L̵i̵n̵e̵a̵r̵M̵a̵p̵.̵smul_apply]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

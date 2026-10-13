@@ -1,0 +1,288 @@
+fderiv_mul.{u_1, u_2, u_6} {𝕜 : Type u_1} [NontriviallyNormedField 𝕜] {E : Type u_2} [NormedAddCommGroup E]
+  [NormedSpace 𝕜 E] {x : E} {𝔸' : Type u_6} [NormedCommRing 𝔸'] [NormedAlgebra 𝕜 𝔸'] {c d : E → 𝔸'}
+  (hc : DifferentiableAt 𝕜 c x) (hd : DifferentiableAt 𝕜 d x) :
+  fderiv 𝕜 (c * d) x = c x • fderiv 𝕜 d x + d x • fderiv 𝕜 c x
+HasFDerivAt.mul.{u_1, u_2, u_6} {𝕜 : Type u_1} [NontriviallyNormedField 𝕜] {E : Type u_2} [NormedAddCommGroup E]
+  [NormedSpace 𝕜 E] {x : E} {𝔸' : Type u_6} [NormedCommRing 𝔸'] [NormedAlgebra 𝕜 𝔸'] {c d : E → 𝔸'} {c' d' : E →L[𝕜] 𝔸'}
+  (hc : HasFDerivAt c c' x) (hd : HasFDerivAt d d' x) : HasFDerivAt (c * d) (c x • d' + d x • c') x
+Continuous.integrableOn_Icc.{u_1, u_6} {X : Type u_1} {E : Type u_6} [MeasurableSpace X] [TopologicalSpace X]
+  [NormedAddCommGroup E] {μ : Measure X} [OpensMeasurableSpace X] {f : X → E} {a b : X} [IsFiniteMeasureOnCompacts μ]
+  [Preorder X] [CompactIccSpace X] [T2Space X] (hf : Continuous f) : IntegrableOn f (Icc a b) μ
+ContDiff.differentiable.{u, uE, uF} {𝕜 : Type u} [NontriviallyNormedField 𝕜] {E : Type uE} [NormedAddCommGroup E]
+  [NormedSpace 𝕜 E] {F : Type uF} [NormedAddCommGroup F] [NormedSpace 𝕜 F] {f : E → F} {n : WithTop ℕ∞}
+  (h : ContDiff 𝕜 n f) (hn : n ≠ 0) : Differentiable 𝕜 f
+ContDiff.continuous_fderiv.{u, uE, uF} {𝕜 : Type u} [NontriviallyNormedField 𝕜] {E : Type uE} [NormedAddCommGroup E]
+  [NormedSpace 𝕜 E] {F : Type uF} [NormedAddCommGroup F] [NormedSpace 𝕜 F] {f : E → F} {n : WithTop ℕ∞}
+  (h : ContDiff 𝕜 n f) (hn : n ≠ 0) : Continuous (fderiv 𝕜 f)
+Continuous.clm_apply.{u_1, u_2, u_3, u_5} {𝕜 : Type u_1} [NontriviallyNormedField 𝕜] {E : Type u_2}
+  [SeminormedAddCommGroup E] [NormedSpace 𝕜 E] {F : Type u_3} [SeminormedAddCommGroup F] [NormedSpace 𝕜 F]
+  {X : Type u_5} [TopologicalSpace X] {f : X → E →L[𝕜] F} {g : X → E} (hf : Continuous f) (hg : Continuous g) :
+  Continuous fun x => (f x) (g x)
+MeasureTheory.integral_congr_ae.{u_1, u_5} {α : Type u_1} {G : Type u_5} [NormedAddCommGroup G] [NormedSpace ℝ G]
+  {m : MeasurableSpace α} {μ : Measure α} {f g : α → G} (h : f =ᵐ[μ] g) : ∫ (a : α), f a ∂μ = ∫ (a : α), g a ∂μ
+intervalIntegral.integral_congr.{u_5} {E : Type u_5} [NormedAddCommGroup E] [NormedSpace ℝ E] {f g : ℝ → E}
+  {μ : Measure ℝ} {a b : ℝ} (h : EqOn f g (uIcc a b)) : ∫ (x : ℝ) in a..b, f x ∂μ = ∫ (x : ℝ) in a..b, g x ∂μ
+intervalIntegral.integral_congr_ae.{u_5} {E : Type u_5} [NormedAddCommGroup E] [NormedSpace ℝ E] {a b : ℝ} {f g : ℝ → E}
+  {μ : Measure ℝ} (h : ∀ᵐ (x : ℝ) ∂μ, x ∈ uIoc a b → f x = g x) : ∫ (x : ℝ) in a..b, f x ∂μ = ∫ (x : ℝ) in a..b, g x ∂μ
+MeasureTheory.integral_sub.{u_1, u_5} {α : Type u_1} {G : Type u_5} [NormedAddCommGroup G] [NormedSpace ℝ G]
+  {m : MeasurableSpace α} {μ : Measure α} {f g : α → G} (hf : Integrable f μ) (hg : Integrable g μ) :
+  ∫ (a : α), f a - g a ∂μ = ∫ (a : α), f a ∂μ - ∫ (a : α), g a ∂μ
+Continuous.intervalIntegrable.{u_5} {E : Type u_5} [NormedAddCommGroup E] {μ : Measure ℝ} [IsLocallyFiniteMeasure μ]
+  {u : ℝ → E} (hu : Continuous u) (a b : ℝ) : IntervalIntegrable u μ a b
+intervalIntegral.integral_add.{u_5} {E : Type u_5} [NormedAddCommGroup E] [NormedSpace ℝ E] {a b : ℝ} {f g : ℝ → E}
+  {μ : Measure ℝ} (hf : IntervalIntegrable f μ a b) (hg : IntervalIntegrable g μ a b) :
+  ∫ (x : ℝ) in a..b, f x + g x ∂μ = ∫ (x : ℝ) in a..b, f x ∂μ + ∫ (x : ℝ) in a..b, g x ∂μ
+logs/v0.4.2/GreenScratch.lean:20:21: error: Application type mismatch: The argument
+  ∞
+has type
+  ℝ≥0∞
+but is expected to have type
+  WithTop ℕ∞
+in the application
+  ContDiff ℝ ∞
+logs/v0.4.2/GreenScratch.lean:20:43: error: Application type mismatch: The argument
+  ∞
+has type
+  ℝ≥0∞
+but is expected to have type
+  WithTop ℕ∞
+in the application
+  ContDiff ℝ ∞
+logs/v0.4.2/GreenScratch.lean:20:65: error: Application type mismatch: The argument
+  ∞
+has type
+  ℝ≥0∞
+but is expected to have type
+  WithTop ℕ∞
+in the application
+  ContDiff ℝ ∞
+logs/v0.4.2/GreenScratch.lean:28:33: error: unsolved goals
+a b : ℝ × ℝ
+hab : a ≤ b
+f X Y : ℝ × ℝ → ℝ
+hf : ContDiff ℝ sorry f
+hX : ContDiff ℝ sorry X
+hY : ContDiff ℝ sorry Y
+⊢ ¬sorry () = 0
+logs/v0.4.2/GreenScratch.lean:29:33: error: unsolved goals
+a b : ℝ × ℝ
+hab : a ≤ b
+f X Y : ℝ × ℝ → ℝ
+hf : ContDiff ℝ sorry f
+hX : ContDiff ℝ sorry X
+hY : ContDiff ℝ sorry Y
+hdf : Differentiable ℝ f
+⊢ ¬sorry () = 0
+logs/v0.4.2/GreenScratch.lean:30:33: error: unsolved goals
+a b : ℝ × ℝ
+hab : a ≤ b
+f X Y : ℝ × ℝ → ℝ
+hf : ContDiff ℝ sorry f
+hX : ContDiff ℝ sorry X
+hY : ContDiff ℝ sorry Y
+hdf : Differentiable ℝ f
+hdX : Differentiable ℝ X
+⊢ ¬sorry () = 0
+logs/v0.4.2/GreenScratch.lean:32:27: error: unsolved goals
+a b : ℝ × ℝ
+hab : a ≤ b
+f X Y : ℝ × ℝ → ℝ
+hf : ContDiff ℝ sorry f
+hX : ContDiff ℝ sorry X
+hY : ContDiff ℝ sorry Y
+hdf : Differentiable ℝ f
+hdX : Differentiable ℝ X
+hdY : Differentiable ℝ Y
+⊢ ¬sorry () = 0
+logs/v0.4.2/GreenScratch.lean:34:27: error: unsolved goals
+a b : ℝ × ℝ
+hab : a ≤ b
+f X Y : ℝ × ℝ → ℝ
+hf : ContDiff ℝ sorry f
+hX : ContDiff ℝ sorry X
+hY : ContDiff ℝ sorry Y
+hdf : Differentiable ℝ f
+hdX : Differentiable ℝ X
+hdY : Differentiable ℝ Y
+hfx : Continuous fun z => (fderiv ℝ f z) (1, 0)
+⊢ ¬sorry () = 0
+logs/v0.4.2/GreenScratch.lean:36:27: error: unsolved goals
+a b : ℝ × ℝ
+hab : a ≤ b
+f X Y : ℝ × ℝ → ℝ
+hf : ContDiff ℝ sorry f
+hX : ContDiff ℝ sorry X
+hY : ContDiff ℝ sorry Y
+hdf : Differentiable ℝ f
+hdX : Differentiable ℝ X
+hdY : Differentiable ℝ Y
+hfx : Continuous fun z => (fderiv ℝ f z) (1, 0)
+hfy : Continuous fun z => (fderiv ℝ f z) (0, 1)
+⊢ ¬sorry () = 0
+logs/v0.4.2/GreenScratch.lean:38:27: error: unsolved goals
+a b : ℝ × ℝ
+hab : a ≤ b
+f X Y : ℝ × ℝ → ℝ
+hf : ContDiff ℝ sorry f
+hX : ContDiff ℝ sorry X
+hY : ContDiff ℝ sorry Y
+hdf : Differentiable ℝ f
+hdX : Differentiable ℝ X
+hdY : Differentiable ℝ Y
+hfx : Continuous fun z => (fderiv ℝ f z) (1, 0)
+hfy : Continuous fun z => (fderiv ℝ f z) (0, 1)
+hXx : Continuous fun z => (fderiv ℝ X z) (1, 0)
+⊢ ¬sorry () = 0
+logs/v0.4.2/GreenScratch.lean:39:27: error: Application type mismatch: The argument
+  ∞
+has type
+  ℝ≥0∞
+but is expected to have type
+  WithTop ℕ∞
+in the application
+  ContDiff ℝ ∞
+logs/v0.4.2/GreenScratch.lean:40:27: error: Application type mismatch: The argument
+  ∞
+has type
+  ℝ≥0∞
+but is expected to have type
+  WithTop ℕ∞
+in the application
+  ContDiff ℝ ∞
+logs/v0.4.2/GreenScratch.lean:44:32: error: unsolved goals
+a b : ℝ × ℝ
+hab : a ≤ b
+f X Y : ℝ × ℝ → ℝ
+hf : ContDiff ℝ sorry f
+hX : ContDiff ℝ sorry X
+hY : ContDiff ℝ sorry Y
+hdf : Differentiable ℝ f
+hdX : Differentiable ℝ X
+hdY : Differentiable ℝ Y
+hfx : Continuous fun z => (fderiv ℝ f z) (1, 0)
+hfy : Continuous fun z => (fderiv ℝ f z) (0, 1)
+hXx : Continuous fun z => (fderiv ℝ X z) (1, 0)
+hYy : Continuous fun z => (fderiv ℝ Y z) (0, 1)
+hprodX : ContDiff ℝ sorry fun z => f z * X z
+hprodY : ContDiff ℝ sorry fun z => f z * Y z
+⊢ ¬sorry () = 0
+logs/v0.4.2/GreenScratch.lean:45:34: error: unsolved goals
+a b : ℝ × ℝ
+hab : a ≤ b
+f X Y : ℝ × ℝ → ℝ
+hf : ContDiff ℝ sorry f
+hX : ContDiff ℝ sorry X
+hY : ContDiff ℝ sorry Y
+hdf : Differentiable ℝ f
+hdX : Differentiable ℝ X
+hdY : Differentiable ℝ Y
+hfx : Continuous fun z => (fderiv ℝ f z) (1, 0)
+hfy : Continuous fun z => (fderiv ℝ f z) (0, 1)
+hXx : Continuous fun z => (fderiv ℝ X z) (1, 0)
+hYy : Continuous fun z => (fderiv ℝ Y z) (0, 1)
+hprodX : ContDiff ℝ sorry fun z => f z * X z
+hprodY : ContDiff ℝ sorry fun z => f z * Y z
+⊢ ¬sorry () = 0
+logs/v0.4.2/GreenScratch.lean:50:40: error: unsolved goals
+a b : ℝ × ℝ
+hab : a ≤ b
+f X Y : ℝ × ℝ → ℝ
+hf : ContDiff ℝ sorry f
+hX : ContDiff ℝ sorry X
+hY : ContDiff ℝ sorry Y
+hdf : Differentiable ℝ f
+hdX : Differentiable ℝ X
+hdY : Differentiable ℝ Y
+hfx : Continuous fun z => (fderiv ℝ f z) (1, 0)
+hfy : Continuous fun z => (fderiv ℝ f z) (0, 1)
+hXx : Continuous fun z => (fderiv ℝ X z) (1, 0)
+hYy : Continuous fun z => (fderiv ℝ Y z) (0, 1)
+hprodX : ContDiff ℝ sorry fun z => f z * X z
+hprodY : ContDiff ℝ sorry fun z => f z * Y z
+hdiv_cont : Continuous fun z => (fderiv ℝ (fun z => f z * X z) z) (1, 0) + (fderiv ℝ (fun z => f z * Y z) z) (0, 1)
+z : ℝ × ℝ
+x✝ : z ∈ Ioo a.1 b.1 ×ˢ Ioo a.2 b.2
+⊢ ¬sorry () = 0
+logs/v0.4.2/GreenScratch.lean:51:40: error: unsolved goals
+a b : ℝ × ℝ
+hab : a ≤ b
+f X Y : ℝ × ℝ → ℝ
+hf : ContDiff ℝ sorry f
+hX : ContDiff ℝ sorry X
+hY : ContDiff ℝ sorry Y
+hdf : Differentiable ℝ f
+hdX : Differentiable ℝ X
+hdY : Differentiable ℝ Y
+hfx : Continuous fun z => (fderiv ℝ f z) (1, 0)
+hfy : Continuous fun z => (fderiv ℝ f z) (0, 1)
+hXx : Continuous fun z => (fderiv ℝ X z) (1, 0)
+hYy : Continuous fun z => (fderiv ℝ Y z) (0, 1)
+hprodX : ContDiff ℝ sorry fun z => f z * X z
+hprodY : ContDiff ℝ sorry fun z => f z * Y z
+hdiv_cont : Continuous fun z => (fderiv ℝ (fun z => f z * X z) z) (1, 0) + (fderiv ℝ (fun z => f z * Y z) z) (0, 1)
+z : ℝ × ℝ
+x✝ : z ∈ Ioo a.1 b.1 ×ˢ Ioo a.2 b.2
+⊢ ¬sorry () = 0
+logs/v0.4.2/GreenScratch.lean:58:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  fderiv ℝ (f * X) z
+in the target expression
+  (fderiv ℝ (fun z => f z * X z) z) (1, 0) + (fderiv ℝ (fun z => f z * Y z) z) (0, 1) =
+    f z * ((fderiv ℝ X z) (1, 0) + (fderiv ℝ Y z) (0, 1)) + (fderiv ℝ f z) (1, 0) * X z + (fderiv ℝ f z) (0, 1) * Y z
+
+a b : ℝ × ℝ
+hab : a ≤ b
+f X Y : ℝ × ℝ → ℝ
+hf : ContDiff ℝ sorry f
+hX : ContDiff ℝ sorry X
+hY : ContDiff ℝ sorry Y
+hdf : Differentiable ℝ f
+hdX : Differentiable ℝ X
+hdY : Differentiable ℝ Y
+hfx : Continuous fun z => (fderiv ℝ f z) (1, 0)
+hfy : Continuous fun z => (fderiv ℝ f z) (0, 1)
+hXx : Continuous fun z => (fderiv ℝ X z) (1, 0)
+hYy : Continuous fun z => (fderiv ℝ Y z) (0, 1)
+hprodX : ContDiff ℝ sorry fun z => f z * X z
+hprodY : ContDiff ℝ sorry fun z => f z * Y z
+hdiv_cont : Continuous fun z => (fderiv ℝ (fun z => f z * X z) z) (1, 0) + (fderiv ℝ (fun z => f z * Y z) z) (0, 1)
+hgreen :
+  ∫ (x : ℝ × ℝ) in Icc a b, (fderiv ℝ (fun z => f z * X z) x) (1, 0) + (fderiv ℝ (fun z => f z * Y z) x) (0, 1) =
+    (((∫ (x : ℝ) in a.1..b.1, f (x, b.2) * Y (x, b.2)) - ∫ (x : ℝ) in a.1..b.1, f (x, a.2) * Y (x, a.2)) +
+        ∫ (y : ℝ) in a.2..b.2, f (b.1, y) * X (b.1, y)) -
+      ∫ (y : ℝ) in a.2..b.2, f (a.1, y) * X (a.1, y)
+z : ℝ × ℝ
+⊢ (fderiv ℝ (fun z => f z * X z) z) (1, 0) + (fderiv ℝ (fun z => f z * Y z) z) (0, 1) =
+    f z * ((fderiv ℝ X z) (1, 0) + (fderiv ℝ Y z) (0, 1)) + (fderiv ℝ f z) (1, 0) * X z + (fderiv ℝ f z) (0, 1) * Y z
+logs/v0.4.2/GreenScratch.lean:27:50: error: unsolved goals
+a b : ℝ × ℝ
+hab : a ≤ b
+f X Y : ℝ × ℝ → ℝ
+hf : ContDiff ℝ sorry f
+hX : ContDiff ℝ sorry X
+hY : ContDiff ℝ sorry Y
+hdf : Differentiable ℝ f
+hdX : Differentiable ℝ X
+hdY : Differentiable ℝ Y
+hfx : Continuous fun z => (fderiv ℝ f z) (1, 0)
+hfy : Continuous fun z => (fderiv ℝ f z) (0, 1)
+hXx : Continuous fun z => (fderiv ℝ X z) (1, 0)
+hYy : Continuous fun z => (fderiv ℝ Y z) (0, 1)
+hprodX : ContDiff ℝ sorry fun z => f z * X z
+hprodY : ContDiff ℝ sorry fun z => f z * Y z
+hdiv_cont : Continuous fun z => (fderiv ℝ (fun z => f z * X z) z) (1, 0) + (fderiv ℝ (fun z => f z * Y z) z) (0, 1)
+hexpand :
+  ∀ (z : ℝ × ℝ),
+    (fderiv ℝ (fun z => f z * X z) z) (1, 0) + (fderiv ℝ (fun z => f z * Y z) z) (0, 1) =
+      f z * ((fderiv ℝ X z) (1, 0) + (fderiv ℝ Y z) (0, 1)) + (fderiv ℝ f z) (1, 0) * X z + (fderiv ℝ f z) (0, 1) * Y z
+hgreen :
+  ∫ (x : ℝ × ℝ) in Icc a b,
+      f x * ((fderiv ℝ X x) (1, 0) + (fderiv ℝ Y x) (0, 1)) + (fderiv ℝ f x) (1, 0) * X x +
+        (fderiv ℝ f x) (0, 1) * Y x =
+    (((∫ (x : ℝ) in a.1..b.1, f (x, b.2) * Y (x, b.2)) - ∫ (x : ℝ) in a.1..b.1, f (x, a.2) * Y (x, a.2)) +
+        ∫ (y : ℝ) in a.2..b.2, f (b.1, y) * X (b.1, y)) -
+      ∫ (y : ℝ) in a.2..b.2, f (a.1, y) * X (a.1, y)
+⊢ ∫ (z : ℝ × ℝ) in Icc a b, f z * ((fderiv ℝ X z) (1, 0) + (fderiv ℝ Y z) (0, 1)) =
+    ((-∫ (z : ℝ × ℝ) in Icc a b, (fderiv ℝ f z) (1, 0) * X z) - ∫ (z : ℝ × ℝ) in Icc a b, (fderiv ℝ f z) (0, 1) * Y z) +
+      ((((∫ (x : ℝ) in a.1..b.1, f (x, b.2) * Y (x, b.2)) - ∫ (x : ℝ) in a.1..b.1, f (x, a.2) * Y (x, a.2)) +
+          ∫ (y : ℝ) in a.2..b.2, f (b.1, y) * X (b.1, y)) -
+        ∫ (y : ℝ) in a.2..b.2, f (a.1, y) * X (a.1, y))

@@ -1,0 +1,14 @@
+import LeanPML
+#print LeanPML.Rectangle.SmoothStateRegular
+#print LeanPML.Rectangle.WeightedJetRegular
+#print LeanPML.PML.Concrete.OriginalAt
+#print LeanPML.PML.Concrete.OriginalLiftRegular
+#print LeanPML.PML.Concrete.LiftIdentified
+#print LeanPML.PML.Concrete.InitialDerivativeCompatible
+#check LeanPML.Rectangle.greenDomain
+#check LeanPML.Rectangle.poincareDomain
+#check LeanPML.Rectangle.hasDerivAt_jet_gradientX
+#check LeanPML.PML.Concrete.originalFiniteIntervalProblem_separated
+#check LeanPML.PML.Concrete.originalFiniteIntervalProblem_second_R_continuous
+#check LeanPML.PML.Concrete.five_invariants_toLp_eq_of_continuous
+#check LeanPML.PML.Concrete.primitive_to_original_rectangle

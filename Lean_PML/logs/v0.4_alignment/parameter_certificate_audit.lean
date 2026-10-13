@@ -1,0 +1,15 @@
+import LeanPML.Rectangle.ParameterCertificate
+
+#print axioms LeanPML.Rectangle.ParameterCertificate.unitSquare_sideLengths
+#print axioms LeanPML.Rectangle.ParameterCertificate.poincareConstant_unitSquare
+#print axioms LeanPML.Rectangle.ParameterCertificate.materialA_unit
+#print axioms LeanPML.Rectangle.ParameterCertificate.scaleK_unitSquare
+#print axioms LeanPML.Rectangle.ParameterCertificate.smallC_pos
+#print axioms LeanPML.Rectangle.ParameterCertificate.amplitudeS_pos
+#print axioms LeanPML.Rectangle.ParameterCertificate.amplitudeS_eq_quarter
+#print axioms LeanPML.Rectangle.ParameterCertificate.unitSquare_explicit_smallness
+#print axioms LeanPML.Rectangle.ParameterCertificate.unitSquare_le_threshold
+#print axioms LeanPML.Rectangle.ParameterCertificate.unitSquare_parameter_certificate
+#print axioms LeanPML.Rectangle.ParameterCertificate.oldC_material_condition_value
+#print axioms LeanPML.Rectangle.ParameterCertificate.oldC_fails_material_condition
+#print axioms LeanPML.Rectangle.ParameterCertificate.oldC_not_le_threshold

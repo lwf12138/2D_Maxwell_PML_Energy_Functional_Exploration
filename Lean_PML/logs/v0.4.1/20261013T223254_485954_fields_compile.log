@@ -1,0 +1,185 @@
+LeanPML/Rectangle/Fields.lean:29:29: error: expected token
+LeanPML/Rectangle/Fields.lean:38:69: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  f.property
+has type
+  SmoothField.toAddSubsemigroup.1 ↑f
+which does not have the necessary form.
+LeanPML/Rectangle/Fields.lean:41:2: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  f.property
+has type
+  SmoothField.toAddSubsemigroup.1 ↑f
+which does not have the necessary form.
+LeanPML/Rectangle/Fields.lean:45:40: error: Application type mismatch: The argument
+  f.property
+has type
+  ↑f ∈ SmoothField
+but is expected to have type
+  ContDiff ?m.6 ↑⊤ ?m.14
+in the application
+  contDiff_infty_iff_fderiv.mp f.property
+LeanPML/Rectangle/Fields.lean:48:40: error: Application type mismatch: The argument
+  f.property
+has type
+  ↑f ∈ SmoothField
+but is expected to have type
+  ContDiff ?m.6 ↑⊤ ?m.14
+in the application
+  contDiff_infty_iff_fderiv.mp f.property
+LeanPML/Rectangle/Fields.lean:51:4: error: Function expected at
+  derivativeX f
+but this term has type
+  ↥SmoothField
+
+Note: Expected a function because this term is being applied to the argument
+  z
+LeanPML/Rectangle/Fields.lean:53:4: error: Function expected at
+  derivativeY f
+but this term has type
+  ↥SmoothField
+
+Note: Expected a function because this term is being applied to the argument
+  z
+LeanPML/Rectangle/Fields.lean:57:25: error: Function expected at
+  f
+but this term has type
+  ↥SmoothField
+
+Note: Expected a function because this term is being applied to the argument
+  (x, z.2)
+LeanPML/Rectangle/Fields.lean:60:11: error(lean.invalidField): Invalid field `differentiable`: The environment does not contain `Subtype.differentiable`, so it is not possible to project the field `differentiable` from an expression
+  f
+of type `↥SmoothField`
+LeanPML/Rectangle/Fields.lean:64:25: error: Function expected at
+  f
+but this term has type
+  ↥SmoothField
+
+Note: Expected a function because this term is being applied to the argument
+  (z.1, y)
+LeanPML/Rectangle/Fields.lean:67:11: error(lean.invalidField): Invalid field `differentiable`: The environment does not contain `Subtype.differentiable`, so it is not possible to project the field `differentiable` from an expression
+  f
+of type `↥SmoothField`
+LeanPML/Rectangle/Fields.lean:71:29: error: Function expected at
+  f
+but this term has type
+  ↥SmoothField
+
+Note: Expected a function because this term is being applied to the argument
+  (x, z.2)
+LeanPML/Rectangle/Fields.lean:71:50: error(lean.invalidField): Invalid field `hasDerivAt_sliceX`: The environment does not contain `Subtype.hasDerivAt_sliceX`, so it is not possible to project the field `hasDerivAt_sliceX` from an expression
+  f
+of type `↥SmoothField`
+LeanPML/Rectangle/Fields.lean:74:29: error: Function expected at
+  f
+but this term has type
+  ↥SmoothField
+
+Note: Expected a function because this term is being applied to the argument
+  (z.1, y)
+LeanPML/Rectangle/Fields.lean:74:50: error(lean.invalidField): Invalid field `hasDerivAt_sliceY`: The environment does not contain `Subtype.hasDerivAt_sliceY`, so it is not possible to project the field `hasDerivAt_sliceY` from an expression
+  f
+of type `↥SmoothField`
+LeanPML/Rectangle/Fields.lean:78:26: error(lean.invalidField): Invalid field `continuous`: The environment does not contain `Subtype.continuous`, so it is not possible to project the field `continuous` from an expression
+  f
+of type `↥SmoothField`
+LeanPML/Rectangle/Fields.lean:82:16: error(lean.invalidField): Invalid field `memLp`: The environment does not contain `Subtype.memLp`, so it is not possible to project the field `memLp` from an expression
+  f
+of type `↥SmoothField`
+LeanPML/Rectangle/Fields.lean:84:28: error(lean.invalidField): Invalid field `memLp`: The environment does not contain `Subtype.memLp`, so it is not possible to project the field `memLp` from an expression
+  f
+of type `↥SmoothField`
+LeanPML/Rectangle/Fields.lean:84:40: error(lean.invalidField): Invalid field `memLp`: The environment does not contain `Subtype.memLp`, so it is not possible to project the field `memLp` from an expression
+  g
+of type `↥SmoothField`
+LeanPML/Rectangle/Fields.lean:86:37: error(lean.invalidField): Invalid field `memLp`: The environment does not contain `Subtype.memLp`, so it is not possible to project the field `memLp` from an expression
+  f
+of type `↥SmoothField`
+LeanPML/Rectangle/Fields.lean:91:5: error(lean.invalidField): Invalid field `memLp`: The environment does not contain `Subtype.memLp`, so it is not possible to project the field `memLp` from an expression
+  f
+of type `↥SmoothField`
+LeanPML/Rectangle/Fields.lean:96:43: error: cannot coerce to function
+  f
+LeanPML/Rectangle/Fields.lean:96:48: error: cannot coerce to function
+  g
+LeanPML/Rectangle/Fields.lean:97:14: error: cannot coerce to function
+  f
+LeanPML/Rectangle/Fields.lean:97:33: error: cannot coerce to function
+  g
+LeanPML/Rectangle/Fields.lean:96:65: error: unsolved goals
+D : Rect
+f g : ↥SmoothField
+hclass : (toL2 D) f = (toL2 D) g
+⊢ EqOn sorry sorry D.openSet
+LeanPML/Rectangle/Fields.lean:105:43: error: cannot coerce to function
+  f
+LeanPML/Rectangle/Fields.lean:105:48: error: cannot coerce to function
+  g
+LeanPML/Rectangle/Fields.lean:107:9: error(lean.unknownIdentifier): Unknown identifier `eqOn_open_of_toL2_eq`
+LeanPML/Rectangle/Fields.lean:113:14: error: cannot coerce to function
+  f
+LeanPML/Rectangle/Fields.lean:113:32: error: cannot coerce to function
+  g
+LeanPML/Rectangle/Fields.lean:114:16: error: cannot coerce to function
+  f
+LeanPML/Rectangle/Fields.lean:114:29: error: cannot coerce to function
+  g
+LeanPML/Rectangle/Fields.lean:115:4: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  IsOpen.mem_nhds (Rect.openSet_open D) hz
+has type `(𝓝 z).1 D.openSet` which does not have the necessary form.
+LeanPML/Rectangle/Fields.lean:113:41: error: unsolved goals
+D : Rect
+f g : ↥SmoothField
+hclass : (toL2 D) f = (toL2 D) g
+z : ℝ × ℝ
+hz : z ∈ D.openSet
+⊢ fderiv ℝ sorry z = fderiv ℝ sorry z
+LeanPML/Rectangle/Fields.lean:127:5: error(lean.unknownIdentifier): Unknown identifier `fderiv_eq_of_toL2_eq`
+LeanPML/Rectangle/Fields.lean:138:5: error(lean.unknownIdentifier): Unknown identifier `fderiv_eq_of_toL2_eq`
+LeanPML/Rectangle/Fields.lean:146:30: error: Function expected at
+  f
+but this term has type
+  ↥SmoothField
+
+Note: Expected a function because this term is being applied to the argument
+  z
+LeanPML/Rectangle/Fields.lean:146:36: error: Function expected at
+  g
+but this term has type
+  ↥SmoothField
+
+Note: Expected a function because this term is being applied to the argument
+  z
+LeanPML/Rectangle/Fields.lean:152:34: error: Function expected at
+  f
+but this term has type
+  ↥SmoothField
+
+Note: Expected a function because this term is being applied to the argument
+  z
+LeanPML/Rectangle/Fields.lean:162:30: error: Function expected at
+  f
+but this term has type
+  ↥SmoothField
+
+Note: Expected a function because this term is being applied to the argument
+  z
+LeanPML/Rectangle/Fields.lean:162:36: error: Function expected at
+  g
+but this term has type
+  ↥SmoothField
+
+Note: Expected a function because this term is being applied to the argument
+  z
+LeanPML/Rectangle/Fields.lean:168:34: error: Function expected at
+  f
+but this term has type
+  ↥SmoothField
+
+Note: Expected a function because this term is being applied to the argument
+  z
+LeanPML/Rectangle/Fields.lean:230:27: error(lean.invalidField): Invalid field `derivativeX`: The environment does not contain `Subtype.derivativeX`, so it is not possible to project the field `derivativeX` from an expression
+  f
+of type `↥SmoothField`
+LeanPML/Rectangle/Fields.lean:236:27: error(lean.invalidField): Invalid field `derivativeY`: The environment does not contain `Subtype.derivativeY`, so it is not possible to project the field `derivativeY` from an expression
+  f
+of type `↥SmoothField`

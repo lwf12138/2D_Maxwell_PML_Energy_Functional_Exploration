@@ -1,0 +1,87 @@
+LeanPML/Rectangle/TimeSpace.lean:26:46: error(lean.invalidField): Invalid field `hasFDerivAt`: The environment does not contain `Function.hasFDerivAt`, so it is not possible to project the field `hasFDerivAt` from an expression
+  ContDiff.differentiable hF ?m.57
+of type
+  ∀ (x : ℝ × X), DifferentiableAt ℝ (Function.uncurry F) x
+LeanPML/Rectangle/TimeSpace.lean:25:70: error: unsolved goals
+X : Type u_1
+inst✝¹ : NormedAddCommGroup X
+inst✝ : NormedSpace ℝ X
+F : ℝ → X → ℝ
+hF : ContDiff ℝ ∞ (Function.uncurry F)
+t : ℝ
+x v : X
+⊢ (fderiv ℝ (F t) x) v = (fderiv ℝ (Function.uncurry F) (t, x)) (0, v)
+LeanPML/Rectangle/TimeSpace.lean:36:46: error(lean.invalidField): Invalid field `hasFDerivAt`: The environment does not contain `Function.hasFDerivAt`, so it is not possible to project the field `hasFDerivAt` from an expression
+  ContDiff.differentiable hF ?m.56
+of type
+  ∀ (x : ℝ × X), DifferentiableAt ℝ (Function.uncurry F) x
+LeanPML/Rectangle/TimeSpace.lean:35:76: error: unsolved goals
+X : Type u_1
+inst✝¹ : NormedAddCommGroup X
+inst✝ : NormedSpace ℝ X
+F : ℝ → X → ℝ
+hF : ContDiff ℝ ∞ (Function.uncurry F)
+t : ℝ
+x : X
+⊢ deriv (fun s => F s x) t = (fderiv ℝ (Function.uncurry F) (t, x)) (1, 0)
+LeanPML/Rectangle/TimeSpace.lean:50:34: error: `simp` made no progress
+LeanPML/Rectangle/TimeSpace.lean:53:25: error(lean.invalidField): Invalid field `hasFDerivAt`: The environment does not contain `Function.hasFDerivAt`, so it is not possible to project the field `hasFDerivAt` from an expression
+  hsecond
+of type
+  ∀ (x : ℝ × X), DifferentiableAt ℝ (fderiv ℝ g) x
+LeanPML/Rectangle/TimeSpace.lean:60:49: error: unsolved goals
+X : Type u_1
+inst✝¹ : NormedAddCommGroup X
+inst✝ : NormedSpace ℝ X
+F : ℝ → X → ℝ
+hF : ContDiff ℝ ∞ (Function.uncurry F)
+t : ℝ
+x v : X
+g : ℝ × X → ℝ := Function.uncurry F
+hsecond : Differentiable ℝ (fderiv ℝ g)
+heval : ∀ (w : ℝ × X), HasFDerivAt (fun z => (fderiv ℝ g z) w) ((fderiv ℝ (fderiv ℝ g) (t, x)).flip w) (t, x)
+hcurve : HasDerivAt (fun s => (s, x)) (1, 0) t
+htime :
+  HasDerivAt ((fun z => (fderiv ℝ g z) (0, v)) ∘ fun s => (s, x)) (((fderiv ℝ (fderiv ℝ g) (t, x)).flip (0, v)) (1, 0))
+    t
+hspace :
+  HasFDerivAt ((fun z => (fderiv ℝ g z) (1, 0)) ∘ Prod.mk t)
+    ((fderiv ℝ (fderiv ℝ g) (t, x)).flip (1, 0) ∘SL ContinuousLinearMap.inr ℝ ℝ X) x
+hspace_value :
+  (fderiv ℝ ((fun z => (fderiv ℝ g z) (1, 0)) ∘ Prod.mk t) x) v =
+    ((fderiv ℝ (fderiv ℝ g) (t, x)).flip (1, 0) ∘SL ContinuousLinearMap.inr ℝ ℝ X) v
+⊢ 2 ≤ ∞
+LeanPML/Rectangle/TimeSpace.lean:47:62: error: unsolved goals
+X : Type u_1
+inst✝¹ : NormedAddCommGroup X
+inst✝ : NormedSpace ℝ X
+F : ℝ → X → ℝ
+hF : ContDiff ℝ ∞ (Function.uncurry F)
+t : ℝ
+x v : X
+g : ℝ × X → ℝ := Function.uncurry F
+hsecond : Differentiable ℝ (fderiv ℝ g)
+heval : ∀ (w : ℝ × X), HasFDerivAt (fun z => (fderiv ℝ g z) w) ((fderiv ℝ (fderiv ℝ g) (t, x)).flip w) (t, x)
+hcurve : HasDerivAt (fun s => (s, x)) (1, 0) t
+htime :
+  HasDerivAt ((fun z => (fderiv ℝ g z) (0, v)) ∘ fun s => (s, x)) (((fderiv ℝ (fderiv ℝ g) (t, x)).flip (0, v)) (1, 0))
+    t
+hspace :
+  HasFDerivAt ((fun z => (fderiv ℝ g z) (1, 0)) ∘ Prod.mk t)
+    ((fderiv ℝ (fderiv ℝ g) (t, x)).flip (1, 0) ∘SL ContinuousLinearMap.inr ℝ ℝ X) x
+hspace_value :
+  (fderiv ℝ ((fun z => (fderiv ℝ g z) (1, 0)) ∘ Prod.mk t) x) v =
+    ((fderiv ℝ (fderiv ℝ g) (t, x)).flip (1, 0) ∘SL ContinuousLinearMap.inr ℝ ℝ X) v
+⊢ HasDerivAt (fun s => (fderiv ℝ (F s) x) v) ((fderiv ℝ (fun y => deriv (fun s => F s y) t) x) v) t
+LeanPML/Rectangle/TimeSpace.lean:80:19: error(lean.unknownIdentifier): Unknown identifier `fderiv_congr_of_eventuallyEq`
+LeanPML/Rectangle/TimeSpace.lean:77:71: error: unsolved goals
+X : Type u_1
+inst✝¹ : NormedAddCommGroup X
+inst✝ : NormedSpace ℝ X
+F E : ℝ → X → ℝ
+hF : ContDiff ℝ ∞ (Function.uncurry F)
+t : ℝ
+x v : X
+hnear : ∀ᶠ (y : X) in 𝓝 x, HasDerivAt (fun s => F s y) (E t y) t
+hsame : (fun y => deriv (fun s => F s y) t) =ᶠ[𝓝 x] E t
+⊢ HasDerivAt (fun s => (fderiv ℝ (F s) x) v) ((fderiv ℝ (E t) x) v) t

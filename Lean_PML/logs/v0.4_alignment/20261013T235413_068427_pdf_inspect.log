@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v0.4_alignment/pdf/inspect_before.py", line 6, in <module>
+    record={'target':str(target),'sha256':hashlib.sha256(target.read_bytes()).hexdigest(),'pages':len(pdf.pages),'annotations':sum(len(p.get('/Annots',[])) for p in pdf.pages),'locations':[]}
+                                                                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v0.4_alignment/pdf/inspect_before.py", line 6, in <genexpr>
+    record={'target':str(target),'sha256':hashlib.sha256(target.read_bytes()).hexdigest(),'pages':len(pdf.pages),'annotations':sum(len(p.get('/Annots',[])) for p in pdf.pages),'locations':[]}
+                                                                                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: object of type 'IndirectObject' has no len()

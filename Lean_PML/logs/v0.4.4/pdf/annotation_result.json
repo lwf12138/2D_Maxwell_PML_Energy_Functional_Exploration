@@ -1,0 +1,262 @@
+{
+  "pages": 18,
+  "old_annotations": 183,
+  "added_annotations": 12,
+  "added_red_ticks": 8,
+  "annotations_after": 195,
+  "modified_pages": [
+    3,
+    4,
+    7,
+    8,
+    10,
+    11
+  ],
+  "original_text_preserved": true,
+  "old_annotations_preserved": true,
+  "text_and_annotation_overlap": 0,
+  "sha256_before": "66c0f5dd32a1a983412a08eea40e3cd5d890f3dd987dbfe7e2bb4c7a5ddce1b3",
+  "sha256_after": "9021fff043b09278fd918dc4ef0342a0295e3aa7941e52825f59a286fd71a8f3",
+  "plan_sha256": "0a6a7f7e834b4751cfe69c8fbf5f83fc7d64b05082e790bd4094f31b449bee59",
+  "draws": [
+    {
+      "x": 535,
+      "top": 610,
+      "font_size": 6,
+      "lines": [
+        "光滑 primitive",
+        "重构核验",
+        "八条方程"
+      ],
+      "id": "v04-original-recovery",
+      "page": 3,
+      "tick": true,
+      "scope": "(2.1)\n八条方程为原解输入；勾仅表示从光滑 primitive 重构的满足性，非解存在。\nLeanPML.PML.Concrete.original_reconstruct_at\nLeanPML.PML.Concrete.primitive_to_original_rectangle\n证据：\nlogs/v0.4.4/20261013T230822_044824_lake_build.log\nlogs/v0.4.4/20261013T231144_117778_axioms_audit.log",
+      "rect_top": [
+        534,
+        608,
+        587.0029296875,
+        634.4
+      ]
+    },
+    {
+      "x": 535,
+      "top": 126,
+      "font_size": 6,
+      "lines": [
+        "历史提升",
+        "初值与求导"
+      ],
+      "id": "v04-historical-lift",
+      "page": 4,
+      "tick": true,
+      "scope": "(2.3)\n真实点态时间积分初值、内部求导；C(K) 连续正则性下与 L² Bochner 历史积分相等。定义本身不计证明。\nLeanPML.PML.Concrete.integralLift_initial\nLeanPML.PML.Concrete.hasDerivAt_integralLift\nLeanPML.Rectangle.toL2_integralLift_on_Icc\n证据：\nlogs/v0.4.4/20261013T230822_044824_lake_build.log\nlogs/v0.4.4/20261013T231144_117778_axioms_audit.log",
+      "rect_top": [
+        534,
+        124,
+        581.0,
+        142.2
+      ]
+    },
+    {
+      "x": 4,
+      "top": 188,
+      "font_size": 6,
+      "lines": [
+        "五个时间",
+        "不变量",
+        "光滑场版"
+      ],
+      "id": "v04-five-invariants",
+      "page": 4,
+      "tick": true,
+      "scope": "(2.4)\n从原八式、真实历史提升及混合微分推出任意初始不变量场的保持；实际 L² 表示一致。旧三个点态批注保留。\nLeanPML.PML.Concrete.five_invariants_on_Icc\nLeanPML.PML.Concrete.five_invariants_toLp_eq_of_continuous\n证据：\nlogs/v0.4.4/20261013T230822_044824_lake_build.log\nlogs/v0.4.4/20261013T231144_117778_axioms_audit.log",
+      "rect_top": [
+        3,
+        186,
+        44.0,
+        212.4
+      ]
+    },
+    {
+      "x": 4,
+      "top": 409,
+      "font_size": 6,
+      "lines": [
+        "初始兼容",
+        "保持与重构",
+        "光滑场版"
+      ],
+      "id": "v04-compatibility",
+      "page": 4,
+      "tick": true,
+      "scope": "(2.5)\n仅初始五不变量为零作输入，推出全区间兼容及四辅助量重构；不是零解。\nLeanPML.PML.Concrete.compatible_lift_on_Icc\nLeanPML.PML.Concrete.reconstruct_lift_eqOn\n证据：\nlogs/v0.4.4/20261013T230822_044824_lake_build.log\nlogs/v0.4.4/20261013T231144_117778_axioms_audit.log",
+      "rect_top": [
+        3,
+        407,
+        50.0,
+        433.4
+      ]
+    },
+    {
+      "x": 535,
+      "top": 489,
+      "font_size": 6,
+      "lines": [
+        "双向八方程",
+        "光滑类",
+        "固定初始",
+        "原函数"
+      ],
+      "id": "v04-equivalence",
+      "page": 4,
+      "tick": true,
+      "scope": "(2.6)、命题 2.1\n所选光滑类，固定初始原函数；包含反向四辅助方程。无解存在唯一性或提升规范唯一性结论。\nLeanPML.PML.Concrete.original_to_primitive_rectangle\nLeanPML.PML.Concrete.primitive_to_original_rectangle\nLeanPML.PML.Concrete.lift_reconstruct_eqOn\n证据：\nlogs/v0.4.4/20261013T230822_044824_lake_build.log\nlogs/v0.4.4/20261013T231144_117778_axioms_audit.log",
+      "rect_top": [
+        534,
+        487,
+        581.0,
+        521.6
+      ]
+    },
+    {
+      "x": 535,
+      "top": 594,
+      "font_size": 6,
+      "lines": [
+        "v0.4 保守版",
+        "C_P = 2Lx",
+        "非原精确值"
+      ],
+      "id": "v04-poincare-conservative",
+      "page": 7,
+      "tick": false,
+      "scope": "(5.1)\n已证明同一迹核上的 CP=2Lx，从而 K=32μ(ε+2κ)Lx²；未证明原文精确 π 常数，无完成勾。\nLeanPML.Rectangle.poincare_estimate\nLeanPML.Rectangle.scaleK_rectangle\n证据：\nlogs/v0.4.4/20261013T230822_044824_lake_build.log\nlogs/v0.4.4/20261013T231144_117778_axioms_audit.log",
+      "rect_top": [
+        534,
+        592,
+        567.0078125,
+        618.4
+      ]
+    },
+    {
+      "x": 4,
+      "top": 470,
+      "font_size": 6,
+      "lines": [
+        "原场零区",
+        "保持",
+        "须初始φ=0"
+      ],
+      "id": "v04-zero-region",
+      "page": 8,
+      "tick": true,
+      "scope": "§5.2 五不变量保持段后的零区保持（未编号）\n从原方程、历史提升、五初始兼容及零区 φ₀=0 推出 φ=0；保留一般空间区域，不声称(5.7)/(5.8)传播。\nLeanPML.PML.Concrete.original_zero_region_preserved\n证据：\nlogs/v0.4.4/20261013T230822_044824_lake_build.log\nlogs/v0.4.4/20261013T231144_117778_axioms_audit.log",
+      "rect_top": [
+        3,
+        468,
+        48.734375,
+        494.4
+      ]
+    },
+    {
+      "x": 4,
+      "top": 121,
+      "font_size": 6,
+      "lines": [
+        "v0.4 输入",
+        "光滑/加权",
+        "正则性",
+        "非自动传播"
+      ],
+      "id": "v04-regularity-input",
+      "page": 10,
+      "tick": false,
+      "scope": "(6.6)\n选用 C∞ 空间延拓、C(K) 的统一时间正则性及实际加权路径可微作为强于 V7 弱类的条件；已证明到普通/加权路径导数的连接。假设不打勾。\nLeanPML.Rectangle.hasDerivAt_toL2_of_pointwise\nLeanPML.Rectangle.hasDerivAt_weighted_smooth\n证据：\nlogs/v0.4.4/20261013T230822_044824_lake_build.log\nlogs/v0.4.4/20261013T231144_117778_axioms_audit.log",
+      "rect_top": [
+        3,
+        119,
+        35.0,
+        153.6
+      ]
+    },
+    {
+      "x": 535,
+      "top": 201,
+      "font_size": 6,
+      "lines": [
+        "加权路径",
+        "真实场恢复",
+        "需加权可导"
+      ],
+      "id": "v04-weighted-recovery",
+      "page": 11,
+      "tick": true,
+      "scope": "(7.2) 后加权链式法则说明（未编号）\n实际加权坐标恢复为所选光滑辅助场，普通 L² 导数由真实 C(K) 路径识别；加权范数正则性仍是输入，非自动传播。\nLeanPML.Rectangle.weighted_smooth_recovery\nLeanPML.Rectangle.hasDerivAt_weighted_smooth\n证据：\nlogs/v0.4.4/20261013T230822_044824_lake_build.log\nlogs/v0.4.4/20261013T231144_117778_axioms_audit.log",
+      "rect_top": [
+        534,
+        199,
+        581.0,
+        225.4
+      ]
+    },
+    {
+      "x": 4,
+      "top": 613,
+      "font_size": 6,
+      "lines": [
+        "矩形光滑",
+        "四边 Green",
+        "两层 PEC",
+        "边界消去"
+      ],
+      "id": "v04-green",
+      "page": 11,
+      "tick": true,
+      "scope": "(7.5)\n真实全矩形四边公式，右−左+上−下；u₀零迹+PEC推出u迹，内部真实求导推出E_t迹。另要求闭端点E_t迹时，T=0须初始导数迹。弱H₀¹–H(div) Green未证明。\nLeanPML.Rectangle.green_L2\nLeanPML.Rectangle.greenDomain\nLeanPML.Rectangle.boundary_multiplier_zero\nLeanPML.Rectangle.twoLayer_zeroBoundary\n证据：\nlogs/v0.4.4/20261013T230822_044824_lake_build.log\nlogs/v0.4.4/20261013T231144_117778_axioms_audit.log",
+      "rect_top": [
+        3,
+        611,
+        50.3427734375,
+        645.6
+      ]
+    },
+    {
+      "x": 68,
+      "top": 48,
+      "font_size": 6,
+      "lines": [
+        "v0.4：光滑场层结果；旧点态批注保留历史范围。下列勾不表示解存在或完整弱空间结论。"
+      ],
+      "id": "v04-history-note4",
+      "page": 4,
+      "tick": false,
+      "scope": "范围图例\nv0.4：光滑场层结果；旧点态批注保留历史范围。下列勾不表示解存在或完整弱空间结论。\n\n证据：\nlogs/v0.4.4/20261013T230822_044824_lake_build.log\nlogs/v0.4.4/20261013T231144_117778_axioms_audit.log",
+      "rect_top": [
+        67,
+        46,
+        308.3408203125,
+        56.0
+      ]
+    },
+    {
+      "x": 68,
+      "top": 48,
+      "font_size": 6,
+      "lines": [
+        "v0.4：矩形光滑 Green 与真实微分交换已接通；旧“待完成”批注保留历史，弱空间仍未完成。"
+      ],
+      "id": "v04-history-note11",
+      "page": 11,
+      "tick": false,
+      "scope": "范围图例\nv0.4：矩形光滑 Green 与真实微分交换已接通；旧“待完成”批注保留历史，弱空间仍未完成。\n\n证据：\nlogs/v0.4.4/20261013T230822_044824_lake_build.log\nlogs/v0.4.4/20261013T231144_117778_axioms_audit.log",
+      "rect_top": [
+        67,
+        46,
+        314.3466796875,
+        56.0
+      ]
+    }
+  ],
+  "visual_review": "passed; see visual_review.json"
+}

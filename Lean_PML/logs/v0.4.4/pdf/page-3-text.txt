@@ -1,0 +1,71 @@
+                                                                                  
+                                                                                  
+         V7：Maxwell–Debye PML 全域能量                               2026-09-24       
+                                                                                  
+                                                                                  
+                          1  研究对象、输入依据与结论范围                                       
+                                                                                  
+                                                                                  
+            本稿固定上传原文件      sources/energy_functional_problem.tex 中的八变量模型；对照       
+         results/v6_tex/nonlocal_memory_strict_pml_analysis.tex、同目录报告，以及 results/ 
+                                                                                  
+         v6_mathematical_completeness_review_20260924.md。审查稿只作为待核验材料，不作为证         
+         明依据。原始文件的哈希与本次检查的文件范围另见交付包的               source_manifest.json。本稿的       
+         主结论是定理    6.1，其完整证明见第    7–9 节。                                          
+                                                                                  
+            设                                                                     
+                      Ω = (x−,x                                                   
+                             +                                                    
+                              )(cid:2)(y−,y                                       
+                                    +                                             
+                                     ), L                                         
+                                         x                                        
+                                          = x                                     
+                                            +                                     
+                                              (cid:0)x−, L                        
+                                                    y                             
+                                                     = y                          
+                                                       +                          
+                                                         (cid:0)y−.               
+         这是整个截断计算域，而不是单个角层。材料参数为正常数。全篇考虑实值场；复值场可对相应                               
+         内积取实部。所有未注明下标的范数均为          L2(Ω) 范数。记                                   
+                                                 σold(x)     σold(y)              
+            ϵ = ϵ                                                                 
+                0                                                                 
+                ϵ∞ > 0, κ = χ = ϵ                                                 
+                               0                                                  
+                                (ϵ                                                
+                                 s                                                
+                                  (cid:0)ϵ∞) > 0, p(x) = x , r(y) = y . (1.1)     
+                                                   ϵ           ϵ                  
+                                                   0           0                  
+         其中  µ > 0,τ > 0。下文的归一化吸收系数为   σ = p,σ = r；不再用原有电导率量纲的     σold。设         
+                                        x    y                      i             
+         p,r 2 W1,∞，非负，且在矩形物理区的相应坐标区间上为零。记                                        
+                      a = p+r, b = pr, Z = fa = 0g, Ω = fa > 0g.                  
+                                                    +                             
+         所有集合与权重均按几乎处处意义理解。Ω           不被假定为单一    Lipschitz 子域；本文不在其边界            
+                                      +                                           
+         上进行主要分部积分。                                                               
+                      2  原八变量与      primitive 系统：时域等价                             
+         2.1  原系统的归一化形式                                                           
+            以 Z = P  、Z = P  简记电辅助变量。原系统准确地变为                                     
+               1   z,1 2   z,2                                                    
+                           ϵE = ∂ H (cid:0)∂ H (cid:0)ϵaE (cid:0)P (cid:0)aP +Z +Z ,
+                            t   x y  y x       t      1   2                       
+                         µH  = (cid:0)∂ E (cid:0)µ(r(cid:0)p)H +Q ,               
+                           x,t   y         x   x                                  
+                         µH  = ∂ E (cid:0)µ(p(cid:0)r)H +Q ,                      
+                           y,t  x         y   y                                   
+                        τP +P = κE,                                  (2.1)        
+                         t                                                        
+                          Z  = (cid:0)ϵbE, Z = (cid:0)bP,                         
+                           1,t         2,t                                        
+                          Q  = (cid:0)pQ +µp(r(cid:0)p)H ,                        
+                           x,t    x         x                                     
+                          Q  = (cid:0)rQ +µr(p(cid:0)r)H .                        
+                           y,t    y         y                                     
+         外边界条件为                                                                   
+                                    E = 0 于∂Ω.                       (2.2)        
+         这里  α = 1 仅将极化律变成  Debye 一阶方程，P   未被删除。                                  
+                                         3                                        

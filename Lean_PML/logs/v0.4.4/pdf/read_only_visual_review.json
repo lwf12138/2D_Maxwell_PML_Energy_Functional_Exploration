@@ -1,0 +1,15 @@
+{
+  "inspection_only": true,
+  "pages_rendered_and_visually_reviewed": [
+    3,
+    4,
+    7,
+    8,
+    10,
+    11
+  ],
+  "sha256_before": "66c0f5dd32a1a983412a08eea40e3cd5d890f3dd987dbfe7e2bb4c7a5ddce1b3",
+  "sha256_after_read_only": "66c0f5dd32a1a983412a08eea40e3cd5d890f3dd987dbfe7e2bb4c7a5ddce1b3",
+  "target_unchanged": true,
+  "preflight_errors": 0
+}

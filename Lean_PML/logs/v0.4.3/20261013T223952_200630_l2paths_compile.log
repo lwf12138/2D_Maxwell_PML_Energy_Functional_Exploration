@@ -1,0 +1,41 @@
+LeanPML/Rectangle/L2Paths.lean:18:50: error: Invalid field notation: Function `Function.compactSpace` does not have a usable parameter of type `Function` for which to substitute `Rect.closedSet_compact
+  D`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+LeanPML/Rectangle/L2Paths.lean:34:47: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  min D.xhi z.1
+in the target expression
+  z.1 = ?m.24
+
+D : Rect
+z : ℝ × ℝ
+hz : z ∈ D.closedSet
+⊢ z.1 = ?m.24
+LeanPML/Rectangle/L2Paths.lean:35:47: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  min D.yhi z.2
+in the target expression
+  z.2 = ?m.45
+
+D : Rect
+z : ℝ × ℝ
+hz : z ∈ D.closedSet
+⊢ z.2 = ?m.45
+LeanPML/Rectangle/L2Paths.lean:38:68: error: elaboration function for `Mathlib.Tactic.superscriptTerm` has not been implemented
+  ᵇ
+LeanPML/Rectangle/L2Paths.lean:43:16: error: unsolved goals
+D : Rect
+f : C(↑D.closedSet, ?m.51)
+⊢ ‖(BoundedContinuousFunction.mkOfCompact f).compContinuous (clampPoint D)‖ ≤ ‖f‖
+LeanPML/Rectangle/L2Paths.lean:48:4: warning: declaration uses `sorry`
+LeanPML/Rectangle/L2Paths.lean:62:15: error: typeclass instance problem is stuck
+  IsBoundedSMul ℝ ?m.17
+
+Note: Lean will not try to resolve this typeclass instance problem because the second, fourth, sixth, and seventh type arguments to `IsBoundedSMul` contain metavariables. These arguments must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+LeanPML/Rectangle/L2Paths.lean:90:6: error: Type mismatch
+  HasFDerivAt.comp_hasDerivAt t (ContinuousLinearMap.hasFDerivAt ?m.83) (DifferentiableAt.hasDerivAt hregular)
+has type
+  HasDerivAt (⇑?m.83 ∘ X) (?m.83 (deriv X t)) t
+but is expected to have type
+  HasDerivAt (fun s => (X s) z) ((deriv X t) z) t

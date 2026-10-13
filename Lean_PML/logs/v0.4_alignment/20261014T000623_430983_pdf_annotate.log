@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v0.4_alignment/pdf/annotate_pdf.py", line 59, in <module>
+    assert not [c['text'] for c in page.chars if c['text'].strip() and overlaps(rect,[c['x0'],c['top'],c['x1'],c['bottom']])],('text',d['id'])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('text', 'classical-equivalence')

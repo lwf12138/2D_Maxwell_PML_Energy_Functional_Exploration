@@ -1,0 +1,24 @@
+LeanPML/PML/OriginalAssembly.lean:36:4: error: Function expected at
+  smoothPrimitiveFields
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  B
+
+Hint: The identifier `smoothPrimitiveFields` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/OriginalAssembly.lean:37:13: error: Function expected at
+  smoothPrimitiveFields
+but this term has type
+  x✝
+
+Note: Expected a function because this term is being applied to the argument
+  B
+LeanPML/PML/OriginalAssembly.lean:40:29: error: Invalid argument: Variable `smoothPrimitiveFields` is not a proposition or let-declaration
+LeanPML/PML/OriginalAssembly.lean:40:2: error: `simp` made no progress
+LeanPML/PML/OriginalAssembly.lean:72:6: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  IsOpen.mem_nhds isOpen_Ioo hs
+has type `(𝓝 s).1 (Ioo 0 T)` which does not have the necessary form.
+LeanPML/PML/OriginalAssembly.lean:77:4: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  IsOpen.mem_nhds isOpen_Ioo ht
+has type `(𝓝 t).1 (Ioo 0 T)` which does not have the necessary form.

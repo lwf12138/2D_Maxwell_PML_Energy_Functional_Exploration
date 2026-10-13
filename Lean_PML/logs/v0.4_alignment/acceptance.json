@@ -1,0 +1,200 @@
+{
+  "stage": "v0.4_alignment",
+  "status": "passed",
+  "scope": "所选强光滑/一致范数/加权正则性下的v0.4对齐；未实施v0.5",
+  "verified_at": "2026-10-14T00:04:35.379514+08:00",
+  "build": "logs/v0.4_alignment/20261014T000055_917026_lake_build.log",
+  "audit": "logs/v0.4_alignment/20261014T000341_178705_axioms_audit.log",
+  "type_review": "logs/v0.4_alignment/20261014T000341_178709_interface_types.log",
+  "build_exit_code": 0,
+  "audit_exit_code": 0,
+  "type_review_exit_code": 0,
+  "audited_declarations": 590,
+  "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "sorryAx": false,
+  "source_placeholder_scan": "passed",
+  "sources": {
+    "LeanPML/Analysis/EnergyCalculus.lean": "8f43f309fda52d0f6214489701683e5002441a4f401fd30b6c4a82a9a2b3cb22",
+    "LeanPML/Analysis/WeightedL2.lean": "6be3ed7daca127d0a07aa79fe7dcc3ff0a65d43599f3229ee8a6549a280fab08",
+    "LeanPML/Debye/ScalarEnergy.lean": "7ebb842dc8e7109802bb0db414b25947248dca52c77dbc01b4f01bc110c08741",
+    "LeanPML/PML/BalanceAbstract.lean": "8adb3558e5e487befcb337791da05c8e16947fb10700a7c0ae126a7bbe099d3f",
+    "LeanPML/PML/BalanceBlocks.lean": "d8b208a38858bf04b067cea7e97f4728fa191afe34130078990b0b398c572843",
+    "LeanPML/PML/BalanceInterfaces.lean": "ce888afcf6a7f81e03c1f478199d9b388f914171480cbd866b5c2cbd71921e9a",
+    "LeanPML/PML/ClassicalSystem.lean": "63ea7a2dae932b24c15bf71f10711bdcd8c0754177b43e917d503f8305125d8a",
+    "LeanPML/PML/Coefficients.lean": "7a2d94389601e7fee33054d0b4cbcaba4a7ea31837dce8af9e9c19dec6dc68a6",
+    "LeanPML/PML/Coercivity.lean": "0f7102688b3921fea128f8978874e4feea34cd3082b228c732f6019471d87e04",
+    "LeanPML/PML/DissipationClosure.lean": "d2e5333aed6a733c28396a95fdd52e53b483f5fc011f9485c3a6d4112188aa7d",
+    "LeanPML/PML/Energy.lean": "b5b806f793284bc5bd64f5d8e6c5d9f17e19f78d84ffe7932a4e74d5aab3d042",
+    "LeanPML/PML/EnergyIntegrals.lean": "85370f6dcf41408132e79f4eb8ccbba2e1dc0f4a1f2b842601237026517dc540",
+    "LeanPML/PML/Equivalence.lean": "7f2b492a0f843dce1eda7521d9ca06f4c5c12fa02371e27a81082f3146965010",
+    "LeanPML/PML/GradientControl.lean": "63d6cbb810c2e23f77039120ca28f454f44f54b0aeb30e201cae25b94d7fe81a",
+    "LeanPML/PML/LocalDebye.lean": "12ad851667c4434f7542f9402fa395017e54ea083442558d76445e343399bb10",
+    "LeanPML/PML/LocalElectric.lean": "d5eb935b44f2cb3f372d3a527f3dca0858908423d719d3203f583f8c8de60f1d",
+    "LeanPML/PML/LocalSpatial.lean": "4830378ceb947d7e0c5f349cb06963cf2cfe9e9d265e6dee93448b84719917b4",
+    "LeanPML/PML/MainAbstract.lean": "47b278c96a5d67d6bec24a2214830ae9094284e2b06840394b5cabf95e6a71d4",
+    "LeanPML/PML/Obstructions/SingleLayer.lean": "8e9b79481591141e797f72e522bb334d851eb6a1b8bc45046c2a77d38bb232e7",
+    "LeanPML/PML/OriginalAssembly.lean": "e4bb5214237490b05b608fc289f67aa84e550e8cb9ac2266a94ed4bce674572e",
+    "LeanPML/PML/OriginalSystem.lean": "91425cb5798bee29a4d648f8780de9aa5fb50e1081c1f8ea5f9dc3919d37c29f",
+    "LeanPML/PML/PhysicalControl.lean": "e20d6fd889b662f824c048a05f2408180b679b570efd788a27df8f19c49a4595",
+    "LeanPML/PML/PrimitiveEvolution.lean": "0b2f6aee29bfd30a505e1e8881348eeb378cf7775c5e8e4fee2f2f6ba36bf6a9",
+    "LeanPML/PML/PrimitiveSystem.lean": "fac68de9b55138f66ad9cc2d8017385881e79c4b90eff76e8760abd23083c120",
+    "LeanPML/PML/SpatialBalance.lean": "0ea0dfdf07fa6e3f4c3bb838280b9a6b030d997f7e7c69c49a780f02e172906e",
+    "LeanPML/PML/SpatialCoefficients.lean": "07223cf17bdbf48daff2078f543070d760d1dc5464f47a8c2b8d0d0438e84392",
+    "LeanPML/PML/State.lean": "3949faa23565d376c62fe4b24bfabffe723cf8c7359ebf4a126f0191d18c18b2",
+    "LeanPML/PML/TimeInvariants.lean": "ad23ffe0b5fc1188cce91203989e7587d31a11aad3f1b77665f57f6b91efbba1",
+    "LeanPML/PML/WeightedCalculus.lean": "694ea664c32a5ad236836b7241f991e6ca751587af93f1fba3154726b8f3e87d",
+    "LeanPML/PML/Weights.lean": "25778077d06b427ee870843481c7d0d5614637063c0f49a8b21540617f8883ef",
+    "LeanPML/Rectangle/Boundary.lean": "c2dc823a7d1a76a1f8be7d502a16e29f79e26a902d63aee4a2d807bd443268b0",
+    "LeanPML/Rectangle/BoundaryTime.lean": "b7a45cd50d8a2c710619ef5db4dd9b8dff240e90d290c6c737bc695954bb7edb",
+    "LeanPML/Rectangle/Domain.lean": "6961af4f6b9e5d47ff3d773557d59778f6ab630d70e096c023685e3a563bc9d0",
+    "LeanPML/Rectangle/Fields.lean": "282409219402b5e0c415b4487bc76925389382cbf27b0e4cb6e50a7452947fd7",
+    "LeanPML/Rectangle/Green.lean": "2ad892998bbb1903480743fdc8bf6663b266c5bc723b92c33a514ea4d08c1289",
+    "LeanPML/Rectangle/HistoryL2.lean": "172431b85ca66fe6aa35782e828ad22f6506d7f35fb57d82ef3a77387183ebf3",
+    "LeanPML/Rectangle/InterfaceAssembly.lean": "05bcf055d2c20172f718870455b740ebf07060ad5ed0c0fb300cfb75fc8940f8",
+    "LeanPML/Rectangle/L2Paths.lean": "90e2417b51bc2d3d50d435b4c1e8f38d93b2b70eaf5b842b1263e65900e3a616",
+    "LeanPML/Rectangle/ParameterCertificate.lean": "afbcb8afbe20c9042ca9726e7c7849d42e257c28eb60462a5646d24e225223d4",
+    "LeanPML/Rectangle/Poincare.lean": "d81389ea5445a9acd8b683b36119da56662dd9df8eb1df6e0787c02412bead9d",
+    "LeanPML/Rectangle/RegionalCoefficients.lean": "f7a5bf667a9dc9d5914f63c9747b95372227922de41912fcf6a8a44ff0277623",
+    "LeanPML/Rectangle/SmoothPaths.lean": "aa905c50a6618435f1c021c3473ddc0777f9d140c6aabd07c0fb899b0e9a2288",
+    "LeanPML/Rectangle/StatePaths.lean": "915c8204230cbb954cfe4403be3b3ce7c7ac9cc24ba78ca824b9066f906c9850",
+    "LeanPML/Rectangle/TimeSpace.lean": "777c35c9e4d84874baa8d92b93048b81019799741bd4430c669b3cde5447d19f",
+    "LeanPML/Time/Constancy.lean": "47680bb78e15e5fa05b9350ddb19117f2a7ae4ba5a132e9cd5ea422e6ac57437",
+    "LeanPML/Time/Monotonicity.lean": "70c9bad3378adfb332cc4b10e6e475a41352178899797eef07a203fb8e68aa25",
+    "LeanPML/Tutorial/LocalEnergy.lean": "810e8ef42c005661cb0eca9e6ba4527914cd782af7e30677b45e4bd772cac112",
+    "LeanPML/Tutorial/ScalarEnergy.lean": "465c567aa91d06d5e32c32b84d6082cb71834027177f8a390b8c9df9f59aaa41",
+    "LeanPML.lean": "4e4f710c470ca75b1a2bb1ce66d267df248ed6a91eddb9dedac7aec9cf49df77",
+    "Audit.lean": "0e14b2ca4bc05d27e43c5498f93c8a8366cbd6cfed47242b21943d55bae2bc58"
+  },
+  "protected": {
+    "lean-toolchain": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee",
+    "lakefile.toml": "3a3ab926f99cfeb3ae9fa6309696858b0aabb7ce62469de72405a74dd64fab9e",
+    "lake-manifest.json": "6bd522ed18f94813b2e6fb5e7b9ea39d95a5098df2465acc0d815a09bb5dbf33",
+    "ROADMAP_lean_PML_revised.md": "9a6438549e4d49714b915bd9632d13eab7f1b5164df1741d190dc97640be3659",
+    "docs/model_contract.md": "27fdc413425e2b65f0b31a4c4a533d5f52eb24a4af30f18f5fae080a1846fc23",
+    "docs/scope.md": "dff8fc9bf26935a12927a2c05950b44431020d5eb8e022f7c8565a9ec054b539",
+    "../results/V7_Maxwell_Debye_PML/V7_global_energy.md": "0a7f73a25cb119eeb75b3e7b3c3f2fbb3b319250f3354ed4dcad0ecff8eff4fb",
+    "../results/V7_Maxwell_Debye_PML/V7_global_energy.tex": "7345e2f2b8558df5f68252985d119465085b01aa8005b0f7c861f0831ab6387a",
+    "../results/V7_Maxwell_Debye_PML/V7_global_energy.pdf": "c6c9978af6d3fbc54ef76b02a5d509e6dda169795c6181d64c7c56ccbe4e3aaa",
+    "../results/V7_Maxwell_Debye_PML/proof_audit.md": "a2b2ac0a54c5dd8e0fa43c45d4a21185b5d433d5a94c4fb0680f41baec7ffa9a"
+  },
+  "new_modules": [
+    "LeanPML/Rectangle/ParameterCertificate.lean",
+    "LeanPML/PML/ClassicalSystem.lean",
+    "LeanPML/Rectangle/RegionalCoefficients.lean"
+  ],
+  "changed_existing_files": {
+    "LeanPML/Rectangle/StatePaths.lean": {
+      "before": "457b9277a72e8078c747daec5dd0573c1668c37423509f2eb08d750a4f490f69",
+      "after": "915c8204230cbb954cfe4403be3b3ce7c7ac9cc24ba78ca824b9066f906c9850"
+    },
+    "LeanPML/Rectangle/SmoothPaths.lean": {
+      "before": "30098ea7a04a1148fd0191b8f6c9ea52b7c13541e5604f64150f19fedff2302d",
+      "after": "aa905c50a6618435f1c021c3473ddc0777f9d140c6aabd07c0fb899b0e9a2288"
+    },
+    "LeanPML/PML/OriginalSystem.lean": {
+      "before": "f1006244b8179140ba03c62670e7ec403cb8b96344ed7b6d34ff1a161ca4f9ec",
+      "after": "91425cb5798bee29a4d648f8780de9aa5fb50e1081c1f8ea5f9dc3919d37c29f"
+    },
+    "LeanPML/PML/WeightedCalculus.lean": {
+      "before": "b092ab64fe52ea571decf3b2c5e9b7fe3d69ecffaf436e07f2ea2114df640d9f",
+      "after": "694ea664c32a5ad236836b7241f991e6ca751587af93f1fba3154726b8f3e87d"
+    },
+    "LeanPML/PML/PrimitiveSystem.lean": {
+      "before": "b4226fb9f2497bfe7badfed7622c69308f6a848251dbe2ec1b2b32fb5fa97d64",
+      "after": "fac68de9b55138f66ad9cc2d8017385881e79c4b90eff76e8760abd23083c120"
+    },
+    "LeanPML.lean": {
+      "before": "f8babd973d711e474e0076fb5f3f9542b9b7589a351c5941a465b389c5fd1b8b",
+      "after": "4e4f710c470ca75b1a2bb1ce66d267df248ed6a91eddb9dedac7aec9cf49df77"
+    },
+    "Audit.lean": {
+      "before": "af113970335e88fd40f858300fa67a95c779b4b3969454a6018578e36409aedf",
+      "after": "0e14b2ca4bc05d27e43c5498f93c8a8366cbd6cfed47242b21943d55bae2bc58"
+    },
+    "README.md": {
+      "before": "ea6646cf5ccaf1a5b8d4953fb58bc3c731ed9a9d3be6a5dd0db996af42a5df91",
+      "after": "de5cd4a382e63e44237bd9b6f234668bb2ac83da2c4e8e93fdf901da5de6e7f6"
+    },
+    "scripts/run_logged.py": {
+      "before": "9f22cab7bc05f8e7b7e62009d33205fa57b733c51edd1b0af4ef0a19d67acee5",
+      "after": "1ccf6e09dd4bcf890832c16b4c6877aafea3babe6b27477458b54af6798435bd"
+    }
+  },
+  "semantic_review": "logs/v0.4_alignment/semantic_review.md",
+  "retained_failures": [
+    {
+      "metadata": "logs/v0.4_alignment/20261013T235413_068427_pdf_inspect.json",
+      "exit_code": 1,
+      "command": "/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 logs/v0.4_alignment/pdf/inspect_before.py"
+    },
+    {
+      "metadata": "logs/v0.4_alignment/20261013T235537_204886_regional_coefficients_export.json",
+      "exit_code": 1,
+      "command": "lake env lean -o .lake/build/lib/lean/LeanPML/Rectangle/RegionalCoefficients.olean LeanPML/Rectangle/RegionalCoefficients.lean"
+    },
+    {
+      "metadata": "logs/v0.4_alignment/20261014T000623_430983_pdf_annotate.json",
+      "exit_code": 1,
+      "command": "/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 logs/v0.4_alignment/pdf/annotate_pdf.py"
+    },
+    {
+      "metadata": "logs/v0.4_alignment/20261014T001143_975690_acceptance.json",
+      "exit_code": 1,
+      "command": "python3 logs/v0.4_alignment/finish_acceptance.py"
+    }
+  ],
+  "pdf": "passed",
+  "not_claimed": [
+    "V7精确π常数",
+    "弱H1/Hdiv/W1∞范围",
+    "加权正则性自动传播",
+    "提升规范唯一性",
+    "解存在唯一性",
+    "v0.5具体先验主定理发布"
+  ],
+  "completed_at": "2026-10-14T00:11:54.784090+08:00",
+  "pdf_report": "logs/v0.4_alignment/pdf/annotation_result.json",
+  "pdf_visual": "logs/v0.4_alignment/pdf/visual_review.json",
+  "pdf_sha256": "b7cff33c435944c4c24bf5327246015523368c7015e3b6fb6b65348f8fc5819d",
+  "all_legacy_audit_text_preserved": true,
+  "documents": {
+    "README.md": "a019a5e7ea5c0fcf4e0b3b36e90497acf2ea0355c196d43f3dea2f4d1109ebd5",
+    "PROGRESS.md": "34d62f89e69933e8395f7d7329c3c8d463cac18701e5a6bc0294c26a8ccecb23",
+    "docs/source_inventory.md": "8d3e76b339284e720f039ddf3d65b800f490516b87da52001243243040cac9bd",
+    "docs/theorem_inventory.md": "d4663c28a9a8bb09c484ab501f6274ed9f69bf0169a36bbfe0125acc4fda05b6",
+    "docs/claim_ledger.md": "44d39611468b7ebe5a66d2ee3407baec049b06b83cfbd64d84c52e6575cb4531",
+    "docs/pdf_formalization_marks.md": "45a084f8e38999367a79ea1bab41ff0f155471fe893550ef0a380b01023bd111",
+    "logs/v0.4_alignment/alignment_record.md": "3c24121710358607870b99c0c00cf1e6c70e1607be53b466b06668845004c061"
+  },
+  "alignment_record": "logs/v0.4_alignment/alignment_record.md",
+  "repairs": {
+    "parameter_certificate": "proved",
+    "regional_absorption_entry": "proved",
+    "classical_spatial_evidence_and_wrappers": "proved; old smooth highest-level evidence already existed",
+    "technical_regularity_wording": "corrected; stronger assumptions explicitly retained"
+  },
+  "v04_scope": {
+    "proved": "specific smooth rectangle Green and conservative Poincare, history, five field invariants, bidirectional equations, concrete finite-interval construction; alignment supplements linked",
+    "regularity_inputs": [
+      "joint C-infinity technical extension",
+      "C(K) uniform path continuous/differentiable",
+      "actual weighted membership and path continuity/differentiability",
+      "OriginalLiftRegular and LiftIdentified",
+      "initial five compatibility, PEC, zero-region initial auxiliary fields",
+      "T=0 required initial first-graph compatibility"
+    ],
+    "future": [
+      "exact pi constant",
+      "weak H1/Hdiv and general W1infty class",
+      "weighted propagation 5.7/5.8",
+      "lifting gauge uniqueness",
+      "existence and uniqueness",
+      "v0.5.1 named concrete energy theorem synthesis"
+    ]
+  },
+  "ready_for_v051": "yes, for the explicitly selected strong smooth/weighted class; not the complete weak V7 range"
+}

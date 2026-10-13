@@ -1,0 +1,125 @@
+{
+  "boxes": [
+    {
+      "id": "v04-original-recovery",
+      "page": 3,
+      "rect_top": [
+        534,
+        608,
+        587.0029296875,
+        634.4
+      ]
+    },
+    {
+      "id": "v04-historical-lift",
+      "page": 4,
+      "rect_top": [
+        534,
+        124,
+        581.0,
+        142.2
+      ]
+    },
+    {
+      "id": "v04-five-invariants",
+      "page": 4,
+      "rect_top": [
+        3,
+        186,
+        44.0,
+        212.4
+      ]
+    },
+    {
+      "id": "v04-compatibility",
+      "page": 4,
+      "rect_top": [
+        3,
+        407,
+        50.0,
+        433.4
+      ]
+    },
+    {
+      "id": "v04-equivalence",
+      "page": 4,
+      "rect_top": [
+        534,
+        487,
+        581.0,
+        521.6
+      ]
+    },
+    {
+      "id": "v04-poincare-conservative",
+      "page": 7,
+      "rect_top": [
+        534,
+        592,
+        567.0078125,
+        618.4
+      ]
+    },
+    {
+      "id": "v04-zero-region",
+      "page": 8,
+      "rect_top": [
+        3,
+        468,
+        48.734375,
+        494.4
+      ]
+    },
+    {
+      "id": "v04-regularity-input",
+      "page": 10,
+      "rect_top": [
+        3,
+        119,
+        35.0,
+        153.6
+      ]
+    },
+    {
+      "id": "v04-weighted-recovery",
+      "page": 11,
+      "rect_top": [
+        534,
+        199,
+        581.0,
+        225.4
+      ]
+    },
+    {
+      "id": "v04-green",
+      "page": 11,
+      "rect_top": [
+        3,
+        611,
+        50.3427734375,
+        645.6
+      ]
+    },
+    {
+      "id": "v04-history-note4",
+      "page": 4,
+      "rect_top": [
+        67,
+        46,
+        308.3408203125,
+        56.0
+      ]
+    },
+    {
+      "id": "v04-history-note11",
+      "page": 11,
+      "rect_top": [
+        67,
+        46,
+        314.3466796875,
+        56.0
+      ]
+    }
+  ],
+  "errors": []
+}

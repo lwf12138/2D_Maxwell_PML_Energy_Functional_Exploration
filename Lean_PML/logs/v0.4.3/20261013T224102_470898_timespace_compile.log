@@ -1,0 +1,7 @@
+LeanPML/Rectangle/TimeSpace.lean:69:2: error: Type mismatch: After simplification, term
+  Eq.trans hspace_value (Eq.symm hsymm)
+ has type
+  (fderiv ℝ ((fun z => (fderiv ℝ g z) (1, 0)) ∘ Prod.mk t) x) v =
+    ((fderiv ℝ (fderiv ℝ (Function.uncurry F)) (t, x)) (1, 0)) (0, v)
+but is expected to have type
+  Real.instAddCommGroup = Real.normedAddCommGroup.toAddCommGroup

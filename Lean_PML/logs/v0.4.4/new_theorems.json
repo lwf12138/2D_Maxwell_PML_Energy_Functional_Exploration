@@ -1,0 +1,206 @@
+[
+  {
+    "file": "LeanPML/Rectangle/HistoryL2.lean",
+    "declaration": "LeanPML.Rectangle.history_intervalIntegrable"
+  },
+  {
+    "file": "LeanPML/Rectangle/HistoryL2.lean",
+    "declaration": "LeanPML.Rectangle.continuousHistory_apply"
+  },
+  {
+    "file": "LeanPML/Rectangle/HistoryL2.lean",
+    "declaration": "LeanPML.Rectangle.continuousHistory_toL2"
+  },
+  {
+    "file": "LeanPML/Rectangle/HistoryL2.lean",
+    "declaration": "LeanPML.Rectangle.toL2_integralLift"
+  },
+  {
+    "file": "LeanPML/Rectangle/HistoryL2.lean",
+    "declaration": "LeanPML.Rectangle.toL2_integralLift_on_Icc"
+  },
+  {
+    "file": "LeanPML/PML/OriginalSystem.lean",
+    "declaration": "LeanPML.PML.Concrete.integralLift_initial"
+  },
+  {
+    "file": "LeanPML/PML/OriginalSystem.lean",
+    "declaration": "LeanPML.PML.Concrete.hasDerivAt_integralLift"
+  },
+  {
+    "file": "LeanPML/PML/OriginalSystem.lean",
+    "declaration": "LeanPML.PML.Concrete.continuous_integralLift"
+  },
+  {
+    "file": "LeanPML/PML/OriginalSystem.lean",
+    "declaration": "LeanPML.PML.Concrete.integralLift_eq_of_initial_derivative"
+  },
+  {
+    "file": "LeanPML/PML/PrimitiveSystem.lean",
+    "declaration": "LeanPML.PML.Concrete.spaceDx_const_mul"
+  },
+  {
+    "file": "LeanPML/PML/PrimitiveSystem.lean",
+    "declaration": "LeanPML.PML.Concrete.spaceDy_const_mul"
+  },
+  {
+    "file": "LeanPML/PML/PrimitiveSystem.lean",
+    "declaration": "LeanPML.PML.Concrete.fluxDiv_lift"
+  },
+  {
+    "file": "LeanPML/PML/PrimitiveSystem.lean",
+    "declaration": "LeanPML.PML.Concrete.magnetic_lift_derivatives"
+  },
+  {
+    "file": "LeanPML/PML/PrimitiveSystem.lean",
+    "declaration": "LeanPML.PML.Concrete.magnetic_invariants_hasDerivAt_zero"
+  },
+  {
+    "file": "LeanPML/PML/PrimitiveSystem.lean",
+    "declaration": "LeanPML.PML.Concrete.five_invariants_eq_initial"
+  },
+  {
+    "file": "LeanPML/PML/Equivalence.lean",
+    "declaration": "LeanPML.PML.Concrete.compatibleAt_of_initial"
+  },
+  {
+    "file": "LeanPML/PML/Equivalence.lean",
+    "declaration": "LeanPML.PML.Concrete.primitive_lift_at"
+  },
+  {
+    "file": "LeanPML/PML/Equivalence.lean",
+    "declaration": "LeanPML.PML.Concrete.debye_of_primitive_near"
+  },
+  {
+    "file": "LeanPML/PML/Equivalence.lean",
+    "declaration": "LeanPML.PML.Concrete.primitive_flux_derivatives"
+  },
+  {
+    "file": "LeanPML/PML/Equivalence.lean",
+    "declaration": "LeanPML.PML.Concrete.original_reconstruct_at"
+  },
+  {
+    "file": "LeanPML/PML/Equivalence.lean",
+    "declaration": "LeanPML.PML.Concrete.continuous_space_partial"
+  },
+  {
+    "file": "LeanPML/PML/Equivalence.lean",
+    "declaration": "LeanPML.PML.Concrete.lift_mixed_derivatives"
+  },
+  {
+    "file": "LeanPML/PML/Equivalence.lean",
+    "declaration": "LeanPML.PML.Concrete.five_invariants_on_Icc"
+  },
+  {
+    "file": "LeanPML/PML/Equivalence.lean",
+    "declaration": "LeanPML.PML.Concrete.compatible_lift_on_Icc"
+  },
+  {
+    "file": "LeanPML/PML/Equivalence.lean",
+    "declaration": "LeanPML.PML.Concrete.original_to_primitive"
+  },
+  {
+    "file": "LeanPML/PML/Equivalence.lean",
+    "declaration": "LeanPML.PML.Concrete.primitive_to_original"
+  },
+  {
+    "file": "LeanPML/PML/Equivalence.lean",
+    "declaration": "LeanPML.PML.Concrete.initial_debye_lift"
+  },
+  {
+    "file": "LeanPML/PML/Equivalence.lean",
+    "declaration": "LeanPML.PML.Concrete.integralLift_zero_boundary"
+  },
+  {
+    "file": "LeanPML/PML/Equivalence.lean",
+    "declaration": "LeanPML.PML.Concrete.reconstruct_PEC"
+  },
+  {
+    "file": "LeanPML/PML/Equivalence.lean",
+    "declaration": "LeanPML.PML.Concrete.primitive_zero_absorption_preserved"
+  },
+  {
+    "file": "LeanPML/PML/Equivalence.lean",
+    "declaration": "LeanPML.PML.Concrete.invariant_fields_eqOn_initial"
+  },
+  {
+    "file": "LeanPML/PML/Equivalence.lean",
+    "declaration": "LeanPML.PML.Concrete.five_invariants_toLp_eq_initial"
+  },
+  {
+    "file": "LeanPML/PML/Equivalence.lean",
+    "declaration": "LeanPML.PML.Concrete.five_invariants_toLp_eq_of_continuous"
+  },
+  {
+    "file": "LeanPML/PML/Equivalence.lean",
+    "declaration": "LeanPML.PML.Concrete.reconstruct_lift_eqOn"
+  },
+  {
+    "file": "LeanPML/PML/Equivalence.lean",
+    "declaration": "LeanPML.PML.Concrete.lift_reconstruct_histories"
+  },
+  {
+    "file": "LeanPML/PML/Equivalence.lean",
+    "declaration": "LeanPML.PML.Concrete.lift_reconstruct_eqOn"
+  },
+  {
+    "file": "LeanPML/PML/Equivalence.lean",
+    "declaration": "LeanPML.PML.Concrete.integralLift_rect_zeroBoundary"
+  },
+  {
+    "file": "LeanPML/PML/Equivalence.lean",
+    "declaration": "LeanPML.PML.Concrete.original_to_primitive_rectangle"
+  },
+  {
+    "file": "LeanPML/PML/Equivalence.lean",
+    "declaration": "LeanPML.PML.Concrete.primitive_to_original_rectangle"
+  },
+  {
+    "file": "LeanPML/PML/Equivalence.lean",
+    "declaration": "LeanPML.PML.Concrete.original_zero_region_preserved"
+  },
+  {
+    "file": "LeanPML/PML/OriginalAssembly.lean",
+    "declaration": "LeanPML.PML.Concrete.smoothPrimitiveFields_eq_lift"
+  },
+  {
+    "file": "LeanPML/PML/OriginalAssembly.lean",
+    "declaration": "LeanPML.PML.Concrete.lift_velocity_coordinates"
+  },
+  {
+    "file": "LeanPML/PML/OriginalAssembly.lean",
+    "declaration": "LeanPML.PML.Concrete.jet_zero_derivatives"
+  },
+  {
+    "file": "LeanPML/PML/OriginalAssembly.lean",
+    "declaration": "LeanPML.PML.Concrete.original_smoothZeroOn"
+  },
+  {
+    "file": "LeanPML/PML/OriginalAssembly.lean",
+    "declaration": "LeanPML.PML.Concrete.lift_spatial_coordinates"
+  },
+  {
+    "file": "LeanPML/PML/OriginalAssembly.lean",
+    "declaration": "LeanPML.PML.Concrete.lift_first_spatial_coordinates"
+  },
+  {
+    "file": "LeanPML/PML/OriginalAssembly.lean",
+    "declaration": "LeanPML.PML.Concrete.eq_on_closed_of_internal"
+  },
+  {
+    "file": "LeanPML/PML/OriginalAssembly.lean",
+    "declaration": "LeanPML.PML.Concrete.lift_first_polar_closed"
+  },
+  {
+    "file": "LeanPML/PML/OriginalAssembly.lean",
+    "declaration": "LeanPML.PML.Concrete.lift_zero_coordinates_closed"
+  },
+  {
+    "file": "LeanPML/PML/OriginalAssembly.lean",
+    "declaration": "LeanPML.PML.Concrete.original_static_closed"
+  },
+  {
+    "file": "LeanPML/PML/OriginalAssembly.lean",
+    "declaration": "LeanPML.PML.Concrete.originalFiniteIntervalProblem_second_R_continuous"
+  }
+]

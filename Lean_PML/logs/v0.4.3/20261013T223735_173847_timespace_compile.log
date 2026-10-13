@@ -1,0 +1,38 @@
+LeanPML/Rectangle/TimeSpace.lean:29:2: error: Type mismatch: After simplification, term
+  hderiv
+ has type
+  @Eq ℝ ((fderiv ℝ (Function.uncurry F ∘ Prod.mk t) x) v) ((fderiv ℝ (Function.uncurry F) (t, x)) (0, v))
+but is expected to have type
+  @Eq ℝ ((fderiv ℝ (F t) x) v) ((fderiv ℝ (Function.uncurry F) (t, x)) (0, v))
+LeanPML/Rectangle/TimeSpace.lean:60:62: error: mod_cast has type
+  ?m.394 ≤ ⊤
+but is expected to have type
+  2 ≤ ∞
+LeanPML/Rectangle/TimeSpace.lean:47:62: error: unsolved goals
+X : Type u_1
+inst✝¹ : NormedAddCommGroup X
+inst✝ : NormedSpace ℝ X
+F : ℝ → X → ℝ
+hF : ContDiff ℝ ∞ (Function.uncurry F)
+t : ℝ
+x v : X
+g : ℝ × X → ℝ := Function.uncurry F
+hsecond : Differentiable ℝ (fderiv ℝ g)
+heval : ∀ (w : ℝ × X), HasFDerivAt (fun z => (fderiv ℝ g z) w) ((fderiv ℝ (fderiv ℝ g) (t, x)).flip w) (t, x)
+hcurve : HasDerivAt (fun s => (s, x)) (1, 0) t
+htime :
+  HasDerivAt ((fun z => (fderiv ℝ g z) (0, v)) ∘ fun s => (s, x)) (((fderiv ℝ (fderiv ℝ g) (t, x)).flip (0, v)) (1, 0))
+    t
+hspace :
+  HasFDerivAt ((fun z => (fderiv ℝ g z) (1, 0)) ∘ Prod.mk t)
+    ((fderiv ℝ (fderiv ℝ g) (t, x)).flip (1, 0) ∘SL ContinuousLinearMap.inr ℝ ℝ X) x
+hspace_value :
+  (fderiv ℝ ((fun z => (fderiv ℝ g z) (1, 0)) ∘ Prod.mk t) x) v =
+    ((fderiv ℝ (fderiv ℝ g) (t, x)).flip (1, 0) ∘SL ContinuousLinearMap.inr ℝ ℝ X) v
+⊢ HasDerivAt (fun s => (fderiv ℝ (F s) x) v) ((fderiv ℝ (fun y => deriv (fun s => F s y) t) x) v) t
+LeanPML/Rectangle/TimeSpace.lean:80:19: error: typeclass instance problem is stuck
+  Module ?m.86 ℝ
+
+Note: Lean will not try to resolve this typeclass instance problem because the first and third type arguments to `Module` contain metavariables. These arguments must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.

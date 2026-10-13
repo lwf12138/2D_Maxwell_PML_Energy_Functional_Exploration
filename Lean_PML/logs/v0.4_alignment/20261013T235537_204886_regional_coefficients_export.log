@@ -1,0 +1,23 @@
+LeanPML/Rectangle/RegionalCoefficients.lean:124:44: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  R.coefficients.wx X
+in the target expression
+  (fun X => √(R.coefficients.wx X) * f X) X = (fun X => √(energyWeightX R.c (R.p X.1) (R.r X.2)) * f X) X
+
+D : Rect
+R : RegionalAbsorption D
+f : ℝ × ℝ → ℝ
+X : ℝ × ℝ
+hX : R.coefficients.wx X = (fun X => energyWeightX R.c (R.p X.1) (R.r X.2)) X
+⊢ (fun X => √(R.coefficients.wx X) * f X) X = (fun X => √(energyWeightX R.c (R.p X.1) (R.r X.2)) * f X) X
+LeanPML/Rectangle/RegionalCoefficients.lean:127:44: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  R.coefficients.wy X
+in the target expression
+  (fun X => √(R.coefficients.wy X) * f X) X = (fun X => √(energyWeightY R.c (R.p X.1) (R.r X.2)) * f X) X
+
+D : Rect
+R : RegionalAbsorption D
+f : ℝ × ℝ → ℝ
+hx : (fun X => √(R.coefficients.wx X) * f X) =ᵐ[D.measure] fun X => √(energyWeightX R.c (R.p X.1) (R.r X.2)) * f X
+X : ℝ × ℝ
+hX : R.coefficients.wy X = (fun X => energyWeightY R.c (R.p X.1) (R.r X.2)) X
+⊢ (fun X => √(R.coefficients.wy X) * f X) X = (fun X => √(energyWeightY R.c (R.p X.1) (R.r X.2)) * f X) X

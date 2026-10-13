@@ -1,3 +1,50 @@
+# v0.4 对齐修复：已验收（2026-10-14）
+
+本次只修复 v0.4 的范围、接口、参数证书和记录；未进入 v0.5。下方历史原样保留。**更正**：此前 v0.4.2 虽登记完成，但保守常数下仅有符号替换，具体数值证书当时缺少；现已补齐。
+
+- 实际矩形 (-1,1)² 得到 CP=4、A=3、K=384；新 c=1/16384、S=1/65536 满足完整阈值，旧 c=1/128 在此常数下失败。
+- 新推荐 `RegionalAbsorption.originalRegionalFiniteIntervalProblem` 只要求闭坐标区间吸收界；内部代表域内/a.e./权重/合法积分一致，没有全轴原系数界。
+- 新古典解包装明列真实空间可导证据，并由已有光滑识别推出后实际用于总装。旧最高入口的光滑依据并非失效，底层方程表达式仍不自动给空间可导性。
+- 修正“由6.6推出”的注释；联合C∞、C(K)和实际加权路径仍是明确更强正则性输入。
+
+[本轮完整构建](logs/v0.4_alignment/20261014T000055_917026_lake_build.log)、[独立审计](logs/v0.4_alignment/20261014T000341_178705_axioms_audit.log)、[类型检查](logs/v0.4_alignment/20261014T000341_178709_interface_types.log)均退出0；审计590个声明，只用标准基础公理。PDF第3/4/7/15页补5项准确限定（1个新参数红勾），18页和195个旧批注全部保留。
+
+逐项“已证明／正则性输入／后续任务”见 [对齐记录](logs/v0.4_alignment/alignment_record.md)，源码与受保护文件哈希、实际失败及成功记录见 [验收](logs/v0.4_alignment/acceptance.json)。旧 acceptance 未覆盖。下一步允许进入 v0.5.1 的所选强光滑类最终合成；弱空间、精确π常数、传播、规范、适定性不宣称完成。
+
+---
+
+# v0.4.1–v0.4.4：所选光滑矩形类分别验收完成
+
+用途：记录实际几何、空间分析、时间路径和原模型映射。下方保留全部旧历史；旧“未实现”仅表示当时状态。本轮停在具体接口构造，未创建 v0.5 的主定理或报告，没有依赖更新、提交或推送。
+
+| 阶段 | 状态 | 真实构建 / 独立审计 | 审计声明数（含历史） |
+|---|---|---|---|
+| v0.4.1 | 已验收 | [构建](logs/v0.4.1/20261013T224101_375806_lake_build.log) / [审计](logs/v0.4.1/20261013T224142_908894_axioms_audit.log) | 410 |
+| v0.4.2 | 已验收 | [构建](logs/v0.4.2/20261013T224801_700595_lake_build.log) / [审计](logs/v0.4.2/20261013T225034_426223_axioms_audit.log) | 429 |
+| v0.4.3 | 已验收 | [构建](logs/v0.4.3/20261013T230513_776030_lake_build.log) / [审计](logs/v0.4.3/20261013T230651_423759_axioms_audit.log) | 484 |
+| v0.4.4 | 已验收 | [构建](logs/v0.4.4/20261013T230822_044824_lake_build.log) / [审计](logs/v0.4.4/20261013T231144_117778_axioms_audit.log) | 537 |
+
+- **v0.4.1**：`Domain/Fields/Boundary` 给出全开矩形与闭矩形测度对应、Fubini、真实 fderiv、光滑场的 L² 表示；由 a.e. 相等推导连续代表在闭矩形相等，保证梯度与四边迹良定义、线性，并接到原受限空间域。
+- **v0.4.2**：`Green/Poincare` 证明右−左+上−下的实际四边公式、迹消去，并直接构造 Green 与同迹核的 Poincaré 接口。保守常数为 $C_P=2L_x$，故 $K=32\mu(\varepsilon+2\kappa)L_x^2$；阈值使用这一常数。原精确 π 常数未证，未沿用其数值证书。非零多项式泡函数的 Green/Poincaré 和时间路径调用已编译。
+- **v0.4.3**：`TimeSpace/L2Paths/SmoothPaths/WeightedCalculus/StatePaths/BoundaryTime` 从联合光滑性证明混合导数交换，用 C(K) 统一路径的实际可导性识别 L² 导数，并识别加权路径恢复的 φ_t/φ_tt。构造同源路径、梯度/散度交换及两层迹；成员资格、统一/加权范数连续可微仍为明确强正则性输入。
+- **v0.4.4**：`OriginalSystem/PrimitiveSystem/Equivalence/HistoryL2/InterfaceAssembly/OriginalAssembly` 完成真正历史积分、L² Bochner 对应、五个不变量的实际场保持、初始兼容和原场零区保持、双向八式及 PEC；最终从原方程与初始数据构造 `originalFiniteIntervalProblem_separated`，并给出 P_tt 连续性。没有把任一目标分析公式或全时段兼容藏入正则性。
+
+## 输入范围、差异与未完成事项
+
+选用整个矩形上的全空间 C∞ 技术延拓、联合时间光滑性、C(K) 一致范数正则性及实际加权路径成员/可微性，强于原文 (6.6)/W¹,∞ 弱范围；域外不要求 PDE。原演化只在 (0,T)×Ω，PEC/连续性/历史覆盖 [0,T]。无吸收正下界，无 w 上界，无磁场法向约束，无额外子区边界。
+
+T=0 的初始导数层极化和零区 φ_t 条件单列；不能由空内部推导。E_t 的闭端点零迹若另行需要，采用 BoundaryTime 中带退化初始迹条件的结论。一般非零初始不变量已保持，但额外源项 primitive 版本未纳入无源总装。
+
+未完成：原精确 Poincaré 常数；一般弱 H₀¹–H(div)/W¹,∞ 实现；(5.7)/(5.8) 加权传播；提升规范唯一性；解存在唯一性、严格衰减、Laplace/完美匹配。v0.5.1 才调用现有抽象主定理发布具体光滑先验结论，不以本轮构造替代最终声明。
+
+## 证据与阅读
+
+每阶段 `logs/<stage>/acceptance.json` 保存成功日志及源码哈希；真实失败与修复日志未覆盖。最终 v0.4.4 全工程构建包含所有先前阶段。独立假设检查见 [semantic_review_geometry.md](logs/v0.4.4/semantic_review_geometry.md)，受保护文件见 [source_verification.json](logs/v0.4.4/source_verification.json)。论文与路线图状态差异保留为历史；没有改源文件和旧日志。
+
+先读 `greenDomain`、`hasDerivAt_jet_gradientX`、`original_to_primitive_rectangle`，再看 `originalFiniteIntervalProblem_separated`。InfoView、F12、重建/审计及刷新导入见 [README](README.md)。PDF 新范围见 [标注账本](docs/pdf_formalization_marks.md)，只有实际已证子结论加勾。
+
+---
+
 # 2026-10-13：v0.3.4–v0.3.5 分别验收完成
 
 用途：登记第 9 节空间估计、耗散闭合及有限区间条件性主定理。下方全部历史原样保留，旧“当前/下一阶段”指记录当时。本轮止于 v0.3.5，未实施 v0.4，没有提交、推送、依赖更新或新增 reading_guide。

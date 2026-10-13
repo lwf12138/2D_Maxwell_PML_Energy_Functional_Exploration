@@ -1,0 +1,27 @@
+{
+  "stage": "v0.4.3",
+  "status": "passed",
+  "mathematical_scope": "所选联合C∞技术延拓、C(K)一致范数正则性及实际加权成员/可微性条件下的真实混合导数、L²/加权路径和两层迹；非自动正则性传播",
+  "build": "logs/v0.4.3/20261013T230513_776030_lake_build.log",
+  "audit": "logs/v0.4.3/20261013T230651_423759_axioms_audit.log",
+  "build_exit_code": 0,
+  "audit_exit_code": 0,
+  "audited_declarations": 484,
+  "sources": {
+    "LeanPML/Rectangle/TimeSpace.lean": "777c35c9e4d84874baa8d92b93048b81019799741bd4430c669b3cde5447d19f",
+    "LeanPML/Rectangle/L2Paths.lean": "90e2417b51bc2d3d50d435b4c1e8f38d93b2b70eaf5b842b1263e65900e3a616",
+    "LeanPML/Rectangle/BoundaryTime.lean": "b7a45cd50d8a2c710619ef5db4dd9b8dff240e90d290c6c737bc695954bb7edb",
+    "LeanPML/Rectangle/SmoothPaths.lean": "30098ea7a04a1148fd0191b8f6c9ea52b7c13541e5604f64150f19fedff2302d",
+    "LeanPML/Rectangle/StatePaths.lean": "457b9277a72e8078c747daec5dd0573c1668c37423509f2eb08d750a4f490f69",
+    "LeanPML/Rectangle/InterfaceAssembly.lean": "05bcf055d2c20172f718870455b740ebf07060ad5ed0c0fb300cfb75fc8940f8",
+    "LeanPML/PML/WeightedCalculus.lean": "b092ab64fe52ea571decf3b2c5e9b7fe3d69ecffaf436e07f2ea2114df640d9f"
+  },
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "sorryAx": false,
+  "endpoint_scope": "空间路径要求内部Et迹；完整闭区间Et迹通过BoundaryTime额外T=0初始图迹条件实现。",
+  "remaining": "v0.4.4最高原系统总装正在最终构建；本记录不单独登记整个v0.4完成"
+}

@@ -1,0 +1,26 @@
+LeanPML/Rectangle/TimeSpace.lean:60:52: error: 'change' tactic failed, pattern
+  2 ≤ ∞
+is not definitionally equal to target
+  minSmoothness ℝ 2 ≤ ∞
+LeanPML/Rectangle/TimeSpace.lean:47:62: error: unsolved goals
+X : Type u_1
+inst✝¹ : NormedAddCommGroup X
+inst✝ : NormedSpace ℝ X
+F : ℝ → X → ℝ
+hF : ContDiff ℝ ∞ (Function.uncurry F)
+t : ℝ
+x v : X
+g : ℝ × X → ℝ := Function.uncurry F
+hsecond : Differentiable ℝ (fderiv ℝ g)
+heval : ∀ (w : ℝ × X), HasFDerivAt (fun z => (fderiv ℝ g z) w) ((fderiv ℝ (fderiv ℝ g) (t, x)).flip w) (t, x)
+hcurve : HasDerivAt (fun s => (s, x)) (1, 0) t
+htime :
+  HasDerivAt ((fun z => (fderiv ℝ g z) (0, v)) ∘ fun s => (s, x)) (((fderiv ℝ (fderiv ℝ g) (t, x)).flip (0, v)) (1, 0))
+    t
+hspace :
+  HasFDerivAt ((fun z => (fderiv ℝ g z) (1, 0)) ∘ Prod.mk t)
+    ((fderiv ℝ (fderiv ℝ g) (t, x)).flip (1, 0) ∘SL ContinuousLinearMap.inr ℝ ℝ X) x
+hspace_value :
+  (fderiv ℝ ((fun z => (fderiv ℝ g z) (1, 0)) ∘ Prod.mk t) x) v =
+    ((fderiv ℝ (fderiv ℝ g) (t, x)).flip (1, 0) ∘SL ContinuousLinearMap.inr ℝ ℝ X) v
+⊢ HasDerivAt (fun s => (fderiv ℝ (F s) x) v) ((fderiv ℝ (fun y => deriv (fun s => F s y) t) x) v) t

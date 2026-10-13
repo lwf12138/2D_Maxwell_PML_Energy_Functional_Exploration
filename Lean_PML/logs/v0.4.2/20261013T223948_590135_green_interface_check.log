@@ -1,0 +1,269 @@
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+LeanPML/Rectangle/Green.lean:178:21: error: unsolved goals
+D : Rect
+B : BoundaryData D
+r : ℝ
+N : BoundaryData D
+⊢ r * ((edgePair D.ylo D.yhi ⋯) B.1) N.1 - r * ((edgePair D.ylo D.yhi ⋯) B.2.1) N.2.1 +
+        r * ((edgePair D.xlo D.xhi ⋯) B.2.2.1) N.2.2.1 -
+      r * ((edgePair D.xlo D.xhi ⋯) B.2.2.2) N.2.2.2 =
+    ((edgePair D.ylo D.yhi ⋯) B.1) N.1 * (RingHom.id ℝ) r - ((edgePair D.ylo D.yhi ⋯) B.2.1) N.2.1 * (RingHom.id ℝ) r +
+        ((edgePair D.xlo D.xhi ⋯) B.2.2.1) N.2.2.1 * (RingHom.id ℝ) r -
+      ((edgePair D.xlo D.xhi ⋯) B.2.2.2) N.2.2.2 * (RingHom.id ℝ) r
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+LeanPML/Rectangle/Green.lean:179:18: error: unsolved goals
+case hl
+D : Rect
+B C : BoundaryData D
+N : C(↑(Icc D.ylo D.yhi), ℝ)
+⊢ ({
+          toFun := fun N =>
+            ((edgePair D.ylo D.yhi ⋯) B.1) N.1 + ((edgePair D.ylo D.yhi ⋯) C.1) N.1 -
+                        ((edgePair D.ylo D.yhi ⋯) B.2.1) N.2.1 -
+                      ((edgePair D.ylo D.yhi ⋯) C.2.1) N.2.1 +
+                    ((edgePair D.xlo D.xhi ⋯) B.2.2.1) N.2.2.1 +
+                  ((edgePair D.xlo D.xhi ⋯) C.2.2.1) N.2.2.1 -
+                ((edgePair D.xlo D.xhi ⋯) B.2.2.2) N.2.2.2 -
+              ((edgePair D.xlo D.xhi ⋯) C.2.2.2) N.2.2.2,
+          map_add' := ⋯, map_smul' := ⋯ } ∘ₗ
+        LinearMap.inl ℝ C(↑(Icc D.ylo D.yhi), ℝ)
+          (C(↑(Icc D.ylo D.yhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ)))
+      N =
+    (({
+            toFun := fun N =>
+              ((edgePair D.ylo D.yhi ⋯) B.1) N.1 - ((edgePair D.ylo D.yhi ⋯) B.2.1) N.2.1 +
+                  ((edgePair D.xlo D.xhi ⋯) B.2.2.1) N.2.2.1 -
+                ((edgePair D.xlo D.xhi ⋯) B.2.2.2) N.2.2.2,
+            map_add' := ⋯, map_smul' := ⋯ } +
+          {
+            toFun := fun N =>
+              ((edgePair D.ylo D.yhi ⋯) C.1) N.1 - ((edgePair D.ylo D.yhi ⋯) C.2.1) N.2.1 +
+                  ((edgePair D.xlo D.xhi ⋯) C.2.2.1) N.2.2.1 -
+                ((edgePair D.xlo D.xhi ⋯) C.2.2.2) N.2.2.2,
+            map_add' := ⋯, map_smul' := ⋯ }) ∘ₗ
+        LinearMap.inl ℝ C(↑(Icc D.ylo D.yhi), ℝ)
+          (C(↑(Icc D.ylo D.yhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ)))
+      N
+
+case hr.hl
+D : Rect
+B C : BoundaryData D
+N : C(↑(Icc D.ylo D.yhi), ℝ)
+⊢ (({
+            toFun := fun N =>
+              ((edgePair D.ylo D.yhi ⋯) (B + C).1) N.1 - ((edgePair D.ylo D.yhi ⋯) (B + C).2.1) N.2.1 +
+                  ((edgePair D.xlo D.xhi ⋯) (B + C).2.2.1) N.2.2.1 -
+                ((edgePair D.xlo D.xhi ⋯) (B + C).2.2.2) N.2.2.2,
+            map_add' := ⋯, map_smul' := ⋯ } ∘ₗ
+          LinearMap.inr ℝ C(↑(Icc D.ylo D.yhi), ℝ)
+            (C(↑(Icc D.ylo D.yhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ))) ∘ₗ
+        LinearMap.inl ℝ C(↑(Icc D.ylo D.yhi), ℝ) (C(↑(Icc D.xlo D.xhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ)))
+      N =
+    ((({
+              toFun := fun N =>
+                ((edgePair D.ylo D.yhi ⋯) B.1) N.1 - ((edgePair D.ylo D.yhi ⋯) B.2.1) N.2.1 +
+                    ((edgePair D.xlo D.xhi ⋯) B.2.2.1) N.2.2.1 -
+                  ((edgePair D.xlo D.xhi ⋯) B.2.2.2) N.2.2.2,
+              map_add' := ⋯, map_smul' := ⋯ } +
+            {
+              toFun := fun N =>
+                ((edgePair D.ylo D.yhi ⋯) C.1) N.1 - ((edgePair D.ylo D.yhi ⋯) C.2.1) N.2.1 +
+                    ((edgePair D.xlo D.xhi ⋯) C.2.2.1) N.2.2.1 -
+                  ((edgePair D.xlo D.xhi ⋯) C.2.2.2) N.2.2.2,
+              map_add' := ⋯, map_smul' := ⋯ }) ∘ₗ
+          LinearMap.inr ℝ C(↑(Icc D.ylo D.yhi), ℝ)
+            (C(↑(Icc D.ylo D.yhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ))) ∘ₗ
+        LinearMap.inl ℝ C(↑(Icc D.ylo D.yhi), ℝ) (C(↑(Icc D.xlo D.xhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ)))
+      N
+
+case hr.hr.hl
+D : Rect
+B C : BoundaryData D
+N : C(↑(Icc D.xlo D.xhi), ℝ)
+⊢ ((({
+              toFun := fun N =>
+                ((edgePair D.ylo D.yhi ⋯) (B + C).1) N.1 - ((edgePair D.ylo D.yhi ⋯) (B + C).2.1) N.2.1 +
+                    ((edgePair D.xlo D.xhi ⋯) (B + C).2.2.1) N.2.2.1 -
+                  ((edgePair D.xlo D.xhi ⋯) (B + C).2.2.2) N.2.2.2,
+              map_add' := ⋯, map_smul' := ⋯ } ∘ₗ
+            LinearMap.inr ℝ C(↑(Icc D.ylo D.yhi), ℝ)
+              (C(↑(Icc D.ylo D.yhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ))) ∘ₗ
+          LinearMap.inr ℝ C(↑(Icc D.ylo D.yhi), ℝ) (C(↑(Icc D.xlo D.xhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ))) ∘ₗ
+        LinearMap.inl ℝ C(↑(Icc D.xlo D.xhi), ℝ) C(↑(Icc D.xlo D.xhi), ℝ))
+      N =
+    (((({
+                toFun := fun N =>
+                  ((edgePair D.ylo D.yhi ⋯) B.1) N.1 - ((edgePair D.ylo D.yhi ⋯) B.2.1) N.2.1 +
+                      ((edgePair D.xlo D.xhi ⋯) B.2.2.1) N.2.2.1 -
+                    ((edgePair D.xlo D.xhi ⋯) B.2.2.2) N.2.2.2,
+                map_add' := ⋯, map_smul' := ⋯ } +
+              {
+                toFun := fun N =>
+                  ((edgePair D.ylo D.yhi ⋯) C.1) N.1 - ((edgePair D.ylo D.yhi ⋯) C.2.1) N.2.1 +
+                      ((edgePair D.xlo D.xhi ⋯) C.2.2.1) N.2.2.1 -
+                    ((edgePair D.xlo D.xhi ⋯) C.2.2.2) N.2.2.2,
+                map_add' := ⋯, map_smul' := ⋯ }) ∘ₗ
+            LinearMap.inr ℝ C(↑(Icc D.ylo D.yhi), ℝ)
+              (C(↑(Icc D.ylo D.yhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ))) ∘ₗ
+          LinearMap.inr ℝ C(↑(Icc D.ylo D.yhi), ℝ) (C(↑(Icc D.xlo D.xhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ))) ∘ₗ
+        LinearMap.inl ℝ C(↑(Icc D.xlo D.xhi), ℝ) C(↑(Icc D.xlo D.xhi), ℝ))
+      N
+
+case hr.hr.hr
+D : Rect
+B C : BoundaryData D
+N : C(↑(Icc D.xlo D.xhi), ℝ)
+⊢ ((({
+              toFun := fun N =>
+                ((edgePair D.ylo D.yhi ⋯) (B + C).1) N.1 - ((edgePair D.ylo D.yhi ⋯) (B + C).2.1) N.2.1 +
+                    ((edgePair D.xlo D.xhi ⋯) (B + C).2.2.1) N.2.2.1 -
+                  ((edgePair D.xlo D.xhi ⋯) (B + C).2.2.2) N.2.2.2,
+              map_add' := ⋯, map_smul' := ⋯ } ∘ₗ
+            LinearMap.inr ℝ C(↑(Icc D.ylo D.yhi), ℝ)
+              (C(↑(Icc D.ylo D.yhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ))) ∘ₗ
+          LinearMap.inr ℝ C(↑(Icc D.ylo D.yhi), ℝ) (C(↑(Icc D.xlo D.xhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ))) ∘ₗ
+        LinearMap.inr ℝ C(↑(Icc D.xlo D.xhi), ℝ) C(↑(Icc D.xlo D.xhi), ℝ))
+      N =
+    (((({
+                toFun := fun N =>
+                  ((edgePair D.ylo D.yhi ⋯) B.1) N.1 - ((edgePair D.ylo D.yhi ⋯) B.2.1) N.2.1 +
+                      ((edgePair D.xlo D.xhi ⋯) B.2.2.1) N.2.2.1 -
+                    ((edgePair D.xlo D.xhi ⋯) B.2.2.2) N.2.2.2,
+                map_add' := ⋯, map_smul' := ⋯ } +
+              {
+                toFun := fun N =>
+                  ((edgePair D.ylo D.yhi ⋯) C.1) N.1 - ((edgePair D.ylo D.yhi ⋯) C.2.1) N.2.1 +
+                      ((edgePair D.xlo D.xhi ⋯) C.2.2.1) N.2.2.1 -
+                    ((edgePair D.xlo D.xhi ⋯) C.2.2.2) N.2.2.2,
+                map_add' := ⋯, map_smul' := ⋯ }) ∘ₗ
+            LinearMap.inr ℝ C(↑(Icc D.ylo D.yhi), ℝ)
+              (C(↑(Icc D.ylo D.yhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ))) ∘ₗ
+          LinearMap.inr ℝ C(↑(Icc D.ylo D.yhi), ℝ) (C(↑(Icc D.xlo D.xhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ))) ∘ₗ
+        LinearMap.inr ℝ C(↑(Icc D.xlo D.xhi), ℝ) C(↑(Icc D.xlo D.xhi), ℝ))
+      N
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+LeanPML/Rectangle/Green.lean:183:19: error: unsolved goals
+case hl
+D : Rect
+r : ℝ
+B : BoundaryData D
+N : C(↑(Icc D.ylo D.yhi), ℝ)
+⊢ ({
+          toFun := fun N =>
+            r * ((edgePair D.ylo D.yhi ⋯) B.1) N.1 - r * ((edgePair D.ylo D.yhi ⋯) B.2.1) N.2.1 +
+                r * ((edgePair D.xlo D.xhi ⋯) B.2.2.1) N.2.2.1 -
+              r * ((edgePair D.xlo D.xhi ⋯) B.2.2.2) N.2.2.2,
+          map_add' := ⋯, map_smul' := ⋯ } ∘ₗ
+        LinearMap.inl ℝ C(↑(Icc D.ylo D.yhi), ℝ)
+          (C(↑(Icc D.ylo D.yhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ)))
+      N =
+    (((RingHom.id ℝ) r •
+          {
+            toFun := fun N =>
+              ((edgePair D.ylo D.yhi ⋯) B.1) N.1 - ((edgePair D.ylo D.yhi ⋯) B.2.1) N.2.1 +
+                  ((edgePair D.xlo D.xhi ⋯) B.2.2.1) N.2.2.1 -
+                ((edgePair D.xlo D.xhi ⋯) B.2.2.2) N.2.2.2,
+            map_add' := ⋯, map_smul' := ⋯ }) ∘ₗ
+        LinearMap.inl ℝ C(↑(Icc D.ylo D.yhi), ℝ)
+          (C(↑(Icc D.ylo D.yhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ)))
+      N
+
+case hr.hl
+D : Rect
+r : ℝ
+B : BoundaryData D
+N : C(↑(Icc D.ylo D.yhi), ℝ)
+⊢ (({
+            toFun := fun N =>
+              ((edgePair D.ylo D.yhi ⋯) (r • B).1) N.1 - ((edgePair D.ylo D.yhi ⋯) (r • B).2.1) N.2.1 +
+                  ((edgePair D.xlo D.xhi ⋯) (r • B).2.2.1) N.2.2.1 -
+                ((edgePair D.xlo D.xhi ⋯) (r • B).2.2.2) N.2.2.2,
+            map_add' := ⋯, map_smul' := ⋯ } ∘ₗ
+          LinearMap.inr ℝ C(↑(Icc D.ylo D.yhi), ℝ)
+            (C(↑(Icc D.ylo D.yhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ))) ∘ₗ
+        LinearMap.inl ℝ C(↑(Icc D.ylo D.yhi), ℝ) (C(↑(Icc D.xlo D.xhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ)))
+      N =
+    ((((RingHom.id ℝ) r •
+            {
+              toFun := fun N =>
+                ((edgePair D.ylo D.yhi ⋯) B.1) N.1 - ((edgePair D.ylo D.yhi ⋯) B.2.1) N.2.1 +
+                    ((edgePair D.xlo D.xhi ⋯) B.2.2.1) N.2.2.1 -
+                  ((edgePair D.xlo D.xhi ⋯) B.2.2.2) N.2.2.2,
+              map_add' := ⋯, map_smul' := ⋯ }) ∘ₗ
+          LinearMap.inr ℝ C(↑(Icc D.ylo D.yhi), ℝ)
+            (C(↑(Icc D.ylo D.yhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ))) ∘ₗ
+        LinearMap.inl ℝ C(↑(Icc D.ylo D.yhi), ℝ) (C(↑(Icc D.xlo D.xhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ)))
+      N
+
+case hr.hr.hl
+D : Rect
+r : ℝ
+B : BoundaryData D
+N : C(↑(Icc D.xlo D.xhi), ℝ)
+⊢ ((({
+              toFun := fun N =>
+                ((edgePair D.ylo D.yhi ⋯) (r • B).1) N.1 - ((edgePair D.ylo D.yhi ⋯) (r • B).2.1) N.2.1 +
+                    ((edgePair D.xlo D.xhi ⋯) (r • B).2.2.1) N.2.2.1 -
+                  ((edgePair D.xlo D.xhi ⋯) (r • B).2.2.2) N.2.2.2,
+              map_add' := ⋯, map_smul' := ⋯ } ∘ₗ
+            LinearMap.inr ℝ C(↑(Icc D.ylo D.yhi), ℝ)
+              (C(↑(Icc D.ylo D.yhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ))) ∘ₗ
+          LinearMap.inr ℝ C(↑(Icc D.ylo D.yhi), ℝ) (C(↑(Icc D.xlo D.xhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ))) ∘ₗ
+        LinearMap.inl ℝ C(↑(Icc D.xlo D.xhi), ℝ) C(↑(Icc D.xlo D.xhi), ℝ))
+      N =
+    (((((RingHom.id ℝ) r •
+              {
+                toFun := fun N =>
+                  ((edgePair D.ylo D.yhi ⋯) B.1) N.1 - ((edgePair D.ylo D.yhi ⋯) B.2.1) N.2.1 +
+                      ((edgePair D.xlo D.xhi ⋯) B.2.2.1) N.2.2.1 -
+                    ((edgePair D.xlo D.xhi ⋯) B.2.2.2) N.2.2.2,
+                map_add' := ⋯, map_smul' := ⋯ }) ∘ₗ
+            LinearMap.inr ℝ C(↑(Icc D.ylo D.yhi), ℝ)
+              (C(↑(Icc D.ylo D.yhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ))) ∘ₗ
+          LinearMap.inr ℝ C(↑(Icc D.ylo D.yhi), ℝ) (C(↑(Icc D.xlo D.xhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ))) ∘ₗ
+        LinearMap.inl ℝ C(↑(Icc D.xlo D.xhi), ℝ) C(↑(Icc D.xlo D.xhi), ℝ))
+      N
+
+case hr.hr.hr
+D : Rect
+r : ℝ
+B : BoundaryData D
+N : C(↑(Icc D.xlo D.xhi), ℝ)
+⊢ ((({
+              toFun := fun N =>
+                ((edgePair D.ylo D.yhi ⋯) (r • B).1) N.1 - ((edgePair D.ylo D.yhi ⋯) (r • B).2.1) N.2.1 +
+                    ((edgePair D.xlo D.xhi ⋯) (r • B).2.2.1) N.2.2.1 -
+                  ((edgePair D.xlo D.xhi ⋯) (r • B).2.2.2) N.2.2.2,
+              map_add' := ⋯, map_smul' := ⋯ } ∘ₗ
+            LinearMap.inr ℝ C(↑(Icc D.ylo D.yhi), ℝ)
+              (C(↑(Icc D.ylo D.yhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ))) ∘ₗ
+          LinearMap.inr ℝ C(↑(Icc D.ylo D.yhi), ℝ) (C(↑(Icc D.xlo D.xhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ))) ∘ₗ
+        LinearMap.inr ℝ C(↑(Icc D.xlo D.xhi), ℝ) C(↑(Icc D.xlo D.xhi), ℝ))
+      N =
+    (((((RingHom.id ℝ) r •
+              {
+                toFun := fun N =>
+                  ((edgePair D.ylo D.yhi ⋯) B.1) N.1 - ((edgePair D.ylo D.yhi ⋯) B.2.1) N.2.1 +
+                      ((edgePair D.xlo D.xhi ⋯) B.2.2.1) N.2.2.1 -
+                    ((edgePair D.xlo D.xhi ⋯) B.2.2.2) N.2.2.2,
+                map_add' := ⋯, map_smul' := ⋯ }) ∘ₗ
+            LinearMap.inr ℝ C(↑(Icc D.ylo D.yhi), ℝ)
+              (C(↑(Icc D.ylo D.yhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ))) ∘ₗ
+          LinearMap.inr ℝ C(↑(Icc D.ylo D.yhi), ℝ) (C(↑(Icc D.xlo D.xhi), ℝ) × C(↑(Icc D.xlo D.xhi), ℝ))) ∘ₗ
+        LinearMap.inr ℝ C(↑(Icc D.xlo D.xhi), ℝ) C(↑(Icc D.xlo D.xhi), ℝ))
+      N

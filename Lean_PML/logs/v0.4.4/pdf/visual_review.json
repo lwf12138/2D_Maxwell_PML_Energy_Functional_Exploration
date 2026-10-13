@@ -1,0 +1,36 @@
+{
+  "method": "Poppler 150 dpi；主代理实际打开并逐页查看全部6张最终PNG，另有修改前独立人工定位审查",
+  "pages": {
+    "3": {
+      "render": "logs/v0.4.4/pdf/after-3.png",
+      "sha256": "a791b2162fe194e5f64f27877fc72287faeb8791a2beabcc796a772eaf7a3fdd",
+      "review": "红勾及限定文字可见，位置对应公式，字体完整；无裁切、正文/编号遮挡或重复叠加；旧批注保留。"
+    },
+    "4": {
+      "render": "logs/v0.4.4/pdf/after-4.png",
+      "sha256": "e14544ccae19a4e58e6e2ade9fb6f0672ed912dbe96b4c8a7ceb063aea4858ea",
+      "review": "红勾及限定文字可见，位置对应公式，字体完整；无裁切、正文/编号遮挡或重复叠加；旧批注保留。"
+    },
+    "7": {
+      "render": "logs/v0.4.4/pdf/after-7.png",
+      "sha256": "aec25f8742b18763f1967c49be59c0cb8a5dba0b37b1be81af97e6357c6b605d",
+      "review": "红勾及限定文字可见，位置对应公式，字体完整；无裁切、正文/编号遮挡或重复叠加；旧批注保留。"
+    },
+    "8": {
+      "render": "logs/v0.4.4/pdf/after-8.png",
+      "sha256": "aa73a5f0ebeef1237d44625b7a596b794483e1b02dae65aeaff088777325ad76",
+      "review": "红勾及限定文字可见，位置对应公式，字体完整；无裁切、正文/编号遮挡或重复叠加；旧批注保留。"
+    },
+    "10": {
+      "render": "logs/v0.4.4/pdf/after-10.png",
+      "sha256": "8adb74c6acfed71882a5b7658c3a3aa9957715932da6306e7a08d84b42194112",
+      "review": "红勾及限定文字可见，位置对应公式，字体完整；无裁切、正文/编号遮挡或重复叠加；旧批注保留。"
+    },
+    "11": {
+      "render": "logs/v0.4.4/pdf/after-11.png",
+      "sha256": "d09f3967941b761b1fdc75e194c6f9280423670fb623e216c951c1cb89bb84ee",
+      "review": "红勾及限定文字可见，位置对应公式，字体完整；无裁切、正文/编号遮挡或重复叠加；旧批注保留。"
+    }
+  },
+  "status": "passed"
+}

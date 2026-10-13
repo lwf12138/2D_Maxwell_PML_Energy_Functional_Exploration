@@ -1,0 +1,3 @@
+LeanPML/Rectangle/L2Paths.lean:67:2: warning: 'change (continuousToL2 D (restrictContinuous D f)) z = (SmoothField.toL2 D f) z' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`

@@ -1,0 +1,389 @@
+{
+  "target": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf",
+  "input_sha256": "66c0f5dd32a1a983412a08eea40e3cd5d890f3dd987dbfe7e2bb4c7a5ddce1b3",
+  "pages": 18,
+  "annotations_before": 183,
+  "editable": true,
+  "coordinate_system": "PDF点，左上原点；page为1起始实际页序，本轮均等于印刷页码",
+  "entries": [
+    {
+      "id": "v04-original-recovery",
+      "page": 3,
+      "printed_page": 3,
+      "formula": "(2.1)",
+      "kind": "tick",
+      "draw": {
+        "x": 535,
+        "top": 610,
+        "font_size": 6,
+        "lines": [
+          "光滑 primitive",
+          "重构核验",
+          "八条方程"
+        ]
+      },
+      "theorems": [
+        "LeanPML.PML.Concrete.original_reconstruct_at",
+        "LeanPML.PML.Concrete.primitive_to_original_rectangle"
+      ],
+      "scope": "八条方程为原解输入；勾仅表示从光滑 primitive 重构的满足性，非解存在。",
+      "modules": [
+        "LeanPML/PML/Equivalence.lean"
+      ],
+      "source_hashes": {
+        "LeanPML/PML/Equivalence.lean": "7f2b492a0f843dce1eda7521d9ca06f4c5c12fa02371e27a81082f3146965010"
+      },
+      "build_log": "logs/v0.4.4/20261013T230822_044824_lake_build.log",
+      "audit_log": "logs/v0.4.4/20261013T231144_117778_axioms_audit.log"
+    },
+    {
+      "id": "v04-historical-lift",
+      "page": 4,
+      "printed_page": 4,
+      "formula": "(2.3)",
+      "kind": "tick",
+      "draw": {
+        "x": 535,
+        "top": 126,
+        "font_size": 6,
+        "lines": [
+          "历史提升",
+          "初值与求导"
+        ]
+      },
+      "theorems": [
+        "LeanPML.PML.Concrete.integralLift_initial",
+        "LeanPML.PML.Concrete.hasDerivAt_integralLift",
+        "LeanPML.Rectangle.toL2_integralLift_on_Icc"
+      ],
+      "scope": "真实点态时间积分初值、内部求导；C(K) 连续正则性下与 L² Bochner 历史积分相等。定义本身不计证明。",
+      "modules": [
+        "LeanPML/PML/OriginalSystem.lean",
+        "LeanPML/Rectangle/HistoryL2.lean"
+      ],
+      "source_hashes": {
+        "LeanPML/PML/OriginalSystem.lean": "f1006244b8179140ba03c62670e7ec403cb8b96344ed7b6d34ff1a161ca4f9ec",
+        "LeanPML/Rectangle/HistoryL2.lean": "172431b85ca66fe6aa35782e828ad22f6506d7f35fb57d82ef3a77387183ebf3"
+      },
+      "build_log": "logs/v0.4.4/20261013T230822_044824_lake_build.log",
+      "audit_log": "logs/v0.4.4/20261013T231144_117778_axioms_audit.log"
+    },
+    {
+      "id": "v04-five-invariants",
+      "page": 4,
+      "printed_page": 4,
+      "formula": "(2.4)",
+      "kind": "tick",
+      "draw": {
+        "x": 4,
+        "top": 188,
+        "font_size": 6,
+        "lines": [
+          "五个时间",
+          "不变量",
+          "光滑场版"
+        ]
+      },
+      "theorems": [
+        "LeanPML.PML.Concrete.five_invariants_on_Icc",
+        "LeanPML.PML.Concrete.five_invariants_toLp_eq_of_continuous"
+      ],
+      "scope": "从原八式、真实历史提升及混合微分推出任意初始不变量场的保持；实际 L² 表示一致。旧三个点态批注保留。",
+      "modules": [
+        "LeanPML/PML/Equivalence.lean"
+      ],
+      "source_hashes": {
+        "LeanPML/PML/Equivalence.lean": "7f2b492a0f843dce1eda7521d9ca06f4c5c12fa02371e27a81082f3146965010"
+      },
+      "build_log": "logs/v0.4.4/20261013T230822_044824_lake_build.log",
+      "audit_log": "logs/v0.4.4/20261013T231144_117778_axioms_audit.log"
+    },
+    {
+      "id": "v04-compatibility",
+      "page": 4,
+      "printed_page": 4,
+      "formula": "(2.5)",
+      "kind": "tick",
+      "draw": {
+        "x": 4,
+        "top": 409,
+        "font_size": 6,
+        "lines": [
+          "初始兼容",
+          "保持与重构",
+          "光滑场版"
+        ]
+      },
+      "theorems": [
+        "LeanPML.PML.Concrete.compatible_lift_on_Icc",
+        "LeanPML.PML.Concrete.reconstruct_lift_eqOn"
+      ],
+      "scope": "仅初始五不变量为零作输入，推出全区间兼容及四辅助量重构；不是零解。",
+      "modules": [
+        "LeanPML/PML/Equivalence.lean"
+      ],
+      "source_hashes": {
+        "LeanPML/PML/Equivalence.lean": "7f2b492a0f843dce1eda7521d9ca06f4c5c12fa02371e27a81082f3146965010"
+      },
+      "build_log": "logs/v0.4.4/20261013T230822_044824_lake_build.log",
+      "audit_log": "logs/v0.4.4/20261013T231144_117778_axioms_audit.log"
+    },
+    {
+      "id": "v04-equivalence",
+      "page": 4,
+      "printed_page": 4,
+      "formula": "(2.6)、命题 2.1",
+      "kind": "tick",
+      "draw": {
+        "x": 535,
+        "top": 489,
+        "font_size": 6,
+        "lines": [
+          "双向八方程",
+          "光滑类",
+          "固定初始",
+          "原函数"
+        ]
+      },
+      "theorems": [
+        "LeanPML.PML.Concrete.original_to_primitive_rectangle",
+        "LeanPML.PML.Concrete.primitive_to_original_rectangle",
+        "LeanPML.PML.Concrete.lift_reconstruct_eqOn"
+      ],
+      "scope": "所选光滑类，固定初始原函数；包含反向四辅助方程。无解存在唯一性或提升规范唯一性结论。",
+      "modules": [
+        "LeanPML/PML/Equivalence.lean"
+      ],
+      "source_hashes": {
+        "LeanPML/PML/Equivalence.lean": "7f2b492a0f843dce1eda7521d9ca06f4c5c12fa02371e27a81082f3146965010"
+      },
+      "build_log": "logs/v0.4.4/20261013T230822_044824_lake_build.log",
+      "audit_log": "logs/v0.4.4/20261013T231144_117778_axioms_audit.log"
+    },
+    {
+      "id": "v04-poincare-conservative",
+      "page": 7,
+      "printed_page": 7,
+      "formula": "(5.1)",
+      "kind": "note",
+      "draw": {
+        "x": 535,
+        "top": 594,
+        "font_size": 6,
+        "lines": [
+          "v0.4 保守版",
+          "C_P = 2Lx",
+          "非原精确值"
+        ]
+      },
+      "theorems": [
+        "LeanPML.Rectangle.poincare_estimate",
+        "LeanPML.Rectangle.scaleK_rectangle"
+      ],
+      "scope": "已证明同一迹核上的 CP=2Lx，从而 K=32μ(ε+2κ)Lx²；未证明原文精确 π 常数，无完成勾。",
+      "modules": [
+        "LeanPML/Rectangle/Poincare.lean"
+      ],
+      "source_hashes": {
+        "LeanPML/Rectangle/Poincare.lean": "d81389ea5445a9acd8b683b36119da56662dd9df8eb1df6e0787c02412bead9d"
+      },
+      "build_log": "logs/v0.4.4/20261013T230822_044824_lake_build.log",
+      "audit_log": "logs/v0.4.4/20261013T231144_117778_axioms_audit.log"
+    },
+    {
+      "id": "v04-zero-region",
+      "page": 8,
+      "printed_page": 8,
+      "formula": "§5.2 五不变量保持段后的零区保持（未编号）",
+      "kind": "tick",
+      "draw": {
+        "x": 4,
+        "top": 470,
+        "font_size": 6,
+        "lines": [
+          "原场零区",
+          "保持",
+          "须初始φ=0"
+        ]
+      },
+      "theorems": [
+        "LeanPML.PML.Concrete.original_zero_region_preserved"
+      ],
+      "scope": "从原方程、历史提升、五初始兼容及零区 φ₀=0 推出 φ=0；保留一般空间区域，不声称(5.7)/(5.8)传播。",
+      "modules": [
+        "LeanPML/PML/Equivalence.lean"
+      ],
+      "source_hashes": {
+        "LeanPML/PML/Equivalence.lean": "7f2b492a0f843dce1eda7521d9ca06f4c5c12fa02371e27a81082f3146965010"
+      },
+      "build_log": "logs/v0.4.4/20261013T230822_044824_lake_build.log",
+      "audit_log": "logs/v0.4.4/20261013T231144_117778_axioms_audit.log"
+    },
+    {
+      "id": "v04-regularity-input",
+      "page": 10,
+      "printed_page": 10,
+      "formula": "(6.6)",
+      "kind": "note",
+      "draw": {
+        "x": 4,
+        "top": 121,
+        "font_size": 6,
+        "lines": [
+          "v0.4 输入",
+          "光滑/加权",
+          "正则性",
+          "非自动传播"
+        ]
+      },
+      "theorems": [
+        "LeanPML.Rectangle.hasDerivAt_toL2_of_pointwise",
+        "LeanPML.Rectangle.hasDerivAt_weighted_smooth"
+      ],
+      "scope": "选用 C∞ 空间延拓、C(K) 的统一时间正则性及实际加权路径可微作为强于 V7 弱类的条件；已证明到普通/加权路径导数的连接。假设不打勾。",
+      "modules": [
+        "LeanPML/Rectangle/L2Paths.lean",
+        "LeanPML/PML/WeightedCalculus.lean"
+      ],
+      "source_hashes": {
+        "LeanPML/Rectangle/L2Paths.lean": "90e2417b51bc2d3d50d435b4c1e8f38d93b2b70eaf5b842b1263e65900e3a616",
+        "LeanPML/PML/WeightedCalculus.lean": "b092ab64fe52ea571decf3b2c5e9b7fe3d69ecffaf436e07f2ea2114df640d9f"
+      },
+      "build_log": "logs/v0.4.4/20261013T230822_044824_lake_build.log",
+      "audit_log": "logs/v0.4.4/20261013T231144_117778_axioms_audit.log"
+    },
+    {
+      "id": "v04-weighted-recovery",
+      "page": 11,
+      "printed_page": 11,
+      "formula": "(7.2) 后加权链式法则说明（未编号）",
+      "kind": "tick",
+      "draw": {
+        "x": 535,
+        "top": 201,
+        "font_size": 6,
+        "lines": [
+          "加权路径",
+          "真实场恢复",
+          "需加权可导"
+        ]
+      },
+      "theorems": [
+        "LeanPML.Rectangle.weighted_smooth_recovery",
+        "LeanPML.Rectangle.hasDerivAt_weighted_smooth"
+      ],
+      "scope": "实际加权坐标恢复为所选光滑辅助场，普通 L² 导数由真实 C(K) 路径识别；加权范数正则性仍是输入，非自动传播。",
+      "modules": [
+        "LeanPML/PML/WeightedCalculus.lean"
+      ],
+      "source_hashes": {
+        "LeanPML/PML/WeightedCalculus.lean": "b092ab64fe52ea571decf3b2c5e9b7fe3d69ecffaf436e07f2ea2114df640d9f"
+      },
+      "build_log": "logs/v0.4.4/20261013T230822_044824_lake_build.log",
+      "audit_log": "logs/v0.4.4/20261013T231144_117778_axioms_audit.log"
+    },
+    {
+      "id": "v04-green",
+      "page": 11,
+      "printed_page": 11,
+      "formula": "(7.5)",
+      "kind": "tick",
+      "draw": {
+        "x": 4,
+        "top": 613,
+        "font_size": 6,
+        "lines": [
+          "矩形光滑",
+          "四边 Green",
+          "两层 PEC",
+          "边界消去"
+        ]
+      },
+      "theorems": [
+        "LeanPML.Rectangle.green_L2",
+        "LeanPML.Rectangle.greenDomain",
+        "LeanPML.Rectangle.boundary_multiplier_zero",
+        "LeanPML.Rectangle.twoLayer_zeroBoundary"
+      ],
+      "scope": "真实全矩形四边公式，右−左+上−下；u₀零迹+PEC推出u迹，内部真实求导推出E_t迹。另要求闭端点E_t迹时，T=0须初始导数迹。弱H₀¹–H(div) Green未证明。",
+      "modules": [
+        "LeanPML/Rectangle/Green.lean",
+        "LeanPML/Rectangle/BoundaryTime.lean"
+      ],
+      "source_hashes": {
+        "LeanPML/Rectangle/Green.lean": "2ad892998bbb1903480743fdc8bf6663b266c5bc723b92c33a514ea4d08c1289",
+        "LeanPML/Rectangle/BoundaryTime.lean": "b7a45cd50d8a2c710619ef5db4dd9b8dff240e90d290c6c737bc695954bb7edb"
+      },
+      "build_log": "logs/v0.4.4/20261013T230822_044824_lake_build.log",
+      "audit_log": "logs/v0.4.4/20261013T231144_117778_axioms_audit.log"
+    }
+  ],
+  "notes": [
+    {
+      "id": "v04-history-note4",
+      "page": 4,
+      "printed_page": 4,
+      "kind": "note",
+      "draw": {
+        "x": 68,
+        "top": 48,
+        "font_size": 6,
+        "lines": [
+          "v0.4：光滑场层结果；旧点态批注保留历史范围。下列勾不表示解存在或完整弱空间结论。"
+        ]
+      }
+    },
+    {
+      "id": "v04-history-note11",
+      "page": 11,
+      "printed_page": 11,
+      "kind": "note",
+      "draw": {
+        "x": 68,
+        "top": 48,
+        "font_size": 6,
+        "lines": [
+          "v0.4：矩形光滑 Green 与真实微分交换已接通；旧“待完成”批注保留历史，弱空间仍未完成。"
+        ]
+      }
+    }
+  ],
+  "font": "/System/Library/Fonts/Supplemental/Arial Unicode.ttf",
+  "build": "logs/v0.4.4/20261013T230822_044824_lake_build.log",
+  "audit": "logs/v0.4.4/20261013T231144_117778_axioms_audit.log",
+  "source_hashes": {
+    "LeanPML/Rectangle/BoundaryTime.lean": "b7a45cd50d8a2c710619ef5db4dd9b8dff240e90d290c6c737bc695954bb7edb",
+    "LeanPML/Rectangle/L2Paths.lean": "90e2417b51bc2d3d50d435b4c1e8f38d93b2b70eaf5b842b1263e65900e3a616",
+    "LeanPML/Rectangle/Poincare.lean": "d81389ea5445a9acd8b683b36119da56662dd9df8eb1df6e0787c02412bead9d",
+    "LeanPML/Rectangle/Boundary.lean": "c2dc823a7d1a76a1f8be7d502a16e29f79e26a902d63aee4a2d807bd443268b0",
+    "LeanPML/Rectangle/HistoryL2.lean": "172431b85ca66fe6aa35782e828ad22f6506d7f35fb57d82ef3a77387183ebf3",
+    "LeanPML/Rectangle/StatePaths.lean": "457b9277a72e8078c747daec5dd0573c1668c37423509f2eb08d750a4f490f69",
+    "LeanPML/Rectangle/TimeSpace.lean": "777c35c9e4d84874baa8d92b93048b81019799741bd4430c669b3cde5447d19f",
+    "LeanPML/Rectangle/InterfaceAssembly.lean": "05bcf055d2c20172f718870455b740ebf07060ad5ed0c0fb300cfb75fc8940f8",
+    "LeanPML/Rectangle/SmoothPaths.lean": "30098ea7a04a1148fd0191b8f6c9ea52b7c13541e5604f64150f19fedff2302d",
+    "LeanPML/Rectangle/Domain.lean": "6961af4f6b9e5d47ff3d773557d59778f6ab630d70e096c023685e3a563bc9d0",
+    "LeanPML/Rectangle/Green.lean": "2ad892998bbb1903480743fdc8bf6663b266c5bc723b92c33a514ea4d08c1289",
+    "LeanPML/Rectangle/Fields.lean": "282409219402b5e0c415b4487bc76925389382cbf27b0e4cb6e50a7452947fd7",
+    "LeanPML/PML/WeightedCalculus.lean": "b092ab64fe52ea571decf3b2c5e9b7fe3d69ecffaf436e07f2ea2114df640d9f",
+    "LeanPML/PML/OriginalSystem.lean": "f1006244b8179140ba03c62670e7ec403cb8b96344ed7b6d34ff1a161ca4f9ec",
+    "LeanPML/PML/PrimitiveSystem.lean": "b4226fb9f2497bfe7badfed7622c69308f6a848251dbe2ec1b2b32fb5fa97d64",
+    "LeanPML/PML/Equivalence.lean": "7f2b492a0f843dce1eda7521d9ca06f4c5c12fa02371e27a81082f3146965010",
+    "LeanPML/PML/OriginalAssembly.lean": "e4bb5214237490b05b608fc289f67aa84e550e8cb9ac2266a94ed4bce674572e",
+    "LeanPML.lean": "f8babd973d711e474e0076fb5f3f9542b9b7589a351c5941a465b389c5fd1b8b",
+    "Audit.lean": "af113970335e88fd40f858300fa67a95c779b4b3969454a6018578e36409aedf"
+  },
+  "modified_pages": [
+    3,
+    4,
+    7,
+    8,
+    10,
+    11
+  ],
+  "backup": {
+    "target": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf",
+    "backup": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v0.4.4/pdf/V7_global_energy_副本_before_v0.4_20261013T231420_421012+0800.pdf",
+    "sha256_before": "66c0f5dd32a1a983412a08eea40e3cd5d890f3dd987dbfe7e2bb4c7a5ddce1b3",
+    "timestamp": "20261013T231420_421012+0800"
+  }
+}

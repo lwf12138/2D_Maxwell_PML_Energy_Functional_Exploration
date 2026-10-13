@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v0.4_alignment/finish_acceptance.py", line 28, in <module>
+    assert not errors,errors
+AssertionError: [('docs/source_inventory.md', '../logs/v0.4_alignment/acceptance.json'), ('docs/theorem_inventory.md', '../logs/v0.4_alignment/acceptance.json'), ('docs/claim_ledger.md', '../logs/v0.4_alignment/acceptance.json')]

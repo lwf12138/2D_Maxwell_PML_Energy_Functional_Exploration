@@ -1,0 +1,19 @@
+{
+  "stage": "v0.4.4",
+  "command": [
+    "lake",
+    "env",
+    "lean",
+    "LeanPML/PML/OriginalAssembly.lean"
+  ],
+  "command_display": "lake env lean LeanPML/PML/OriginalAssembly.lean",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-13T23:03:32.599818+08:00",
+  "output_file": "20261013T230332_599818_original_assembly_closed_check.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 1,
+  "status": "finished",
+  "ended_at": "2026-10-13T23:03:47.003869+08:00",
+  "elapsed_seconds": 14.402
+}

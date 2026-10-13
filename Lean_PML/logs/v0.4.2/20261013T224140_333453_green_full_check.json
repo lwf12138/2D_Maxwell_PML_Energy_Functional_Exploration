@@ -1,0 +1,19 @@
+{
+  "stage": "v0.4.2",
+  "command": [
+    "lake",
+    "env",
+    "lean",
+    "LeanPML/Rectangle/Green.lean"
+  ],
+  "command_display": "lake env lean LeanPML/Rectangle/Green.lean",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-13T22:41:40.333453+08:00",
+  "output_file": "20261013T224140_333453_green_full_check.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 1,
+  "status": "finished",
+  "ended_at": "2026-10-13T22:41:59.132423+08:00",
+  "elapsed_seconds": 18.799
+}

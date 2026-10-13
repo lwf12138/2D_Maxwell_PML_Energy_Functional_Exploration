@@ -1,0 +1,78 @@
+LeanPML/Rectangle/SmoothPaths.lean:76:62: error: Application type mismatch: The argument
+  (1, 0)
+has type
+  ?m.27 × ?m.29
+but is expected to have type
+  ↑D.closedSet
+in the application
+  hasDerivAt_spaceFDeriv_of_timeDeriv ?m.24 t x (1, 0)
+LeanPML/Rectangle/SmoothPaths.lean:76:8: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  NormedAddCommGroup ↑D.closedSet
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+LeanPML/Rectangle/SmoothPaths.lean:77:43: error: Type mismatch
+  J.deriv_value t ↑y
+has type
+  HasDerivAt (fun s => ↑(J.value s) ↑y) (↑(J.first t) ↑y) t
+but is expected to have type
+  HasDerivAt (fun s => ?m.22 s y) (?m.23 t y) t
+LeanPML/Rectangle/SmoothPaths.lean:86:62: error: Application type mismatch: The argument
+  (0, 1)
+has type
+  ?m.27 × ?m.29
+but is expected to have type
+  ↑D.closedSet
+in the application
+  hasDerivAt_spaceFDeriv_of_timeDeriv ?m.24 t x (0, 1)
+LeanPML/Rectangle/SmoothPaths.lean:86:8: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  NormedAddCommGroup ↑D.closedSet
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+LeanPML/Rectangle/SmoothPaths.lean:87:43: error: Type mismatch
+  J.deriv_value t ↑y
+has type
+  HasDerivAt (fun s => ↑(J.value s) ↑y) (↑(J.first t) ↑y) t
+but is expected to have type
+  HasDerivAt (fun s => ?m.22 s y) (?m.23 t y) t
+LeanPML/Rectangle/SmoothPaths.lean:96:62: error: Application type mismatch: The argument
+  (1, 0)
+has type
+  ?m.27 × ?m.29
+but is expected to have type
+  ↑D.closedSet
+in the application
+  hasDerivAt_spaceFDeriv_of_timeDeriv ?m.24 t x (1, 0)
+LeanPML/Rectangle/SmoothPaths.lean:96:8: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  NormedAddCommGroup ↑D.closedSet
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+LeanPML/Rectangle/SmoothPaths.lean:97:43: error: Type mismatch
+  J.deriv_first t ↑y
+has type
+  HasDerivAt (fun s => ↑(J.first s) ↑y) (↑(J.second t) ↑y) t
+but is expected to have type
+  HasDerivAt (fun s => ?m.22 s y) (?m.23 t y) t
+LeanPML/Rectangle/SmoothPaths.lean:106:62: error: Application type mismatch: The argument
+  (0, 1)
+has type
+  ?m.27 × ?m.29
+but is expected to have type
+  ↑D.closedSet
+in the application
+  hasDerivAt_spaceFDeriv_of_timeDeriv ?m.24 t x (0, 1)
+LeanPML/Rectangle/SmoothPaths.lean:106:8: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  NormedAddCommGroup ↑D.closedSet
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+LeanPML/Rectangle/SmoothPaths.lean:107:43: error: Type mismatch
+  J.deriv_first t ↑y
+has type
+  HasDerivAt (fun s => ↑(J.first s) ↑y) (↑(J.second t) ↑y) t
+but is expected to have type
+  HasDerivAt (fun s => ?m.22 s y) (?m.23 t y) t
+LeanPML/Rectangle/SmoothPaths.lean:129:4: error: Type mismatch: After simplification, term
+  Continuous.comp (ContinuousLinearMap.continuous (continuousToL2 D)) hF
+ has type
+  Continuous (⇑(continuousToL2 D) ∘ fun t => (restrictContinuous D) (F t))
+but is expected to have type
+  Continuous fun t => (SmoothField.toL2 D) (F t)

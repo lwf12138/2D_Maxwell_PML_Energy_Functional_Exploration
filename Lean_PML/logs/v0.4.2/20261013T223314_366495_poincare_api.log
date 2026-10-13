@@ -1,0 +1,78 @@
+logs/v0.4.2/GreenScratch.lean:48:15: warning: `ContinuousLinearMap.add_apply` has been deprecated: Use `add_apply` instead
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.add_apply` to `add_apply x`).
+logs/v0.4.2/GreenScratch.lean:48:46: warning: `ContinuousLinearMap.smul_apply` has been deprecated: Use `smul_apply` instead
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.smul_apply` to `smul_apply x`).
+logs/v0.4.2/GreenScratch.lean:58:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ∫ (a : ℝ × ℝ) in Icc a b,
+    ((fun z => f z * ((fderiv ℝ X z) (1, 0) + (fderiv ℝ Y z) (0, 1))) + fun z => (fderiv ℝ f z) (1, 0) * X z) a +
+      (fderiv ℝ f a) (0, 1) * Y a
+in the target expression
+  ∫ (x : ℝ × ℝ) in Icc a b,
+      f x * ((fderiv ℝ X x) (1, 0) + (fderiv ℝ Y x) (0, 1)) + (fderiv ℝ f x) (1, 0) * X x +
+        (fderiv ℝ f x) (0, 1) * Y x =
+    (((∫ (x : ℝ) in a.1..b.1, f (x, b.2) * Y (x, b.2)) - ∫ (x : ℝ) in a.1..b.1, f (x, a.2) * Y (x, a.2)) +
+        ∫ (y : ℝ) in a.2..b.2, f (b.1, y) * X (b.1, y)) -
+      ∫ (y : ℝ) in a.2..b.2, f (a.1, y) * X (a.1, y)
+
+a b : ℝ × ℝ
+hab : a ≤ b
+f X Y : ℝ × ℝ → ℝ
+hf : ContDiff ℝ ∞ f
+hX : ContDiff ℝ ∞ X
+hY : ContDiff ℝ ∞ Y
+hdf : Differentiable ℝ f
+hdX : Differentiable ℝ X
+hdY : Differentiable ℝ Y
+hfx : Continuous fun z => (fderiv ℝ f z) (1, 0)
+hfy : Continuous fun z => (fderiv ℝ f z) (0, 1)
+hXx : Continuous fun z => (fderiv ℝ X z) (1, 0)
+hYy : Continuous fun z => (fderiv ℝ Y z) (0, 1)
+hprodX : ContDiff ℝ ∞ fun z => f z * X z
+hprodY : ContDiff ℝ ∞ fun z => f z * Y z
+hdiv_cont : Continuous fun z => (fderiv ℝ (fun z => f z * X z) z) (1, 0) + (fderiv ℝ (fun z => f z * Y z) z) (0, 1)
+hexpand :
+  ∀ (z : ℝ × ℝ),
+    (fderiv ℝ (fun z => f z * X z) z) (1, 0) + (fderiv ℝ (fun z => f z * Y z) z) (0, 1) =
+      f z * ((fderiv ℝ X z) (1, 0) + (fderiv ℝ Y z) (0, 1)) + (fderiv ℝ f z) (1, 0) * X z + (fderiv ℝ f z) (0, 1) * Y z
+hgreen :
+  ∫ (x : ℝ × ℝ) in Icc a b,
+      f x * ((fderiv ℝ X x) (1, 0) + (fderiv ℝ Y x) (0, 1)) + (fderiv ℝ f x) (1, 0) * X x +
+        (fderiv ℝ f x) (0, 1) * Y x =
+    (((∫ (x : ℝ) in a.1..b.1, f (x, b.2) * Y (x, b.2)) - ∫ (x : ℝ) in a.1..b.1, f (x, a.2) * Y (x, a.2)) +
+        ∫ (y : ℝ) in a.2..b.2, f (b.1, y) * X (b.1, y)) -
+      ∫ (y : ℝ) in a.2..b.2, f (a.1, y) * X (a.1, y)
+hiMain : Integrable (fun z => f z * ((fderiv ℝ X z) (1, 0) + (fderiv ℝ Y z) (0, 1))) (volume.restrict (Icc a b))
+hiX : Integrable (fun z => (fderiv ℝ f z) (1, 0) * X z) (volume.restrict (Icc a b))
+hiY : Integrable (fun z => (fderiv ℝ f z) (0, 1) * Y z) (volume.restrict (Icc a b))
+⊢ ∫ (z : ℝ × ℝ) in Icc a b, f z * ((fderiv ℝ X z) (1, 0) + (fderiv ℝ Y z) (0, 1)) =
+    ((-∫ (z : ℝ × ℝ) in Icc a b, (fderiv ℝ f z) (1, 0) * X z) - ∫ (z : ℝ × ℝ) in Icc a b, (fderiv ℝ f z) (0, 1) * Y z) +
+      ((((∫ (x : ℝ) in a.1..b.1, f (x, b.2) * Y (x, b.2)) - ∫ (x : ℝ) in a.1..b.1, f (x, a.2) * Y (x, a.2)) +
+          ∫ (y : ℝ) in a.2..b.2, f (b.1, y) * X (b.1, y)) -
+        ∫ (y : ℝ) in a.2..b.2, f (a.1, y) * X (a.1, y))
+fderiv_sub_const.{u_1, u_2, u_3} {𝕜 : Type u_1} [NontriviallyNormedField 𝕜] {E : Type u_2} [NormedAddCommGroup E]
+  [NormedSpace 𝕜 E] {F : Type u_3} [NormedAddCommGroup F] [NormedSpace 𝕜 F] {f : E → F} {x : E} (c : F) :
+  fderiv 𝕜 (fun y => f y - c) x = fderiv 𝕜 f x
+fderiv_fst.{u_1, u_2, u_3} {𝕜 : Type u_1} [NontriviallyNormedField 𝕜] {E : Type u_2} [NormedAddCommGroup E]
+  [NormedSpace 𝕜 E] {F : Type u_3} [NormedAddCommGroup F] [NormedSpace 𝕜 F] {p : E × F} :
+  fderiv 𝕜 Prod.fst p = ContinuousLinearMap.fst 𝕜 E F
+hasFDerivAt_fst.{u_1, u_2, u_3} {𝕜 : Type u_1} [NontriviallyNormedField 𝕜] {E : Type u_2} [NormedAddCommGroup E]
+  [NormedSpace 𝕜 E] {F : Type u_3} [NormedAddCommGroup F] [NormedSpace 𝕜 F] {p : E × F} :
+  HasFDerivAt Prod.fst (ContinuousLinearMap.fst 𝕜 E F) p
+ContDiff.fst.{u_1, u_2, u_3, u_4} {𝕜 : Type u_1} {E : Type u_2} {F : Type u_3} {G : Type u_4}
+  [NontriviallyNormedField 𝕜] [NormedAddCommGroup E] [NormedSpace 𝕜 E] [NormedAddCommGroup F] [NormedSpace 𝕜 F]
+  [NormedAddCommGroup G] [NormedSpace 𝕜 G] {n : ℕ∞ω} {f : E → F × G} (hf : ContDiff 𝕜 n f) :
+  ContDiff 𝕜 n fun x => (f x).1
+Continuous.integrableOn_Icc.{u_1, u_6} {X : Type u_1} {E : Type u_6} [MeasurableSpace X] [TopologicalSpace X]
+  [NormedAddCommGroup E] {μ : Measure X} [OpensMeasurableSpace X] {f : X → E} {a b : X} [IsFiniteMeasureOnCompacts μ]
+  [Preorder X] [CompactIccSpace X] [T2Space X] (hf : Continuous f) : IntegrableOn f (Icc a b) μ
+MeasureTheory.setIntegral_mono_on.{u_1, u_3} {X : Type u_1} {E : Type u_3} {mX : MeasurableSpace X}
+  [NormedAddCommGroup E] [NormedSpace ℝ E] [PartialOrder E] [IsOrderedAddMonoid E] [IsOrderedModule ℝ E] {μ : Measure X}
+  {f g : X → E} {s : Set X} [ClosedIciTopology E] (hf : IntegrableOn f s μ) (hg : IntegrableOn g s μ)
+  (hs : MeasurableSet s) (h : ∀ x ∈ s, f x ≤ g x) : ∫ (x : X) in s, f x ∂μ ≤ ∫ (x : X) in s, g x ∂μ
+MeasureTheory.integral_mono_ae.{u_1, u_2} {α : Type u_1} {E : Type u_2} [NormedAddCommGroup E] [NormedSpace ℝ E]
+  {m : MeasurableSpace α} {μ : Measure α} [PartialOrder E] [IsOrderedAddMonoid E] [IsOrderedModule ℝ E]
+  [ClosedIciTopology E] {f g : α → E} (hf : Integrable f μ) (hg : Integrable g μ) (h : f ≤ᵐ[μ] g) :
+  ∫ (x : α), f x ∂μ ≤ ∫ (x : α), g x ∂μ
+logs/v0.4.2/GreenScratch.lean:68:7: error(lean.unknownIdentifier): Unknown identifier `integral_congr`

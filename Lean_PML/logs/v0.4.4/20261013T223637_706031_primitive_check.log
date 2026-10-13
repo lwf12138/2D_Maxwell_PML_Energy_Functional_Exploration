@@ -1,0 +1,75 @@
+LeanPML/PML/PrimitiveSystem.lean:22:2: error: unexpected token 'λ'; expected command
+LeanPML/PML/PrimitiveSystem.lean:28:31: warning: Variable name `μ` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+LeanPML/PML/PrimitiveSystem.lean:33:2: error: unexpected token 'λ'; expected command
+LeanPML/PML/PrimitiveSystem.lean:40:11: error: Invalid field notation: Identifier or numeral expected
+LeanPML/PML/PrimitiveSystem.lean:40:12: error: unexpected token 'λ'; expected command
+LeanPML/PML/PrimitiveSystem.lean:53:31: error(lean.invalidField): Invalid field `φx`: The environment does not contain `LeanPML.PML.Concrete.PrimitiveFields.φx`, so it is not possible to project the field `φx` from an expression
+  U
+of type `PrimitiveFields`
+LeanPML/PML/PrimitiveSystem.lean:54:43: error(lean.invalidField): Invalid field `φx`: The environment does not contain `LeanPML.PML.Concrete.PrimitiveFields.φx`, so it is not possible to project the field `φx` from an expression
+  U
+of type `PrimitiveFields`
+LeanPML/PML/PrimitiveSystem.lean:55:31: error(lean.invalidField): Invalid field `φy`: The environment does not contain `LeanPML.PML.Concrete.PrimitiveFields.φy`, so it is not possible to project the field `φy` from an expression
+  U
+of type `PrimitiveFields`
+LeanPML/PML/PrimitiveSystem.lean:56:43: error(lean.invalidField): Invalid field `φy`: The environment does not contain `LeanPML.PML.Concrete.PrimitiveFields.φy`, so it is not possible to project the field `φy` from an expression
+  U
+of type `PrimitiveFields`
+LeanPML/PML/PrimitiveSystem.lean:57:11: error: Invalid field notation: Identifier or numeral expected
+LeanPML/PML/PrimitiveSystem.lean:57:12: error: unexpected token 'λ'; expected command
+LeanPML/PML/PrimitiveSystem.lean:64:26: error(lean.unknownIdentifier): Unknown identifier `PrimitiveAt`
+LeanPML/PML/PrimitiveSystem.lean:83:2: error: 'change' tactic failed, pattern
+  spaceDx (fun s Y => μ * F.Hy s Y) t X + spaceDy (fun s Y => -μ * F.Hx s Y) t X = ?m.26
+is not definitionally equal to target
+  fluxDiv (lift F μ u₀ q₀) t X = μ * (spaceDx F.Hy t X - spaceDy F.Hx t X)
+LeanPML/PML/PrimitiveSystem.lean:99:19: error(lean.invalidField): Invalid field `φy`: The environment does not contain `LeanPML.PML.Concrete.PrimitiveFields.φy`, so it is not possible to project the field `φy` from an expression
+  U
+of type `PrimitiveFields`
+LeanPML/PML/PrimitiveSystem.lean:102:19: error(lean.invalidField): Invalid field `φx`: The environment does not contain `LeanPML.PML.Concrete.PrimitiveFields.φx`, so it is not possible to project the field `φx` from an expression
+  U
+of type `PrimitiveFields`
+LeanPML/PML/PrimitiveSystem.lean:112:39: error: unexpected token 'λ'; expected ')', ',' or ':'
+LeanPML/PML/PrimitiveSystem.lean:132:13: error(lean.unknownIdentifier): Unknown identifier `magnetic_lift_derivatives`
+LeanPML/PML/PrimitiveSystem.lean:131:69: error: unsolved goals
+ε κ τ μ : ℝ
+p r : ℝ → ℝ
+F : OriginalFields
+u₀ q₀ : Point → ℝ
+t : ℝ
+X : Point
+hOriginal : OriginalAt ε κ τ μ p r F t X
+hgradX : HasDerivAt (fun s => spaceDx (integralLift F.E u₀) s X) (spaceDx F.E t X) t
+hgradY : HasDerivAt (fun s => spaceDy (integralLift F.E u₀) s X) (spaceDy F.E t X) t
+⊢ HasDerivAt (fun s => invariantX F (lift F μ u₀ q₀) p s X) 0 t ∧
+    HasDerivAt (fun s => invariantY F (lift F μ u₀ q₀) r s X) 0 t
+LeanPML/PML/PrimitiveSystem.lean:169:51: error(lean.invalidField): Invalid field `φx`: The environment does not contain `LeanPML.PML.Concrete.PrimitiveFields.φx`, so it is not possible to project the field `φx` from an expression
+  lift F μ u₀ q₀
+of type `PrimitiveFields`
+LeanPML/PML/PrimitiveSystem.lean:170:51: error(lean.invalidField): Invalid field `φy`: The environment does not contain `LeanPML.PML.Concrete.PrimitiveFields.φy`, so it is not possible to project the field `φy` from an expression
+  lift F μ u₀ q₀
+of type `PrimitiveFields`
+LeanPML/PML/PrimitiveSystem.lean:175:63: error: unsolved goals
+ε κ τ μ T : ℝ
+p r : ℝ → ℝ
+F : OriginalFields
+u₀ q₀ : Point → ℝ
+X : Point
+hT : 0 ≤ T
+hE : Continuous fun t => F.E t X
+hP : Continuous fun t => F.P t X
+hZ1 : ContinuousOn (fun t => F.Z1 t X) (Icc 0 T)
+hZ2 : ContinuousOn (fun t => F.Z2 t X) (Icc 0 T)
+hQx : ContinuousOn (fun t => F.Qx t X) (Icc 0 T)
+hQy : ContinuousOn (fun t => F.Qy t X) (Icc 0 T)
+hφx : ContinuousOn (fun t => sorry) (Icc 0 T)
+hφy : ContinuousOn (fun t => sorry) (Icc 0 T)
+hOriginal : ∀ t ∈ Ioo 0 T, OriginalAt ε κ τ μ p r F t X
+hgradX : ∀ t ∈ Ioo 0 T, HasDerivAt (fun s => spaceDx (integralLift F.E u₀) s X) (spaceDx F.E t X) t
+hgradY : ∀ t ∈ Ioo 0 T, HasDerivAt (fun s => spaceDy (integralLift F.E u₀) s X) (spaceDy F.E t X) t
+t : ℝ
+ht : t ∈ Icc 0 T
+⊢ InvariantsEqualInitial F (lift F μ u₀ q₀) ε κ τ p r t X

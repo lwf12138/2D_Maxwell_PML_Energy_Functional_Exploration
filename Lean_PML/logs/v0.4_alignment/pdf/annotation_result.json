@@ -1,0 +1,115 @@
+{
+  "pages": 18,
+  "old_annotations": 195,
+  "added_annotations": 5,
+  "added_red_ticks": 1,
+  "annotations_after": 200,
+  "modified_pages": [
+    3,
+    4,
+    7,
+    15
+  ],
+  "original_text_preserved": true,
+  "old_annotations_preserved": true,
+  "text_and_annotation_overlap": 0,
+  "sha256_before": "9021fff043b09278fd918dc4ef0342a0295e3aa7941e52825f59a286fd71a8f3",
+  "sha256_after": "b7cff33c435944c4c24bf5327246015523368c7015e3b6fb6b65348f8fc5819d",
+  "plan_sha256": "8fa6f6f713fc620a6c0a7078a42edfbbfa73ba38bc4803832496e90525f4e05e",
+  "draws": [
+    {
+      "x": 68,
+      "top": 48,
+      "font_size": 6.5,
+      "lines": [
+        "v0.4 对齐：古典包装显式给出 E、Hx、Hy 的空间可导证据；八方程输入本身不保证空间光滑。"
+      ],
+      "id": "classical-original",
+      "page": 3,
+      "tick": false,
+      "scope": "(2.1)：旧光滑重构核验的接口限定\n原式定义不打新勾。旧高层的光滑代表原已成立，本次正式推出空间DifferentiableAt及坐标HasDerivAt，并给带PEC反向古典包装；不是认为底层fderiv等式自动可导。\nLeanPML.PML.Concrete.originalClassicalOn_of_liftIdentified\nLeanPML.PML.Concrete.primitive_to_original_classical_rectangle\n证据：\nlogs/v0.4_alignment/20261014T000055_917026_lake_build.log\nlogs/v0.4_alignment/20261014T000341_178705_axioms_audit.log",
+      "rect_top": [
+        67,
+        46,
+        340.92724609375,
+        56.5
+      ]
+    },
+    {
+      "x": 68,
+      "top": 60,
+      "font_size": 6,
+      "lines": [
+        "对齐补充：古典双向映射已显式携带真实空间可导；仅所选强光滑类，非完整弱解理论。"
+      ],
+      "id": "classical-equivalence",
+      "page": 4,
+      "tick": false,
+      "scope": "(2.6)、命题2.1：旧双向光滑标注补充\n现有红勾保留。准确包装同时携带原E/H与primitive u/E/Λ可导；推荐入口由光滑识别及μ非零生成空间证据，域内改写原系数，实际调用古典链。初值、PEC、强正则性仍需声明；未发布v0.5主定理。\nLeanPML.PML.Concrete.original_to_primitive_classical_rectangle\nLeanPML.PML.Concrete.primitive_to_original_classical_rectangle\nLeanPML.Rectangle.RegionalAbsorption.originalRegionalFiniteIntervalProblem\n证据：\nlogs/v0.4_alignment/20261014T000055_917026_lake_build.log\nlogs/v0.4_alignment/20261014T000341_178705_axioms_audit.log",
+      "rect_top": [
+        67,
+        58,
+        303.0,
+        68.0
+      ]
+    },
+    {
+      "x": 4,
+      "top": 638,
+      "font_size": 6,
+      "lines": [
+        "对齐：幅度界",
+        "仅闭坐标区间",
+        "域外截回代表",
+        "积分 a.e. 一致"
+      ],
+      "id": "regional-amplitude",
+      "page": 7,
+      "tick": false,
+      "scope": "(5.2)–(5.3)：物理幅度域范围\n假设范围说明，不给假设打完成勾。原p/r非负/幅度仅Icc坐标区间；内部截回代表与原场在闭矩形和体积分a.e.一致，权重/成员/能量耗散可积积分正式连接。保留全零、边层、角层，原技术延拓不需域外物理幅度界。\nLeanPML.Rectangle.RegionalAbsorption.coefficients_eq_closed\nLeanPML.Rectangle.RegionalAbsorption.coefficients_ae\nLeanPML.Rectangle.RegionalAbsorption.weighted_memLp_iff\nLeanPML.Rectangle.RegionalAbsorption.fieldEnergy_eq_regional_integral\nLeanPML.Rectangle.RegionalAbsorption.fieldDissipation_eq_regional_integral\n证据：\nlogs/v0.4_alignment/20261014T000055_917026_lake_build.log\nlogs/v0.4_alignment/20261014T000341_178705_axioms_audit.log",
+      "rect_top": [
+        3,
+        636,
+        42.341796875,
+        670.6
+      ]
+    },
+    {
+      "x": 68,
+      "top": 526,
+      "font_size": 7,
+      "lines": [
+        "对齐证书：C_P=4，K=384；c=1/16384，S=1/65536（保守 C_P=2Lx）。"
+      ],
+      "id": "conservative-parameter-certificate",
+      "page": 15,
+      "tick": true,
+      "scope": "§10参数例旁的本轮替代证书（原文未单列）\n只对本轮实际(-1,1)^2及ε=κ=τ=μ=1参数证书打勾：CP4、A3、K384；三条显式界依次3/2097152、9/16、3/2048≤1，并调用阈值等价。不是原(10.1)/(10.2)配置完成勾，不含二维剖面、初值族或解存在。\nLeanPML.Rectangle.ParameterCertificate.unitSquare_parameter_certificate\nLeanPML.Rectangle.ParameterCertificate.unitSquare_explicit_smallness\nLeanPML.Rectangle.ParameterCertificate.unitSquare_le_threshold\n证据：\nlogs/v0.4_alignment/20261014T000055_917026_lake_build.log\nlogs/v0.4_alignment/20261014T000341_178705_axioms_audit.log",
+      "rect_top": [
+        67,
+        524,
+        314.13525390625,
+        535.0
+      ]
+    },
+    {
+      "x": 68,
+      "top": 538,
+      "font_size": 6.5,
+      "lines": [
+        "原(10.1)未沿用：在 K=384 下，旧 c=1/128 使 8cAK=72>1；这不否定原精确π常数例。"
+      ],
+      "id": "old-example-not-transferable",
+      "page": 15,
+      "tick": false,
+      "scope": "(10.1)旧例与保守常数的区别\n正式反证说明旧c不能迁移至本轮保守CP。保留原论文配置与全部原批注；原(5.1)精确π常数仍未证明。\nLeanPML.Rectangle.ParameterCertificate.oldC_material_condition_value\nLeanPML.Rectangle.ParameterCertificate.oldC_not_le_threshold\n证据：\nlogs/v0.4_alignment/20261014T000055_917026_lake_build.log\nlogs/v0.4_alignment/20261014T000341_178705_axioms_audit.log",
+      "rect_top": [
+        67,
+        536,
+        318.6787109375,
+        546.5
+      ]
+    }
+  ],
+  "visual_review": "passed"
+}

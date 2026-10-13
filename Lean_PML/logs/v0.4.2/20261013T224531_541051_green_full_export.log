@@ -1,0 +1,28 @@
+LeanPML/Rectangle/Green.lean:301:13: warning: This simp argument is unused:
+  SmoothField.derivativeX_apply
+
+Hint: Omit it from the simp argument list.
+  simp only [̵S̵m̵o̵o̵t̵h̵F̵i̵e̵l̵d̵.̵d̵e̵r̵i̵v̵a̵t̵i̵v̵e̵X̵_̵a̵p̵p̵l̵y̵,̵ ̵S̵m̵o̵o̵t̵h̵F̵i̵e̵l̵d̵.̵d̵e̵r̵i̵v̵a̵t̵i̵v̵e̵Y̵_̵a̵p̵p̵l̵y̵,̵ ̵d̵x̵,̵d̵y̵]̵[̲S̲m̲o̲o̲t̲h̲F̲i̲e̲l̲d̲.̲d̲e̲r̲i̲v̲a̲t̲i̲v̲e̲Y̲_̲a̲p̲p̲l̲y̲,̲ ̲d̲x̲,̲ ̲d̲y̲]̲ at hraw ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/Rectangle/Green.lean:301:44: warning: This simp argument is unused:
+  SmoothField.derivativeY_apply
+
+Hint: Omit it from the simp argument list.
+  simp only [SmoothField.derivativeX_apply, S̵m̵o̵o̵t̵h̵F̵i̵e̵l̵d̵.̵d̵e̵r̵i̵v̵a̵t̵i̵v̵e̵Y̵_̵a̵p̵p̵l̵y̵,̵ ̵d̵x̵,̵d̵y̵]̵d̲x̲,̲ ̲d̲y̲]̲ at hraw ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/Rectangle/Green.lean:301:75: warning: This simp argument is unused:
+  dx
+
+Hint: Omit it from the simp argument list.
+  simp only [SmoothField.derivativeX_apply, SmoothField.derivativeY_apply, dx̵,̵d̵y] at hraw ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/Rectangle/Green.lean:301:78: warning: This simp argument is unused:
+  dy
+
+Hint: Omit it from the simp argument list.
+  simp only [SmoothField.derivativeX_apply, SmoothField.derivativeY_apply, dx,̵d̵y̵] at hraw ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

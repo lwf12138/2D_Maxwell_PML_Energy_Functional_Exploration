@@ -1,0 +1,28 @@
+LeanPML/Rectangle/Poincare.lean:124:2: error: linarith failed to find a contradiction
+D : Rect
+f : SmoothField
+htrace : ZeroBoundary D ↑f
+hx :
+  ∫ (z : ℝ × ℝ) in Icc (D.xlo, D.ylo) (D.xhi, D.yhi), ↑f z ^ 2 ≤
+    (2 * ((D.xhi, D.yhi).1 - (D.xlo, D.ylo).1)) ^ 2 *
+      ∫ (z : ℝ × ℝ) in Icc (D.xlo, D.ylo) (D.xhi, D.yhi), (fderiv ℝ (↑f) z) (1, 0) ^ 2
+hy_nonneg : 0 ≤ ∫ (z : ℝ × ℝ) in Icc (D.xlo, D.ylo) (D.xhi, D.yhi), dy (↑f) z ^ 2 ∂volume
+a✝ :
+  (2 * (D.xhi - D.xlo)) ^ 2 *
+      (∫ (z : ℝ × ℝ) in Icc (D.xlo, D.ylo) (D.xhi, D.yhi), (fderiv ℝ (↑f) z) (1, 0) ^ 2 ∂volume +
+        ∫ (z : ℝ × ℝ) in Icc (D.xlo, D.ylo) (D.xhi, D.yhi), (fderiv ℝ (↑f) z) (0, 1) ^ 2 ∂volume) <
+    ∫ (z : ℝ × ℝ) in Icc (D.xlo, D.ylo) (D.xhi, D.yhi), ↑f z ^ 2 ∂volume
+⊢ False
+failed
+LeanPML/Rectangle/Poincare.lean:171:2: error: Type mismatch: After simplification, term
+  hbound
+ has type
+  ‖(SmoothField.toL2 D) (rectangleBubble D)‖ ^ 2 ≤
+    poincareConstant D ^ 2 *
+      (‖(spatialDomain D).componentX ⟨(SmoothField.toL2 D) (rectangleBubble D), ⋯⟩‖ ^ 2 +
+        ‖(spatialDomain D).componentY ⟨(SmoothField.toL2 D) (rectangleBubble D), ⋯⟩‖ ^ 2)
+but is expected to have type
+  ‖(SmoothField.toL2 D) (rectangleBubble D)‖ ^ 2 ≤
+    poincareConstant D ^ 2 *
+      (‖(SmoothField.toL2 D) (rectangleBubble D).derivativeX‖ ^ 2 +
+        ‖(SmoothField.toL2 D) (rectangleBubble D).derivativeY‖ ^ 2)

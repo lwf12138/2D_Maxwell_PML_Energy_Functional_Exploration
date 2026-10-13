@@ -1,0 +1,33 @@
+LeanPML/Rectangle/BoundaryTime.lean:33:6: error: Type mismatch: After simplification, term
+  hzero.left y hclosed.right
+ has type
+  f (D.xhi, y) = 0
+but is expected to have type
+  f (x, y) = 0
+LeanPML/Rectangle/BoundaryTime.lean:34:6: error: Type mismatch: After simplification, term
+  hzero.right.left y hclosed.right
+ has type
+  f (D.xlo, y) = 0
+but is expected to have type
+  f (x, y) = 0
+LeanPML/Rectangle/BoundaryTime.lean:35:6: error: Type mismatch: After simplification, term
+  hzero.right.right.left x hclosed.left
+ has type
+  f (x, D.yhi) = 0
+but is expected to have type
+  f (x, y) = 0
+LeanPML/Rectangle/BoundaryTime.lean:36:6: error: Type mismatch: After simplification, term
+  hzero.right.right.right x hclosed.left
+ has type
+  f (x, D.ylo) = 0
+but is expected to have type
+  f (x, y) = 0
+LeanPML/Rectangle/BoundaryTime.lean:81:4: error: Type mismatch: After simplification, term
+  hu₀
+ has type
+  ZeroBoundary D u₀
+but is expected to have type
+  ZeroBoundary D (integralLift E u₀ 0)
+LeanPML/Rectangle/BoundaryTime.lean:95:4: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  IsOpen.mem_nhds isOpen_Ioo ht
+has type `(𝓝 t).1 (Ioo 0 T)` which does not have the necessary form.

@@ -1,0 +1,228 @@
+{
+  "target": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf",
+  "input_sha256": "9021fff043b09278fd918dc4ef0342a0295e3aa7941e52825f59a286fd71a8f3",
+  "pages": 18,
+  "annotations_before": 195,
+  "coordinate_system": "PDF点，左上原点；实际页序与印刷页码相同",
+  "entries": [
+    {
+      "id": "classical-original",
+      "page": 3,
+      "printed_page": 3,
+      "formula": "(2.1)：旧光滑重构核验的接口限定",
+      "kind": "note",
+      "draw": {
+        "x": 68,
+        "top": 48,
+        "font_size": 6.5,
+        "lines": [
+          "v0.4 对齐：古典包装显式给出 E、Hx、Hy 的空间可导证据；八方程输入本身不保证空间光滑。"
+        ]
+      },
+      "theorems": [
+        "LeanPML.PML.Concrete.originalClassicalOn_of_liftIdentified",
+        "LeanPML.PML.Concrete.primitive_to_original_classical_rectangle"
+      ],
+      "modules": [
+        "LeanPML/PML/ClassicalSystem.lean"
+      ],
+      "scope": "原式定义不打新勾。旧高层的光滑代表原已成立，本次正式推出空间DifferentiableAt及坐标HasDerivAt，并给带PEC反向古典包装；不是认为底层fderiv等式自动可导。",
+      "source_hashes": {
+        "LeanPML/PML/ClassicalSystem.lean": "63ea7a2dae932b24c15bf71f10711bdcd8c0754177b43e917d503f8305125d8a"
+      },
+      "build_log": "logs/v0.4_alignment/20261014T000055_917026_lake_build.log",
+      "audit_log": "logs/v0.4_alignment/20261014T000341_178705_axioms_audit.log"
+    },
+    {
+      "id": "classical-equivalence",
+      "page": 4,
+      "printed_page": 4,
+      "formula": "(2.6)、命题2.1：旧双向光滑标注补充",
+      "kind": "note",
+      "draw": {
+        "x": 68,
+        "top": 34,
+        "font_size": 6.5,
+        "lines": [
+          "对齐补充：古典双向映射已显式携带真实空间可导；仅所选强光滑类，非完整弱解理论。"
+        ]
+      },
+      "theorems": [
+        "LeanPML.PML.Concrete.original_to_primitive_classical_rectangle",
+        "LeanPML.PML.Concrete.primitive_to_original_classical_rectangle",
+        "LeanPML.Rectangle.RegionalAbsorption.originalRegionalFiniteIntervalProblem"
+      ],
+      "modules": [
+        "LeanPML/PML/ClassicalSystem.lean",
+        "LeanPML/Rectangle/RegionalCoefficients.lean"
+      ],
+      "scope": "现有红勾保留。准确包装同时携带原E/H与primitive u/E/Λ可导；推荐入口由光滑识别及μ非零生成空间证据，域内改写原系数，实际调用古典链。初值、PEC、强正则性仍需声明；未发布v0.5主定理。",
+      "source_hashes": {
+        "LeanPML/PML/ClassicalSystem.lean": "63ea7a2dae932b24c15bf71f10711bdcd8c0754177b43e917d503f8305125d8a",
+        "LeanPML/Rectangle/RegionalCoefficients.lean": "f7a5bf667a9dc9d5914f63c9747b95372227922de41912fcf6a8a44ff0277623"
+      },
+      "build_log": "logs/v0.4_alignment/20261014T000055_917026_lake_build.log",
+      "audit_log": "logs/v0.4_alignment/20261014T000341_178705_axioms_audit.log"
+    },
+    {
+      "id": "regional-amplitude",
+      "page": 7,
+      "printed_page": 7,
+      "formula": "(5.2)–(5.3)：物理幅度域范围",
+      "kind": "note",
+      "draw": {
+        "x": 4,
+        "top": 638,
+        "font_size": 6,
+        "lines": [
+          "对齐：幅度界",
+          "仅闭坐标区间",
+          "域外截回代表",
+          "积分 a.e. 一致"
+        ]
+      },
+      "theorems": [
+        "LeanPML.Rectangle.RegionalAbsorption.coefficients_eq_closed",
+        "LeanPML.Rectangle.RegionalAbsorption.coefficients_ae",
+        "LeanPML.Rectangle.RegionalAbsorption.weighted_memLp_iff",
+        "LeanPML.Rectangle.RegionalAbsorption.fieldEnergy_eq_regional_integral",
+        "LeanPML.Rectangle.RegionalAbsorption.fieldDissipation_eq_regional_integral"
+      ],
+      "modules": [
+        "LeanPML/Rectangle/RegionalCoefficients.lean"
+      ],
+      "scope": "假设范围说明，不给假设打完成勾。原p/r非负/幅度仅Icc坐标区间；内部截回代表与原场在闭矩形和体积分a.e.一致，权重/成员/能量耗散可积积分正式连接。保留全零、边层、角层，原技术延拓不需域外物理幅度界。",
+      "source_hashes": {
+        "LeanPML/Rectangle/RegionalCoefficients.lean": "f7a5bf667a9dc9d5914f63c9747b95372227922de41912fcf6a8a44ff0277623"
+      },
+      "build_log": "logs/v0.4_alignment/20261014T000055_917026_lake_build.log",
+      "audit_log": "logs/v0.4_alignment/20261014T000341_178705_axioms_audit.log"
+    },
+    {
+      "id": "conservative-parameter-certificate",
+      "page": 15,
+      "printed_page": 15,
+      "formula": "§10参数例旁的本轮替代证书（原文未单列）",
+      "kind": "tick",
+      "draw": {
+        "x": 68,
+        "top": 526,
+        "font_size": 7,
+        "lines": [
+          "对齐证书：C_P=4，K=384；c=1/16384，S=1/65536（保守 C_P=2Lx）。"
+        ]
+      },
+      "theorems": [
+        "LeanPML.Rectangle.ParameterCertificate.unitSquare_parameter_certificate",
+        "LeanPML.Rectangle.ParameterCertificate.unitSquare_explicit_smallness",
+        "LeanPML.Rectangle.ParameterCertificate.unitSquare_le_threshold"
+      ],
+      "modules": [
+        "LeanPML/Rectangle/ParameterCertificate.lean"
+      ],
+      "scope": "只对本轮实际(-1,1)^2及ε=κ=τ=μ=1参数证书打勾：CP4、A3、K384；三条显式界依次3/2097152、9/16、3/2048≤1，并调用阈值等价。不是原(10.1)/(10.2)配置完成勾，不含二维剖面、初值族或解存在。",
+      "source_hashes": {
+        "LeanPML/Rectangle/ParameterCertificate.lean": "afbcb8afbe20c9042ca9726e7c7849d42e257c28eb60462a5646d24e225223d4"
+      },
+      "build_log": "logs/v0.4_alignment/20261014T000055_917026_lake_build.log",
+      "audit_log": "logs/v0.4_alignment/20261014T000341_178705_axioms_audit.log"
+    },
+    {
+      "id": "old-example-not-transferable",
+      "page": 15,
+      "printed_page": 15,
+      "formula": "(10.1)旧例与保守常数的区别",
+      "kind": "note",
+      "draw": {
+        "x": 68,
+        "top": 538,
+        "font_size": 6.5,
+        "lines": [
+          "原(10.1)未沿用：在 K=384 下，旧 c=1/128 使 8cAK=72>1；这不否定原精确π常数例。"
+        ]
+      },
+      "theorems": [
+        "LeanPML.Rectangle.ParameterCertificate.oldC_material_condition_value",
+        "LeanPML.Rectangle.ParameterCertificate.oldC_not_le_threshold"
+      ],
+      "modules": [
+        "LeanPML/Rectangle/ParameterCertificate.lean"
+      ],
+      "scope": "正式反证说明旧c不能迁移至本轮保守CP。保留原论文配置与全部原批注；原(5.1)精确π常数仍未证明。",
+      "source_hashes": {
+        "LeanPML/Rectangle/ParameterCertificate.lean": "afbcb8afbe20c9042ca9726e7c7849d42e257c28eb60462a5646d24e225223d4"
+      },
+      "build_log": "logs/v0.4_alignment/20261014T000055_917026_lake_build.log",
+      "audit_log": "logs/v0.4_alignment/20261014T000341_178705_axioms_audit.log"
+    }
+  ],
+  "notes": [],
+  "editable": true,
+  "font": "/System/Library/Fonts/Supplemental/Arial Unicode.ttf",
+  "build": "logs/v0.4_alignment/20261014T000055_917026_lake_build.log",
+  "audit": "logs/v0.4_alignment/20261014T000341_178705_axioms_audit.log",
+  "source_hashes": {
+    "LeanPML/Analysis/EnergyCalculus.lean": "8f43f309fda52d0f6214489701683e5002441a4f401fd30b6c4a82a9a2b3cb22",
+    "LeanPML/Analysis/WeightedL2.lean": "6be3ed7daca127d0a07aa79fe7dcc3ff0a65d43599f3229ee8a6549a280fab08",
+    "LeanPML/Debye/ScalarEnergy.lean": "7ebb842dc8e7109802bb0db414b25947248dca52c77dbc01b4f01bc110c08741",
+    "LeanPML/PML/BalanceAbstract.lean": "8adb3558e5e487befcb337791da05c8e16947fb10700a7c0ae126a7bbe099d3f",
+    "LeanPML/PML/BalanceBlocks.lean": "d8b208a38858bf04b067cea7e97f4728fa191afe34130078990b0b398c572843",
+    "LeanPML/PML/BalanceInterfaces.lean": "ce888afcf6a7f81e03c1f478199d9b388f914171480cbd866b5c2cbd71921e9a",
+    "LeanPML/PML/ClassicalSystem.lean": "63ea7a2dae932b24c15bf71f10711bdcd8c0754177b43e917d503f8305125d8a",
+    "LeanPML/PML/Coefficients.lean": "7a2d94389601e7fee33054d0b4cbcaba4a7ea31837dce8af9e9c19dec6dc68a6",
+    "LeanPML/PML/Coercivity.lean": "0f7102688b3921fea128f8978874e4feea34cd3082b228c732f6019471d87e04",
+    "LeanPML/PML/DissipationClosure.lean": "d2e5333aed6a733c28396a95fdd52e53b483f5fc011f9485c3a6d4112188aa7d",
+    "LeanPML/PML/Energy.lean": "b5b806f793284bc5bd64f5d8e6c5d9f17e19f78d84ffe7932a4e74d5aab3d042",
+    "LeanPML/PML/EnergyIntegrals.lean": "85370f6dcf41408132e79f4eb8ccbba2e1dc0f4a1f2b842601237026517dc540",
+    "LeanPML/PML/Equivalence.lean": "7f2b492a0f843dce1eda7521d9ca06f4c5c12fa02371e27a81082f3146965010",
+    "LeanPML/PML/GradientControl.lean": "63d6cbb810c2e23f77039120ca28f454f44f54b0aeb30e201cae25b94d7fe81a",
+    "LeanPML/PML/LocalDebye.lean": "12ad851667c4434f7542f9402fa395017e54ea083442558d76445e343399bb10",
+    "LeanPML/PML/LocalElectric.lean": "d5eb935b44f2cb3f372d3a527f3dca0858908423d719d3203f583f8c8de60f1d",
+    "LeanPML/PML/LocalSpatial.lean": "4830378ceb947d7e0c5f349cb06963cf2cfe9e9d265e6dee93448b84719917b4",
+    "LeanPML/PML/MainAbstract.lean": "47b278c96a5d67d6bec24a2214830ae9094284e2b06840394b5cabf95e6a71d4",
+    "LeanPML/PML/Obstructions/SingleLayer.lean": "8e9b79481591141e797f72e522bb334d851eb6a1b8bc45046c2a77d38bb232e7",
+    "LeanPML/PML/OriginalAssembly.lean": "e4bb5214237490b05b608fc289f67aa84e550e8cb9ac2266a94ed4bce674572e",
+    "LeanPML/PML/OriginalSystem.lean": "91425cb5798bee29a4d648f8780de9aa5fb50e1081c1f8ea5f9dc3919d37c29f",
+    "LeanPML/PML/PhysicalControl.lean": "e20d6fd889b662f824c048a05f2408180b679b570efd788a27df8f19c49a4595",
+    "LeanPML/PML/PrimitiveEvolution.lean": "0b2f6aee29bfd30a505e1e8881348eeb378cf7775c5e8e4fee2f2f6ba36bf6a9",
+    "LeanPML/PML/PrimitiveSystem.lean": "fac68de9b55138f66ad9cc2d8017385881e79c4b90eff76e8760abd23083c120",
+    "LeanPML/PML/SpatialBalance.lean": "0ea0dfdf07fa6e3f4c3bb838280b9a6b030d997f7e7c69c49a780f02e172906e",
+    "LeanPML/PML/SpatialCoefficients.lean": "07223cf17bdbf48daff2078f543070d760d1dc5464f47a8c2b8d0d0438e84392",
+    "LeanPML/PML/State.lean": "3949faa23565d376c62fe4b24bfabffe723cf8c7359ebf4a126f0191d18c18b2",
+    "LeanPML/PML/TimeInvariants.lean": "ad23ffe0b5fc1188cce91203989e7587d31a11aad3f1b77665f57f6b91efbba1",
+    "LeanPML/PML/WeightedCalculus.lean": "694ea664c32a5ad236836b7241f991e6ca751587af93f1fba3154726b8f3e87d",
+    "LeanPML/PML/Weights.lean": "25778077d06b427ee870843481c7d0d5614637063c0f49a8b21540617f8883ef",
+    "LeanPML/Rectangle/Boundary.lean": "c2dc823a7d1a76a1f8be7d502a16e29f79e26a902d63aee4a2d807bd443268b0",
+    "LeanPML/Rectangle/BoundaryTime.lean": "b7a45cd50d8a2c710619ef5db4dd9b8dff240e90d290c6c737bc695954bb7edb",
+    "LeanPML/Rectangle/Domain.lean": "6961af4f6b9e5d47ff3d773557d59778f6ab630d70e096c023685e3a563bc9d0",
+    "LeanPML/Rectangle/Fields.lean": "282409219402b5e0c415b4487bc76925389382cbf27b0e4cb6e50a7452947fd7",
+    "LeanPML/Rectangle/Green.lean": "2ad892998bbb1903480743fdc8bf6663b266c5bc723b92c33a514ea4d08c1289",
+    "LeanPML/Rectangle/HistoryL2.lean": "172431b85ca66fe6aa35782e828ad22f6506d7f35fb57d82ef3a77387183ebf3",
+    "LeanPML/Rectangle/InterfaceAssembly.lean": "05bcf055d2c20172f718870455b740ebf07060ad5ed0c0fb300cfb75fc8940f8",
+    "LeanPML/Rectangle/L2Paths.lean": "90e2417b51bc2d3d50d435b4c1e8f38d93b2b70eaf5b842b1263e65900e3a616",
+    "LeanPML/Rectangle/ParameterCertificate.lean": "afbcb8afbe20c9042ca9726e7c7849d42e257c28eb60462a5646d24e225223d4",
+    "LeanPML/Rectangle/Poincare.lean": "d81389ea5445a9acd8b683b36119da56662dd9df8eb1df6e0787c02412bead9d",
+    "LeanPML/Rectangle/RegionalCoefficients.lean": "f7a5bf667a9dc9d5914f63c9747b95372227922de41912fcf6a8a44ff0277623",
+    "LeanPML/Rectangle/SmoothPaths.lean": "aa905c50a6618435f1c021c3473ddc0777f9d140c6aabd07c0fb899b0e9a2288",
+    "LeanPML/Rectangle/StatePaths.lean": "915c8204230cbb954cfe4403be3b3ce7c7ac9cc24ba78ca824b9066f906c9850",
+    "LeanPML/Rectangle/TimeSpace.lean": "777c35c9e4d84874baa8d92b93048b81019799741bd4430c669b3cde5447d19f",
+    "LeanPML/Time/Constancy.lean": "47680bb78e15e5fa05b9350ddb19117f2a7ae4ba5a132e9cd5ea422e6ac57437",
+    "LeanPML/Time/Monotonicity.lean": "70c9bad3378adfb332cc4b10e6e475a41352178899797eef07a203fb8e68aa25",
+    "LeanPML/Tutorial/LocalEnergy.lean": "810e8ef42c005661cb0eca9e6ba4527914cd782af7e30677b45e4bd772cac112",
+    "LeanPML/Tutorial/ScalarEnergy.lean": "465c567aa91d06d5e32c32b84d6082cb71834027177f8a390b8c9df9f59aaa41",
+    "LeanPML.lean": "4e4f710c470ca75b1a2bb1ce66d267df248ed6a91eddb9dedac7aec9cf49df77",
+    "Audit.lean": "0e14b2ca4bc05d27e43c5498f93c8a8366cbd6cfed47242b21943d55bae2bc58"
+  },
+  "modified_pages": [
+    3,
+    4,
+    7,
+    15
+  ],
+  "backup": {
+    "target": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf",
+    "backup": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v0.4_alignment/pdf/V7_global_energy_副本_before_v0.4_alignment_20261014T000623_628164+0800.pdf",
+    "sha256_before": "9021fff043b09278fd918dc4ef0342a0295e3aa7941e52825f59a286fd71a8f3",
+    "timestamp": "20261014T000623_628164+0800"
+  }
+}
