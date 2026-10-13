@@ -1,0 +1,66 @@
+LeanPML/PML/GradientControl.lean:94:2: error: Type mismatch: After simplification, term
+  Integrable.fun_add (Integrable.fun_add hlx hhx) (Integrable.fun_add hly hhy)
+ has type
+  @Integrable ℝ PseudoMetricSpace.toUniformSpace.toTopologicalSpace
+    NormedAddCommGroup.toENormedAddCommMonoid.toContinuousENorm α inst✝
+    (fun i =>
+      thetaX (C.p i) (C.r i) * ↑↑U.Λx i ^ 2 + thetaY (C.p i) (C.r i) * ↑↑(spatialComponentX U) i ^ 2 +
+        (thetaY (C.p i) (C.r i) * ↑↑U.Λy i ^ 2 + thetaX (C.p i) (C.r i) * ↑↑(spatialComponentY U) i ^ 2))
+    ν
+but is expected to have type
+  @Integrable ℝ PseudoMetricSpace.toUniformSpace.toTopologicalSpace SeminormedAddGroup.toContinuousENorm α inst✝
+    (fieldJDensity ν C U) ν
+LeanPML/PML/GradientControl.lean:123:51: error: don't know how to synthesize placeholder for argument `l`
+context:
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+C : SpatialAbsorption α
+U : FieldState ν C.wx C.wy
+x : α
+⊢ ℝ
+LeanPML/PML/GradientControl.lean:123:49: error: don't know how to synthesize placeholder for argument `h`
+context:
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+C : SpatialAbsorption α
+U : FieldState ν C.wx C.wy
+x : α
+⊢ ℝ
+LeanPML/PML/GradientControl.lean:123:7: error: failed to infer `have` declaration type
+LeanPML/PML/GradientControl.lean:119:55: error: unsolved goals
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+C : SpatialAbsorption α
+U : FieldState ν C.wx C.wy
+x : α
+⊢ 0 x ≤ fieldJDensity ν C U x
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+LeanPML/PML/GradientControl.lean:180:63: error: unsolved goals
+c p r S h l : ℝ
+hp_nonneg : 0 ≤ p
+hr_nonneg : 0 ≤ r
+hp_le_S : p ≤ S
+hr_le_S : r ≤ S
+hzero : absorptionSum p r = 0 → l = h
+hS_nonneg : 0 ≤ S
+hpartition : (0 ≤ thetaX p r ∧ thetaX p r ≤ 1) ∧ (0 ≤ thetaY p r ∧ thetaY p r ≤ 1) ∧ thetaX p r + thetaY p r = 1
+ha_pos : 0 < absorptionSum p r
+ha_ne : absorptionSum p r ≠ 0
+hplus : dissipationPlus c p r = thetaX p r * (c + p)
+⊢ r * c * (r + p)⁻¹ - r ^ 2 * (r + p)⁻¹ =
+    -(r * if 0 < r + p then r * (r + p)⁻¹ else 1 / 2) + c * if 0 < r + p then r * (r + p)⁻¹ else 1 / 2
+LeanPML/PML/GradientControl.lean:181:43: warning: This simp argument is unused:
+  if_pos ha_pos
+
+Hint: Omit it from the simp argument list.
+  simp only [dissipationMinus, thetaY, i̵f̵_̵p̵o̵s̵ ̵h̵a̵_̵p̵o̵s̵,̵ ̵absorptionSum, add_comm r p]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

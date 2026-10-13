@@ -1,0 +1,120 @@
+/-- V7 (9.6) 第一行到最后一行：先对 E 使用与 Green 相同迹核的 Poincaré，
+再调用由原辅助演化证明的 (9.5) 和真实空间耗散 (9.3)。
+输入没有 J 控制式；这些估计均由本工程定理获得。 -/
+theorem spatial_absorption_Conditional
+    {ν : Measure α} {Boundary : Type*} [AddCommGroup Boundary] [Module ℝ Boundary]
+    (G : ConditionalGreenDomain ν Boundary) (C : SpatialAbsorption α)
+    (ε κ τ μ CP : ℝ) (hp : CoercivityParameters C ε κ τ μ CP)
+    (estimate : ∀ f : G.spatial.domain, G.trace f = 0 →
+      ‖(f : ScalarL2 ν)‖^2 ≤ CP^2 *
+        (‖G.spatial.componentX f‖^2 + ‖G.spatial.componentY f‖^2)) {I : Set ℝ}
+    (path : SameSourcePath ν C.wx C.wy I) (regular : ConditionalSpatialPath G C path)
+    (hbase : ∀ s ∈ I, PrimitiveAtConditional G C ε κ τ μ
+      (path.base s) (path.first s) (regular.base_v s) (regular.base_flux s))
+    {t : ℝ} (ht : t ∈ interior I) :
+    μ*C.c*materialA ε κ*‖(path.base t).V‖^2 ≤
+      scaleK ε κ μ CP/2 * (fieldSpatialDissipation ν C (path.first t) +
+        C.S^2*fieldSpatialDissipation ν C (path.base t)) := by
+  have ht_mem : t ∈ I := interior_subset ht
+  have hμ_pos := hp.μ_pos
+  have hc_pos := C.c_pos
+  have hA_pos := materialA_pos ε κ hp.ε_pos hp.κ_pos
+  have hCP_pos := hp.CP_pos
+  have hgradient := gradient_control_Conditional ε κ τ μ path regular hbase ht
+  have hpoincare := estimate (regular.first_v t) (regular.trace_first_v t ht_mem)
+  have hcoordinate := (sameSource_coordinates path ht_mem).1
+  rw [regular.first_v_eq t ht_mem, hcoordinate] at hpoincare
+  have hgradient_scaled := mul_le_mul_of_nonneg_left hgradient (sq_nonneg CP)
+  have hnorm : ‖(path.base t).V‖^2 ≤
+      3*CP^2*(fieldJ ν C (path.first t) + C.S^2*fieldJ ν C (path.base t)) := by
+    nlinarith only [hpoincare, hgradient_scaled]
+  have hnorm_scaled := mul_le_mul_of_nonneg_left hnorm
+    (show 0 ≤ μ*C.c*materialA ε κ by positivity)
+  have hSbase := (fieldSpatialDissipation_ge_J ν C (path.base t)).2
+  have hSfirst := (fieldSpatialDissipation_ge_J ν C (path.first t)).2
+  have hSbase_scaled := mul_le_mul_of_nonneg_left hSbase (sq_nonneg C.S)
+  have hJbudget : 3*C.c/4*(fieldJ ν C (path.first t) + C.S^2*fieldJ ν C (path.base t)) ≤
+      fieldSpatialDissipation ν C (path.first t) +
+        C.S^2*fieldSpatialDissipation ν C (path.base t) := by
+    nlinarith only [hSfirst, hSbase_scaled]
+  have hJbudget_scaled := mul_le_mul_of_nonneg_left hJbudget
+    (show 0 ≤ 4*μ*materialA ε κ*CP^2 by positivity)
+  unfold scaleK
+  nlinarith only [hnorm_scaled, hJbudget_scaled]
+
+/-- (9.6) 后的精确预算：KS²≤1/16≤1，故 E 项最多消耗空间耗散的一半。
+Nonempty α 仅用于说明 S≥0；零吸收域和零测度仍完整保留。 -/
+theorem spatial_absorption_half_Conditional [Nonempty α]
+    {ν : Measure α} {Boundary : Type*} [AddCommGroup Boundary] [Module ℝ Boundary]
+    (G : ConditionalGreenDomain ν Boundary) (C : SpatialAbsorption α)
+    (ε κ τ μ CP : ℝ) (hp : CoercivityParameters C ε κ τ μ CP)
+    (estimate : ∀ f : G.spatial.domain, G.trace f = 0 →
+      ‖(f : ScalarL2 ν)‖^2 ≤ CP^2 *
+        (‖G.spatial.componentX f‖^2 + ‖G.spatial.componentY f‖^2)) {I : Set ℝ}
+    (path : SameSourcePath ν C.wx C.wy I) (regular : ConditionalSpatialPath G C path)
+    (hbase : ∀ s ∈ I, PrimitiveAtConditional G C ε κ τ μ
+      (path.base s) (path.first s) (regular.base_v s) (regular.base_flux s))
+    {t : ℝ} (ht : t ∈ interior I) :
+    μ*C.c*materialA ε κ*‖(path.base t).V‖^2 ≤
+      (fieldSpatialDissipation ν C (path.base t) +
+        scaleK ε κ μ CP*fieldSpatialDissipation ν C (path.first t))/2 := by
+  have hfirst := spatial_absorption_Conditional G C ε κ τ μ CP hp estimate path regular hbase ht
+  have hchain := scale_amplitude_chain C ε κ τ μ CP hp
+  have hsmall : scaleK ε κ μ CP*C.S^2 ≤ 1 := hchain.2.1.trans (hchain.2.2.1.trans hchain.2.2.2)
+  have hspatial_nonneg := fieldSpatialDissipation_nonneg ν C (path.base t)
+  have hbudget := mul_le_mul_of_nonneg_right hsmall hspatial_nonneg
+  nlinarith only [hfirst, hbudget]
+
+/-- V7 (9.7) 后未编号下界，即 (6.8) 的定量耗散闭合。
+空间正项支付 E 的负项，Debye 正项支付 E_t 的负项；各保留 1/2、1/4。
+这里直接使用现有 dissipation7，而非另设任意实数耗散。
+所需 Green/Poincaré/时间交换仍是具体矩形待兑现的接口。 -/
+theorem dissipation7_lower_Conditional [Nonempty α]
+    {ν : Measure α} {Boundary : Type*} [AddCommGroup Boundary] [Module ℝ Boundary]
+    (G : ConditionalGreenDomain ν Boundary) (C : SpatialAbsorption α)
+    (ε κ τ μ CP : ℝ) (hp : CoercivityParameters C ε κ τ μ CP)
+    (estimate : ∀ f : G.spatial.domain, G.trace f = 0 →
+      ‖(f : ScalarL2 ν)‖^2 ≤ CP^2 *
+        (‖G.spatial.componentX f‖^2 + ‖G.spatial.componentY f‖^2)) {I : Set ℝ}
+    (path : SameSourcePath ν C.wx C.wy I) (regular : ConditionalSpatialPath G C path)
+    (hbase : ∀ s ∈ I, PrimitiveAtConditional G C ε κ τ μ
+      (path.base s) (path.first s) (regular.base_v s) (regular.base_flux s))
+    {t : ℝ} (ht : t ∈ interior I) :
+    (fieldSpatialDissipation ν C (path.base t) +
+      scaleK ε κ μ CP*fieldSpatialDissipation ν C (path.first t))/2 +
+      μ*τ/(4*κ)*(‖(path.first t).R‖^2 + scaleK ε κ μ CP*‖(path.second t).R‖^2) ≤
+      dissipation7 ν C ε κ τ μ CP path t := by
+  have hpreliminary := dissipation7_preliminary_Conditional G C ε κ τ μ CP hp path regular hbase ht
+  have hspatial := spatial_absorption_half_Conditional G C ε κ τ μ CP hp estimate path regular hbase ht
+  have hdebye := debye_absorption_Conditional G C ε κ τ μ CP hp path regular hbase ht
+  -- 同时扣除两类负项，避免重复使用同一份耗散预算。
+  ring_nf at hpreliminary hspatial hdebye ⊢
+  linarith only [hpreliminary, hspatial, hdebye]
+
+/-- (6.8) 的非负性是上述定量下界的推论。
+空间耗散已由积分非负性证明；剩余 Debye 项是正系数乘实际 L² 平方范数。
+本条尚不声称时间单调性，后续 MainAbstract 还要结合真实能量求导和连续性。 -/
+theorem dissipation7_nonneg_Conditional [Nonempty α]
+    {ν : Measure α} {Boundary : Type*} [AddCommGroup Boundary] [Module ℝ Boundary]
+    (G : ConditionalGreenDomain ν Boundary) (C : SpatialAbsorption α)
+    (ε κ τ μ CP : ℝ) (hp : CoercivityParameters C ε κ τ μ CP)
+    (estimate : ∀ f : G.spatial.domain, G.trace f = 0 →
+      ‖(f : ScalarL2 ν)‖^2 ≤ CP^2 *
+        (‖G.spatial.componentX f‖^2 + ‖G.spatial.componentY f‖^2)) {I : Set ℝ}
+    (path : SameSourcePath ν C.wx C.wy I) (regular : ConditionalSpatialPath G C path)
+    (hbase : ∀ s ∈ I, PrimitiveAtConditional G C ε κ τ μ
+      (path.base s) (path.first s) (regular.base_v s) (regular.base_flux s))
+    {t : ℝ} (ht : t ∈ interior I) : 0 ≤ dissipation7 ν C ε κ τ μ CP path t := by
+  have hlower := dissipation7_lower_Conditional G C ε κ τ μ CP hp estimate path regular hbase ht
+  have hK_pos := scaleK_pos ε κ μ CP hp.ε_pos hp.κ_pos hp.μ_pos hp.CP_pos
+  have hκ_pos := hp.κ_pos
+  have hμ_pos := hp.μ_pos
+  have hτ_pos := hp.τ_pos
+  have hSbase := fieldSpatialDissipation_nonneg ν C (path.base t)
+  have hSfirst := fieldSpatialDissipation_nonneg ν C (path.first t)
+  have hremaining : 0 ≤
+      (fieldSpatialDissipation ν C (path.base t) +
+        scaleK ε κ μ CP*fieldSpatialDissipation ν C (path.first t))/2 +
+        μ*τ/(4*κ)*(‖(path.first t).R‖^2 + scaleK ε κ μ CP*‖(path.second t).R‖^2) := by
+    positivity
+  exact hremaining.trans hlower

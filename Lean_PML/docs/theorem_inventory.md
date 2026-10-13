@@ -1315,3 +1315,58 @@ V7 md/tex/原 PDF、模型合同及锁文件字节未变；本轮路线图入场
 [v0.3.2 构建](../logs/v0.3.2/20261013T095839_225389_lake_build.log)／[独立审计](../logs/v0.3.2/20261013T100104_046897_axioms_audit.log)；[v0.3.3 构建](../logs/v0.3.3/20261013T100156_159842_lake_build.log)／[独立审计](../logs/v0.3.3/20261013T100321_602582_axioms_audit.log)。四条命令均退出 0。v0.3.2 审计 288 条，v0.3.3 审计 316 条（保留旧 263 条，分别增加 25、28 条）；仅标准基础公理。失败及修复过程保存在对应 logs 目录。
 
 T22–T28 的 (9.5)–(9.7)、完整耗散非负、时间单调及积分平衡仍未实现；本轮止于 v0.3.3。
+
+
+## v0.3.4–v0.3.5 追加记录：空间估计与条件性主结论闭合（2026-10-13）
+
+本节保留上文的计划和历次状态，按当前实际声明追加 T22–T28 的实现范围。旧段落中“仍未实现”描述的是当时的阶段，不是本轮结论。路线图 v0.3.2–3 的已勾选项目与“当前状态：待实现”文字有出入；本轮没有修改路线图，以源码和实际验证为依据，见 [来源复核](../logs/v0.3.4/source_review.md)。原 V7、模型合同及固定依赖未变。
+
+新增模块为 [GradientControl.lean](../LeanPML/PML/GradientControl.lean)、[DissipationClosure.lean](../LeanPML/PML/DissipationClosure.lean) 和 [MainAbstract.lean](../LeanPML/PML/MainAbstract.lean)。下表全部声明的完整名称以前缀 `LeanPML.PML.` 加所列短名构成；“已实现”指列明接口下的结论，不表示具体矩形接口本身已经证明。阶段构建、公理审计、退出码和完整日志分别登记于 [v0.3.4 验收记录](../logs/v0.3.4/acceptance.json)、[v0.3.5 验收记录](../logs/v0.3.5/acceptance.json)。
+
+| 条目／原文来源 | 本轮实际声明及已证范围 | 输入与调用链 | 尚未关闭的具体 PDE 接口 |
+|---|---|---|---|
+| T22，(9.2) | `fieldJ` 是实际 L² 有界系数内积定义；`fieldJ_integrable`、`fieldJ_eq_integral`、`fieldJ_nonneg` 分别证明密度可积、积分/内积相等和非负；定义本身不算证明完成 | θ 的可测性、0≤θ≤1、θx+θy=1 来自原分支和旧 `theta_partition`；`SpatialAbsorption.thetaXCoeff/thetaYCoeff` 构造有界乘子，与可能无界的 w 不同 | `spatialComponents_eq_gradient_Conditional` 在空间约束下把 Λ−ψ 接到梯度接口；具体矩形梯度仍待实现 |
+| T22，(9.2) 零区及 (9.3) | `fieldJDensity_zero_region` 保留零区梯度平方；`fieldSpatialDissipation_ge_J` 证明实际空间耗散控制 (c−S)J 和 3cJ/4 | 加权物理恢复映射给 ψ=0 a.e. on Z；正区使用系数界，零区独立使用 Λ=h。密度可积后才取积分；没有吸收正下界 | 这是全域 L² 分量积分结论；解释成真实弱梯度需空间约束的矩形实例 |
+| T22，(9.4) | `gradient_evolution_Conditional` 从原辅助演化推出两方向 ∂iE=λi,t−σj∂iu+σiλi | 原层 primitive 在时间集合内成立；`SameSourcePath` 的 HasDerivAt 与 `ConditionalSpatialPath` 的梯度交换；调用已证 `primitive_first_Conditional`，不把 (9.4) 预设为主入口条件 | 梯度/时间交换、域内路径的具体空间正则性来源仍是接口 |
+| T23，(9.5) | `theta_absorption_square_bounds`、`directional_gradient_control` → `field_gradient_control` → `gradient_control_Conditional`，最终证明实际两方向梯度范数平方 ≤3J(U₁)+3S²J(U₀) | 先证明 θiσj²≤S²θj 和 θiσi²≤S²θi，再分配平方、转成 a.e. 场关系并积分；最终入口自行调用 (9.4)。零区、两个不对称边层及不对称角层均有正式调用 | 不是任意独立分量的点态矩阵估计；仍需给出同源路径和空间接口的具体 PDE 实例 |
+| T24，§9.1、(9.1) | `fieldDissipation_lower`、`dissipation7_preliminary_Conditional` 证明真实单层/两层耗散下界，保留两个不同的负项 | 原吸收条件推出 a,b,ac−b≥0，阈值推出 cτ≤1/4；`debye_relations_Conditional` 从邻域兼容的真实求导取得 R+τR_t=κV，而非把 R_t 当普通命名变量 | 同源路径正则性及完整原 PDE 对应尚待具体化；目标耗散下界不在模型字段内 |
+| T25，(9.6) 及其后幅度链 | `spatial_absorption_Conditional`、`scale_amplitude_chain`、`spatial_absorption_half_Conditional` | 对 E 使用同一 `G.trace` 零迹核的 Poincaré，再用 (9.3)、(9.5)、K=8μAC_P²；从原阈值证明 KS²≤Kc²/16≤1/16≤1，故 E 负项至多耗用一半空间耗散 | Poincaré 是一般零迹函数估计接口，不是目标 (9.6) 的代名词；精确矩形常数仍未证明 |
+| T26，(9.7) | `debye_relations_Conditional`、`debye_absorption_split`、`debye_absorption_Conditional`，证明准确 μτ/(4κ) 系数 | 邻域两次真实兼容求导给 κE_t=P_t+τP_tt；两个材料阈值分别控制 P_t、P_tt 项。κ、τ 正性来自原材料参数，不新增教学 Debye 方程 | P_t=first.R、P_tt=second.R 由真实 L² 导数绑定；具体 PDE 正则性推出该路径尚待完成 |
+| T27，(9.7) 后未编号下界、(6.8) | `dissipation7_lower_Conditional`、`dissipation7_nonneg_Conditional`；`energy7_law_and_closure_Conditional` 将真实能量导数和定量下界并列输出 | 同时使用 (9.1)、(9.6)、(9.7)，保留一半空间耗散及 μτ/(4κ) Debye 平方项；非负性从剩余项推出。实际 D₇ 不是任意实数代理 | 定量下界与导数声明作用于开时间区间；具体矩形分析和原模型实现仍未完成 |
+| T28，(6.9) | `continuousOn_energy7`、`energy7_antitoneOn_Conditional`、`energy7_initial_bounds_Conditional`；`energy7_integral_balance_Conditional` 单独证明实际 intervalIntegral 平衡 | 闭区间普通/加权场连续推出能量连续；内部真实导数与已证耗散符号推出 AntitoneOn。积分平衡另由 `continuousOn_dissipation7`、`intervalIntegrable_dissipation7_Conditional` 和 mathlib FTC 推出 | 积分平衡额外要求 second.R=P_tt 在闭区间 L² 连续；不要求端点双侧导数，不从单调性直接推积分恒等式 |
+| T21、T29 与 T28 的连接 | `graphSquare7_initial_bound_Conditional`、`physicalControl_initial_Conditional`、`main_energy_estimate_Conditional` | 调用上一阶段 (6.7)、(6.10)、(8.4)–(8.8)，再把右端 E₇(t) 降到 E₇(0)；所有重构乘数的非负性已证明 | 给定兼容提升的先验控制，不是原八变量 PDE 双向等价、提升唯一性或解存在唯一性 |
+
+### 最终输入包及假设审查
+
+`#print axioms` 不会把普通结构字段列成未完成分析接口。以下是对 `FiniteIntervalProblemConditional` 及最终 `main_energy_estimate_Conditional` 的单独语义审查：
+
+| 输入 | 准确数学内容 | 为什么需要／没有包含什么目标 |
+|---|---|---|
+| `SpatialAbsorption`、`CoercivityParameters` | 时间不变可测吸收、非负、p,r≤S≤c/4；材料和 C_P 为正，c>0、c≤c_* | 从原条件推导全部系数界与两类吸收，不输入 (9.5)–(9.7)、D₇≥0 或能量单调性。一般测度空间引理不改变物理模型 p=p(x)、r=r(y) 的合同 |
+| `Nonempty α` | 空间载体非空；ℝ×ℝ 自动满足 | 取一点由 0≤p≤S 证明 S≥0，使幅度平方链合法；不要求测度非零、积分域缩小或吸收严格为正 |
+| `ConditionalGreenDomain`、同一迹的 `estimate` | 受限梯度/散度定义域、独立迹与边界配对、一般 Green；对 G.trace f=0 的一般函数给 Poincaré | 沿用前阶段诚实接口；Poincaré 与能量律使用同一迹核。字段不含能量律残差、图范数界或耗散闭合 |
+| `path`、`regular`、`base_evolution` | `SameSourcePath` 的时间集合为 (0,T)；真实普通/加权 HasDerivAt、域内匹配、时间—空间交换；只输入原层 primitive 演化 | 导数层同系统、(9.4)、Debye 派生关系、能量律均由定理推出；没有全实轴方程或端点双侧导数条件 |
+| `continuous_base/first` | 实际普通/加权状态各坐标在 [0,T] 连续 | 从坐标连续证明能量连续，不能以目标 energy7 连续性代替 |
+| `static_base/first` | 闭区间上明确的极化、空间及同一迹核零迹约束 | 供包括端点的静态能量非负、双边界和重构使用；T=0 时仍须输入，不能从空内部方程推端点兼容。这些字段不含任何目标能量不等式 |
+| `hsecondR`（主汇总/积分平衡另加） | second.R=P_tt 在 [0,T] 的 L² 连续性；在 (0,T) 内已有真实导数证据 | 推出 D₇ 连续和 IntervalIntegrable。单调性定理不使用此附加条件；它不是把耗散可积性或积分平衡直接收作模型字段 |
+
+时间范围分开登记：真实能量导数、(9.5)–(9.7) 的同源估计及耗散定量下界在 **(0,T)** 使用内部演化；静态图范数界、非负性、单调性和初值控制在 **[0,T]** 成立。积分平衡对 $0\le t_1\le t_2\le T$ 成立，包括 $t_1=t_2$、两个端点和 $T=0$。`energy7_antitoneOn_zero_time`、`energy7_integral_balance_same` 分别正式处理单点性质；不能据此把 T=0 的任意端点耗散认定为非负。
+
+剩余耗散的精确预算为
+
+$$
+\mathcal D_7\ge\frac12(\mathscr S_0+K\mathscr S_1)
++\frac{\mu\tau}{4\kappa}\bigl(\|P_t\|^2+K\|P_{tt}\|^2\bigr)\ge0.
+$$
+
+空间预算支付 $\mu cA\|E\|^2$，Debye 预算支付 $\mu cAK\|E_t\|^2$；没有把同一份正项重复使用。由真实 $\mathcal E_7'=-\mathcal D_7$ 推出导数非正，再由区间单调性引理得到单调不增。FTC 独立得到
+
+$$
+\mathcal E_7(t_2)+\int_{t_1}^{t_2}\mathcal D_7(t)\,dt=\mathcal E_7(t_1).
+$$
+
+### 后续范围
+
+T22–T28 的上述 **Conditional 实际空间版本** 已有完整证明链；具体 PDE 层不随之整体关闭。仍缺：具体矩形梯度、散度和四边迹；Green/PEC 的矩形证明；精确 Poincaré 常数；从具体正则性推出时间微分交换及两层零迹；原八变量与 primitive 的完整双向对应；提升规范唯一性。没有证明解存在、唯一性、严格衰减、任意吸收幅度结论或全局解存在。
+
+下一阶段仅登记 v0.4.1 的入口：明确矩形上的光滑函数/场、坐标方向导数、四边边界表示及零迹域，逐步实例化现有分析接口。本轮没有实施 v0.4。PDF 的各公式限定标记见 [标注账本](pdf_formalization_marks.md)；定义录入与已证结论分别登记。

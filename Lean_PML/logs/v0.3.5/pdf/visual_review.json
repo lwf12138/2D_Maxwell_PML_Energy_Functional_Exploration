@@ -1,0 +1,38 @@
+{
+  "method": "Poppler 150 dpi PNG; root inspected every modified page with view_image",
+  "pages": {
+    "10": {
+      "render": "after-10.png",
+      "tick_visible": true,
+      "scope_readable": true,
+      "formula_uncovered": true,
+      "no_clipping": true,
+      "old_annotations_preserved": true
+    },
+    "12": {
+      "render": "after-12.png",
+      "tick_visible": true,
+      "scope_readable": true,
+      "formula_uncovered": true,
+      "no_clipping": true,
+      "old_annotations_preserved": true
+    },
+    "13": {
+      "render": "after-13.png",
+      "tick_visible": true,
+      "scope_readable": true,
+      "formula_uncovered": true,
+      "no_clipping": true,
+      "old_annotations_preserved": true
+    },
+    "14": {
+      "render": "after-14.png",
+      "tick_visible": true,
+      "scope_readable": true,
+      "formula_uncovered": true,
+      "no_clipping": true,
+      "old_annotations_preserved": true
+    }
+  },
+  "notes": "p10/12/13旧待完成文字保留并在页首说明历史属性；p14定义只加说明，可积非负单独打勾，所有新标记未遮挡/裁切/缺字。"
+}

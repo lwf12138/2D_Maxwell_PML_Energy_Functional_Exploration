@@ -621,3 +621,137 @@
 - [实际 PDF 编辑日志](../logs/v0.3.3/20261013T100559_337529_pdf_annotate.log)、[渲染日志](../logs/v0.3.3/20261013T100607_874052_pdf_render.log)、[最终验证日志](../logs/v0.3.3/20261013T100735_806250_pdf_verify.log)。
 - [结构/证据验收](../logs/v0.3.3/pdf/verification.json)、[逐页视觉检查](../logs/v0.3.3/pdf/visual_review.json)：重新打开副本，四页均以 Poppler 150 dpi 渲染并逐页检查，标记清晰、无限定文字裁切、无正文/公式/编号遮挡。原页序、页面框、可选文本以及未改页面提取文本保持。
 - 最终 PDF SHA-256：`c9d5b114e9de7befb92e001ccc1486227acef27c8c0933fc688722eaf3ca44a3`。
+
+
+## v0.3.4–v0.3.5：第 9 节与条件性有限区间结论（2026-10-13）
+
+用途：把本轮实际证明、PDF 标记与真实构建证据逐项连接。以下是追加记录；上方所有标记及历史说明保留。两个阶段已分别通过验收，最终当前工程审计 369 条声明，没有 sorryAx，仅标准 propext、Classical.choice、Quot.sound。
+
+条件性表示 Lean 证明了列明分析接口下的结论，不表示具体矩形 Green、迹、精确 Poincaré 常数及时间/空间微分交换已经证明。定理 6.1 的抽象分析核心已闭合；原八变量完整 PDE 对应、提升唯一性及解存在唯一性仍未完成。
+
+### 本轮新增标记
+
+实际页序与印刷页码一致。红勾只覆盖下表的结论；(9.2) 的定义另有文字说明，不作为已证明结论。
+
+| 页序／印刷页 | 公式或定位 | 类型 | 红勾旁的可见限定文字 |
+|---|---|---|---|
+| 10／10 | (6.8) | 条件性空间结论 | ✓ 条件性；耗散闭合；精确剩余量 |
+| 10／10 | (6.9) | 条件性空间结论 | ✓ 条件性单调；与积分平衡；闭区间版本 |
+| 13／13 | (9.1) | 条件性空间结论 | ✓ 条件性；耗散下界；同源两层 |
+| 14／14 | (9.2) 的可积性、非负性子结论 | 实际 L² 积分子结论 | ✓ J可积、非负；实际L²积分 |
+| 14／14 | (9.3) | 条件性空间结论 | ✓ 空间约束下；积分估计；含零吸收区 |
+| 14／14 | (9.4) | 条件性空间结论 | ✓ 原辅助演化；推出；需时间；空间交换接口 |
+| 14／14 | (9.5) | 条件性空间结论 | ✓ 同源路径下；梯度估计；空间算子接口 |
+| 14／14 | (9.6) | 条件性空间结论 | ✓ Poincaré；接口下的；吸收估计 |
+| 14／14 | (9.7) | 条件性空间结论 | ✓ 真实Debye；导数关系下；吸收估计 |
+| 14／14 | (9.7) 后未编号剩余耗散下界 | 条件性空间结论 | ✓ 条件性；耗散闭合；两类预算保留 |
+
+#### 10 页：(6.8)
+
+- Lean 文件：[DissipationClosure.lean](../LeanPML/PML/DissipationClosure.lean)。
+- 完整定理：`LeanPML.PML.dissipation7_lower_Conditional`、`LeanPML.PML.dissipation7_nonneg_Conditional`。
+- 准确范围与条件：(6.8) 的精确剩余耗散下界与非负性；原层演化、同源真实路径和共同迹 Poincaré 下，时间在内部。
+- 剩余接口：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。
+- 本轮新增矢量红勾；稳定标记 ID `LeanPML.v0.3.5.main-dissipation`。
+- 实际证据：[构建](../logs/v0.3.5/20261013T214810_766115_lake_build.log)／[独立公理审计](../logs/v0.3.5/20261013T214845_382134_axioms_audit.log)，退出码均为 0。当前最终复核还通过 v0.3.5 的完整导入和全部审计。
+
+#### 10 页：(6.9)
+
+- Lean 文件：[MainAbstract.lean](../LeanPML/PML/MainAbstract.lean)。
+- 完整定理：`LeanPML.PML.energy7_antitoneOn_Conditional`、`LeanPML.PML.energy7_integral_balance_Conditional`、`LeanPML.PML.main_energy_estimate_Conditional`。
+- 准确范围与条件：(6.9) 有限闭区间单调不增与真实时间积分平衡；两层分量闭区间连续和静态兼容，内部真实演化；积分平衡另需 second.R=P_tt 连续。
+- 剩余接口：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。
+- 本轮新增矢量红勾；稳定标记 ID `LeanPML.v0.3.5.main-balance`。
+- 实际证据：[构建](../logs/v0.3.5/20261013T214810_766115_lake_build.log)／[独立公理审计](../logs/v0.3.5/20261013T214845_382134_axioms_audit.log)，退出码均为 0。当前最终复核还通过 v0.3.5 的完整导入和全部审计。
+
+#### 13 页：(9.1)
+
+- Lean 文件：[DissipationClosure.lean](../LeanPML/PML/DissipationClosure.lean)。
+- 完整定理：`LeanPML.PML.fieldDissipation_lower`、`LeanPML.PML.debye_relations_Conditional`、`LeanPML.PML.dissipation7_preliminary_Conditional`。
+- 准确范围与条件：由实际场单层余项积分与真实兼容求导，得到 (9.1)，保留两项负项；未把单层耗散非负作为输入。
+- 剩余接口：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。
+- 本轮新增矢量红勾；稳定标记 ID `LeanPML.v0.3.5.preliminary`。
+- 实际证据：[构建](../logs/v0.3.5/20261013T214810_766115_lake_build.log)／[独立公理审计](../logs/v0.3.5/20261013T214845_382134_axioms_audit.log)，退出码均为 0。当前最终复核还通过 v0.3.5 的完整导入和全部审计。
+
+#### 14 页：(9.2) 的可积性、非负性子结论
+
+- Lean 文件：[GradientControl.lean](../LeanPML/PML/GradientControl.lean)。
+- 完整定理：`LeanPML.PML.fieldJ_integrable`、`LeanPML.PML.fieldJ_eq_integral`、`LeanPML.PML.fieldJ_nonneg`、`LeanPML.PML.fieldJDensity_zero_region`。
+- 准确范围与条件：实际 L² 与有界 θ 系数下，J 密度可积、内积/积分相等且非负；零区密度为两个梯度表达分量平方和。红勾不表示定义本身是证明。
+- 剩余接口：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。
+- 本轮新增矢量红勾；稳定标记 ID `LeanPML.v0.3.5.j-analysis`。
+- 实际证据：[构建](../logs/v0.3.4/20261013T214336_169080_lake_build.log)／[独立公理审计](../logs/v0.3.4/20261013T214424_960799_axioms_audit.log)，退出码均为 0。当前最终复核还通过 v0.3.5 的完整导入和全部审计。
+
+#### 14 页：(9.3)
+
+- Lean 文件：[GradientControl.lean](../LeanPML/PML/GradientControl.lean)。
+- 完整定理：`LeanPML.PML.fieldSpatialDissipation_ge_J`。
+- 准确范围与条件：(9.3) 的两个实际积分下界；非负吸收和幅度限制，空间表达 h=Λ−ψ，零区恢复 ψ=0。
+- 剩余接口：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。
+- 本轮新增矢量红勾；稳定标记 ID `LeanPML.v0.3.5.spatial-j`。
+- 实际证据：[构建](../logs/v0.3.4/20261013T214336_169080_lake_build.log)／[独立公理审计](../logs/v0.3.4/20261013T214424_960799_axioms_audit.log)，退出码均为 0。当前最终复核还通过 v0.3.5 的完整导入和全部审计。
+
+#### 14 页：(9.4)
+
+- Lean 文件：[GradientControl.lean](../LeanPML/PML/GradientControl.lean)。
+- 完整定理：`LeanPML.PML.gradient_evolution_Conditional`。
+- 准确范围与条件：(9.4) 从原层辅助演化和同源真实导数推出；依赖受限梯度域、空间约束及沿路径时间交换接口。
+- 剩余接口：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。
+- 本轮新增矢量红勾；稳定标记 ID `LeanPML.v0.3.5.gradient-evolution`。
+- 实际证据：[构建](../logs/v0.3.4/20261013T214336_169080_lake_build.log)／[独立公理审计](../logs/v0.3.4/20261013T214424_960799_axioms_audit.log)，退出码均为 0。当前最终复核还通过 v0.3.5 的完整导入和全部审计。
+
+#### 14 页：(9.5)
+
+- Lean 文件：[GradientControl.lean](../LeanPML/PML/GradientControl.lean)。
+- 完整定理：`LeanPML.PML.field_gradient_control`、`LeanPML.PML.gradient_control_Conditional`。
+- 准确范围与条件：(9.5) 从 (9.4)、θ 的两种系数估计和三项平方估计，经合法实际 L² 积分得到；覆盖零区、双边层和角层。
+- 剩余接口：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。
+- 本轮新增矢量红勾；稳定标记 ID `LeanPML.v0.3.5.gradient-control`。
+- 实际证据：[构建](../logs/v0.3.4/20261013T214336_169080_lake_build.log)／[独立公理审计](../logs/v0.3.4/20261013T214424_960799_axioms_audit.log)，退出码均为 0。当前最终复核还通过 v0.3.5 的完整导入和全部审计。
+
+#### 14 页：(9.6)
+
+- Lean 文件：[DissipationClosure.lean](../LeanPML/PML/DissipationClosure.lean)。
+- 完整定理：`LeanPML.PML.scale_amplitude_chain`、`LeanPML.PML.spatial_absorption_Conditional`、`LeanPML.PML.spatial_absorption_half_Conditional`。
+- 准确范围与条件：(9.6) 由共同迹核的 Poincaré、(9.3)、(9.5) 与原阈值推出；非空空间载体仅用于从0≤p≤S取得S≥0。
+- 剩余接口：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。
+- 本轮新增矢量红勾；稳定标记 ID `LeanPML.v0.3.5.spatial-absorption`。
+- 实际证据：[构建](../logs/v0.3.5/20261013T214810_766115_lake_build.log)／[独立公理审计](../logs/v0.3.5/20261013T214845_382134_axioms_audit.log)，退出码均为 0。当前最终复核还通过 v0.3.5 的完整导入和全部审计。
+
+#### 14 页：(9.7)
+
+- Lean 文件：[DissipationClosure.lean](../LeanPML/PML/DissipationClosure.lean)。
+- 完整定理：`LeanPML.PML.debye_relations_Conditional`、`LeanPML.PML.debye_absorption_split`、`LeanPML.PML.debye_absorption_Conditional`。
+- 准确范围与条件：(9.7) 由邻域兼容的两次真实求导得到 κ E_t=P_t+τP_tt，再从原阈值的两条材料条件分别吸收。
+- 剩余接口：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。
+- 本轮新增矢量红勾；稳定标记 ID `LeanPML.v0.3.5.debye-absorption`。
+- 实际证据：[构建](../logs/v0.3.5/20261013T214810_766115_lake_build.log)／[独立公理审计](../logs/v0.3.5/20261013T214845_382134_axioms_audit.log)，退出码均为 0。当前最终复核还通过 v0.3.5 的完整导入和全部审计。
+
+#### 14 页：(9.7) 后未编号剩余耗散下界
+
+- Lean 文件：[DissipationClosure.lean](../LeanPML/PML/DissipationClosure.lean)。
+- 完整定理：`LeanPML.PML.dissipation7_lower_Conditional`、`LeanPML.PML.dissipation7_nonneg_Conditional`。
+- 准确范围与条件：同时扣除不同负项，保留空间耗散1/2与 μτ/(4κ) 的 Debye 平方预算；不是重复使用同一正项。
+- 剩余接口：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。
+- 本轮新增矢量红勾；稳定标记 ID `LeanPML.v0.3.5.remainder-budget`。
+- 实际证据：[构建](../logs/v0.3.5/20261013T214810_766115_lake_build.log)／[独立公理审计](../logs/v0.3.5/20261013T214845_382134_axioms_audit.log)，退出码均为 0。当前最终复核还通过 v0.3.5 的完整导入和全部审计。
+
+### 时间范围及未勾选结论
+
+能量导数、(9.4)–(9.7) 同源估计及精确定量耗散下界作用于开时间区间 (0,T)。闭区间 [0,T] 的静态约束与实际场连续性另行输入，得到静态双边界、能量非负、单调性、初值控制。积分平衡额外需要真实导数层 second.R=P_tt 的 L² 闭区间连续性。允许 T=0、t₁=t₂ 和两个端点，不要求端点普通双侧导数，也不由 T=0 的空内部条件推导端点耗散正性。
+
+本轮没有给具体矩形 Green/Poincaré、实际微分交换、完整 PDE 对应或解存在唯一性加完成勾。定义/假设本身没有完成勾；单调不增不代表严格递减。
+
+### 旧标记与保护
+
+第 10、12、13 页保留旧阶段“耗散/单调性待完成”等文字，新增页首说明其历史属性及当前条件性范围；第 14 页保留旧 θ 性质和 KS² 系数代数红勾，不重复叠加。第 14 页另加“J定义已录入；另证可积非负”及条件性图例。本輪不删除或重写用户批注。
+
+入场 18 页、168 项批注，最终 18 页、183 项批注，新增 10 个红勾和 5 条说明。旧页框、可选正文与旧批注保持；其余 14 页可选文本完全相同。修改页均经 Poppler 150 dpi 渲染并逐页检查：可见、对应准确、无覆盖正文/编号、无缺字及裁切。
+
+- [阶段时间备份](../logs/v0.3.5/pdf/before_v0.3.4-v0.3.5_20261013T214901.pdf)。
+- 修改前 SHA-256：`c9d5b114e9de7befb92e001ccc1486227acef27c8c0933fc688722eaf3ca44a3`；修改后：`66c0f5dd32a1a983412a08eea40e3cd5d890f3dd987dbfe7e2bb4c7a5ddce1b3`。
+- [备份信息](../logs/v0.3.5/pdf/backup.json)、[证据/定位计划](../logs/v0.3.5/pdf/annotation_plan.json)、[坐标预检](../logs/v0.3.5/pdf/coordinate_preflight.json)。
+- [结构与证据验收](../logs/v0.3.5/pdf/verification.json)、[逐页视觉验收](../logs/v0.3.5/pdf/visual_review.json)。
+- [标注脚本](../logs/v0.3.5/pdf/annotate_pdf.py)使用独立阶段 ID 和计划哈希，完全相同计划重跑直接跳过；目标发生外部修改时停止，不覆盖新批注。
+- [编辑日志](../logs/v0.3.5/20261013T214910_164598_pdf_annotate.log)、[渲染日志](../logs/v0.3.5/20261013T214930_701266_pdf_render.log)、[最终复核日志](../logs/v0.3.5/20261013T215008_802109_pdf_verify.log)。
+- [最终目标 PDF](../../results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf)。原始 V7 md/tex/pdf、路线图、模型合同和依赖锁文件哈希全部保持。

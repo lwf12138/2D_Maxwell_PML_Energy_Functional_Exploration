@@ -1,0 +1,32 @@
+{
+  "time": "2026-10-13T21:26:55.534049",
+  "agents": {},
+  "protected": {
+    "lean-toolchain": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee",
+    "lakefile.toml": "3a3ab926f99cfeb3ae9fa6309696858b0aabb7ce62469de72405a74dd64fab9e",
+    "lake-manifest.json": "6bd522ed18f94813b2e6fb5e7b9ea39d95a5098df2465acc0d815a09bb5dbf33",
+    "ROADMAP_lean_PML_revised.md": "aa974131bd3b8357340fb889ca61ddf515c4d9a3e33544dad4290eab99d42553",
+    "docs/model_contract.md": "27fdc413425e2b65f0b31a4c4a533d5f52eb24a4af30f18f5fae080a1846fc23",
+    "../results/V7_Maxwell_Debye_PML/V7_global_energy.md": "0a7f73a25cb119eeb75b3e7b3c3f2fbb3b319250f3354ed4dcad0ecff8eff4fb",
+    "../results/V7_Maxwell_Debye_PML/V7_global_energy.tex": "7345e2f2b8558df5f68252985d119465085b01aa8005b0f7c861f0831ab6387a",
+    "../results/V7_Maxwell_Debye_PML/V7_global_energy.pdf": "c6c9978af6d3fbc54ef76b02a5d509e6dda169795c6181d64c7c56ccbe4e3aaa"
+  },
+  "files": {
+    "lean-toolchain": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee",
+    "lakefile.toml": "3a3ab926f99cfeb3ae9fa6309696858b0aabb7ce62469de72405a74dd64fab9e",
+    "lake-manifest.json": "6bd522ed18f94813b2e6fb5e7b9ea39d95a5098df2465acc0d815a09bb5dbf33",
+    "ROADMAP_lean_PML_revised.md": "aa974131bd3b8357340fb889ca61ddf515c4d9a3e33544dad4290eab99d42553",
+    "docs/model_contract.md": "27fdc413425e2b65f0b31a4c4a533d5f52eb24a4af30f18f5fae080a1846fc23",
+    "../results/V7_Maxwell_Debye_PML/V7_global_energy.md": "0a7f73a25cb119eeb75b3e7b3c3f2fbb3b319250f3354ed4dcad0ecff8eff4fb",
+    "../results/V7_Maxwell_Debye_PML/V7_global_energy.tex": "7345e2f2b8558df5f68252985d119465085b01aa8005b0f7c861f0831ab6387a",
+    "../results/V7_Maxwell_Debye_PML/V7_global_energy.pdf": "c6c9978af6d3fbc54ef76b02a5d509e6dda169795c6181d64c7c56ccbe4e3aaa",
+    "README.md": "c73db5f751ee118334d23163b29e7e68231d308529ecaacd67224ac00ed643c5",
+    "PROGRESS.md": "ab5da3a59eea3a578b9230f26e6436fe3fe9c1a5c8290f8e230fa74cf4d845ad",
+    "docs/source_inventory.md": "d8305aa7dcadf956703277a4f60b12a0b763442cf2e189b08154b329f73baadc",
+    "docs/theorem_inventory.md": "c72079ff0ae8a08ce4f92f6f87010cabcbf71e049ad0851bf34ef4b517c7fd19",
+    "docs/claim_ledger.md": "1c6d957966b02b3670b61190986858bce5deeff18fc06e48b4825b7ad3c65822",
+    "docs/pdf_formalization_marks.md": "3ab20a6557a7043e1b5135a5e6a806b94b1bdac3b927e73a30723029e8e2c537",
+    "LeanPML.lean": "cce584a9b51cea0d451126553a868fac2fe93df32ef7261ac695fe18fcc4b8bd",
+    "Audit.lean": "75f88f1582ee584ccd33635e691453273df89259df1c28a53c824de29dbe7abb"
+  }
+}

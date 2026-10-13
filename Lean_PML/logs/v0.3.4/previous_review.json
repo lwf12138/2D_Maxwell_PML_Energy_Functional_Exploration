@@ -1,0 +1,61 @@
+{
+  "previous_acceptance": {
+    "stage": "v0.3.3",
+    "stage_status": "completed",
+    "build": "20261013T100156_159842_lake_build",
+    "audit": "20261013T100321_602582_axioms_audit",
+    "new_theorems": 28,
+    "audited_total": 316,
+    "mathematics": "8.3; exact single/two-layer bounds; zero separation; 6.10 and 8.4–8.8 actual L2 reconstruction",
+    "scope": "conditional on explicit Poincare and constraints; concrete rectangle and full PDE equivalence remain",
+    "pdf": "passed; 12 new scoped ticks and 6 notes across stages"
+  },
+  "source_checks": {
+    "LeanPML/PML/BalanceInterfaces.lean": true,
+    "LeanPML/PML/PrimitiveEvolution.lean": true,
+    "LeanPML/PML/SpatialBalance.lean": true,
+    "LeanPML/PML/BalanceBlocks.lean": true,
+    "LeanPML/PML/BalanceAbstract.lean": true,
+    "LeanPML/PML/Coercivity.lean": "present; rechecked by baseline build below",
+    "LeanPML/PML/PhysicalControl.lean": "present; rechecked by baseline build below"
+  },
+  "logs": {
+    "v0.3.2/build": {
+      "exit_code": 0,
+      "command": [
+        "lake",
+        "build"
+      ],
+      "no_sorryAx": true
+    },
+    "v0.3.2/audit": {
+      "exit_code": 0,
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "Audit.lean"
+      ],
+      "no_sorryAx": true
+    },
+    "v0.3.3/build": {
+      "exit_code": 0,
+      "command": [
+        "lake",
+        "build"
+      ],
+      "no_sorryAx": true
+    },
+    "v0.3.3/audit": {
+      "exit_code": 0,
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "Audit.lean"
+      ],
+      "no_sorryAx": true
+    }
+  },
+  "roadmap_discrepancy": "v0.3.2及v0.3.3五项各已勾选，当前状态仍写待实现；§17.2旧总表同样滞后。保持原文件，以源码/实际日志为准。"
+}

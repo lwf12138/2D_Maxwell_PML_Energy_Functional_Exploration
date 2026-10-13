@@ -1,0 +1,41 @@
+LeanPML/PML/DissipationClosure.lean:41:4: error: linarith failed to find a contradiction
+a b c κ τ V R z Rdot : ℝ
+ha : 0 ≤ a
+hb : 0 ≤ b
+hc : 0 ≤ c
+hκ : 0 < κ
+hτ : 0 ≤ τ
+hac : 0 ≤ a * c - b
+hsmall : c * τ ≤ 1 / 4
+hpolar : R + τ * Rdot = κ * V
+a✝ : 2 * κ ^ 2 * V ^ 2 + 2 * τ ^ 2 * Rdot ^ 2 < R ^ 2
+⊢ False
+failed
+LeanPML/PML/DissipationClosure.lean:53:49: error: No goals to be solved
+LeanPML/PML/DissipationClosure.lean:105:2: error: linarith failed to find a contradiction
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+C : SpatialAbsorption α
+ε κ τ μ CP : ℝ
+hp : CoercivityParameters C ε κ τ μ CP
+U : FieldState ν C.wx C.wy
+Rdot : ↥(ScalarL2 ν)
+hpolar : U.R + τ • Rdot = κ • U.V
+hsmall : C.c * τ ≤ 1 / 4
+hpolar_ae : ∀ᵐ (x : α) ∂ν, ↑↑U.R x + τ * ↑↑Rdot x = κ * ↑↑U.V x
+hV : Integrable (fun x => ↑↑U.V x ^ 2) ν
+hRt : Integrable (fun x => ↑↑Rdot x ^ 2) ν
+helectric : -C.c * ε * ‖U.V‖ ^ 2 ≤ fieldElectricRemainder ν C ε U
+hpolar_bound :
+  ∀ᵐ (x : α) ∂ν,
+    τ / (2 * κ) * ↑↑Rdot x ^ 2 - 2 * C.c * κ * ↑↑U.V x ^ 2 ≤
+      polarRemainder (C.a x) (C.b x) C.c κ τ (↑↑U.R x) (↑↑U.z x) (↑↑Rdot x)
+hpolar_integral : τ / (2 * κ) * ‖Rdot‖ ^ 2 - 2 * C.c * κ * ‖U.V‖ ^ 2 ≤ fieldPolarRemainder ν C κ τ U Rdot
+helectric_scaled : μ * (-C.c * ε * ‖U.V‖ ^ 2) ≤ μ * fieldElectricRemainder ν C ε U
+hpolar_scaled : μ * (τ / (2 * κ) * ‖Rdot‖ ^ 2 - 2 * C.c * κ * ‖U.V‖ ^ 2) ≤ μ * fieldPolarRemainder ν C κ τ U Rdot
+a✝ :
+  μ * fieldElectricRemainder ν C ε U + μ * fieldPolarRemainder ν C κ τ U Rdot + fieldSpatialDissipation ν C U <
+    fieldSpatialDissipation ν C U + μ * τ / (2 * κ) * ‖Rdot‖ ^ 2 - μ * C.c * (ε + 2 * κ) * ‖U.V‖ ^ 2
+⊢ False
+failed

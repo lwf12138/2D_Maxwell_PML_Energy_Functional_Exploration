@@ -1,0 +1,20 @@
+{
+  "pages": 18,
+  "old_annotations": 168,
+  "new_annotations": 15,
+  "new_red_ticks": 10,
+  "modified_pages": [
+    10,
+    12,
+    13,
+    14
+  ],
+  "unchanged_original_text_prefix": true,
+  "old_annotations_preserved": true,
+  "old_text_overlap_count": 0,
+  "sha256_before": "c9d5b114e9de7befb92e001ccc1486227acef27c8c0933fc688722eaf3ca44a3",
+  "sha256_after": "66c0f5dd32a1a983412a08eea40e3cd5d890f3dd987dbfe7e2bb4c7a5ddce1b3",
+  "plan_sha256": "dcd4ede7597cf42a447fc38ab96b2ad7a62c86f4af6b7b6497e3866ad943109b",
+  "visual_review": "pending"
+}
+目标副本已重新打开验证；下一步必须渲染全部修改页并逐页检查。

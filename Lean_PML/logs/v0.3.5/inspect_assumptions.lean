@@ -1,0 +1,9 @@
+import LeanPML
+-- 这是验证日志目录中的只读接口打印入口，不增加正式定理。
+#print LeanPML.PML.FiniteIntervalProblemConditional
+#print LeanPML.PML.CoercivityParameters
+#print LeanPML.PML.ConditionalGreenDomain
+#print LeanPML.PML.ConditionalSpatialPath
+#check LeanPML.PML.gradient_control_Conditional
+#check LeanPML.PML.dissipation7_lower_Conditional
+#check LeanPML.PML.main_energy_estimate_Conditional

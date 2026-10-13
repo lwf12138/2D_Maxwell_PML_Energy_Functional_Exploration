@@ -92,3 +92,30 @@ V7 当前纸面主张依赖：
 原文 §8.2 的严格小于在 B_sp=0 时需改用非严格估计；代码已处理，源文保持原样。其他输入与剩余接口详见 [定理清单追加记录](theorem_inventory.md)、[README](../README.md)。
 
 [v0.3.2 构建](../logs/v0.3.2/20261013T095839_225389_lake_build.log)／[独立审计](../logs/v0.3.2/20261013T100104_046897_axioms_audit.log)；[v0.3.3 构建](../logs/v0.3.3/20261013T100156_159842_lake_build.log)／[独立审计](../logs/v0.3.3/20261013T100321_602582_axioms_audit.log)。四条命令均退出 0。v0.3.2 审计 288 条，v0.3.3 审计 316 条（保留旧 263 条，分别增加 25、28 条）；仅标准基础公理。失败及修复过程保存在对应 logs 目录。
+
+
+## 2026-10-13：v0.3.4–v0.3.5 增量状态（保留全部历史）
+
+本节更新 P05、P06 的**条件性实际空间版本**，不删除上轮“耗散闭合与单调性仍未完成”的历史记录。路线图中的部分“待实现”文字落后于源码和既有勾选；本轮未改路线图，来源版本与差异见 [入场复核](../logs/v0.3.4/source_review.md)。阶段构建与独立审计的实际退出码、完整输出及失败修复记录分别由 [v0.3.4 验收记录](../logs/v0.3.4/acceptance.json)、[v0.3.5 验收记录](../logs/v0.3.5/acceptance.json) 汇总。
+
+| 当前结论 | 实际证据 | 准确范围 |
+|---|---|---|
+| P05 / T22–T23：J 和跨边层梯度估计 | [GradientControl.lean](../LeanPML/PML/GradientControl.lean)：`fieldJ_integrable`、`fieldJ_eq_integral`、`fieldJ_nonneg`、`fieldJDensity_zero_region`、`fieldSpatialDissipation_ge_J`、`gradient_evolution_Conditional`、`gradient_control_Conditional` | (9.2) 为实际 L² 内积/积分；(9.3) 保留零区贡献；(9.4) 来自原辅助演化和真实同源导数；(9.5) 经 a.e. 关系、可积性及积分序关系推出。不是独立点态分量的矩阵估计 |
+| P05 / T24–T26：耗散下界与两类吸收 | [DissipationClosure.lean](../LeanPML/PML/DissipationClosure.lean)：`dissipation7_preliminary_Conditional`、`spatial_absorption_Conditional`、`spatial_absorption_half_Conditional`、`debye_relations_Conditional`、`debye_absorption_Conditional` | 精确验证 (9.1)、(9.6)、(9.7)；原阈值提供材料条件，原幅度提供 KS²≤1/16；Poincaré 使用同一 G.trace 零迹核。κE_t=P_t+τP_tt 从邻域真实求导获得 |
+| P06 / T27：定量耗散闭合与非负 | `dissipation7_lower_Conditional`、`dissipation7_nonneg_Conditional`、`energy7_law_and_closure_Conditional` | (9.7) 后未编号下界保留一半空间耗散及 μτ/(4κ) Debye 项；导数恒等式、耗散下界、导数符号分别证明。最终内部结论不预设 D₇≥0 |
+| P06 / T28：有限区间单调性与积分平衡 | [MainAbstract.lean](../LeanPML/PML/MainAbstract.lean)：`energy7_antitoneOn_Conditional`、`energy7_integral_balance_Conditional`、`main_energy_estimate_Conditional` | 实际 energy7 在 [0,T] 单调不增；对 0≤t₁≤t₂≤T 有实际 intervalIntegral 平衡。闭区间坐标连续、内部演化；FTC 另用 P_tt 的闭区间 L² 连续性 |
+| P06 / T21、T29：接通初始能量控制 | `graphSquare7_initial_bound_Conditional`、`physicalControl_initial_Conditional` | 由已证静态界和新单调性，将 (6.7)、(6.10)、(8.4)–(8.8) 的右端接到 E₇(0)，保持原常数；这是兼容提升下的先验估计 |
+
+表内 Lean 名称的统一完整前缀是 `LeanPML.PML.`。`fieldJ` 定义本身不登记为“证明完成”；其合法积分、代表元无关和非负性分别由上述定理支撑。四种吸收分支均保留，边层实例区分 x/y 的不同方向次序；未增加吸收正下界或 w 本质有界性。
+
+本轮另行审查了普通假设字段，因为公理审计不会自动指出结构字段中隐藏的目标：
+
+- `FiniteIntervalProblemConditional` 输入 T≥0、原层 primitive 演化、同源真实导数、条件性空间路径及闭区间坐标连续/静态兼容；没有 (9.5)、(9.6)、(9.7)、能量律、耗散非负、单调性或积分平衡字段。
+- Green、独立迹/边界配对、梯度/散度定义域、时间交换仍是显式条件；Poincaré 针对同一个迹的核，不能把目标吸收估计代替 Poincaré。
+- `Nonempty α` 仅用于从某一点的 0≤p≤S 取得 S≥0；二维载体 ℝ×ℝ 自动满足，仍允许零吸收和零测度，不把积分域缩成物理区。
+- 路径只在 (0,T) 内要求 HasDerivAt 和演化。闭端点只要求连续与静态约束；T=0 的端点兼容不能由空内部方程推出。定量耗散和导数结论在开区间，闭区间得到能量界和单调性。
+- 积分平衡额外使用 `hsecondR`：P_tt 在闭区间的实际 L² 连续性，由此证明耗散连续和可积；单调性不需要该附加条件。FTC 不要求端点普通双侧导数，且包含 t₁=t₂、t₁=0、t₂=T。
+
+因此可以称为**明确分析接口下的条件性单调能量先验定理**。还不能称为“原八变量二维 PDE 已完整形式化”：具体矩形 Green、迹、精确 Poincaré、微分交换及原模型/primitive 双向对应仍未完成，提升唯一性和解存在唯一性也未完成。没有严格衰减结论，没有以有限时间估计证明全局解存在，没有扩大原小幅度范围。
+
+本轮结束于 v0.3.5。下一入口 v0.4.1 仅是具体矩形光滑场、方向导数和四边边界/零迹表示；未提前实现。逐项依赖见 [定理清单新增记录](theorem_inventory.md)，PDF 的范围说明与旧批注更新见 [标注账本](pdf_formalization_marks.md)。

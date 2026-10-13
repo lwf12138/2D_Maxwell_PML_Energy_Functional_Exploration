@@ -16,6 +16,12 @@ import LeanPML.PML.EnergyIntegrals
 import LeanPML.PML.BalanceAbstract
 import LeanPML.PML.PhysicalControl
 
+import LeanPML.PML.GradientControl
+
+import LeanPML.PML.DissipationClosure
+
+import LeanPML.PML.MainAbstract
+
 /-!
 # LeanPML 正式入口
 
@@ -26,5 +32,7 @@ v0.2.4 核验单层特殊初值的负耗散、实际初值积分和第二层分�
 v0.3.1 加入实际普通/加权 L²、全域空间积分、同源时间路径与内积能量求导。
 v0.3.2 从真实 primitive 演化与明确 Green/交换接口推出条件性两层能量恒等式。
 v0.3.3 在显式 Poincaré 与兼容约束下得到图范数双边界、零分离及原状态控制。
-具体矩形接口、两个磁不变量、耗散闭合与最终单调性尚未实现。
+v0.3.4 用实际 J 积分与同源辅助演化证明 (9.3)–(9.5)，保留零吸收区。
+v0.3.5 在明确分析接口下闭合两类耗散，证明有限闭区间单调性与实际积分平衡。
+具体矩形接口、完整原 PDE 对应、两个磁不变量及解存在唯一性仍待后续。
 -/

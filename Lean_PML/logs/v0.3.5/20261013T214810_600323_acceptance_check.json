@@ -1,0 +1,18 @@
+{
+  "stage": "v0.3.5",
+  "command": [
+    "python3",
+    "logs/v0.3.5/make_acceptance.py",
+    "v0.3.5"
+  ],
+  "command_display": "python3 logs/v0.3.5/make_acceptance.py v0.3.5",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/usr/bin/python3",
+  "started_at": "2026-10-13T21:48:10.600323+08:00",
+  "output_file": "20261013T214810_600323_acceptance_check.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 1,
+  "status": "finished",
+  "ended_at": "2026-10-13T21:48:10.625625+08:00",
+  "elapsed_seconds": 0.025
+}

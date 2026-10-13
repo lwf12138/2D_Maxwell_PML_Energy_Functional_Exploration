@@ -1,0 +1,75 @@
+{
+  "stages": [
+    "v0.3.4",
+    "v0.3.5"
+  ],
+  "status": "passed",
+  "protected_files_unchanged": true,
+  "source_inventory_unchanged": true,
+  "history_retained": true,
+  "source_hashes": {
+    "LeanPML/PML/GradientControl.lean": "63d6cbb810c2e23f77039120ca28f454f44f54b0aeb30e201cae25b94d7fe81a",
+    "LeanPML/PML/DissipationClosure.lean": "d2e5333aed6a733c28396a95fdd52e53b483f5fc011f9485c3a6d4112188aa7d",
+    "LeanPML/PML/MainAbstract.lean": "47b278c96a5d67d6bec24a2214830ae9094284e2b06840394b5cabf95e6a71d4"
+  },
+  "formal_imports_and_audit_covered": true,
+  "default_targets": [
+    "LeanPML",
+    "Audit"
+  ],
+  "audit_total": 369,
+  "new_theorems": 53,
+  "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "sorryAx": false,
+  "all_stage_commands_exit_zero": true,
+  "assumption_print": "logs/v0.3.5/20261013T215341_410073_assumptions_print.log",
+  "assumption_review": "Manual independent review of original parameters, primitive/same-source inputs, same-trace Poincare and Ioo/Icc separation; no target in input fields",
+  "link_count": 108,
+  "all_new_doc_links_resolve": true,
+  "pdf": {
+    "page_count": 18,
+    "modified_pages": [
+      10,
+      12,
+      13,
+      14
+    ],
+    "old_annotations": 168,
+    "total_annotations": 183,
+    "new_red_ticks": 10,
+    "new_notes": 5,
+    "old_annotations_preserved": true,
+    "original_text_prefix_preserved": true,
+    "unchanged_pages_text_equal": true,
+    "protected_files_unchanged": true,
+    "source_hashes_match": true,
+    "audits": {
+      "v0.3.4": {
+        "count": 334,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      },
+      "v0.3.5": {
+        "count": 369,
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    "sha256_before": "c9d5b114e9de7befb92e001ccc1486227acef27c8c0933fc688722eaf3ca44a3",
+    "sha256_after": "66c0f5dd32a1a983412a08eea40e3cd5d890f3dd987dbfe7e2bb4c7a5ddce1b3",
+    "visual_review": "passed; all modified pages inspected in after-10.png, after-12.png, after-13.png, after-14.png"
+  },
+  "no_v04_implementation": true,
+  "no_new_reading_guide": true,
+  "old_readme_snapshot": "logs/v0.3.4/initial_files/README.md"
+}

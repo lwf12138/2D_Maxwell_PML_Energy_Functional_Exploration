@@ -1,0 +1,23 @@
+{
+  "stage": "v0.3.5",
+  "command": [
+    "node",
+    "/Users/wcli/.codex/plugins/cache/openai-primary-runtime/pdf/26.905.11957/skills/pdf/container_tools/mark_artifact_operation_started.mjs",
+    "--operation-kind",
+    "edit",
+    "--expected-output-count",
+    "1",
+    "--output-format",
+    "pdf"
+  ],
+  "command_display": "node /Users/wcli/.codex/plugins/cache/openai-primary-runtime/pdf/26.905.11957/skills/pdf/container_tools/mark_artifact_operation_started.mjs --operation-kind edit --expected-output-count 1 --output-format pdf",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.local/bin/node",
+  "started_at": "2026-10-13T21:49:09.853837+08:00",
+  "output_file": "20261013T214909_853837_pdf_edit_marker.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-13T21:49:10.008487+08:00",
+  "elapsed_seconds": 0.154
+}

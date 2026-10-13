@@ -1,0 +1,29 @@
+{
+  "stage": "v0.3.4",
+  "mathematics": "passed within explicitly conditional spatial interfaces",
+  "build": "logs/v0.3.4/20261013T214336_169080_lake_build.log",
+  "audit": "logs/v0.3.4/20261013T214424_960799_axioms_audit.log",
+  "build_exit_code": 0,
+  "audit_exit_code": 0,
+  "new_public_theorems": 18,
+  "audited_declarations": 334,
+  "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "sorryAx": false,
+  "sources": {
+    "LeanPML/PML/GradientControl.lean": "63d6cbb810c2e23f77039120ca28f454f44f54b0aeb30e201cae25b94d7fe81a"
+  },
+  "root_sha256": "899b0cace256911dad6e717775691673a87017b80d442e74c5360b26895a6e7d",
+  "audit_sha256": "2200d0759d0f020ef1e3147cda38f6cc745e60bacc5a41283c0de3a25640c8fe",
+  "protected_files_unchanged": true,
+  "remaining": [
+    "concrete rectangle Green, trace, Poincare, time-space commutation",
+    "original eight-variable PDE equivalence and lift uniqueness",
+    "existence and uniqueness; strict decay"
+  ],
+  "endpoint_scope": "Derivative and quantitative dissipation bound on interior; static bounds, antitonicity and FTC balance on closed interval; T=0 permitted",
+  "assumption_review": "No target gradient bound, dissipation sign, derivative sign, monotonicity or balance in input fields; explicit common-trace Poincare and original primitive/same-source conditions"
+}

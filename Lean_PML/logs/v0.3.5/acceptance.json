@@ -1,0 +1,30 @@
+{
+  "stage": "v0.3.5",
+  "mathematics": "passed within explicitly conditional spatial interfaces",
+  "build": "logs/v0.3.5/20261013T214810_766115_lake_build.log",
+  "audit": "logs/v0.3.5/20261013T214845_382134_axioms_audit.log",
+  "build_exit_code": 0,
+  "audit_exit_code": 0,
+  "new_public_theorems": 35,
+  "audited_declarations": 369,
+  "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "sorryAx": false,
+  "sources": {
+    "LeanPML/PML/DissipationClosure.lean": "d2e5333aed6a733c28396a95fdd52e53b483f5fc011f9485c3a6d4112188aa7d",
+    "LeanPML/PML/MainAbstract.lean": "47b278c96a5d67d6bec24a2214830ae9094284e2b06840394b5cabf95e6a71d4"
+  },
+  "root_sha256": "0387e10af3314522a9d6478eccfa0c237f331f917f71bf2c12970167df2815a3",
+  "audit_sha256": "0031c8c14ce1f3958a9c35cded5551e52aee45ee4034fb0c08ea094e3f9da9a6",
+  "protected_files_unchanged": true,
+  "remaining": [
+    "concrete rectangle Green, trace, Poincare, time-space commutation",
+    "original eight-variable PDE equivalence and lift uniqueness",
+    "existence and uniqueness; strict decay"
+  ],
+  "endpoint_scope": "Derivative and quantitative dissipation bound on interior; static bounds, antitonicity and FTC balance on closed interval; T=0 permitted",
+  "assumption_review": "No target gradient bound, dissipation sign, derivative sign, monotonicity or balance in input fields; explicit common-trace Poincare and original primitive/same-source conditions"
+}

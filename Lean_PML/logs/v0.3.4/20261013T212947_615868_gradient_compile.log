@@ -1,0 +1,76 @@
+LeanPML/PML/GradientControl.lean:92:2: error: Type mismatch: After simplification, term
+  Integrable.fun_add (Integrable.fun_add hlx hhx) (Integrable.fun_add hly hhy)
+ has type
+  Integrable
+    (fun i =>
+      thetaX (C.p i) (C.r i) * ↑↑U.Λx i ^ 2 + thetaY (C.p i) (C.r i) * ↑↑(spatialComponentX U) i ^ 2 +
+        (thetaY (C.p i) (C.r i) * ↑↑U.Λy i ^ 2 + thetaX (C.p i) (C.r i) * ↑↑(spatialComponentY U) i ^ 2))
+    ν
+but is expected to have type
+  Integrable (fieldJDensity ν C U) ν
+LeanPML/PML/GradientControl.lean:107:2: error: 'change' tactic failed, pattern
+  ?m.70 =
+    ∫ (x : α),
+      C.thetaXCoeff.value x * ↑↑U.Λx x ^ 2 + C.thetaYCoeff.value x * ↑↑(spatialComponentX U) x ^ 2 +
+        (C.thetaYCoeff.value x * ↑↑U.Λy x ^ 2 + C.thetaXCoeff.value x * ↑↑(spatialComponentY U) x ^ 2) ∂ν
+is not definitionally equal to target
+  ∫ (x : α), C.thetaXCoeff.value x * ↑↑U.Λx x ^ 2 ∂ν +
+          ∫ (x : α), C.thetaYCoeff.value x * ↑↑(spatialComponentX U) x ^ 2 ∂ν +
+        ∫ (x : α), C.thetaYCoeff.value x * ↑↑U.Λy x ^ 2 ∂ν +
+      ∫ (x : α), C.thetaXCoeff.value x * ↑↑(spatialComponentY U) x ^ 2 ∂ν =
+    ∫ (x : α),
+      thetaX (C.p x) (C.r x) * ↑↑U.Λx x ^ 2 + thetaY (C.p x) (C.r x) * ↑↑(spatialComponentX U) x ^ 2 +
+        (thetaX (C.r x) (C.p x) * ↑↑U.Λy x ^ 2 + thetaY (C.r x) (C.p x) * ↑↑(spatialComponentY U) x ^ 2) ∂ν
+LeanPML/PML/GradientControl.lean:106:28: warning: This simp argument is unused:
+  directionalJ_swap
+
+Hint: Omit it from the simp argument list.
+  simp only [fieldJDensity, directionalJ_̵s̵w̵a̵p̵,̵ ̵d̵i̵r̵e̵c̵t̵i̵o̵n̵a̵l̵J̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/PML/GradientControl.lean:153:50: error: Type mismatch: After simplification, term
+  hx
+ has type
+  ↑(↑U.Λx - ↑((physicalL2 ν C.wx ⋯ ⋯) U.ψx)) x = ↑↑U.Λx x - ↑↑((physicalL2 ν C.wx ⋯ ⋯) U.ψx) x
+but is expected to have type
+  ↑↑(spatialComponentX U) x = ↑↑U.Λx x
+LeanPML/PML/GradientControl.lean:154:50: error: Type mismatch: After simplification, term
+  hy
+ has type
+  ↑(↑U.Λy - ↑((physicalL2 ν C.wy ⋯ ⋯) U.ψy)) x = ↑↑U.Λy x - ↑↑((physicalL2 ν C.wy ⋯ ⋯) U.ψy) x
+but is expected to have type
+  ↑↑(spatialComponentY U) x = ↑↑U.Λy x
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+LeanPML/PML/GradientControl.lean:145:61: error: unsolved goals
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+C : SpatialAbsorption α
+U : FieldState ν C.wx C.wy
+x : α
+hzeroX : C.wx x = 0 → ↑↑((physicalL2 ν C.wx ⋯ ⋯) U.ψx) x = 0
+hzeroY : C.wy x = 0 → ↑↑((physicalL2 ν C.wy ⋯ ⋯) U.ψy) x = 0
+hx : ↑↑(U.Λx - (physicalX ν C) U.ψx) x = (↑↑U.Λx - ↑↑((physicalX ν C) U.ψx)) x
+hy : ↑↑(U.Λy - (physicalY ν C) U.ψy) x = (↑↑U.Λy - ↑↑((physicalY ν C) U.ψy)) x
+ha_zero : C.a x = 0
+hψx : ↑↑((physicalX ν C) U.ψx) x = 0
+hψy : ↑↑((physicalY ν C) U.ψy) x = 0
+hx_eq : ↑↑(spatialComponentX U) x = ↑↑U.Λx x
+hy_eq : ↑↑(spatialComponentY U) x = ↑↑U.Λy x
+hθ :
+  energyWeightX C.c (C.p x) (C.r x) = 0 ∧
+    energyWeightY C.c (C.p x) (C.r x) = 0 ∧ thetaX (C.p x) (C.r x) = 1 / 2 ∧ thetaY (C.p x) (C.r x) = 1 / 2
+⊢ ↑↑U.Λx x ^ 2 + thetaX (C.r x) (C.p x) * ↑↑U.Λy x ^ 2 + ↑↑U.Λy x ^ 2 * thetaY (C.r x) (C.p x) =
+    ↑↑U.Λx x ^ 2 + ↑↑U.Λy x ^ 2
+LeanPML/PML/GradientControl.lean:156:28: warning: This simp argument is unused:
+  directionalJ_swap
+
+Hint: Omit it from the simp argument list.
+  simp only [fieldJDensity, d̵i̵r̵e̵c̵t̵i̵o̵n̵a̵l̵J̵_̵s̵w̵a̵p̵,̵ ̵directionalJ, hθ.2.2.1, hθ.2.2.2, hx_eq, hy_eq]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

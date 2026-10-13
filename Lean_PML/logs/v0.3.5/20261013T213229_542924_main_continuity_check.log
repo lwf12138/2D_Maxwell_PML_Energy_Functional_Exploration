@@ -1,0 +1,44 @@
+LeanPML/PML/MainAbstract.lean:55:17: error: typeclass instance problem is stuck
+  InnerProductSpace ?m.174 ↥(ScalarL2 ν)
+
+Note: Lean will not try to resolve this typeclass instance problem because the first and third type arguments to `InnerProductSpace` are metavariables. These arguments must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+LeanPML/PML/MainAbstract.lean:142:38: error: Function expected at
+  PrimitiveAtConditional
+but this term has type
+  ?m.173
+
+Note: Expected a function because this term is being applied to the argument
+  G
+
+Hint: The identifier `PrimitiveAtConditional` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+LeanPML/PML/MainAbstract.lean:158:20: error: Function expected at
+  FiniteIntervalProblemConditional
+but this term has type
+  ?m.154
+
+Note: Expected a function because this term is being applied to the argument
+  G
+LeanPML/PML/MainAbstract.lean:167:44: error(lean.unknownIdentifier): Unknown identifier `hp`
+LeanPML/PML/MainAbstract.lean:167:47: error(lean.unknownIdentifier): Unknown identifier `G.spatial`
+LeanPML/PML/MainAbstract.lean:168:38: error(lean.unknownIdentifier): Unknown identifier `G`
+LeanPML/PML/MainAbstract.lean:168:43: error(lean.unknownIdentifier): Unknown identifier `estimate`
+LeanPML/PML/MainAbstract.lean:168:53: error(lean.unknownIdentifier): Unknown identifier `problem.path`
+LeanPML/PML/MainAbstract.lean:167:2: error: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+LeanPML/PML/MainAbstract.lean:175:45: error(lean.unknownIdentifier): Unknown identifier `problem.path.base`
+LeanPML/PML/MainAbstract.lean:176:29: error(lean.unknownIdentifier): Unknown identifier `hp.ε_pos.le`
+LeanPML/PML/MainAbstract.lean:176:41: error(lean.unknownIdentifier): Unknown identifier `hp.κ_pos.le`
+LeanPML/PML/MainAbstract.lean:176:53: error(lean.unknownIdentifier): Unknown identifier `hp.μ_pos.le`
+LeanPML/PML/MainAbstract.lean:174:49: error: unsolved goals
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+C : SpatialAbsorption α
+ε κ τ μ CP T t : ℝ
+ht : t ∈ Set.Icc 0 T
+⊢ 0 ≤ energy7 ν C ε κ τ μ CP sorry t

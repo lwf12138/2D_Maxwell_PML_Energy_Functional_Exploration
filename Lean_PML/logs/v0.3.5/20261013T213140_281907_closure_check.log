@@ -1,0 +1,4 @@
+LeanPML/PML/DissipationClosure.lean:128:7: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  IsOpen.mem_nhds isOpen_interior ht
+has type `(𝓝 t).1 (interior I)` which does not have the necessary form.
+LeanPML/PML/DissipationClosure.lean:192:53: error: failed to prove positivity/nonnegativity/nonzeroness

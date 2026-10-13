@@ -1,0 +1,311 @@
+{
+  "pages": 18,
+  "old_annotations": 168,
+  "new_annotations": 15,
+  "new_red_ticks": 10,
+  "modified_pages": [
+    10,
+    12,
+    13,
+    14
+  ],
+  "unchanged_original_text_prefix": true,
+  "old_annotations_preserved": true,
+  "old_text_overlap_count": 0,
+  "sha256_before": "c9d5b114e9de7befb92e001ccc1486227acef27c8c0933fc688722eaf3ca44a3",
+  "sha256_after": "66c0f5dd32a1a983412a08eea40e3cd5d890f3dd987dbfe7e2bb4c7a5ddce1b3",
+  "plan_sha256": "dcd4ede7597cf42a447fc38ab96b2ad7a62c86f4af6b7b6497e3866ad943109b",
+  "draws": [
+    {
+      "x": 535,
+      "top": 266,
+      "font_size": 6,
+      "lines": [
+        "条件性",
+        "耗散闭合",
+        "精确剩余量"
+      ],
+      "id": "main-dissipation",
+      "page": 10,
+      "tick": true,
+      "scope": "(6.8)\n(6.8) 的精确剩余耗散下界与非负性；原层演化、同源真实路径和共同迹 Poincaré 下，时间在内部。\n待完成：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。\n\nLeanPML.PML.dissipation7_lower_Conditional\nLeanPML.PML.dissipation7_nonneg_Conditional\n\n当前证据：\nlogs/v0.3.5/20261013T214810_766115_lake_build.log\nlogs/v0.3.5/20261013T214845_382134_axioms_audit.log",
+      "rect_top": [
+        534,
+        264,
+        581.0,
+        290.4
+      ]
+    },
+    {
+      "x": 535,
+      "top": 328,
+      "font_size": 6,
+      "lines": [
+        "条件性单调",
+        "与积分平衡",
+        "闭区间版本"
+      ],
+      "id": "main-balance",
+      "page": 10,
+      "tick": true,
+      "scope": "(6.9)\n(6.9) 有限闭区间单调不增与真实时间积分平衡；两层分量闭区间连续和静态兼容，内部真实演化；积分平衡另需 second.R=P_tt 连续。\n待完成：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。\n\nLeanPML.PML.energy7_antitoneOn_Conditional\nLeanPML.PML.energy7_integral_balance_Conditional\nLeanPML.PML.main_energy_estimate_Conditional\n\n当前证据：\nlogs/v0.3.5/20261013T214810_766115_lake_build.log\nlogs/v0.3.5/20261013T214845_382134_axioms_audit.log",
+      "rect_top": [
+        534,
+        326,
+        581.0,
+        352.4
+      ]
+    },
+    {
+      "x": 535,
+      "top": 718,
+      "font_size": 6,
+      "lines": [
+        "条件性",
+        "耗散下界",
+        "同源两层"
+      ],
+      "id": "preliminary",
+      "page": 13,
+      "tick": true,
+      "scope": "(9.1)\n由实际场单层余项积分与真实兼容求导，得到 (9.1)，保留两项负项；未把单层耗散非负作为输入。\n待完成：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。\n\nLeanPML.PML.fieldDissipation_lower\nLeanPML.PML.debye_relations_Conditional\nLeanPML.PML.dissipation7_preliminary_Conditional\n\n当前证据：\nlogs/v0.3.5/20261013T214810_766115_lake_build.log\nlogs/v0.3.5/20261013T214845_382134_axioms_audit.log",
+      "rect_top": [
+        534,
+        716,
+        575.0,
+        742.4
+      ]
+    },
+    {
+      "x": 4,
+      "top": 135,
+      "font_size": 6,
+      "lines": [
+        "J可积、非负",
+        "实际L²积分"
+      ],
+      "id": "j-analysis",
+      "page": 14,
+      "tick": true,
+      "scope": "(9.2) 的可积性、非负性子结论\n实际 L² 与有界 θ 系数下，J 密度可积、内积/积分相等且非负；零区密度为两个梯度表达分量平方和。红勾不表示定义本身是证明。\n待完成：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。\n\nLeanPML.PML.fieldJ_integrable\nLeanPML.PML.fieldJ_eq_integral\nLeanPML.PML.fieldJ_nonneg\nLeanPML.PML.fieldJDensity_zero_region\n\n当前证据：\nlogs/v0.3.4/20261013T214336_169080_lake_build.log\nlogs/v0.3.4/20261013T214424_960799_axioms_audit.log",
+      "rect_top": [
+        3,
+        133,
+        53.0,
+        151.2
+      ]
+    },
+    {
+      "x": 535,
+      "top": 191,
+      "font_size": 6,
+      "lines": [
+        "空间约束下",
+        "积分估计",
+        "含零吸收区"
+      ],
+      "id": "spatial-j",
+      "page": 14,
+      "tick": true,
+      "scope": "(9.3)\n(9.3) 的两个实际积分下界；非负吸收和幅度限制，空间表达 h=Λ−ψ，零区恢复 ψ=0。\n待完成：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。\n\nLeanPML.PML.fieldSpatialDissipation_ge_J\n\n当前证据：\nlogs/v0.3.4/20261013T214336_169080_lake_build.log\nlogs/v0.3.4/20261013T214424_960799_axioms_audit.log",
+      "rect_top": [
+        534,
+        189,
+        581.0,
+        215.4
+      ]
+    },
+    {
+      "x": 535,
+      "top": 240,
+      "font_size": 6,
+      "lines": [
+        "原辅助演化",
+        "推出；需时间",
+        "空间交换接口"
+      ],
+      "id": "gradient-evolution",
+      "page": 14,
+      "tick": true,
+      "scope": "(9.4)\n(9.4) 从原层辅助演化和同源真实导数推出；依赖受限梯度域、空间约束及沿路径时间交换接口。\n待完成：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。\n\nLeanPML.PML.gradient_evolution_Conditional\n\n当前证据：\nlogs/v0.3.4/20261013T214336_169080_lake_build.log\nlogs/v0.3.4/20261013T214424_960799_axioms_audit.log",
+      "rect_top": [
+        534,
+        238,
+        587.0,
+        264.4
+      ]
+    },
+    {
+      "x": 535,
+      "top": 352,
+      "font_size": 6,
+      "lines": [
+        "同源路径下",
+        "梯度估计",
+        "空间算子接口"
+      ],
+      "id": "gradient-control",
+      "page": 14,
+      "tick": true,
+      "scope": "(9.5)\n(9.5) 从 (9.4)、θ 的两种系数估计和三项平方估计，经合法实际 L² 积分得到；覆盖零区、双边层和角层。\n待完成：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。\n\nLeanPML.PML.field_gradient_control\nLeanPML.PML.gradient_control_Conditional\n\n当前证据：\nlogs/v0.3.4/20261013T214336_169080_lake_build.log\nlogs/v0.3.4/20261013T214424_960799_axioms_audit.log",
+      "rect_top": [
+        534,
+        350,
+        587.0,
+        376.4
+      ]
+    },
+    {
+      "x": 535,
+      "top": 420,
+      "font_size": 6,
+      "lines": [
+        "Poincaré",
+        "接口下的",
+        "吸收估计"
+      ],
+      "id": "spatial-absorption",
+      "page": 14,
+      "tick": true,
+      "scope": "(9.6)\n(9.6) 由共同迹核的 Poincaré、(9.3)、(9.5) 与原阈值推出；非空空间载体仅用于从0≤p≤S取得S≥0。\n待完成：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。\n\nLeanPML.PML.scale_amplitude_chain\nLeanPML.PML.spatial_absorption_Conditional\nLeanPML.PML.spatial_absorption_half_Conditional\n\n当前证据：\nlogs/v0.3.5/20261013T214810_766115_lake_build.log\nlogs/v0.3.5/20261013T214845_382134_axioms_audit.log",
+      "rect_top": [
+        534,
+        418,
+        575.0,
+        444.4
+      ]
+    },
+    {
+      "x": 535,
+      "top": 673,
+      "font_size": 6,
+      "lines": [
+        "真实Debye",
+        "导数关系下",
+        "吸收估计"
+      ],
+      "id": "debye-absorption",
+      "page": 14,
+      "tick": true,
+      "scope": "(9.7)\n(9.7) 由邻域兼容的两次真实求导得到 κ E_t=P_t+τP_tt，再从原阈值的两条材料条件分别吸收。\n待完成：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。\n\nLeanPML.PML.debye_relations_Conditional\nLeanPML.PML.debye_absorption_split\nLeanPML.PML.debye_absorption_Conditional\n\n当前证据：\nlogs/v0.3.5/20261013T214810_766115_lake_build.log\nlogs/v0.3.5/20261013T214845_382134_axioms_audit.log",
+      "rect_top": [
+        534,
+        671,
+        581.0,
+        697.4
+      ]
+    },
+    {
+      "x": 535,
+      "top": 718,
+      "font_size": 6,
+      "lines": [
+        "条件性",
+        "耗散闭合",
+        "两类预算保留"
+      ],
+      "id": "remainder-budget",
+      "page": 14,
+      "tick": true,
+      "scope": "(9.7) 后未编号剩余耗散下界\n同时扣除不同负项，保留空间耗散1/2与 μτ/(4κ) 的 Debye 平方预算；不是重复使用同一正项。\n待完成：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。\n\nLeanPML.PML.dissipation7_lower_Conditional\nLeanPML.PML.dissipation7_nonneg_Conditional\n\n当前证据：\nlogs/v0.3.5/20261013T214810_766115_lake_build.log\nlogs/v0.3.5/20261013T214845_382134_axioms_audit.log",
+      "rect_top": [
+        534,
+        716,
+        587.0,
+        742.4
+      ]
+    },
+    {
+      "id": "legend10",
+      "page": 10,
+      "x": 68,
+      "top": 45,
+      "font_size": 6,
+      "lines": [
+        "v0.3.4–5：条件性主结论已闭合；矩形 Green、Poincaré、迹和微分交换仍须证明。顶部旧说明保留为历史。"
+      ],
+      "tick": false,
+      "scope": "v0.3.4–5：条件性主结论已闭合；矩形 Green、Poincaré、迹和微分交换仍须证明。顶部旧说明保留为历史。",
+      "rect_top": [
+        67,
+        43,
+        355.705078125,
+        53.0
+      ]
+    },
+    {
+      "id": "legend13",
+      "page": 13,
+      "x": 68,
+      "top": 45,
+      "font_size": 6,
+      "lines": [
+        "v0.3.4–5：抽象分析接口下已闭合耗散与单调性；上方旧“待完成”文字为历史状态，非具体 PDE 完成。"
+      ],
+      "tick": false,
+      "scope": "v0.3.4–5：抽象分析接口下已闭合耗散与单调性；上方旧“待完成”文字为历史状态，非具体 PDE 完成。",
+      "rect_top": [
+        67,
+        43,
+        339.3486328125,
+        53.0
+      ]
+    },
+    {
+      "id": "legend14",
+      "page": 14,
+      "x": 68,
+      "top": 45,
+      "font_size": 6,
+      "lines": [
+        "条件性：Lean 已证明列明接口下的结论；不表示具体矩形接口或解存在唯一性已证明。旧系数标记保留。"
+      ],
+      "tick": false,
+      "scope": "条件性：Lean 已证明列明接口下的结论；不表示具体矩形接口或解存在唯一性已证明。旧系数标记保留。",
+      "rect_top": [
+        67,
+        43,
+        348.0146484375,
+        53.0
+      ]
+    },
+    {
+      "id": "j-definition",
+      "page": 14,
+      "x": 536,
+      "top": 138,
+      "font_size": 6,
+      "lines": [
+        "J定义已录入",
+        "另证可积非负"
+      ],
+      "tick": false,
+      "scope": "J定义已录入\n另证可积非负",
+      "rect_top": [
+        535,
+        136,
+        573.0,
+        154.2
+      ]
+    },
+    {
+      "id": "history12",
+      "page": 12,
+      "x": 68,
+      "top": 45,
+      "font_size": 6,
+      "lines": [
+        "v0.3.4–5 更新：耗散闭合、有限区间单调性与积分平衡已在分析接口下证明；既有待完成旁注保留为历史。"
+      ],
+      "tick": false,
+      "scope": "v0.3.4–5 更新：耗散闭合、有限区间单调性与积分平衡已在分析接口下证明；既有待完成旁注保留为历史。",
+      "rect_top": [
+        67,
+        43,
+        351.3486328125,
+        53.0
+      ]
+    }
+  ],
+  "visual_review": "pending"
+}

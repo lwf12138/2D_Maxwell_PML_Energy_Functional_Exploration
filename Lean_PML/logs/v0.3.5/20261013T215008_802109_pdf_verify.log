@@ -1,0 +1,39 @@
+{
+  "page_count": 18,
+  "modified_pages": [
+    10,
+    12,
+    13,
+    14
+  ],
+  "old_annotations": 168,
+  "total_annotations": 183,
+  "new_red_ticks": 10,
+  "new_notes": 5,
+  "old_annotations_preserved": true,
+  "original_text_prefix_preserved": true,
+  "unchanged_pages_text_equal": true,
+  "protected_files_unchanged": true,
+  "source_hashes_match": true,
+  "audits": {
+    "v0.3.4": {
+      "count": 334,
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "v0.3.5": {
+      "count": 369,
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    }
+  },
+  "sha256_before": "c9d5b114e9de7befb92e001ccc1486227acef27c8c0933fc688722eaf3ca44a3",
+  "sha256_after": "66c0f5dd32a1a983412a08eea40e3cd5d890f3dd987dbfe7e2bb4c7a5ddce1b3",
+  "visual_review": "passed; all modified pages inspected in after-10.png, after-12.png, after-13.png, after-14.png"
+}

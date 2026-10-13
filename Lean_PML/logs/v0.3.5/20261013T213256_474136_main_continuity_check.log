@@ -1,0 +1,12 @@
+LeanPML/PML/MainAbstract.lean:169:44: error(lean.unknownIdentifier): Unknown identifier `hp`
+LeanPML/PML/MainAbstract.lean:178:29: error(lean.unknownIdentifier): Unknown identifier `hp.ε_pos.le`
+LeanPML/PML/MainAbstract.lean:178:41: error(lean.unknownIdentifier): Unknown identifier `hp.κ_pos.le`
+LeanPML/PML/MainAbstract.lean:178:53: error(lean.unknownIdentifier): Unknown identifier `hp.μ_pos.le`
+LeanPML/PML/MainAbstract.lean:180:29: error(lean.unknownIdentifier): Unknown identifier `hp.ε_pos.le`
+LeanPML/PML/MainAbstract.lean:180:41: error(lean.unknownIdentifier): Unknown identifier `hp.κ_pos.le`
+LeanPML/PML/MainAbstract.lean:180:53: error(lean.unknownIdentifier): Unknown identifier `hp.μ_pos.le`
+LeanPML/PML/MainAbstract.lean:182:24: error(lean.unknownIdentifier): Unknown identifier `hp.ε_pos`
+LeanPML/PML/MainAbstract.lean:182:33: error(lean.unknownIdentifier): Unknown identifier `hp.κ_pos`
+LeanPML/PML/MainAbstract.lean:182:42: error(lean.unknownIdentifier): Unknown identifier `hp.μ_pos`
+LeanPML/PML/MainAbstract.lean:182:51: error(lean.unknownIdentifier): Unknown identifier `hp.CP_pos`
+LeanPML/PML/MainAbstract.lean:185:69: error(lean.unknownIdentifier): Unknown identifier `hp`

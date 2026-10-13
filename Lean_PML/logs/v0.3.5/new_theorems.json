@@ -1,0 +1,177 @@
+[
+  {
+    "name": "LeanPML.PML.electricRemainder_lower_pointwise",
+    "file": "LeanPML/PML/DissipationClosure.lean",
+    "line": 24
+  },
+  {
+    "name": "LeanPML.PML.polarRemainder_lower_pointwise",
+    "file": "LeanPML/PML/DissipationClosure.lean",
+    "line": 36
+  },
+  {
+    "name": "LeanPML.PML.fieldDissipation_lower",
+    "file": "LeanPML/PML/DissipationClosure.lean",
+    "line": 63
+  },
+  {
+    "name": "LeanPML.PML.scale_amplitude_chain",
+    "file": "LeanPML/PML/DissipationClosure.lean",
+    "line": 113
+  },
+  {
+    "name": "LeanPML.PML.debye_relations_Conditional",
+    "file": "LeanPML/PML/DissipationClosure.lean",
+    "line": 133
+  },
+  {
+    "name": "LeanPML.PML.dissipation7_preliminary_Conditional",
+    "file": "LeanPML/PML/DissipationClosure.lean",
+    "line": 161
+  },
+  {
+    "name": "LeanPML.PML.debye_velocity_square_le",
+    "file": "LeanPML/PML/DissipationClosure.lean",
+    "line": 189
+  },
+  {
+    "name": "LeanPML.PML.debye_absorption_split",
+    "file": "LeanPML/PML/DissipationClosure.lean",
+    "line": 200
+  },
+  {
+    "name": "LeanPML.PML.debye_absorption",
+    "file": "LeanPML/PML/DissipationClosure.lean",
+    "line": 226
+  },
+  {
+    "name": "LeanPML.PML.debye_absorption_Conditional",
+    "file": "LeanPML/PML/DissipationClosure.lean",
+    "line": 267
+  },
+  {
+    "name": "LeanPML.PML.spatial_absorption_Conditional",
+    "file": "LeanPML/PML/DissipationClosure.lean",
+    "line": 283
+  },
+  {
+    "name": "LeanPML.PML.spatial_absorption_half_Conditional",
+    "file": "LeanPML/PML/DissipationClosure.lean",
+    "line": 326
+  },
+  {
+    "name": "LeanPML.PML.dissipation7_lower_Conditional",
+    "file": "LeanPML/PML/DissipationClosure.lean",
+    "line": 351
+  },
+  {
+    "name": "LeanPML.PML.dissipation7_nonneg_Conditional",
+    "file": "LeanPML/PML/DissipationClosure.lean",
+    "line": 376
+  },
+  {
+    "name": "LeanPML.PML.continuousOn_coefficient_quadratic",
+    "file": "LeanPML/PML/MainAbstract.lean",
+    "line": 42
+  },
+  {
+    "name": "LeanPML.PML.continuousOn_fieldEnergy",
+    "file": "LeanPML/PML/MainAbstract.lean",
+    "line": 49
+  },
+  {
+    "name": "LeanPML.PML.continuousOn_energy7",
+    "file": "LeanPML/PML/MainAbstract.lean",
+    "line": 71
+  },
+  {
+    "name": "LeanPML.PML.continuousOn_fieldDissipation",
+    "file": "LeanPML/PML/MainAbstract.lean",
+    "line": 81
+  },
+  {
+    "name": "LeanPML.PML.continuousOn_dissipation7",
+    "file": "LeanPML/PML/MainAbstract.lean",
+    "line": 108
+  },
+  {
+    "name": "LeanPML.PML.integral_balance_of_hasDerivAt",
+    "file": "LeanPML/PML/MainAbstract.lean",
+    "line": 120
+  },
+  {
+    "name": "LeanPML.PML.energy7_antitoneOn_zero_time",
+    "file": "LeanPML/PML/MainAbstract.lean",
+    "line": 177
+  },
+  {
+    "name": "LeanPML.PML.energy7_bounds_on_Icc_Conditional",
+    "file": "LeanPML/PML/MainAbstract.lean",
+    "line": 194
+  },
+  {
+    "name": "LeanPML.PML.energy7_nonneg_on_Icc_Conditional",
+    "file": "LeanPML/PML/MainAbstract.lean",
+    "line": 206
+  },
+  {
+    "name": "LeanPML.PML.hasDerivAt_energy7_on_Ioo_Conditional",
+    "file": "LeanPML/PML/MainAbstract.lean",
+    "line": 224
+  },
+  {
+    "name": "LeanPML.PML.intervalIntegrable_dissipation7_Conditional",
+    "file": "LeanPML/PML/MainAbstract.lean",
+    "line": 234
+  },
+  {
+    "name": "LeanPML.PML.energy7_integral_balance_Conditional",
+    "file": "LeanPML/PML/MainAbstract.lean",
+    "line": 248
+  },
+  {
+    "name": "LeanPML.PML.energy7_integral_balance_same",
+    "file": "LeanPML/PML/MainAbstract.lean",
+    "line": 272
+  },
+  {
+    "name": "LeanPML.PML.energy7_integral_balance_endpoints_Conditional",
+    "file": "LeanPML/PML/MainAbstract.lean",
+    "line": 283
+  },
+  {
+    "name": "LeanPML.PML.energy7_derivative_nonpos_Conditional",
+    "file": "LeanPML/PML/MainAbstract.lean",
+    "line": 297
+  },
+  {
+    "name": "LeanPML.PML.energy7_law_and_closure_Conditional",
+    "file": "LeanPML/PML/MainAbstract.lean",
+    "line": 312
+  },
+  {
+    "name": "LeanPML.PML.energy7_antitoneOn_Conditional",
+    "file": "LeanPML/PML/MainAbstract.lean",
+    "line": 333
+  },
+  {
+    "name": "LeanPML.PML.energy7_initial_bounds_Conditional",
+    "file": "LeanPML/PML/MainAbstract.lean",
+    "line": 346
+  },
+  {
+    "name": "LeanPML.PML.graphSquare7_initial_bound_Conditional",
+    "file": "LeanPML/PML/MainAbstract.lean",
+    "line": 355
+  },
+  {
+    "name": "LeanPML.PML.physicalControl_initial_Conditional",
+    "file": "LeanPML/PML/MainAbstract.lean",
+    "line": 370
+  },
+  {
+    "name": "LeanPML.PML.main_energy_estimate_Conditional",
+    "file": "LeanPML/PML/MainAbstract.lean",
+    "line": 394
+  }
+]

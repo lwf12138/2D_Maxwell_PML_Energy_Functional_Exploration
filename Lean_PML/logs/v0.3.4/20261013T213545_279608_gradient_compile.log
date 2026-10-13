@@ -1,0 +1,17 @@
+LeanPML/PML/GradientControl.lean:314:16: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ↑↑((boundedMul ν r.value ⋯ r.bound ⋯) h₀) x
+in the target expression
+  ↑↑l₁ x - ↑↑((r.operator ν) h₀) x + ↑↑((p.operator ν) l₀) x = ↑↑l₁ x - r.value x * ↑↑h₀ x + p.value x * ↑↑l₀ x
+
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+p r : BoundedCoefficient α
+h₀ l₀ h₁ l₁ : ↥(ScalarL2 ν)
+hevolution : h₁ = l₁ - (r.operator ν) h₀ + (p.operator ν) l₀
+x : α
+hr : ↑↑((boundedMul ν r.value ⋯ r.bound ⋯) h₀) x = r.value x * ↑↑h₀ x
+hp : ↑↑((boundedMul ν p.value ⋯ p.bound ⋯) l₀) x = p.value x * ↑↑l₀ x
+hadd : ↑↑(l₁ - (r.operator ν) h₀ + (p.operator ν) l₀) x = ↑↑(l₁ - (r.operator ν) h₀) x + ↑↑((p.operator ν) l₀) x
+hsub : ↑↑(l₁ - (r.operator ν) h₀) x = ↑↑l₁ x - ↑↑((r.operator ν) h₀) x
+⊢ ↑↑l₁ x - ↑↑((r.operator ν) h₀) x + ↑↑((p.operator ν) l₀) x = ↑↑l₁ x - r.value x * ↑↑h₀ x + p.value x * ↑↑l₀ x

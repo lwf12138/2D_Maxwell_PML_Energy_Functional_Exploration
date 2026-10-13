@@ -1,0 +1,31 @@
+{
+  "stages": [
+    "v0.3.4",
+    "v0.3.5"
+  ],
+  "status": "passed",
+  "protected_files_unchanged": true,
+  "source_inventory_unchanged": true,
+  "history_retained": true,
+  "formal_imports_and_audit_covered": true,
+  "default_targets": [
+    "LeanPML",
+    "Audit"
+  ],
+  "audit_total": 369,
+  "new_theorems": 53,
+  "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "sorryAx": false,
+  "all_stage_commands_exit_zero": true,
+  "assumption_print": "logs/v0.3.5/20261013T215341_410073_assumptions_print.log",
+  "assumption_review": "Manual independent review of original parameters, primitive/same-source inputs, same-trace Poincare and Ioo/Icc separation; no target in input fields",
+  "link_count": 108,
+  "all_new_doc_links_resolve": true,
+  "no_v04_implementation": true,
+  "no_new_reading_guide": true,
+  "old_readme_snapshot": "logs/v0.3.4/initial_files/README.md"
+}

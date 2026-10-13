@@ -1,0 +1,207 @@
+structure LeanPML.PML.FiniteIntervalProblemConditional.{u_1, u_2} {α : Type u_1} [MeasurableSpace α]
+  {ν : MeasureTheory.Measure α} {Boundary : Type u_2} [AddCommGroup Boundary] [Module ℝ Boundary]
+  (G : LeanPML.PML.ConditionalGreenDomain ν Boundary) (C : LeanPML.PML.SpatialAbsorption α) (ε κ τ μ CP T : ℝ)
+  (estimate :
+    ∀ (f : ↥G.spatial.domain),
+      G.trace f = 0 → ‖↑f‖ ^ 2 ≤ CP ^ 2 * (‖G.spatial.componentX f‖ ^ 2 + ‖G.spatial.componentY f‖ ^ 2)) :
+  Type u_1
+number of parameters: 15
+fields:
+  LeanPML.PML.FiniteIntervalProblemConditional.T_nonneg : 0 ≤ T
+  LeanPML.PML.FiniteIntervalProblemConditional.path : LeanPML.PML.SameSourcePath ν C.wx C.wy (Set.Ioo 0 T)
+  LeanPML.PML.FiniteIntervalProblemConditional.regular : LeanPML.PML.ConditionalSpatialPath G C self.path
+  LeanPML.PML.FiniteIntervalProblemConditional.base_evolution : ∀ t ∈ Set.Ioo 0 T,
+      LeanPML.PML.PrimitiveAtConditional G C ε κ τ μ (self.path.base t) (self.path.first t) (self.regular.base_v t)
+        (self.regular.base_flux t)
+  LeanPML.PML.FiniteIntervalProblemConditional.continuous_base : LeanPML.PML.StateContinuousOn self.path.base
+      (Set.Icc 0 T)
+  LeanPML.PML.FiniteIntervalProblemConditional.continuous_first : LeanPML.PML.StateContinuousOn self.path.first
+      (Set.Icc 0 T)
+  LeanPML.PML.FiniteIntervalProblemConditional.static_base : ∀ t ∈ Set.Icc 0 T,
+      LeanPML.PML.StateCoercivityConstraints ν C G.spatial (LeanPML.PML.ConditionalPoincare.ofGreenTrace G CP estimate)
+        κ τ (self.path.base t)
+  LeanPML.PML.FiniteIntervalProblemConditional.static_first : ∀ t ∈ Set.Icc 0 T,
+      LeanPML.PML.StateCoercivityConstraints ν C G.spatial (LeanPML.PML.ConditionalPoincare.ofGreenTrace G CP estimate)
+        κ τ (self.path.first t)
+constructor:
+  LeanPML.PML.FiniteIntervalProblemConditional.mk.{u_1, u_2} {α : Type u_1} [MeasurableSpace α]
+    {ν : MeasureTheory.Measure α} {Boundary : Type u_2} [AddCommGroup Boundary] [Module ℝ Boundary]
+    {G : LeanPML.PML.ConditionalGreenDomain ν Boundary} {C : LeanPML.PML.SpatialAbsorption α} {ε κ τ μ CP T : ℝ}
+    {estimate :
+      ∀ (f : ↥G.spatial.domain),
+        G.trace f = 0 → ‖↑f‖ ^ 2 ≤ CP ^ 2 * (‖G.spatial.componentX f‖ ^ 2 + ‖G.spatial.componentY f‖ ^ 2)}
+    (T_nonneg : 0 ≤ T) (path : LeanPML.PML.SameSourcePath ν C.wx C.wy (Set.Ioo 0 T))
+    (regular : LeanPML.PML.ConditionalSpatialPath G C path)
+    (base_evolution :
+      ∀ t ∈ Set.Ioo 0 T,
+        LeanPML.PML.PrimitiveAtConditional G C ε κ τ μ (path.base t) (path.first t) (regular.base_v t)
+          (regular.base_flux t))
+    (continuous_base : LeanPML.PML.StateContinuousOn path.base (Set.Icc 0 T))
+    (continuous_first : LeanPML.PML.StateContinuousOn path.first (Set.Icc 0 T))
+    (static_base :
+      ∀ t ∈ Set.Icc 0 T,
+        LeanPML.PML.StateCoercivityConstraints ν C G.spatial
+          (LeanPML.PML.ConditionalPoincare.ofGreenTrace G CP estimate) κ τ (path.base t))
+    (static_first :
+      ∀ t ∈ Set.Icc 0 T,
+        LeanPML.PML.StateCoercivityConstraints ν C G.spatial
+          (LeanPML.PML.ConditionalPoincare.ofGreenTrace G CP estimate) κ τ (path.first t)) :
+    LeanPML.PML.FiniteIntervalProblemConditional G C ε κ τ μ CP T estimate
+structure LeanPML.PML.CoercivityParameters.{u_1} {α : Type u_1} [MeasurableSpace α]
+  (C : LeanPML.PML.SpatialAbsorption α) (ε κ τ μ CP : ℝ) : Prop
+number of parameters: 8
+fields:
+  LeanPML.PML.CoercivityParameters.ε_pos : 0 < ε
+  LeanPML.PML.CoercivityParameters.κ_pos : 0 < κ
+  LeanPML.PML.CoercivityParameters.τ_pos : 0 < τ
+  LeanPML.PML.CoercivityParameters.μ_pos : 0 < μ
+  LeanPML.PML.CoercivityParameters.CP_pos : 0 < CP
+  LeanPML.PML.CoercivityParameters.c_le_threshold : C.c ≤ LeanPML.PML.threshold ε κ τ μ CP
+constructor:
+  LeanPML.PML.CoercivityParameters.mk.{u_1} {α : Type u_1} [MeasurableSpace α] {C : LeanPML.PML.SpatialAbsorption α}
+    {ε κ τ μ CP : ℝ} (ε_pos : 0 < ε) (κ_pos : 0 < κ) (τ_pos : 0 < τ) (μ_pos : 0 < μ) (CP_pos : 0 < CP)
+    (c_le_threshold : C.c ≤ LeanPML.PML.threshold ε κ τ μ CP) : LeanPML.PML.CoercivityParameters C ε κ τ μ CP
+structure LeanPML.PML.ConditionalGreenDomain.{u_1, u_2} {α : Type u_1} [MeasurableSpace α] (ν : MeasureTheory.Measure α)
+  (Boundary : Type u_2) [AddCommGroup Boundary] [Module ℝ Boundary] : Type (max u_1 u_2)
+number of parameters: 6
+fields:
+  LeanPML.PML.ConditionalGreenDomain.spatial : LeanPML.PML.ConditionalSpatialDomain ν
+  LeanPML.PML.ConditionalGreenDomain.fluxDomain : Submodule ℝ
+      (↥(LeanPML.Analysis.ScalarL2 ν) × ↥(LeanPML.Analysis.ScalarL2 ν))
+  LeanPML.PML.ConditionalGreenDomain.divergence : ↥self.fluxDomain →ₗ[ℝ] ↥(LeanPML.Analysis.ScalarL2 ν)
+  LeanPML.PML.ConditionalGreenDomain.trace : ↥self.spatial.domain →ₗ[ℝ] Boundary
+  LeanPML.PML.ConditionalGreenDomain.boundary : Boundary →ₗ[ℝ] ↥self.fluxDomain →ₗ[ℝ] ℝ
+  LeanPML.PML.ConditionalGreenDomain.green : ∀ (v : ↥self.spatial.domain) (Λ : ↥self.fluxDomain),
+      inner ℝ (↑v) (self.divergence Λ) =
+        -inner ℝ (self.spatial.componentX v) (↑Λ).1 - inner ℝ (self.spatial.componentY v) (↑Λ).2 +
+          (self.boundary (self.trace v)) Λ
+constructor:
+  LeanPML.PML.ConditionalGreenDomain.mk.{u_1, u_2} {α : Type u_1} [MeasurableSpace α] {ν : MeasureTheory.Measure α}
+    {Boundary : Type u_2} [AddCommGroup Boundary] [Module ℝ Boundary] (spatial : LeanPML.PML.ConditionalSpatialDomain ν)
+    (fluxDomain : Submodule ℝ (↥(LeanPML.Analysis.ScalarL2 ν) × ↥(LeanPML.Analysis.ScalarL2 ν)))
+    (divergence : ↥fluxDomain →ₗ[ℝ] ↥(LeanPML.Analysis.ScalarL2 ν)) (trace : ↥spatial.domain →ₗ[ℝ] Boundary)
+    (boundary : Boundary →ₗ[ℝ] ↥fluxDomain →ₗ[ℝ] ℝ)
+    (green :
+      ∀ (v : ↥spatial.domain) (Λ : ↥fluxDomain),
+        inner ℝ (↑v) (divergence Λ) =
+          -inner ℝ (spatial.componentX v) (↑Λ).1 - inner ℝ (spatial.componentY v) (↑Λ).2 + (boundary (trace v)) Λ) :
+    LeanPML.PML.ConditionalGreenDomain ν Boundary
+structure LeanPML.PML.ConditionalSpatialPath.{u_1, u_2} {α : Type u_1} [MeasurableSpace α] {ν : MeasureTheory.Measure α}
+  {Boundary : Type u_2} [AddCommGroup Boundary] [Module ℝ Boundary] (G : LeanPML.PML.ConditionalGreenDomain ν Boundary)
+  (C : LeanPML.PML.SpatialAbsorption α) {I : Set ℝ} (path : LeanPML.PML.SameSourcePath ν C.wx C.wy I) : Type u_1
+number of parameters: 10
+fields:
+  LeanPML.PML.ConditionalSpatialPath.base_v : ℝ → ↥G.spatial.domain
+  LeanPML.PML.ConditionalSpatialPath.base_V : ℝ → ↥G.spatial.domain
+  LeanPML.PML.ConditionalSpatialPath.first_v : ℝ → ↥G.spatial.domain
+  LeanPML.PML.ConditionalSpatialPath.first_V : ℝ → ↥G.spatial.domain
+  LeanPML.PML.ConditionalSpatialPath.base_flux : ℝ → ↥G.fluxDomain
+  LeanPML.PML.ConditionalSpatialPath.first_flux : ℝ → ↥G.fluxDomain
+  LeanPML.PML.ConditionalSpatialPath.base_v_eq : ∀ t ∈ I, ↑(self.base_v t) = (path.base t).v
+  LeanPML.PML.ConditionalSpatialPath.base_V_eq : ∀ t ∈ I, ↑(self.base_V t) = (path.base t).V
+  LeanPML.PML.ConditionalSpatialPath.first_v_eq : ∀ t ∈ I, ↑(self.first_v t) = (path.first t).v
+  LeanPML.PML.ConditionalSpatialPath.first_V_eq : ∀ t ∈ I, ↑(self.first_V t) = (path.first t).V
+  LeanPML.PML.ConditionalSpatialPath.base_flux_eq : ∀ t ∈ I, ↑(self.base_flux t) = ((path.base t).Λx, (path.base t).Λy)
+  LeanPML.PML.ConditionalSpatialPath.first_flux_eq : ∀ t ∈ I,
+      ↑(self.first_flux t) = ((path.first t).Λx, (path.first t).Λy)
+  LeanPML.PML.ConditionalSpatialPath.grad_baseX : ∀ t ∈ interior I,
+      HasDerivAt (fun s => G.spatial.componentX (self.base_v s)) (G.spatial.componentX (self.first_v t)) t
+  LeanPML.PML.ConditionalSpatialPath.grad_baseY : ∀ t ∈ interior I,
+      HasDerivAt (fun s => G.spatial.componentY (self.base_v s)) (G.spatial.componentY (self.first_v t)) t
+  LeanPML.PML.ConditionalSpatialPath.grad_firstX : ∀ t ∈ interior I,
+      HasDerivAt (fun s => G.spatial.componentX (self.first_v s)) (G.spatial.componentX (self.first_V t)) t
+  LeanPML.PML.ConditionalSpatialPath.grad_firstY : ∀ t ∈ interior I,
+      HasDerivAt (fun s => G.spatial.componentY (self.first_v s)) (G.spatial.componentY (self.first_V t)) t
+  LeanPML.PML.ConditionalSpatialPath.div_base : ∀ t ∈ interior I,
+      HasDerivAt (fun s => G.divergence (self.base_flux s)) (G.divergence (self.first_flux t)) t
+  LeanPML.PML.ConditionalSpatialPath.trace_base_v : ∀ t ∈ I, G.trace (self.base_v t) = 0
+  LeanPML.PML.ConditionalSpatialPath.trace_base_V : ∀ t ∈ I, G.trace (self.base_V t) = 0
+  LeanPML.PML.ConditionalSpatialPath.trace_first_v : ∀ t ∈ I, G.trace (self.first_v t) = 0
+  LeanPML.PML.ConditionalSpatialPath.trace_first_V : ∀ t ∈ I, G.trace (self.first_V t) = 0
+constructor:
+  LeanPML.PML.ConditionalSpatialPath.mk.{u_1, u_2} {α : Type u_1} [MeasurableSpace α] {ν : MeasureTheory.Measure α}
+    {Boundary : Type u_2} [AddCommGroup Boundary] [Module ℝ Boundary]
+    {G : LeanPML.PML.ConditionalGreenDomain ν Boundary} {C : LeanPML.PML.SpatialAbsorption α} {I : Set ℝ}
+    {path : LeanPML.PML.SameSourcePath ν C.wx C.wy I} (base_v base_V first_v first_V : ℝ → ↥G.spatial.domain)
+    (base_flux first_flux : ℝ → ↥G.fluxDomain) (base_v_eq : ∀ t ∈ I, ↑(base_v t) = (path.base t).v)
+    (base_V_eq : ∀ t ∈ I, ↑(base_V t) = (path.base t).V) (first_v_eq : ∀ t ∈ I, ↑(first_v t) = (path.first t).v)
+    (first_V_eq : ∀ t ∈ I, ↑(first_V t) = (path.first t).V)
+    (base_flux_eq : ∀ t ∈ I, ↑(base_flux t) = ((path.base t).Λx, (path.base t).Λy))
+    (first_flux_eq : ∀ t ∈ I, ↑(first_flux t) = ((path.first t).Λx, (path.first t).Λy))
+    (grad_baseX :
+      ∀ t ∈ interior I, HasDerivAt (fun s => G.spatial.componentX (base_v s)) (G.spatial.componentX (first_v t)) t)
+    (grad_baseY :
+      ∀ t ∈ interior I, HasDerivAt (fun s => G.spatial.componentY (base_v s)) (G.spatial.componentY (first_v t)) t)
+    (grad_firstX :
+      ∀ t ∈ interior I, HasDerivAt (fun s => G.spatial.componentX (first_v s)) (G.spatial.componentX (first_V t)) t)
+    (grad_firstY :
+      ∀ t ∈ interior I, HasDerivAt (fun s => G.spatial.componentY (first_v s)) (G.spatial.componentY (first_V t)) t)
+    (div_base : ∀ t ∈ interior I, HasDerivAt (fun s => G.divergence (base_flux s)) (G.divergence (first_flux t)) t)
+    (trace_base_v : ∀ t ∈ I, G.trace (base_v t) = 0) (trace_base_V : ∀ t ∈ I, G.trace (base_V t) = 0)
+    (trace_first_v : ∀ t ∈ I, G.trace (first_v t) = 0) (trace_first_V : ∀ t ∈ I, G.trace (first_V t) = 0) :
+    LeanPML.PML.ConditionalSpatialPath G C path
+LeanPML.PML.gradient_control_Conditional.{u_1, u_2} {α : Type u_1} [MeasurableSpace α] {ν : MeasureTheory.Measure α}
+  {Boundary : Type u_2} [AddCommGroup Boundary] [Module ℝ Boundary] {G : LeanPML.PML.ConditionalGreenDomain ν Boundary}
+  {C : LeanPML.PML.SpatialAbsorption α} {I : Set ℝ} (ε κ τ μ : ℝ) (path : LeanPML.PML.SameSourcePath ν C.wx C.wy I)
+  (regular : LeanPML.PML.ConditionalSpatialPath G C path)
+  (hbase :
+    ∀ s ∈ I,
+      LeanPML.PML.PrimitiveAtConditional G C ε κ τ μ (path.base s) (path.first s) (regular.base_v s)
+        (regular.base_flux s))
+  {t : ℝ} (ht : t ∈ interior I) :
+  ‖G.spatial.componentX (regular.first_v t)‖ ^ 2 + ‖G.spatial.componentY (regular.first_v t)‖ ^ 2 ≤
+    3 * LeanPML.PML.fieldJ ν C (path.first t) + 3 * C.S ^ 2 * LeanPML.PML.fieldJ ν C (path.base t)
+LeanPML.PML.dissipation7_lower_Conditional.{u_1, u_2} {α : Type u_1} [MeasurableSpace α] [Nonempty α]
+  {ν : MeasureTheory.Measure α} {Boundary : Type u_2} [AddCommGroup Boundary] [Module ℝ Boundary]
+  (G : LeanPML.PML.ConditionalGreenDomain ν Boundary) (C : LeanPML.PML.SpatialAbsorption α) (ε κ τ μ CP : ℝ)
+  (hp : LeanPML.PML.CoercivityParameters C ε κ τ μ CP)
+  (estimate :
+    ∀ (f : ↥G.spatial.domain),
+      G.trace f = 0 → ‖↑f‖ ^ 2 ≤ CP ^ 2 * (‖G.spatial.componentX f‖ ^ 2 + ‖G.spatial.componentY f‖ ^ 2))
+  {I : Set ℝ} (path : LeanPML.PML.SameSourcePath ν C.wx C.wy I) (regular : LeanPML.PML.ConditionalSpatialPath G C path)
+  (hbase :
+    ∀ s ∈ I,
+      LeanPML.PML.PrimitiveAtConditional G C ε κ τ μ (path.base s) (path.first s) (regular.base_v s)
+        (regular.base_flux s))
+  {t : ℝ} (ht : t ∈ interior I) :
+  (LeanPML.PML.fieldSpatialDissipation ν C (path.base t) +
+          LeanPML.PML.scaleK ε κ μ CP * LeanPML.PML.fieldSpatialDissipation ν C (path.first t)) /
+        2 +
+      μ * τ / (4 * κ) * (‖(path.first t).R‖ ^ 2 + LeanPML.PML.scaleK ε κ μ CP * ‖(path.second t).R‖ ^ 2) ≤
+    LeanPML.PML.dissipation7 ν C ε κ τ μ CP path t
+LeanPML.PML.main_energy_estimate_Conditional.{u_1, u_2} {α : Type u_1} [MeasurableSpace α] {ν : MeasureTheory.Measure α}
+  {Boundary : Type u_2} [AddCommGroup Boundary] [Module ℝ Boundary] (G : LeanPML.PML.ConditionalGreenDomain ν Boundary)
+  (C : LeanPML.PML.SpatialAbsorption α) (ε κ τ μ CP T : ℝ) (hp : LeanPML.PML.CoercivityParameters C ε κ τ μ CP)
+  (estimate :
+    ∀ (f : ↥G.spatial.domain),
+      G.trace f = 0 → ‖↑f‖ ^ 2 ≤ CP ^ 2 * (‖G.spatial.componentX f‖ ^ 2 + ‖G.spatial.componentY f‖ ^ 2))
+  (problem : LeanPML.PML.FiniteIntervalProblemConditional G C ε κ τ μ CP T estimate) [Nonempty α]
+  (hsecondR : ContinuousOn (fun t => (problem.path.second t).R) (Set.Icc 0 T)) :
+  AntitoneOn (LeanPML.PML.energy7 ν C ε κ τ μ CP problem.path) (Set.Icc 0 T) ∧
+    (∀ t ∈ Set.Ioo 0 T,
+        HasDerivAt (LeanPML.PML.energy7 ν C ε κ τ μ CP problem.path)
+            (-LeanPML.PML.dissipation7 ν C ε κ τ μ CP problem.path t) t ∧
+          (LeanPML.PML.fieldSpatialDissipation ν C (problem.path.base t) +
+                    LeanPML.PML.scaleK ε κ μ CP * LeanPML.PML.fieldSpatialDissipation ν C (problem.path.first t)) /
+                  2 +
+                μ * τ / (4 * κ) *
+                  (‖(problem.path.first t).R‖ ^ 2 + LeanPML.PML.scaleK ε κ μ CP * ‖(problem.path.second t).R‖ ^ 2) ≤
+              LeanPML.PML.dissipation7 ν C ε κ τ μ CP problem.path t ∧
+            0 ≤ LeanPML.PML.dissipation7 ν C ε κ τ μ CP problem.path t) ∧
+      (∀ t ∈ Set.Icc 0 T,
+          (LeanPML.PML.graphSquare7 ν C ε κ μ CP problem.path t / 4 ≤
+                LeanPML.PML.energy7 ν C ε κ τ μ CP problem.path t ∧
+              LeanPML.PML.energy7 ν C ε κ τ μ CP problem.path t ≤
+                LeanPML.PML.graphSquare7 ν C ε κ μ CP problem.path t) ∧
+            (0 ≤ LeanPML.PML.energy7 ν C ε κ τ μ CP problem.path t ∧
+                LeanPML.PML.energy7 ν C ε κ τ μ CP problem.path t ≤ LeanPML.PML.energy7 ν C ε κ τ μ CP problem.path 0) ∧
+              LeanPML.PML.graphSquare7 ν C ε κ μ CP problem.path t ≤
+                  4 * LeanPML.PML.energy7 ν C ε κ τ μ CP problem.path 0 ∧
+                LeanPML.PML.PhysicalInitialControlBounds ν C ε κ τ μ CP problem.path t) ∧
+        ∀ (t₁ t₂ : ℝ),
+          0 ≤ t₁ →
+            t₁ ≤ t₂ →
+              t₂ ≤ T →
+                LeanPML.PML.energy7 ν C ε κ τ μ CP problem.path t₂ +
+                    ∫ (t : ℝ) in t₁..t₂, LeanPML.PML.dissipation7 ν C ε κ τ μ CP problem.path t =
+                  LeanPML.PML.energy7 ν C ε κ τ μ CP problem.path t₁

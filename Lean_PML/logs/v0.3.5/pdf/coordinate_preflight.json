@@ -1,0 +1,280 @@
+{
+  "boxes": [
+    {
+      "x": 535,
+      "top": 266,
+      "font_size": 6,
+      "lines": [
+        "条件性",
+        "耗散闭合",
+        "精确剩余量"
+      ],
+      "id": "main-dissipation",
+      "page": 10,
+      "tick": true,
+      "rect_top": [
+        534,
+        264,
+        581.0,
+        290.4
+      ]
+    },
+    {
+      "x": 535,
+      "top": 328,
+      "font_size": 6,
+      "lines": [
+        "条件性单调",
+        "与积分平衡",
+        "闭区间版本"
+      ],
+      "id": "main-balance",
+      "page": 10,
+      "tick": true,
+      "rect_top": [
+        534,
+        326,
+        581.0,
+        352.4
+      ]
+    },
+    {
+      "x": 535,
+      "top": 718,
+      "font_size": 6,
+      "lines": [
+        "条件性",
+        "耗散下界",
+        "同源两层"
+      ],
+      "id": "preliminary",
+      "page": 13,
+      "tick": true,
+      "rect_top": [
+        534,
+        716,
+        575.0,
+        742.4
+      ]
+    },
+    {
+      "x": 4,
+      "top": 135,
+      "font_size": 6,
+      "lines": [
+        "J可积、非负",
+        "实际L²积分"
+      ],
+      "id": "j-analysis",
+      "page": 14,
+      "tick": true,
+      "rect_top": [
+        3,
+        133,
+        53.0,
+        151.2
+      ]
+    },
+    {
+      "x": 535,
+      "top": 191,
+      "font_size": 6,
+      "lines": [
+        "空间约束下",
+        "积分估计",
+        "含零吸收区"
+      ],
+      "id": "spatial-j",
+      "page": 14,
+      "tick": true,
+      "rect_top": [
+        534,
+        189,
+        581.0,
+        215.4
+      ]
+    },
+    {
+      "x": 535,
+      "top": 240,
+      "font_size": 6,
+      "lines": [
+        "原辅助演化",
+        "推出；需时间",
+        "空间交换接口"
+      ],
+      "id": "gradient-evolution",
+      "page": 14,
+      "tick": true,
+      "rect_top": [
+        534,
+        238,
+        587.0,
+        264.4
+      ]
+    },
+    {
+      "x": 535,
+      "top": 352,
+      "font_size": 6,
+      "lines": [
+        "同源路径下",
+        "梯度估计",
+        "空间算子接口"
+      ],
+      "id": "gradient-control",
+      "page": 14,
+      "tick": true,
+      "rect_top": [
+        534,
+        350,
+        587.0,
+        376.4
+      ]
+    },
+    {
+      "x": 535,
+      "top": 420,
+      "font_size": 6,
+      "lines": [
+        "Poincaré",
+        "接口下的",
+        "吸收估计"
+      ],
+      "id": "spatial-absorption",
+      "page": 14,
+      "tick": true,
+      "rect_top": [
+        534,
+        418,
+        575.0,
+        444.4
+      ]
+    },
+    {
+      "x": 535,
+      "top": 673,
+      "font_size": 6,
+      "lines": [
+        "真实Debye",
+        "导数关系下",
+        "吸收估计"
+      ],
+      "id": "debye-absorption",
+      "page": 14,
+      "tick": true,
+      "rect_top": [
+        534,
+        671,
+        581.0,
+        697.4
+      ]
+    },
+    {
+      "x": 535,
+      "top": 718,
+      "font_size": 6,
+      "lines": [
+        "条件性",
+        "耗散闭合",
+        "两类预算保留"
+      ],
+      "id": "remainder-budget",
+      "page": 14,
+      "tick": true,
+      "rect_top": [
+        534,
+        716,
+        587.0,
+        742.4
+      ]
+    },
+    {
+      "id": "legend10",
+      "page": 10,
+      "x": 68,
+      "top": 45,
+      "font_size": 6,
+      "lines": [
+        "v0.3.4–5：条件性主结论已闭合；矩形 Green、Poincaré、迹和微分交换仍须证明。顶部旧说明保留为历史。"
+      ],
+      "tick": false,
+      "rect_top": [
+        67,
+        43,
+        355.705078125,
+        53.0
+      ]
+    },
+    {
+      "id": "legend13",
+      "page": 13,
+      "x": 68,
+      "top": 45,
+      "font_size": 6,
+      "lines": [
+        "v0.3.4–5：抽象分析接口下已闭合耗散与单调性；上方旧“待完成”文字为历史状态，非具体 PDE 完成。"
+      ],
+      "tick": false,
+      "rect_top": [
+        67,
+        43,
+        339.3486328125,
+        53.0
+      ]
+    },
+    {
+      "id": "legend14",
+      "page": 14,
+      "x": 68,
+      "top": 45,
+      "font_size": 6,
+      "lines": [
+        "条件性：Lean 已证明列明接口下的结论；不表示具体矩形接口或解存在唯一性已证明。旧系数标记保留。"
+      ],
+      "tick": false,
+      "rect_top": [
+        67,
+        43,
+        348.0146484375,
+        53.0
+      ]
+    },
+    {
+      "id": "j-definition",
+      "page": 14,
+      "x": 536,
+      "top": 138,
+      "font_size": 6,
+      "lines": [
+        "J定义已录入",
+        "另证可积非负"
+      ],
+      "tick": false,
+      "rect_top": [
+        535,
+        136,
+        573.0,
+        154.2
+      ]
+    },
+    {
+      "id": "history12",
+      "page": 12,
+      "x": 68,
+      "top": 45,
+      "font_size": 6,
+      "lines": [
+        "v0.3.4–5 更新：耗散闭合、有限区间单调性与积分平衡已在分析接口下证明；既有待完成旁注保留为历史。"
+      ],
+      "tick": false,
+      "rect_top": [
+        67,
+        43,
+        351.3486328125,
+        53.0
+      ]
+    }
+  ],
+  "errors": []
+}

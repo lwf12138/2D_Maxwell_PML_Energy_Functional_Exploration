@@ -1,0 +1,92 @@
+[
+  {
+    "name": "LeanPML.PML.directionalJ_nonneg",
+    "file": "LeanPML/PML/GradientControl.lean",
+    "line": 57
+  },
+  {
+    "name": "LeanPML.PML.directionalJ_swap",
+    "file": "LeanPML/PML/GradientControl.lean",
+    "line": 64
+  },
+  {
+    "name": "LeanPML.PML.fieldJ_integrable",
+    "file": "LeanPML/PML/GradientControl.lean",
+    "line": 88
+  },
+  {
+    "name": "LeanPML.PML.fieldJ_eq_integral",
+    "file": "LeanPML/PML/GradientControl.lean",
+    "line": 98
+  },
+  {
+    "name": "LeanPML.PML.fieldJ_nonneg",
+    "file": "LeanPML/PML/GradientControl.lean",
+    "line": 116
+  },
+  {
+    "name": "LeanPML.PML.spatialComponents_eq_gradient_Conditional",
+    "file": "LeanPML/PML/GradientControl.lean",
+    "line": 128
+  },
+  {
+    "name": "LeanPML.PML.fieldJDensity_zero_region",
+    "file": "LeanPML/PML/GradientControl.lean",
+    "line": 143
+  },
+  {
+    "name": "LeanPML.PML.directional_dissipation_ge_J",
+    "file": "LeanPML/PML/GradientControl.lean",
+    "line": 166
+  },
+  {
+    "name": "LeanPML.PML.fieldSpatialDissipation_ge_J",
+    "file": "LeanPML/PML/GradientControl.lean",
+    "line": 202
+  },
+  {
+    "name": "LeanPML.PML.theta_absorption_square_bounds",
+    "file": "LeanPML/PML/GradientControl.lean",
+    "line": 244
+  },
+  {
+    "name": "LeanPML.PML.directional_gradient_control",
+    "file": "LeanPML/PML/GradientControl.lean",
+    "line": 280
+  },
+  {
+    "name": "LeanPML.PML.field_gradient_control",
+    "file": "LeanPML/PML/GradientControl.lean",
+    "line": 321
+  },
+  {
+    "name": "LeanPML.PML.gradient_evolution_Conditional",
+    "file": "LeanPML/PML/GradientControl.lean",
+    "line": 363
+  },
+  {
+    "name": "LeanPML.PML.gradient_control_Conditional",
+    "file": "LeanPML/PML/GradientControl.lean",
+    "line": 390
+  },
+  {
+    "name": "LeanPML.PML.directional_J_zero_example",
+    "file": "LeanPML/PML/GradientControl.lean",
+    "line": 431
+  },
+  {
+    "name": "LeanPML.PML.directional_J_edge_examples",
+    "file": "LeanPML/PML/GradientControl.lean",
+    "line": 443
+  },
+  {
+    "name": "LeanPML.PML.directional_J_other_edge_example",
+    "file": "LeanPML/PML/GradientControl.lean",
+    "line": 456
+  },
+  {
+    "name": "LeanPML.PML.directional_J_corner_example",
+    "file": "LeanPML/PML/GradientControl.lean",
+    "line": 465
+  }
+]
