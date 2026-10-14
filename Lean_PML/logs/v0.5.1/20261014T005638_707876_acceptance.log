@@ -1,0 +1,42 @@
+{
+  "stage": "v0.5.1",
+  "status": "passed",
+  "time": "2026-10-14T00:56:38.883594+08:00",
+  "build": "logs/v0.5.1/20261014T005346_311276_lake_build.log",
+  "audit": "logs/v0.5.1/20261014T005434_779198_axioms_audit.log",
+  "additional_checks": [
+    "logs/v0.5.1/20261014T005434_779198_interface_types.log"
+  ],
+  "build_exit_code": 0,
+  "audit_exit_code": 0,
+  "audited_declarations": 619,
+  "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "sorryAx": false,
+  "source_placeholder_scan": "passed",
+  "legacy_audit_preserved": true,
+  "retained_failures": [
+    "logs/v0.5.1/20261014T004545_826024_main_first_check.json",
+    "logs/v0.5.1/20261014T004905_870161_main_second_check.json",
+    "logs/v0.5.1/20261014T005148_947666_lake_build.json"
+  ],
+  "mathematical_scope": "所选强光滑兼容类的具体原模型全域先验能量定理；保守CP=2Lx",
+  "regularity_inputs": [
+    "联合C∞技术延拓",
+    "C(K)一致范数时间连续可微",
+    "实际加权成员与路径连续可微",
+    "原历史识别",
+    "PEC、初始五兼容、初始零区和T=0图状态兼容"
+  ],
+  "not_claimed": [
+    "完整V7弱空间范围",
+    "精确π常数",
+    "加权正则性自动传播",
+    "提升规范唯一性",
+    "一般解存在唯一性",
+    "一般严格/指数衰减"
+  ]
+}

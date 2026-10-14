@@ -1,0 +1,40 @@
+LeanPML/Examples/CompatibleData.lean:47:4: error: 'change' tactic failed, pattern
+  t * dx (↑f) X - spaceDx (integralLift (initialExtension f).E fun x => 0) t X = 0
+is not definitionally equal to target
+  (lift (initialExtension f) 1 (fun x => 0) fun X => -↑f X).φx t X = 0
+LeanPML/Examples/CompatibleData.lean:83:21: error(lean.unknownIdentifier): Unknown identifier `hf`
+LeanPML/Examples/CompatibleData.lean:83:18: error(lean.unknownIdentifier): Unknown identifier `hp`
+LeanPML/Examples/CompatibleData.lean:83:21: error(lean.unknownIdentifier): Unknown identifier `hf`
+LeanPML/Examples/CompatibleData.lean:83:18: error(lean.unknownIdentifier): Unknown identifier `hp`
+LeanPML/Examples/CompatibleData.lean:80:21: warning: This simp argument is unused:
+  hEt
+
+Hint: Omit it from the simp argument list.
+  simp [dt, ̲hE̵t̵,̵h̵Pt, ̲hHx, ̲hHy, ̲initialExtension, ̲spaceDx, ̲spaceDy]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/Examples/CompatibleData.lean:80:25: warning: This simp argument is unused:
+  hPt
+
+Hint: Omit it from the simp argument list.
+  simp [dt, ̲hEt, ̲hP̵t̵,̵h̵Hx, ̲hHy, ̲initialExtension, ̲spaceDx, ̲spaceDy]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/Examples/CompatibleData.lean:80:29: warning: This simp argument is unused:
+  hHx
+
+Hint: Omit it from the simp argument list.
+  simp [dt, ̲hEt, ̲hPt, ̲hHx̵,̵h̵H̵y, ̲initialExtension, ̲spaceDx, ̲spaceDy]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/Examples/CompatibleData.lean:80:33: warning: This simp argument is unused:
+  hHy
+
+Hint: Omit it from the simp argument list.
+  simp [dt, ̲hEt, ̲hPt, ̲hHx,h̵H̵y̵,̵ ̲initialExtension, ̲spaceDx, ̲spaceDy]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/Examples/CompatibleData.lean:94:4: error: 'change' tactic failed, pattern
+  0 + p X.1 * r X.2 * -↑f X = 0
+is not definitionally equal to target
+  invariantZ2 (initialExtension f) (lift (initialExtension f) 1 (fun x => 0) fun X => -↑f X) p r 0 X = 0

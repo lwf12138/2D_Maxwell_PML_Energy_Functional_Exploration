@@ -1,0 +1,9 @@
+LeanPML/Examples/CompatibleData.lean:162:64: warning: This simp argument is unused:
+  weightedOfFunction_zero
+
+Hint: Omit it from the simp argument list.
+  simp [̵i̵n̵i̵t̵i̵a̵l̵G̵r̵a̵p̵h̵S̵q̵u̵a̵r̵e̵,̵t̵w̵o̵L̵a̵y̵e̵r̵G̵r̵a̵p̵h̵S̵q̵u̵a̵r̵e̵,̵L̵e̵a̵n̵P̵M̵L̵.̵P̵M̵L̵.̵g̵r̵a̵p̵h̵S̵q̵u̵a̵r̵e̵,̵
+  ̵ ̵ ̵ ̵ ̵s̵m̵o̵o̵t̵h̵S̵t̵a̵t̵e̵B̵a̵s̵e̵,̵s̵m̵o̵o̵t̵h̵S̵t̵a̵t̵e̵F̵i̵r̵s̵t̵,̵d̵a̵t̵a̵,̵a̵f̵f̵i̵n̵e̵J̵e̵t̵,̵c̵o̵n̵s̵t̵a̵n̵t̵J̵e̵t̵,̵w̵e̵i̵g̵h̵t̵e̵d̵O̵f̵F̵u̵n̵c̵t̵i̵o̵n̵_̵z̵e̵r̵o̵]̵[̲i̲n̲i̲t̲i̲a̲l̲G̲r̲a̲p̲h̲S̲q̲u̲a̲r̲e̲,̲ ̲t̲w̲o̲L̲a̲y̲e̲r̲G̲r̲a̲p̲h̲S̲q̲u̲a̲r̲e̲,̲ ̲L̲e̲a̲n̲P̲M̲L̲.̲P̲M̲L̲.̲g̲r̲a̲p̲h̲S̲q̲u̲a̲r̲e̲,̲ ̲s̲m̲o̲o̲t̲h̲S̲t̲a̲t̲e̲B̲a̲s̲e̲,̲
+  ̲ ̲ ̲ ̲ ̲s̲m̲o̲o̲t̲h̲S̲t̲a̲t̲e̲F̲i̲r̲s̲t̲,̲ ̲d̲a̲t̲a̲,̲ ̲a̲f̲f̲i̲n̲e̲J̲e̲t̲,̲ ̲c̲o̲n̲s̲t̲a̲n̲t̲J̲e̲t̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

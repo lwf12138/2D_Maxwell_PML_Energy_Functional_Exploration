@@ -1,0 +1,33 @@
+LeanPML/Examples/DegenerateBranches.lean:88:8: error: Type mismatch: After simplification, term
+  contDiff_const
+ has type
+  @ContDiff ℝ DenselyNormedField.toNontriviallyNormedField (ℝ × Point) Prod.normedAddCommGroup Prod.normedSpace ℝ
+    Real.normedAddCommGroup RCLike.toInnerProductSpaceReal.toNormedSpace ∞ fun x => 0
+but is expected to have type
+  @ContDiff ℝ DenselyNormedField.toNontriviallyNormedField (ℝ × Point) Prod.normedAddCommGroup Prod.normedSpace ℝ
+    Real.normedAddCommGroup RCLike.toInnerProductSpaceReal.toNormedSpace ∞ (Function.uncurry fun x x_1 => 0)
+LeanPML/Examples/DegenerateBranches.lean:82:8: warning: This simp argument is unused:
+  integralLift
+
+Hint: Omit it from the simp argument list.
+  simp [̵z̵e̵r̵o̵D̵a̵t̵a̵,̵c̵o̵n̵s̵t̵a̵n̵t̵S̵t̵a̵t̵e̵D̵a̵t̵a̵,̵c̵o̵n̵s̵t̵a̵n̵t̵J̵e̵t̵,̵z̵e̵r̵o̵C̵o̵o̵r̵d̵i̵n̵a̵t̵e̵s̵,̵l̵i̵f̵t̵,̵z̵e̵r̵o̵F̵i̵e̵l̵d̵s̵,̵
+  ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵i̵n̵t̵e̵g̵r̵a̵l̵L̵i̵f̵t̵,̵s̵p̵a̵c̵e̵D̵x̵,̵s̵p̵a̵c̵e̵D̵y̵]̵[̲z̲e̲r̲o̲D̲a̲t̲a̲,̲ ̲c̲o̲n̲s̲t̲a̲n̲t̲S̲t̲a̲t̲e̲D̲a̲t̲a̲,̲ ̲c̲o̲n̲s̲t̲a̲n̲t̲J̲e̲t̲,̲ ̲z̲e̲r̲o̲C̲o̲o̲r̲d̲i̲n̲a̲t̲e̲s̲,̲ ̲l̲i̲f̲t̲,̲ ̲z̲e̲r̲o̲F̲i̲e̲l̲d̲s̲,̲ ̲s̲p̲a̲c̲e̲D̲x̲,̲
+  ̲ ̲ ̲ ̲ ̲ ̲ ̲ ̲ ̲s̲p̲a̲c̲e̲D̲y̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/Examples/DegenerateBranches.lean:94:22: warning: This simp argument is unused:
+  integralLift
+
+Hint: Omit it from the simp argument list.
+  simp [̵i̵n̵v̵a̵r̵i̵a̵n̵t̵D̵,̵i̵n̵v̵a̵r̵i̵a̵n̵t̵Z̵1̵,̵i̵n̵v̵a̵r̵i̵a̵n̵t̵Z̵2̵,̵i̵n̵v̵a̵r̵i̵a̵n̵t̵X̵,̵i̵n̵v̵a̵r̵i̵a̵n̵t̵Y̵,̵
+  ̵ ̵ ̵ ̵ ̵ ̵ ̵l̵i̵f̵t̵,̵z̵e̵r̵o̵F̵i̵e̵l̵d̵s̵,̵i̵n̵t̵e̵g̵r̵a̵l̵L̵i̵f̵t̵,̵s̵p̵a̵c̵e̵D̵x̵,̵s̵p̵a̵c̵e̵D̵y̵]̵[̲i̲n̲v̲a̲r̲i̲a̲n̲t̲D̲,̲ ̲i̲n̲v̲a̲r̲i̲a̲n̲t̲Z̲1̲,̲ ̲i̲n̲v̲a̲r̲i̲a̲n̲t̲Z̲2̲,̲ ̲i̲n̲v̲a̲r̲i̲a̲n̲t̲X̲,̲ ̲i̲n̲v̲a̲r̲i̲a̲n̲t̲Y̲,̲ ̲l̲i̲f̲t̲,̲
+  ̲ ̲ ̲ ̲ ̲ ̲ ̲z̲e̲r̲o̲F̲i̲e̲l̲d̲s̲,̲ ̲s̲p̲a̲c̲e̲D̲x̲,̲ ̲s̲p̲a̲c̲e̲D̲y̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/Examples/DegenerateBranches.lean:97:26: warning: This simp argument is unused:
+  integralLift
+
+Hint: Omit it from the simp argument list.
+  simp [̵l̵i̵f̵t̵,̵z̵e̵r̵o̵F̵i̵e̵l̵d̵s̵,̵i̵n̵t̵e̵g̵r̵a̵l̵L̵i̵f̵t̵,̵s̵p̵a̵c̵e̵D̵x̵,̵s̵p̵a̵c̵e̵D̵y̵]̵[̲l̲i̲f̲t̲,̲ ̲z̲e̲r̲o̲F̲i̲e̲l̲d̲s̲,̲ ̲s̲p̲a̲c̲e̲D̲x̲,̲ ̲s̲p̲a̲c̲e̲D̲y̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

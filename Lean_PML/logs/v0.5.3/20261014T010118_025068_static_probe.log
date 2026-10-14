@@ -1,0 +1,33 @@
+LeanPML/Examples/StaticMode.lean:74:18: warning: 'change _ = _' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+LeanPML/Examples/StaticMode.lean:127:30: warning: This simp argument is unused:
+  OriginalRectPEC
+
+Hint: Omit it from the simp argument list.
+  simp [̵O̵r̵i̵g̵i̵n̵a̵l̵R̵e̵c̵t̵P̵E̵C̵,̵Z̵e̵r̵o̵B̵o̵u̵n̵d̵a̵r̵y̵,̵o̵r̵i̵g̵i̵n̵a̵l̵]̵[̲Z̲e̲r̲o̲B̲o̲u̲n̲d̲a̲r̲y̲,̲ ̲o̲r̲i̲g̲i̲n̲a̲l̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/Examples/StaticMode.lean:163:47: error: Application type mismatch: The argument
+  hasDerivAt_const X.2 ?m.22
+has type
+  HasDerivAt (fun x => ?m.22) 0 X.2
+but is expected to have type
+  HasDerivAt (fun y => ↑sideField (X.1, y)) 0 X.2
+in the application
+  HasDerivAt.unique (SmoothField.hasDerivAt_sliceY sideField X) (hasDerivAt_const X.2 ?m.22)
+LeanPML/Examples/StaticMode.lean:176:18: error: Application type mismatch: The argument
+  RegionalAbsorption.weights_ae regional
+has type
+  (regional.coefficients.wx =ᵐ[unitSquare.measure] fun X =>
+      energyWeightX regional.c (regional.p X.1) (regional.r X.2)) ∧
+    regional.coefficients.wy =ᵐ[unitSquare.measure] fun X => energyWeightY regional.c (regional.p X.1) (regional.r X.2)
+but is expected to have type
+  ?m.36 ∈ ae unitSquare.measure
+in the application
+  mp_mem (RegionalAbsorption.weights_ae regional)
+LeanPML/Examples/StaticMode.lean:191:13: error(lean.invalidField): Invalid field `congr`: The environment does not contain `And.congr`, so it is not possible to project the field `congr` from an expression
+  hmem
+of type
+  AEStronglyMeasurable (√((smallC - amplitudeS) / amplitudeS) • ↑sideField) unitSquare.measure ∧
+    eLpNorm (√((smallC - amplitudeS) / amplitudeS) • ↑sideField) 2 unitSquare.measure < ⊤

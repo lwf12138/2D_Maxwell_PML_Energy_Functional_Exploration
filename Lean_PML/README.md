@@ -1,3 +1,92 @@
+# LeanPML：光滑兼容解类的全域先验能量定理
+
+用途：从原八变量方程读到真实 L² 两层能量、耗散和有限区间单调性。**v0.5.1、v0.5.2、v0.5.3 已分别验收，整个 v0.5 完成。** 下方保留 v0.4 原说明作为历史；其中“本轮/下一阶段”指当时，不代表当前状态。准确命题和全部输入见 [光滑定理报告](reports/smooth_theorem.md)，历史见 [PROGRESS](PROGRESS.md)。本轮止于 v0.5，没有实施 v1.0。
+
+## 先读三条声明
+
+都在 [MainSmoothRectangle.lean](LeanPML/PML/MainSmoothRectangle.lean)，命名空间为 `LeanPML.PML.SmoothRectangle`。
+
+1. `SmoothCompatibleSolution`：逐个展开输入字段。它接收原八变量、原方程、区域吸收界、PEC、初始兼容和明确的强正则性；不接收现成能量问题或目标估计。
+2. `SmoothCompatibleSolution.energy_law_and_closure`：从实际原模型总装得到真实 `HasDerivAt` 和定量耗散下界。比较导数等式、耗散符号与剩余预算三个结论。
+3. `main_energy_estimate_smoothRectangle`：把图范数平方界、闭区间单调性、实际 FTC 积分平衡和输入原 E/H/P 控制汇总为结论包。
+
+接着读 [FullDomainProfile](LeanPML/Examples/FullDomainProfile.lean) → [CompatibleData](LeanPML/Examples/CompatibleData.lean) → [StaticMode](LeanPML/Examples/StaticMode.lean) → [UnrestrictedData](LeanPML/PML/Obstructions/UnrestrictedData.lean)。辅助 `SmoothBump`、`PathHelpers` 服务于真实光滑函数、普通/加权路径的成员与导数；`DegenerateBranches.four_branches_main` 检查四种吸收接口。
+
+## 当前具体定理证明什么
+
+在整个非退化矩形上，原方程只要求在 $(0,T)\times\Omega$ 成立；PEC、连续性和静态条件覆盖 $[0,T]$。区域系数入口只限制闭坐标区间内的原 $p,r$；内部截回代表与原系数域内及 a.e. 一致，能量/耗散已接回原系数的合法空间积分。
+
+图平方界及能量比较在 $[0,T]$；以下导数恒等式与定量耗散下界仅在 $t\in(0,T)$。
+
+$$\frac{N_0^2+KN_1^2}{4}\le\mathcal E_7\le N_0^2+KN_1^2,\qquad
+\mathcal E_7'=-\mathcal D_7,$$
+
+$$\mathcal D_7\ge\frac{\mathcal S_0+K\mathcal S_1}{2}
++\frac{\mu\tau}{4\kappa}(\|P_t\|_2^2+K\|P_{tt}\|_2^2)\ge0.$$
+
+由此得到 `AntitoneOn`、$0\le\mathcal E_7(t)\le\mathcal E_7(0)$，以及
+
+$$\mathcal E_7(t_2)+\int_{t_1}^{t_2}\mathcal D_7(s)\,ds=\mathcal E_7(t_1)
+\quad(0\le t_1\le t_2\le T).$$
+
+(6.10) 控制的是输入原场的实际 L² 范数，代码用 `MemLp.toLp` 与实际历史/磁重构证明对应；不是仅给任意重构坐标一个名字。相同时刻、端点和 $T=0$ 均包含；退化时保留初始导数层兼容，不能从空的内部方程推出它。
+
+这仍是给定解的先验估计。联合 C∞ 技术延拓、C(K) 一致范数路径和实际加权成员/可微性是强于 V7 (6.6) 的输入，不是由论文弱正则性自动推出。无界权重没有被当成普通 L² 有界乘子；零吸收区仍保留普通场与 $c|\nabla v|^2$。没有新增吸收正下界、磁场约束或内部边界条件。
+
+## 参数与三个非平凡检验
+
+采用已证明的 $C_P=2L_x$，不是论文最优 π 常数。实例在 $(-1,1)^2$ 上使用
+
+$$\epsilon=\kappa=\tau=\mu=1,\quad C_P=4,\quad A=3,\quad K=384,
+\quad c=1/16384,\quad S=1/65536.$$
+
+参数调用 `ParameterCertificate` 的精确证书。$p(x)=S\,\mathrm{smoothTransition}(4x^2-1)$、$r(y)$ 同式是真正 C∞ 替代剖面：物理区为零，四边单向吸收、四角双向吸收，域内幅度界由构造证明；没有冒充原(10.2)分段幂函数。
+
+- 非零物理区紧支初值证明五兼容、初始八式、真实一阶导数、迹及有限正图平方。方便计算的时间延拓只在 $t=0$ 核验方程，**不是该初值的区间解存在证明**。
+- 静态例实际满足八式及全部输入，并调用最终定理；非零正能量恒定、耗散为零。加权有限性来自实例紧支落在 $p=S$ 平台，$w_y=3$，不是主定理新增全域下界。
+- 任意八变量初值增长例是实际全未来场 $H=t\nabla\psi,Q=\mu\nabla\psi$；八式、PEC、可积性与磁 L² 的 $t^2$ 增长均已证。它违反磁辅助初始兼容；只否定固定正磁控制、有限初能量和全未来单调同时成立的能量，不否定所有能量。
+
+## InfoView、F12 与复现
+
+VS Code 打开整个工程文件夹，光标依次放在 `by`、具名 `have`、`calc`、`rw` 后查看 Lean InfoView 的假设和目标。F12 从主定理进入 `problem`，再进入 `originalRegionalFiniteIntervalProblem`，可看到 Green/Poincaré 和原方程兼容如何被真正填入。导入过期时先构建，再执行 **Lean 4: Restart File**。
+
+固定依赖中的关键出处：`Real.smoothTransition` 在 `Mathlib/Analysis/SpecialFunctions/SmoothTransition.lean`；`expNegInvGlue` 同样在 `Mathlib/Analysis/SpecialFunctions/SmoothTransition.lean`；混合导数对称性在 `Mathlib/Analysis/Calculus/FDeriv/Symmetric.lean`；FTC `intervalIntegral.integral_eq_sub_of_hasDerivAt_of_le` 在 `Mathlib/MeasureTheory/Integral/IntervalIntegral/FundThmCalculus.lean`。文件均位于 `.lake/packages/mathlib/` 下，F12 可查准确使用点。
+
+```bash
+cd '/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML'
+lake build
+lake env lean Audit.lean
+```
+
+分别保存阶段日志可运行：
+
+```bash
+for stage in v0.5.1 v0.5.2 v0.5.3; do
+  python3 scripts/run_logged.py --stage "$stage" lake_build lake build
+  python3 scripts/run_logged.py --stage "$stage" axioms_audit lake env lean Audit.lean
+done
+```
+
+| 阶段 | 验收 | 本轮完整构建 / 独立审计 | 审计声明数（含历史） |
+|---|---|---|---|
+| v0.5.1 | 通过 | [构建](logs/v0.5.1/20261014T005346_311276_lake_build.log) / [审计](logs/v0.5.1/20261014T005434_779198_axioms_audit.log) | 619 |
+| v0.5.2 | 通过 | [构建](logs/v0.5.2/20261014T011030_802569_lake_build.log) / [审计](logs/v0.5.2/20261014T011311_263210_axioms_audit.log) | 683 |
+| v0.5.3 | 通过；覆盖本轮三阶段当前源码 | [构建](logs/v0.5.3/20261014T011533_485975_lake_build.log) / [审计](logs/v0.5.3/20261014T011752_801259_axioms_audit.log) | 740 |
+
+审计只有 `propext`、`Classical.choice`、`Quot.sound`，没有 `sorryAx` 或自定义占位公理。结构字段另做语义检查，不能用公理审计代替范围检查。失败日志、命令、退出码和源码哈希保留。最终整体验收见 [overall_acceptance.json](logs/v0.5.3/overall_acceptance.json)。Lean v4.31.0 和 mathlib `fabf563a7c95a166b8d7b6efca11c8b4dc9d911f` 未变。
+
+## PDF 与下一阶段
+
+指定副本保留18页和200条旧批注；第5/8/10/12/15/16页新增6个带范围红勾，第11/14页只补说明。详见 [PDF账本](docs/pdf_formalization_marks.md)、[逐页视觉检查](logs/v0.5.3/pdf/visual_review.json)。原论文、模型合同、路线图和历史日志保持。路线图旧“待实现”是冻结文本，当前实现状态以源码和本轮证据为准。
+
+下一步仅交接 **v1.0.1**：核验并构造真实弱导数/H₀¹/H(div) 与退化加权图空间，连接已完成的光滑版本；之后再做弱 Green、W¹,∞、(5.7)/(5.8) 加权传播和提升规范唯一性。精确 π 常数、一般解存在唯一性、严格/指数衰减均未被本轮证明。本轮不继续实施。
+
+---
+
+# 以下为 v0.4 及对齐修复时的完整 README 历史
+
+以下“本轮/下一阶段/尚未实施”保持当时含义，当前状态见上文与本轮验收。
+
 # LeanPML：具体光滑矩形接口与原模型映射
 
 用途：沿实际函数、L² 商类、四边迹、历史提升这条线阅读 v0.4。本次对齐补齐参数证书、区域幅度入口和古典空间可导包装；旧验收范围的更正见文末。v0.4.1–v0.4.4 已分别完成实现、完整构建、公理审计和假设检查。此前说明见 [v0.4 入场 README](logs/v0.4.1/initial_files/README.md)，阶段历史见 [PROGRESS](PROGRESS.md)。本轮不实施 v0.5，不更新 Lean/mathlib。

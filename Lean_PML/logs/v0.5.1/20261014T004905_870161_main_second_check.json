@@ -1,0 +1,19 @@
+{
+  "stage": "v0.5.1",
+  "command": [
+    "lake",
+    "env",
+    "lean",
+    "LeanPML/PML/MainSmoothRectangle.lean"
+  ],
+  "command_display": "lake env lean LeanPML/PML/MainSmoothRectangle.lean",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-14T00:49:05.870161+08:00",
+  "output_file": "20261014T004905_870161_main_second_check.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 1,
+  "status": "finished",
+  "ended_at": "2026-10-14T00:49:21.878878+08:00",
+  "elapsed_seconds": 16.009
+}

@@ -1,0 +1,56 @@
+'LeanPML.PML.Obstructions.smooth_mixed_partials' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.Obstructions.gradient_zero_outside_tsupport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.Obstructions.unrestricted_time_derivatives' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.Obstructions.unrestricted_curl_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.Obstructions.unrestricted_originalAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.Obstructions.unrestricted_spatialAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.Obstructions.unrestricted_originalClassicalOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.Obstructions.unrestricted_PEC' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.Obstructions.unrestrictedMagneticSquare_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.Obstructions.unrestricted_magnetic_L2_derivatives' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'LeanPML.PML.Obstructions.unrestrictedGradientSquare_pos_of_dx' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'LeanPML.PML.Obstructions.unrestricted_initial_fields' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.Obstructions.unrestricted_initial_magnetic_invariants' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'LeanPML.PML.Obstructions.unrestricted_not_initialCompatible' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.Obstructions.unrestricted_magnetic_growth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.Obstructions.unrestricted_no_global_coercive_antitone_energy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'LeanPML.PML.Obstructions.singleLayer_candidate_failure_regression' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'LeanPML.PML.Obstructions.unrestricted_compact_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.Obstructions.unrestricted_no_compatible_lift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.Obstructions.smooth_L2_square_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.Obstructions.unrestrictedGradientSquare_eq_integral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'LeanPML.PML.Obstructions.unrestrictedMagneticSquare_eq_integral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'LeanPML.PML.Obstructions.fullProfile_unrestricted_gradient_positive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'LeanPML.PML.Obstructions.fullProfile_unrestricted_gradient_integral_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'LeanPML.PML.Obstructions.fullProfile_unrestricted_classical' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.Obstructions.fullProfile_unrestricted_compact_fields' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'LeanPML.PML.Obstructions.fullProfile_unrestricted_not_compatible' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'LeanPML.PML.Obstructions.fullProfile_unrestricted_norm_growth' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'LeanPML.PML.Obstructions.fullProfile_unrestricted_unbounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.Obstructions.fullProfile_unrestricted_no_coercive_antitone_energy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

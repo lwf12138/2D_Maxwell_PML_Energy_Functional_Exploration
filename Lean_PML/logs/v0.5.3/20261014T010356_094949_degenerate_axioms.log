@@ -1,0 +1,6 @@
+'LeanPML.Examples.Degenerate.zero_originalAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.Examples.Degenerate.integralLift_zero_function' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.Examples.Degenerate.zero_integralLift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.Examples.Degenerate.branch_thresholds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.Examples.Degenerate.asymmetric_directions' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.Examples.Degenerate.four_branches_main' depends on axioms: [propext, Classical.choice, Quot.sound]

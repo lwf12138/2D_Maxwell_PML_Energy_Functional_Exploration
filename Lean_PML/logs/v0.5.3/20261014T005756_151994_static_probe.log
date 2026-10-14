@@ -1,0 +1,18 @@
+LeanPML/Examples/StaticMode.lean:73:18: warning: 'change _ = _' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+LeanPML/Examples/StaticMode.lean:80:2: error: Type mismatch: After simplification, term
+  contDiff_const
+ has type
+  @ContDiff ℝ DenselyNormedField.toNontriviallyNormedField (ℝ × Point) Prod.normedAddCommGroup Prod.normedSpace ℝ
+    Real.normedAddCommGroup RCLike.toInnerProductSpaceReal.toNormedSpace ∞ fun x => 0
+but is expected to have type
+  @ContDiff ℝ DenselyNormedField.toNontriviallyNormedField (ℝ × Point) Prod.normedAddCommGroup Prod.normedSpace ℝ
+    Real.normedAddCommGroup RCLike.toInnerProductSpaceReal.toNormedSpace ∞ (Function.uncurry fun x x_1 => 0)
+LeanPML/Examples/StaticMode.lean:124:30: warning: This simp argument is unused:
+  OriginalRectPEC
+
+Hint: Omit it from the simp argument list.
+  simp [̵O̵r̵i̵g̵i̵n̵a̵l̵R̵e̵c̵t̵P̵E̵C̵,̵Z̵e̵r̵o̵B̵o̵u̵n̵d̵a̵r̵y̵,̵o̵r̵i̵g̵i̵n̵a̵l̵]̵[̲Z̲e̲r̲o̲B̲o̲u̲n̲d̲a̲r̲y̲,̲ ̲o̲r̲i̲g̲i̲n̲a̲l̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

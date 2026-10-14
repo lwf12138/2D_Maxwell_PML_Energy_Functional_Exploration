@@ -156,3 +156,29 @@ V7 当前纸面主张依赖：
 | (6.6)范围说明 | SmoothPaths/StatePaths/WeightedCalculus中文说明更正 | 联合C∞、一致范数、加权成员及路径正则性是额外技术输入，不由弱论文条件推出。传播、弱范围、提升规范和适定性仍未完成 |
 
 新增源码位于 [ParameterCertificate](../LeanPML/Rectangle/ParameterCertificate.lean)、[ClassicalSystem](../LeanPML/PML/ClassicalSystem.lean)、[RegionalCoefficients](../LeanPML/Rectangle/RegionalCoefficients.lean)。旧v0.4.2“完成”漏数值证书的登记已作本次追加更正；旧日志与验收文件保留，不能将本轮结果倒写到旧证据中。
+
+---
+
+## 2026-10-14：v0.5 结论范围升级（不覆盖历史）
+
+本段逐项追加实际声明，原条目的计划名称和旧待实现状态保留历史意义。表中缩写 **M**=`LeanPML.PML.SmoothRectangle`，**S**=`M.SmoothCompatibleSolution`；**C**=`LeanPML.Examples.CompatibleData`，**F**=`LeanPML.Examples.FullDomain`，**O**=`LeanPML.PML.Obstructions`，**St**=`LeanPML.Examples.StaticMode`。完整名称可在正式审计、类型日志和PDF定位计划逐条找到。
+
+| 条目 / 论文范围 | 当前已证明的声明与范围 | 仍未完成或不可扩大 |
+|---|---|---|
+| T30；(6.7)–(6.10) | `M.main_energy_estimate_smoothRectangle`；`S.energy_graph_bounds`、`energy_law_and_closure`、`energy_antitone`、`energy_integral_balance`；`S.physical_current_bound`、`physical_initial_bound` 控制输入原E/H/P的实际L² | 强光滑版本、保守CP；不是T31完整弱V7、存在唯一或严格衰减 |
+| T10–T12、T17–T29 具体接入 | `S.problem` 从原八式/初始条件构造区域问题；`energy_eq_original_integrals` / `dissipation_eq_original_integrals` 及可积性回到原p/r；`second_R_continuous` 给真实P_tt积分正则性 | 一般主定理的普通/加权强正则性仍是输入；这些输入不含目标能量/兼容/Green/Poincaré |
+| T32 参数与全域剖面 | `F.regional_threshold` 调用实际CP4证书；`profile_contDiff`、`profile_zero_iff`、`profile_bounds`、`four_sides_nonempty`、`four_corners_nonempty` | 新有理参数及C∞替代剖面，不是原(10.1)/(10.2)逐字验证或最优π证书 |
+| T32 非零初始子族 | `C.physical_data_certificate`、`physical_initial_traces`、`initial_derivatives`、`regular`、`initialGraphSquare_formula`、`physical_initial_graph_pos` | 初始八式和图数据合法，不证明这些脉冲初值的区间PDE解存在；不覆盖§5.2所有一般族 |
+| T35 非零静态场 | `St.concreteSolution`、`sideField_weighted`、`concrete_integral_balance`、`nonzero_static_regression`：实际八式/PEC/五兼容，非零实际L²，正的常值能量/D零；真实主定理调用 | 支撑上正吸收是实例事实，不是全域条件；未单独宣称原文静态能量标量积分简式已形式化 |
+| T33 增长场与量词 | `O.fullProfile_unrestricted_classical`、`_norm_growth`、`_not_compatible`、`_unbounded`、`_no_coercive_antitone_energy`：实际全未来紧支场、8式/PEC、真实积分=t²G，G>0，任意初始历史不能修复磁兼容 | 排除固定正常数统一磁控制+有限初值+全未来单调的能量；不否定所有能量、不适用于兼容类、不是固定有限T反证 |
+| T34 指定单层回归 | `O.singleLayer_candidate_failure_regression` 用本轮smallC调用既有负耗散证明 | 只针对指定单层候选；初值上局部/积分正率仍不证明经过启动数据的一般解存在 |
+| 退化接口（T30范围） | `LeanPML.Examples.Degenerate.four_branches_main`：同一参数的全零/仅x/仅y/双向；`asymmetric_directions` 核对不对称方向 | 四分支接口使用零路径，不替代T35实际非零解；零区空间耗散未删除 |
+
+T30 在**所选强光滑兼容类**完成；T31、T06传播完整范围、T07提升规范唯一性、T36/T37的Laplace/完美匹配均不升级。$C_P=2L_x$，不是T08原式精确π常数。$T=0$保留初始导数层条件，闭区间结论与内部真实求导分别列明。
+
+三个阶段分别通过 [v0.5.1](../logs/v0.5.1/acceptance.json)、[v0.5.2](../logs/v0.5.2/acceptance.json)、[v0.5.3](../logs/v0.5.3/acceptance.json)；最后构建/740项审计覆盖全部当前模块。完整纸面对应与19输入字段审查见 [报告](../reports/smooth_theorem.md)，总体及保护检查见 [整体验收](../logs/v0.5.3/overall_acceptance.json)。
+
+
+**假设审查。** `SmoothCompatibleSolution` 的19字段只包含真实对象、材料/区域条件、原方程、初值、边界、强正则性和历史识别。没有现成问题对象、Green/Poincaré、混合交换或全时段兼容作为输入；这些在`problem`构造链中由具体矩形与真实原演化证明。结构型结论包 `SmoothEnergyConclusions` 是输出，不是输入。公理审计之外，完整类型打印、root字段检查与独立审查分别存于 [semantic_review](../logs/v0.5.1/semantic_review.md)、[geometry review](../logs/v0.5.1/semantic_review_geometry.md)、[examples review](../logs/v0.5.3/semantic_review_examples.md)。
+
+一般主定理仍输入联合C∞、C(K)及实际加权成员/路径可微性；静态例则由真实紧支平台证明这些条件，增长例属于不兼容的全未来类。数据证书仅在初始时刻验证原式，不把方便延拓叫PDE解。没有将加权自动传播、弱空间或一般适定性登记完成。

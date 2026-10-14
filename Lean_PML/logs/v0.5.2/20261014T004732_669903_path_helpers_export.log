@@ -1,0 +1,14 @@
+LeanPML/Examples/PathHelpers.lean:35:2: error: Type mismatch: After simplification, term
+  MemLp.zero
+ has type
+  @MemLp (ℝ × ℝ) ℝ Prod.instMeasurableSpace NormedAddCommGroup.toENormedAddCommMonoid.toENorm
+    PseudoMetricSpace.toUniformSpace.toTopologicalSpace 0 2 D.measure
+but is expected to have type
+  @MemLp (ℝ × ℝ) ℝ Prod.instMeasurableSpace SeminormedAddGroup.toContinuousENorm.toENorm
+    PseudoMetricSpace.toUniformSpace.toTopologicalSpace (fun X => 0) 2 D.measure
+LeanPML/Examples/PathHelpers.lean:47:26: error: Type mismatch
+  differentiable_const ?m.42
+has type
+  Differentiable ?m.32 fun x => ?m.42
+but is expected to have type
+  Differentiable ℝ fun t => weightedOfFunction D.measure w (↑((constantJet f).value t)) hweighted

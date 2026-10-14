@@ -1,0 +1,149 @@
+structure LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution {D : LeanPML.Rectangle.Rect}
+  (R : LeanPML.Rectangle.RegionalAbsorption D) (ε κ τ μ T : ℝ) : Type
+number of parameters: 7
+fields:
+  LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.ε_pos : 0 < ε
+  LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.κ_pos : 0 < κ
+  LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.τ_pos : 0 < τ
+  LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.μ_pos : 0 < μ
+  LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.c_le_threshold : R.c ≤
+      LeanPML.PML.threshold ε κ τ μ (LeanPML.Rectangle.poincareConstant D)
+  LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.F : LeanPML.PML.Concrete.OriginalFields
+  LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.u0 : LeanPML.PML.Concrete.Point → ℝ
+  LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.q0 : LeanPML.PML.Concrete.Point → ℝ
+  LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.B : LeanPML.Rectangle.SmoothStateData
+  LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.regular : LeanPML.Rectangle.SmoothStateRegular D R.coefficients
+      self.B
+  LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.identified : LeanPML.PML.Concrete.LiftIdentified self.B self.F μ
+      self.u0 self.q0
+  LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.T_nonneg : 0 ≤ T
+  LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.history_regular : LeanPML.PML.Concrete.OriginalLiftRegular self.F
+      self.u0
+  LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.equations : LeanPML.PML.Concrete.OriginalOn D.openSet T ε κ τ μ
+      R.p R.r self.F
+  LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.initial : ∀ X ∈ D.openSet,
+      LeanPML.PML.Concrete.InitialCompatible self.F (LeanPML.PML.Concrete.lift self.F μ self.u0 self.q0) ε κ τ R.p R.r X
+  LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.zero_initial : ∀ X ∈ D.openSet,
+      R.p X.1 + R.r X.2 = 0 →
+        (LeanPML.PML.Concrete.lift self.F μ self.u0 self.q0).φx 0 X = 0 ∧
+          (LeanPML.PML.Concrete.lift self.F μ self.u0 self.q0).φy 0 X = 0
+  LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.PEC : LeanPML.PML.Concrete.OriginalRectPEC D T self.F
+  LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.u0_boundary : LeanPML.Rectangle.ZeroBoundary D self.u0
+  LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.degenerate : T = 0 →
+      LeanPML.PML.Concrete.InitialDerivativeCompatible D R.coefficients self.B κ τ
+constructor:
+  LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.mk {D : LeanPML.Rectangle.Rect}
+    {R : LeanPML.Rectangle.RegionalAbsorption D} {ε κ τ μ T : ℝ} (ε_pos : 0 < ε) (κ_pos : 0 < κ) (τ_pos : 0 < τ)
+    (μ_pos : 0 < μ) (c_le_threshold : R.c ≤ LeanPML.PML.threshold ε κ τ μ (LeanPML.Rectangle.poincareConstant D))
+    (F : LeanPML.PML.Concrete.OriginalFields) (u0 q0 : LeanPML.PML.Concrete.Point → ℝ)
+    (B : LeanPML.Rectangle.SmoothStateData) (regular : LeanPML.Rectangle.SmoothStateRegular D R.coefficients B)
+    (identified : LeanPML.PML.Concrete.LiftIdentified B F μ u0 q0) (T_nonneg : 0 ≤ T)
+    (history_regular : LeanPML.PML.Concrete.OriginalLiftRegular F u0)
+    (equations : LeanPML.PML.Concrete.OriginalOn D.openSet T ε κ τ μ R.p R.r F)
+    (initial :
+      ∀ X ∈ D.openSet, LeanPML.PML.Concrete.InitialCompatible F (LeanPML.PML.Concrete.lift F μ u0 q0) ε κ τ R.p R.r X)
+    (zero_initial :
+      ∀ X ∈ D.openSet,
+        R.p X.1 + R.r X.2 = 0 →
+          (LeanPML.PML.Concrete.lift F μ u0 q0).φx 0 X = 0 ∧ (LeanPML.PML.Concrete.lift F μ u0 q0).φy 0 X = 0)
+    (PEC : LeanPML.PML.Concrete.OriginalRectPEC D T F) (u0_boundary : LeanPML.Rectangle.ZeroBoundary D u0)
+    (degenerate : T = 0 → LeanPML.PML.Concrete.InitialDerivativeCompatible D R.coefficients B κ τ) :
+    LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution R ε κ τ μ T
+structure LeanPML.Rectangle.RegionalAbsorption (D : LeanPML.Rectangle.Rect) : Type
+number of parameters: 1
+fields:
+  LeanPML.Rectangle.RegionalAbsorption.c : ℝ
+  LeanPML.Rectangle.RegionalAbsorption.S : ℝ
+  LeanPML.Rectangle.RegionalAbsorption.c_pos : 0 < self.c
+  LeanPML.Rectangle.RegionalAbsorption.p : ℝ → ℝ
+  LeanPML.Rectangle.RegionalAbsorption.r : ℝ → ℝ
+  LeanPML.Rectangle.RegionalAbsorption.p_smooth : ContDiff ℝ (↑⊤) self.p
+  LeanPML.Rectangle.RegionalAbsorption.r_smooth : ContDiff ℝ (↑⊤) self.r
+  LeanPML.Rectangle.RegionalAbsorption.p_bounds : ∀ x ∈ Set.Icc D.xlo D.xhi, 0 ≤ self.p x ∧ self.p x ≤ self.S
+  LeanPML.Rectangle.RegionalAbsorption.r_bounds : ∀ y ∈ Set.Icc D.ylo D.yhi, 0 ≤ self.r y ∧ self.r y ≤ self.S
+  LeanPML.Rectangle.RegionalAbsorption.S_le_quarter : self.S ≤ self.c / 4
+constructor:
+  LeanPML.Rectangle.RegionalAbsorption.mk {D : LeanPML.Rectangle.Rect} (c S : ℝ) (c_pos : 0 < c) (p r : ℝ → ℝ)
+    (p_smooth : ContDiff ℝ (↑⊤) p) (r_smooth : ContDiff ℝ (↑⊤) r)
+    (p_bounds : ∀ x ∈ Set.Icc D.xlo D.xhi, 0 ≤ p x ∧ p x ≤ S) (r_bounds : ∀ y ∈ Set.Icc D.ylo D.yhi, 0 ≤ r y ∧ r y ≤ S)
+    (S_le_quarter : S ≤ c / 4) : LeanPML.Rectangle.RegionalAbsorption D
+def LeanPML.Examples.StaticMode.concreteSolution : (T : ℝ) →
+  0 ≤ T → LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution LeanPML.Examples.StaticMode.regional 1 1 1 1 T :=
+fun T hT =>
+  LeanPML.Examples.StaticMode.solution LeanPML.Examples.StaticMode.regional LeanPML.Examples.StaticMode.sideField
+    LeanPML.Examples.StaticMode.concreteSolution._proof_1 LeanPML.Examples.StaticMode.sideField_dy ⋯
+    LeanPML.Examples.StaticMode.sideField_weighted LeanPML.Rectangle.ParameterCertificate.unitSquare_le_threshold T hT
+LeanPML.PML.SmoothRectangle.main_energy_estimate_smoothRectangle {D : LeanPML.Rectangle.Rect}
+  {R : LeanPML.Rectangle.RegionalAbsorption D} {ε κ τ μ T : ℝ}
+  (s : LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution R ε κ τ μ T) :
+  LeanPML.PML.SmoothRectangle.SmoothEnergyConclusions s
+LeanPML.Examples.Degenerate.four_branches_main (T : ℝ) (hT : 0 ≤ T) :
+  LeanPML.PML.SmoothRectangle.SmoothEnergyConclusions
+      (LeanPML.Examples.Degenerate.zeroSolution LeanPML.Examples.Degenerate.zeroRegional T hT ⋯) ∧
+    LeanPML.PML.SmoothRectangle.SmoothEnergyConclusions
+        (LeanPML.Examples.Degenerate.zeroSolution LeanPML.Examples.Degenerate.xRegional T hT ⋯) ∧
+      LeanPML.PML.SmoothRectangle.SmoothEnergyConclusions
+          (LeanPML.Examples.Degenerate.zeroSolution LeanPML.Examples.Degenerate.yRegional T hT ⋯) ∧
+        LeanPML.PML.SmoothRectangle.SmoothEnergyConclusions
+          (LeanPML.Examples.Degenerate.zeroSolution LeanPML.Examples.FullDomain.regional T hT ⋯)
+LeanPML.Examples.Degenerate.asymmetric_directions :
+  0 < LeanPML.Examples.Degenerate.xRegional.p (7 / 8) ∧
+    LeanPML.Examples.Degenerate.xRegional.r 0 = 0 ∧
+      LeanPML.Examples.Degenerate.yRegional.p 0 = 0 ∧ 0 < LeanPML.Examples.Degenerate.yRegional.r (7 / 8)
+LeanPML.Examples.StaticMode.sideField_weighted :
+  MeasureTheory.MemLp
+    (fun X => √(LeanPML.Examples.StaticMode.regional.coefficients.wy X) * ↑LeanPML.Examples.StaticMode.sideField X) 2
+    LeanPML.Rectangle.ParameterCertificate.unitSquare.measure
+LeanPML.Examples.StaticMode.nonzero_static_regression (T : ℝ) (hT : 0 ≤ T) (t : ℝ) :
+  0 < (LeanPML.Examples.StaticMode.concreteSolution T hT).energy t ∧
+    (LeanPML.Examples.StaticMode.concreteSolution T hT).energy t =
+        (LeanPML.Examples.StaticMode.concreteSolution T hT).energy 0 ∧
+      (LeanPML.Examples.StaticMode.concreteSolution T hT).dissipation t = 0
+LeanPML.Examples.StaticMode.concrete_integral_balance (T : ℝ) (hT : 0 ≤ T) {t₁ t₂ : ℝ} (ht₁ : 0 ≤ t₁) (ht₁₂ : t₁ ≤ t₂)
+  (ht₂ : t₂ ≤ T) :
+  (LeanPML.Examples.StaticMode.concreteSolution T hT).energy t₂ +
+      ∫ (t : ℝ) in t₁..t₂, (LeanPML.Examples.StaticMode.concreteSolution T hT).dissipation t =
+    (LeanPML.Examples.StaticMode.concreteSolution T hT).energy t₁
+LeanPML.PML.Obstructions.fullProfile_unrestricted_classical (T : ℝ) :
+  LeanPML.PML.Concrete.OriginalClassicalOn LeanPML.Rectangle.ParameterCertificate.unitSquare.openSet T 1 1 1 1
+      LeanPML.Examples.FullDomain.profile LeanPML.Examples.FullDomain.profile
+      LeanPML.PML.Obstructions.fullProfileUnrestrictedFields ∧
+    LeanPML.PML.Concrete.OriginalRectPEC LeanPML.Rectangle.ParameterCertificate.unitSquare T
+      LeanPML.PML.Obstructions.fullProfileUnrestrictedFields
+LeanPML.PML.Obstructions.fullProfile_unrestricted_norm_growth (t : ℝ) :
+  MeasureTheory.Integrable
+      (fun X =>
+        LeanPML.PML.Obstructions.fullProfileUnrestrictedFields.Hx t X ^ 2 +
+          LeanPML.PML.Obstructions.fullProfileUnrestrictedFields.Hy t X ^ 2)
+      LeanPML.Rectangle.ParameterCertificate.unitSquare.measure ∧
+    ∫ (X : ℝ × ℝ),
+        LeanPML.PML.Obstructions.fullProfileUnrestrictedFields.Hx t X ^ 2 +
+          LeanPML.PML.Obstructions.fullProfileUnrestrictedFields.Hy t X ^
+            2 ∂LeanPML.Rectangle.ParameterCertificate.unitSquare.measure =
+      t ^ 2 *
+        LeanPML.PML.Obstructions.unrestrictedGradientSquare LeanPML.Rectangle.ParameterCertificate.unitSquare
+          LeanPML.Examples.FullDomain.physicalBump
+LeanPML.PML.Obstructions.fullProfile_unrestricted_not_compatible (u₀ q₀ : LeanPML.PML.Concrete.Point → ℝ) :
+  ¬∀ X ∈ LeanPML.Rectangle.ParameterCertificate.unitSquare.openSet,
+      LeanPML.PML.Concrete.InitialCompatible LeanPML.PML.Obstructions.fullProfileUnrestrictedFields
+        (LeanPML.PML.Concrete.lift LeanPML.PML.Obstructions.fullProfileUnrestrictedFields 1 u₀ q₀) 1 1 1
+        LeanPML.Examples.FullDomain.profile LeanPML.Examples.FullDomain.profile X
+LeanPML.PML.Obstructions.fullProfile_unrestricted_unbounded (after bound : ℝ) :
+  ∃ t,
+    0 ≤ t ∧
+      after ≤ t ∧
+        bound <
+          LeanPML.PML.Obstructions.unrestrictedMagneticSquare LeanPML.Rectangle.ParameterCertificate.unitSquare
+            LeanPML.Examples.FullDomain.physicalBump t
+LeanPML.PML.Obstructions.fullProfile_unrestricted_no_coercive_antitone_energy :
+  ¬∃ energy m,
+      0 < m ∧
+        (∀ (t : ℝ),
+            0 ≤ t →
+              m *
+                  LeanPML.PML.Obstructions.unrestrictedMagneticSquare LeanPML.Rectangle.ParameterCertificate.unitSquare
+                    LeanPML.Examples.FullDomain.physicalBump t ≤
+                energy t) ∧
+          AntitoneOn energy (Set.Ici 0)
+LeanPML.PML.Obstructions.singleLayer_candidate_failure_regression :
+  LeanPML.PML.Obstructions.initialDissipation 1 1 1 1 LeanPML.Rectangle.ParameterCertificate.smallC 0 0 1 < 0

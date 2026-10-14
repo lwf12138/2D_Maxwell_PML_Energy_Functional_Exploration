@@ -49,9 +49,22 @@ import LeanPML.Rectangle.ParameterCertificate
 import LeanPML.PML.ClassicalSystem
 import LeanPML.Rectangle.RegionalCoefficients
 
+
+-- v0.5.1：具体原模型的光滑兼容类全域先验定理。
+import LeanPML.PML.MainSmoothRectangle
+
+-- v0.5.2：真实C∞剖面、物理区紧支函数与初始图数据。
+import LeanPML.Examples.FullDomainProfile
+import LeanPML.Examples.CompatibleData
+
+-- v0.5.3：退化入口、非零静态解与完整场增长回归。
+import LeanPML.Examples.DegenerateBranches
+import LeanPML.Examples.StaticMode
+import LeanPML.PML.Obstructions.UnrestrictedData
+
 /-!
 # 正式证明导入入口
 
-v0.4.1–v0.4.4 的具体光滑矩形、真实历史与原系统接口沿此入口参与默认构建。
-Audit 保留历次公理审计。下一阶段 v0.5 才发布具体主定理；本文件不改变数学范围。
+v0.4的具体空间与原模型接口、v0.5的光滑兼容先验定理及实例均沿此入口参与默认构建。
+Audit保留历次审计；本轮光滑范围明确，后续v1.0才建设完整弱空间与传播/规范接口。
 -/

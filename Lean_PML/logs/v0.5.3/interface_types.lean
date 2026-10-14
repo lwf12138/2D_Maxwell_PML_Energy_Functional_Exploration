@@ -1,0 +1,17 @@
+import LeanPML
+
+#print LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution
+#print LeanPML.Rectangle.RegionalAbsorption
+#print LeanPML.Examples.StaticMode.concreteSolution
+#check LeanPML.PML.SmoothRectangle.main_energy_estimate_smoothRectangle
+#check LeanPML.Examples.Degenerate.four_branches_main
+#check LeanPML.Examples.Degenerate.asymmetric_directions
+#check LeanPML.Examples.StaticMode.sideField_weighted
+#check LeanPML.Examples.StaticMode.nonzero_static_regression
+#check LeanPML.Examples.StaticMode.concrete_integral_balance
+#check LeanPML.PML.Obstructions.fullProfile_unrestricted_classical
+#check LeanPML.PML.Obstructions.fullProfile_unrestricted_norm_growth
+#check LeanPML.PML.Obstructions.fullProfile_unrestricted_not_compatible
+#check LeanPML.PML.Obstructions.fullProfile_unrestricted_unbounded
+#check LeanPML.PML.Obstructions.fullProfile_unrestricted_no_coercive_antitone_energy
+#check LeanPML.PML.Obstructions.singleLayer_candidate_failure_regression

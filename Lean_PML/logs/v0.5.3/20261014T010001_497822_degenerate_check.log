@@ -1,0 +1,150 @@
+LeanPML/Examples/DegenerateBranches.lean:35:88: error: unexpected identifier; expected '}'
+LeanPML/Examples/DegenerateBranches.lean:35:9: error: Fields missing: `debye`, `memory1`, `memory2`, `auxiliaryX`, `auxiliaryY`
+LeanPML/Examples/DegenerateBranches.lean:34:45: error: unsolved goals
+case refine_1
+ε κ τ μ : ℝ
+p r : ℝ → ℝ
+t : ℝ
+X : Point
+⊢ OriginalHasDerivAt zeroFields t X
+
+case refine_2
+ε κ τ μ : ℝ
+p r : ℝ → ℝ
+t : ℝ
+X : Point
+⊢ ε * dt zeroFields.E t X =
+    spaceDx zeroFields.Hy t X - spaceDy zeroFields.Hx t X - ε * (p X.1 + r X.2) * zeroFields.E t X -
+            dt zeroFields.P t X -
+          (p X.1 + r X.2) * zeroFields.P t X +
+        zeroFields.Z1 t X +
+      zeroFields.Z2 t X
+
+case refine_3
+ε κ τ μ : ℝ
+p r : ℝ → ℝ
+t : ℝ
+X : Point
+⊢ μ * dt zeroFields.Hx t X = -spaceDy zeroFields.E t X - μ * (r X.2 - p X.1) * zeroFields.Hx t X + zeroFields.Qx t X
+
+case refine_4
+ε κ τ μ : ℝ
+p r : ℝ → ℝ
+t : ℝ
+X : Point
+⊢ μ * dt zeroFields.Hy t X = spaceDx zeroFields.E t X - μ * (p X.1 - r X.2) * zeroFields.Hy t X + zeroFields.Qy t X
+LeanPML/Examples/DegenerateBranches.lean:64:14: error: unsolved goals
+case φx
+D : Rect
+R : RegionalAbsorption D
+T : ℝ
+hT : 0 ≤ T
+hc : R.c ≤ threshold 1 1 1 1 (poincareConstant D)
+t : ℝ
+X : ℝ × ℝ
+⊢ (fderiv ℝ (integralLift (fun x x_1 => 0) (fun x => 0) t) X) (1, 0) = 0
+
+case φy
+D : Rect
+R : RegionalAbsorption D
+T : ℝ
+hT : 0 ≤ T
+hc : R.c ≤ threshold 1 1 1 1 (poincareConstant D)
+t : ℝ
+X : ℝ × ℝ
+⊢ (fderiv ℝ (integralLift (fun x x_1 => 0) (fun x => 0) t) X) (0, 1) = 0
+LeanPML/Examples/DegenerateBranches.lean:73:8: error: Type mismatch: After simplification, term
+  contDiff_const
+ has type
+  ContDiff ℝ ∞ fun x => 0
+but is expected to have type
+  ContDiff ℝ ∞ (Function.uncurry (integralLift (fun x x_1 => 0) fun x => 0))
+LeanPML/Examples/DegenerateBranches.lean:76:11: error: unsolved goals
+case magneticX
+D : Rect
+R : RegionalAbsorption D
+T : ℝ
+hT : 0 ≤ T
+hc : R.c ≤ threshold 1 1 1 1 (poincareConstant D)
+X : ℝ × ℝ
+a✝ : X ∈ D.openSet
+⊢ R.p X.1 = 0 ∨ (fderiv ℝ (integralLift (fun x x_1 => 0) (fun x => 0) 0) X) (0, 1) = 0
+
+case magneticY
+D : Rect
+R : RegionalAbsorption D
+T : ℝ
+hT : 0 ≤ T
+hc : R.c ≤ threshold 1 1 1 1 (poincareConstant D)
+X : ℝ × ℝ
+a✝ : X ∈ D.openSet
+⊢ R.r X.2 = 0 ∨ (fderiv ℝ (integralLift (fun x x_1 => 0) (fun x => 0) 0) X) (1, 0) = 0
+LeanPML/Examples/DegenerateBranches.lean:80:16: error: unsolved goals
+D : Rect
+R : RegionalAbsorption D
+T : ℝ
+hT : 0 ≤ T
+hc : R.c ≤ threshold 1 1 1 1 (poincareConstant D)
+X : ℝ × ℝ
+a✝¹ : X ∈ D.openSet
+a✝ : R.p X.1 + R.r X.2 = 0
+⊢ (fderiv ℝ (integralLift (fun x x_1 => 0) (fun x => 0) 0) X) (1, 0) = 0 ∧
+    (fderiv ℝ (integralLift (fun x x_1 => 0) (fun x => 0) 0) X) (0, 1) = 0
+LeanPML/Examples/DegenerateBranches.lean:82:26: warning: This simp argument is unused:
+  integralLift
+
+Hint: Omit it from the simp argument list.
+  simp [̵l̵i̵f̵t̵,̵z̵e̵r̵o̵F̵i̵e̵l̵d̵s̵,̵i̵n̵t̵e̵g̵r̵a̵l̵L̵i̵f̵t̵,̵s̵p̵a̵c̵e̵D̵x̵,̵s̵p̵a̵c̵e̵D̵y̵]̵[̲l̲i̲f̲t̲,̲ ̲z̲e̲r̲o̲F̲i̲e̲l̲d̲s̲,̲ ̲s̲p̲a̲c̲e̲D̲x̲,̲ ̲s̲p̲a̲c̲e̲D̲y̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/Examples/DegenerateBranches.lean:94:53: error: unexpected identifier; expected '}'
+LeanPML/Examples/DegenerateBranches.lean:100:65: error: unexpected identifier; expected '}'
+LeanPML/Examples/DegenerateBranches.lean:104:65: error: unexpected identifier; expected '}'
+LeanPML/Examples/DegenerateBranches.lean:113:3: error: Application type mismatch: The argument
+  unitSquare_le_threshold
+has type
+  smallC ≤ threshold 1 1 1 1 (poincareConstant unitSquare)
+but is expected to have type
+  zeroRegional.c ≤ threshold 1 1 1 1 (poincareConstant unitSquare)
+in the application
+  And.intro unitSquare_le_threshold
+LeanPML/Examples/DegenerateBranches.lean:113:27: error: Application type mismatch: The argument
+  unitSquare_le_threshold
+has type
+  smallC ≤ threshold 1 1 1 1 (poincareConstant unitSquare)
+but is expected to have type
+  xRegional.c ≤ threshold 1 1 1 1 (poincareConstant unitSquare)
+in the application
+  And.intro unitSquare_le_threshold
+LeanPML/Examples/DegenerateBranches.lean:113:51: error: Application type mismatch: The argument
+  unitSquare_le_threshold
+has type
+  smallC ≤ threshold 1 1 1 1 (poincareConstant unitSquare)
+but is expected to have type
+  yRegional.c ≤ threshold 1 1 1 1 (poincareConstant unitSquare)
+in the application
+  And.intro unitSquare_le_threshold
+LeanPML/Examples/DegenerateBranches.lean:122:9: error: Application type mismatch: The argument
+  hpositive
+has type
+  0 < FullDomain.profile (7 / 8)
+but is expected to have type
+  0 < xRegional.p (7 / 8)
+in the application
+  And.intro hpositive
+LeanPML/Examples/DegenerateBranches.lean:122:27: error: Application type mismatch: The argument
+  hpositive
+has type
+  0 < FullDomain.profile (7 / 8)
+but is expected to have type
+  0 < yRegional.r (7 / 8)
+in the application
+  ⟨?m.69, hpositive⟩
+LeanPML/Examples/DegenerateBranches.lean:122:23: error: Application type mismatch: The argument
+  rfl
+has type
+  ?m.68 = ?m.68
+but is expected to have type
+  yRegional.p 0 = 0
+in the application
+  And.intro rfl

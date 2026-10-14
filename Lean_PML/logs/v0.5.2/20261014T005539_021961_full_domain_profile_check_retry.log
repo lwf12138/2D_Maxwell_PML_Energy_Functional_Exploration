@@ -1,0 +1,49 @@
+LeanPML/Examples/FullDomainProfile.lean:52:39: error: Application type mismatch: The argument
+  hx
+has type
+  x ∈ Icc (-1 / 2) (1 / 2)
+but is expected to have type
+  -(1 / 2) ≤ x ∧ x ≤ 1 / 2
+in the application
+  abs_le.mpr hx
+LeanPML/Examples/FullDomainProfile.lean:55:59: error: unexpected token ':='; expected term
+LeanPML/Examples/FullDomainProfile.lean:55:34: error: Function expected at
+  0 < profile x ↔ 1 / 2
+but this term has type
+  Prop
+
+Note: Expected a function because this term is being applied to the argument
+  x
+LeanPML/Examples/FullDomainProfile.lean:55:48: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  HDiv ℝ ℕ Prop
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+LeanPML/Examples/FullDomainProfile.lean:104:48: error: unexpected token '|'; expected ')'
+LeanPML/Examples/FullDomainProfile.lean:110:20: error: unexpected token '|'; expected ')'
+LeanPML/Examples/FullDomainProfile.lean:114:48: error: unexpected token '|'; expected ')'
+LeanPML/Examples/FullDomainProfile.lean:119:8: warning: declaration uses `sorry`
+LeanPML/Examples/FullDomainProfile.lean:125:62: warning: 'norm_num' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+LeanPML/Examples/FullDomainProfile.lean:126:64: warning: 'norm_num' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+LeanPML/Examples/FullDomainProfile.lean:125:62: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+LeanPML/Examples/FullDomainProfile.lean:126:64: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+LeanPML/Examples/FullDomainProfile.lean:133:62: error: unsolved goals
+case inl.inl.right
+⊢ 0 < profile (3 / 4)
+
+case inl.inr.right
+⊢ 0 < profile (3 / 4) ∧ 0 < profile (-(3 / 4))
+
+case inr.inl.right
+⊢ 0 < profile (-(3 / 4)) ∧ 0 < profile (3 / 4)
+
+case inr.inr.right
+⊢ 0 < profile (-(3 / 4))
+LeanPML/Examples/FullDomainProfile.lean:195:2: error: failed to prove positivity/nonnegativity/nonzeroness

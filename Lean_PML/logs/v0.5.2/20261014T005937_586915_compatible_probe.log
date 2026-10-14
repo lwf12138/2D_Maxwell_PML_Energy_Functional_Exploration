@@ -1,0 +1,246 @@
+LeanPML/Examples/CompatibleData.lean:47:2: error: unsolved goals
+case refine_2
+f : SmoothField
+t : ℝ
+X : Point
+hhistory : integralLift (initialExtension f).E (fun x => 0) t = fun Y => t * ↑f Y
+hdx : spaceDx (integralLift (initialExtension f).E fun x => 0) t X = t * dx (↑f) X
+hdy : spaceDy (integralLift (initialExtension f).E fun x => 0) t X = t * dy (↑f) X
+⊢ t * dx (↑f) X - spaceDx (integralLift (fun x X => ↑f X) fun x => 0) t X = 0
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+LeanPML/Examples/CompatibleData.lean:48:2: error: unsolved goals
+case refine_3
+f : SmoothField
+t : ℝ
+X : Point
+hhistory : integralLift (initialExtension f).E (fun x => 0) t = fun Y => t * ↑f Y
+hdx : spaceDx (integralLift (initialExtension f).E fun x => 0) t X = t * dx (↑f) X
+hdy : spaceDy (integralLift (initialExtension f).E fun x => 0) t X = t * dy (↑f) X
+⊢ t * dy (↑f) X - spaceDy (integralLift (fun x X => ↑f X) fun x => 0) t X = 0
+LeanPML/Examples/CompatibleData.lean:47:32: warning: This simp argument is unused:
+  hdx
+
+Hint: Omit it from the simp argument list.
+  simp [lift, ̲initialExtension,̵h̵d̵x̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/Examples/CompatibleData.lean:48:32: warning: This simp argument is unused:
+  hdy
+
+Hint: Omit it from the simp argument list.
+  simp [lift, ̲initialExtension,̵h̵d̵y̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+LeanPML/Examples/CompatibleData.lean:65:55: error: unsolved goals
+case refine_2
+p r : ℝ → ℝ
+f : SmoothField
+hpf : ∀ (X : ℝ × ℝ), p X.1 * ↑f X = 0
+hrf : ∀ (X : ℝ × ℝ), r X.2 * ↑f X = 0
+X : Point
+hd :
+  HasDerivAt (fun t => (initialExtension f).E t X) 0 0 ∧
+    HasDerivAt (fun t => (initialExtension f).P t X) 0 0 ∧
+      HasDerivAt (fun t => (initialExtension f).Hx t X) (-dy (↑f) X) 0 ∧
+        HasDerivAt (fun t => (initialExtension f).Hy t X) (dx (↑f) X) 0
+hEt : deriv (fun t => (initialExtension f).E t X) 0 = 0
+hPt : deriv (fun t => (initialExtension f).P t X) 0 = 0
+hHx : deriv (fun t => (initialExtension f).Hx t X) 0 = -dy (↑f) X
+hHy : deriv (fun t => (initialExtension f).Hy t X) 0 = dx (↑f) X
+⊢ 0 = -(p X.1 * ↑f X * 2) - r X.2 * ↑f X * 2
+
+case refine_3
+p r : ℝ → ℝ
+f : SmoothField
+hpf : ∀ (X : ℝ × ℝ), p X.1 * ↑f X = 0
+hrf : ∀ (X : ℝ × ℝ), r X.2 * ↑f X = 0
+X : Point
+hd :
+  HasDerivAt (fun t => (initialExtension f).E t X) 0 0 ∧
+    HasDerivAt (fun t => (initialExtension f).P t X) 0 0 ∧
+      HasDerivAt (fun t => (initialExtension f).Hx t X) (-dy (↑f) X) 0 ∧
+        HasDerivAt (fun t => (initialExtension f).Hy t X) (dx (↑f) X) 0
+hEt : deriv (fun t => (initialExtension f).E t X) 0 = 0
+hPt : deriv (fun t => (initialExtension f).P t X) 0 = 0
+hHx : deriv (fun t => (initialExtension f).Hx t X) 0 = -dy (↑f) X
+hHy : deriv (fun t => (initialExtension f).Hy t X) 0 = dx (↑f) X
+⊢ dy (↑f) X = (fderiv ℝ (fun X => ↑f X) X) (0, 1)
+
+case refine_4
+p r : ℝ → ℝ
+f : SmoothField
+hpf : ∀ (X : ℝ × ℝ), p X.1 * ↑f X = 0
+hrf : ∀ (X : ℝ × ℝ), r X.2 * ↑f X = 0
+X : Point
+hd :
+  HasDerivAt (fun t => (initialExtension f).E t X) 0 0 ∧
+    HasDerivAt (fun t => (initialExtension f).P t X) 0 0 ∧
+      HasDerivAt (fun t => (initialExtension f).Hx t X) (-dy (↑f) X) 0 ∧
+        HasDerivAt (fun t => (initialExtension f).Hy t X) (dx (↑f) X) 0
+hEt : deriv (fun t => (initialExtension f).E t X) 0 = 0
+hPt : deriv (fun t => (initialExtension f).P t X) 0 = 0
+hHx : deriv (fun t => (initialExtension f).Hx t X) 0 = -dy (↑f) X
+hHy : deriv (fun t => (initialExtension f).Hy t X) 0 = dx (↑f) X
+⊢ dx (↑f) X = (fderiv ℝ (fun X => ↑f X) X) (1, 0)
+
+case refine_6
+p r : ℝ → ℝ
+f : SmoothField
+hpf : ∀ (X : ℝ × ℝ), p X.1 * ↑f X = 0
+hrf : ∀ (X : ℝ × ℝ), r X.2 * ↑f X = 0
+X : Point
+hd :
+  HasDerivAt (fun t => (initialExtension f).E t X) 0 0 ∧
+    HasDerivAt (fun t => (initialExtension f).P t X) 0 0 ∧
+      HasDerivAt (fun t => (initialExtension f).Hx t X) (-dy (↑f) X) 0 ∧
+        HasDerivAt (fun t => (initialExtension f).Hy t X) (dx (↑f) X) 0
+hEt : deriv (fun t => (initialExtension f).E t X) 0 = 0
+hPt : deriv (fun t => (initialExtension f).P t X) 0 = 0
+hHx : deriv (fun t => (initialExtension f).Hx t X) 0 = -dy (↑f) X
+hHy : deriv (fun t => (initialExtension f).Hy t X) 0 = dx (↑f) X
+⊢ (p X.1 = 0 ∨ r X.2 = 0) ∨ ↑f X = 0
+
+case refine_7
+p r : ℝ → ℝ
+f : SmoothField
+hpf : ∀ (X : ℝ × ℝ), p X.1 * ↑f X = 0
+hrf : ∀ (X : ℝ × ℝ), r X.2 * ↑f X = 0
+X : Point
+hd :
+  HasDerivAt (fun t => (initialExtension f).E t X) 0 0 ∧
+    HasDerivAt (fun t => (initialExtension f).P t X) 0 0 ∧
+      HasDerivAt (fun t => (initialExtension f).Hx t X) (-dy (↑f) X) 0 ∧
+        HasDerivAt (fun t => (initialExtension f).Hy t X) (dx (↑f) X) 0
+hEt : deriv (fun t => (initialExtension f).E t X) 0 = 0
+hPt : deriv (fun t => (initialExtension f).P t X) 0 = 0
+hHx : deriv (fun t => (initialExtension f).Hx t X) 0 = -dy (↑f) X
+hHy : deriv (fun t => (initialExtension f).Hy t X) 0 = dx (↑f) X
+⊢ (p X.1 = 0 ∨ r X.2 = 0) ∨ ↑f X = 0
+LeanPML/Examples/CompatibleData.lean:78:21: warning: This simp argument is unused:
+  hEt
+
+Hint: Omit it from the simp argument list.
+  simp [dt, ̲hE̵t̵,̵h̵Pt, ̲hHx, ̲hHy, ̲initialExtension, ̲spaceDx, ̲spaceDy]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/Examples/CompatibleData.lean:78:25: warning: This simp argument is unused:
+  hPt
+
+Hint: Omit it from the simp argument list.
+  simp [dt, ̲hEt, ̲hP̵t̵,̵h̵Hx, ̲hHy, ̲initialExtension, ̲spaceDx, ̲spaceDy]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/Examples/CompatibleData.lean:78:29: warning: This simp argument is unused:
+  hHx
+
+Hint: Omit it from the simp argument list.
+  simp [dt, ̲hEt, ̲hPt, ̲hHx̵,̵h̵H̵y, ̲initialExtension, ̲spaceDx, ̲spaceDy]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/Examples/CompatibleData.lean:78:33: warning: This simp argument is unused:
+  hHy
+
+Hint: Omit it from the simp argument list.
+  simp [dt, ̲hEt, ̲hPt, ̲hHx,h̵H̵y̵,̵ ̲initialExtension, ̲spaceDx, ̲spaceDy]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/Examples/CompatibleData.lean:91:4: error: linarith failed to find a contradiction
+case memory2
+p r : ℝ → ℝ
+f : SmoothField
+hpf : ∀ (X : ℝ × ℝ), p X.1 * ↑f X = 0
+X : Point
+hφ :
+  (lift (initialExtension f) 1 (fun x => 0) fun X => -↑f X).u 0 X = 0 * ↑f X ∧
+    (lift (initialExtension f) 1 (fun x => 0) fun X => -↑f X).q 0 X = (0 - 1) * ↑f X ∧
+      (lift (initialExtension f) 1 (fun x => 0) fun X => -↑f X).φx 0 X = 0 ∧
+        (lift (initialExtension f) 1 (fun x => 0) fun X => -↑f X).φy 0 X = 0
+⊢ False
+failed
+LeanPML/Examples/CompatibleData.lean:92:2: error: unsolved goals
+case magneticX
+p r : ℝ → ℝ
+f : SmoothField
+hpf : ∀ (X : ℝ × ℝ), p X.1 * ↑f X = 0
+X : Point
+hφ :
+  (lift (initialExtension f) 1 (fun x => 0) fun X => -↑f X).u 0 X = 0 * ↑f X ∧
+    (lift (initialExtension f) 1 (fun x => 0) fun X => -↑f X).q 0 X = (0 - 1) * ↑f X ∧
+      (lift (initialExtension f) 1 (fun x => 0) fun X => -↑f X).φx 0 X = 0 ∧
+        (lift (initialExtension f) 1 (fun x => 0) fun X => -↑f X).φy 0 X = 0
+⊢ p X.1 = 0 ∨
+    (lift
+            { E := fun x X => ↑f X, Hx := fun t X => -(t * dy (↑f) X), Hy := fun t X => t * dx (↑f) X,
+              P := fun x X => ↑f X, Z1 := fun x x_1 => 0, Z2 := fun x x_1 => 0, Qx := fun x x_1 => 0,
+              Qy := fun x x_1 => 0 }
+            1 (fun x => 0) fun X => -↑f X).φy
+        0 X =
+      0
+LeanPML/Examples/CompatibleData.lean:93:2: error: unsolved goals
+case magneticY
+p r : ℝ → ℝ
+f : SmoothField
+hpf : ∀ (X : ℝ × ℝ), p X.1 * ↑f X = 0
+X : Point
+hφ :
+  (lift (initialExtension f) 1 (fun x => 0) fun X => -↑f X).u 0 X = 0 * ↑f X ∧
+    (lift (initialExtension f) 1 (fun x => 0) fun X => -↑f X).q 0 X = (0 - 1) * ↑f X ∧
+      (lift (initialExtension f) 1 (fun x => 0) fun X => -↑f X).φx 0 X = 0 ∧
+        (lift (initialExtension f) 1 (fun x => 0) fun X => -↑f X).φy 0 X = 0
+⊢ r X.2 = 0 ∨
+    (lift
+            { E := fun x X => ↑f X, Hx := fun t X => -(t * dy (↑f) X), Hy := fun t X => t * dx (↑f) X,
+              P := fun x X => ↑f X, Z1 := fun x x_1 => 0, Z2 := fun x x_1 => 0, Qx := fun x x_1 => 0,
+              Qy := fun x x_1 => 0 }
+            1 (fun x => 0) fun X => -↑f X).φx
+        0 X =
+      0
+LeanPML/Examples/CompatibleData.lean:92:38: warning: This simp argument is unused:
+  hφ.2.2.2
+
+Hint: Omit it from the simp argument list.
+  simp [̵i̵n̵v̵a̵r̵i̵a̵n̵t̵X̵,̵i̵n̵i̵t̵i̵a̵l̵E̵x̵t̵e̵n̵s̵i̵o̵n̵,̵h̵φ̵.̵2̵.̵2̵.̵2̵]̵[̲i̲n̲v̲a̲r̲i̲a̲n̲t̲X̲,̲ ̲i̲n̲i̲t̲i̲a̲l̲E̲x̲t̲e̲n̲s̲i̲o̲n̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/Examples/CompatibleData.lean:93:38: warning: This simp argument is unused:
+  hφ.2.2.1
+
+Hint: Omit it from the simp argument list.
+  simp [̵i̵n̵v̵a̵r̵i̵a̵n̵t̵Y̵,̵i̵n̵i̵t̵i̵a̵l̵E̵x̵t̵e̵n̵s̵i̵o̵n̵,̵h̵φ̵.̵2̵.̵2̵.̵1̵]̵[̲i̲n̲v̲a̲r̲i̲a̲n̲t̲Y̲,̲ ̲i̲n̲i̲t̲i̲a̲l̲E̲x̲t̲e̲n̲s̲i̲o̲n̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

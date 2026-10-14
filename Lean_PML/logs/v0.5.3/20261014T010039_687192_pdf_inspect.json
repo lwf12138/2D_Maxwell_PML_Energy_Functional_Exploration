@@ -1,0 +1,17 @@
+{
+  "stage": "v0.5.3",
+  "command": [
+    "/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "logs/v0.5.3/pdf/inspect_before.py"
+  ],
+  "command_display": "/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 logs/v0.5.3/pdf/inspect_before.py",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+  "started_at": "2026-10-14T01:00:39.687192+08:00",
+  "output_file": "20261014T010039_687192_pdf_inspect.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-14T01:00:40.520083+08:00",
+  "elapsed_seconds": 0.833
+}

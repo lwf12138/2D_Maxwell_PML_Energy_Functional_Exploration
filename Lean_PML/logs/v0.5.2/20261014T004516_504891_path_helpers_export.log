@@ -1,0 +1,61 @@
+LeanPML/Examples/PathHelpers.lean:29:51: error: typeclass instance problem is stuck
+  TopologicalSpace ?m.19
+
+Note: Lean will not try to resolve this typeclass instance problem because the type argument to `TopologicalSpace` is a metavariable. This argument must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+LeanPML/Examples/PathHelpers.lean:29:45: error: Type mismatch
+  differentiable_const ?m.23
+has type
+  Differentiable ?m.13 fun x => ?m.23
+but is expected to have type
+  Continuous fun t => (restrictContinuous D) ((constantJet f).first t)
+LeanPML/Examples/PathHelpers.lean:29:45: error: Type mismatch
+  differentiable_const ?m.23
+has type
+  Differentiable ?m.13 fun x => ?m.23
+but is expected to have type
+  Continuous fun t => (restrictContinuous D) ((constantJet f).second t)
+LeanPML/Examples/PathHelpers.lean:29:45: error: Type mismatch
+  differentiable_const ?m.23
+has type
+  Differentiable ?m.13 fun x => ?m.23
+but is expected to have type
+  Differentiable ℝ fun t => (restrictContinuous D) ((constantJet f).value t)
+LeanPML/Examples/PathHelpers.lean:29:45: error: Type mismatch
+  differentiable_const ?m.23
+has type
+  Differentiable ?m.13 fun x => ?m.23
+but is expected to have type
+  Differentiable ℝ fun t => (restrictContinuous D) ((constantJet f).first t)
+LeanPML/Examples/PathHelpers.lean:29:45: error: Type mismatch
+  differentiable_const ?m.23
+has type
+  Differentiable ?m.13 fun x => ?m.23
+but is expected to have type
+  Differentiable ℝ fun t => (restrictContinuous D) ((constantJet f).value t).derivativeX
+LeanPML/Examples/PathHelpers.lean:29:45: error: Type mismatch
+  differentiable_const ?m.23
+has type
+  Differentiable ?m.13 fun x => ?m.23
+but is expected to have type
+  Differentiable ℝ fun t => (restrictContinuous D) ((constantJet f).value t).derivativeY
+LeanPML/Examples/PathHelpers.lean:29:45: error: Type mismatch
+  differentiable_const ?m.23
+has type
+  Differentiable ?m.13 fun x => ?m.23
+but is expected to have type
+  Differentiable ℝ fun t => (restrictContinuous D) ((constantJet f).first t).derivativeX
+LeanPML/Examples/PathHelpers.lean:29:45: error: Type mismatch
+  differentiable_const ?m.23
+has type
+  Differentiable ?m.13 fun x => ?m.23
+but is expected to have type
+  Differentiable ℝ fun t => (restrictContinuous D) ((constantJet f).first t).derivativeY
+LeanPML/Examples/PathHelpers.lean:34:31: error(lean.unknownIdentifier): Unknown identifier `memLp_zero`
+LeanPML/Examples/PathHelpers.lean:47:26: error: Type mismatch
+  differentiable_const ?m.54
+has type
+  Differentiable ?m.44 fun x => ?m.54
+but is expected to have type
+  Differentiable ℝ fun t => weightedOfFunction D.measure w ↑((constantJet f).first t) ⋯

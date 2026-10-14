@@ -1,0 +1,35 @@
+import LeanPML.Examples.FullDomainProfile
+
+#print axioms LeanPML.Examples.SmoothBump.basicBump_contDiff
+#print axioms LeanPML.Examples.SmoothBump.basicBump_nonneg
+#print axioms LeanPML.Examples.SmoothBump.basicBump_pos_iff
+#print axioms LeanPML.Examples.SmoothBump.basicBump_center_pos
+#print axioms LeanPML.Examples.SmoothBump.basicBump_support
+#print axioms LeanPML.Examples.SmoothBump.basicBump_tsupport
+#print axioms LeanPML.Examples.SmoothBump.basicBump_hasCompactSupport
+#print axioms LeanPML.Examples.SmoothBump.basicBump_hasDerivAt
+#print axioms LeanPML.Examples.SmoothBump.basicBump_deriv_tsupport_subset
+#print axioms LeanPML.Examples.FullDomain.profile_contDiff
+#print axioms LeanPML.Examples.FullDomain.profile_bounds
+#print axioms LeanPML.Examples.FullDomain.profile_zero_iff
+#print axioms LeanPML.Examples.FullDomain.profile_zero_of_mem_physical
+#print axioms LeanPML.Examples.FullDomain.profile_pos_iff
+#print axioms LeanPML.Examples.FullDomain.profile_eq_amplitude_of_plateau
+#print axioms LeanPML.Examples.FullDomain.regional_threshold
+#print axioms LeanPML.Examples.FullDomain.physical_region
+#print axioms LeanPML.Examples.FullDomain.vertical_side
+#print axioms LeanPML.Examples.FullDomain.horizontal_side
+#print axioms LeanPML.Examples.FullDomain.corner_region
+#print axioms LeanPML.Examples.FullDomain.four_sides_nonempty
+#print axioms LeanPML.Examples.FullDomain.four_corners_nonempty
+#print axioms LeanPML.Examples.FullDomain.physicalBump_center_pos
+#print axioms LeanPML.Examples.FullDomain.physicalBump_tsupport_subset
+#print axioms LeanPML.Examples.FullDomain.physicalBump_hasCompactSupport
+#print axioms LeanPML.Examples.FullDomain.physicalBump_support_zero
+#print axioms LeanPML.Examples.FullDomain.physicalBump_gradient_tsupport_subset
+#print axioms LeanPML.Examples.FullDomain.physicalBump_dx_pos
+#print axioms LeanPML.Examples.FullDomain.sideBump1D_contDiff
+#print axioms LeanPML.Examples.FullDomain.sideBump1D_center_pos
+#print axioms LeanPML.Examples.FullDomain.sideBump1D_tsupport
+#print axioms LeanPML.Examples.FullDomain.sideBump1D_hasCompactSupport
+#print axioms LeanPML.Examples.FullDomain.sideBump1D_support_plateau

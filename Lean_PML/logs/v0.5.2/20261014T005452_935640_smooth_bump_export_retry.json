@@ -1,0 +1,23 @@
+{
+  "stage": "v0.5.2",
+  "command": [
+    "lake",
+    "env",
+    "lean",
+    "-o",
+    ".lake/build/lib/lean/LeanPML/Examples/SmoothBump.olean",
+    "-i",
+    ".lake/build/lib/lean/LeanPML/Examples/SmoothBump.ilean",
+    "LeanPML/Examples/SmoothBump.lean"
+  ],
+  "command_display": "lake env lean -o .lake/build/lib/lean/LeanPML/Examples/SmoothBump.olean -i .lake/build/lib/lean/LeanPML/Examples/SmoothBump.ilean LeanPML/Examples/SmoothBump.lean",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-14T00:54:52.935640+08:00",
+  "output_file": "20261014T005452_935640_smooth_bump_export_retry.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-14T00:55:04.579401+08:00",
+  "elapsed_seconds": 11.643
+}

@@ -1,0 +1,19 @@
+{
+  "stage": "v0.5.2",
+  "command": [
+    "lake",
+    "env",
+    "lean",
+    "LeanPML/Examples/CompatibleData.lean"
+  ],
+  "command_display": "lake env lean LeanPML/Examples/CompatibleData.lean",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-14T01:05:36.224797+08:00",
+  "output_file": "20261014T010536_224797_compatible_probe.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-14T01:05:47.457712+08:00",
+  "elapsed_seconds": 11.232
+}

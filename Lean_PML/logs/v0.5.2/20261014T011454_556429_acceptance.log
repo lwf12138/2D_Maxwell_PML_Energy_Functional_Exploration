@@ -1,0 +1,58 @@
+{
+  "stage": "v0.5.2",
+  "status": "passed",
+  "time": "2026-10-14T01:14:54.735376+08:00",
+  "build": "logs/v0.5.2/20261014T011030_802569_lake_build.log",
+  "audit": "logs/v0.5.2/20261014T011311_263210_axioms_audit.log",
+  "additional_checks": [
+    "logs/v0.5.2/20261014T011311_263208_interface_types.log"
+  ],
+  "build_exit_code": 0,
+  "audit_exit_code": 0,
+  "audited_declarations": 683,
+  "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "sorryAx": false,
+  "source_placeholder_scan": "passed",
+  "legacy_audit_preserved": true,
+  "retained_failures": [
+    "logs/v0.5.2/20261014T004516_504891_path_helpers_export.json",
+    "logs/v0.5.2/20261014T004556_991288_smooth_bump_check.json",
+    "logs/v0.5.2/20261014T004732_669903_path_helpers_export.json",
+    "logs/v0.5.2/20261014T004821_950614_path_helpers_export.json",
+    "logs/v0.5.2/20261014T004847_867133_path_helpers_export.json",
+    "logs/v0.5.2/20261014T004902_974295_path_helpers_export.json",
+    "logs/v0.5.2/20261014T004911_480345_path_helpers_export.json",
+    "logs/v0.5.2/20261014T005012_688849_path_helpers_export.json",
+    "logs/v0.5.2/20261014T005118_706476_path_helpers_export.json",
+    "logs/v0.5.2/20261014T005126_512655_bump_mathlib_cache.json",
+    "logs/v0.5.2/20261014T005146_915049_smooth_bump_check_retry.json",
+    "logs/v0.5.2/20261014T005229_740372_smooth_bump_export.json",
+    "logs/v0.5.2/20261014T005442_707559_full_domain_profile_check.json",
+    "logs/v0.5.2/20261014T005539_021961_full_domain_profile_check_retry.json",
+    "logs/v0.5.2/20261014T005744_554982_full_domain_profile_check_retry.json",
+    "logs/v0.5.2/20261014T005903_003342_path_helpers_export.json",
+    "logs/v0.5.2/20261014T005937_586915_compatible_probe.json",
+    "logs/v0.5.2/20261014T010034_676447_compatible_probe.json",
+    "logs/v0.5.2/20261014T010407_780738_compatible_probe.json"
+  ],
+  "mathematical_scope": "精确参数、C∞全域吸收剖面及非零兼容初始数据；非一般解存在",
+  "regularity_inputs": [
+    "联合C∞技术延拓",
+    "C(K)一致范数时间连续可微",
+    "实际加权成员与路径连续可微",
+    "原历史识别",
+    "PEC、初始五兼容、初始零区和T=0图状态兼容"
+  ],
+  "not_claimed": [
+    "完整V7弱空间范围",
+    "精确π常数",
+    "加权正则性自动传播",
+    "提升规范唯一性",
+    "一般解存在唯一性",
+    "一般严格/指数衰减"
+  ]
+}

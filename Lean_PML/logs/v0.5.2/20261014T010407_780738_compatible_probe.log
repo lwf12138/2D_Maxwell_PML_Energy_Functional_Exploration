@@ -1,0 +1,46 @@
+LeanPML/Examples/CompatibleData.lean:127:4: error: No goals to be solved
+LeanPML/Examples/CompatibleData.lean:129:4: error: No goals to be solved
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+LeanPML/Examples/CompatibleData.lean:162:87: error: unsolved goals
+D : Rect
+C : SpatialAbsorption Point
+K : ℝ
+f : SmoothField
+⊢ ‖(SmoothField.toL2 D) f‖ ^ 2 * 2 + ‖↑(weightedOfFunction D.measure C.wx 0 ⋯)‖ ^ 2 +
+              ‖↑(weightedOfFunction D.measure C.wx 0 ⋯)‖ ^ 2 * K +
+            ‖↑(weightedOfFunction D.measure C.wy 0 ⋯)‖ ^ 2 +
+          ‖↑(weightedOfFunction D.measure C.wy 0 ⋯)‖ ^ 2 * K +
+        K * ‖(SmoothField.toL2 D) f.derivativeX‖ ^ 2 +
+      K * ‖(SmoothField.toL2 D) f.derivativeY‖ ^ 2 =
+    ‖(SmoothField.toL2 D) f‖ ^ 2 * 2 + K * ‖(SmoothField.toL2 D) f.derivativeX‖ ^ 2 +
+      K * ‖(SmoothField.toL2 D) f.derivativeY‖ ^ 2
+LeanPML/Examples/CompatibleData.lean:164:64: warning: This simp argument is unused:
+  weightedOfFunction_zero
+
+Hint: Omit it from the simp argument list.
+  simp [̵i̵n̵i̵t̵i̵a̵l̵G̵r̵a̵p̵h̵S̵q̵u̵a̵r̵e̵,̵t̵w̵o̵L̵a̵y̵e̵r̵G̵r̵a̵p̵h̵S̵q̵u̵a̵r̵e̵,̵L̵e̵a̵n̵P̵M̵L̵.̵P̵M̵L̵.̵g̵r̵a̵p̵h̵S̵q̵u̵a̵r̵e̵,̵
+  ̵ ̵ ̵ ̵ ̵s̵m̵o̵o̵t̵h̵S̵t̵a̵t̵e̵B̵a̵s̵e̵,̵s̵m̵o̵o̵t̵h̵S̵t̵a̵t̵e̵F̵i̵r̵s̵t̵,̵d̵a̵t̵a̵,̵a̵f̵f̵i̵n̵e̵J̵e̵t̵,̵c̵o̵n̵s̵t̵a̵n̵t̵J̵e̵t̵,̵w̵e̵i̵g̵h̵t̵e̵d̵O̵f̵F̵u̵n̵c̵t̵i̵o̵n̵_̵z̵e̵r̵o̵]̵[̲i̲n̲i̲t̲i̲a̲l̲G̲r̲a̲p̲h̲S̲q̲u̲a̲r̲e̲,̲ ̲t̲w̲o̲L̲a̲y̲e̲r̲G̲r̲a̲p̲h̲S̲q̲u̲a̲r̲e̲,̲ ̲L̲e̲a̲n̲P̲M̲L̲.̲P̲M̲L̲.̲g̲r̲a̲p̲h̲S̲q̲u̲a̲r̲e̲,̲ ̲s̲m̲o̲o̲t̲h̲S̲t̲a̲t̲e̲B̲a̲s̲e̲,̲
+  ̲ ̲ ̲ ̲ ̲s̲m̲o̲o̲t̲h̲S̲t̲a̲t̲e̲F̲i̲r̲s̲t̲,̲ ̲d̲a̲t̲a̲,̲ ̲a̲f̲f̲i̲n̲e̲J̲e̲t̲,̲ ̲c̲o̲n̲s̲t̲a̲n̲t̲J̲e̲t̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/Examples/CompatibleData.lean:225:4: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  OfNat (Type ?u.4) 0
+numerals are polymorphic in Lean, but the numeral `0` cannot be used in a context where the expected type is
+  Type ?u.4
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+LeanPML/Examples/CompatibleData.lean:225:7: error: Function expected at
+  nitialGraphSquare
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  unitSquare
+
+Hint: The identifier `nitialGraphSquare` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.

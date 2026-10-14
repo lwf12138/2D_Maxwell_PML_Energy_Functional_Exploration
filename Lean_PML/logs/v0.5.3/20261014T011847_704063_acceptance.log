@@ -1,0 +1,49 @@
+{
+  "stage": "v0.5.3",
+  "status": "passed",
+  "time": "2026-10-14T01:18:47.893801+08:00",
+  "build": "logs/v0.5.3/20261014T011533_485975_lake_build.log",
+  "audit": "logs/v0.5.3/20261014T011752_801259_axioms_audit.log",
+  "additional_checks": [
+    "logs/v0.5.3/20261014T011752_801318_interface_types.log"
+  ],
+  "build_exit_code": 0,
+  "audit_exit_code": 0,
+  "audited_declarations": 740,
+  "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "sorryAx": false,
+  "source_placeholder_scan": "passed",
+  "legacy_audit_preserved": true,
+  "retained_failures": [
+    "logs/v0.5.3/20261014T005232_359274_unrestricted_core_check.json",
+    "logs/v0.5.3/20261014T005401_591087_unrestricted_growth_check.json",
+    "logs/v0.5.3/20261014T005538_282447_static_probe.json",
+    "logs/v0.5.3/20261014T005629_158969_static_probe.json",
+    "logs/v0.5.3/20261014T005756_151994_static_probe.json",
+    "logs/v0.5.3/20261014T010001_497822_degenerate_check.json",
+    "logs/v0.5.3/20261014T010045_010377_unrestricted_full_profile_check.json",
+    "logs/v0.5.3/20261014T010118_025068_static_probe.json",
+    "logs/v0.5.3/20261014T010239_126233_degenerate_check_retry.json",
+    "logs/v0.5.3/20261014T010245_170088_static_probe.json"
+  ],
+  "mathematical_scope": "全部退化分支、非零静态显式解、任意初值增长族及受限错误主张回归",
+  "regularity_inputs": [
+    "联合C∞技术延拓",
+    "C(K)一致范数时间连续可微",
+    "实际加权成员与路径连续可微",
+    "原历史识别",
+    "PEC、初始五兼容、初始零区和T=0图状态兼容"
+  ],
+  "not_claimed": [
+    "完整V7弱空间范围",
+    "精确π常数",
+    "加权正则性自动传播",
+    "提升规范唯一性",
+    "一般解存在唯一性",
+    "一般严格/指数衰减"
+  ]
+}

@@ -181,3 +181,19 @@ v0.0.1 完成项：
 [入场哈希](../logs/v0.4_alignment/baseline.json) 与旧v0.4.4已登记源码全部一致；旧日志真实有效，但仅对应当时版本。本轮新源码由[新验收](../logs/v0.4_alignment/acceptance.json)关联本轮构建/审计。原V7 md/tex/pdf、proof_audit、路线图、合同/scope与锁定配置未变，未发现来源版本漂移。
 
 范围更正：旧保守常数仅有符号K/threshold推论，数值证书本轮补齐；原§10用精确π常数，旧c不可移到CP=4。区域幅度入口、古典空间导数包装和强光滑注释也本轮补齐。具体差异、完整证据及失败修复记录见[对齐记录](../logs/v0.4_alignment/alignment_record.md)。PDF副本独立备份后追加5项范围标注；原正文未改。
+
+---
+
+## 2026-10-14：v0.5 来源与当前验证追加（保留此前历史）
+
+本轮入场将当前源码/配置/来源与 v0.4_alignment 记录逐个核对，未发现哈希差异。基线为 [baseline.json](../logs/v0.5.1/baseline.json)。原 V7 md/tex/pdf、proof_audit、合同、scope、路线图和三份锁定配置在三个阶段及最终检查中均未变；仅指定PDF副本加范围批注。
+
+- 主命题：S2 第2/5节及(6.4)、(6.6)–(6.10)、第7–9节；正式实现 `MainSmoothRectangle.lean` 使用具体原模型区域入口，不将普通字段中的目标当假设。
+- 参数：复用实际矩形与保守 $C_P=2L_x$ 的 `ParameterCertificate`。S2 (5.1)、§10 的精确π配置不是本轮通过的参数版本；保留旧c=1/128在新K下失败的正式对照。
+- 剖面：S2 (10.2) 给有限阶分段幂剖面；本轮 `LeanPML.Examples.FullDomain.profile` 用当前固定 mathlib `Real.smoothTransition` 生成 C∞替代实例，明确不同，不修改原文。
+- 数据：S2 §5.2类的§11.1启动子族；实际平坦紧支函数由固定 `expNegInvGlue` 构造。普通/加权成员、初始原式和正图平方均已证，但不存在一般解声明。
+- 回归：S2 命题2.2、§11.3 的具体显式场，§11.1指定单层候选。全部场方程、导数和实际积分分别验证；不混淆§11.1无编号式与§11.2的(11.1)。
+
+新增分析 API 来自**当前锁定 mathlib**，不是联网教程：`Mathlib/Analysis/SpecialFunctions/SmoothTransition.lean`（`Real.smoothTransition`）；`Mathlib/Analysis/SpecialFunctions/SmoothTransition.lean`（`expNegInvGlue`）；`Mathlib/Analysis/Calculus/Deriv/Support.lean`（导数支撑）；`Mathlib/Analysis/Calculus/FDeriv/Symmetric.lean`（混合导数对称）。读取/补获取现有提交的模块缓存没有改变版本或锁文件。
+
+路线图 v0.5 的状态文字/复选框仍为“待实现”，它是受保护的历史文本，本轮没有修改。当前实现以 [三阶段整体验收](../logs/v0.5.3/overall_acceptance.json)、源码及真实日志为依据；旧日志不充当新源码的证据。

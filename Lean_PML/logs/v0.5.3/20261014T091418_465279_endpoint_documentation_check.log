@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "modified_documents": [
+    "reports/smooth_theorem.md",
+    "PROGRESS.md"
+  ],
+  "formal_sources_checked": 58,
+  "mismatch": [],
+  "build_rerun": false,
+  "audit_rerun": false,
+  "record": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v0.5.3/20261014T091142_333604+0800_endpoint_documentation_alignment/record.md",
+  "diff": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v0.5.3/20261014T091142_333604+0800_endpoint_documentation_alignment/changes.diff"
+}

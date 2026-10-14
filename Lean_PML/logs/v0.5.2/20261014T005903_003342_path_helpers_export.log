@@ -1,0 +1,6 @@
+LeanPML/Examples/PathHelpers.lean:46:2: error: Type mismatch: After simplification, term
+  hX
+ has type
+  @Eq ℝ (↑↑↑(weightedOfFunction D.measure w (fun x => 0) hmem) X) 0
+but is expected to have type
+  @Eq ℝ (↑↑↑(weightedOfFunction D.measure w (fun x => 0) hmem) X) (0 X)

@@ -1,0 +1,744 @@
+LeanPML/Examples/PathHelpers.lean:35:2: error: Type mismatch: After simplification, term
+  MemLp.zero
+ has type
+  @MemLp (ℝ × ℝ) ℝ Prod.instMeasurableSpace NormedAddCommGroup.toENormedAddCommMonoid.toENorm
+    PseudoMetricSpace.toUniformSpace.toTopologicalSpace 0 2 D.measure
+but is expected to have type
+  @MemLp (ℝ × ℝ) ℝ Prod.instMeasurableSpace SeminormedAddGroup.toContinuousENorm.toENorm
+    PseudoMetricSpace.toUniformSpace.toTopologicalSpace (fun X => 0) 2 D.measure
+LeanPML/Examples/PathHelpers.lean:47:26: error: Type mismatch
+  differentiable_const ?m.42
+has type
+  Differentiable ?m.32 fun x => ?m.42
+but is expected to have type
+  Differentiable ℝ fun t => weightedOfFunction D.measure w (↑((constantJet f).value t)) hweighted
+LeanPML/Examples/PathHelpers.lean:115:101: error: `ring_nf` made no progress on the goal
+LeanPML/Examples/PathHelpers.lean:115:101: error: `ring_nf` made no progress on the goal
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+LeanPML/Examples/PathHelpers.lean:101:4: error: (kernel) declaration has metavariables 'LeanPML.Examples.affineJet'
+PANIC at Lean.MetavarContext.getDecl Lean.MetavarContext:482:17: unknown metavariable _uniq.39407
+backtrace:
+0   libleanshared.dylib                 0x00000001132244e4 _ZN4leanL15print_backtraceEb + 60
+1   libleanshared.dylib                 0x000000011321b28c _ZN4leanL15lean_panic_implEPKcmb + 176
+2   libleanshared.dylib                 0x000000011321b3a8 lean_panic_fn_borrowed + 64
+3   libleanshared.dylib                 0x00000001127d52ec Lean.MetavarContext.MkBinding.elimMVar [private] + 96
+4   libleanshared.dylib                 0x00000001127d7568 Lean.MetavarContext.MkBinding.elimApp [private] + 1492
+5   libleanshared.dylib                 0x00000001127d3860 Lean.MetavarContext.MkBinding.visit [private] + 232
+6   libleanshared.dylib                 0x00000001127d43d0 Lean.MetavarContext.MkBinding.elim [private] + 2096
+7   libleanshared.dylib                 0x00000001127d3860 Lean.MetavarContext.MkBinding.visit [private] + 232
+8   libleanshared.dylib                 0x00000001127d4fe4 Array.mapMUnsafe.map [private] spec at Lean.MetavarContext.MkBinding.elimApp + 140
+9   libleanshared.dylib                 0x00000001127d7658 Lean.MetavarContext.MkBinding.elimApp [private] + 1732
+10  libleanshared.dylib                 0x00000001127d3860 Lean.MetavarContext.MkBinding.visit [private] + 232
+11  libleanshared.dylib                 0x00000001127d4fe4 Array.mapMUnsafe.map [private] spec at Lean.MetavarContext.MkBinding.elimApp + 140
+12  libleanshared.dylib                 0x00000001127d7658 Lean.MetavarContext.MkBinding.elimApp [private] + 1732
+13  libleanshared.dylib                 0x00000001127da224 Lean.MetavarContext.MkBinding.elimMVarDeps + 300
+14  libleanshared.dylib                 0x00000001127dc2fc Lean.MetavarContext.MkBinding.mkBinding + 96
+15  libleanshared.dylib                 0x00000001127dcdb4 Lean.MetavarContext.mkBinding + 276
+16  libleanshared.dylib                 0x00000001109b94a0 Lean.Meta.mkForallFVars + 468
+17  libleanshared.dylib                 0x000000010eff8e7c Lean.Elab.Eqns.unfoldThmType [λ, private] + 252
+18  libleanshared.dylib                 0x000000010eff8fa8 Lean.Elab.Eqns.unfoldThmType [boxed, λ, private] + 56
+19  libleanshared.dylib                 0x0000000113232aa4 <apply/7> + 3152
+20  libleanshared.dylib                 0x000000010eff87c4 Lean.Meta.lambdaTelescope [boxed, λ, arity↓] spec at Lean.Elab.Eqns.unfoldThmType + 148
+21  libleanshared.dylib                 0x000000011322f5fc <apply/5> + 2820
+22  libleanshared.dylib                 0x00000001109d3298 Lean.Meta.lambdaTelescopeImp.process [arity↓, private] + 2324
+23  libleanshared.dylib                 0x00000001109d3c64 Lean.Meta.lambdaTelescopeImp [private] + 108
+24  libleanshared.dylib                 0x000000010eff897c Lean.Meta.lambdaTelescope [arity↓] spec at Lean.Elab.Eqns.unfoldThmType + 156
+25  libleanshared.dylib                 0x000000010f02be24 Lean.Elab.Eqns.mkEqns [private] + 2180
+26  libleanshared.dylib                 0x000000010f02d2b8 Lean.Elab.Eqns.getEqnsFor? [private] + 1044
+27  libleanshared.dylib                 0x000000010f02dab4 Lean.Elab.Eqns.getEqnsFor? [boxed, private] + 40
+28  libleanshared.dylib                 0x0000000113230f2c <apply/6> + 2464
+29  libleanshared.dylib                 0x0000000110bf022c List.forIn'.loop [arity↓] spec at Lean.Meta.getEqnsFor?Core + 300
+30  libleanshared.dylib                 0x0000000110bf09fc Lean.Meta.getEqnsFor?Core [λ, private] + 828
+31  libleanshared.dylib                 0x0000000110bf0da0 Lean.Meta.getEqnsFor?Core [boxed, λ, private] + 40
+32  libleanshared.dylib                 0x000000011322f81c <apply/5> + 3364
+33  libleanshared.dylib                 0x0000000110befda0 Lean.Meta.withLCtx [arity↓] spec at Lean.Meta.getEqnsFor?Core + 48
+34  libleanshared.dylib                 0x0000000110bf10b8 Lean.Meta.getEqnsFor?Core [boxed, private] + 156
+35  libleanshared.dylib                 0x000000011322f81c <apply/5> + 3364
+36  libleanshared.dylib                 0x0000000110be9f64 Lean.Meta.withEqnOptions [boxed] + 64
+37  libleanshared.dylib                 0x000000011322f5fc <apply/5> + 2820
+38  libleanshared.dylib                 0x0000000110befda0 Lean.Meta.withLCtx [arity↓] spec at Lean.Meta.getEqnsFor?Core + 48
+39  libleanshared.dylib                 0x000000011256e16c Lean.Meta.mkSimpEntryOfDeclToUnfold + 1108
+40  libleanshared.dylib                 0x000000011040b5b8 Lean.Elab.Tactic.elabDeclToUnfoldOrTheorem [private] + 2276
+41  libleanshared.dylib                 0x0000000110413b70 Lean.Elab.Tactic.elabSimpArg [private] + 3684
+42  libleanshared.dylib                 0x0000000110419f68 Array.forIn'Unsafe.loop [private] spec at Lean.Elab.Tactic.elabSimpArgs + 376
+43  libleanshared.dylib                 0x000000011041df40 Lean.Elab.Tactic.elabSimpArgs [λ] + 132
+44  libleanshared.dylib                 0x000000011041ea9c Lean.Elab.Tactic.elabSimpArgs [boxed, λ] + 224
+45  libleanshared.dylib                 0x0000000113235a04 <apply/9> + 3624
+46  libleanshared.dylib                 0x0000000110418788 Lean.Meta.withTrackingZetaDeltaSet [arity↓] spec at Lean.Elab.Tactic.elabSimpArgs + 876
+47  libleanshared.dylib                 0x000000011041f114 Lean.Elab.Tactic.elabSimpArgs [boxed, λ] + 92
+48  libleanshared.dylib                 0x0000000113235320 <apply/9> + 1860
+49  libleanshared.dylib                 0x000000010f8ec43c Lean.MVarId.withContext [boxed, λ, arity↓] spec at Lean.Elab.Tactic.withMainContext + 156
+50  libleanshared.dylib                 0x000000011322f16c <apply/5> + 1652
+51  libleanshared.dylib                 0x000000010f8ec64c Lean.MVarId.withContext [arity↓] spec at Lean.Elab.Tactic.withMainContext + 244
+52  libleanshared.dylib                 0x000000010f8ecc94 Lean.Elab.Tactic.withMainContext [arity↓] + 364
+53  libleanshared.dylib                 0x0000000110423320 Lean.Elab.Tactic.mkSimpContext + 2368
+54  libleanshared.dylib                 0x000000011043c7b4 Lean.Elab.Tactic.evalSimp [λ] + 92
+55  libleanshared.dylib                 0x000000011043ddc4 Lean.Elab.Tactic.evalSimp [boxed, λ] + 76
+56  libleanshared.dylib                 0x0000000113234e7c <apply/9> + 672
+57  libleanshared.dylib                 0x000000011043a56c Lean.Elab.Tactic.withSimpDiagnostics + 240
+58  libleanshared.dylib                 0x000000011043a798 Lean.Elab.Tactic.withSimpDiagnostics [boxed] + 68
+59  libleanshared.dylib                 0x0000000113234c60 <apply/9> + 132
+60  libleanshared.dylib                 0x000000010f8ec43c Lean.MVarId.withContext [boxed, λ, arity↓] spec at Lean.Elab.Tactic.withMainContext + 156
+61  libleanshared.dylib                 0x000000011322f16c <apply/5> + 1652
+62  libleanshared.dylib                 0x000000010f8ec64c Lean.MVarId.withContext [arity↓] spec at Lean.Elab.Tactic.withMainContext + 244
+63  libleanshared.dylib                 0x000000010f8ecc94 Lean.Elab.Tactic.withMainContext [arity↓] + 364
+64  libleanshared.dylib                 0x000000011043e118 Lean.Elab.Tactic.evalSimp [boxed] + 248
+65  libleanshared.dylib                 0x0000000113236838 <apply/10> + 2164
+66  libleanshared.dylib                 0x000000010f8c2880 Lean.Elab.Tactic.evalTactic.eval [λ, private] + 284
+67  libleanshared.dylib                 0x0000000113235558 <apply/9> + 2428
+68  libleanshared.dylib                 0x000000010f8c45a4 Lean.Elab.withInfoTreeContext [arity↓] spec at Lean.Elab.Tactic.evalTactic.eval + 436
+69  libleanshared.dylib                 0x000000010f8c507c Lean.Elab.Tactic.evalTactic.eval [λ, private] + 560
+70  libleanshared.dylib                 0x000000010f8c51a8 Lean.Elab.Tactic.evalTactic.eval [boxed, λ, private] + 64
+71  libleanshared.dylib                 0x000000011323523c <apply/9> + 1632
+72  libleanshared.dylib                 0x000000010f8c5bf8 Lean.Elab.Tactic.evalTactic.eval [private] + 984
+73  libleanshared.dylib                 0x000000010f8d26d8 Lean.Elab.Tactic.evalTactic [λ] + 4968
+74  libleanshared.dylib                 0x000000011322c3f4 <apply/3> + 4636
+75  libleanshared.dylib                 0x000000010f8d6c0c Lean.Elab.Tactic.evalTactic [λ] + 1352
+76  libleanshared.dylib                 0x000000010f8d6f94 Lean.Elab.Tactic.evalTactic [boxed, λ] + 28
+77  libleanshared.dylib                 0x00000001132280f4 <apply/1> + 4264
+78  libleanshared.dylib                 0x000000011307c57c Lean.profileitIOUnsafe [λ, arity↓] + 20
+79  libleanshared.dylib                 0x0000000113227ce8 <apply/1> + 3228
+80  libleanshared.dylib                 0x0000000113227ce8 <apply/1> + 3228
+81  libleanshared.dylib                 0x00000001131fde58 lean_profileit + 128
+82  libleanshared.dylib                 0x000000011307c774 Lean.profileitIOUnsafe [arity↓] + 156
+83  libleanshared.dylib                 0x000000010f8d0f64 Lean.Elab.Tactic.evalTactic + 396
+84  libleanshared.dylib                 0x000000010f902d94 Lean.Elab.Term.withNarrowedTacticReuse [λ] spec at Lean.Elab.Term.withNarrowedArgTacticReuse spec at Lean.Elab.Tactic.evalWithAnnotateState spec at Lean.Elab.Tactic.evalSepTactics.goEven + 1460
+85  libleanshared.dylib                 0x000000010f904f78 Lean.Elab.Term.withNarrowedTacticReuse [boxed, λ] spec at Lean.Elab.Term.withNarrowedArgTacticReuse spec at Lean.Elab.Tactic.evalWithAnnotateState spec at Lean.Elab.Tactic.evalSepTactics.goEven + 100
+86  libleanshared.dylib                 0x0000000113235a04 <apply/9> + 3624
+87  libleanshared.dylib                 0x000000010f90184c Lean.Elab.Term.withNarrowedTacticReuse [boxed, λ] spec at Lean.Elab.Term.withNarrowedArgTacticReuse spec at Lean.Elab.Tactic.evalWithAnnotateState spec at Lean.Elab.Tactic.evalSepTactics.goEven + 64
+88  libleanshared.dylib                 0x0000000113235634 <apply/9> + 2648
+89  libleanshared.dylib                 0x000000010f905ab0 Lean.Elab.Tactic.evalSepTactics.goEven [private] + 216
+90  libleanshared.dylib                 0x000000010f905f80 Lean.Elab.Tactic.evalSepTactics.goEven [boxed, private] + 68
+91  libleanshared.dylib                 0x0000000113234c60 <apply/9> + 132
+92  libleanshared.dylib                 0x000000010f8fb83c Lean.Elab.Term.withNarrowedTacticReuse [boxed, λ, arity↓] spec at Lean.Elab.Term.withNarrowedArgTacticReuse spec at Lean.Elab.Tactic.evalWithAnnotateState + 136
+93  libleanshared.dylib                 0x000000011323523c <apply/9> + 1632
+94  libleanshared.dylib                 0x000000010f907338 Lean.Elab.Tactic.evalTacticSeq1Indented [boxed] + 164
+95  libleanshared.dylib                 0x0000000113236838 <apply/10> + 2164
+96  libleanshared.dylib                 0x000000010f8c2880 Lean.Elab.Tactic.evalTactic.eval [λ, private] + 284
+97  libleanshared.dylib                 0x0000000113235558 <apply/9> + 2428
+98  libleanshared.dylib                 0x000000010f8c45a4 Lean.Elab.withInfoTreeContext [arity↓] spec at Lean.Elab.Tactic.evalTactic.eval + 436
+99  libleanshared.dylib                 0x000000010f8c507c Lean.Elab.Tactic.evalTactic.eval [λ, private] + 560
+PANIC at Lean.MetavarContext.getDecl Lean.MetavarContext:482:17: unknown metavariable _uniq.39407
+backtrace:
+0   libleanshared.dylib                 0x00000001132244e4 _ZN4leanL15print_backtraceEb + 60
+1   libleanshared.dylib                 0x000000011321b28c _ZN4leanL15lean_panic_implEPKcmb + 176
+2   libleanshared.dylib                 0x000000011321b3a8 lean_panic_fn_borrowed + 64
+3   libleanshared.dylib                 0x00000001127d52ec Lean.MetavarContext.MkBinding.elimMVar [private] + 96
+4   libleanshared.dylib                 0x00000001127d7568 Lean.MetavarContext.MkBinding.elimApp [private] + 1492
+5   libleanshared.dylib                 0x00000001127d3860 Lean.MetavarContext.MkBinding.visit [private] + 232
+6   libleanshared.dylib                 0x00000001127d43d0 Lean.MetavarContext.MkBinding.elim [private] + 2096
+7   libleanshared.dylib                 0x00000001127d3860 Lean.MetavarContext.MkBinding.visit [private] + 232
+8   libleanshared.dylib                 0x00000001127d4fe4 Array.mapMUnsafe.map [private] spec at Lean.MetavarContext.MkBinding.elimApp + 140
+9   libleanshared.dylib                 0x00000001127d7658 Lean.MetavarContext.MkBinding.elimApp [private] + 1732
+10  libleanshared.dylib                 0x00000001127d3860 Lean.MetavarContext.MkBinding.visit [private] + 232
+11  libleanshared.dylib                 0x00000001127d4fe4 Array.mapMUnsafe.map [private] spec at Lean.MetavarContext.MkBinding.elimApp + 140
+12  libleanshared.dylib                 0x00000001127d7658 Lean.MetavarContext.MkBinding.elimApp [private] + 1732
+13  libleanshared.dylib                 0x00000001127da224 Lean.MetavarContext.MkBinding.elimMVarDeps + 300
+14  libleanshared.dylib                 0x00000001127dc2fc Lean.MetavarContext.MkBinding.mkBinding + 96
+15  libleanshared.dylib                 0x00000001127dcdb4 Lean.MetavarContext.mkBinding + 276
+16  libleanshared.dylib                 0x00000001109b94a0 Lean.Meta.mkForallFVars + 468
+17  libleanshared.dylib                 0x000000010f01c9a0 Lean.Elab.Eqns.saveEqn [λ, private] + 1252
+18  libleanshared.dylib                 0x000000010f01ce28 Lean.Elab.Eqns.saveEqn [boxed, λ, private] + 48
+19  libleanshared.dylib                 0x00000001132312a4 <apply/6> + 3352
+20  libleanshared.dylib                 0x000000010f0153f4 Lean.MVarId.withContext [boxed, λ, arity↓] spec at Lean.Elab.Eqns.saveEqn + 48
+21  libleanshared.dylib                 0x000000011322eba0 <apply/5> + 168
+22  libleanshared.dylib                 0x000000010f0154f0 Lean.MVarId.withContext [arity↓] spec at Lean.Elab.Eqns.saveEqn + 160
+23  libleanshared.dylib                 0x000000010f025bd0 Lean.Elab.Eqns.mkEqnTypes [private] + 96
+24  libleanshared.dylib                 0x000000010f02a17c Lean.Elab.Eqns.mkEqns [λ, private] + 832
+25  libleanshared.dylib                 0x000000010f02a494 Lean.Elab.Eqns.mkEqns [boxed, λ, private] + 48
+26  libleanshared.dylib                 0x00000001132325bc <apply/7> + 1896
+27  libleanshared.dylib                 0x000000010eff87c4 Lean.Meta.lambdaTelescope [boxed, λ, arity↓] spec at Lean.Elab.Eqns.unfoldThmType + 148
+28  libleanshared.dylib                 0x00000001132325bc <apply/7> + 1896
+29  libleanshared.dylib                 0x00000001109cdbbc Lean.Meta.forallTelescopeReducingAuxAux.process [boxed, λ, arity↓, private] + 64
+30  libleanshared.dylib                 0x000000011322fabc <apply/5> + 4036
+31  libleanshared.dylib                 0x00000001109cd80c Lean.Meta.forallTelescopeReducingAuxAux.process [arity↓, private] + 2612
+32  libleanshared.dylib                 0x00000001109ce2dc Lean.Meta.forallTelescopeReducingAuxAux [private] + 100
+33  libleanshared.dylib                 0x000000010f00cfac Lean.Meta.forallTelescope [arity↓] spec at Lean.Elab.Eqns.lhsDependsOn + 152
+34  libleanshared.dylib                 0x000000010f00d248 Lean.Meta.forallTelescope [boxed] spec at Lean.Elab.Eqns.lhsDependsOn + 72
+35  libleanshared.dylib                 0x000000011322f9ec <apply/5> + 3828
+36  libleanshared.dylib                 0x00000001109e24f4 Lean.Meta.withNewMCtxDepthImp [arity↓, private] + 592
+37  libleanshared.dylib                 0x000000010f0098d4 Lean.Meta.withNewMCtxDepth [arity↓] spec at Lean.Elab.Eqns.mkEqnProof + 40
+38  libleanshared.dylib                 0x000000010f02c134 Lean.Elab.Eqns.mkEqns [private] + 2964
+39  libleanshared.dylib                 0x000000010f02d2b8 Lean.Elab.Eqns.getEqnsFor? [private] + 1044
+40  libleanshared.dylib                 0x000000010f02dab4 Lean.Elab.Eqns.getEqnsFor? [boxed, private] + 40
+41  libleanshared.dylib                 0x0000000113230f2c <apply/6> + 2464
+42  libleanshared.dylib                 0x0000000110bf022c List.forIn'.loop [arity↓] spec at Lean.Meta.getEqnsFor?Core + 300
+43  libleanshared.dylib                 0x0000000110bf09fc Lean.Meta.getEqnsFor?Core [λ, private] + 828
+44  libleanshared.dylib                 0x0000000110bf0da0 Lean.Meta.getEqnsFor?Core [boxed, λ, private] + 40
+45  libleanshared.dylib                 0x000000011322f81c <apply/5> + 3364
+46  libleanshared.dylib                 0x0000000110befda0 Lean.Meta.withLCtx [arity↓] spec at Lean.Meta.getEqnsFor?Core + 48
+47  libleanshared.dylib                 0x0000000110bf10b8 Lean.Meta.getEqnsFor?Core [boxed, private] + 156
+48  libleanshared.dylib                 0x000000011322f81c <apply/5> + 3364
+49  libleanshared.dylib                 0x0000000110be9f64 Lean.Meta.withEqnOptions [boxed] + 64
+50  libleanshared.dylib                 0x000000011322f5fc <apply/5> + 2820
+51  libleanshared.dylib                 0x0000000110befda0 Lean.Meta.withLCtx [arity↓] spec at Lean.Meta.getEqnsFor?Core + 48
+52  libleanshared.dylib                 0x000000011256e16c Lean.Meta.mkSimpEntryOfDeclToUnfold + 1108
+53  libleanshared.dylib                 0x000000011040b5b8 Lean.Elab.Tactic.elabDeclToUnfoldOrTheorem [private] + 2276
+54  libleanshared.dylib                 0x0000000110413b70 Lean.Elab.Tactic.elabSimpArg [private] + 3684
+55  libleanshared.dylib                 0x0000000110419f68 Array.forIn'Unsafe.loop [private] spec at Lean.Elab.Tactic.elabSimpArgs + 376
+56  libleanshared.dylib                 0x000000011041df40 Lean.Elab.Tactic.elabSimpArgs [λ] + 132
+57  libleanshared.dylib                 0x000000011041ea9c Lean.Elab.Tactic.elabSimpArgs [boxed, λ] + 224
+58  libleanshared.dylib                 0x0000000113235a04 <apply/9> + 3624
+59  libleanshared.dylib                 0x0000000110418788 Lean.Meta.withTrackingZetaDeltaSet [arity↓] spec at Lean.Elab.Tactic.elabSimpArgs + 876
+60  libleanshared.dylib                 0x000000011041f114 Lean.Elab.Tactic.elabSimpArgs [boxed, λ] + 92
+61  libleanshared.dylib                 0x0000000113235320 <apply/9> + 1860
+62  libleanshared.dylib                 0x000000010f8ec43c Lean.MVarId.withContext [boxed, λ, arity↓] spec at Lean.Elab.Tactic.withMainContext + 156
+63  libleanshared.dylib                 0x000000011322f16c <apply/5> + 1652
+64  libleanshared.dylib                 0x000000010f8ec64c Lean.MVarId.withContext [arity↓] spec at Lean.Elab.Tactic.withMainContext + 244
+65  libleanshared.dylib                 0x000000010f8ecc94 Lean.Elab.Tactic.withMainContext [arity↓] + 364
+66  libleanshared.dylib                 0x0000000110423320 Lean.Elab.Tactic.mkSimpContext + 2368
+67  libleanshared.dylib                 0x000000011043c7b4 Lean.Elab.Tactic.evalSimp [λ] + 92
+68  libleanshared.dylib                 0x000000011043ddc4 Lean.Elab.Tactic.evalSimp [boxed, λ] + 76
+69  libleanshared.dylib                 0x0000000113234e7c <apply/9> + 672
+70  libleanshared.dylib                 0x000000011043a56c Lean.Elab.Tactic.withSimpDiagnostics + 240
+71  libleanshared.dylib                 0x000000011043a798 Lean.Elab.Tactic.withSimpDiagnostics [boxed] + 68
+72  libleanshared.dylib                 0x0000000113234c60 <apply/9> + 132
+73  libleanshared.dylib                 0x000000010f8ec43c Lean.MVarId.withContext [boxed, λ, arity↓] spec at Lean.Elab.Tactic.withMainContext + 156
+74  libleanshared.dylib                 0x000000011322f16c <apply/5> + 1652
+75  libleanshared.dylib                 0x000000010f8ec64c Lean.MVarId.withContext [arity↓] spec at Lean.Elab.Tactic.withMainContext + 244
+76  libleanshared.dylib                 0x000000010f8ecc94 Lean.Elab.Tactic.withMainContext [arity↓] + 364
+77  libleanshared.dylib                 0x000000011043e118 Lean.Elab.Tactic.evalSimp [boxed] + 248
+78  libleanshared.dylib                 0x0000000113236838 <apply/10> + 2164
+79  libleanshared.dylib                 0x000000010f8c2880 Lean.Elab.Tactic.evalTactic.eval [λ, private] + 284
+80  libleanshared.dylib                 0x0000000113235558 <apply/9> + 2428
+81  libleanshared.dylib                 0x000000010f8c45a4 Lean.Elab.withInfoTreeContext [arity↓] spec at Lean.Elab.Tactic.evalTactic.eval + 436
+82  libleanshared.dylib                 0x000000010f8c507c Lean.Elab.Tactic.evalTactic.eval [λ, private] + 560
+83  libleanshared.dylib                 0x000000010f8c51a8 Lean.Elab.Tactic.evalTactic.eval [boxed, λ, private] + 64
+84  libleanshared.dylib                 0x000000011323523c <apply/9> + 1632
+85  libleanshared.dylib                 0x000000010f8c5bf8 Lean.Elab.Tactic.evalTactic.eval [private] + 984
+86  libleanshared.dylib                 0x000000010f8d26d8 Lean.Elab.Tactic.evalTactic [λ] + 4968
+87  libleanshared.dylib                 0x000000011322c3f4 <apply/3> + 4636
+88  libleanshared.dylib                 0x000000010f8d6c0c Lean.Elab.Tactic.evalTactic [λ] + 1352
+89  libleanshared.dylib                 0x000000010f8d6f94 Lean.Elab.Tactic.evalTactic [boxed, λ] + 28
+90  libleanshared.dylib                 0x00000001132280f4 <apply/1> + 4264
+91  libleanshared.dylib                 0x000000011307c57c Lean.profileitIOUnsafe [λ, arity↓] + 20
+92  libleanshared.dylib                 0x0000000113227ce8 <apply/1> + 3228
+93  libleanshared.dylib                 0x0000000113227ce8 <apply/1> + 3228
+94  libleanshared.dylib                 0x00000001131fde58 lean_profileit + 128
+95  libleanshared.dylib                 0x000000011307c774 Lean.profileitIOUnsafe [arity↓] + 156
+96  libleanshared.dylib                 0x000000010f8d0f64 Lean.Elab.Tactic.evalTactic + 396
+97  libleanshared.dylib                 0x000000010f902d94 Lean.Elab.Term.withNarrowedTacticReuse [λ] spec at Lean.Elab.Term.withNarrowedArgTacticReuse spec at Lean.Elab.Tactic.evalWithAnnotateState spec at Lean.Elab.Tactic.evalSepTactics.goEven + 1460
+98  libleanshared.dylib                 0x000000010f904f78 Lean.Elab.Term.withNarrowedTacticReuse [boxed, λ] spec at Lean.Elab.Term.withNarrowedArgTacticReuse spec at Lean.Elab.Tactic.evalWithAnnotateState spec at Lean.Elab.Tactic.evalSepTactics.goEven + 100
+99  libleanshared.dylib                 0x0000000113235a04 <apply/9> + 3624
+PANIC at Lean.MetavarContext.getDecl Lean.MetavarContext:482:17: unknown metavariable _uniq.39407
+backtrace:
+0   libleanshared.dylib                 0x00000001132244e4 _ZN4leanL15print_backtraceEb + 60
+1   libleanshared.dylib                 0x000000011321b28c _ZN4leanL15lean_panic_implEPKcmb + 176
+2   libleanshared.dylib                 0x000000011321b3a8 lean_panic_fn_borrowed + 64
+3   libleanshared.dylib                 0x00000001127d52ec Lean.MetavarContext.MkBinding.elimMVar [private] + 96
+4   libleanshared.dylib                 0x00000001127d7568 Lean.MetavarContext.MkBinding.elimApp [private] + 1492
+5   libleanshared.dylib                 0x00000001127da224 Lean.MetavarContext.MkBinding.elimMVarDeps + 300
+6   libleanshared.dylib                 0x00000001127dc2fc Lean.MetavarContext.MkBinding.mkBinding + 96
+7   libleanshared.dylib                 0x00000001127dcdb4 Lean.MetavarContext.mkBinding + 276
+8   libleanshared.dylib                 0x00000001109ba3cc Lean.Meta.mkLambdaFVars + 464
+9   libleanshared.dylib                 0x0000000110f71bdc Lean.Meta.transformWithCache.visit.visitLambda [private] spec at Lean.Meta.transformWithCache.visit spec at Lean.Meta.transform spec at Lean.Meta.Match.unfoldNamedPattern + 1012
+10  libleanshared.dylib                 0x0000000110f71fdc Lean.Meta.transformWithCache.visit.visitLambda [boxed, λ, private] spec at Lean.Meta.transformWithCache.visit spec at Lean.Meta.transform spec at Lean.Meta.Match.unfoldNamedPattern + 120
+11  libleanshared.dylib                 0x0000000113232998 <apply/7> + 2884
+12  libleanshared.dylib                 0x0000000110f7029c Lean.Meta.withLocalDecl [boxed, λ, arity↓] spec at Lean.Meta.transformWithCache.visit.visitForall spec at Lean.Meta.transformWithCache.visit spec at Lean.Meta.transform spec at Lean.Meta.Match.unfoldNamedPattern + 48
+13  libleanshared.dylib                 0x00000001132312a4 <apply/6> + 3352
+14  libleanshared.dylib                 0x00000001109d9170 Lean.Meta.withLocalDeclImp [arity↓, private] + 732
+15  libleanshared.dylib                 0x0000000110f70468 Lean.Meta.withLocalDecl [arity↓] spec at Lean.Meta.transformWithCache.visit.visitForall spec at Lean.Meta.transformWithCache.visit spec at Lean.Meta.transform spec at Lean.Meta.Match.unfoldNamedPattern + 184
+16  libleanshared.dylib                 0x0000000110f769d0 Lean.Meta.transformWithCache.visit [boxed, λ, private] spec at Lean.Meta.transform spec at Lean.Meta.Match.unfoldNamedPattern + 60
+17  libleanshared.dylib                 0x000000011323141c <apply/6> + 3728
+18  libleanshared.dylib                 0x0000000110f70f74 Lean.Meta.withIncRecDepth [arity↓] spec at Lean.Meta.transformWithCache.visit spec at Lean.Meta.transform spec at Lean.Meta.Match.unfoldNamedPattern + 860
+19  libleanshared.dylib                 0x0000000110f72b18 Lean.Meta.transformWithCache.visit [private] spec at Lean.Meta.transform spec at Lean.Meta.Match.unfoldNamedPattern + 572
+20  libleanshared.dylib                 0x0000000110f73a10 Array.mapMUnsafe.map [private] spec at Lean.Meta.transformWithCache.visit spec at Lean.Meta.transform spec at Lean.Meta.Match.unfoldNamedPattern + 244
+21  libleanshared.dylib                 0x0000000110f74df4 Lean.Expr.withAppAux spec at Lean.Meta.transformWithCache.visit spec at Lean.Meta.transform spec at Lean.Meta.Match.unfoldNamedPattern + 1148
+22  libleanshared.dylib                 0x0000000110f76110 Lean.Meta.transformWithCache.visit [λ, private] spec at Lean.Meta.transform spec at Lean.Meta.Match.unfoldNamedPattern + 3404
+23  libleanshared.dylib                 0x0000000110f769d0 Lean.Meta.transformWithCache.visit [boxed, λ, private] spec at Lean.Meta.transform spec at Lean.Meta.Match.unfoldNamedPattern + 60
+24  libleanshared.dylib                 0x000000011323141c <apply/6> + 3728
+25  libleanshared.dylib                 0x0000000110f70f74 Lean.Meta.withIncRecDepth [arity↓] spec at Lean.Meta.transformWithCache.visit spec at Lean.Meta.transform spec at Lean.Meta.Match.unfoldNamedPattern + 860
+26  libleanshared.dylib                 0x0000000110f72b18 Lean.Meta.transformWithCache.visit [private] spec at Lean.Meta.transform spec at Lean.Meta.Match.unfoldNamedPattern + 572
+27  libleanshared.dylib                 0x0000000110f73a10 Array.mapMUnsafe.map [private] spec at Lean.Meta.transformWithCache.visit spec at Lean.Meta.transform spec at Lean.Meta.Match.unfoldNamedPattern + 244
+28  libleanshared.dylib                 0x0000000110f74df4 Lean.Expr.withAppAux spec at Lean.Meta.transformWithCache.visit spec at Lean.Meta.transform spec at Lean.Meta.Match.unfoldNamedPattern + 1148
+29  libleanshared.dylib                 0x0000000110f76110 Lean.Meta.transformWithCache.visit [λ, private] spec at Lean.Meta.transform spec at Lean.Meta.Match.unfoldNamedPattern + 3404
+30  libleanshared.dylib                 0x0000000110f769d0 Lean.Meta.transformWithCache.visit [boxed, λ, private] spec at Lean.Meta.transform spec at Lean.Meta.Match.unfoldNamedPattern + 60
+31  libleanshared.dylib                 0x000000011323141c <apply/6> + 3728
+32  libleanshared.dylib                 0x0000000110f70f74 Lean.Meta.withIncRecDepth [arity↓] spec at Lean.Meta.transformWithCache.visit spec at Lean.Meta.transform spec at Lean.Meta.Match.unfoldNamedPattern + 860
+33  libleanshared.dylib                 0x0000000110f72b18 Lean.Meta.transformWithCache.visit [private] spec at Lean.Meta.transform spec at Lean.Meta.Match.unfoldNamedPattern + 572
+34  libleanshared.dylib                 0x0000000110f77ae4 Lean.Meta.transform spec at Lean.Meta.Match.unfoldNamedPattern + 232
+35  libleanshared.dylib                 0x0000000110f77e7c Lean.Meta.Match.unfoldNamedPattern + 56
+36  libleanshared.dylib                 0x000000010f012934 Lean.Elab.Eqns.simpEqnType [λ, private] + 620
+37  libleanshared.dylib                 0x000000010f012e48 Lean.Elab.Eqns.simpEqnType [boxed, λ, private] + 40
+38  libleanshared.dylib                 0x00000001132328f0 <apply/7> + 2716
+39  libleanshared.dylib                 0x000000010eff87c4 Lean.Meta.lambdaTelescope [boxed, λ, arity↓] spec at Lean.Elab.Eqns.unfoldThmType + 148
+40  libleanshared.dylib                 0x00000001132325bc <apply/7> + 1896
+41  libleanshared.dylib                 0x00000001109cdbbc Lean.Meta.forallTelescopeReducingAuxAux.process [boxed, λ, arity↓, private] + 64
+42  libleanshared.dylib                 0x000000011322fabc <apply/5> + 4036
+43  libleanshared.dylib                 0x00000001109cd80c Lean.Meta.forallTelescopeReducingAuxAux.process [arity↓, private] + 2612
+44  libleanshared.dylib                 0x00000001109cba28 Lean.Meta.forallTelescopeReducingAux [arity↓, private] + 636
+45  libleanshared.dylib                 0x000000010f00ff6c Lean.Meta.forallTelescopeReducing [arity↓] spec at Lean.Elab.Eqns.simpEqnType + 152
+46  libleanshared.dylib                 0x000000010f01ca14 Lean.Elab.Eqns.saveEqn [λ, private] + 1368
+47  libleanshared.dylib                 0x000000010f01ce28 Lean.Elab.Eqns.saveEqn [boxed, λ, private] + 48
+48  libleanshared.dylib                 0x00000001132312a4 <apply/6> + 3352
+49  libleanshared.dylib                 0x000000010f0153f4 Lean.MVarId.withContext [boxed, λ, arity↓] spec at Lean.Elab.Eqns.saveEqn + 48
+50  libleanshared.dylib                 0x000000011322eba0 <apply/5> + 168
+51  libleanshared.dylib                 0x000000010f0154f0 Lean.MVarId.withContext [arity↓] spec at Lean.Elab.Eqns.saveEqn + 160
+52  libleanshared.dylib                 0x000000010f025bd0 Lean.Elab.Eqns.mkEqnTypes [private] + 96
+53  libleanshared.dylib                 0x000000010f02a17c Lean.Elab.Eqns.mkEqns [λ, private] + 832
+54  libleanshared.dylib                 0x000000010f02a494 Lean.Elab.Eqns.mkEqns [boxed, λ, private] + 48
+55  libleanshared.dylib                 0x00000001132325bc <apply/7> + 1896
+56  libleanshared.dylib                 0x000000010eff87c4 Lean.Meta.lambdaTelescope [boxed, λ, arity↓] spec at Lean.Elab.Eqns.unfoldThmType + 148
+57  libleanshared.dylib                 0x00000001132325bc <apply/7> + 1896
+58  libleanshared.dylib                 0x00000001109cdbbc Lean.Meta.forallTelescopeReducingAuxAux.process [boxed, λ, arity↓, private] + 64
+59  libleanshared.dylib                 0x000000011322fabc <apply/5> + 4036
+60  libleanshared.dylib                 0x00000001109cd80c Lean.Meta.forallTelescopeReducingAuxAux.process [arity↓, private] + 2612
+61  libleanshared.dylib                 0x00000001109ce2dc Lean.Meta.forallTelescopeReducingAuxAux [private] + 100
+62  libleanshared.dylib                 0x000000010f00cfac Lean.Meta.forallTelescope [arity↓] spec at Lean.Elab.Eqns.lhsDependsOn + 152
+63  libleanshared.dylib                 0x000000010f00d248 Lean.Meta.forallTelescope [boxed] spec at Lean.Elab.Eqns.lhsDependsOn + 72
+64  libleanshared.dylib                 0x000000011322f9ec <apply/5> + 3828
+65  libleanshared.dylib                 0x00000001109e24f4 Lean.Meta.withNewMCtxDepthImp [arity↓, private] + 592
+66  libleanshared.dylib                 0x000000010f0098d4 Lean.Meta.withNewMCtxDepth [arity↓] spec at Lean.Elab.Eqns.mkEqnProof + 40
+67  libleanshared.dylib                 0x000000010f02c134 Lean.Elab.Eqns.mkEqns [private] + 2964
+68  libleanshared.dylib                 0x000000010f02d2b8 Lean.Elab.Eqns.getEqnsFor? [private] + 1044
+69  libleanshared.dylib                 0x000000010f02dab4 Lean.Elab.Eqns.getEqnsFor? [boxed, private] + 40
+70  libleanshared.dylib                 0x0000000113230f2c <apply/6> + 2464
+71  libleanshared.dylib                 0x0000000110bf022c List.forIn'.loop [arity↓] spec at Lean.Meta.getEqnsFor?Core + 300
+72  libleanshared.dylib                 0x0000000110bf09fc Lean.Meta.getEqnsFor?Core [λ, private] + 828
+73  libleanshared.dylib                 0x0000000110bf0da0 Lean.Meta.getEqnsFor?Core [boxed, λ, private] + 40
+74  libleanshared.dylib                 0x000000011322f81c <apply/5> + 3364
+75  libleanshared.dylib                 0x0000000110befda0 Lean.Meta.withLCtx [arity↓] spec at Lean.Meta.getEqnsFor?Core + 48
+76  libleanshared.dylib                 0x0000000110bf10b8 Lean.Meta.getEqnsFor?Core [boxed, private] + 156
+77  libleanshared.dylib                 0x000000011322f81c <apply/5> + 3364
+78  libleanshared.dylib                 0x0000000110be9f64 Lean.Meta.withEqnOptions [boxed] + 64
+79  libleanshared.dylib                 0x000000011322f5fc <apply/5> + 2820
+80  libleanshared.dylib                 0x0000000110befda0 Lean.Meta.withLCtx [arity↓] spec at Lean.Meta.getEqnsFor?Core + 48
+81  libleanshared.dylib                 0x000000011256e16c Lean.Meta.mkSimpEntryOfDeclToUnfold + 1108
+82  libleanshared.dylib                 0x000000011040b5b8 Lean.Elab.Tactic.elabDeclToUnfoldOrTheorem [private] + 2276
+83  libleanshared.dylib                 0x0000000110413b70 Lean.Elab.Tactic.elabSimpArg [private] + 3684
+84  libleanshared.dylib                 0x0000000110419f68 Array.forIn'Unsafe.loop [private] spec at Lean.Elab.Tactic.elabSimpArgs + 376
+85  libleanshared.dylib                 0x000000011041df40 Lean.Elab.Tactic.elabSimpArgs [λ] + 132
+86  libleanshared.dylib                 0x000000011041ea9c Lean.Elab.Tactic.elabSimpArgs [boxed, λ] + 224
+87  libleanshared.dylib                 0x0000000113235a04 <apply/9> + 3624
+88  libleanshared.dylib                 0x0000000110418788 Lean.Meta.withTrackingZetaDeltaSet [arity↓] spec at Lean.Elab.Tactic.elabSimpArgs + 876
+89  libleanshared.dylib                 0x000000011041f114 Lean.Elab.Tactic.elabSimpArgs [boxed, λ] + 92
+90  libleanshared.dylib                 0x0000000113235320 <apply/9> + 1860
+91  libleanshared.dylib                 0x000000010f8ec43c Lean.MVarId.withContext [boxed, λ, arity↓] spec at Lean.Elab.Tactic.withMainContext + 156
+92  libleanshared.dylib                 0x000000011322f16c <apply/5> + 1652
+93  libleanshared.dylib                 0x000000010f8ec64c Lean.MVarId.withContext [arity↓] spec at Lean.Elab.Tactic.withMainContext + 244
+94  libleanshared.dylib                 0x000000010f8ecc94 Lean.Elab.Tactic.withMainContext [arity↓] + 364
+95  libleanshared.dylib                 0x0000000110423320 Lean.Elab.Tactic.mkSimpContext + 2368
+96  libleanshared.dylib                 0x000000011043c7b4 Lean.Elab.Tactic.evalSimp [λ] + 92
+97  libleanshared.dylib                 0x000000011043ddc4 Lean.Elab.Tactic.evalSimp [boxed, λ] + 76
+98  libleanshared.dylib                 0x0000000113234e7c <apply/9> + 672
+99  libleanshared.dylib                 0x000000011043a56c Lean.Elab.Tactic.withSimpDiagnostics + 240
+PANIC at Lean.MetavarContext.getDecl Lean.MetavarContext:482:17: unknown metavariable _uniq.39407
+backtrace:
+0   libleanshared.dylib                 0x00000001132244e4 _ZN4leanL15print_backtraceEb + 60
+1   libleanshared.dylib                 0x000000011321b28c _ZN4leanL15lean_panic_implEPKcmb + 176
+2   libleanshared.dylib                 0x000000011321b3a8 lean_panic_fn_borrowed + 64
+3   libleanshared.dylib                 0x00000001127d52ec Lean.MetavarContext.MkBinding.elimMVar [private] + 96
+4   libleanshared.dylib                 0x00000001127d7568 Lean.MetavarContext.MkBinding.elimApp [private] + 1492
+5   libleanshared.dylib                 0x00000001127d3860 Lean.MetavarContext.MkBinding.visit [private] + 232
+6   libleanshared.dylib                 0x00000001127d43d0 Lean.MetavarContext.MkBinding.elim [private] + 2096
+7   libleanshared.dylib                 0x00000001127d3860 Lean.MetavarContext.MkBinding.visit [private] + 232
+8   libleanshared.dylib                 0x00000001127d4fe4 Array.mapMUnsafe.map [private] spec at Lean.MetavarContext.MkBinding.elimApp + 140
+9   libleanshared.dylib                 0x00000001127d7658 Lean.MetavarContext.MkBinding.elimApp [private] + 1732
+10  libleanshared.dylib                 0x00000001127d3860 Lean.MetavarContext.MkBinding.visit [private] + 232
+11  libleanshared.dylib                 0x00000001127d4fe4 Array.mapMUnsafe.map [private] spec at Lean.MetavarContext.MkBinding.elimApp + 140
+12  libleanshared.dylib                 0x00000001127d7658 Lean.MetavarContext.MkBinding.elimApp [private] + 1732
+13  libleanshared.dylib                 0x00000001127da224 Lean.MetavarContext.MkBinding.elimMVarDeps + 300
+14  libleanshared.dylib                 0x00000001127dc2fc Lean.MetavarContext.MkBinding.mkBinding + 96
+15  libleanshared.dylib                 0x00000001127dcdb4 Lean.MetavarContext.mkBinding + 276
+16  libleanshared.dylib                 0x00000001109b94a0 Lean.Meta.mkForallFVars + 468
+17  libleanshared.dylib                 0x000000010f01193c Array.forIn'Unsafe.loop [private] spec at Lean.Elab.Eqns.simpEqnType + 5360
+18  libleanshared.dylib                 0x000000010f012a60 Lean.Elab.Eqns.simpEqnType [λ, private] + 920
+19  libleanshared.dylib                 0x000000010f012e48 Lean.Elab.Eqns.simpEqnType [boxed, λ, private] + 40
+20  libleanshared.dylib                 0x00000001132328f0 <apply/7> + 2716
+21  libleanshared.dylib                 0x000000010eff87c4 Lean.Meta.lambdaTelescope [boxed, λ, arity↓] spec at Lean.Elab.Eqns.unfoldThmType + 148
+22  libleanshared.dylib                 0x00000001132325bc <apply/7> + 1896
+23  libleanshared.dylib                 0x00000001109cdbbc Lean.Meta.forallTelescopeReducingAuxAux.process [boxed, λ, arity↓, private] + 64
+24  libleanshared.dylib                 0x000000011322fabc <apply/5> + 4036
+25  libleanshared.dylib                 0x00000001109cd80c Lean.Meta.forallTelescopeReducingAuxAux.process [arity↓, private] + 2612
+26  libleanshared.dylib                 0x00000001109cba28 Lean.Meta.forallTelescopeReducingAux [arity↓, private] + 636
+27  libleanshared.dylib                 0x000000010f00ff6c Lean.Meta.forallTelescopeReducing [arity↓] spec at Lean.Elab.Eqns.simpEqnType + 152
+28  libleanshared.dylib                 0x000000010f01ca14 Lean.Elab.Eqns.saveEqn [λ, private] + 1368
+29  libleanshared.dylib                 0x000000010f01ce28 Lean.Elab.Eqns.saveEqn [boxed, λ, private] + 48
+30  libleanshared.dylib                 0x00000001132312a4 <apply/6> + 3352
+31  libleanshared.dylib                 0x000000010f0153f4 Lean.MVarId.withContext [boxed, λ, arity↓] spec at Lean.Elab.Eqns.saveEqn + 48
+32  libleanshared.dylib                 0x000000011322eba0 <apply/5> + 168
+33  libleanshared.dylib                 0x000000010f0154f0 Lean.MVarId.withContext [arity↓] spec at Lean.Elab.Eqns.saveEqn + 160
+34  libleanshared.dylib                 0x000000010f025bd0 Lean.Elab.Eqns.mkEqnTypes [private] + 96
+35  libleanshared.dylib                 0x000000010f02a17c Lean.Elab.Eqns.mkEqns [λ, private] + 832
+36  libleanshared.dylib                 0x000000010f02a494 Lean.Elab.Eqns.mkEqns [boxed, λ, private] + 48
+37  libleanshared.dylib                 0x00000001132325bc <apply/7> + 1896
+38  libleanshared.dylib                 0x000000010eff87c4 Lean.Meta.lambdaTelescope [boxed, λ, arity↓] spec at Lean.Elab.Eqns.unfoldThmType + 148
+39  libleanshared.dylib                 0x00000001132325bc <apply/7> + 1896
+40  libleanshared.dylib                 0x00000001109cdbbc Lean.Meta.forallTelescopeReducingAuxAux.process [boxed, λ, arity↓, private] + 64
+41  libleanshared.dylib                 0x000000011322fabc <apply/5> + 4036
+42  libleanshared.dylib                 0x00000001109cd80c Lean.Meta.forallTelescopeReducingAuxAux.process [arity↓, private] + 2612
+43  libleanshared.dylib                 0x00000001109ce2dc Lean.Meta.forallTelescopeReducingAuxAux [private] + 100
+44  libleanshared.dylib                 0x000000010f00cfac Lean.Meta.forallTelescope [arity↓] spec at Lean.Elab.Eqns.lhsDependsOn + 152
+45  libleanshared.dylib                 0x000000010f00d248 Lean.Meta.forallTelescope [boxed] spec at Lean.Elab.Eqns.lhsDependsOn + 72
+46  libleanshared.dylib                 0x000000011322f9ec <apply/5> + 3828
+47  libleanshared.dylib                 0x00000001109e24f4 Lean.Meta.withNewMCtxDepthImp [arity↓, private] + 592
+48  libleanshared.dylib                 0x000000010f0098d4 Lean.Meta.withNewMCtxDepth [arity↓] spec at Lean.Elab.Eqns.mkEqnProof + 40
+49  libleanshared.dylib                 0x000000010f02c134 Lean.Elab.Eqns.mkEqns [private] + 2964
+50  libleanshared.dylib                 0x000000010f02d2b8 Lean.Elab.Eqns.getEqnsFor? [private] + 1044
+51  libleanshared.dylib                 0x000000010f02dab4 Lean.Elab.Eqns.getEqnsFor? [boxed, private] + 40
+52  libleanshared.dylib                 0x0000000113230f2c <apply/6> + 2464
+53  libleanshared.dylib                 0x0000000110bf022c List.forIn'.loop [arity↓] spec at Lean.Meta.getEqnsFor?Core + 300
+54  libleanshared.dylib                 0x0000000110bf09fc Lean.Meta.getEqnsFor?Core [λ, private] + 828
+55  libleanshared.dylib                 0x0000000110bf0da0 Lean.Meta.getEqnsFor?Core [boxed, λ, private] + 40
+56  libleanshared.dylib                 0x000000011322f81c <apply/5> + 3364
+57  libleanshared.dylib                 0x0000000110befda0 Lean.Meta.withLCtx [arity↓] spec at Lean.Meta.getEqnsFor?Core + 48
+58  libleanshared.dylib                 0x0000000110bf10b8 Lean.Meta.getEqnsFor?Core [boxed, private] + 156
+59  libleanshared.dylib                 0x000000011322f81c <apply/5> + 3364
+60  libleanshared.dylib                 0x0000000110be9f64 Lean.Meta.withEqnOptions [boxed] + 64
+61  libleanshared.dylib                 0x000000011322f5fc <apply/5> + 2820
+62  libleanshared.dylib                 0x0000000110befda0 Lean.Meta.withLCtx [arity↓] spec at Lean.Meta.getEqnsFor?Core + 48
+63  libleanshared.dylib                 0x000000011256e16c Lean.Meta.mkSimpEntryOfDeclToUnfold + 1108
+64  libleanshared.dylib                 0x000000011040b5b8 Lean.Elab.Tactic.elabDeclToUnfoldOrTheorem [private] + 2276
+65  libleanshared.dylib                 0x0000000110413b70 Lean.Elab.Tactic.elabSimpArg [private] + 3684
+66  libleanshared.dylib                 0x0000000110419f68 Array.forIn'Unsafe.loop [private] spec at Lean.Elab.Tactic.elabSimpArgs + 376
+67  libleanshared.dylib                 0x000000011041df40 Lean.Elab.Tactic.elabSimpArgs [λ] + 132
+68  libleanshared.dylib                 0x000000011041ea9c Lean.Elab.Tactic.elabSimpArgs [boxed, λ] + 224
+69  libleanshared.dylib                 0x0000000113235a04 <apply/9> + 3624
+70  libleanshared.dylib                 0x0000000110418788 Lean.Meta.withTrackingZetaDeltaSet [arity↓] spec at Lean.Elab.Tactic.elabSimpArgs + 876
+71  libleanshared.dylib                 0x000000011041f114 Lean.Elab.Tactic.elabSimpArgs [boxed, λ] + 92
+72  libleanshared.dylib                 0x0000000113235320 <apply/9> + 1860
+73  libleanshared.dylib                 0x000000010f8ec43c Lean.MVarId.withContext [boxed, λ, arity↓] spec at Lean.Elab.Tactic.withMainContext + 156
+74  libleanshared.dylib                 0x000000011322f16c <apply/5> + 1652
+75  libleanshared.dylib                 0x000000010f8ec64c Lean.MVarId.withContext [arity↓] spec at Lean.Elab.Tactic.withMainContext + 244
+76  libleanshared.dylib                 0x000000010f8ecc94 Lean.Elab.Tactic.withMainContext [arity↓] + 364
+77  libleanshared.dylib                 0x0000000110423320 Lean.Elab.Tactic.mkSimpContext + 2368
+78  libleanshared.dylib                 0x000000011043c7b4 Lean.Elab.Tactic.evalSimp [λ] + 92
+79  libleanshared.dylib                 0x000000011043ddc4 Lean.Elab.Tactic.evalSimp [boxed, λ] + 76
+80  libleanshared.dylib                 0x0000000113234e7c <apply/9> + 672
+81  libleanshared.dylib                 0x000000011043a56c Lean.Elab.Tactic.withSimpDiagnostics + 240
+82  libleanshared.dylib                 0x000000011043a798 Lean.Elab.Tactic.withSimpDiagnostics [boxed] + 68
+83  libleanshared.dylib                 0x0000000113234c60 <apply/9> + 132
+84  libleanshared.dylib                 0x000000010f8ec43c Lean.MVarId.withContext [boxed, λ, arity↓] spec at Lean.Elab.Tactic.withMainContext + 156
+85  libleanshared.dylib                 0x000000011322f16c <apply/5> + 1652
+86  libleanshared.dylib                 0x000000010f8ec64c Lean.MVarId.withContext [arity↓] spec at Lean.Elab.Tactic.withMainContext + 244
+87  libleanshared.dylib                 0x000000010f8ecc94 Lean.Elab.Tactic.withMainContext [arity↓] + 364
+88  libleanshared.dylib                 0x000000011043e118 Lean.Elab.Tactic.evalSimp [boxed] + 248
+89  libleanshared.dylib                 0x0000000113236838 <apply/10> + 2164
+90  libleanshared.dylib                 0x000000010f8c2880 Lean.Elab.Tactic.evalTactic.eval [λ, private] + 284
+91  libleanshared.dylib                 0x0000000113235558 <apply/9> + 2428
+92  libleanshared.dylib                 0x000000010f8c45a4 Lean.Elab.withInfoTreeContext [arity↓] spec at Lean.Elab.Tactic.evalTactic.eval + 436
+93  libleanshared.dylib                 0x000000010f8c507c Lean.Elab.Tactic.evalTactic.eval [λ, private] + 560
+94  libleanshared.dylib                 0x000000010f8c51a8 Lean.Elab.Tactic.evalTactic.eval [boxed, λ, private] + 64
+95  libleanshared.dylib                 0x000000011323523c <apply/9> + 1632
+96  libleanshared.dylib                 0x000000010f8c5bf8 Lean.Elab.Tactic.evalTactic.eval [private] + 984
+97  libleanshared.dylib                 0x000000010f8d26d8 Lean.Elab.Tactic.evalTactic [λ] + 4968
+98  libleanshared.dylib                 0x000000011322c3f4 <apply/3> + 4636
+99  libleanshared.dylib                 0x000000010f8d6c0c Lean.Elab.Tactic.evalTactic [λ] + 1352
+PANIC at Lean.MetavarContext.getDecl Lean.MetavarContext:482:17: unknown metavariable _uniq.39407
+backtrace:
+0   libleanshared.dylib                 0x00000001132244e4 _ZN4leanL15print_backtraceEb + 60
+1   libleanshared.dylib                 0x000000011321b28c _ZN4leanL15lean_panic_implEPKcmb + 176
+2   libleanshared.dylib                 0x000000011321b3a8 lean_panic_fn_borrowed + 64
+3   libleanshared.dylib                 0x00000001127d52ec Lean.MetavarContext.MkBinding.elimMVar [private] + 96
+4   libleanshared.dylib                 0x00000001127d7568 Lean.MetavarContext.MkBinding.elimApp [private] + 1492
+5   libleanshared.dylib                 0x00000001127d3860 Lean.MetavarContext.MkBinding.visit [private] + 232
+6   libleanshared.dylib                 0x00000001127d43d0 Lean.MetavarContext.MkBinding.elim [private] + 2096
+7   libleanshared.dylib                 0x00000001127d3860 Lean.MetavarContext.MkBinding.visit [private] + 232
+8   libleanshared.dylib                 0x00000001127d4fe4 Array.mapMUnsafe.map [private] spec at Lean.MetavarContext.MkBinding.elimApp + 140
+9   libleanshared.dylib                 0x00000001127d7658 Lean.MetavarContext.MkBinding.elimApp [private] + 1732
+10  libleanshared.dylib                 0x00000001127d3860 Lean.MetavarContext.MkBinding.visit [private] + 232
+11  libleanshared.dylib                 0x00000001127d4fe4 Array.mapMUnsafe.map [private] spec at Lean.MetavarContext.MkBinding.elimApp + 140
+12  libleanshared.dylib                 0x00000001127d7658 Lean.MetavarContext.MkBinding.elimApp [private] + 1732
+13  libleanshared.dylib                 0x00000001127d3860 Lean.MetavarContext.MkBinding.visit [private] + 232
+14  libleanshared.dylib                 0x00000001127d42a0 Lean.MetavarContext.MkBinding.elim [private] + 1792
+15  libleanshared.dylib                 0x00000001127da224 Lean.MetavarContext.MkBinding.elimMVarDeps + 300
+16  libleanshared.dylib                 0x00000001127dc2fc Lean.MetavarContext.MkBinding.mkBinding + 96
+17  libleanshared.dylib                 0x00000001127dcdb4 Lean.MetavarContext.mkBinding + 276
+18  libleanshared.dylib                 0x00000001109b94a0 Lean.Meta.mkForallFVars + 468
+19  libleanshared.dylib                 0x000000010f01193c Array.forIn'Unsafe.loop [private] spec at Lean.Elab.Eqns.simpEqnType + 5360
+20  libleanshared.dylib                 0x000000010f012a60 Lean.Elab.Eqns.simpEqnType [λ, private] + 920
+21  libleanshared.dylib                 0x000000010f012e48 Lean.Elab.Eqns.simpEqnType [boxed, λ, private] + 40
+22  libleanshared.dylib                 0x00000001132328f0 <apply/7> + 2716
+23  libleanshared.dylib                 0x000000010eff87c4 Lean.Meta.lambdaTelescope [boxed, λ, arity↓] spec at Lean.Elab.Eqns.unfoldThmType + 148
+24  libleanshared.dylib                 0x00000001132325bc <apply/7> + 1896
+25  libleanshared.dylib                 0x00000001109cdbbc Lean.Meta.forallTelescopeReducingAuxAux.process [boxed, λ, arity↓, private] + 64
+26  libleanshared.dylib                 0x000000011322fabc <apply/5> + 4036
+27  libleanshared.dylib                 0x00000001109cd80c Lean.Meta.forallTelescopeReducingAuxAux.process [arity↓, private] + 2612
+28  libleanshared.dylib                 0x00000001109cba28 Lean.Meta.forallTelescopeReducingAux [arity↓, private] + 636
+29  libleanshared.dylib                 0x000000010f00ff6c Lean.Meta.forallTelescopeReducing [arity↓] spec at Lean.Elab.Eqns.simpEqnType + 152
+30  libleanshared.dylib                 0x000000010f01ca14 Lean.Elab.Eqns.saveEqn [λ, private] + 1368
+31  libleanshared.dylib                 0x000000010f01ce28 Lean.Elab.Eqns.saveEqn [boxed, λ, private] + 48
+32  libleanshared.dylib                 0x00000001132312a4 <apply/6> + 3352
+33  libleanshared.dylib                 0x000000010f0153f4 Lean.MVarId.withContext [boxed, λ, arity↓] spec at Lean.Elab.Eqns.saveEqn + 48
+34  libleanshared.dylib                 0x000000011322eba0 <apply/5> + 168
+35  libleanshared.dylib                 0x000000010f0154f0 Lean.MVarId.withContext [arity↓] spec at Lean.Elab.Eqns.saveEqn + 160
+36  libleanshared.dylib                 0x000000010f025bd0 Lean.Elab.Eqns.mkEqnTypes [private] + 96
+37  libleanshared.dylib                 0x000000010f02a17c Lean.Elab.Eqns.mkEqns [λ, private] + 832
+38  libleanshared.dylib                 0x000000010f02a494 Lean.Elab.Eqns.mkEqns [boxed, λ, private] + 48
+39  libleanshared.dylib                 0x00000001132325bc <apply/7> + 1896
+40  libleanshared.dylib                 0x000000010eff87c4 Lean.Meta.lambdaTelescope [boxed, λ, arity↓] spec at Lean.Elab.Eqns.unfoldThmType + 148
+41  libleanshared.dylib                 0x00000001132325bc <apply/7> + 1896
+42  libleanshared.dylib                 0x00000001109cdbbc Lean.Meta.forallTelescopeReducingAuxAux.process [boxed, λ, arity↓, private] + 64
+43  libleanshared.dylib                 0x000000011322fabc <apply/5> + 4036
+44  libleanshared.dylib                 0x00000001109cd80c Lean.Meta.forallTelescopeReducingAuxAux.process [arity↓, private] + 2612
+45  libleanshared.dylib                 0x00000001109ce2dc Lean.Meta.forallTelescopeReducingAuxAux [private] + 100
+46  libleanshared.dylib                 0x000000010f00cfac Lean.Meta.forallTelescope [arity↓] spec at Lean.Elab.Eqns.lhsDependsOn + 152
+47  libleanshared.dylib                 0x000000010f00d248 Lean.Meta.forallTelescope [boxed] spec at Lean.Elab.Eqns.lhsDependsOn + 72
+48  libleanshared.dylib                 0x000000011322f9ec <apply/5> + 3828
+49  libleanshared.dylib                 0x00000001109e24f4 Lean.Meta.withNewMCtxDepthImp [arity↓, private] + 592
+50  libleanshared.dylib                 0x000000010f0098d4 Lean.Meta.withNewMCtxDepth [arity↓] spec at Lean.Elab.Eqns.mkEqnProof + 40
+51  libleanshared.dylib                 0x000000010f02c134 Lean.Elab.Eqns.mkEqns [private] + 2964
+52  libleanshared.dylib                 0x000000010f02d2b8 Lean.Elab.Eqns.getEqnsFor? [private] + 1044
+53  libleanshared.dylib                 0x000000010f02dab4 Lean.Elab.Eqns.getEqnsFor? [boxed, private] + 40
+54  libleanshared.dylib                 0x0000000113230f2c <apply/6> + 2464
+55  libleanshared.dylib                 0x0000000110bf022c List.forIn'.loop [arity↓] spec at Lean.Meta.getEqnsFor?Core + 300
+56  libleanshared.dylib                 0x0000000110bf09fc Lean.Meta.getEqnsFor?Core [λ, private] + 828
+57  libleanshared.dylib                 0x0000000110bf0da0 Lean.Meta.getEqnsFor?Core [boxed, λ, private] + 40
+58  libleanshared.dylib                 0x000000011322f81c <apply/5> + 3364
+59  libleanshared.dylib                 0x0000000110befda0 Lean.Meta.withLCtx [arity↓] spec at Lean.Meta.getEqnsFor?Core + 48
+60  libleanshared.dylib                 0x0000000110bf10b8 Lean.Meta.getEqnsFor?Core [boxed, private] + 156
+61  libleanshared.dylib                 0x000000011322f81c <apply/5> + 3364
+62  libleanshared.dylib                 0x0000000110be9f64 Lean.Meta.withEqnOptions [boxed] + 64
+63  libleanshared.dylib                 0x000000011322f5fc <apply/5> + 2820
+64  libleanshared.dylib                 0x0000000110befda0 Lean.Meta.withLCtx [arity↓] spec at Lean.Meta.getEqnsFor?Core + 48
+65  libleanshared.dylib                 0x000000011256e16c Lean.Meta.mkSimpEntryOfDeclToUnfold + 1108
+66  libleanshared.dylib                 0x000000011040b5b8 Lean.Elab.Tactic.elabDeclToUnfoldOrTheorem [private] + 2276
+67  libleanshared.dylib                 0x0000000110413b70 Lean.Elab.Tactic.elabSimpArg [private] + 3684
+68  libleanshared.dylib                 0x0000000110419f68 Array.forIn'Unsafe.loop [private] spec at Lean.Elab.Tactic.elabSimpArgs + 376
+69  libleanshared.dylib                 0x000000011041df40 Lean.Elab.Tactic.elabSimpArgs [λ] + 132
+70  libleanshared.dylib                 0x000000011041ea9c Lean.Elab.Tactic.elabSimpArgs [boxed, λ] + 224
+71  libleanshared.dylib                 0x0000000113235a04 <apply/9> + 3624
+72  libleanshared.dylib                 0x0000000110418788 Lean.Meta.withTrackingZetaDeltaSet [arity↓] spec at Lean.Elab.Tactic.elabSimpArgs + 876
+73  libleanshared.dylib                 0x000000011041f114 Lean.Elab.Tactic.elabSimpArgs [boxed, λ] + 92
+74  libleanshared.dylib                 0x0000000113235320 <apply/9> + 1860
+75  libleanshared.dylib                 0x000000010f8ec43c Lean.MVarId.withContext [boxed, λ, arity↓] spec at Lean.Elab.Tactic.withMainContext + 156
+76  libleanshared.dylib                 0x000000011322f16c <apply/5> + 1652
+77  libleanshared.dylib                 0x000000010f8ec64c Lean.MVarId.withContext [arity↓] spec at Lean.Elab.Tactic.withMainContext + 244
+78  libleanshared.dylib                 0x000000010f8ecc94 Lean.Elab.Tactic.withMainContext [arity↓] + 364
+79  libleanshared.dylib                 0x0000000110423320 Lean.Elab.Tactic.mkSimpContext + 2368
+80  libleanshared.dylib                 0x000000011043c7b4 Lean.Elab.Tactic.evalSimp [λ] + 92
+81  libleanshared.dylib                 0x000000011043ddc4 Lean.Elab.Tactic.evalSimp [boxed, λ] + 76
+82  libleanshared.dylib                 0x0000000113234e7c <apply/9> + 672
+83  libleanshared.dylib                 0x000000011043a56c Lean.Elab.Tactic.withSimpDiagnostics + 240
+84  libleanshared.dylib                 0x000000011043a798 Lean.Elab.Tactic.withSimpDiagnostics [boxed] + 68
+85  libleanshared.dylib                 0x0000000113234c60 <apply/9> + 132
+86  libleanshared.dylib                 0x000000010f8ec43c Lean.MVarId.withContext [boxed, λ, arity↓] spec at Lean.Elab.Tactic.withMainContext + 156
+87  libleanshared.dylib                 0x000000011322f16c <apply/5> + 1652
+88  libleanshared.dylib                 0x000000010f8ec64c Lean.MVarId.withContext [arity↓] spec at Lean.Elab.Tactic.withMainContext + 244
+89  libleanshared.dylib                 0x000000010f8ecc94 Lean.Elab.Tactic.withMainContext [arity↓] + 364
+90  libleanshared.dylib                 0x000000011043e118 Lean.Elab.Tactic.evalSimp [boxed] + 248
+91  libleanshared.dylib                 0x0000000113236838 <apply/10> + 2164
+92  libleanshared.dylib                 0x000000010f8c2880 Lean.Elab.Tactic.evalTactic.eval [λ, private] + 284
+93  libleanshared.dylib                 0x0000000113235558 <apply/9> + 2428
+94  libleanshared.dylib                 0x000000010f8c45a4 Lean.Elab.withInfoTreeContext [arity↓] spec at Lean.Elab.Tactic.evalTactic.eval + 436
+95  libleanshared.dylib                 0x000000010f8c507c Lean.Elab.Tactic.evalTactic.eval [λ, private] + 560
+96  libleanshared.dylib                 0x000000010f8c51a8 Lean.Elab.Tactic.evalTactic.eval [boxed, λ, private] + 64
+97  libleanshared.dylib                 0x000000011323523c <apply/9> + 1632
+98  libleanshared.dylib                 0x000000010f8c5bf8 Lean.Elab.Tactic.evalTactic.eval [private] + 984
+99  libleanshared.dylib                 0x000000010f8d26d8 Lean.Elab.Tactic.evalTactic [λ] + 4968
+PANIC at Lean.MetavarContext.getDecl Lean.MetavarContext:482:17: unknown metavariable _uniq.39407
+backtrace:
+0   libleanshared.dylib                 0x00000001132244e4 _ZN4leanL15print_backtraceEb + 60
+1   libleanshared.dylib                 0x000000011321b28c _ZN4leanL15lean_panic_implEPKcmb + 176
+2   libleanshared.dylib                 0x000000011321b3a8 lean_panic_fn_borrowed + 64
+3   libleanshared.dylib                 0x00000001127d52ec Lean.MetavarContext.MkBinding.elimMVar [private] + 96
+4   libleanshared.dylib                 0x00000001127d7568 Lean.MetavarContext.MkBinding.elimApp [private] + 1492
+5   libleanshared.dylib                 0x00000001127d3860 Lean.MetavarContext.MkBinding.visit [private] + 232
+6   libleanshared.dylib                 0x00000001127d43d0 Lean.MetavarContext.MkBinding.elim [private] + 2096
+7   libleanshared.dylib                 0x00000001127d3860 Lean.MetavarContext.MkBinding.visit [private] + 232
+8   libleanshared.dylib                 0x00000001127d4fe4 Array.mapMUnsafe.map [private] spec at Lean.MetavarContext.MkBinding.elimApp + 140
+9   libleanshared.dylib                 0x00000001127d7658 Lean.MetavarContext.MkBinding.elimApp [private] + 1732
+10  libleanshared.dylib                 0x00000001127d3860 Lean.MetavarContext.MkBinding.visit [private] + 232
+11  libleanshared.dylib                 0x00000001127d4fe4 Array.mapMUnsafe.map [private] spec at Lean.MetavarContext.MkBinding.elimApp + 140
+12  libleanshared.dylib                 0x00000001127d7658 Lean.MetavarContext.MkBinding.elimApp [private] + 1732
+13  libleanshared.dylib                 0x00000001127d3860 Lean.MetavarContext.MkBinding.visit [private] + 232
+14  libleanshared.dylib                 0x00000001127d42a0 Lean.MetavarContext.MkBinding.elim [private] + 1792
+15  libleanshared.dylib                 0x00000001127d3860 Lean.MetavarContext.MkBinding.visit [private] + 232
+16  libleanshared.dylib                 0x00000001127d42a0 Lean.MetavarContext.MkBinding.elim [private] + 1792
+17  libleanshared.dylib                 0x00000001127da224 Lean.MetavarContext.MkBinding.elimMVarDeps + 300
+18  libleanshared.dylib                 0x00000001127dc2fc Lean.MetavarContext.MkBinding.mkBinding + 96
+19  libleanshared.dylib                 0x00000001127dcdb4 Lean.MetavarContext.mkBinding + 276
+20  libleanshared.dylib                 0x00000001109b94a0 Lean.Meta.mkForallFVars + 468
+21  libleanshared.dylib                 0x000000010f01193c Array.forIn'Unsafe.loop [private] spec at Lean.Elab.Eqns.simpEqnType + 5360
+22  libleanshared.dylib                 0x000000010f012a60 Lean.Elab.Eqns.simpEqnType [λ, private] + 920
+23  libleanshared.dylib                 0x000000010f012e48 Lean.Elab.Eqns.simpEqnType [boxed, λ, private] + 40
+24  libleanshared.dylib                 0x00000001132328f0 <apply/7> + 2716
+25  libleanshared.dylib                 0x000000010eff87c4 Lean.Meta.lambdaTelescope [boxed, λ, arity↓] spec at Lean.Elab.Eqns.unfoldThmType + 148
+26  libleanshared.dylib                 0x00000001132325bc <apply/7> + 1896
+27  libleanshared.dylib                 0x00000001109cdbbc Lean.Meta.forallTelescopeReducingAuxAux.process [boxed, λ, arity↓, private] + 64
+28  libleanshared.dylib                 0x000000011322fabc <apply/5> + 4036
+29  libleanshared.dylib                 0x00000001109cd80c Lean.Meta.forallTelescopeReducingAuxAux.process [arity↓, private] + 2612
+30  libleanshared.dylib                 0x00000001109cba28 Lean.Meta.forallTelescopeReducingAux [arity↓, private] + 636
+31  libleanshared.dylib                 0x000000010f00ff6c Lean.Meta.forallTelescopeReducing [arity↓] spec at Lean.Elab.Eqns.simpEqnType + 152
+32  libleanshared.dylib                 0x000000010f01ca14 Lean.Elab.Eqns.saveEqn [λ, private] + 1368
+33  libleanshared.dylib                 0x000000010f01ce28 Lean.Elab.Eqns.saveEqn [boxed, λ, private] + 48
+34  libleanshared.dylib                 0x00000001132312a4 <apply/6> + 3352
+35  libleanshared.dylib                 0x000000010f0153f4 Lean.MVarId.withContext [boxed, λ, arity↓] spec at Lean.Elab.Eqns.saveEqn + 48
+36  libleanshared.dylib                 0x000000011322eba0 <apply/5> + 168
+37  libleanshared.dylib                 0x000000010f0154f0 Lean.MVarId.withContext [arity↓] spec at Lean.Elab.Eqns.saveEqn + 160
+38  libleanshared.dylib                 0x000000010f025bd0 Lean.Elab.Eqns.mkEqnTypes [private] + 96
+39  libleanshared.dylib                 0x000000010f02a17c Lean.Elab.Eqns.mkEqns [λ, private] + 832
+40  libleanshared.dylib                 0x000000010f02a494 Lean.Elab.Eqns.mkEqns [boxed, λ, private] + 48
+41  libleanshared.dylib                 0x00000001132325bc <apply/7> + 1896
+42  libleanshared.dylib                 0x000000010eff87c4 Lean.Meta.lambdaTelescope [boxed, λ, arity↓] spec at Lean.Elab.Eqns.unfoldThmType + 148
+43  libleanshared.dylib                 0x00000001132325bc <apply/7> + 1896
+44  libleanshared.dylib                 0x00000001109cdbbc Lean.Meta.forallTelescopeReducingAuxAux.process [boxed, λ, arity↓, private] + 64
+45  libleanshared.dylib                 0x000000011322fabc <apply/5> + 4036
+46  libleanshared.dylib                 0x00000001109cd80c Lean.Meta.forallTelescopeReducingAuxAux.process [arity↓, private] + 2612
+47  libleanshared.dylib                 0x00000001109ce2dc Lean.Meta.forallTelescopeReducingAuxAux [private] + 100
+48  libleanshared.dylib                 0x000000010f00cfac Lean.Meta.forallTelescope [arity↓] spec at Lean.Elab.Eqns.lhsDependsOn + 152
+49  libleanshared.dylib                 0x000000010f00d248 Lean.Meta.forallTelescope [boxed] spec at Lean.Elab.Eqns.lhsDependsOn + 72
+50  libleanshared.dylib                 0x000000011322f9ec <apply/5> + 3828
+51  libleanshared.dylib                 0x00000001109e24f4 Lean.Meta.withNewMCtxDepthImp [arity↓, private] + 592
+52  libleanshared.dylib                 0x000000010f0098d4 Lean.Meta.withNewMCtxDepth [arity↓] spec at Lean.Elab.Eqns.mkEqnProof + 40
+53  libleanshared.dylib                 0x000000010f02c134 Lean.Elab.Eqns.mkEqns [private] + 2964
+54  libleanshared.dylib                 0x000000010f02d2b8 Lean.Elab.Eqns.getEqnsFor? [private] + 1044
+55  libleanshared.dylib                 0x000000010f02dab4 Lean.Elab.Eqns.getEqnsFor? [boxed, private] + 40
+56  libleanshared.dylib                 0x0000000113230f2c <apply/6> + 2464
+57  libleanshared.dylib                 0x0000000110bf022c List.forIn'.loop [arity↓] spec at Lean.Meta.getEqnsFor?Core + 300
+58  libleanshared.dylib                 0x0000000110bf09fc Lean.Meta.getEqnsFor?Core [λ, private] + 828
+59  libleanshared.dylib                 0x0000000110bf0da0 Lean.Meta.getEqnsFor?Core [boxed, λ, private] + 40
+60  libleanshared.dylib                 0x000000011322f81c <apply/5> + 3364
+61  libleanshared.dylib                 0x0000000110befda0 Lean.Meta.withLCtx [arity↓] spec at Lean.Meta.getEqnsFor?Core + 48
+62  libleanshared.dylib                 0x0000000110bf10b8 Lean.Meta.getEqnsFor?Core [boxed, private] + 156
+63  libleanshared.dylib                 0x000000011322f81c <apply/5> + 3364
+64  libleanshared.dylib                 0x0000000110be9f64 Lean.Meta.withEqnOptions [boxed] + 64
+65  libleanshared.dylib                 0x000000011322f5fc <apply/5> + 2820
+66  libleanshared.dylib                 0x0000000110befda0 Lean.Meta.withLCtx [arity↓] spec at Lean.Meta.getEqnsFor?Core + 48
+67  libleanshared.dylib                 0x000000011256e16c Lean.Meta.mkSimpEntryOfDeclToUnfold + 1108
+68  libleanshared.dylib                 0x000000011040b5b8 Lean.Elab.Tactic.elabDeclToUnfoldOrTheorem [private] + 2276
+69  libleanshared.dylib                 0x0000000110413b70 Lean.Elab.Tactic.elabSimpArg [private] + 3684
+70  libleanshared.dylib                 0x0000000110419f68 Array.forIn'Unsafe.loop [private] spec at Lean.Elab.Tactic.elabSimpArgs + 376
+71  libleanshared.dylib                 0x000000011041df40 Lean.Elab.Tactic.elabSimpArgs [λ] + 132
+72  libleanshared.dylib                 0x000000011041ea9c Lean.Elab.Tactic.elabSimpArgs [boxed, λ] + 224
+73  libleanshared.dylib                 0x0000000113235a04 <apply/9> + 3624
+74  libleanshared.dylib                 0x0000000110418788 Lean.Meta.withTrackingZetaDeltaSet [arity↓] spec at Lean.Elab.Tactic.elabSimpArgs + 876
+75  libleanshared.dylib                 0x000000011041f114 Lean.Elab.Tactic.elabSimpArgs [boxed, λ] + 92
+76  libleanshared.dylib                 0x0000000113235320 <apply/9> + 1860
+77  libleanshared.dylib                 0x000000010f8ec43c Lean.MVarId.withContext [boxed, λ, arity↓] spec at Lean.Elab.Tactic.withMainContext + 156
+78  libleanshared.dylib                 0x000000011322f16c <apply/5> + 1652
+79  libleanshared.dylib                 0x000000010f8ec64c Lean.MVarId.withContext [arity↓] spec at Lean.Elab.Tactic.withMainContext + 244
+80  libleanshared.dylib                 0x000000010f8ecc94 Lean.Elab.Tactic.withMainContext [arity↓] + 364
+81  libleanshared.dylib                 0x0000000110423320 Lean.Elab.Tactic.mkSimpContext + 2368
+82  libleanshared.dylib                 0x000000011043c7b4 Lean.Elab.Tactic.evalSimp [λ] + 92
+83  libleanshared.dylib                 0x000000011043ddc4 Lean.Elab.Tactic.evalSimp [boxed, λ] + 76
+84  libleanshared.dylib                 0x0000000113234e7c <apply/9> + 672
+85  libleanshared.dylib                 0x000000011043a56c Lean.Elab.Tactic.withSimpDiagnostics + 240
+86  libleanshared.dylib                 0x000000011043a798 Lean.Elab.Tactic.withSimpDiagnostics [boxed] + 68
+87  libleanshared.dylib                 0x0000000113234c60 <apply/9> + 132
+88  libleanshared.dylib                 0x000000010f8ec43c Lean.MVarId.withContext [boxed, λ, arity↓] spec at Lean.Elab.Tactic.withMainContext + 156
+89  libleanshared.dylib                 0x000000011322f16c <apply/5> + 1652
+90  libleanshared.dylib                 0x000000010f8ec64c Lean.MVarId.withContext [arity↓] spec at Lean.Elab.Tactic.withMainContext + 244
+91  libleanshared.dylib                 0x000000010f8ecc94 Lean.Elab.Tactic.withMainContext [arity↓] + 364
+92  libleanshared.dylib                 0x000000011043e118 Lean.Elab.Tactic.evalSimp [boxed] + 248
+93  libleanshared.dylib                 0x0000000113236838 <apply/10> + 2164
+94  libleanshared.dylib                 0x000000010f8c2880 Lean.Elab.Tactic.evalTactic.eval [λ, private] + 284
+95  libleanshared.dylib                 0x0000000113235558 <apply/9> + 2428
+96  libleanshared.dylib                 0x000000010f8c45a4 Lean.Elab.withInfoTreeContext [arity↓] spec at Lean.Elab.Tactic.evalTactic.eval + 436
+97  libleanshared.dylib                 0x000000010f8c507c Lean.Elab.Tactic.evalTactic.eval [λ, private] + 560
+98  libleanshared.dylib                 0x000000010f8c51a8 Lean.Elab.Tactic.evalTactic.eval [boxed, λ, private] + 64
+99  libleanshared.dylib                 0x000000011323523c <apply/9> + 1632
+LeanPML/Examples/PathHelpers.lean:123:15: error: (kernel) declaration has metavariables 'LeanPML.Examples.affineJet.eq_1'
+PANIC at Lean.MetavarContext.getDecl Lean.MetavarContext:482:17: unknown metavariable _uniq.39407
+backtrace:
+0   libleanshared.dylib                 0x00000001132244e4 _ZN4leanL15print_backtraceEb + 60
+1   libleanshared.dylib                 0x000000011321b28c _ZN4leanL15lean_panic_implEPKcmb + 176
+2   libleanshared.dylib                 0x000000011321b3a8 lean_panic_fn_borrowed + 64
+3   libleanshared.dylib                 0x00000001127d52ec Lean.MetavarContext.MkBinding.elimMVar [private] + 96
+4   libleanshared.dylib                 0x00000001127d7568 Lean.MetavarContext.MkBinding.elimApp [private] + 1492
+5   libleanshared.dylib                 0x00000001127d3860 Lean.MetavarContext.MkBinding.visit [private] + 232
+6   libleanshared.dylib                 0x00000001127d43d0 Lean.MetavarContext.MkBinding.elim [private] + 2096
+7   libleanshared.dylib                 0x00000001127d3860 Lean.MetavarContext.MkBinding.visit [private] + 232
+8   libleanshared.dylib                 0x00000001127d4fe4 Array.mapMUnsafe.map [private] spec at Lean.MetavarContext.MkBinding.elimApp + 140
+9   libleanshared.dylib                 0x00000001127d7658 Lean.MetavarContext.MkBinding.elimApp [private] + 1732
+10  libleanshared.dylib                 0x00000001127d3860 Lean.MetavarContext.MkBinding.visit [private] + 232
+11  libleanshared.dylib                 0x00000001127d4fe4 Array.mapMUnsafe.map [private] spec at Lean.MetavarContext.MkBinding.elimApp + 140
+12  libleanshared.dylib                 0x00000001127d7658 Lean.MetavarContext.MkBinding.elimApp [private] + 1732
+13  libleanshared.dylib                 0x00000001127d7e78 Lean.MetavarContext.MkBinding.mkAuxMVarType.abstractRangeAux [private] + 48
+14  libleanshared.dylib                 0x00000001127d6df0 Lean.MetavarContext.MkBinding.mkAuxMVarType [private] + 84
+15  libleanshared.dylib                 0x00000001127d5b94 Lean.MetavarContext.MkBinding.elimMVar [private] + 2312
+16  libleanshared.dylib                 0x00000001127d7568 Lean.MetavarContext.MkBinding.elimApp [private] + 1492
+17  libleanshared.dylib                 0x00000001127da224 Lean.MetavarContext.MkBinding.elimMVarDeps + 300
+18  libleanshared.dylib                 0x00000001127dc2fc Lean.MetavarContext.MkBinding.mkBinding + 96
+19  libleanshared.dylib                 0x00000001127dcdb4 Lean.MetavarContext.mkBinding + 276
+20  libleanshared.dylib                 0x00000001109ba3cc Lean.Meta.mkLambdaFVars + 464
+21  libleanshared.dylib                 0x0000000112204138 Lean.Meta.introNImp.loop [λ, private] spec at Lean.Meta.introNCore + 628
+22  libleanshared.dylib                 0x0000000112204508 Lean.Meta.introNImp.loop [boxed, λ, private] spec at Lean.Meta.introNCore + 44
+23  libleanshared.dylib                 0x000000011322f9ec <apply/5> + 3828
+24  libleanshared.dylib                 0x00000001122024c8 Lean.Meta.withNewLocalInstancesImpAux [arity↓, private] spec at Lean.Meta.withNewLocalInstances spec at Lean.Meta.introNImp.loop spec at Lean.Meta.introNCore + 48
+25  libleanshared.dylib                 0x00000001122026f8 Lean.Meta.withNewLocalInstances [arity↓] spec at Lean.Meta.introNImp.loop spec at Lean.Meta.introNCore + 16
+26  libleanshared.dylib                 0x000000011220297c Lean.Meta.withNewLocalInstances [boxed] spec at Lean.Meta.introNImp.loop spec at Lean.Meta.introNCore + 68
+27  libleanshared.dylib                 0x000000011322f9ec <apply/5> + 3828
+28  libleanshared.dylib                 0x0000000112206934 Lean.Meta.introNCore [λ] + 876
+29  libleanshared.dylib                 0x0000000112206cac Lean.Meta.introNCore [boxed, λ] + 52
+30  libleanshared.dylib                 0x000000011322f6ac <apply/5> + 2996
+31  libleanshared.dylib                 0x00000001122015cc Lean.MVarId.withContext [arity↓] spec at Lean.Meta.introNCore + 44
+32  libleanshared.dylib                 0x0000000112209d30 Lean.MVarId.intros + 540
+33  libleanshared.dylib                 0x000000010f00a378 Lean.Elab.Eqns.mkEqnProof [λ, private] + 268
+34  libleanshared.dylib                 0x000000010f00abd8 Lean.Elab.Eqns.mkEqnProof [boxed, λ, private] + 40
+35  libleanshared.dylib                 0x000000011322f9ec <apply/5> + 3828
+36  libleanshared.dylib                 0x00000001109e24f4 Lean.Meta.withNewMCtxDepthImp [arity↓, private] + 592
+37  libleanshared.dylib                 0x000000010f0098d4 Lean.Meta.withNewMCtxDepth [arity↓] spec at Lean.Elab.Eqns.mkEqnProof + 40
+38  libleanshared.dylib                 0x000000010f028774 Lean.Elab.Eqns.mkEqns.doRealize [private] + 1604
+39  libleanshared.dylib                 0x000000010f029d60 Lean.Elab.Eqns.mkEqns.doRealize [boxed, private] + 40
+40  libleanshared.dylib                 0x000000011322f9ec <apply/5> + 3828
+41  libleanshared.dylib                 0x0000000110be9f64 Lean.Meta.withEqnOptions [boxed] + 64
+42  libleanshared.dylib                 0x000000011322f5fc <apply/5> + 2820
+43  libleanshared.dylib                 0x0000000110a1b5dc Lean.withoutExporting [boxed] spec at Lean.Meta.realizeValue.realizeAndReport + 64
+44  libleanshared.dylib                 0x000000011322f5fc <apply/5> + 2820
+45  libleanshared.dylib                 0x0000000110a1e5b4 Lean.withDeclNameForAuxNaming [arity↓] spec at Lean.Meta.realizeConst.realizeAndReport + 912
+46  libleanshared.dylib                 0x0000000110a1ee8c Lean.Meta.realizeConst.realizeAndReport [λ, private] + 80
+47  libleanshared.dylib                 0x0000000110a1f318 Lean.Meta.realizeConst.realizeAndReport [boxed, λ, private] + 52
+48  libleanshared.dylib                 0x000000011322f16c <apply/5> + 1652
+49  libleanshared.dylib                 0x0000000110a119b8 IO.withStderr [arity↓] spec at IO.FS.withIsolatedStreams spec at Lean.Meta.realizeValue.realizeAndReport + 168
+50  libleanshared.dylib                 0x0000000110a11e18 IO.withStderr [boxed] spec at IO.FS.withIsolatedStreams spec at Lean.Meta.realizeValue.realizeAndReport + 64
+51  libleanshared.dylib                 0x000000011322f5fc <apply/5> + 2820
+52  libleanshared.dylib                 0x0000000110a112c0 IO.withStdout [arity↓] spec at IO.FS.withIsolatedStreams spec at Lean.Meta.realizeValue.realizeAndReport + 168
+53  libleanshared.dylib                 0x0000000110a11720 IO.withStdout [boxed] spec at IO.FS.withIsolatedStreams spec at Lean.Meta.realizeValue.realizeAndReport + 64
+54  libleanshared.dylib                 0x000000011322f5fc <apply/5> + 2820
+55  libleanshared.dylib                 0x0000000110a120a0 IO.withStdin [arity↓] spec at IO.FS.withIsolatedStreams spec at Lean.Meta.realizeValue.realizeAndReport + 168
+56  libleanshared.dylib                 0x0000000110a125e8 IO.FS.withIsolatedStreams [arity↓] spec at Lean.Meta.realizeValue.realizeAndReport + 324
+57  libleanshared.dylib                 0x0000000110a2003c Lean.Meta.realizeConst.realizeAndReport [private] + 3144
+58  libleanshared.dylib                 0x000000011322bc58 <apply/3> + 2688
+59  libleanshared.dylib                 0x00000001106a17f8 Lean.Environment.realizeConst [λ] + 164
+60  libleanshared.dylib                 0x000000011322bc58 <apply/3> + 2688
+61  libleanshared.dylib                 0x00000001106a3ee0 Lean.Environment.realizeValue [λ] spec at Lean.Environment.realizeConst + 1604
+62  libleanshared.dylib                 0x00000001106a4cc4 Lean.Environment.realizeValue spec at Lean.Environment.realizeConst + 2780
+63  libleanshared.dylib                 0x00000001106a5120 Lean.Environment.realizeConst + 192
+64  libleanshared.dylib                 0x0000000110a23e7c Lean.Meta.realizeConst + 1244
+65  libleanshared.dylib                 0x000000010f02a74c WellFounded.opaqueFix₃ [λ, arity↓] spec at Lean.Elab.Eqns.mkEqns + 424
+66  libleanshared.dylib                 0x000000010f02adf0 WellFounded.opaqueFix₃ [arity↓] spec at Lean.Elab.Eqns.mkEqns + 860
+67  libleanshared.dylib                 0x000000010f02c378 Lean.Elab.Eqns.mkEqns [private] + 3544
+68  libleanshared.dylib                 0x000000010f02d2b8 Lean.Elab.Eqns.getEqnsFor? [private] + 1044
+69  libleanshared.dylib                 0x000000010f02dab4 Lean.Elab.Eqns.getEqnsFor? [boxed, private] + 40
+70  libleanshared.dylib                 0x0000000113230f2c <apply/6> + 2464
+71  libleanshared.dylib                 0x0000000110bf022c List.forIn'.loop [arity↓] spec at Lean.Meta.getEqnsFor?Core + 300
+72  libleanshared.dylib                 0x0000000110bf09fc Lean.Meta.getEqnsFor?Core [λ, private] + 828
+73  libleanshared.dylib                 0x0000000110bf0da0 Lean.Meta.getEqnsFor?Core [boxed, λ, private] + 40
+74  libleanshared.dylib                 0x000000011322f81c <apply/5> + 3364
+75  libleanshared.dylib                 0x0000000110befda0 Lean.Meta.withLCtx [arity↓] spec at Lean.Meta.getEqnsFor?Core + 48
+76  libleanshared.dylib                 0x0000000110bf10b8 Lean.Meta.getEqnsFor?Core [boxed, private] + 156
+77  libleanshared.dylib                 0x000000011322f81c <apply/5> + 3364
+78  libleanshared.dylib                 0x0000000110be9f64 Lean.Meta.withEqnOptions [boxed] + 64
+79  libleanshared.dylib                 0x000000011322f5fc <apply/5> + 2820
+80  libleanshared.dylib                 0x0000000110befda0 Lean.Meta.withLCtx [arity↓] spec at Lean.Meta.getEqnsFor?Core + 48
+81  libleanshared.dylib                 0x000000011256e16c Lean.Meta.mkSimpEntryOfDeclToUnfold + 1108
+82  libleanshared.dylib                 0x000000011040b5b8 Lean.Elab.Tactic.elabDeclToUnfoldOrTheorem [private] + 2276
+83  libleanshared.dylib                 0x0000000110413b70 Lean.Elab.Tactic.elabSimpArg [private] + 3684
+84  libleanshared.dylib                 0x0000000110419f68 Array.forIn'Unsafe.loop [private] spec at Lean.Elab.Tactic.elabSimpArgs + 376
+85  libleanshared.dylib                 0x000000011041df40 Lean.Elab.Tactic.elabSimpArgs [λ] + 132
+86  libleanshared.dylib                 0x000000011041ea9c Lean.Elab.Tactic.elabSimpArgs [boxed, λ] + 224
+87  libleanshared.dylib                 0x0000000113235a04 <apply/9> + 3624
+88  libleanshared.dylib                 0x0000000110418788 Lean.Meta.withTrackingZetaDeltaSet [arity↓] spec at Lean.Elab.Tactic.elabSimpArgs + 876
+89  libleanshared.dylib                 0x000000011041f114 Lean.Elab.Tactic.elabSimpArgs [boxed, λ] + 92
+90  libleanshared.dylib                 0x0000000113235320 <apply/9> + 1860
+91  libleanshared.dylib                 0x000000010f8ec43c Lean.MVarId.withContext [boxed, λ, arity↓] spec at Lean.Elab.Tactic.withMainContext + 156
+92  libleanshared.dylib                 0x000000011322f16c <apply/5> + 1652
+93  libleanshared.dylib                 0x000000010f8ec64c Lean.MVarId.withContext [arity↓] spec at Lean.Elab.Tactic.withMainContext + 244
+94  libleanshared.dylib                 0x000000010f8ecc94 Lean.Elab.Tactic.withMainContext [arity↓] + 364
+95  libleanshared.dylib                 0x0000000110423320 Lean.Elab.Tactic.mkSimpContext + 2368
+96  libleanshared.dylib                 0x000000011043c7b4 Lean.Elab.Tactic.evalSimp [λ] + 92
+97  libleanshared.dylib                 0x000000011043ddc4 Lean.Elab.Tactic.evalSimp [boxed, λ] + 76
+98  libleanshared.dylib                 0x0000000113234e7c <apply/9> + 672
+99  libleanshared.dylib                 0x000000011043a56c Lean.Elab.Tactic.withSimpDiagnostics + 240
+LeanPML/Examples/PathHelpers.lean:120:8: error: (kernel) application type mismatch
+  congrArg Continuous (funext fun t => map_smul (restrictContinuous D) (α + β * t) f)
+argument has type
+  (fun x => (restrictContinuous D) ((α + β * x) • f)) = fun x => (α + β * x) • (restrictContinuous D) f
+but function has type
+  failed to pretty print expression (use 'set_option pp.rawOnError true' for raw representation)

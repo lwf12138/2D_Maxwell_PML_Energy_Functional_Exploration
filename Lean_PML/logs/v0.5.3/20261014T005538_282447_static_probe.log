@@ -1,0 +1,62 @@
+LeanPML/Examples/StaticMode.lean:34:2: error: No applicable extensionality theorem found for type
+  PrimitiveFields
+
+Note: Extensionality theorems can be registered by marking them with the `[ext]` attribute
+LeanPML/Examples/StaticMode.lean:42:8: error: Function expected at
+  fderiv_neg
+but this term has type
+  fderiv ?m.44 (-?m.52) ?m.53 = -fderiv ?m.44 ?m.52 ?m.53
+
+Note: Expected a function because this term is being applied to the argument
+  f.differentiable.differentiableAt
+LeanPML/Examples/StaticMode.lean:46:18: warning: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+LeanPML/Examples/StaticMode.lean:46:18: warning: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+LeanPML/Examples/StaticMode.lean:46:18: warning: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+LeanPML/Examples/StaticMode.lean:46:18: warning: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+LeanPML/Examples/StaticMode.lean:47:4: error: Type mismatch: After simplification, term
+  hasDerivAt_const t (-↑f X)
+ has type
+  HasDerivAt (fun x => -↑f X) 0 t
+but is expected to have type
+  OriginalHasDerivAt
+    { E := fun x x_1 => 0, Hx := fun x X => -↑f X, Hy := fun x x_1 => 0, P := fun x x_1 => 0, Z1 := fun x x_1 => 0,
+      Z2 := fun x x_1 => 0, Qx := fun x X => p X.1 * ↑f X, Qy := fun x x_1 => 0 }
+    t X
+LeanPML/Examples/StaticMode.lean:48:4: error: Type mismatch: After simplification, term
+  hasDerivAt_const t (p X.1 * ↑f X)
+ has type
+  HasDerivAt (fun x => p X.1 * ↑f X) 0 t
+but is expected to have type
+  0 = spaceDx (fun x x_1 => 0) t X - spaceDy (fun x X => -↑f X) t X
+LeanPML/Examples/StaticMode.lean:49:46: warning: This simp argument is unused:
+  hneg
+
+Hint: Omit it from the simp argument list.
+  simp [̵o̵r̵i̵g̵i̵n̵a̵l̵,̵d̵t̵,̵s̵p̵a̵c̵e̵D̵x̵,̵s̵p̵a̵c̵e̵D̵y̵,̵h̵n̵e̵g̵]̵[̲o̲r̲i̲g̲i̲n̲a̲l̲,̲ ̲d̲t̲,̲ ̲s̲p̲a̲c̲e̲D̲x̲,̲ ̲s̲p̲a̲c̲e̲D̲y̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/Examples/StaticMode.lean:68:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  lift (original ?p ?f) 1 (fun x => 0) fun x => 0
+in the target expression
+  LiftIdentified (data f) (original p f) 1 (fun x => 0) fun x => 0
+
+p : ℝ → ℝ
+f : SmoothField
+⊢ LiftIdentified (data f) (original p f) 1 (fun x => 0) fun x => 0
+LeanPML/Examples/StaticMode.lean:76:2: error: Type mismatch: After simplification, term
+  contDiff_const
+ has type
+  ContDiff ℝ ∞ fun x => 0
+but is expected to have type
+  ContDiff ℝ ∞ (Function.uncurry (integralLift (fun x x_1 => 0) fun x => 0))
+LeanPML/Examples/StaticMode.lean:81:40: error: unexpected token '('; expected ')', ',' or ':'
+LeanPML/Examples/StaticMode.lean:90:40: error: unexpected token '('; expected ')', ',' or ':'
+LeanPML/Examples/StaticMode.lean:130:40: error: unexpected token '('; expected ')', ',' or ':'

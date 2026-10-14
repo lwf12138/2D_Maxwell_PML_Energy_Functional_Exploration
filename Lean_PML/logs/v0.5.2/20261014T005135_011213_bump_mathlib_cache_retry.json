@@ -1,0 +1,21 @@
+{
+  "stage": "v0.5.2",
+  "command": [
+    "lake",
+    "exe",
+    "cache",
+    "get",
+    "Mathlib.Analysis.SpecialFunctions.SmoothTransition",
+    "Mathlib.Analysis.Calculus.Deriv.Support"
+  ],
+  "command_display": "lake exe cache get Mathlib.Analysis.SpecialFunctions.SmoothTransition Mathlib.Analysis.Calculus.Deriv.Support",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-14T00:51:35.011213+08:00",
+  "output_file": "20261014T005135_011213_bump_mathlib_cache_retry.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-14T00:51:41.350817+08:00",
+  "elapsed_seconds": 6.339
+}

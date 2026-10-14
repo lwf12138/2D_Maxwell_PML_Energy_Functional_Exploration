@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "formal_source_count": 58,
+  "main_input_fields_count": 19,
+  "new_local_links_checked": 76,
+  "missing_links": [],
+  "pdf": {
+    "target": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf",
+    "sha256": "730b9d79a305e563791d49cbc5edc0e790895168f171f359af2d4f395eba79ce",
+    "backup": "logs/v0.5.3/pdf/backup.json",
+    "modified_pages": [
+      5,
+      8,
+      10,
+      11,
+      12,
+      14,
+      15,
+      16
+    ],
+    "new_ticks": 6,
+    "new_notes": 2,
+    "old_annotations_preserved": true,
+    "structural_check": "logs/v0.5.3/pdf/annotation_result.json",
+    "visual_check": "logs/v0.5.3/pdf/visual_review.json"
+  }
+}

@@ -1,0 +1,91 @@
+LeanPML.Examples.FullDomain.regional :
+  LeanPML.Rectangle.RegionalAbsorption LeanPML.Rectangle.ParameterCertificate.unitSquare
+LeanPML.Examples.FullDomain.regional_threshold :
+  LeanPML.Examples.FullDomain.regional.c ≤
+    LeanPML.PML.threshold 1 1 1 1 (LeanPML.Rectangle.poincareConstant LeanPML.Rectangle.ParameterCertificate.unitSquare)
+LeanPML.Examples.FullDomain.four_sides_nonempty :
+  (3 / 4, 0) ∈ LeanPML.Rectangle.ParameterCertificate.unitSquare.openSet ∧
+    (-3 / 4, 0) ∈ LeanPML.Rectangle.ParameterCertificate.unitSquare.openSet ∧
+      (0, 3 / 4) ∈ LeanPML.Rectangle.ParameterCertificate.unitSquare.openSet ∧
+        (0, -3 / 4) ∈ LeanPML.Rectangle.ParameterCertificate.unitSquare.openSet ∧
+          (0 < LeanPML.Examples.FullDomain.profile (3 / 4) ∧ LeanPML.Examples.FullDomain.profile 0 = 0) ∧
+            (0 < LeanPML.Examples.FullDomain.profile (-3 / 4) ∧ LeanPML.Examples.FullDomain.profile 0 = 0) ∧
+              (LeanPML.Examples.FullDomain.profile 0 = 0 ∧ 0 < LeanPML.Examples.FullDomain.profile (3 / 4)) ∧
+                LeanPML.Examples.FullDomain.profile 0 = 0 ∧ 0 < LeanPML.Examples.FullDomain.profile (-3 / 4)
+LeanPML.Examples.FullDomain.four_corners_nonempty (x : ℝ) :
+  x ∈ {3 / 4, -3 / 4} →
+    ∀ y ∈ {3 / 4, -3 / 4},
+      (x, y) ∈ LeanPML.Rectangle.ParameterCertificate.unitSquare.openSet ∧
+        0 < LeanPML.Examples.FullDomain.profile x ∧ 0 < LeanPML.Examples.FullDomain.profile y
+LeanPML.Examples.CompatibleData.initial_derivatives (f : LeanPML.Rectangle.SmoothField)
+  (X : LeanPML.PML.Concrete.Point) :
+  HasDerivAt (fun t => (LeanPML.Examples.CompatibleData.initialExtension f).E t X) 0 0 ∧
+    HasDerivAt (fun t => (LeanPML.Examples.CompatibleData.initialExtension f).P t X) 0 0 ∧
+      HasDerivAt (fun t => (LeanPML.Examples.CompatibleData.initialExtension f).Hx t X) (-LeanPML.Rectangle.dy (↑f) X)
+          0 ∧
+        HasDerivAt (fun t => (LeanPML.Examples.CompatibleData.initialExtension f).Hy t X) (LeanPML.Rectangle.dx (↑f) X)
+          0
+LeanPML.Examples.CompatibleData.physical_initial_equations (X : LeanPML.PML.Concrete.Point) :
+  LeanPML.PML.Concrete.OriginalAt 1 1 1 1 LeanPML.Examples.FullDomain.profile LeanPML.Examples.FullDomain.profile
+    (LeanPML.Examples.CompatibleData.initialExtension LeanPML.Examples.FullDomain.physicalBump) 0 X
+LeanPML.Examples.CompatibleData.physical_data_certificate :
+  HasCompactSupport ↑LeanPML.Examples.FullDomain.physicalBump ∧
+    (LeanPML.Rectangle.SmoothField.toL2 LeanPML.Rectangle.ParameterCertificate.unitSquare)
+          LeanPML.Examples.FullDomain.physicalBump ≠
+        0 ∧
+      (∀ (X : LeanPML.PML.Concrete.Point),
+          LeanPML.PML.Concrete.OriginalAt 1 1 1 1 LeanPML.Examples.FullDomain.profile
+            LeanPML.Examples.FullDomain.profile
+            (LeanPML.Examples.CompatibleData.initialExtension LeanPML.Examples.FullDomain.physicalBump) 0 X) ∧
+        (∀ (X : LeanPML.PML.Concrete.Point),
+            LeanPML.PML.Concrete.InitialCompatible
+              (LeanPML.Examples.CompatibleData.initialExtension LeanPML.Examples.FullDomain.physicalBump)
+              (LeanPML.PML.Concrete.lift
+                (LeanPML.Examples.CompatibleData.initialExtension LeanPML.Examples.FullDomain.physicalBump) 1
+                (fun x => 0) fun X => -↑LeanPML.Examples.FullDomain.physicalBump X)
+              1 1 1 LeanPML.Examples.FullDomain.profile LeanPML.Examples.FullDomain.profile X) ∧
+          LeanPML.Rectangle.ZeroBoundary LeanPML.Rectangle.ParameterCertificate.unitSquare
+              ↑LeanPML.Examples.FullDomain.physicalBump ∧
+            (∀ (X : LeanPML.PML.Concrete.Point),
+                (LeanPML.PML.Concrete.lift
+                          (LeanPML.Examples.CompatibleData.initialExtension LeanPML.Examples.FullDomain.physicalBump) 1
+                          (fun x => 0) fun X => -↑LeanPML.Examples.FullDomain.physicalBump X).φx
+                      0 X =
+                    0 ∧
+                  (LeanPML.PML.Concrete.lift
+                          (LeanPML.Examples.CompatibleData.initialExtension LeanPML.Examples.FullDomain.physicalBump) 1
+                          (fun x => 0) fun X => -↑LeanPML.Examples.FullDomain.physicalBump X).φy
+                      0 X =
+                    0) ∧
+              LeanPML.PML.Concrete.InitialDerivativeCompatible LeanPML.Rectangle.ParameterCertificate.unitSquare
+                  LeanPML.Examples.FullDomain.regional.coefficients
+                  (LeanPML.Examples.CompatibleData.data LeanPML.Examples.FullDomain.physicalBump) 1 1 ∧
+                0 <
+                  LeanPML.Examples.CompatibleData.initialGraphSquare LeanPML.Rectangle.ParameterCertificate.unitSquare
+                    LeanPML.Examples.FullDomain.regional.coefficients
+                    (LeanPML.PML.scaleK 1 1 1
+                      (LeanPML.Rectangle.poincareConstant LeanPML.Rectangle.ParameterCertificate.unitSquare))
+                    LeanPML.Examples.FullDomain.physicalBump
+LeanPML.Examples.CompatibleData.physical_initial_traces :
+  (LeanPML.Rectangle.ZeroBoundary LeanPML.Rectangle.ParameterCertificate.unitSquare fun x => 0) ∧
+    LeanPML.Rectangle.ZeroBoundary LeanPML.Rectangle.ParameterCertificate.unitSquare
+        ((LeanPML.Examples.CompatibleData.initialExtension LeanPML.Examples.FullDomain.physicalBump).E 0) ∧
+      LeanPML.Rectangle.ZeroBoundary LeanPML.Rectangle.ParameterCertificate.unitSquare fun X =>
+        LeanPML.PML.Concrete.dt
+          (LeanPML.Examples.CompatibleData.initialExtension LeanPML.Examples.FullDomain.physicalBump).E 0 X
+LeanPML.Examples.CompatibleData.regular (D : LeanPML.Rectangle.Rect)
+  (C : LeanPML.PML.SpatialAbsorption LeanPML.PML.Concrete.Point) (f : LeanPML.Rectangle.SmoothField) :
+  LeanPML.Rectangle.SmoothStateRegular D C (LeanPML.Examples.CompatibleData.data f)
+LeanPML.Examples.CompatibleData.initialGraphSquare_formula (D : LeanPML.Rectangle.Rect)
+  (C : LeanPML.PML.SpatialAbsorption LeanPML.PML.Concrete.Point) (K : ℝ) (f : LeanPML.Rectangle.SmoothField) :
+  LeanPML.Examples.CompatibleData.initialGraphSquare D C K f =
+    2 * ‖(LeanPML.Rectangle.SmoothField.toL2 D) f‖ ^ 2 +
+      K *
+        (‖(LeanPML.Rectangle.SmoothField.toL2 D) f.derivativeX‖ ^ 2 +
+          ‖(LeanPML.Rectangle.SmoothField.toL2 D) f.derivativeY‖ ^ 2)
+def LeanPML.Examples.CompatibleData.initialExtension : LeanPML.Rectangle.SmoothField →
+  LeanPML.PML.Concrete.OriginalFields :=
+fun f =>
+  { E := fun x X => ↑f X, Hx := fun t X => -t * LeanPML.Rectangle.dy (↑f) X,
+    Hy := fun t X => t * LeanPML.Rectangle.dx (↑f) X, P := fun x X => ↑f X, Z1 := fun x x_1 => 0, Z2 := fun x x_1 => 0,
+    Qx := fun x x_1 => 0, Qy := fun x x_1 => 0 }

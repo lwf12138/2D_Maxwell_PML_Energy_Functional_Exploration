@@ -1,0 +1,12 @@
+LeanPML/Examples/FullDomainProfile.lean:196:2: error: failed to prove positivity/nonnegativity/nonzeroness
+hslice :
+  HasDerivAt (fun y => basicBump 0 (1 / 4) y * basicBump 0 (1 / 4) 0)
+    (((1 / 4) ^ 2 - (-1 / 8 - 0) ^ 2)⁻¹ ^ 2 * basicBump 0 (1 / 4) (-1 / 8) * (-2 * (-1 / 8 - 0)) *
+      basicBump 0 (1 / 4) 0)
+    (-1 / 8)
+hidentify :
+  dx ↑physicalBump (-1 / 8, 0) =
+    ((1 / 4) ^ 2 - (-1 / 8 - 0) ^ 2)⁻¹ ^ 2 * basicBump 0 (1 / 4) (-1 / 8) * (-2 * (-1 / 8 - 0)) * basicBump 0 (1 / 4) 0
+hleft : 0 < basicBump 0 (1 / 4) (-1 / 8)
+hright : 0 < basicBump 0 (1 / 4) 0
+⊢ 0 < 4096 / 9 * basicBump 0 (1 / 4) (-(1 / 8)) * (1 / 4) * basicBump 0 (1 / 4) 0

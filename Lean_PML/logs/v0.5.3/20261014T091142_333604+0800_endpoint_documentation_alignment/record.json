@@ -1,0 +1,99 @@
+{
+  "scope": "v0.5 端点时间正则性说明对齐，仅文档修订",
+  "status": "passed",
+  "checked_at": "2026-10-14T09:14:18.523259+08:00",
+  "command": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v0.5.3/20261014T091142_333604+0800_endpoint_documentation_alignment/verify_and_record.py"
+  ],
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "modified_documents": {
+    "reports/smooth_theorem.md": {
+      "before_sha256": "074fcab650e79c47c163f1002861efab41d24e3fb3f1f6ea03296e3cb181628e",
+      "after_sha256": "62e4ec5a370e7fee96fd73dea84b9e008c1fcc7170e19dc2a3f73189bb62d44c",
+      "changed_lines_after": [
+        85
+      ]
+    },
+    "PROGRESS.md": {
+      "before_sha256": "b61615a2b5c8b64f366bc02da662b6f8c29be1d6d337e295e445f1374867627e",
+      "after_sha256": "220c51873bcb76e87792866e9805c076bc36fe6a1664bac762c0c6382d04760e",
+      "changed_lines_after": [
+        3
+      ]
+    }
+  },
+  "old_sentence": "相同时刻与两个端点包含在结论中，不要求端点普通双侧导数。",
+  "new_sentence": "相同时刻与两个端点包含在结论中。闭区间比较与积分平衡的时间引理不额外要求端点处的 PDE 或能量导数公式；当前具体定理采用的光滑延拓本身仍包含端点普通双侧可导性：`SmoothTimeJet` 在全时间轴上要求联合光滑性及 `HasDerivAt` 证据。更弱的时间正则性入口尚未在该具体主定理中实现。",
+  "T0_sentence_preserved": "$T=0$时保持单点比较与静态能量估计；其初始导数层兼容明确输入，不能从空的内部条件推出。",
+  "sources_read": {
+    "LeanPML/Rectangle/SmoothPaths.lean": "aa905c50a6618435f1c021c3473ddc0777f9d140c6aabd07c0fb899b0e9a2288",
+    "LeanPML/Rectangle/StatePaths.lean": "915c8204230cbb954cfe4403be3b3ce7c7ac9cc24ba78ca824b9066f906c9850",
+    "LeanPML/PML/MainSmoothRectangle.lean": "62f7a7d7826d916d2283a3a84a62c92dceb9f65bc445f6d2815cb927d7a1538e",
+    "LeanPML/Rectangle/RegionalCoefficients.lean": "f7a5bf667a9dc9d5914f63c9747b95372227922de41912fcf6a8a44ff0277623",
+    "LeanPML/PML/MainAbstract.lean": "47b278c96a5d67d6bec24a2214830ae9094284e2b06840394b5cabf95e6a71d4",
+    "LeanPML/PML/OriginalSystem.lean": "91425cb5798bee29a4d648f8780de9aa5fb50e1081c1f8ea5f9dc3919d37c29f",
+    "LeanPML/Time/Monotonicity.lean": "70c9bad3378adfb332cc4b10e6e475a41352178899797eef07a203fb8e68aa25",
+    ".lake/packages/mathlib/Mathlib/MeasureTheory/Integral/IntervalIntegral/FundThmCalculus.lean": "a966528a7d186356de8753ac67de5eed663b12e5937315c2c14263f91479e8f1"
+  },
+  "formal_sources_checked": 58,
+  "source_mismatches": [],
+  "formal_sources_match_v0_5_3": true,
+  "protected_files_unchanged": true,
+  "pdf_unchanged": true,
+  "README_unchanged": true,
+  "other_documentation_unchanged": [
+    "docs/theorem_inventory.md",
+    "docs/single_layer_failure.md",
+    "docs/v0.2.2_reading_guide.md",
+    "docs/scope.md",
+    "docs/v0.2.3_reading_guide.md",
+    "docs/source_inventory.md",
+    "docs/claim_ledger.md",
+    "docs/pdf_formalization_marks.md",
+    "docs/model_contract.md",
+    "docs/v0.2.1_reading_guide.md"
+  ],
+  "prior_acceptance_records_unchanged": {
+    "logs/v0.5.1/acceptance.json": "9bd17fc8cea860ee183a2a3b25cdc4c8e1c82b99cbddca3f818462862cef1ec6",
+    "logs/v0.5.2/acceptance.json": "2fc21492023cb47950179dbd3d459086521ea02da4c70e407a898196719d92c5",
+    "logs/v0.5.3/acceptance.json": "94db87ba560d47ed59827d3595c122f9043925fd53b4dbee5d60bf653fa71941",
+    "logs/v0.5.3/overall_acceptance.json": "cfd12f5975e66d167f7a842d9a3b53e537d99746c0d53775a741d0c9a00678d1"
+  },
+  "verification_kind": "本轮只读源码/调用链、SHA256及文档diff；引用既有成功构建和审计，未重跑",
+  "build_rerun": false,
+  "axioms_audit_rerun": false,
+  "referenced_prior_success_records": [
+    {
+      "stage": "v0.5.3",
+      "kind": "build",
+      "metadata": "logs/v0.5.3/20261014T011533_485975_lake_build.json",
+      "output": "logs/v0.5.3/20261014T011533_485975_lake_build.log",
+      "output_sha256": "89405b05171355edae2ca57aa3194c8dcb6e6474fe0d56689564f772ed2a0407",
+      "exit_code": 0
+    },
+    {
+      "stage": "v0.5.3",
+      "kind": "audit",
+      "metadata": "logs/v0.5.3/20261014T011752_801259_axioms_audit.json",
+      "output": "logs/v0.5.3/20261014T011752_801259_axioms_audit.log",
+      "output_sha256": "a3bf96489c0eaf39b029a28a651eb736fbeb6a53bc7ec157ac3b3ea1e3aaf1c6",
+      "exit_code": 0
+    }
+  ],
+  "historical_document_hashes": {
+    "README.md": "8f1b557a0f53c7e0cd0aaf208bd774434e2f19a3b990d57cbae08aa9347343b2",
+    "PROGRESS.md": "b61615a2b5c8b64f366bc02da662b6f8c29be1d6d337e295e445f1374867627e",
+    "reports/smooth_theorem.md": "074fcab650e79c47c163f1002861efab41d24e3fb3f1f6ea03296e3cb181628e",
+    "docs/source_inventory.md": "61e47ad9a78ff6aa423d22a01194480232a2ee0c3aa576c8ccc9d53802d0ec65",
+    "docs/theorem_inventory.md": "8d98d4836561d8f50d42d23c51cd9c12729127f4e80fa3235555afeb0de1cc62",
+    "docs/claim_ledger.md": "fd4f0ca24ea44d7ead15c502a67f5c313398ef0874599154d02c5f2f0e68288b",
+    "docs/pdf_formalization_marks.md": "f095b9d58115bb4ef9af7b85102842acf2286ed5cb36f8aa6fb684b72daca8cc"
+  },
+  "historical_document_hash_policy": "旧overall_acceptance中的文档哈希对应修订前历史版本；不更改旧哈希或旧验收状态",
+  "theorem_hypotheses_changed": false,
+  "new_mathematical_claims": false,
+  "next_stage_implemented": false,
+  "proof_repair_required": false,
+  "independent_review": "endpoint_doc_review 子代理只读复核；root检查diff及源码快照"
+}

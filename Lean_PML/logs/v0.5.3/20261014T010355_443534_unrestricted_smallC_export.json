@@ -1,0 +1,21 @@
+{
+  "stage": "v0.5.3",
+  "command": [
+    "lake",
+    "env",
+    "lean",
+    "-o",
+    ".lake/build/lib/lean/LeanPML/PML/Obstructions/UnrestrictedData.olean",
+    "LeanPML/PML/Obstructions/UnrestrictedData.lean"
+  ],
+  "command_display": "lake env lean -o .lake/build/lib/lean/LeanPML/PML/Obstructions/UnrestrictedData.olean LeanPML/PML/Obstructions/UnrestrictedData.lean",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-14T01:03:55.443534+08:00",
+  "output_file": "20261014T010355_443534_unrestricted_smallC_export.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-14T01:04:23.314100+08:00",
+  "elapsed_seconds": 27.87
+}

@@ -1,0 +1,9 @@
+LeanPML/PML/Obstructions/UnrestrictedData.lean:342:2: error: unsolved goals
+case hX
+⊢ (-(1 / 8), 0) ∈ rectangleDomain (-1) 1 (-1) 1
+LeanPML/PML/Obstructions/UnrestrictedData.lean:376:51: error: unsolved goals
+u₀ q₀ : Point → ℝ
+hall :
+  ∀ X ∈ unitSquare.openSet,
+    InitialCompatible fullProfileUnrestrictedFields (lift fullProfileUnrestrictedFields 1 u₀ q₀) 1 1 1 profile profile X
+⊢ (-(1 / 8), 0) ∈ rectangleDomain (-1) 1 (-1) 1

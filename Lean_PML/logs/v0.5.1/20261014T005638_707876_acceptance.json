@@ -1,0 +1,21 @@
+{
+  "stage": "v0.5.1",
+  "command": [
+    "python3",
+    "logs/v0.5.1/accept_stage.py",
+    "v0.5.1",
+    "logs/v0.5.1/20261014T005346_311276_lake_build.log",
+    "logs/v0.5.1/20261014T005434_779198_axioms_audit.log",
+    "logs/v0.5.1/20261014T005434_779198_interface_types.log"
+  ],
+  "command_display": "python3 logs/v0.5.1/accept_stage.py v0.5.1 logs/v0.5.1/20261014T005346_311276_lake_build.log logs/v0.5.1/20261014T005434_779198_axioms_audit.log logs/v0.5.1/20261014T005434_779198_interface_types.log",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/usr/bin/python3",
+  "started_at": "2026-10-14T00:56:38.707876+08:00",
+  "output_file": "20261014T005638_707876_acceptance.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-14T00:56:38.886822+08:00",
+  "elapsed_seconds": 0.179
+}

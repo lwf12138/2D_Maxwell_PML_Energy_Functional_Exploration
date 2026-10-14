@@ -1,0 +1,36 @@
+LeanPML/PML/MainSmoothRectangle.lean:221:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ↑↑(MemLp.toLp (s.F.E t) ⋯) X
+in the target expression
+  ↑↑(s.electricL2 t) X = ↑↑((SmoothField.toL2 D) (s.B.V.value t)) X
+
+D : Rect
+R : RegionalAbsorption D
+ε κ τ μ T : ℝ
+s : SmoothCompatibleSolution R ε κ τ μ T
+t : ℝ
+X : ℝ × ℝ
+hE : ↑↑(MemLp.toLp (s.F.E t) ⋯) X = s.F.E t X
+hV : ↑↑((SmoothField.toL2 D) (s.B.V.value t)) X = ↑(s.B.V.value t) X
+⊢ ↑↑(s.electricL2 t) X = ↑↑((SmoothField.toL2 D) (s.B.V.value t)) X
+LeanPML/PML/MainSmoothRectangle.lean:230:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ↑↑(MemLp.toLp (s.F.P t) ⋯) X
+in the target expression
+  ↑↑(s.polarL2 t) X = ↑↑((SmoothField.toL2 D) (s.B.R.value t)) X
+
+D : Rect
+R : RegionalAbsorption D
+ε κ τ μ T : ℝ
+s : SmoothCompatibleSolution R ε κ τ μ T
+t : ℝ
+X : ℝ × ℝ
+hP : ↑↑(MemLp.toLp (s.F.P t) ⋯) X = s.F.P t X
+hR : ↑↑((SmoothField.toL2 D) (s.B.R.value t)) X = ↑(s.B.R.value t) X
+⊢ ↑↑(s.polarL2 t) X = ↑↑((SmoothField.toL2 D) (s.B.R.value t)) X
+LeanPML/PML/MainSmoothRectangle.lean:236:2: error: 'change' tactic failed, pattern
+  s.magneticXL2 t = (-1 / μ) • (SmoothField.toL2 D) (s.B.Λy.value t)
+is not definitionally equal to target
+  s.magneticXL2 t = reconstructHx μ (s.problem.path.base t)
+LeanPML/PML/MainSmoothRectangle.lean:246:2: error: 'change' tactic failed, pattern
+  s.magneticYL2 t = (1 / μ) • (SmoothField.toL2 D) (s.B.Λx.value t)
+is not definitionally equal to target
+  s.magneticYL2 t = reconstructHy μ (s.problem.path.base t)

@@ -1,0 +1,17 @@
+{
+  "stage": "v0.5.3",
+  "command": [
+    "python3",
+    "logs/v0.5.3/verify_handoff.py"
+  ],
+  "command_display": "python3 logs/v0.5.3/verify_handoff.py",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/usr/bin/python3",
+  "started_at": "2026-10-14T01:35:30.067888+08:00",
+  "output_file": "20261014T013530_067888_final_handoff_check.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-14T01:35:30.118068+08:00",
+  "elapsed_seconds": 0.05
+}

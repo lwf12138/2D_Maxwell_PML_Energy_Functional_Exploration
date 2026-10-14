@@ -1,0 +1,10 @@
+LeanPML/Examples/PathHelpers.lean:124:4: error: Type mismatch: After simplification, term
+  h
+ has type
+  @HasDerivAt ℝ DenselyNormedField.toNontriviallyNormedField ℝ Real.normedCommRing.toAddCommGroup
+    (NormedAlgebra.toNormedSpace ℝ).toModule PseudoMetricSpace.toUniformSpace.toTopologicalSpace ⋯
+    (fun y => ((fun x => α) + fun y => β * id y) y * ↑f X) (β * ↑f X) t
+but is expected to have type
+  @HasDerivAt ℝ DenselyNormedField.toNontriviallyNormedField ℝ Real.instAddCommGroup Semiring.toModule
+    PseudoMetricSpace.toUniformSpace.toTopologicalSpace ⋯ (fun s => (α + β * s) * ↑f X) (β * ↑f X) t
+LeanPML/Examples/PathHelpers.lean:132:15: warning: declaration uses `sorry`

@@ -1,0 +1,81 @@
+{
+  "status": "passed",
+  "reviewer": "root 主代理逐页查看实际渲染图",
+  "time": "2026-10-14T01:31:34.692748+08:00",
+  "pages": [
+    {
+      "page": 5,
+      "printed_page": 5,
+      "image": "logs/v0.5.3/pdf/final-05.png",
+      "image_sha256": "a97d73c955d46da21a81eed91dbfca2c1d73990fd233b566dde8be27192ee14b",
+      "observation": "增长场旁注位于页首空白，完整场与不兼容范围清楚；正文、旧标记未遮挡。",
+      "status": "passed"
+    },
+    {
+      "page": 8,
+      "printed_page": 8,
+      "image": "logs/v0.5.3/pdf/final-08.png",
+      "image_sha256": "c2a349c4bd1b189d660aa85a2fe99fccf0b841bcc3cbbae62566b2520712ad6b",
+      "observation": "数据子族旁注明确初始八式及非存在性；未把整个一般数据类标成完成。",
+      "status": "passed"
+    },
+    {
+      "page": 10,
+      "printed_page": 10,
+      "image": "logs/v0.5.3/pdf/final-10.png",
+      "image_sha256": "b137546ac11583ea05dbe9e2947d0cd739da414a60526927067cf95aac642487",
+      "observation": "页首保守常数/强正则限定清晰；历史标记较多但本轮文本与原正文不相交。",
+      "status": "passed"
+    },
+    {
+      "page": 11,
+      "printed_page": 11,
+      "image": "logs/v0.5.3/pdf/final-11.png",
+      "image_sha256": "bca781c38eb532c8842d890aae5a587e65d217a8f7dd9940fee06d0b67a1f10e",
+      "observation": "仅补具体 Green 使用说明，没有重复红勾；四边公式与旧批注保持。",
+      "status": "passed"
+    },
+    {
+      "page": 12,
+      "printed_page": 12,
+      "image": "logs/v0.5.3/pdf/final-12.png",
+      "image_sha256": "88861b8a5f623818d7f98998c25fd0b87b28996343d2a322a9810fedce74b007",
+      "observation": "新两层能量律限定可见，原(7.6)–(7.8)及历史标记未遮挡。",
+      "status": "passed"
+    },
+    {
+      "page": 14,
+      "printed_page": 14,
+      "image": "logs/v0.5.3/pdf/final-14.png",
+      "image_sha256": "585882d301645fb16e4dcf9a91bcf97cb13d16af213f97da7d9765d5267a4c98",
+      "observation": "只追加(9.5)–(9.7)具体总装说明；历史待完成标记保留并限定，不重复打勾。",
+      "status": "passed"
+    },
+    {
+      "page": 15,
+      "printed_page": 15,
+      "image": "logs/v0.5.3/pdf/final-15.png",
+      "image_sha256": "3dd454dce62fa5d0500ee1ec22a9a074a0145d9389316728935a71c5bd3a66c3",
+      "observation": "C∞替代剖面与保守参数说明清楚；原(10.1)/(10.2)未被冒充逐字核验。",
+      "status": "passed"
+    },
+    {
+      "page": 16,
+      "printed_page": 16,
+      "image": "logs/v0.5.3/pdf/final-16.png",
+      "image_sha256": "39e6f4a5277772462ba197d7479d7a1dcb65b78c6ee3ff82c9fd017e92ebb77b",
+      "observation": "§11.3非零静态解说明明确，未误指§11.2编号(11.1)，没有遮挡公式。",
+      "status": "passed"
+    }
+  ],
+  "pdf_sha256": "730b9d79a305e563791d49cbc5edc0e790895168f171f359af2d4f395eba79ce",
+  "dpi": 144,
+  "checks": [
+    "红勾可见",
+    "中文无方框",
+    "范围可读",
+    "无裁切",
+    "不遮挡正文或旧批注",
+    "定位与证据账本一致"
+  ]
+}

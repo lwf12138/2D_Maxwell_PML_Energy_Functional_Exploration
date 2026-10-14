@@ -1,0 +1,23 @@
+{
+  "stage": "v0.5.3",
+  "command": [
+    "lake",
+    "env",
+    "lean",
+    "-o",
+    ".lake/build/lib/lean/LeanPML/Examples/DegenerateBranches.olean",
+    "-i",
+    ".lake/build/lib/lean/LeanPML/Examples/DegenerateBranches.ilean",
+    "LeanPML/Examples/DegenerateBranches.lean"
+  ],
+  "command_display": "lake env lean -o .lake/build/lib/lean/LeanPML/Examples/DegenerateBranches.olean -i .lake/build/lib/lean/LeanPML/Examples/DegenerateBranches.ilean LeanPML/Examples/DegenerateBranches.lean",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-14T01:03:10.575659+08:00",
+  "output_file": "20261014T010310_575659_degenerate_export.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-14T01:03:24.265944+08:00",
+  "elapsed_seconds": 13.69
+}

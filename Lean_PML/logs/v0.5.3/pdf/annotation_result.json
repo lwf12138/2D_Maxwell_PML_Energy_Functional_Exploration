@@ -1,0 +1,171 @@
+{
+  "pages": 18,
+  "old_annotations": 200,
+  "added_annotations": 8,
+  "added_red_ticks": 6,
+  "annotations_after": 208,
+  "modified_pages": [
+    5,
+    8,
+    10,
+    11,
+    12,
+    14,
+    15,
+    16
+  ],
+  "original_text_preserved": true,
+  "old_annotations_preserved": true,
+  "text_and_annotation_overlap": 0,
+  "sha256_before": "b7cff33c435944c4c24bf5327246015523368c7015e3b6fb6b65348f8fc5819d",
+  "sha256_after": "730b9d79a305e563791d49cbc5edc0e790895168f171f359af2d4f395eba79ce",
+  "plan_sha256": "4a92e4dcb6dd8c5d60846e60e5852f60e88c5e8318722f3d46256fffcdf86590",
+  "draws": [
+    {
+      "x": 68,
+      "top": 48,
+      "font_size": 6.5,
+      "lines": [
+        "v0.5：完整增长场、八式/PEC及真实L²增长已核验；初始磁辅助不兼容。"
+      ],
+      "id": "unrestricted-growth",
+      "page": 5,
+      "tick": true,
+      "scope": "§2.3 命题2.2与H=t∇ψ未编号公式\n实际完整双向剖面、物理区C∞紧支ψ及正梯度平方积分；同一全未来H=t∇ψ场八式/PEC通过，磁L²=t²G，任意历史初值不能修复Cx。只排除固定正磁控制+有限初值+全未来单调这组能量条件。不是兼容类反例，也不否定所有能量。\nLeanPML.PML.Obstructions.fullProfile_unrestricted_classical\nLeanPML.PML.Obstructions.fullProfile_unrestricted_norm_growth\nLeanPML.PML.Obstructions.fullProfile_unrestricted_not_compatible\nLeanPML.PML.Obstructions.fullProfile_unrestricted_unbounded\nLeanPML.PML.Obstructions.fullProfile_unrestricted_no_coercive_antitone_energy\n证据：\nlogs/v0.5.3/20261014T011533_485975_lake_build.log\nlogs/v0.5.3/20261014T011752_801259_axioms_audit.log",
+      "rect_top": [
+        67,
+        46,
+        292.736328125,
+        60
+      ]
+    },
+    {
+      "x": 68,
+      "top": 48,
+      "font_size": 6.5,
+      "lines": [
+        "v0.5：非零紧支兼容数据子族；初始八式、迹与有限图数据已核验，非存在性。"
+      ],
+      "id": "compatible-data-subfamily",
+      "page": 8,
+      "tick": true,
+      "scope": "§5.2数据类的§11.1启动子族\n实际f紧支于[-1/4,1/4]²，L²非零；u0=0 E0=P0=f q0=-f H/原aux0，八条原方程只在t=0核验，五初始兼容、三迹、零区、真实加权成员及正有限图平方。时间延拓不是区间PDE解；非一般解存在或加权传播。只覆盖这个启动子族，不替代所有§5.2一般数据。\nLeanPML.Examples.CompatibleData.physical_data_certificate\nLeanPML.Examples.CompatibleData.physical_initial_traces\nLeanPML.Examples.CompatibleData.initial_derivatives\nLeanPML.Examples.CompatibleData.initialGraphSquare_formula\n证据：\nlogs/v0.5.3/20261014T011533_485975_lake_build.log\nlogs/v0.5.3/20261014T011752_801259_axioms_audit.log",
+      "rect_top": [
+        67,
+        46,
+        310.785888671875,
+        60
+      ]
+    },
+    {
+      "x": 68,
+      "top": 56,
+      "font_size": 6.5,
+      "lines": [
+        "v0.5：(6.7)–(6.10) 矩形光滑兼容类已证；保守 C_P=2Lx，强正则性输入。"
+      ],
+      "id": "concrete-main",
+      "page": 10,
+      "tick": true,
+      "scope": "定理6.1及(6.7)–(6.10)\n从原八变量、只在Ioo×整个矩形的真实原方程、PEC、材料/区域界、初始兼容及已列强光滑/普通/加权正则性构造具体问题。原p/r实际积分、graph/4≤E≤graph、准确闭合、antitone、FTC平衡及输入原E/H/P L²控制均通过。CP=2Lx，不是原精确π常数或完整弱V7；不附带存在唯一或严格衰减。T0必要图初始条件明确保留。\nLeanPML.PML.SmoothRectangle.main_energy_estimate_smoothRectangle\nLeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.energy_graph_bounds\nLeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.energy_law_and_closure\nLeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.energy_antitone\nLeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.energy_integral_balance\nLeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.physical_current_bound\nLeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.energy_eq_original_integrals\n证据：\nlogs/v0.5.3/20261014T011533_485975_lake_build.log\nlogs/v0.5.3/20261014T011752_801259_axioms_audit.log",
+      "rect_top": [
+        67,
+        54,
+        296.548095703125,
+        68
+      ]
+    },
+    {
+      "x": 68,
+      "top": 59,
+      "font_size": 6,
+      "lines": [
+        "v0.5：原场总装使用已证矩形 Green/两层 PEC；(7.5) 旧光滑勾保留，弱范围未扩展。"
+      ],
+      "id": "green-concrete-use",
+      "page": 11,
+      "tick": false,
+      "scope": "(7.5)已证矩形Green在原场入口的使用\n说明已存在的真实矩形光滑Green及两层边界消去在具体主定理链内调用；不重复叠加旧完成勾，不把输入PEC或弱Green理论标为证明成果。\nLeanPML.Rectangle.green_L2\nLeanPML.Rectangle.greenDomain\nLeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.problem\nLeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.energy_law_and_closure\n证据：\nlogs/v0.5.3/20261014T011533_485975_lake_build.log\nlogs/v0.5.3/20261014T011752_801259_axioms_audit.log",
+      "rect_top": [
+        67,
+        57,
+        296.3583984375,
+        67.0
+      ]
+    },
+    {
+      "x": 68,
+      "top": 55,
+      "font_size": 6,
+      "lines": [
+        "v0.5：(7.8) 已由原模型光滑兼容路径推出；同源导数层与两层边界已接通。"
+      ],
+      "id": "concrete-energy-law",
+      "page": 12,
+      "tick": true,
+      "scope": "(7.6)–(7.8)能量律的具体总装\n同一原场的历史与导数层，通过已经实例化的G/path/regular和原层演化调用两层真实HasDerivAt。κ非零来自正材料；不是把目标能量恒等式当输入。此范围为所选强正则类，CP仍保守；完整弱解传播未完成。\nLeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.energy_law_and_closure\nLeanPML.PML.hasDerivAt_energy7_Conditional\n证据：\nlogs/v0.5.3/20261014T011533_485975_lake_build.log\nlogs/v0.5.3/20261014T011752_801259_axioms_audit.log",
+      "rect_top": [
+        67,
+        53,
+        283.3447265625,
+        67
+      ]
+    },
+    {
+      "x": 68,
+      "top": 56,
+      "font_size": 6,
+      "lines": [
+        "v0.5：(9.5)–(9.7) 的空间/路径接口由具体总装填入；保守 C_P=2Lx，旧勾保留。"
+      ],
+      "id": "concrete-cross-layer-use",
+      "page": 14,
+      "tick": false,
+      "scope": "(9.5)–(9.7)既有估计的具体实例化\n逐段核对调用链：energy_law_and_closure→dissipation7_lower→spatial_absorption_half→spatial_absorption→gradient_control，并调用debye_absorption。G是真Green，estimate是真保守Poincare，path/regular由历史与混合求导产生，hbase由原八式和初值产生。只追加具体范围说明，不重复批量打勾；弱空间仍未扩展。\nLeanPML.PML.gradient_control_Conditional\nLeanPML.PML.spatial_absorption_Conditional\nLeanPML.PML.debye_absorption_Conditional\nLeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.energy_law_and_closure\n证据：\nlogs/v0.5.3/20261014T011533_485975_lake_build.log\nlogs/v0.5.3/20261014T011752_801259_axioms_audit.log",
+      "rect_top": [
+        67,
+        54,
+        281.5283203125,
+        64.0
+      ]
+    },
+    {
+      "x": 68,
+      "top": 48,
+      "font_size": 6.5,
+      "lines": [
+        "v0.5 替代实例：C∞完整剖面与四边四角已核验；新参数、C_P=4，非原(10.2)。"
+      ],
+      "id": "smooth-alternative-profile",
+      "page": 15,
+      "tick": true,
+      "scope": "§10原(10.1)/(10.2)旁的C∞替代实例\nprofile=S*smoothTransition(4x²−1)：物理坐标零、外侧正、幅度≤S、真正C∞；actualRegional使用CP4/A3/K384/c1/16384/S1/65536证书。明确不是原正部幂函数逐字验证，不给原10.1/10.2或精确π常数无限定勾。\nLeanPML.Examples.FullDomain.profile_contDiff\nLeanPML.Examples.FullDomain.profile_zero_iff\nLeanPML.Examples.FullDomain.profile_bounds\nLeanPML.Examples.FullDomain.regional_threshold\nLeanPML.Examples.FullDomain.four_sides_nonempty\nLeanPML.Examples.FullDomain.four_corners_nonempty\n证据：\nlogs/v0.5.3/20261014T011533_485975_lake_build.log\nlogs/v0.5.3/20261014T011752_801259_axioms_audit.log",
+      "rect_top": [
+        67,
+        46,
+        312.023681640625,
+        60
+      ]
+    },
+    {
+      "x": 68,
+      "top": 48,
+      "font_size": 6.5,
+      "lines": [
+        "v0.5：§11.3 实际非零静态解已核验；正的常值能量、零耗散，单向吸收。"
+      ],
+      "id": "nonzero-static-mode",
+      "page": 16,
+      "tick": true,
+      "scope": "§11.3非零静态模态未编号公式\nr0，F(x)真正C∞紧支于p=S平台，λ=φ=(0,F)、Hx=-F、Qx=pF；8式、真实导数、PEC、五初始兼容、零区和加权/普通正则性证明。实际调用主定理得图下界、真实能量律与FTC，E>0恒定/D0，T0也合法。支撑上的p正下界不是一般主定理的全域条件。\nLeanPML.Examples.StaticMode.concreteSolution\nLeanPML.Examples.StaticMode.sideField_weighted\nLeanPML.Examples.StaticMode.concrete_integral_balance\nLeanPML.Examples.StaticMode.nonzero_static_regression\n证据：\nlogs/v0.5.3/20261014T011533_485975_lake_build.log\nlogs/v0.5.3/20261014T011752_801259_axioms_audit.log",
+      "rect_top": [
+        67,
+        46,
+        296.357666015625,
+        60
+      ]
+    }
+  ],
+  "visual_review": "passed",
+  "visual_review_record": "logs/v0.5.3/pdf/visual_review.json"
+}

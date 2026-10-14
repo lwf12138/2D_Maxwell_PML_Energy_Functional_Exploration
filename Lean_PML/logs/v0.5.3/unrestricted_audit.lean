@@ -1,0 +1,32 @@
+import LeanPML.PML.Obstructions.UnrestrictedData
+
+#print axioms LeanPML.PML.Obstructions.smooth_mixed_partials
+#print axioms LeanPML.PML.Obstructions.gradient_zero_outside_tsupport
+#print axioms LeanPML.PML.Obstructions.unrestricted_time_derivatives
+#print axioms LeanPML.PML.Obstructions.unrestricted_curl_zero
+#print axioms LeanPML.PML.Obstructions.unrestricted_originalAt
+#print axioms LeanPML.PML.Obstructions.unrestricted_spatialAt
+#print axioms LeanPML.PML.Obstructions.unrestricted_originalClassicalOn
+#print axioms LeanPML.PML.Obstructions.unrestricted_PEC
+#print axioms LeanPML.PML.Obstructions.unrestrictedMagneticSquare_eq
+#print axioms LeanPML.PML.Obstructions.unrestricted_magnetic_L2_derivatives
+#print axioms LeanPML.PML.Obstructions.unrestrictedGradientSquare_pos_of_dx
+#print axioms LeanPML.PML.Obstructions.unrestricted_initial_fields
+#print axioms LeanPML.PML.Obstructions.unrestricted_initial_magnetic_invariants
+#print axioms LeanPML.PML.Obstructions.unrestricted_not_initialCompatible
+#print axioms LeanPML.PML.Obstructions.unrestricted_magnetic_growth
+#print axioms LeanPML.PML.Obstructions.unrestricted_no_global_coercive_antitone_energy
+#print axioms LeanPML.PML.Obstructions.singleLayer_candidate_failure_regression
+#print axioms LeanPML.PML.Obstructions.unrestricted_compact_support
+#print axioms LeanPML.PML.Obstructions.unrestricted_no_compatible_lift
+#print axioms LeanPML.PML.Obstructions.smooth_L2_square_integral
+#print axioms LeanPML.PML.Obstructions.unrestrictedGradientSquare_eq_integral
+#print axioms LeanPML.PML.Obstructions.unrestrictedMagneticSquare_eq_integral
+#print axioms LeanPML.PML.Obstructions.fullProfile_unrestricted_gradient_positive
+#print axioms LeanPML.PML.Obstructions.fullProfile_unrestricted_gradient_integral_pos
+#print axioms LeanPML.PML.Obstructions.fullProfile_unrestricted_classical
+#print axioms LeanPML.PML.Obstructions.fullProfile_unrestricted_compact_fields
+#print axioms LeanPML.PML.Obstructions.fullProfile_unrestricted_not_compatible
+#print axioms LeanPML.PML.Obstructions.fullProfile_unrestricted_norm_growth
+#print axioms LeanPML.PML.Obstructions.fullProfile_unrestricted_unbounded
+#print axioms LeanPML.PML.Obstructions.fullProfile_unrestricted_no_coercive_antitone_energy

@@ -1,0 +1,21 @@
+LeanPML/PML/Obstructions/UnrestrictedData.lean:199:96: error: unsolved goals
+ψ : SmoothField
+μ : ℝ
+p r : ℝ → ℝ
+X : Point
+⊢ (p X.1 = 0 ∨ (fderiv ℝ (integralLift (fun x x_1 => 0) 0 0) X) (0, 1) = 0) ∧
+    (r X.2 = 0 ∨ (fderiv ℝ (integralLift (fun x x_1 => 0) 0 0) X) (1, 0) = 0)
+LeanPML/PML/Obstructions/UnrestrictedData.lean:200:54: warning: This simp argument is unused:
+  integralLift
+
+Hint: Omit it from the simp argument list.
+  simp [̵i̵n̵v̵a̵r̵i̵a̵n̵t̵X̵,̵i̵n̵v̵a̵r̵i̵a̵n̵t̵Y̵,̵l̵i̵f̵t̵,̵u̵n̵r̵e̵s̵t̵r̵i̵c̵t̵e̵d̵F̵i̵e̵l̵d̵s̵,̵i̵n̵t̵e̵g̵r̵a̵l̵L̵i̵f̵t̵,̵s̵p̵a̵c̵e̵D̵x̵,̵s̵p̵a̵c̵e̵D̵y̵]̵[̲i̲n̲v̲a̲r̲i̲a̲n̲t̲X̲,̲ ̲i̲n̲v̲a̲r̲i̲a̲n̲t̲Y̲,̲ ̲l̲i̲f̲t̲,̲ ̲u̲n̲r̲e̲s̲t̲r̲i̲c̲t̲e̲d̲F̲i̲e̲l̲d̲s̲,̲ ̲s̲p̲a̲c̲e̲D̲x̲,̲ ̲s̲p̲a̲c̲e̲D̲y̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/PML/Obstructions/UnrestrictedData.lean:258:8: error: Function expected at
+  initialDissipation_neg 1 1 1 1 1 0 0 1 ?m.38 ?m.39 ?m.40 ?m.41 ?m.42 fun x => ⟨rfl, rfl⟩
+but this term has type
+  initialDissipation 1 1 1 1 1 0 0 1 < 0
+
+Note: Expected a function because this term is being applied to the argument
+  (by norm_num)
