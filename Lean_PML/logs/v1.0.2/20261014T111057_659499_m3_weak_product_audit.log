@@ -1,0 +1,48 @@
+structure LeanPML.PML.RegionalBounded (D : LeanPML.Rectangle.Rect) : Type
+number of parameters: 1
+fields:
+  LeanPML.PML.RegionalBounded.value : ℝ × ℝ → ℝ
+  LeanPML.PML.RegionalBounded.measurable : Measurable self.value
+  LeanPML.PML.RegionalBounded.bound : ℝ
+  LeanPML.PML.RegionalBounded.bound_nonneg : 0 ≤ self.bound
+  LeanPML.PML.RegionalBounded.bound_on : ∀ x ∈ D.openSet, |self.value x| ≤ self.bound
+constructor:
+  LeanPML.PML.RegionalBounded.mk {D : LeanPML.Rectangle.Rect} (value : ℝ × ℝ → ℝ) (measurable : Measurable value)
+    (bound : ℝ) (bound_nonneg : 0 ≤ bound) (bound_on : ∀ x ∈ D.openSet, |value x| ≤ bound) :
+    LeanPML.PML.RegionalBounded D
+structure LeanPML.PML.RegionalWeakCoefficient (D : LeanPML.Rectangle.Rect) : Type
+number of parameters: 1
+fields:
+  LeanPML.PML.RegionalWeakCoefficient.value : LeanPML.PML.RegionalBounded D
+  LeanPML.PML.RegionalWeakCoefficient.derivative : Fin 2 → LeanPML.PML.RegionalBounded D
+  LeanPML.PML.RegionalWeakCoefficient.weak_partial : ∀ (i : Fin 2),
+      LeanPML.Rectangle.HasWeakPartial D i self.value.toL2 (self.derivative i).toL2
+constructor:
+  LeanPML.PML.RegionalWeakCoefficient.mk {D : LeanPML.Rectangle.Rect} (value : LeanPML.PML.RegionalBounded D)
+    (derivative : Fin 2 → LeanPML.PML.RegionalBounded D)
+    (weak_partial : ∀ (i : Fin 2), LeanPML.Rectangle.HasWeakPartial D i value.toL2 (derivative i).toL2) :
+    LeanPML.PML.RegionalWeakCoefficient D
+LeanPML.PML.weak_product_test (D : LeanPML.Rectangle.Rect) (m : LeanPML.PML.RegionalWeakCoefficient D)
+  (f : LeanPML.Rectangle.TestFunction D) (i : Fin 2) :
+  LeanPML.Rectangle.HasWeakPartial D i (m.value.operator ((LeanPML.Rectangle.SmoothField.toL2 D) f.field))
+    ((m.derivative i).operator ((LeanPML.Rectangle.SmoothField.toL2 D) f.field) +
+      m.value.operator ((LeanPML.Rectangle.SmoothField.toL2 D) (LeanPML.Rectangle.smoothPartial i f.field)))
+LeanPML.PML.weakCoefficientGraphMap_mem (D : LeanPML.Rectangle.Rect) (m : LeanPML.PML.RegionalWeakCoefficient D)
+  (u : ↥(LeanPML.Rectangle.zeroBoundaryGraph D)) :
+  (LeanPML.PML.weakCoefficientGraphMap D m) ↑u ∈ LeanPML.Rectangle.weakH1Graph D
+LeanPML.PML.weakCoefficientMulCLM (D : LeanPML.Rectangle.Rect) (m : LeanPML.PML.RegionalWeakCoefficient D) :
+  ↥(LeanPML.Rectangle.zeroBoundaryGraph D) →L[ℝ] ↥(LeanPML.Rectangle.weakH1Graph D)
+LeanPML.PML.hasDerivAt_weakCoefficientMul (D : LeanPML.Rectangle.Rect) (m : LeanPML.PML.RegionalWeakCoefficient D)
+  {u : ℝ → ↥(LeanPML.Rectangle.zeroBoundaryGraph D)} {udot : ↥(LeanPML.Rectangle.zeroBoundaryGraph D)} {t : ℝ}
+  (hpath : HasDerivAt u udot t) :
+  HasDerivAt (fun s => LeanPML.PML.weakCoefficientMul D m (u s)) (LeanPML.PML.weakCoefficientMul D m udot) t
+'LeanPML.PML.RegionalBounded.extended_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.RegionalBounded.operator_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.smoothPartial_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.weak_product_test' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.weakCoefficientGraphMap_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.weakCoefficientMul_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.weakCoefficientMul_derivatives' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.regionalBoundedOfSmooth_toL2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.hasDerivAt_weakCoefficientMul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.weakCoefficient_nonzero_call' depends on axioms: [propext, Classical.choice, Quot.sound]

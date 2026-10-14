@@ -1,0 +1,26 @@
+LeanPML/PML/WeakRegionalAbsorption.lean:116:11: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ↑↑((boundedMul D.measure A.spatial.pCoeff.value ⋯ A.spatial.pCoeff.bound ⋯) f) x
+in the target expression
+  A.coefficients.p.value.value x * ↑↑f x = ↑↑((A.spatial.pCoeff.operator D.measure) f) x
+
+D : Rect
+A : WeakRegionalAbsorption D
+f : ↥(ScalarL2 D.measure)
+x : ℝ × ℝ
+hm : ↑↑(A.coefficients.p.value.operator f) x = A.coefficients.p.value.value x * ↑↑f x
+hk : ↑↑((boundedMul D.measure A.spatial.pCoeff.value ⋯ A.spatial.pCoeff.bound ⋯) f) x = A.spatial.pCoeff.value x * ↑↑f x
+hx : x ∈ rectangleDomain D.xlo D.xhi D.ylo D.yhi
+⊢ A.coefficients.p.value.value x * ↑↑f x = ↑↑((A.spatial.pCoeff.operator D.measure) f) x
+LeanPML/PML/WeakRegionalAbsorption.lean:123:11: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ↑↑((boundedMul D.measure A.spatial.rCoeff.value ⋯ A.spatial.rCoeff.bound ⋯) f) x
+in the target expression
+  A.coefficients.r.value.value x * ↑↑f x = ↑↑((A.spatial.rCoeff.operator D.measure) f) x
+
+D : Rect
+A : WeakRegionalAbsorption D
+f : ↥(ScalarL2 D.measure)
+x : ℝ × ℝ
+hm : ↑↑(A.coefficients.r.value.operator f) x = A.coefficients.r.value.value x * ↑↑f x
+hk : ↑↑((boundedMul D.measure A.spatial.rCoeff.value ⋯ A.spatial.rCoeff.bound ⋯) f) x = A.spatial.rCoeff.value x * ↑↑f x
+hx : x ∈ rectangleDomain D.xlo D.xhi D.ylo D.yhi
+⊢ A.coefficients.r.value.value x * ↑↑f x = ↑↑((A.spatial.rCoeff.operator D.measure) f) x

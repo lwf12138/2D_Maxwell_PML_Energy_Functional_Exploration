@@ -1,0 +1,19 @@
+{
+  "reviewed_at": "2026-10-14T11:34:45.150715+08:00",
+  "modified_pages": [
+    8
+  ],
+  "render": "logs/v1.0.3/20261014T113338_141083_continuation_pdf_render.log",
+  "image": "logs/v1.0.3/pdf/continuation_20261014T110047/page-08.png",
+  "image_sha256": "33b083f643888d5f4d8c8dd4b1b2f2f650316828f4c502c76bbf6d249b7ebf0e",
+  "method": "最终 PDF 重新打开，Poppler 160 dpi 渲染全部修改页，由助手实际查看整页图片",
+  "checks": {
+    "four_new_vector_ticks_visible": true,
+    "all_chinese_labels_readable": true,
+    "no_clipping": true,
+    "no_body_formula_number_or_old_annotation_overlap": true,
+    "scope_matches_verified_theorems": true
+  },
+  "old_pending_note": "页底旧(5.8)未完成是保留历史；本轮公式旁新限定勾及账本准确更新状态。",
+  "result": "passed"
+}

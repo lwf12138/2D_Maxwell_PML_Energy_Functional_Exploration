@@ -1,0 +1,1502 @@
+⚠ [3025/3131] Replayed LeanPML.Analysis.WeakIntervalRepresentative
+warning: LeanPML/Analysis/WeakIntervalRepresentative.lean:32:18: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: LeanPML/Analysis/WeakIntervalRepresentative.lean:24:44: Variable name `hab` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/Analysis/WeakIntervalRepresentative.lean:171:54: Variable name `hab` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/Analysis/WeakIntervalRepresentative.lean:173:39: Variable name `hc` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+ℹ [3042/3131] Replayed LeanPML.PML.WeakOriginalSystem
+info: LeanPML/PML/WeakOriginalSystem.lean:187:4: Try this:
+  [apply] abel_nf
+⚠ [3043/3131] Replayed LeanPML.PML.WeakPrimitiveSystem
+warning: LeanPML/PML/WeakPrimitiveSystem.lean:94:23: This simp argument is unused:
+  smul_sub
+
+Hint: Omit it from the simp argument list.
+  simp only [smul_add, s̵m̵u̵l̵_̵s̵u̵b̵,̵ ̵neg_smul, sub_neg_eq_add] at hmain ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/WeakPrimitiveSystem.lean:112:34: This simp argument is unused:
+  map_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [map_sub, map_smul, m̵a̵p̵_̵n̵e̵g̵,̵ ̵smul_sub, neg_smul, neg_neg]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/WeakPrimitiveSystem.lean:112:63: This simp argument is unused:
+  neg_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [map_sub, map_smul, map_neg, smul_sub, neg_smul,̵ ̵n̵e̵g̵_̵n̵e̵g̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/WeakPrimitiveSystem.lean:120:63: This simp argument is unused:
+  neg_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [map_sub, map_smul, map_neg, smul_sub, neg_smul,̵ ̵n̵e̵g̵_̵n̵e̵g̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [3050/3131] Replayed LeanPML.PML.WeakPathAssembly
+warning: LeanPML/PML/WeakPathAssembly.lean:183:13: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/WeakPathAssembly.lean:184:14: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/WeakPathAssembly.lean:185:11: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/WeakPathAssembly.lean:186:17: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3051/3131] Replayed LeanPML.PML.WeakFiniteProblem
+warning: LeanPML/PML/WeakFiniteProblem.lean:145:17: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/WeakFiniteProblem.lean:148:14: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/WeakFiniteProblem.lean:149:15: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3054/3131] Replayed LeanPML.PML.WeakV7Regularity
+warning: LeanPML/PML/WeakV7Regularity.lean:110:16: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/WeakV7Regularity.lean:111:16: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3056/3131] Replayed LeanPML.PML.MainSharpWeakRectangle
+warning: LeanPML/PML/MainSharpWeakRectangle.lean:54:17: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/MainSharpWeakRectangle.lean:57:14: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/MainSharpWeakRectangle.lean:58:15: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3094/3131] Replayed LeanPML.Rectangle.SharpParameterCertificate
+warning: LeanPML/Rectangle/SharpParameterCertificate.lean:19:2: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3095/3131] Replayed LeanPML.Rectangle.OriginalParameterThreshold
+warning: LeanPML/Rectangle/OriginalParameterThreshold.lean:41:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: LeanPML/Rectangle/OriginalParameterThreshold.lean:46:41: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3097/3131] Replayed LeanPML.Examples.WeakStaticMode
+warning: LeanPML/Examples/WeakStaticMode.lean:108:34: This simp argument is unused:
+  neg_smul
+
+Hint: Omit it from the simp argument list.
+  simp [̵s̵t̵a̵t̵e̵,̵z̵e̵r̵o̵S̵t̵a̵t̵e̵,̵n̵e̵g̵_̵s̵m̵u̵l̵,̵s̵m̵u̵l̵_̵n̵e̵g̵]̵[̲s̲t̲a̲t̲e̲,̲ ̲z̲e̲r̲o̲S̲t̲a̲t̲e̲,̲ ̲s̲m̲u̲l̲_̲n̲e̲g̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [3098/3131] Replayed LeanPML.PML.WeakReverse
+warning: LeanPML/PML/WeakReverse.lean:116:15: This simp argument is unused:
+  map_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [map_n̵e̵g̵,̵ ̵m̵a̵p̵_̵smul, smul_sub, smul_neg, smul_smul, mul_inv_cancel₀ hμ,
+  ̵  ̵ ̵ ̵ ̵ ̵one_smul, map_sub]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/WeakReverse.lean:116:44: This simp argument is unused:
+  smul_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [map_neg, map_smul, smul_sub, smul_n̵e̵g̵,̵ ̵smul_̵s̵m̵u̵l̵, mul_inv_cancel₀ hμ,
+  ̵  ̵ ̵ ̵ ̵ ̵one_smul, map_sub]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/WeakReverse.lean:129:15: This simp argument is unused:
+  map_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [map_n̵e̵g̵,̵ ̵m̵a̵p̵_̵smul, smul_sub, smul_neg, smul_smul, mul_inv_cancel₀ hμ,
+  ̵  ̵ ̵ ̵ ̵ ̵one_smul, map_sub]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/WeakReverse.lean:129:44: This simp argument is unused:
+  smul_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [map_neg, map_smul, smul_sub, smul_n̵e̵g̵,̵ ̵smul_̵s̵m̵u̵l̵, mul_inv_cancel₀ hμ,
+  ̵  ̵ ̵ ̵ ̵ ̵one_smul, map_sub]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [3099/3131] Replayed LeanPML.Analysis.OperatorMemory
+warning: LeanPML/Analysis/OperatorMemory.lean:45:15: `ContinuousLinearMap.mul_apply` has been deprecated: Use `mul_apply_eq_comp` instead
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.mul_apply` to `mul_apply_eq_comp x`).
+⚠ [3102/3131] Replayed LeanPML.Examples.WeakCk
+warning: LeanPML/Examples/WeakCk.lean:28:68: This simp argument is unused:
+  derivWithin_const
+
+Hint: Omit it from the simp argument list.
+  simp [solution, state, zeroState,̵ ̵d̵e̵r̵i̵v̵W̵i̵t̵h̵i̵n̵_̵c̵o̵n̵s̵t̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/Examples/WeakCk.lean:29:65: This simp argument is unused:
+  derivWithin_const
+
+Hint: Omit it from the simp argument list.
+  simp [solution, state, zeroState,̵ ̵d̵e̵r̵i̵v̵W̵i̵t̵h̵i̵n̵_̵c̵o̵n̵s̵t̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [3107/3131] Replayed LeanPML.PML.AuxiliaryScalarMemory
+warning: LeanPML/PML/AuxiliaryScalarMemory.lean:25:0: automatically included section variable(s) unused in theorem `LeanPML.PML.SpatialAbsorption.dampingKernel_eq_scalarKernel`:
+  [Nonempty α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Nonempty α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: LeanPML/PML/AuxiliaryScalarMemory.lean:63:0: automatically included section variable(s) unused in theorem `LeanPML.PML.SpatialAbsorption.scalarKernel_physical_ae`:
+  [Nonempty α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Nonempty α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: LeanPML/PML/AuxiliaryScalarMemory.lean:78:0: automatically included section variable(s) unused in theorem `LeanPML.PML.SpatialAbsorption.physical_scalarKernel`:
+  [Nonempty α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Nonempty α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+✔ [3126/3131] Built LeanPML.PML.MainGeneralWeak (15s)
+✔ [3127/3131] Built LeanPML.Examples.GeneralWeakRegression (10s)
+✔ [3128/3131] Built LeanPML (9.8s)
+ℹ [3130/3131] Built Audit (12s)
+info: Audit.lean:13:0: 'LeanPML.Tutorial.hasDerivAt_energy' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:15:0: 'LeanPML.Time.antitoneOn_Icc_of_hasDerivAt_nonpos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:16:0: 'LeanPML.Time.antitoneOn_Icc_self' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:18:0: 'LeanPML.Tutorial.energy_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:19:0: 'LeanPML.Tutorial.continuousOn_energy' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:20:0: 'LeanPML.Tutorial.hasDerivAt_energy_on_Ioo' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:21:0: 'LeanPML.Tutorial.energy_deriv_nonpos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:22:0: 'LeanPML.Tutorial.antitoneOn_energy_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:23:0: 'LeanPML.Tutorial.antitoneOn_energy' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:24:0: 'LeanPML.Tutorial.energy_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:26:0: 'LeanPML.Tutorial.exp_solves_negative_damping' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:27:0: 'LeanPML.Tutorial.negative_damping_counterexample' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:30:0: 'LeanPML.Debye.energy_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:31:0: 'LeanPML.Debye.continuousOn_energy' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:32:0: 'LeanPML.Debye.hasDerivAt_energy_of_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:33:0: 'LeanPML.Debye.hasDerivAt_energy_rate' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:34:0: 'LeanPML.Debye.dissipation_eq_rate' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:35:0: 'LeanPML.Debye.hasDerivAt_energy_dissipation' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:36:0: 'LeanPML.Debye.dissipation_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:37:0: 'LeanPML.Debye.energy_deriv_nonpos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:38:0: 'LeanPML.Debye.hasDerivAt_energy_on_Ioo' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:39:0: 'LeanPML.Debye.antitoneOn_energy_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:40:0: 'LeanPML.Debye.antitoneOn_energy' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:41:0: 'LeanPML.Debye.energy_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:42:0: 'LeanPML.Debye.hasDerivAt_exampleE' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:43:0: 'LeanPML.Debye.hasDerivAt_exampleP' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:44:0: 'LeanPML.Debye.continuous_exampleE' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:45:0: 'LeanPML.Debye.continuous_exampleP' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:46:0: 'LeanPML.Debye.example_ode' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:47:0: 'LeanPML.Debye.example_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:48:0: 'LeanPML.Debye.example_energy_antitone' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:49:0: 'LeanPML.Debye.example_energy_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:52:0: 'LeanPML.Time.eq_initial_on_Icc_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:53:0: 'LeanPML.Time.eq_initial_of_hasDerivAt_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:54:0: 'LeanPML.PML.hasDerivAt_CD_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:55:0: 'LeanPML.PML.hasDerivAt_CZ1_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:56:0: 'LeanPML.PML.hasDerivAt_CZ2_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:57:0: 'LeanPML.PML.continuousOn_CD' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:58:0: 'LeanPML.PML.continuousOn_CZ1' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:59:0: 'LeanPML.PML.continuousOn_CZ2' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:60:0: 'LeanPML.PML.CD_eq_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:61:0: 'LeanPML.PML.CZ1_eq_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:62:0: 'LeanPML.PML.CZ2_eq_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:63:0: 'LeanPML.PML.CD_compatibility' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:64:0: 'LeanPML.PML.CZ1_compatibility' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:65:0: 'LeanPML.PML.CZ2_compatibility' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:66:0: 'LeanPML.PML.Z1_eq_initial_of_zero_absorption' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:67:0: 'LeanPML.PML.Z2_eq_initial_of_zero_absorption' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:68:0: 'LeanPML.PML.Z1_zero_of_zero_absorption' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:69:0: 'LeanPML.PML.Z2_zero_of_zero_absorption' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:70:0: 'LeanPML.PML.hasDerivAt_exampleU' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:71:0: 'LeanPML.PML.hasDerivAt_exampleQ' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:72:0: 'LeanPML.PML.hasDerivAt_exampleZ1' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:73:0: 'LeanPML.PML.hasDerivAt_exampleZ2' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:74:0: 'LeanPML.PML.example_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:75:0: 'LeanPML.PML.example_polarization' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:76:0: 'LeanPML.PML.example_initial_compatibility' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:77:0: 'LeanPML.PML.example_nonzero_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:78:0: 'LeanPML.PML.example_compatibility_on_Icc' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:81:0: 'LeanPML.PML.materialA_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:82:0: 'LeanPML.PML.scaleK_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:83:0: 'LeanPML.PML.threshold_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:84:0: 'LeanPML.PML.le_inv_sqrt_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:85:0: 'LeanPML.PML.le_threshold_iff_explicit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:86:0: 'LeanPML.PML.absorptionSum_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:87:0: 'LeanPML.PML.absorptionProduct_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:88:0: 'LeanPML.PML.absorptionSum_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:89:0: 'LeanPML.PML.absorptionSum_le_half' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:90:0: 'LeanPML.PML.absorptionProduct_le_sum_sq_quarter' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:91:0: 'LeanPML.PML.absorptionProduct_le_c_sq_sixteenth' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:92:0: 'LeanPML.PML.absorptionSum_mul_sub_product_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:93:0: 'LeanPML.PML.c_mul_tau_le_material_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:94:0: 'LeanPML.PML.material_bound_lt_sixteenth' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:95:0: 'LeanPML.PML.c_mul_tau_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:96:0: 'LeanPML.PML.scale_mul_amplitude_sq_le_sixteenth' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:97:0: 'LeanPML.PML.unit_material_smallness_example' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:98:0: 'LeanPML.PML.weights_of_sum_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:99:0: 'LeanPML.PML.energyWeights_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:100:0: 'LeanPML.PML.theta_partition' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:101:0: 'LeanPML.PML.dissipationPlus_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:102:0: 'LeanPML.PML.dissipationPlus_le_five_quarters' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:103:0: 'LeanPML.PML.dissipationMinus_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:104:0: 'LeanPML.PML.zero_absorption_example' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:105:0: 'LeanPML.PML.x_layer_example' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:106:0: 'LeanPML.PML.y_layer_example' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:107:0: 'LeanPML.PML.corner_example' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:108:0: 'LeanPML.PML.family_denominator_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:109:0: 'LeanPML.PML.vanishingAbsorption_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:110:0: 'LeanPML.PML.vanishingAbsorption_eventually_small' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:111:0: 'LeanPML.PML.energyWeights_on_family' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:112:0: 'LeanPML.PML.energyWeights_unbounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:115:0: 'LeanPML.PML.electric_rate_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:116:0: 'LeanPML.PML.hasDerivAt_electricEnergyAlong' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:117:0: 'LeanPML.PML.deriv_exampleU' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:118:0: 'LeanPML.PML.hasDerivAt_deriv_exampleU' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:119:0: 'LeanPML.PML.hasDerivAt_electricEnergyAlong_exampleU' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:120:0: 'LeanPML.PML.deriv_exampleU_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:121:0: 'LeanPML.PML.polar_constraint_derivative' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:122:0: 'LeanPML.PML.polar_shifted_constraint' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:123:0: 'LeanPML.PML.polar_rate_algebra' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:124:0: 'LeanPML.PML.hasDerivAt_polarQuadratic' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:125:0: 'LeanPML.PML.hasDerivAt_polarEnergy' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:126:0: 'LeanPML.PML.hasDerivAt_polarEnergy_on_Ioo' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:127:0: 'LeanPML.PML.polarQuadratic_eq_reduced' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:128:0: 'LeanPML.PML.polarEnergy_eq_reduced' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:129:0: 'LeanPML.PML.polar_coefficients_bounds_of_local_conditions' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:130:0: 'LeanPML.PML.polar_coefficients_bounds_of_threshold' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:131:0: 'LeanPML.PML.example_polar_path_compatible' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:132:0: 'LeanPML.PML.hasDerivAt_example_polarEnergy' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:135:0: 'LeanPML.PML.spatial_weight_balance' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:136:0: 'LeanPML.PML.spatial_rate_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:137:0: 'LeanPML.PML.hasDerivAt_spatialAuxiliary' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:138:0: 'LeanPML.PML.hasDerivAt_spatialEnergy_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:139:0: 'LeanPML.PML.hasDerivAt_zeroSpatialComponent' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:140:0: 'LeanPML.PML.hasDerivAt_zeroSpatial2D' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:141:0: 'LeanPML.PML.zeroSpatial_compatibility_preserved' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:142:0: 'LeanPML.PML.hasDerivAt_spatialEnergy_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:143:0: 'LeanPML.PML.hasDerivAt_spatialEnergy' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:144:0: 'LeanPML.PML.spatialDissipation_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:145:0: 'LeanPML.PML.spatialDissipation2D_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:146:0: 'LeanPML.PML.spatialDissipation2D_of_sum_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:147:0: 'LeanPML.PML.energyWeightX_swap' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:148:0: 'LeanPML.PML.spatialEnergy2D_eq_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:149:0: 'LeanPML.PML.hasDerivAt_spatialEnergy2D' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:150:0: 'LeanPML.PML.spatial_zero_absorption_example' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:151:0: 'LeanPML.PML.spatial_x_layer_example' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:152:0: 'LeanPML.PML.spatial_y_layer_example' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:153:0: 'LeanPML.PML.spatial_corner_example' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:154:0: 'LeanPML.PML.hasDerivAt_spatialDecayPath' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:155:0: 'LeanPML.PML.hasDerivAt_spatial_positive_path' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:156:0: 'LeanPML.PML.spatial_positive_path_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:157:0: 'LeanPML.PML.hasDerivAt_spatialLinearPath' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:158:0: 'LeanPML.PML.hasDerivAt_spatial_zero_path' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:159:0: 'LeanPML.PML.spatial_zero_path_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:162:0: 'LeanPML.PML.Obstructions.absorption_mul_initial_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:163:0: 'LeanPML.PML.Obstructions.initial_compatibility' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:164:0: 'LeanPML.PML.Obstructions.initial_derivative_values' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:165:0: 'LeanPML.PML.Obstructions.hasDerivAt_initial_fields_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:166:0: 'LeanPML.PML.Obstructions.electricRemainder_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:167:0: 'LeanPML.PML.Obstructions.polarRemainder_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:168:0: 'LeanPML.PML.Obstructions.spatialDissipation_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:169:0: 'LeanPML.PML.Obstructions.initialDissipation_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:170:0: 'LeanPML.PML.Obstructions.initialDissipation_nonpos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:171:0: 'LeanPML.PML.Obstructions.initialDissipation_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:172:0: 'LeanPML.PML.Obstructions.singleLayerEnergy_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:173:0: 'LeanPML.PML.Obstructions.hasDerivAt_initial_localEnergy' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:174:0: 'LeanPML.PML.Obstructions.initial_localEnergy_rate_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:175:0: 'LeanPML.PML.Obstructions.initialDissipation_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:176:0: 'LeanPML.PML.Obstructions.initialDissipation_integral_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:177:0: 'LeanPML.PML.Obstructions.initialDissipation_rectangle_integral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:178:0: 'LeanPML.PML.Obstructions.hasDerivAt_initial_flux' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:179:0: 'LeanPML.PML.Obstructions.secondLayerSpatialInitial_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:180:0: 'LeanPML.PML.Obstructions.secondLayerSpatialInitial_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:181:0: 'LeanPML.PML.Obstructions.secondLayerSpatialInitial_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:184:0: 'LeanPML.Analysis.memLp_bounded_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:185:0: 'LeanPML.Analysis.coeFn_boundedMul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:186:0: 'LeanPML.Analysis.norm_boundedMul_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:187:0: 'LeanPML.Analysis.integrable_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:188:0: 'LeanPML.Analysis.inner_eq_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:189:0: 'LeanPML.Analysis.norm_sq_eq_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:190:0: 'LeanPML.Analysis.integrable_boundedMul_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:191:0: 'LeanPML.Analysis.inner_boundedMul_eq_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:192:0: 'LeanPML.Analysis.hasDerivAt_inner' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:193:0: 'LeanPML.Analysis.hasDerivAt_half_norm_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:194:0: 'LeanPML.Analysis.hasDerivAt_operator' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:195:0: 'LeanPML.Analysis.hasDerivAt_operator_inner' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:196:0: 'LeanPML.Analysis.hasDerivAt_operator_quadratic' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:197:0: 'LeanPML.Analysis.weightedOfFunction_coe' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:198:0: 'LeanPML.Analysis.weighted_eq_zero_of_weight_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:199:0: 'LeanPML.Analysis.inv_sqrt_abs_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:200:0: 'LeanPML.Analysis.physicalL2_coe' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:201:0: 'LeanPML.Analysis.physicalL2_zero_on_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:202:0: 'LeanPML.Analysis.sqrt_mul_physicalL2' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:203:0: 'LeanPML.Analysis.physicalL2_norm_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:204:0: 'LeanPML.Analysis.physicalL2_norm_sq_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:205:0: 'LeanPML.Analysis.physicalL2_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:206:0: 'LeanPML.Analysis.weighted_square_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:207:0: 'LeanPML.Analysis.integrable_weighted_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:208:0: 'LeanPML.Analysis.weighted_norm_sq_eq_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:209:0: 'LeanPML.Analysis.weighted_product_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:210:0: 'LeanPML.Analysis.integrable_weighted_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:211:0: 'LeanPML.Analysis.weighted_inner_eq_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:212:0: 'LeanPML.Analysis.hasDerivAt_weighted_half_norm_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:213:0: 'LeanPML.Analysis.hasDerivAt_physicalL2' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:214:0: 'LeanPML.Analysis.physicalL2_weightedOfFunction' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:215:0: 'LeanPML.Analysis.memLp_of_weighted' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:216:0: 'LeanPML.Analysis.weightedOfFunction_congr' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:217:0: 'LeanPML.Analysis.weightedSubspace_isClosed' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:218:0: 'LeanPML.Analysis.weighted_completeSpace' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:219:0: 'LeanPML.Analysis.weightedConstant_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:220:0: 'LeanPML.Analysis.hasDerivAt_weighted_linear' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:221:0: 'LeanPML.Analysis.weighted_linear_nonconstant' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:222:0: 'LeanPML.Analysis.hasDerivAt_weighted_linear_energy' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:223:0: 'LeanPML.Analysis.BoundedCoefficient.const_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:224:0: 'LeanPML.Analysis.BoundedCoefficient.add_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:225:0: 'LeanPML.Analysis.BoundedCoefficient.sub_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:226:0: 'LeanPML.Analysis.BoundedCoefficient.mul_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:227:0: 'LeanPML.Analysis.BoundedCoefficient.integrable_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:228:0: 'LeanPML.Analysis.BoundedCoefficient.inner_operator' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:229:0: 'LeanPML.PML.SpatialAbsorption.a_measurable' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:230:0: 'LeanPML.PML.SpatialAbsorption.b_measurable' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:231:0: 'LeanPML.PML.SpatialAbsorption.wx_measurable' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:232:0: 'LeanPML.PML.SpatialAbsorption.wy_measurable' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:233:0: 'LeanPML.PML.SpatialAbsorption.wx_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:234:0: 'LeanPML.PML.SpatialAbsorption.wy_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:235:0: 'LeanPML.PML.SpatialAbsorption.wx_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:236:0: 'LeanPML.PML.SpatialAbsorption.wy_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:237:0: 'LeanPML.PML.SpatialAbsorption.pCoeff_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:238:0: 'LeanPML.PML.SpatialAbsorption.rCoeff_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:239:0: 'LeanPML.PML.SpatialAbsorption.aCoeff_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:240:0: 'LeanPML.PML.SpatialAbsorption.bCoeff_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:241:0: 'LeanPML.PML.SpatialAbsorption.plusValue_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:242:0: 'LeanPML.PML.SpatialAbsorption.minusValue_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:243:0: 'LeanPML.PML.SpatialAbsorption.plusX_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:244:0: 'LeanPML.PML.SpatialAbsorption.plusY_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:245:0: 'LeanPML.PML.SpatialAbsorption.minusX_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:246:0: 'LeanPML.PML.SpatialAbsorption.minusY_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:247:0: 'LeanPML.PML.SpatialAbsorption.spatialDissipation_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:248:0: 'LeanPML.PML.SpatialAbsorption.ofAE_p_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:249:0: 'LeanPML.PML.SpatialAbsorption.ofAE_r_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:250:0: 'LeanPML.PML.sameSource_coordinates' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:251:0: 'LeanPML.PML.sameSource_first_coordinates_of_mem_interior' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:252:0: 'LeanPML.PML.hasDerivAt_fieldElectric' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:253:0: 'LeanPML.PML.hasDerivAt_fieldPolar' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:254:0: 'LeanPML.PML.hasDerivAt_fieldSpatial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:255:0: 'LeanPML.PML.hasDerivAt_fieldEnergy' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:256:0: 'LeanPML.PML.hasDerivAt_sameSourceEnergy' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:257:0: 'LeanPML.PML.auxiliaryPath_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:258:0: 'LeanPML.PML.fieldEnergy_auxiliaryState' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:259:0: 'LeanPML.PML.hasDerivAt_auxiliaryPath_energy' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:260:0: 'LeanPML.PML.auxiliaryPath_energy_nonconstant' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:261:0: 'LeanPML.PML.physical_zero_on_absorption_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:262:0: 'LeanPML.PML.auxiliary_embedding_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:263:0: 'LeanPML.PML.hasDerivAt_energy7' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:264:0: 'LeanPML.PML.SpaceExample.measure_univ' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:265:0: 'LeanPML.PML.SpaceExample.wx_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:266:0: 'LeanPML.PML.SpaceExample.seed_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:267:0: 'LeanPML.PML.SpaceExample.hasDerivAt_energy' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:268:0: 'LeanPML.PML.SpaceExample.energy_nonconstant' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:269:0: 'LeanPML.Analysis.BoundedCoefficient.integrable_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:270:0: 'LeanPML.Analysis.BoundedCoefficient.inner_operator_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:271:0: 'LeanPML.PML.fieldElectric_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:272:0: 'LeanPML.PML.fieldElectric_eq_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:273:0: 'LeanPML.PML.fieldPolar_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:274:0: 'LeanPML.PML.fieldPolar_eq_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:275:0: 'LeanPML.PML.fieldSpatial_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:276:0: 'LeanPML.PML.fieldSpatial_eq_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:277:0: 'LeanPML.PML.fieldEnergyDensity_eq_blocks' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:278:0: 'LeanPML.PML.fieldEnergyDensity_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:279:0: 'LeanPML.PML.fieldEnergy_eq_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:280:0: 'LeanPML.PML.fieldSpatialDissipation_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:281:0: 'LeanPML.PML.fieldSpatialDissipation_eq_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:282:0: 'LeanPML.PML.fieldSpatialDissipation_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:283:0: 'LeanPML.PML.fieldSpatialDissipation_of_zeroAbsorption' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:284:0: 'LeanPML.PML.fieldElectricRemainder_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:285:0: 'LeanPML.PML.fieldElectricRemainder_eq_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:286:0: 'LeanPML.PML.fieldPolarRemainder_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:287:0: 'LeanPML.PML.fieldPolarRemainder_eq_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:288:0: 'LeanPML.PML.fieldDissipationDensity_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:289:0: 'LeanPML.PML.fieldDissipation_eq_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:290:0: 'LeanPML.PML.twoLayerDissipation_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:291:0: 'LeanPML.PML.twoLayerDissipation_eq_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:292:0: 'LeanPML.PML.hasDerivAt_integral_fieldEnergy' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:295:0: 'LeanPML.PML.boundary_eq_zero_of_trace_zero_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:296:0: 'LeanPML.PML.green_multiplier_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:297:0: 'LeanPML.PML.boundary_multiplier_zero_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:298:0: 'LeanPML.PML.base_velocity_eq_first_position_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:299:0: 'LeanPML.PML.polarConstraint_derivative_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:300:0: 'LeanPML.PML.hasDerivAt_primitiveMain' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:301:0: 'LeanPML.PML.primitiveMain_first_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:302:0: 'LeanPML.PML.derivative_eq_of_eventuallyEq_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:303:0: 'LeanPML.PML.primitive_first_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:304:0: 'LeanPML.PML.spatial_rate_add_dissipation_pointwise' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:305:0: 'LeanPML.PML.spatialRate_add_dissipation' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:306:0: 'LeanPML.Analysis.BoundedCoefficient.coe_operator' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:307:0: 'LeanPML.Analysis.BoundedCoefficient.inner_swap' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:308:0: 'LeanPML.Analysis.BoundedCoefficient.operator_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:309:0: 'LeanPML.Analysis.BoundedCoefficient.operator_sub' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:310:0: 'LeanPML.Analysis.BoundedCoefficient.operator_const' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:311:0: 'LeanPML.Analysis.BoundedCoefficient.operator_mul_const' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:312:0: 'LeanPML.Analysis.BoundedCoefficient.operator_const_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:313:0: 'LeanPML.PML.electricRate_add_remainder' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:314:0: 'LeanPML.PML.polarRate_add_remainder' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:315:0: 'LeanPML.PML.fieldEnergyRate_blocks' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:316:0: 'LeanPML.PML.fieldEnergyRate_boundary_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:317:0: 'LeanPML.PML.hasDerivAt_fieldEnergy_boundary_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:318:0: 'LeanPML.PML.hasDerivAt_fieldEnergy_zeroTrace_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:319:0: 'LeanPML.PML.hasDerivAt_energy7_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:322:0: 'LeanPML.PML.spatialBudget_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:323:0: 'LeanPML.PML.norm_sub_sq_le_twice' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:324:0: 'LeanPML.PML.gradient_square_le_spatialBudget' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:325:0: 'LeanPML.PML.state_norm_sq_le_spatialBudget' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:326:0: 'LeanPML.PML.electric_energy_bounds_pointwise' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:327:0: 'LeanPML.PML.polar_energy_bounds_pointwise' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:328:0: 'LeanPML.PML.polarConstraint_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:329:0: 'LeanPML.PML.fieldElectric_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:330:0: 'LeanPML.PML.fieldPolar_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:331:0: 'LeanPML.PML.graphSquare_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:332:0: 'LeanPML.PML.spatialBudget_le_graphSquare' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:333:0: 'LeanPML.PML.fieldEnergy_bounds_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:334:0: 'LeanPML.PML.energy7_bounds_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:335:0: 'LeanPML.PML.graphSquare_zero_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:336:0: 'LeanPML.PML.fieldEnergy_zero_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:337:0: 'LeanPML.PML.energy7_zero_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:338:0: 'LeanPML.PML.stateCoercivityConstraints_of_GreenTrace' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:339:0: 'LeanPML.PML.base_coercivityConstraints_of_GreenTrace' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:340:0: 'LeanPML.PML.first_coercivityConstraints_of_GreenTrace' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:341:0: 'LeanPML.PML.reconstructQ_eq_z' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:342:0: 'LeanPML.PML.reconstruct_magnetic' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:343:0: 'LeanPML.PML.norm_sub_sq_le_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:344:0: 'LeanPML.PML.coefficient_operator_norm_sq_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:345:0: 'LeanPML.PML.p_operator_norm_sq_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:346:0: 'LeanPML.PML.r_operator_norm_sq_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:347:0: 'LeanPML.PML.b_operator_norm_sq_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:348:0: 'LeanPML.PML.physicalControl_of_graph_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:349:0: 'LeanPML.PML.physicalControl_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:351:0: 'LeanPML.PML.directionalJ_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:352:0: 'LeanPML.PML.directionalJ_swap' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:353:0: 'LeanPML.PML.fieldJ_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:354:0: 'LeanPML.PML.fieldJ_eq_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:355:0: 'LeanPML.PML.fieldJ_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:356:0: 'LeanPML.PML.spatialComponents_eq_gradient_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:357:0: 'LeanPML.PML.fieldJDensity_zero_region' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:358:0: 'LeanPML.PML.directional_dissipation_ge_J' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:359:0: 'LeanPML.PML.fieldSpatialDissipation_ge_J' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:360:0: 'LeanPML.PML.theta_absorption_square_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:361:0: 'LeanPML.PML.directional_gradient_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:362:0: 'LeanPML.PML.field_gradient_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:363:0: 'LeanPML.PML.gradient_evolution_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:364:0: 'LeanPML.PML.gradient_control_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:365:0: 'LeanPML.PML.directional_J_zero_example' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:366:0: 'LeanPML.PML.directional_J_edge_examples' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:367:0: 'LeanPML.PML.directional_J_corner_example' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:369:0: 'LeanPML.PML.directional_J_other_edge_example' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:371:0: 'LeanPML.PML.electricRemainder_lower_pointwise' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:372:0: 'LeanPML.PML.polarRemainder_lower_pointwise' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:373:0: 'LeanPML.PML.fieldDissipation_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:374:0: 'LeanPML.PML.scale_amplitude_chain' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:375:0: 'LeanPML.PML.debye_relations_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:376:0: 'LeanPML.PML.dissipation7_preliminary_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:377:0: 'LeanPML.PML.debye_velocity_square_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:378:0: 'LeanPML.PML.debye_absorption_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:379:0: 'LeanPML.PML.debye_absorption_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:380:0: 'LeanPML.PML.spatial_absorption_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:381:0: 'LeanPML.PML.spatial_absorption_half_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:382:0: 'LeanPML.PML.dissipation7_lower_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:383:0: 'LeanPML.PML.dissipation7_nonneg_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:384:0: 'LeanPML.PML.continuousOn_coefficient_quadratic' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:385:0: 'LeanPML.PML.continuousOn_fieldEnergy' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:386:0: 'LeanPML.PML.continuousOn_energy7' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:387:0: 'LeanPML.PML.continuousOn_fieldDissipation' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:388:0: 'LeanPML.PML.continuousOn_dissipation7' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:389:0: 'LeanPML.PML.integral_balance_of_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:390:0: 'LeanPML.PML.energy7_antitoneOn_zero_time' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:391:0: 'LeanPML.PML.energy7_bounds_on_Icc_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:392:0: 'LeanPML.PML.energy7_nonneg_on_Icc_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:393:0: 'LeanPML.PML.hasDerivAt_energy7_on_Ioo_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:394:0: 'LeanPML.PML.intervalIntegrable_dissipation7_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:395:0: 'LeanPML.PML.energy7_integral_balance_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:396:0: 'LeanPML.PML.energy7_integral_balance_same' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:397:0: 'LeanPML.PML.energy7_integral_balance_endpoints_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:398:0: 'LeanPML.PML.energy7_derivative_nonpos_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:399:0: 'LeanPML.PML.energy7_law_and_closure_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:400:0: 'LeanPML.PML.energy7_antitoneOn_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:401:0: 'LeanPML.PML.energy7_initial_bounds_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:402:0: 'LeanPML.PML.graphSquare7_initial_bound_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:403:0: 'LeanPML.PML.physicalControl_initial_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:404:0: 'LeanPML.PML.main_energy_estimate_Conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:406:0: 'LeanPML.PML.debye_absorption' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:409:0: 'LeanPML.Rectangle.Rect.Lx_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:410:0: 'LeanPML.Rectangle.Rect.Ly_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:411:0: 'LeanPML.Rectangle.Rect.openSet_open' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:412:0: 'LeanPML.Rectangle.Rect.closedSet_compact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:413:0: 'LeanPML.Rectangle.Rect.closedSet_eq_Icc' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:414:0: 'LeanPML.Rectangle.Rect.closure_openSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:415:0: 'LeanPML.Rectangle.Rect.measure_eq_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:416:0: 'LeanPML.Rectangle.Rect.measure_eq_prod' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:417:0: 'LeanPML.Rectangle.Rect.integral_fubini' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:418:0: 'LeanPML.Rectangle.Rect.memLp_of_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:419:0: 'LeanPML.Rectangle.Rect.integrable_of_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:420:0: 'LeanPML.Rectangle.SmoothField.contDiff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:421:0: 'LeanPML.Rectangle.SmoothField.continuous' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:422:0: 'LeanPML.Rectangle.SmoothField.differentiable' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:423:0: 'LeanPML.Rectangle.SmoothField.derivativeX_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:424:0: 'LeanPML.Rectangle.SmoothField.derivativeY_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:425:0: 'LeanPML.Rectangle.SmoothField.hasDerivAt_sliceX' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:426:0: 'LeanPML.Rectangle.SmoothField.hasDerivAt_sliceY' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:427:0: 'LeanPML.Rectangle.SmoothField.dx_eq_deriv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:428:0: 'LeanPML.Rectangle.SmoothField.dy_eq_deriv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:429:0: 'LeanPML.Rectangle.SmoothField.memLp' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:430:0: 'LeanPML.Rectangle.SmoothField.coe_toL2' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:431:0: 'LeanPML.Rectangle.SmoothField.eqOn_open_of_toL2_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:432:0: 'LeanPML.Rectangle.SmoothField.eqOn_closed_of_toL2_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:433:0: 'LeanPML.Rectangle.SmoothField.fderiv_eq_of_toL2_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:434:0: 'LeanPML.Rectangle.SmoothField.derivativeX_toL2_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:435:0: 'LeanPML.Rectangle.SmoothField.derivativeY_toL2_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:436:0: 'LeanPML.Rectangle.representative_toL2' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:437:0: 'LeanPML.Rectangle.descend_toL2' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:438:0: 'LeanPML.Rectangle.componentX_toL2' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:439:0: 'LeanPML.Rectangle.componentY_toL2' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:440:0: 'LeanPML.Rectangle.smoothTrace_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:441:0: 'LeanPML.Rectangle.trace_toL2' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:442:0: 'LeanPML.Rectangle.smoothTrace_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:443:0: 'LeanPML.Rectangle.trace_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:444:0: 'LeanPML.Rectangle.ZeroBoundary.add_smul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:445:0: 'LeanPML.Rectangle.rectangleBubble_zeroBoundary' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:446:0: 'LeanPML.Rectangle.rectangleBubble_midpoint_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:447:0: 'LeanPML.Rectangle.rectangleBubble_toL2_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:448:0: 'LeanPML.Rectangle.spatialDomain' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:449:0: 'LeanPML.Rectangle.trace' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:452:0: 'LeanPML.Rectangle.green_smooth_functions' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:453:0: 'LeanPML.Rectangle.inner_toL2' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:454:0: 'LeanPML.Rectangle.norm_toL2_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:455:0: 'LeanPML.Rectangle.edgePair_eq_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:456:0: 'LeanPML.Rectangle.boundaryForm_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:457:0: 'LeanPML.Rectangle.green_L2' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:458:0: 'LeanPML.Rectangle.boundary_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:459:0: 'LeanPML.Rectangle.boundary_multiplier_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:460:0: 'LeanPML.Rectangle.divergence_ofSmooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:461:0: 'LeanPML.Rectangle.rectangleBubble_green' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:462:0: 'LeanPML.Rectangle.poincare_integral_right_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:463:0: 'LeanPML.Rectangle.poincareConstant_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:464:0: 'LeanPML.Rectangle.poincare_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:465:0: 'LeanPML.Rectangle.poincare_estimate' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:466:0: 'LeanPML.Rectangle.scaleK_rectangle' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:467:0: 'LeanPML.Rectangle.threshold_rectangle_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:468:0: 'LeanPML.Rectangle.rectangleBubble_poincare' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:469:0: 'LeanPML.Rectangle.greenDomain' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:470:0: 'LeanPML.Rectangle.poincareDomain' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:473:0: 'LeanPML.Rectangle.spaceFDeriv_eq_full' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:474:0: 'LeanPML.Rectangle.timeDeriv_eq_full' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:475:0: 'LeanPML.Rectangle.hasDerivAt_spaceFDeriv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:476:0: 'LeanPML.Rectangle.hasDerivAt_spaceFDeriv_of_timeDeriv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:477:0: 'LeanPML.Rectangle.clampPoint_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:478:0: 'LeanPML.Rectangle.continuousToL2_restrict' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:479:0: 'LeanPML.Rectangle.hasDerivAt_continuousToL2' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:480:0: 'LeanPML.Rectangle.hasDerivAt_of_pointwise' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:481:0: 'LeanPML.Rectangle.hasDerivAt_L2_of_pointwise' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:482:0: 'LeanPML.Rectangle.continuousOn_L2' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:483:0: 'LeanPML.Rectangle.hasDerivAt_toL2_of_pointwise' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:484:0: 'LeanPML.Rectangle.continuousOn_toL2' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:485:0: 'LeanPML.Rectangle.bubblePath_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:486:0: 'LeanPML.Rectangle.zeroBoundary_iff_forall_boundary' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:487:0: 'LeanPML.Rectangle.zeroBoundary_of_velocity_PEC' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:488:0: 'LeanPML.Rectangle.integralLift_zeroBoundary' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:489:0: 'LeanPML.Rectangle.velocity_PEC_on_Ioo' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:490:0: 'LeanPML.Rectangle.velocity_PEC_on_Icc_of_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:491:0: 'LeanPML.Rectangle.velocity_PEC_on_Icc' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:492:0: 'LeanPML.Rectangle.twoLayer_zeroBoundary' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:493:0: 'LeanPML.PML.hasDerivAt_weighted_of_physical' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:494:0: 'LeanPML.Rectangle.weighted_smooth_recovery' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:495:0: 'LeanPML.Rectangle.hasDerivAt_weighted_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:496:0: 'LeanPML.Rectangle.hasDerivAt_jet_value_L2' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:497:0: 'LeanPML.Rectangle.hasDerivAt_jet_first_L2' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:498:0: 'LeanPML.Rectangle.hasDerivAt_jet_gradientX' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:499:0: 'LeanPML.Rectangle.hasDerivAt_jet_gradientY' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:500:0: 'LeanPML.Rectangle.hasDerivAt_jet_first_gradientX' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:501:0: 'LeanPML.Rectangle.hasDerivAt_jet_first_gradientY' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:502:0: 'LeanPML.Rectangle.hasDerivAt_jet_divergence' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:503:0: 'LeanPML.Rectangle.continuous_jet_L2' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:504:0: 'LeanPML.Rectangle.hasDerivAt_smoothStateBase' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:505:0: 'LeanPML.Rectangle.hasDerivAt_smoothStateFirst' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:506:0: 'LeanPML.Rectangle.continuous_smoothStateBase' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:507:0: 'LeanPML.Rectangle.continuous_smoothStateFirst' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:508:0: 'LeanPML.Rectangle.smoothSameSourcePath' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:511:0: 'LeanPML.Rectangle.toL2_eq_of_eqOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:512:0: 'LeanPML.Rectangle.coe_add_of' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:513:0: 'LeanPML.Rectangle.coe_smul_of' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:514:0: 'LeanPML.Rectangle.coe_operator_of' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:515:0: 'LeanPML.Rectangle.divergence_ofSmooth_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:516:0: 'LeanPML.Rectangle.polar_of_pointwise' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:517:0: 'LeanPML.Rectangle.spatial_of_pointwise' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:518:0: 'LeanPML.Rectangle.static_of_pointwise' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:519:0: 'LeanPML.Rectangle.primitiveMain_ae_of_represented' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:520:0: 'LeanPML.Rectangle.primitive_of_pointwise' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:521:0: 'LeanPML.Rectangle.represented_smoothBase' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:522:0: 'LeanPML.Rectangle.represented_smoothFirst' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:523:0: 'LeanPML.Rectangle.primitive_coordinates' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:524:0: 'LeanPML.Rectangle.primitiveAt_from_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:525:0: 'LeanPML.Rectangle.zeroBoundary_of_toL2_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:526:0: 'LeanPML.Rectangle.zeroBoundary_first_on_open' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:527:0: 'LeanPML.Rectangle.finiteIntervalProblem_second_R_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:528:0: 'LeanPML.Rectangle.smoothSpatialPath' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:529:0: 'LeanPML.Rectangle.finiteIntervalProblem_of_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:532:0: 'LeanPML.Rectangle.history_intervalIntegrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:533:0: 'LeanPML.Rectangle.continuousHistory_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:534:0: 'LeanPML.Rectangle.continuousHistory_toL2' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:535:0: 'LeanPML.Rectangle.toL2_integralLift' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:536:0: 'LeanPML.Rectangle.toL2_integralLift_on_Icc' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:537:0: 'LeanPML.PML.Concrete.integralLift_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:538:0: 'LeanPML.PML.Concrete.hasDerivAt_integralLift' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:539:0: 'LeanPML.PML.Concrete.continuous_integralLift' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:540:0: 'LeanPML.PML.Concrete.integralLift_eq_of_initial_derivative' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:541:0: 'LeanPML.PML.Concrete.spaceDx_const_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:542:0: 'LeanPML.PML.Concrete.spaceDy_const_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:543:0: 'LeanPML.PML.Concrete.fluxDiv_lift' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:544:0: 'LeanPML.PML.Concrete.magnetic_lift_derivatives' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:545:0: 'LeanPML.PML.Concrete.magnetic_invariants_hasDerivAt_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:546:0: 'LeanPML.PML.Concrete.five_invariants_eq_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:547:0: 'LeanPML.PML.Concrete.compatibleAt_of_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:548:0: 'LeanPML.PML.Concrete.primitive_lift_at' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:549:0: 'LeanPML.PML.Concrete.debye_of_primitive_near' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:550:0: 'LeanPML.PML.Concrete.primitive_flux_derivatives' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:551:0: 'LeanPML.PML.Concrete.original_reconstruct_at' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:552:0: 'LeanPML.PML.Concrete.continuous_space_partial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:553:0: 'LeanPML.PML.Concrete.lift_mixed_derivatives' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:554:0: 'LeanPML.PML.Concrete.five_invariants_on_Icc' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:555:0: 'LeanPML.PML.Concrete.compatible_lift_on_Icc' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:556:0: 'LeanPML.PML.Concrete.original_to_primitive' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:557:0: 'LeanPML.PML.Concrete.primitive_to_original' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:558:0: 'LeanPML.PML.Concrete.initial_debye_lift' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:559:0: 'LeanPML.PML.Concrete.integralLift_zero_boundary' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:560:0: 'LeanPML.PML.Concrete.reconstruct_PEC' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:561:0: 'LeanPML.PML.Concrete.primitive_zero_absorption_preserved' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:562:0: 'LeanPML.PML.Concrete.invariant_fields_eqOn_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:563:0: 'LeanPML.PML.Concrete.five_invariants_toLp_eq_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:564:0: 'LeanPML.PML.Concrete.five_invariants_toLp_eq_of_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:565:0: 'LeanPML.PML.Concrete.reconstruct_lift_eqOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:566:0: 'LeanPML.PML.Concrete.lift_reconstruct_histories' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:567:0: 'LeanPML.PML.Concrete.lift_reconstruct_eqOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:568:0: 'LeanPML.PML.Concrete.integralLift_rect_zeroBoundary' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:569:0: 'LeanPML.PML.Concrete.original_to_primitive_rectangle' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:570:0: 'LeanPML.PML.Concrete.primitive_to_original_rectangle' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:571:0: 'LeanPML.PML.Concrete.original_zero_region_preserved' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:572:0: 'LeanPML.PML.Concrete.smoothPrimitiveFields_eq_lift' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:573:0: 'LeanPML.PML.Concrete.lift_velocity_coordinates' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:574:0: 'LeanPML.PML.Concrete.jet_zero_derivatives' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:575:0: 'LeanPML.PML.Concrete.original_smoothZeroOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:576:0: 'LeanPML.PML.Concrete.lift_spatial_coordinates' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:577:0: 'LeanPML.PML.Concrete.lift_first_spatial_coordinates' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:578:0: 'LeanPML.PML.Concrete.eq_on_closed_of_internal' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:579:0: 'LeanPML.PML.Concrete.lift_first_polar_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:580:0: 'LeanPML.PML.Concrete.lift_zero_coordinates_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:581:0: 'LeanPML.PML.Concrete.original_static_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:582:0: 'LeanPML.PML.Concrete.originalFiniteIntervalProblem_second_R_continuous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:583:0: 'LeanPML.PML.Concrete.originalFiniteIntervalProblem' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:584:0: 'LeanPML.PML.Concrete.originalFiniteIntervalProblem_separated' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:587:0: 'LeanPML.Rectangle.ParameterCertificate.unitSquare_sideLengths' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:588:0: 'LeanPML.Rectangle.ParameterCertificate.poincareConstant_unitSquare' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:589:0: 'LeanPML.Rectangle.ParameterCertificate.materialA_unit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:590:0: 'LeanPML.Rectangle.ParameterCertificate.scaleK_unitSquare' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:591:0: 'LeanPML.Rectangle.ParameterCertificate.smallC_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:592:0: 'LeanPML.Rectangle.ParameterCertificate.amplitudeS_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:593:0: 'LeanPML.Rectangle.ParameterCertificate.amplitudeS_eq_quarter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:594:0: 'LeanPML.Rectangle.ParameterCertificate.unitSquare_explicit_smallness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:595:0: 'LeanPML.Rectangle.ParameterCertificate.unitSquare_le_threshold' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:596:0: 'LeanPML.Rectangle.ParameterCertificate.unitSquare_parameter_certificate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:597:0: 'LeanPML.Rectangle.ParameterCertificate.oldC_material_condition_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:598:0: 'LeanPML.Rectangle.ParameterCertificate.oldC_fails_material_condition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:599:0: 'LeanPML.Rectangle.ParameterCertificate.oldC_not_le_threshold' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:602:0: 'LeanPML.PML.Concrete.hasDerivAt_spaceDx_of_differentiable' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:603:0: 'LeanPML.PML.Concrete.hasDerivAt_spaceDy_of_differentiable' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:604:0: 'LeanPML.PML.Concrete.OriginalClassicalOn.spatial_derivatives' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:605:0: 'LeanPML.PML.Concrete.differentiableAt_space_of_joint_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:606:0: 'LeanPML.PML.Concrete.lift_spatialOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:607:0: 'LeanPML.PML.Concrete.original_to_primitive_classical' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:608:0: 'LeanPML.PML.Concrete.reconstruct_spatialOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:609:0: 'LeanPML.PML.Concrete.primitive_to_original_classical' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:610:0: 'LeanPML.PML.Concrete.originalSpatialOn_of_liftIdentified' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:611:0: 'LeanPML.PML.Concrete.originalClassicalOn_of_liftIdentified' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:612:0: 'LeanPML.PML.Concrete.smoothPrimitiveFields_spatialOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:613:0: 'LeanPML.PML.Concrete.original_to_primitive_classical_rectangle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:614:0: 'LeanPML.PML.Concrete.primitive_to_original_classical_rectangle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:615:0: 'LeanPML.PML.Concrete.originalClassicalFiniteIntervalProblem_second_R_continuous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:616:0: 'LeanPML.PML.Concrete.originalClassicalFiniteIntervalProblem' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:617:0: 'LeanPML.PML.Concrete.originalClassicalFiniteIntervalProblem_of_liftIdentified' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:620:0: 'LeanPML.Rectangle.clampInterval_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:621:0: 'LeanPML.Rectangle.clampInterval_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:622:0: 'LeanPML.Rectangle.RegionalAbsorption.coefficients' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:623:0: 'LeanPML.Rectangle.RegionalAbsorption.S_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:624:0: 'LeanPML.Rectangle.RegionalAbsorption.pExtend_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:625:0: 'LeanPML.Rectangle.RegionalAbsorption.rExtend_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:626:0: 'LeanPML.Rectangle.RegionalAbsorption.pExtend_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:627:0: 'LeanPML.Rectangle.RegionalAbsorption.rExtend_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:628:0: 'LeanPML.Rectangle.RegionalAbsorption.coefficients_eq_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:629:0: 'LeanPML.Rectangle.RegionalAbsorption.coefficients_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:630:0: 'LeanPML.Rectangle.RegionalAbsorption.weights_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:631:0: 'LeanPML.Rectangle.RegionalAbsorption.weighted_memLp_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:632:0: 'LeanPML.Rectangle.RegionalAbsorption.energyDensity_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:633:0: 'LeanPML.Rectangle.RegionalAbsorption.energyDensity_integrable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:634:0: 'LeanPML.Rectangle.RegionalAbsorption.fieldEnergy_eq_regional_integral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:635:0: 'LeanPML.Rectangle.RegionalAbsorption.dissipationDensity_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:636:0: 'LeanPML.Rectangle.RegionalAbsorption.dissipationDensity_integrable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:637:0: 'LeanPML.Rectangle.RegionalAbsorption.fieldDissipation_eq_regional_integral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:638:0: 'LeanPML.Rectangle.RegionalAbsorption.coefficients_eq_open' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:639:0: 'LeanPML.Rectangle.RegionalAbsorption.originalAt_extend' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:640:0: 'LeanPML.Rectangle.RegionalAbsorption.initialCompatible_extend' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:641:0: 'LeanPML.Rectangle.RegionalAbsorption.originalClassicalOn_extend' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:642:0: 'LeanPML.Rectangle.RegionalAbsorption.originalRegionalFiniteIntervalProblem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:643:0: 'LeanPML.Rectangle.RegionalAbsorption.originalRegionalFiniteIntervalProblem_second_R_continuous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:646:0: 'LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.parameters' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:647:0: 'LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.problem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:648:0: 'LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.second_R_continuous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:649:0: 'LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.energy_eq_original_integrals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:650:0: 'LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.energy_densities_integrable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:651:0: 'LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.dissipation_eq_original_integrals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:652:0: 'LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.dissipation_densities_integrable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:653:0: 'LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.energy_graph_bounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:654:0: 'LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.energy_law_and_closure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:655:0: 'LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.energy_antitone' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:656:0: 'LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.energy_initial_bounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:657:0: 'LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.dissipation_intervalIntegrable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:658:0: 'LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.energy_integral_balance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:659:0: 'LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.electric_identified' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:660:0: 'LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.polar_identified' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:661:0: 'LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.magneticX_identified' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:662:0: 'LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.magneticY_identified' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:663:0: 'LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.electric_memLp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:664:0: 'LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.polar_memLp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:665:0: 'LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.magneticX_memLp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:666:0: 'LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.magneticY_memLp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:667:0: 'LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.electricL2_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:668:0: 'LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.polarL2_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:669:0: 'LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.magneticXL2_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:670:0: 'LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.magneticYL2_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:671:0: 'LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.physical_current_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:672:0: 'LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.physical_initial_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:673:0: 'LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.auxiliary_initial_bounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:674:0: 'LeanPML.PML.SmoothRectangle.main_energy_estimate_smoothRectangle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:677:0: 'LeanPML.Examples.SmoothBump.basicBump_contDiff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:678:0: 'LeanPML.Examples.SmoothBump.basicBump_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:679:0: 'LeanPML.Examples.SmoothBump.basicBump_pos_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:680:0: 'LeanPML.Examples.SmoothBump.basicBump_center_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:681:0: 'LeanPML.Examples.SmoothBump.basicBump_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:682:0: 'LeanPML.Examples.SmoothBump.basicBump_tsupport' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:683:0: 'LeanPML.Examples.SmoothBump.basicBump_hasCompactSupport' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:684:0: 'LeanPML.Examples.SmoothBump.basicBump_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:685:0: 'LeanPML.Examples.SmoothBump.basicBump_deriv_tsupport_subset' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:686:0: 'LeanPML.Examples.FullDomain.profile_contDiff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:687:0: 'LeanPML.Examples.FullDomain.profile_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:688:0: 'LeanPML.Examples.FullDomain.profile_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:689:0: 'LeanPML.Examples.FullDomain.profile_zero_of_mem_physical' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:690:0: 'LeanPML.Examples.FullDomain.profile_pos_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:691:0: 'LeanPML.Examples.FullDomain.profile_eq_amplitude_of_plateau' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:692:0: 'LeanPML.Examples.FullDomain.regional_threshold' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:693:0: 'LeanPML.Examples.FullDomain.physical_region' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:694:0: 'LeanPML.Examples.FullDomain.vertical_side' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:695:0: 'LeanPML.Examples.FullDomain.horizontal_side' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:696:0: 'LeanPML.Examples.FullDomain.corner_region' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:697:0: 'LeanPML.Examples.FullDomain.four_sides_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:698:0: 'LeanPML.Examples.FullDomain.four_corners_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:699:0: 'LeanPML.Examples.FullDomain.physicalBump_center_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:700:0: 'LeanPML.Examples.FullDomain.physicalBump_tsupport_subset' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:701:0: 'LeanPML.Examples.FullDomain.physicalBump_hasCompactSupport' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:702:0: 'LeanPML.Examples.FullDomain.physicalBump_support_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:703:0: 'LeanPML.Examples.FullDomain.physicalBump_gradient_tsupport_subset' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:704:0: 'LeanPML.Examples.FullDomain.physicalBump_dx_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:705:0: 'LeanPML.Examples.FullDomain.sideBump1D_contDiff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:706:0: 'LeanPML.Examples.FullDomain.sideBump1D_center_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:707:0: 'LeanPML.Examples.FullDomain.sideBump1D_tsupport' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:708:0: 'LeanPML.Examples.FullDomain.sideBump1D_hasCompactSupport' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:709:0: 'LeanPML.Examples.FullDomain.sideBump1D_support_plateau' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:710:0: 'LeanPML.Examples.constantJet' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:711:0: 'LeanPML.Examples.constantJet_regular' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:712:0: 'LeanPML.Examples.weighted_zero_memLp' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:713:0: 'LeanPML.Examples.weightedOfFunction_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:714:0: 'LeanPML.Examples.weightedOfFunction_zeroFun' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:715:0: 'LeanPML.Examples.weightedOfFunction_zeroSmooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:716:0: 'LeanPML.Examples.constantJet_weightedRegular' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:717:0: 'LeanPML.Examples.constantStateRegular' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:718:0: 'LeanPML.Examples.derivativeX_smul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:719:0: 'LeanPML.Examples.derivativeY_smul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:720:0: 'LeanPML.Examples.affineJet' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:721:0: 'LeanPML.Examples.affineJet_regular' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:722:0: 'LeanPML.Examples.CompatibleData.initial_values' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:723:0: 'LeanPML.Examples.CompatibleData.spatial_regular' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:724:0: 'LeanPML.Examples.CompatibleData.lift_values' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:725:0: 'LeanPML.Examples.CompatibleData.initial_derivatives' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:726:0: 'LeanPML.Examples.CompatibleData.original_at_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:727:0: 'LeanPML.Examples.CompatibleData.compatible_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:728:0: 'LeanPML.Examples.CompatibleData.identified' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:729:0: 'LeanPML.Examples.CompatibleData.regular' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:730:0: 'LeanPML.Examples.CompatibleData.initialGraphSquare_formula' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:731:0: 'LeanPML.Examples.CompatibleData.physicalBump_L2_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:732:0: 'LeanPML.Examples.CompatibleData.absorption_times_bump' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:733:0: 'LeanPML.Examples.CompatibleData.physical_initial_equations' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:734:0: 'LeanPML.Examples.CompatibleData.physical_initial_compatible' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:735:0: 'LeanPML.Examples.CompatibleData.physical_bump_boundary' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:736:0: 'LeanPML.Examples.CompatibleData.physical_zero_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:737:0: 'LeanPML.Examples.CompatibleData.physical_initial_graph_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:738:0: 'LeanPML.Examples.CompatibleData.initial_derivative_compatible' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:739:0: 'LeanPML.Examples.CompatibleData.physical_initial_traces' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:740:0: 'LeanPML.Examples.CompatibleData.physical_data_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:743:0: 'LeanPML.Examples.Degenerate.zero_originalAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:744:0: 'LeanPML.Examples.Degenerate.integralLift_zero_function' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:745:0: 'LeanPML.Examples.Degenerate.zero_integralLift' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:746:0: 'LeanPML.Examples.Degenerate.zeroSolution' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:747:0: 'LeanPML.Examples.Degenerate.branch_thresholds' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:748:0: 'LeanPML.Examples.Degenerate.asymmetric_directions' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:749:0: 'LeanPML.Examples.Degenerate.four_branches_main' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:750:0: 'LeanPML.Examples.StaticMode.history_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:751:0: 'LeanPML.Examples.StaticMode.lift_values' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:752:0: 'LeanPML.Examples.StaticMode.equations_at' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:753:0: 'LeanPML.Examples.StaticMode.compatible_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:754:0: 'LeanPML.Examples.StaticMode.identified' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:755:0: 'LeanPML.Examples.StaticMode.history_regular' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:756:0: 'LeanPML.Examples.StaticMode.solution' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:757:0: 'LeanPML.Examples.StaticMode.energy_antitone' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:758:0: 'LeanPML.Examples.StaticMode.sideField_dy' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:759:0: 'LeanPML.Examples.StaticMode.sideField_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:760:0: 'LeanPML.Examples.StaticMode.sideField_weighted_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:761:0: 'LeanPML.Examples.StaticMode.sideField_weighted' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:762:0: 'LeanPML.Examples.StaticMode.sideField_L2_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:763:0: 'LeanPML.Examples.StaticMode.concreteSolution' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:764:0: 'LeanPML.Examples.StaticMode.concrete_integral_balance' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:765:0: 'LeanPML.Examples.StaticMode.concrete_energy_constant' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:766:0: 'LeanPML.Examples.StaticMode.concrete_graph_formula' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:767:0: 'LeanPML.Examples.StaticMode.concrete_energy_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:768:0: 'LeanPML.Examples.StaticMode.concrete_dissipation_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:769:0: 'LeanPML.Examples.StaticMode.nonzero_static_regression' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:770:0: 'LeanPML.PML.Obstructions.smooth_mixed_partials' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:771:0: 'LeanPML.PML.Obstructions.gradient_zero_outside_tsupport' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:772:0: 'LeanPML.PML.Obstructions.unrestricted_time_derivatives' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:773:0: 'LeanPML.PML.Obstructions.unrestricted_curl_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:774:0: 'LeanPML.PML.Obstructions.unrestricted_originalAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:775:0: 'LeanPML.PML.Obstructions.unrestricted_spatialAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:776:0: 'LeanPML.PML.Obstructions.unrestricted_originalClassicalOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:777:0: 'LeanPML.PML.Obstructions.unrestricted_PEC' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:778:0: 'LeanPML.PML.Obstructions.unrestrictedMagneticSquare_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:779:0: 'LeanPML.PML.Obstructions.unrestricted_magnetic_L2_derivatives' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:780:0: 'LeanPML.PML.Obstructions.unrestrictedGradientSquare_pos_of_dx' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:781:0: 'LeanPML.PML.Obstructions.unrestricted_initial_fields' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:782:0: 'LeanPML.PML.Obstructions.unrestricted_initial_magnetic_invariants' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:783:0: 'LeanPML.PML.Obstructions.unrestricted_not_initialCompatible' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:784:0: 'LeanPML.PML.Obstructions.unrestricted_magnetic_growth' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:785:0: 'LeanPML.PML.Obstructions.unrestricted_no_global_coercive_antitone_energy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:786:0: 'LeanPML.PML.Obstructions.singleLayer_candidate_failure_regression' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:787:0: 'LeanPML.PML.Obstructions.unrestricted_compact_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:788:0: 'LeanPML.PML.Obstructions.unrestricted_no_compatible_lift' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:789:0: 'LeanPML.PML.Obstructions.smooth_L2_square_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:790:0: 'LeanPML.PML.Obstructions.unrestrictedGradientSquare_eq_integral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:791:0: 'LeanPML.PML.Obstructions.unrestrictedMagneticSquare_eq_integral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:792:0: 'LeanPML.PML.Obstructions.fullProfile_unrestricted_gradient_positive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:793:0: 'LeanPML.PML.Obstructions.fullProfile_unrestricted_gradient_integral_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:794:0: 'LeanPML.PML.Obstructions.fullProfile_unrestricted_classical' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:795:0: 'LeanPML.PML.Obstructions.fullProfile_unrestricted_compact_fields' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:796:0: 'LeanPML.PML.Obstructions.fullProfile_unrestricted_not_compatible' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:797:0: 'LeanPML.PML.Obstructions.fullProfile_unrestricted_norm_growth' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:798:0: 'LeanPML.PML.Obstructions.fullProfile_unrestricted_unbounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:799:0: 'LeanPML.PML.Obstructions.fullProfile_unrestricted_no_coercive_antitone_energy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:802:0: 'LeanPML.Analysis.physicalL2_range_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:803:0: 'LeanPML.Analysis.weightedMul_norm_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:804:0: 'LeanPML.Analysis.physicalL2_weightedMul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:805:0: 'LeanPML.Analysis.physicalL2_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:806:0: 'LeanPML.Analysis.physicalL2_zero_on_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:807:0: 'LeanPML.Analysis.physicalL2_norm_sq_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:808:0: 'LeanPML.Analysis.weighted_completeSpace' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:809:0: 'LeanPML.Analysis.weighted_eq_zero_of_weight_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:810:0: 'LeanPML.Analysis.physicalL2_weightedOfFunction' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:811:0: 'LeanPML.Analysis.weightedOfFunction_congr' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:812:0: 'LeanPML.Analysis.weighted_norm_sq_eq_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:813:0: 'LeanPML.Rectangle.TestFunction.zero_outside' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:814:0: 'LeanPML.Rectangle.TestFunction.zeroBoundary' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:815:0: 'LeanPML.Rectangle.eq_zero_of_test_inner' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:816:0: 'LeanPML.Rectangle.HasWeakPartial.unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:817:0: 'LeanPML.Rectangle.HasWeakDivergence.unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:818:0: 'LeanPML.Rectangle.hasWeakDivergence_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:819:0: 'LeanPML.Rectangle.hasWeakPartial_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:820:0: 'LeanPML.Rectangle.weakH1Graph_isClosed' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:821:0: 'LeanPML.Rectangle.weakH1Graph_completeSpace' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:822:0: 'LeanPML.Rectangle.weakHDivGraph_isClosed' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:823:0: 'LeanPML.Rectangle.weakHDivGraph_completeSpace' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:824:0: 'LeanPML.Rectangle.zeroBoundaryGraph_completeSpace' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:825:0: 'LeanPML.Rectangle.test_mem_zeroBoundaryGraph' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:826:0: 'LeanPML.Rectangle.weakValue_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:827:0: 'LeanPML.Rectangle.weakLift_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:828:0: 'LeanPML.Rectangle.weakSpatialDomain_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:829:0: 'LeanPML.Rectangle.weakFlux_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:830:0: 'LeanPML.Rectangle.weakH1_coordinate_norm_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:831:0: 'LeanPML.Rectangle.weakHDiv_coordinate_norm_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:832:0: 'LeanPML.Rectangle.weakDivergence_spec' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:833:0: 'LeanPML.Rectangle.weakZeroFieldDomain_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:834:0: 'LeanPML.Rectangle.graph_norm_sq_equivalence' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:835:0: 'LeanPML.Examples.WeakSpaces.physicalTest_nonzero_member' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:836:0: 'LeanPML.Examples.WeakSpaces.physicalTest_gradient_bridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:837:0: 'LeanPML.Examples.WeakSpaces.absorption_weighted_range' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:838:0: 'LeanPML.Examples.WeakSpaces.absorption_weighted_multiplication' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:840:0: 'LeanPML.Rectangle.smoothFieldDomain_le_weak' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:843:0: 'LeanPML.Rectangle.weakGreenFunctional_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:844:0: 'LeanPML.Rectangle.weak_green' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:845:0: 'LeanPML.Rectangle.weakZeroLift_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:846:0: 'LeanPML.Rectangle.weak_green_domain' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:847:0: 'LeanPML.Rectangle.weakGreenDomain' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:848:0: 'LeanPML.Rectangle.span_test_has_smooth_zeroBoundary' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:849:0: 'LeanPML.Rectangle.weak_poincare' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:850:0: 'LeanPML.Rectangle.weak_zero_of_gradient_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:851:0: 'LeanPML.Rectangle.weak_poincare_domain' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:852:0: 'LeanPML.Rectangle.weakPoincareDomain' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:853:0: 'LeanPML.Rectangle.hasDerivAt_weakH1_coordinate' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:854:0: 'LeanPML.Rectangle.hasDerivAt_weakHDiv_coordinate' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:855:0: 'LeanPML.PML.auxiliary_memory_formula' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:856:0: 'LeanPML.PML.auxiliary_zero_absorption_preserved' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:857:0: 'LeanPML.Examples.WeakAnalysis.nonzero_green' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:858:0: 'LeanPML.Examples.WeakAnalysis.nonzero_poincare' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:859:0: 'LeanPML.Examples.WeakAnalysis.nonzero_graph_path_derivative' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:860:0: 'LeanPML.Examples.WeakAnalysis.exponential_memory' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:863:0: 'LeanPML.Rectangle.cutoffSequence_toL2_convergence' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:864:0: 'LeanPML.Rectangle.smoothToWeakH1_mem_zeroBoundaryGraph' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:865:0: 'LeanPML.Rectangle.rectangleBubble_weakH01' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:866:0: 'LeanPML.Rectangle.smooth_zero_mem_weakZeroFieldDomain' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:867:0: 'LeanPML.Rectangle.smooth_trace_zero_mem_weakZeroFieldDomain' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:868:0: 'LeanPML.PML.weak_product_test' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:869:0: 'LeanPML.PML.weakCoefficientGraphMap_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:870:0: 'LeanPML.PML.weakCoefficientMul_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:871:0: 'LeanPML.PML.weakCoefficientMul_derivatives' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:872:0: 'LeanPML.PML.hasDerivAt_weakCoefficientMul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:873:0: 'LeanPML.PML.weakCoefficient_nonzero_call' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:874:0: 'LeanPML.PML.weight_absorption_squares' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:875:0: 'LeanPML.PML.weight_difference_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:876:0: 'LeanPML.Analysis.sqrt_weight_mul_abs_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:877:0: 'LeanPML.Analysis.weightedForcing_norm_sq_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:878:0: 'LeanPML.Analysis.physicalL2_weightedForcing' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:879:0: 'LeanPML.PML.SpatialAbsorption.xAbsorptionLift_norm_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:880:0: 'LeanPML.PML.SpatialAbsorption.physical_xAbsorptionLift' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:881:0: 'LeanPML.PML.SpatialAbsorption.differenceLift_norm_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:882:0: 'LeanPML.PML.SpatialAbsorption.physical_differenceLift' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:883:0: 'LeanPML.PML.SpatialAbsorption.physical_auxiliaryRateX' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:884:0: 'LeanPML.PML.SpatialAbsorption.auxiliaryRateX_norm_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:885:0: 'LeanPML.PML.SpatialAbsorption.auxiliaryRate_weak_norm_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:886:0: 'LeanPML.PML.SpatialAbsorption.auxiliary_derivative_weighted_representative' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:887:0: 'LeanPML.PML.SpatialAbsorption.auxiliaryRateX_eq_damped' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:888:0: 'LeanPML.PML.SpatialAbsorption.auxiliaryWeightedHistory_initial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:889:0: 'LeanPML.PML.SpatialAbsorption.continuousOn_auxiliaryWeightedHistory' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:890:0: 'LeanPML.PML.SpatialAbsorption.hasDerivAt_auxiliaryWeightedHistory' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:891:0: 'LeanPML.PML.SpatialAbsorption.physical_auxiliaryWeightedHistory' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:892:0: 'LeanPML.PML.SpatialAbsorption.auxiliary_weighted_membership' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:893:0: 'LeanPML.PML.SpatialAbsorption.hasDerivAt_auxiliaryWeightedHistory_damped' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:894:0: 'LeanPML.PML.SpatialAbsorption.hasDerivAt_auxiliaryRateX' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:895:0: 'LeanPML.PML.SpatialAbsorption.auxiliary_weak_field_membership' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:896:0: 'LeanPML.Examples.WeightedEvolution.initial_physical' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:897:0: 'LeanPML.Examples.WeightedEvolution.path_derivative' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:898:0: 'LeanPML.Examples.WeightedEvolution.nonzero_weighted_propagation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:899:0: 'LeanPML.Examples.WeightedEvolution.nonzero_weighted_path_derivative' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:900:0: 'LeanPML.Examples.WeightedEvolution.nonzero_rate_derivative' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:903:0: 'LeanPML.Rectangle.poincare_integral_top_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:904:0: 'LeanPML.Rectangle.smooth_directional_poincare' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:905:0: 'LeanPML.Rectangle.weak_directional_poincare' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:906:0: 'LeanPML.Rectangle.weak_zero_of_partial_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:907:0: 'LeanPML.Rectangle.weak_zero_of_dx_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:908:0: 'LeanPML.Rectangle.weak_zero_of_dy_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:909:0: 'LeanPML.Rectangle.nonzero_directional_poincare_call' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:910:0: 'LeanPML.Analysis.regularized_memory_rate_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:911:0: 'LeanPML.Analysis.regularized_memory_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:912:0: 'LeanPML.Analysis.norm_le_initial_add_integral_forcing' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:913:0: 'LeanPML.Analysis.square_intervalIntegral_le_mul_integral_square' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:914:0: 'LeanPML.Analysis.dissipative_memory_square_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:915:0: 'LeanPML.PML.SpatialAbsorption.weighted_absorption_inner_nonneg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:916:0: 'LeanPML.PML.SpatialAbsorption.auxiliary_weighted_memory_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:917:0: 'LeanPML.PML.SpatialAbsorption.auxiliary_weighted_integral_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:918:0: 'LeanPML.PML.SpatialAbsorption.auxiliary_weak_memory_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:919:0: 'LeanPML.Examples.WeightedEvolution.nonzero_memory_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:922:0: 'LeanPML.Rectangle.mollifiedField_toL2_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:923:0: 'LeanPML.PML.compactWeakProduct_mollified_partial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:924:0: 'LeanPML.PML.weakCoefficientMul_test_mem_zeroBoundaryGraph' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:925:0: 'LeanPML.PML.weakCoefficientMul_mem_zeroBoundaryGraph' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:926:0: 'LeanPML.PML.weakZeroCoefficientMul_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:927:0: 'LeanPML.PML.SeparatedRegionalWeakCoefficients.transverse_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:928:0: 'LeanPML.PML.coefficient_product_zero_of_transverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:929:0: 'LeanPML.PML.weak_lift_difference_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:930:0: 'LeanPML.PML.Weak.CompatibleLift.u_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:931:0: 'LeanPML.PML.Weak.CompatibleLift.state_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:932:0: 'LeanPML.PML.Weak.CompatibleLift.energy_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:933:0: 'LeanPML.PML.Weak.CompatibleLift.twoLayerEnergy_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:934:0: 'LeanPML.PML.Weak.nonzero_lift_energy_choice_call' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:935:0: 'LeanPML.Time.hasDerivAt_banachHistory' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:936:0: 'LeanPML.Time.banach_eq_initial_of_hasDerivAt_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:937:0: 'LeanPML.Time.map_banachHistory' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:938:0: 'LeanPML.PML.Weak.historyU_coordinate' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:939:0: 'LeanPML.PML.Weak.historyU_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:940:0: 'LeanPML.PML.Weak.all_invariants_eq_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:941:0: 'LeanPML.PML.Weak.all_invariants_zero_of_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:942:0: 'LeanPML.PML.Weak.OriginalInterval.reconstruction' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:943:0: 'LeanPML.PML.Weak.OriginalInterval.primitive_main' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:944:0: 'LeanPML.PML.Weak.OriginalInterval.auxiliary_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:945:0: 'LeanPML.PML.Weak.OriginalInterval.weighted_membership' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:946:0: 'LeanPML.PML.Weak.OriginalInterval.memory_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:949:0: 'LeanPML.PML.Weak.zeroDomain_gradient' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:950:0: 'LeanPML.PML.Weak.fluxDomain_divergence' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:951:0: 'LeanPML.PML.Weak.OriginalInterval.baseState_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:952:0: 'LeanPML.PML.Weak.OriginalInterval.firstState_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:953:0: 'LeanPML.PML.Weak.OriginalInterval.base_physical' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:954:0: 'LeanPML.PML.Weak.OriginalInterval.base_evolution' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:955:0: 'LeanPML.PML.Weak.OriginalInterval.states_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:956:0: 'LeanPML.PML.Weak.eqOn_Icc_of_Ioo' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:957:0: 'LeanPML.PML.Weak.OriginalInterval.first_evolution' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:958:0: 'LeanPML.PML.Weak.OriginalInterval.base_constraints' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:959:0: 'LeanPML.PML.Weak.OriginalInterval.first_constraints' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:960:0: 'LeanPML.PML.Weak.OriginalInterval.main_energy_estimate_WeakOriginal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:961:0: 'LeanPML.PML.Weak.OriginalInterval.magnetic_reconstruction' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:962:0: 'LeanPML.PML.Weak.OriginalInterval.historicalLift_state' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:963:0: 'LeanPML.PML.Weak.OriginalInterval.historical_energy_independent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:964:0: 'LeanPML.PML.Weak.main_energy_estimate_RegionalWeak' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:965:0: 'LeanPML.Examples.WeakRegression.growthInitial_auxiliary_positive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:966:0: 'LeanPML.Examples.WeakRegression.zeroAbsorption_auxiliary_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:967:0: 'LeanPML.Examples.WeakRegression.growthInitial_no_weak_compatible_lift' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:968:0: 'LeanPML.Examples.WeakRegression.single_layer_scope_preserved' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:971:0: 'LeanPML.PML.Weak.RegionalIntegrals.energy_integrable_and_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:972:0: 'LeanPML.PML.Weak.RegionalIntegrals.dissipation_integrable_and_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:973:0: 'LeanPML.PML.WeakRegionalAbsorption.profiles_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:974:0: 'LeanPML.PML.WeakRegionalAbsorption.operators_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:975:0: 'LeanPML.PML.WeakRegionalAbsorption.weights_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:976:0: 'LeanPML.PML.WeakRegionalAbsorption.integral_profiles' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:977:0: 'LeanPML.PML.WeakRegionalAbsorption.integrable_profiles_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:978:0: 'LeanPML.Examples.WeakStaticMode.originalAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:979:0: 'LeanPML.Examples.WeakStaticMode.main_call' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:980:0: 'LeanPML.Examples.WeakStaticMode.oneField_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:981:0: 'LeanPML.Examples.WeakStaticMode.physical_initialY' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:982:0: 'LeanPML.Examples.WeakStaticMode.energy_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:983:0: 'LeanPML.Examples.WeakStaticMode.energy_constant' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:984:0: 'LeanPML.Examples.WeakStaticMode.dissipation_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:985:0: 'LeanPML.Examples.WeakStaticMode.nonzero_static_regression' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:986:0: 'LeanPML.Examples.WeakBranchRegression.configuration_main' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:987:0: 'LeanPML.Examples.WeakBranchRegression.all_four_configurations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:990:0: 'LeanPML.PML.Weak.OriginalInterval.auxiliary_reconstruction' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:991:0: 'LeanPML.PML.Weak.OriginalInterval.original_auxiliary_control' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:992:0: 'LeanPML.PML.Weak.OriginalInterval.original_auxiliary_initial_control' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:993:0: 'LeanPML.PML.Weak.V7TimeRegularity.fluxDot_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:994:0: 'LeanPML.PML.Weak.V7TimeRegularity.flux_second' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:995:0: 'LeanPML.PML.Weak.V7TimeRegularity.toOriginalJet' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:996:0: 'LeanPML.PML.Weak.V7TimeRegularity.main_energy_and_auxiliary' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:997:0: 'LeanPML.PML.Weak.reverse_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:998:0: 'LeanPML.PML.Weak.primitive_to_original_WeakAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:999:0: 'LeanPML.PML.Weak.primitive_to_original_WeakOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1000:0: 'LeanPML.PML.Weak.reverse_compatible' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1001:0: 'LeanPML.Analysis.operator_memory_formula' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1002:0: 'LeanPML.PML.SpatialAbsorption.auxiliary_operator_memory' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1003:0: 'LeanPML.PML.Weak.OriginalInterval.operator_memory_both' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1004:0: 'LeanPML.Examples.WeakStaticMode.closeout_main_call' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1005:0: 'LeanPML.Examples.WeakStaticMode.reverse_static_call' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1006:0: 'LeanPML.Examples.WeakStaticMode.kernel_static_call' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1009:0: 'LeanPML.Analysis.weightedFunctionalAlgHom' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1010:0: 'LeanPML.Analysis.weightedFunctional_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1011:0: 'LeanPML.Analysis.continuousMap_exp_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1012:0: 'LeanPML.Analysis.dampingKernel_eq_scalarExpMultiplier' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1013:0: 'LeanPML.Analysis.dampingKernel_coe' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1014:0: 'LeanPML.Analysis.physical_scalarExpMultiplier' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1015:0: 'LeanPML.PML.SpatialAbsorption.dampingKernel_eq_scalarKernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1016:0: 'LeanPML.PML.SpatialAbsorption.exponentialHistory_eq_scalarMemory' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:1017:0: 'LeanPML.PML.SpatialAbsorption.auxiliary_scalar_memory' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1018:0: 'LeanPML.PML.SpatialAbsorption.scalarKernel_physical_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1019:0: 'LeanPML.PML.SpatialAbsorption.auxiliary_scalar_memory_physical' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:1020:0: 'LeanPML.PML.Weak.OriginalInterval.scalar_memory_both' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1021:0: 'LeanPML.Examples.WeakStaticMode.scalar_kernel_static_call' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1022:0: 'LeanPML.Examples.FullDomain.nonconstant_profile_scalar_kernel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:1025:0: 'LeanPML.PML.Weak.derivWithin_eq_on_closed_interval' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1026:0: 'LeanPML.PML.Weak.contDiffOn_derivative_of_evidence' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1027:0: 'LeanPML.PML.Weak.hasDerivAt_within_of_contDiffOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1028:0: 'LeanPML.PML.Weak.ClosedCkRegularity.electric_graph' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1029:0: 'LeanPML.PML.Weak.ClosedCkRegularity.electric_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1030:0: 'LeanPML.PML.Weak.ClosedCkRegularity.derivative_slots' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1031:0: 'LeanPML.PML.Weak.ClosedCkRegularity.derivatives_c1' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1032:0: 'LeanPML.PML.Weak.ClosedCkRegularity.toTimeRegularity' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1033:0: 'LeanPML.PML.Weak.ClosedCkRegularity.main_energy_from_closedCk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:1034:0: 'LeanPML.Examples.WeakStaticMode.closedCkRegularity' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1035:0: 'LeanPML.Examples.WeakStaticMode.closedCk_main_call' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1038:0: 'LeanPML.Rectangle.ground_state_interval_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1039:0: 'LeanPML.Rectangle.sine_log_derivative' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1040:0: 'LeanPML.Rectangle.dirichlet_wirtinger_compact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1041:0: 'LeanPML.Rectangle.test_slice_wirtinger_x' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1042:0: 'LeanPML.Rectangle.test_slice_wirtinger_y' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1043:0: 'LeanPML.Rectangle.test_sharp_poincare' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1044:0: 'LeanPML.Rectangle.span_test_has_test' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1045:0: 'LeanPML.Rectangle.weak_sharp_poincare_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1046:0: 'LeanPML.Rectangle.sharpPoincareDenominator_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1047:0: 'LeanPML.Rectangle.sharpPoincareConstant_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1048:0: 'LeanPML.Rectangle.sharpPoincareConstant_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1049:0: 'LeanPML.Rectangle.weak_sharp_poincare' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1050:0: 'LeanPML.Rectangle.weak_sharp_poincare_domain' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1051:0: 'LeanPML.Rectangle.sharpWeakPoincareDomain' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1052:0: 'LeanPML.Rectangle.ParameterCertificate.sharp_CP_sq_unitSquare' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:1053:0: 'LeanPML.Rectangle.ParameterCertificate.sharp_K_unitSquare' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1054:0: 'LeanPML.Rectangle.ParameterCertificate.original_parameters_explicit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:1055:0: 'LeanPML.Rectangle.ParameterCertificate.original_parameters_threshold' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:1056:0: 'LeanPML.Rectangle.ParameterCertificate.original_amplitude_certificate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:1057:0: 'LeanPML.PML.Weak.OriginalInterval.sharp_base_constraints' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1058:0: 'LeanPML.PML.Weak.OriginalInterval.sharp_first_constraints' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1059:0: 'LeanPML.PML.Weak.OriginalInterval.sharpFiniteProblem' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1060:0: 'LeanPML.PML.Weak.OriginalInterval.main_energy_estimate_SharpWeakOriginal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:1061:0: 'LeanPML.PML.Weak.OriginalInterval.sharp_original_auxiliary_control' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:1062:0: 'LeanPML.PML.Weak.OriginalInterval.sharp_original_auxiliary_initial_control' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:1063:0: 'LeanPML.PML.Weak.OriginalInterval.scalar_memory_physical_x' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1064:0: 'LeanPML.PML.Weak.OriginalInterval.scalar_memory_physical_y' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1065:0: 'LeanPML.PML.Weak.ClosedCkRegularity.main_energy_sharp' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1066:0: 'LeanPML.Examples.WeakStaticMode.sharpParameters' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1067:0: 'LeanPML.Examples.WeakStaticMode.sharp_main_call' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1068:0: 'LeanPML.Examples.WeakStaticMode.sharp_closedCk_call' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1069:0: 'LeanPML.Examples.WeakStaticMode.sharp_energy_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1070:0: 'LeanPML.Examples.WeakStaticMode.sharp_energy_constant' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1071:0: 'LeanPML.Examples.WeakStaticMode.sharp_dissipation_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1072:0: 'LeanPML.Examples.WeakStaticMode.sharp_nonzero_static_regression' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:1075:0: 'LeanPML.PML.Weak.V7ClosedCkCore.interior_derivative_slots' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1076:0: 'LeanPML.PML.Weak.V7ClosedCkCore.canonicalInterval' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1077:0: 'LeanPML.PML.Weak.V7ClosedCkCore.canonical_fields' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1078:0: 'LeanPML.PML.Weak.V7ClosedCkCore.regularity' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1079:0: 'LeanPML.PML.Weak.V7ClosedCkCore.main_energy' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1080:0: 'LeanPML.PML.Weak.main_energy_RegionalSharpCk' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1081:0: 'LeanPML.Examples.WeakStaticMode.canonical_main_call' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1084:0: 'LeanPML.Analysis.exists_compact_primitive' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1085:0: 'LeanPML.Analysis.exists_normalized_interval_test' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1086:0: 'LeanPML.Analysis.ae_constant_of_weak_derivative_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1087:0: 'LeanPML.Analysis.integral_primitive_weak_derivative' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1088:0: 'LeanPML.Analysis.ae_eq_integral_primitive_of_weak_derivative' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:1089:0: 'LeanPML.Analysis.lipschitz_integral_primitive' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1090:0: 'LeanPML.Analysis.exists_lipschitz_representative' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1091:0: 'LeanPML.Analysis.continuous_representative_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1092:0: 'LeanPML.Analysis.exists_regional_lipschitz_representative' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1094:0: 'LeanPML.Rectangle.ParameterCertificate.original_threshold_min' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:1095:0: 'LeanPML.Rectangle.ParameterCertificate.original_threshold_exact' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:1096:0: 'LeanPML.Rectangle.ParameterCertificate.original_c_lt_exact_threshold' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:1097:0: 'LeanPML.Examples.WeakRepresentative.affine_weak' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1098:0: 'LeanPML.Examples.WeakRepresentative.affine_representative' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1101:0: 'LeanPML.PML.separated_weak_derivative_x' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1102:0: 'LeanPML.PML.separated_weak_derivative_y' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1103:0: 'LeanPML.PML.separated_lipschitz_representative_x' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1104:0: 'LeanPML.PML.separated_lipschitz_representative_y' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1105:0: 'LeanPML.PML.representative_ae_rectangle_x' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1106:0: 'LeanPML.PML.representative_ae_rectangle_y' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1107:0: 'LeanPML.PML.RawWeakRegionalAbsorption.representatives' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1108:0: 'LeanPML.PML.RawWeakRegionalAbsorption.values_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1109:0: 'LeanPML.PML.RawWeakRegionalAbsorption.operators_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1110:0: 'LeanPML.PML.RawWeakRegionalAbsorption.spatial_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1111:0: 'LeanPML.PML.RawWeakRegionalAbsorption.rawSpatial_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1112:0: 'LeanPML.PML.RawWeakRegionalAbsorption.integral_and_integrable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:1113:0: 'LeanPML.PML.RawWeakRegionalAbsorption.weighted_spaces_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1114:0: 'LeanPML.PML.RawWeakRegionalAbsorption.energy_integral_original' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:1115:0: 'LeanPML.PML.Weak.OriginalAt.changeCoefficients' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1116:0: 'LeanPML.PML.Weak.OriginalInterval.changeCoefficients' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1117:0: 'LeanPML.PML.physical_changeRepresentative' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1118:0: 'LeanPML.PML.Weak.OriginalInterval.representedDegenerate' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1119:0: 'LeanPML.PML.Weak.OriginalInterval.main_energy_GeneralWeakCk' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1120:0: 'LeanPML.PML.Weak.OriginalInterval.main_energy_GeneralWeakJet' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:1123:0: 'LeanPML.PML.lipschitz_weak_pairing' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1124:0: 'LeanPML.PML.lipschitzValueX_weak_x' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1125:0: 'LeanPML.PML.lipschitzValueY_weak_y' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1126:0: 'LeanPML.PML.weakCoefficientOfLipschitzX' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1127:0: 'LeanPML.PML.weakCoefficientOfLipschitzY' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1128:0: 'LeanPML.PML.Weak.OriginalInterval.auxiliary_initial_GeneralWeakJet' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:1129:0: 'LeanPML.PML.Weak.OriginalInterval.historical_energy_independent_GeneralWeak' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:1130:0: 'LeanPML.Examples.OriginalPower.profile_eq_paper' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1131:0: 'LeanPML.Examples.OriginalPower.extension_lipschitz' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1132:0: 'LeanPML.Examples.OriginalPower.extension_eq_profile' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1133:0: 'LeanPML.Examples.OriginalPower.profile_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1134:0: 'LeanPML.Examples.OriginalPower.profile_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1135:0: 'LeanPML.Examples.OriginalPower.profile_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1136:0: 'LeanPML.Examples.OriginalPower.absorption_threshold' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1137:0: 'LeanPML.Examples.OriginalPower.represented_profiles' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1138:0: 'LeanPML.Examples.OriginalPower.absorption_branches' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1139:0: 'LeanPML.Examples.OriginalPower.representative_nonconstant' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1140:0: 'LeanPML.Examples.GeneralWeak.static_main_call' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1141:0: 'LeanPML.Examples.GeneralWeak.static_ck_call' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1142:0: 'LeanPML.Examples.GeneralWeak.static_energy_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1143:0: 'LeanPML.Examples.GeneralWeak.static_energy_constant' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1144:0: 'LeanPML.Examples.GeneralWeak.static_dissipation_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1145:0: 'LeanPML.Examples.GeneralWeak.original_profile_main' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1146:0: 'LeanPML.Examples.GeneralWeak.four_branch_main' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1148:0: 'LeanPML.PML.Weak.twoLayerEnergy_independent_GeneralWeak' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Audit.lean:1150:0: 'LeanPML.PML.Weak.OriginalInterval.auxiliary_current_GeneralWeakCk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Audit.lean:1151:0: 'LeanPML.PML.Weak.OriginalInterval.auxiliary_current_GeneralWeakJet' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (3131 jobs).

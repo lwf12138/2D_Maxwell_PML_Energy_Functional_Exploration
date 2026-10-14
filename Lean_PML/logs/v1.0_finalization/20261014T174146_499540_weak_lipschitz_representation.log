@@ -1,0 +1,37 @@
+LeanPML/Analysis/WeakIntervalRepresentative.lean:32:18: warning: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+LeanPML/Analysis/WeakIntervalRepresentative.lean:24:44: warning: Variable name `hab` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+LeanPML/Analysis/WeakIntervalRepresentative.lean:171:54: warning: Variable name `hab` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+LeanPML/Analysis/WeakIntervalRepresentative.lean:173:39: warning: Variable name `hc` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+LeanPML/Analysis/WeakIntervalRepresentative.lean:283:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  F x
+in the target expression
+  x ∈ {x | 0 ≤ F x ∧ F x ≤ S}
+
+a b S : ℝ
+hab : a < b
+hS : 0 ≤ S
+f F : ℝ → ℝ
+hF : Continuous F
+hrep : f =ᵐ[volume.restrict (Ioo a b)] F
+hf_bounds : ∀ᵐ (x : ℝ) ∂volume.restrict (Ioo a b), 0 ≤ f x ∧ f x ≤ S
+G : ℝ → ℝ := fun x => max 0 (min S (F x))
+hG : Continuous G
+heq_ae : F =ᵐ[volume.restrict (Ioo a b)] G
+heq : EqOn F G (Ioo a b)
+x : ℝ
+hx : x ∈ Ioo a b
+⊢ x ∈ {x | 0 ≤ F x ∧ F x ≤ S}

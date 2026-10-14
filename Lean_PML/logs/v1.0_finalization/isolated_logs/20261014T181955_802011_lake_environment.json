@@ -1,0 +1,17 @@
+{
+  "stage": "v1.0_finalization",
+  "command": [
+    "lake",
+    "--version"
+  ],
+  "command_display": "lake --version",
+  "cwd": "/private/var/folders/9m/zcq3jbg90sx_fc7fv3zn0hnc0000gn/T/LeanPML_v1_finalization_r81gkebp",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-14T18:19:55.802011+08:00",
+  "output_file": "20261014T181955_802011_lake_environment.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-14T18:19:55.831301+08:00",
+  "elapsed_seconds": 0.029
+}

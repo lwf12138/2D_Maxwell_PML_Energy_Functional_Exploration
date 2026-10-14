@@ -124,3 +124,31 @@ model_contract 负责固定数学对象和主命题；theorem_inventory 负责�
 **阶段状态：v0.0.2 完成（仅原模型与主定理语义合同）。** 两次只读交叉审查发现的兼容类与加权保持输入歧义已修正，并完成末次文档和来源检查。T01–T37 仍全部为计划；Q01–Q13 中的后续数学/API 核验仍明确保留，不因本阶段完成而成为已实现定理。
 
 下一步是 **v0.0.3：固定 Lean/mathlib 与最小可信构建**：核实可用工具链、冻结版本、建立正式导入入口和审计入口、运行最小真实导数例子并记录结果。**v0.0.3 本轮未开始**，也未提前进入 Debye/PML 新证明。[R v0.0.3]
+
+
+2026-10-14 closeout 范围追加：新入口的 λ_tt 由图导数与原演化推出；原辅助变量控制与弱反向八式已接通；(5.7) 新增真实加权商类算子指数公式。一般 W¹,∞ 连续代表自动构造、精确 π 型 Poincaré 及算子核到逐点标量乘法识别仍未完成。原模型合同未修改，旧光滑/弱版本保持；不登记 V7 原文逐项对齐完成。
+
+
+## 2026-10-14 v1.0_completion 最新范围追加
+
+已有保守CP版本保留；新增已证明原π常数及实际能量入口。新增标量核识别完成(5.7)的实际空间值表示，保持逐时刻商类/a.e.量词。新正长度Cᵏ入口选取端点导数槽而不改变输入原场；T=0另列初始导数兼容。一般区域分离 W¹,∞ 连续代表尚未构造，最终区域入口仍明确输入连续性。本轮不将该差异改称技术上已自动满足；完整原文范围仍未闭合。详见 reports/weak_theorem.md 最新验收节。
+
+
+## 2026-10-14 v1.0_finalization 追加：一般原始弱系数连接闭合
+
+本轮用真实分布弱导数证明积分原函数及 Lipschitz 代表，经二维张量测试/Fubini 接入 `RawWeakRegionalAbsorption`；新 `OriginalInterval.main_energy_GeneralWeakCk/Jet` 不再输入 p/r 连续性。乘子、加权空间、原式、实际能量积分 a.e. 一致由 `WeakCoefficientTransport`、`MainRepresentedWeak` 证明。T>0 的 (6.6) Cᵏ 入口及 T=0 合法初始 jet 分支分别保留语义；没有增加端点 PDE。
+
+原 (10.2) 幂次剖面 m≥2 全族在 `Examples/OriginalPowerProfile.lean` 真实构造，`original_profile_main` 调用新入口；`representative_nonconstant` 验证非恒定代表。`original_threshold_exact` 验证 c*=π²/1152，复用原精确参数。非零静态实际原解在 `Examples/GeneralWeakRegression.lean` 调用新主定理，并有正恒定能量与零耗散。四分支、旧不兼容增长排除和指定单层失败仍进入默认构建。
+
+(6.7)–(6.10)、(8.4)–(8.8)、§5.3 的具体声明及输入/调用表见 [最新报告](../reports/weak_theorem.md)，正式类型和全部证据见 [本轮语义审查](../logs/v1.0_finalization/semantic_review.md) / [总验收](../logs/v1.0_finalization/acceptance.json)。此前“连续代表/精确常数/核识别待实现”保留为对应日期历史，不覆盖旧验收。
+
+不扩张为一般存在唯一性、严格衰减、任意幅度或任意八变量裸 L² 范数等价。ROADMAP 原复选框按用户要求不修改，逐项实际完成状态登记在本轮验收矩阵。
+
+
+### v1.0_finalization 最终工程与 PDF 验收（2026-10-14）
+
+当前119个正式 Lean 文件全部可达，默认构建3131 jobs通过；1058次审计输出覆盖1050个不同声明，本轮新增61个不同审计声明，无 sorryAx，仅标准 propext/Classical.choice/Quot.sound。当前源码隔离重编和完整审计通过，复用精确依赖缓存、不复制项目编译产物。源文件在最终验证后未改变。
+
+PDF 实际/印刷第3、9、10、15页新增5勾及1条限定说明，18页和231条旧批注全部保留；最终237条批注。逐页渲染和碰撞检查通过，详见本轮 `pdf/annotation_result.json`、`pdf/visual_review.json`。旧第一次隔离结果保留为 `isolated_intermediate_*`：它之后曾补充当前辅助变量控制，因此不作为最终源码证据；最终隔离使用新目录重新从零构建。
+
+最终依据为 [acceptance.json](../logs/v1.0_finalization/acceptance.json) 与 [source_snapshot.json](../logs/v1.0_finalization/source_snapshot.json)。主线没有尚未兑现的分析接口；T=0初始图状态条件及先验解正则性保留为明示的数学输入，不宣称适定性、严格衰减或任意分布解理论。

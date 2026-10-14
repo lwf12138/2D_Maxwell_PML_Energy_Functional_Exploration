@@ -1,0 +1,25 @@
+{
+  "status": "partial",
+  "verified_construction_subtasks": "passed",
+  "checks": {
+    "all_commands_exit_zero": true,
+    "all_new_audit_queries_present": true,
+    "standard_axioms_only": true,
+    "no_sorryAx": true,
+    "no_formal_placeholder_tokens": true,
+    "previous_proof_files_unchanged": true,
+    "protected_files_unchanged": true,
+    "historical_build_audit_logs_intact": true,
+    "all_new_modules_reachable": true,
+    "git_diff_check": true,
+    "smooth_report_unchanged": true
+  },
+  "formal_sources": 61,
+  "audit_output_count": 778,
+  "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "failure_log_count": 11
+}

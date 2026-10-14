@@ -1,0 +1,29 @@
+LeanPML/Examples/WeightedEvolution.lean:56:71: error: unsolved goals
+case e'_4
+t : ℝ
+hderiv : HasDerivAt (fun y => Real.exp ((-id) y) • f) ((Real.exp ((-id) t) * -1) • f) t
+⊢ (ScalarL2 unitSquare.measure).toAddCommGroup = Lp.instNormedAddCommGroup.toAddCommGroup
+
+case e'_5
+t : ℝ
+hderiv : HasDerivAt (fun y => Real.exp ((-id) y) • f) ((Real.exp ((-id) t) * -1) • f) t
+e_4✝ : (ScalarL2 unitSquare.measure).toAddCommGroup = Lp.instNormedAddCommGroup.toAddCommGroup
+⊢ Lp.instModule = Lp.instNormedSpace.toModule
+
+case e'_8
+t : ℝ
+hderiv : HasDerivAt (fun y => Real.exp ((-id) y) • f) ((Real.exp ((-id) t) * -1) • f) t
+⊢ path = fun y => Real.exp (-y) • f
+case e'_4
+t : ℝ
+hderiv : HasDerivAt (fun y => Real.exp ((-id) y) • f) ((Real.exp ((-id) t) * -1) • f) t
+⊢ (ScalarL2 unitSquare.measure).toAddCommGroup = Lp.instNormedAddCommGroup.toAddCommGroup
+case e'_5
+t : ℝ
+hderiv : HasDerivAt (fun y => Real.exp ((-id) y) • f) ((Real.exp ((-id) t) * -1) • f) t
+e_4✝ : (ScalarL2 unitSquare.measure).toAddCommGroup = Lp.instNormedAddCommGroup.toAddCommGroup
+⊢ Lp.instModule = Lp.instNormedSpace.toModule
+case e'_8
+t : ℝ
+hderiv : HasDerivAt (fun y => Real.exp ((-id) y) • f) ((Real.exp ((-id) t) * -1) • f) t
+⊢ path = fun y => Real.exp (-y) • f

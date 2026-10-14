@@ -1,0 +1,30 @@
+logs/v1.0_completion/WirtingerAttempt.lean:24:14: error: typeclass instance problem is stuck
+  IsLocallyFiniteMeasure ?m.415
+
+Note: Lean will not try to resolve this typeclass instance problem because the fourth type argument to `IsLocallyFiniteMeasure` is a metavariable. This argument must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+logs/v1.0_completion/WirtingerAttempt.lean:80:2: error: linarith failed to find a contradiction
+case h1
+a b x : ℝ
+hab : a < b
+hx : x ∈ Ioo a b
+k : ℝ := Real.pi / (b - a)
+hk : 0 < k
+hangle : k * (x - a) ∈ Ioo 0 Real.pi
+hsin : ¬Real.sin (Real.pi / (b - a) * (x - a)) = 0
+hangle_deriv : HasDerivAt (fun y => k * (y - a)) k x
+hcos : HasDerivAt (fun y => k * Real.cos (k * (y - a))) (k * (-Real.sin (k * (x - a)) * k)) x
+hsine : HasDerivAt (fun x => Real.sin (k * (x - a))) (Real.cos (k * (x - a)) * k) x
+hquot :
+  HasDerivAt ((fun y => k * Real.cos (k * (y - a))) / fun x => Real.sin (k * (x - a)))
+    ((k * (-Real.sin (k * (x - a)) * k) * Real.sin (k * (x - a)) -
+        k * Real.cos (k * (x - a)) * (Real.cos (k * (x - a)) * k)) /
+      Real.sin (k * (x - a)) ^ 2)
+    x
+a✝ :
+  (-Real.sin (Real.pi * (x - a) / (b - a)) ^ 2 - Real.cos (Real.pi * (x - a) / (b - a)) ^ 2) /
+      ((b - a) ^ 2 * Real.sin (Real.pi * (x - a) / (b - a)) ^ 2) <
+    (-1 - Real.cos (Real.pi * (x - a) / (b - a)) ^ 2 / Real.sin (Real.pi * (x - a) / (b - a)) ^ 2) / (b - a) ^ 2
+⊢ False
+failed

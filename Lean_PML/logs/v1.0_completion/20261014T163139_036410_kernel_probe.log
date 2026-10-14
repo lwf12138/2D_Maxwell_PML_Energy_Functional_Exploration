@@ -1,0 +1,57 @@
+LeanPML/Analysis/MultiplierExponential.lean:123:0: warning: automatically included section variable(s) unused in theorem `LeanPML.Analysis.exp_multiplier_bound`:
+  [MeasurableSpace α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [MeasurableSpace α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+LeanPML/Analysis/MultiplierExponential.lean:149:6: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  Algebra ℚ (H →L[ℝ] H)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+LeanPML/Analysis/MultiplierExponential.lean:148:62: error: unsolved goals
+H : Type u_2
+inst✝⁴ : NormedAddCommGroup H
+inst✝³ : NormedSpace ℝ H
+inst✝² : CompleteSpace H
+K : Type u_3
+inst✝¹ : TopologicalSpace K
+inst✝ : CompactSpace K
+representation : C(K, ℝ) →ₐ[ℝ] H →L[ℝ] H
+hcontinuous : Continuous ⇑representation
+F : C(K, ℝ)
+B : H →L[ℝ] H
+t : ℝ
+hscaled : representation F = t • B
+⊢ representation (NormedSpace.exp F) = dampingKernel B t
+LeanPML/Analysis/MultiplierExponential.lean:190:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ↑↑↑((weightedFunctional ν w C coefficient hcoefficient (NormedSpace.exp F)) X) x
+in the target expression
+  ↑↑↑((representation (NormedSpace.exp F)) X) x =
+    ↑↑↑((weightedMul ν w (fun x => Real.exp (t * m x)) ⋯ (Real.exp (|t| * C)) ⋯) X) x
+
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+w m : α → ℝ
+hw : Measurable w
+hm : Measurable m
+C : ℝ
+hbound : ∀ (x : α), |m x| ≤ C
+t : ℝ
+this : CompleteSpace ↥(WeightedL2 ν w) := weighted_completeSpace ν w hw
+coefficient : α → ↑(Set.Icc (-C) C) := fun x => ⟨m x, ⋯⟩
+hcoefficient : Measurable coefficient
+F : C(↑(Set.Icc (-C) C), ℝ) := { toFun := fun z => t * ↑z, continuous_toFun := ⋯ }
+representation : C(↑(Set.Icc (-C) C), ℝ) →ₐ[ℝ] ↥(WeightedL2 ν w) →L[ℝ] ↥(WeightedL2 ν w) :=
+  weightedFunctionalAlgHom ν w C coefficient hcoefficient
+hscaled : representation F = t • weightedMul ν w m hm C hbound
+hexp : representation (NormedSpace.exp F) = dampingKernel (weightedMul ν w m hm C hbound) t
+X : ↥(WeightedL2 ν w)
+x : α
+hleft :
+  ↑↑↑((weightedFunctional ν w C coefficient hcoefficient (NormedSpace.exp F)) X) x =
+    (NormedSpace.exp F) (coefficient x) * ↑↑↑X x
+hright :
+  ↑↑↑((weightedMul ν w (fun x => Real.exp (t * m x)) ?m.322 (Real.exp (|t| * C)) ⋯) X) x = Real.exp (t * m x) * ↑↑↑X x
+⊢ ↑↑↑((representation (NormedSpace.exp F)) X) x =
+    ↑↑↑((weightedMul ν w (fun x => Real.exp (t * m x)) ⋯ (Real.exp (|t| * C)) ⋯) X) x

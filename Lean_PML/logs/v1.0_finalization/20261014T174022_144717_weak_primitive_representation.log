@@ -1,0 +1,20 @@
+LeanPML/Analysis/WeakIntervalRepresentative.lean:30:18: warning: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+LeanPML/Analysis/WeakIntervalRepresentative.lean:22:44: warning: Variable name `hab` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+LeanPML/Analysis/WeakIntervalRepresentative.lean:186:23: error(lean.invalidField): Invalid field `ae_hasDerivAt_integral`: The environment does not contain `Function.ae_hasDerivAt_integral`, so it is not possible to project the field `ae_hasDerivAt_integral` from an expression
+  hd
+of type
+  ∀ (x : ℝ), IntegrableAtFilter d (𝓝 x) volume
+LeanPML/Analysis/WeakIntervalRepresentative.lean:187:11: error: Function expected at
+  hx
+but this term has type
+  x ∈ ?m.195
+
+Note: Expected a function because this term is being applied to the argument
+  a
+LeanPML/Analysis/WeakIntervalRepresentative.lean:216:28: error(lean.unknownIdentifier): Unknown identifier `continuous_primitive`

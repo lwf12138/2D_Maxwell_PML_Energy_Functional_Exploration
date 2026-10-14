@@ -1,0 +1,18 @@
+{
+  "stage": "v1.0_completion",
+  "command": [
+    "lake",
+    "build",
+    "Mathlib.Analysis.Real.Pi.Bounds"
+  ],
+  "command_display": "lake build Mathlib.Analysis.Real.Pi.Bounds",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-14T16:42:07.318087+08:00",
+  "output_file": "20261014T164207_318087_fixed_pi_api.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-14T16:42:12.503307+08:00",
+  "elapsed_seconds": 5.184
+}

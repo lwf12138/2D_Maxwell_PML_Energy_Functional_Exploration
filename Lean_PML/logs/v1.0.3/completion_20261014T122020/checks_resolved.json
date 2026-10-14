@@ -1,0 +1,58 @@
+{
+  "build": {
+    "metadata": "logs/v1.0.3/20261014T121921_205678_lake_build.json",
+    "log": "logs/v1.0.3/20261014T121921_205678_lake_build.log",
+    "exit_code": 0,
+    "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+    "command": [
+      "lake",
+      "build"
+    ]
+  },
+  "audit": {
+    "metadata": "logs/v1.0.3/20261014T122038_234964_axioms_audit.json",
+    "log": "logs/v1.0.3/20261014T122038_234964_axioms_audit.log",
+    "exit_code": 0,
+    "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "Audit.lean"
+    ]
+  },
+  "v102_build": {
+    "metadata": "logs/v1.0.2/20261014T122020_722023_lake_build.json",
+    "log": "logs/v1.0.2/20261014T122020_722023_lake_build.log",
+    "exit_code": 0,
+    "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+    "command": [
+      "lake",
+      "build"
+    ]
+  },
+  "v102_audit": {
+    "metadata": "logs/v1.0.2/20261014T122024_703113_axioms_audit.json",
+    "log": "logs/v1.0.2/20261014T122024_703113_axioms_audit.log",
+    "exit_code": 0,
+    "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "Audit.lean"
+    ]
+  },
+  "types": {
+    "metadata": "logs/v1.0.3/20261014T122040_030951_final_type_review.json",
+    "log": "logs/v1.0.3/20261014T122040_030951_final_type_review.log",
+    "exit_code": 0,
+    "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "logs/v1.0.3/completion_20261014T122020/TypeReview.lean"
+    ]
+  }
+}

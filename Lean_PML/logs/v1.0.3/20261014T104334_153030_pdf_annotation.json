@@ -1,0 +1,17 @@
+{
+  "stage": "v1.0.3",
+  "command": [
+    "/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "logs/v1.0.3/pdf/annotate_pdf.py"
+  ],
+  "command_display": "/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 logs/v1.0.3/pdf/annotate_pdf.py",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+  "started_at": "2026-10-14T10:43:34.153030+08:00",
+  "output_file": "20261014T104334_153030_pdf_annotation.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-14T10:43:35.805138+08:00",
+  "elapsed_seconds": 1.652
+}

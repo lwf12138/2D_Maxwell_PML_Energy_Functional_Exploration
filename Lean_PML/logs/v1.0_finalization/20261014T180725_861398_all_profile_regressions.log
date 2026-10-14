@@ -1,0 +1,10 @@
+LeanPML/Examples/GeneralWeakRegression.lean:112:64: error: don't know how to synthesize placeholder for argument `hT`
+context:
+T : ℝ
+hT : 0 ≤ T
+⊢ 0 ≤ T
+LeanPML/Examples/GeneralWeakRegression.lean:128:64: error: don't know how to synthesize placeholder for argument `hT`
+context:
+T : ℝ
+hT : 0 < T
+⊢ 0 ≤ T

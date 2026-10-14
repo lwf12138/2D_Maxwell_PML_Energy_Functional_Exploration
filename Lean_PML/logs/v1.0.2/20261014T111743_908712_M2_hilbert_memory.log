@@ -1,0 +1,15 @@
+LeanPML/Analysis/DissipativeMemoryEstimate.lean:29:32: error: linarith failed to find a contradiction
+H : Type u_1
+inst✝¹ : NormedAddCommGroup H
+inst✝ : InnerProductSpace ℝ H
+B : H →L[ℝ] H
+hB : ∀ (X : H), 0 ≤ ⟪X, B X⟫_ℝ
+X F : H
+δ : ℝ
+hδ : 0 < δ
+hradicand : 0 < ‖X‖ ^ 2 + δ
+hsqrt : 0 < √(‖X‖ ^ 2 + δ)
+a✝ : √(‖X‖ ^ 2) ^ 2 + δ < ‖X‖ ^ 2
+⊢ False
+failed
+LeanPML/Analysis/DissipativeMemoryEstimate.lean:88:32: error: not a positivity goal

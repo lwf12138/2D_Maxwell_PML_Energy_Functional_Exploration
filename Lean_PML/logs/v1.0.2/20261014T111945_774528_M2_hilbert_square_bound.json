@@ -1,0 +1,19 @@
+{
+  "stage": "v1.0.2",
+  "command": [
+    "lake",
+    "env",
+    "lean",
+    "LeanPML/Analysis/DissipativeMemoryEstimate.lean"
+  ],
+  "command_display": "lake env lean LeanPML/Analysis/DissipativeMemoryEstimate.lean",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-14T11:19:45.774528+08:00",
+  "output_file": "20261014T111945_774528_M2_hilbert_square_bound.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-14T11:20:00.587634+08:00",
+  "elapsed_seconds": 14.813
+}

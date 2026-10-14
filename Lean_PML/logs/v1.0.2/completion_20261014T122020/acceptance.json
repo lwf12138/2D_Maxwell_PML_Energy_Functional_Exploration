@@ -1,0 +1,36 @@
+{
+  "time": "2026-10-14T12:29:21.098418+08:00",
+  "status": "complete: declared regional continuous-representative W1inf class, weak Green/Poincare, propagation, legal lift uniqueness",
+  "build": {
+    "metadata": "logs/v1.0.2/20261014T122020_722023_lake_build.json",
+    "log": "logs/v1.0.2/20261014T122020_722023_lake_build.log",
+    "exit_code": 0,
+    "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+    "command": [
+      "lake",
+      "build"
+    ]
+  },
+  "audit": {
+    "metadata": "logs/v1.0.2/20261014T122024_703113_axioms_audit.json",
+    "log": "logs/v1.0.2/20261014T122024_703113_axioms_audit.log",
+    "exit_code": 0,
+    "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "Audit.lean"
+    ]
+  },
+  "math_units": [
+    "rough_product_zero_trace",
+    "separated_regional_weak_coefficients",
+    "legal_lift_uniqueness",
+    "original_history_five_invariants",
+    "weighted_original_evolution_connection"
+  ],
+  "source_snapshot": "logs/v1.0.3/completion_20261014T122020/source_snapshot.json",
+  "semantic_review": "logs/v1.0.3/completion_20261014T122020/semantic_review.md",
+  "final_acceptance": "logs/v1.0.3/completion_20261014T122020/acceptance.json"
+}

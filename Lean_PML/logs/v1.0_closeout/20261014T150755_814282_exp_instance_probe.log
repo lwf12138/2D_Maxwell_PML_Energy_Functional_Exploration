@@ -1,0 +1,12 @@
+(WeightedL2 ν C.wx).normedAddCommGroup
+(WeightedL2 ν C.wx).normedSpace
+ContinuousLinearMap.toNormedRing
+CloseoutProbe.lean:8:0: error: failed to synthesize
+  IsTopologicalRing (↥(WeightedL2 ν C.wx) →L[ℝ] ↥(WeightedL2 ν C.wx))
+(deterministic) timeout at `typeclass`, maximum number of heartbeats (20000) has been reached
+
+Note: Use `set_option synthInstance.maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.

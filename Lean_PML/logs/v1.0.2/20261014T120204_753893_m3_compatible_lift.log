@@ -1,0 +1,5 @@
+ℹ [3006/3007] Replayed LeanPML.PML.WeakOriginalSystem
+info: LeanPML/PML/WeakOriginalSystem.lean:187:4: Try this:
+  [apply] abel_nf
+✔ [3007/3007] Built LeanPML.PML.WeakLiftCompatibility (10s)
+Build completed successfully (3007 jobs).

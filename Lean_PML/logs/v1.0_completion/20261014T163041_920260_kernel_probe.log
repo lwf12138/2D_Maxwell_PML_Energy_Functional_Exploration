@@ -1,0 +1,41 @@
+LeanPML/Analysis/MultiplierExponential.lean:123:0: warning: automatically included section variable(s) unused in theorem `LeanPML.Analysis.exp_multiplier_bound`:
+  [MeasurableSpace α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [MeasurableSpace α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+LeanPML/Analysis/MultiplierExponential.lean:164:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ↑↑↑((weightedFunctional ν w C coefficient hcoefficient F) X) x
+in the target expression
+  ↑↑↑((representation F) X) x = ↑↑(t • ↑((weightedMul ν w m hm C hbound) X)) x
+
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+w m : α → ℝ
+hw : Measurable w
+hm : Measurable m
+C : ℝ
+hbound : ∀ (x : α), |m x| ≤ C
+t : ℝ
+this : CompleteSpace ↥(WeightedL2 ν w) := weighted_completeSpace ν w hw
+coefficient : α → ↑(Set.Icc (-C) C) := fun x => ⟨m x, ⋯⟩
+hcoefficient : Measurable coefficient
+F : C(↑(Set.Icc (-C) C), ℝ) := { toFun := fun z => t * ↑z, continuous_toFun := ⋯ }
+representation : C(↑(Set.Icc (-C) C), ℝ) →ₐ[ℝ] ↥(WeightedL2 ν w) →L[ℝ] ↥(WeightedL2 ν w) :=
+  weightedFunctionalAlgHom ν w C coefficient hcoefficient
+X : ↥(WeightedL2 ν w)
+x : α
+hF : ↑↑↑((weightedFunctional ν w C coefficient hcoefficient F) X) x = F (coefficient x) * ↑↑↑X x
+hmX : ↑↑↑((weightedMul ν w m hm C hbound) X) x = m x * ↑↑↑X x
+hsmul : ↑↑(t • ↑((weightedMul ν w m hm C hbound) X)) x = (t • ↑↑↑((weightedMul ν w m hm C hbound) X)) x
+⊢ ↑↑↑((representation F) X) x = ↑↑(t • ↑((weightedMul ν w m hm C hbound) X)) x
+LeanPML/Analysis/MultiplierExponential.lean:170:9: error: failed to synthesize
+  IsTopologicalRing (↥(WeightedL2 ν w) →L[ℝ] ↥(WeightedL2 ν w))
+(deterministic) timeout at `typeclass`, maximum number of heartbeats (20000) has been reached
+
+Note: Use `set_option synthInstance.maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.

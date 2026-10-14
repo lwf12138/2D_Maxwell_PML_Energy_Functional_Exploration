@@ -1,0 +1,105 @@
+{
+  "time": "2026-10-14T15:22:56.116882",
+  "status": "verified_partial_closeout",
+  "implemented_connections_verified": true,
+  "V7_itemwise_alignment_complete": false,
+  "six_items": {
+    "1_regularity": {
+      "verified": true,
+      "scope": "内部真实图导数和原演化推出lambda_tt；较少输入新主入口及非零调用",
+      "limitation": "保留T=0初始jet兼容；未建立与整套C^k描述的双向等价"
+    },
+    "2_original_auxiliary_control": {
+      "verified": true,
+      "scope": "(8.4)-(8.8)输入原Z/Q、u/q/phi，当前及初值能量界"
+    },
+    "3_reverse": {
+      "verified": true,
+      "scope": "所列弱图primitive路径→八个HasDerivAt、八式、PEC、五兼容；非零调用",
+      "limitation": "不是所有分布解的等价或适定性"
+    },
+    "4_kernel": {
+      "verified": "operator_version",
+      "scope": "实际加权商类算子指数Bochner公式、可积性、旧历史识别及双方向原解调用",
+      "fully_aligned": false,
+      "missing": "exp(tM_p)与点值exp(tp)乘子的识别"
+    },
+    "5_representative": {
+      "verified": false,
+      "missing": "一般区域分离弱导数→a.e.相等Lipschitz/连续代表"
+    },
+    "6_sharp_poincare": {
+      "verified": false,
+      "missing": "精确Dirichlet-Wirtinger及矩形pi常数；仍采用CP=2Lx"
+    }
+  },
+  "commands": {
+    "build": {
+      "metadata": "logs/v1.0_closeout/20261014T151343_633853_lake_build.json",
+      "log": "logs/v1.0_closeout/20261014T151343_633853_lake_build.log",
+      "exit_code": 0
+    },
+    "audit": {
+      "metadata": "logs/v1.0_closeout/20261014T151414_302002_axioms_audit.json",
+      "log": "logs/v1.0_closeout/20261014T151414_302002_axioms_audit.log",
+      "exit_code": 0
+    },
+    "types": {
+      "metadata": "logs/v1.0_closeout/20261014T151430_137891_type_review.json",
+      "log": "logs/v1.0_closeout/20261014T151430_137891_type_review.log",
+      "exit_code": 0
+    }
+  },
+  "audit_declarations": 930,
+  "new_declarations": [
+    "LeanPML.PML.Weak.OriginalInterval.auxiliary_reconstruction",
+    "LeanPML.PML.Weak.OriginalInterval.original_auxiliary_control",
+    "LeanPML.PML.Weak.OriginalInterval.original_auxiliary_initial_control",
+    "LeanPML.PML.Weak.V7TimeRegularity.fluxDot_eq",
+    "LeanPML.PML.Weak.V7TimeRegularity.flux_second",
+    "LeanPML.PML.Weak.V7TimeRegularity.toOriginalJet",
+    "LeanPML.PML.Weak.V7TimeRegularity.main_energy_and_auxiliary",
+    "LeanPML.PML.Weak.reverse_hasDerivAt",
+    "LeanPML.PML.Weak.primitive_to_original_WeakAt",
+    "LeanPML.PML.Weak.primitive_to_original_WeakOn",
+    "LeanPML.PML.Weak.reverse_compatible",
+    "LeanPML.Analysis.operator_memory_formula",
+    "LeanPML.PML.SpatialAbsorption.auxiliary_operator_memory",
+    "LeanPML.PML.Weak.OriginalInterval.operator_memory_both",
+    "LeanPML.Examples.WeakStaticMode.closeout_main_call",
+    "LeanPML.Examples.WeakStaticMode.reverse_static_call",
+    "LeanPML.Examples.WeakStaticMode.kernel_static_call"
+  ],
+  "source_snapshot": "logs/v1.0_closeout/source_snapshot.json",
+  "source_snapshot_sha256": "8e3b76585dce8574d26d2369f6a6b33aae172f6848ebc80f35e7ca78e0babf56",
+  "protected_files_unchanged": true,
+  "previous_proofs_unchanged": true,
+  "modified_old_formal_files": [
+    "LeanPML.lean",
+    "Audit.lean"
+  ],
+  "toolchain": "leanprover/lean4:v4.31.0",
+  "isolated_result": "logs/v1.0_closeout/isolated_result.json",
+  "isolated_directory": "/var/folders/9m/zcq3jbg90sx_fc7fv3zn0hnc0000gn/T/LeanPML_v1_closeout_2dg7zwtb",
+  "isolated_logs": [
+    "logs/v1.0_closeout/isolated_logs/20261014T151442_151168_environment.json",
+    "logs/v1.0_closeout/isolated_logs/20261014T151445_272747_lake_environment.json",
+    "logs/v1.0_closeout/isolated_logs/20261014T151445_338570_isolated_lake_build.json",
+    "logs/v1.0_closeout/isolated_logs/20261014T152008_873431_isolated_axioms_audit.json"
+  ],
+  "own_build_artifacts_copied": false,
+  "dependency_cache_reused": true,
+  "pdf_modified_pages": [
+    4,
+    8,
+    10,
+    13
+  ],
+  "pdf_sha256": "6081973deddfb3f83a806095042131e7b2cfc4ecb1f6e5d8e61194b232b1a322",
+  "pdf_added_ticks": 3,
+  "pdf_added_notes": 1,
+  "pdf_old_annotations_preserved": true,
+  "pdf_visual_review": "passed",
+  "foundation_probe": "logs/v1.0_closeout/20261014T152156_225905_foundation_probe.log",
+  "next_math": "一维分离弱导数的Lipschitz代表构造；不是新增ContinuousOn字段"
+}

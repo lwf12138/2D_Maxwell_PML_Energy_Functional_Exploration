@@ -1,0 +1,28 @@
+logs/v1.0_completion/WirtingerAttempt.lean:22:66: error: `ring_nf` made no progress on the goal
+logs/v1.0_completion/WirtingerAttempt.lean:22:66: error: `ring_nf` made no progress on the goal
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+logs/v1.0_completion/WirtingerAttempt.lean:17:60: error: unsolved goals
+a b k : ℝ
+hab : a ≤ b
+f df q : ℝ → ℝ
+hf : ContinuousOn f (Icc a b)
+hdf : ContinuousOn df (Icc a b)
+hq : ContinuousOn q (Icc a b)
+hderiv : ∀ x ∈ Ioo a b, HasDerivAt f (df x) x
+hRiccati : ∀ x ∈ Ioo a b, HasDerivAt q (-k ^ 2 - q x ^ 2) x
+ha : f a = 0
+hb : f b = 0
+hprod : ContinuousOn (fun x => q x * f x ^ 2) (Icc a b)
+hdprod : ∀ x ∈ Ioo a b, HasDerivAt (fun y => q y * f y ^ 2) ((-k ^ 2 - q x ^ 2) * f x ^ 2 + 2 * q x * f x * df x) x
+⊢ k ^ 2 * ∫ (x : ℝ) in a..b, f x ^ 2 ≤ ∫ (x : ℝ) in a..b, df x ^ 2

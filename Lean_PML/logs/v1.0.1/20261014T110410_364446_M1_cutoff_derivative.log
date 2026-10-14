@@ -1,0 +1,15 @@
+LeanPML/Rectangle/SmoothWeakClosure.lean:188:36: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  |δ|
+in the target expression
+  |slope| / ‖δ‖ ≤ B / δ
+
+δ M B d value slope : ℝ
+hδ : 0 < δ
+hM : 0 ≤ M
+hB : 0 ≤ B
+hd : d ≤ 2 * δ
+hvalue : ‖value‖ ≤ M * d
+hslope : ‖slope‖ ≤ B
+hvalueδ : ‖value‖ ≤ 2 * M * δ
+⊢ |slope| / ‖δ‖ ≤ B / δ
+LeanPML/Rectangle/SmoothWeakClosure.lean:193:32: error: No goals to be solved

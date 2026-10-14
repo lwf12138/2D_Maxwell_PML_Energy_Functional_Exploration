@@ -1,0 +1,173 @@
+ℹ [3002/3076] Replayed LeanPML.PML.WeakOriginalSystem
+info: LeanPML/PML/WeakOriginalSystem.lean:187:4: Try this:
+  [apply] abel_nf
+⚠ [3003/3076] Replayed LeanPML.PML.WeakPrimitiveSystem
+warning: LeanPML/PML/WeakPrimitiveSystem.lean:94:23: This simp argument is unused:
+  smul_sub
+
+Hint: Omit it from the simp argument list.
+  simp only [smul_add, s̵m̵u̵l̵_̵s̵u̵b̵,̵ ̵neg_smul, sub_neg_eq_add] at hmain ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/WeakPrimitiveSystem.lean:112:34: This simp argument is unused:
+  map_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [map_sub, map_smul, m̵a̵p̵_̵n̵e̵g̵,̵ ̵smul_sub, neg_smul, neg_neg]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/WeakPrimitiveSystem.lean:112:63: This simp argument is unused:
+  neg_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [map_sub, map_smul, map_neg, smul_sub, neg_smul,̵ ̵n̵e̵g̵_̵n̵e̵g̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/WeakPrimitiveSystem.lean:120:63: This simp argument is unused:
+  neg_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [map_sub, map_smul, map_neg, smul_sub, neg_smul,̵ ̵n̵e̵g̵_̵n̵e̵g̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [3010/3076] Replayed LeanPML.PML.WeakPathAssembly
+warning: LeanPML/PML/WeakPathAssembly.lean:183:13: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/WeakPathAssembly.lean:184:14: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/WeakPathAssembly.lean:185:11: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/WeakPathAssembly.lean:186:17: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3011/3076] Replayed LeanPML.PML.WeakFiniteProblem
+warning: LeanPML/PML/WeakFiniteProblem.lean:145:17: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/WeakFiniteProblem.lean:148:14: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/WeakFiniteProblem.lean:149:15: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3014/3076] Replayed LeanPML.PML.WeakV7Regularity
+warning: LeanPML/PML/WeakV7Regularity.lean:110:16: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/WeakV7Regularity.lean:111:16: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3063/3076] Replayed LeanPML.PML.WeakReverse
+warning: LeanPML/PML/WeakReverse.lean:116:15: This simp argument is unused:
+  map_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [map_n̵e̵g̵,̵ ̵m̵a̵p̵_̵smul, smul_sub, smul_neg, smul_smul, mul_inv_cancel₀ hμ,
+  ̵  ̵ ̵ ̵ ̵ ̵one_smul, map_sub]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/WeakReverse.lean:116:44: This simp argument is unused:
+  smul_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [map_neg, map_smul, smul_sub, smul_n̵e̵g̵,̵ ̵smul_̵s̵m̵u̵l̵, mul_inv_cancel₀ hμ,
+  ̵  ̵ ̵ ̵ ̵ ̵one_smul, map_sub]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/WeakReverse.lean:129:15: This simp argument is unused:
+  map_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [map_n̵e̵g̵,̵ ̵m̵a̵p̵_̵smul, smul_sub, smul_neg, smul_smul, mul_inv_cancel₀ hμ,
+  ̵  ̵ ̵ ̵ ̵ ̵one_smul, map_sub]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/WeakReverse.lean:129:44: This simp argument is unused:
+  smul_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [map_neg, map_smul, smul_sub, smul_n̵e̵g̵,̵ ̵smul_̵s̵m̵u̵l̵, mul_inv_cancel₀ hμ,
+  ̵  ̵ ̵ ̵ ̵ ̵one_smul, map_sub]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [3064/3076] Replayed LeanPML.Analysis.OperatorMemory
+warning: LeanPML/Analysis/OperatorMemory.lean:45:15: `ContinuousLinearMap.mul_apply` has been deprecated: Use `mul_apply_eq_comp` instead
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.mul_apply` to `mul_apply_eq_comp x`).
+⚠ [3071/3076] Replayed LeanPML.Examples.WeakStaticMode
+warning: LeanPML/Examples/WeakStaticMode.lean:108:34: This simp argument is unused:
+  neg_smul
+
+Hint: Omit it from the simp argument list.
+  simp [̵s̵t̵a̵t̵e̵,̵z̵e̵r̵o̵S̵t̵a̵t̵e̵,̵n̵e̵g̵_̵s̵m̵u̵l̵,̵s̵m̵u̵l̵_̵n̵e̵g̵]̵[̲s̲t̲a̲t̲e̲,̲ ̲z̲e̲r̲o̲S̲t̲a̲t̲e̲,̲ ̲s̲m̲u̲l̲_̲n̲e̲g̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [3073/3076] Replayed LeanPML.Examples.WeakCk
+warning: LeanPML/Examples/WeakCk.lean:28:68: This simp argument is unused:
+  derivWithin_const
+
+Hint: Omit it from the simp argument list.
+  simp [solution, state, zeroState,̵ ̵d̵e̵r̵i̵v̵W̵i̵t̵h̵i̵n̵_̵c̵o̵n̵s̵t̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/Examples/WeakCk.lean:29:65: This simp argument is unused:
+  derivWithin_const
+
+Hint: Omit it from the simp argument list.
+  simp [solution, state, zeroState,̵ ̵d̵e̵r̵i̵v̵W̵i̵t̵h̵i̵n̵_̵c̵o̵n̵s̵t̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+✖ [3074/3076] Building LeanPML.Rectangle.SharpParameterCertificate (21s)
+trace: .> LEAN_PATH=/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Cli/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/batteries/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Qq/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/aesop/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/proofwidgets/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/importGraph/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/plausible/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/mathlib/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean /Users/wcli/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/LeanPML/Rectangle/SharpParameterCertificate.lean -o /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/Rectangle/SharpParameterCertificate.olean -i /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/Rectangle/SharpParameterCertificate.ilean -c /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/Rectangle/SharpParameterCertificate.c --setup /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/Rectangle/SharpParameterCertificate.setup.json --json
+warning: LeanPML/Rectangle/SharpParameterCertificate.lean:19:2: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+error: LeanPML/Rectangle/SharpParameterCertificate.lean:49:44: Application type mismatch: The argument
+  LT.lt.le original_parameters_explicit.right.left
+has type
+  8 * oldC * materialA 1 1 * scaleK 1 1 1 (sharpPoincareConstant unitSquare) ≤ 1
+but is expected to have type
+  8 * oldC * materialA 1 1 * scaleK 1 1 1 (sharpPoincareConstant unitSquare) ≤ 1 * 1
+in the application
+  And.intro (LT.lt.le original_parameters_explicit.right.left)
+error: Lean exited with code 1
+⚠ [3075/3076] Built LeanPML.PML.MainSharpWeakRectangle (22s)
+warning: LeanPML/PML/MainSharpWeakRectangle.lean:54:17: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/MainSharpWeakRectangle.lean:57:14: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/MainSharpWeakRectangle.lean:58:15: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Some required targets logged failures:
+- LeanPML.Rectangle.SharpParameterCertificate
+error: build failed

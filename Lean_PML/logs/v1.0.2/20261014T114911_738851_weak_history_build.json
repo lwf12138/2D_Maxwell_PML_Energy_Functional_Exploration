@@ -1,0 +1,18 @@
+{
+  "stage": "v1.0.2",
+  "command": [
+    "lake",
+    "build",
+    "LeanPML.Time.BanachHistory"
+  ],
+  "command_display": "lake build LeanPML.Time.BanachHistory",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-14T11:49:11.738851+08:00",
+  "output_file": "20261014T114911_738851_weak_history_build.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 1,
+  "status": "finished",
+  "ended_at": "2026-10-14T11:49:24.193536+08:00",
+  "elapsed_seconds": 12.453
+}

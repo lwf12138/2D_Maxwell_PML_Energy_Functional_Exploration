@@ -1,0 +1,61 @@
+LeanPML/PML/WeakCanonicalTime.lean:34:35: error(lean.unknownIdentifier): Unknown identifier `hT`
+LeanPML/PML/WeakCanonicalTime.lean:47:21: error: Function expected at
+  interior_derivative_slots ?m.82
+but this term has type
+  derivWithin (fun s => (O.fields s).E) (Icc 0 T) ?m.81 = (O.derivatives ?m.81).E ∧
+    derivWithin (fun s => (O.fields s).P) (Icc 0 T) ?m.81 = (O.derivatives ?m.81).P
+
+Note: Expected a function because this term is being applied to the argument
+  ht
+LeanPML/PML/WeakCanonicalTime.lean:47:47: error: Application type mismatch: The argument
+  hT
+has type
+  0 < T
+but is expected to have type
+  ?m.81 ∈ Ioo 0 T
+in the application
+  interior_derivative_slots hT
+LeanPML/PML/WeakCanonicalTime.lean:51:28: error: Function expected at
+  canonicalInterval
+but this term has type
+  OriginalInterval D C ε κ τ μ T
+
+Note: Expected a function because this term is being applied to the argument
+  hT
+LeanPML/PML/WeakCanonicalTime.lean:54:37: error: Function expected at
+  canonicalInterval
+but this term has type
+  OriginalInterval D C ε κ τ μ T
+
+Note: Expected a function because this term is being applied to the argument
+  hT
+LeanPML/PML/WeakCanonicalTime.lean:55:13: error: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+LeanPML/PML/WeakCanonicalTime.lean:69:45: error: Function expected at
+  canonicalInterval
+but this term has type
+  OriginalInterval D C ε κ τ μ T
+
+Note: Expected a function because this term is being applied to the argument
+  hT
+LeanPML/PML/WeakCanonicalTime.lean:71:66: error: Function expected at
+  canonicalInterval
+but this term has type
+  OriginalInterval D C ε κ τ μ T
+
+Note: Expected a function because this term is being applied to the argument
+  hT
+LeanPML/PML/WeakCanonicalTime.lean:70:10: error(lean.invalidField): Invalid field `regularity`: The environment does not contain `LeanPML.PML.Weak.V7ClosedCkCore.regularity`, so it is not possible to project the field `regularity` from an expression
+  R
+of type `V7ClosedCkCore O`
+LeanPML/PML/WeakCanonicalTime.lean:72:8: error: Function expected at
+  canonicalInterval
+but this term has type
+  OriginalInterval D C ε κ τ μ T
+
+Note: Expected a function because this term is being applied to the argument
+  hT
+LeanPML/PML/WeakCanonicalTime.lean:74:3: error(lean.unknownIdentifier): Unknown identifier `R.regularity`

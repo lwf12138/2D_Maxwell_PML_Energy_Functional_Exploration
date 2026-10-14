@@ -1,0 +1,18 @@
+{
+  "stage": "v1.0.1",
+  "command": [
+    "lake",
+    "build",
+    "LeanPML.Rectangle.SmoothWeakClosure"
+  ],
+  "command_display": "lake build LeanPML.Rectangle.SmoothWeakClosure",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-14T11:13:24.867759+08:00",
+  "output_file": "20261014T111324_867759_M1_module_build.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-14T11:13:43.917175+08:00",
+  "elapsed_seconds": 19.049
+}

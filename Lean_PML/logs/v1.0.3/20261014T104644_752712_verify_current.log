@@ -1,0 +1,23 @@
+{
+  "engineering_checks_passed": true,
+  "mathematical_stage_status": {
+    "v1.0.1": "partial",
+    "v1.0.2": "partial",
+    "v1.0.3": "not_complete"
+  },
+  "checks": {
+    "old_proof_files_unchanged": true,
+    "protected_unchanged": true,
+    "no_placeholder_tokens": true,
+    "no_sorryAx": true,
+    "standard_axioms_only": true,
+    "all_formal_imported": true,
+    "diff_check": true
+  },
+  "audit_count": 796,
+  "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ]
+}

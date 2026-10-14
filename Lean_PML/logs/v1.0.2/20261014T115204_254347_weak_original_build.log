@@ -1,0 +1,26 @@
+✖ [3002/3002] Building LeanPML.PML.WeakOriginalSystem (36s)
+trace: .> LEAN_PATH=/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Cli/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/batteries/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Qq/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/aesop/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/proofwidgets/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/importGraph/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/plausible/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/mathlib/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean /Users/wcli/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/LeanPML/PML/WeakOriginalSystem.lean -o /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/WeakOriginalSystem.olean -i /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/WeakOriginalSystem.ilean -c /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/WeakOriginalSystem.c --setup /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/WeakOriginalSystem.setup.json --json
+error: LeanPML/PML/WeakOriginalSystem.lean:131:64: Application type mismatch: The argument
+  hu
+has type
+  @HasDerivAt ℝ DenselyNormedField.toNontriviallyNormedField (↥(zeroBoundaryGraph D)) (zeroBoundaryGraph D).addCommGroup
+    (zeroBoundaryGraph D).module instTopologicalSpaceSubtype ⋯ (historyU D e u₀) (e t) t
+but is expected to have type
+  @HasDerivAt ℝ DenselyNormedField.toNontriviallyNormedField ?m.109 NormedAddCommGroup.toAddCommGroup
+    NormedSpace.toModule PseudoMetricSpace.toUniformSpace.toTopologicalSpace ⋯ ?m.115 ?m.116 t
+in the application
+  HasFDerivAt.comp_hasDerivAt t (ContinuousLinearMap.hasFDerivAt ?m.105) hu
+error: LeanPML/PML/WeakOriginalSystem.lean:165:64: Application type mismatch: The argument
+  historyU_hasDerivAt D e u₀ he ht
+has type
+  @HasDerivAt ℝ DenselyNormedField.toNontriviallyNormedField (↥(zeroBoundaryGraph D)) (zeroBoundaryGraph D).addCommGroup
+    (zeroBoundaryGraph D).module instTopologicalSpaceSubtype ⋯ (historyU D e u₀) (e t) t
+but is expected to have type
+  @HasDerivAt ℝ DenselyNormedField.toNontriviallyNormedField ?m.63 NormedAddCommGroup.toAddCommGroup
+    NormedSpace.toModule PseudoMetricSpace.toUniformSpace.toTopologicalSpace ⋯ ?m.69 ?m.70 t
+in the application
+  HasFDerivAt.comp_hasDerivAt t (ContinuousLinearMap.hasFDerivAt ?m.59) (historyU_hasDerivAt D e u₀ he ht)
+error: Lean exited with code 1
+Some required targets logged failures:
+- LeanPML.PML.WeakOriginalSystem
+error: build failed

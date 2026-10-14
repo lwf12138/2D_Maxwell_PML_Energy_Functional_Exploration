@@ -1,0 +1,217 @@
+logs/v1.0_completion/WirtingerAttempt.lean:28:17: error: don't know how to synthesize implicit argument `g`
+  @ContinuousOn.add ℝ PseudoMetricSpace.toUniformSpace.toTopologicalSpace Real.instAdd
+    (IsTopologicalRing.toIsSemitopologicalRing ℝ).toContinuousAdd ℝ PseudoMetricSpace.toUniformSpace.toTopologicalSpace
+    ((fun x => ?m.626 - q x ^ 2) * fun x => f x ^ 2) ((fun x => ?m.679) * q * f * df) (Icc a b)
+    (ContinuousOn.mul (ContinuousOn.sub continuousOn_const (ContinuousOn.pow hq 2)) (ContinuousOn.pow hf 2))
+    (ContinuousOn.mul (ContinuousOn.mul (ContinuousOn.mul continuousOn_const hq) hf) hdf)
+context:
+a b k : ℝ
+hab : a ≤ b
+f df q : ℝ → ℝ
+hf : ContinuousOn f (Icc a b)
+hdf : ContinuousOn df (Icc a b)
+hq : ContinuousOn q (Icc a b)
+hderiv : ∀ x ∈ Ioo a b, HasDerivAt f (df x) x
+hRiccati : ∀ x ∈ Ioo a b, HasDerivAt q (-k ^ 2 - q x ^ 2) x
+ha : f a = 0
+hb : f b = 0
+hprod : ContinuousOn (fun x => q x * f x ^ 2) (Icc a b)
+hdprod : ∀ x ∈ Ioo a b, HasDerivAt (fun y => q y * f y ^ 2) ((-k ^ 2 - q x ^ 2) * f x ^ 2 + 2 * q x * f x * df x) x
+hiF : IntervalIntegrable (fun x => f x ^ 2) volume a b
+hiD : IntervalIntegrable (fun x => df x ^ 2) volume a b
+hiQF : IntervalIntegrable (fun x => q x ^ 2 * f x ^ 2) volume a b
+hiCross : IntervalIntegrable (fun x => q x * f x * df x) volume a b
+⊢ ℝ → ℝ
+logs/v1.0_completion/WirtingerAttempt.lean:28:17: error: don't know how to synthesize implicit argument `f`
+  @ContinuousOn.add ℝ PseudoMetricSpace.toUniformSpace.toTopologicalSpace Real.instAdd
+    (IsTopologicalRing.toIsSemitopologicalRing ℝ).toContinuousAdd ℝ PseudoMetricSpace.toUniformSpace.toTopologicalSpace
+    ((fun x => ?m.626 - q x ^ 2) * fun x => f x ^ 2) ((fun x => ?m.679) * q * f * df) (Icc a b)
+    (ContinuousOn.mul (ContinuousOn.sub continuousOn_const (ContinuousOn.pow hq 2)) (ContinuousOn.pow hf 2))
+    (ContinuousOn.mul (ContinuousOn.mul (ContinuousOn.mul continuousOn_const hq) hf) hdf)
+context:
+a b k : ℝ
+hab : a ≤ b
+f df q : ℝ → ℝ
+hf : ContinuousOn f (Icc a b)
+hdf : ContinuousOn df (Icc a b)
+hq : ContinuousOn q (Icc a b)
+hderiv : ∀ x ∈ Ioo a b, HasDerivAt f (df x) x
+hRiccati : ∀ x ∈ Ioo a b, HasDerivAt q (-k ^ 2 - q x ^ 2) x
+ha : f a = 0
+hb : f b = 0
+hprod : ContinuousOn (fun x => q x * f x ^ 2) (Icc a b)
+hdprod : ∀ x ∈ Ioo a b, HasDerivAt (fun y => q y * f y ^ 2) ((-k ^ 2 - q x ^ 2) * f x ^ 2 + 2 * q x * f x * df x) x
+hiF : IntervalIntegrable (fun x => f x ^ 2) volume a b
+hiD : IntervalIntegrable (fun x => df x ^ 2) volume a b
+hiQF : IntervalIntegrable (fun x => q x ^ 2 * f x ^ 2) volume a b
+hiCross : IntervalIntegrable (fun x => q x * f x * df x) volume a b
+⊢ ℝ → ℝ
+logs/v1.0_completion/WirtingerAttempt.lean:29:5: error: don't know how to synthesize implicit argument `f`
+  @ContinuousOn.mul ℝ PseudoMetricSpace.toUniformSpace.toTopologicalSpace Real.instMul
+    instIsTopologicalRingReal.toContinuousMul ℝ PseudoMetricSpace.toUniformSpace.toTopologicalSpace
+    ((fun x => ?m.679) * q * f) df (Icc a b) (ContinuousOn.mul (ContinuousOn.mul continuousOn_const hq) hf) hdf
+context:
+a b k : ℝ
+hab : a ≤ b
+f df q : ℝ → ℝ
+hf : ContinuousOn f (Icc a b)
+hdf : ContinuousOn df (Icc a b)
+hq : ContinuousOn q (Icc a b)
+hderiv : ∀ x ∈ Ioo a b, HasDerivAt f (df x) x
+hRiccati : ∀ x ∈ Ioo a b, HasDerivAt q (-k ^ 2 - q x ^ 2) x
+ha : f a = 0
+hb : f b = 0
+hprod : ContinuousOn (fun x => q x * f x ^ 2) (Icc a b)
+hdprod : ∀ x ∈ Ioo a b, HasDerivAt (fun y => q y * f y ^ 2) ((-k ^ 2 - q x ^ 2) * f x ^ 2 + 2 * q x * f x * df x) x
+hiF : IntervalIntegrable (fun x => f x ^ 2) volume a b
+hiD : IntervalIntegrable (fun x => df x ^ 2) volume a b
+hiQF : IntervalIntegrable (fun x => q x ^ 2 * f x ^ 2) volume a b
+hiCross : IntervalIntegrable (fun x => q x * f x * df x) volume a b
+⊢ ℝ → ℝ
+logs/v1.0_completion/WirtingerAttempt.lean:29:6: error: don't know how to synthesize implicit argument `f`
+  @ContinuousOn.mul ℝ PseudoMetricSpace.toUniformSpace.toTopologicalSpace Real.instMul
+    instIsTopologicalRingReal.toContinuousMul ℝ PseudoMetricSpace.toUniformSpace.toTopologicalSpace
+    ((fun x => ?m.679) * q) f (Icc a b) (ContinuousOn.mul continuousOn_const hq) hf
+context:
+a b k : ℝ
+hab : a ≤ b
+f df q : ℝ → ℝ
+hf : ContinuousOn f (Icc a b)
+hdf : ContinuousOn df (Icc a b)
+hq : ContinuousOn q (Icc a b)
+hderiv : ∀ x ∈ Ioo a b, HasDerivAt f (df x) x
+hRiccati : ∀ x ∈ Ioo a b, HasDerivAt q (-k ^ 2 - q x ^ 2) x
+ha : f a = 0
+hb : f b = 0
+hprod : ContinuousOn (fun x => q x * f x ^ 2) (Icc a b)
+hdprod : ∀ x ∈ Ioo a b, HasDerivAt (fun y => q y * f y ^ 2) ((-k ^ 2 - q x ^ 2) * f x ^ 2 + 2 * q x * f x * df x) x
+hiF : IntervalIntegrable (fun x => f x ^ 2) volume a b
+hiD : IntervalIntegrable (fun x => df x ^ 2) volume a b
+hiQF : IntervalIntegrable (fun x => q x ^ 2 * f x ^ 2) volume a b
+hiCross : IntervalIntegrable (fun x => q x * f x * df x) volume a b
+⊢ ℝ → ℝ
+logs/v1.0_completion/WirtingerAttempt.lean:29:7: error: don't know how to synthesize implicit argument `f`
+  @ContinuousOn.mul ℝ PseudoMetricSpace.toUniformSpace.toTopologicalSpace Real.instMul
+    instIsTopologicalRingReal.toContinuousMul ℝ PseudoMetricSpace.toUniformSpace.toTopologicalSpace (fun x => ?m.679) q
+    (Icc a b) continuousOn_const hq
+context:
+a b k : ℝ
+hab : a ≤ b
+f df q : ℝ → ℝ
+hf : ContinuousOn f (Icc a b)
+hdf : ContinuousOn df (Icc a b)
+hq : ContinuousOn q (Icc a b)
+hderiv : ∀ x ∈ Ioo a b, HasDerivAt f (df x) x
+hRiccati : ∀ x ∈ Ioo a b, HasDerivAt q (-k ^ 2 - q x ^ 2) x
+ha : f a = 0
+hb : f b = 0
+hprod : ContinuousOn (fun x => q x * f x ^ 2) (Icc a b)
+hdprod : ∀ x ∈ Ioo a b, HasDerivAt (fun y => q y * f y ^ 2) ((-k ^ 2 - q x ^ 2) * f x ^ 2 + 2 * q x * f x * df x) x
+hiF : IntervalIntegrable (fun x => f x ^ 2) volume a b
+hiD : IntervalIntegrable (fun x => df x ^ 2) volume a b
+hiQF : IntervalIntegrable (fun x => q x ^ 2 * f x ^ 2) volume a b
+hiCross : IntervalIntegrable (fun x => q x * f x * df x) volume a b
+⊢ ℝ → ℝ
+logs/v1.0_completion/WirtingerAttempt.lean:29:26: error: don't know how to synthesize placeholder
+context:
+a b k : ℝ
+hab : a ≤ b
+f df q : ℝ → ℝ
+hf : ContinuousOn f (Icc a b)
+hdf : ContinuousOn df (Icc a b)
+hq : ContinuousOn q (Icc a b)
+hderiv : ∀ x ∈ Ioo a b, HasDerivAt f (df x) x
+hRiccati : ∀ x ∈ Ioo a b, HasDerivAt q (-k ^ 2 - q x ^ 2) x
+ha : f a = 0
+hb : f b = 0
+hprod : ContinuousOn (fun x => q x * f x ^ 2) (Icc a b)
+hdprod : ∀ x ∈ Ioo a b, HasDerivAt (fun y => q y * f y ^ 2) ((-k ^ 2 - q x ^ 2) * f x ^ 2 + 2 * q x * f x * df x) x
+hiF : IntervalIntegrable (fun x => f x ^ 2) volume a b
+hiD : IntervalIntegrable (fun x => df x ^ 2) volume a b
+hiQF : IntervalIntegrable (fun x => q x ^ 2 * f x ^ 2) volume a b
+hiCross : IntervalIntegrable (fun x => q x * f x * df x) volume a b
+⊢ ℝ
+logs/v1.0_completion/WirtingerAttempt.lean:28:18: error: don't know how to synthesize implicit argument `f`
+  @ContinuousOn.mul ℝ PseudoMetricSpace.toUniformSpace.toTopologicalSpace Real.instMul
+    instIsTopologicalRingReal.toContinuousMul ℝ PseudoMetricSpace.toUniformSpace.toTopologicalSpace
+    (fun x => ?m.626 - q x ^ 2) (fun x => f x ^ 2) (Icc a b)
+    (ContinuousOn.sub continuousOn_const (ContinuousOn.pow hq 2)) (ContinuousOn.pow hf 2)
+context:
+a b k : ℝ
+hab : a ≤ b
+f df q : ℝ → ℝ
+hf : ContinuousOn f (Icc a b)
+hdf : ContinuousOn df (Icc a b)
+hq : ContinuousOn q (Icc a b)
+hderiv : ∀ x ∈ Ioo a b, HasDerivAt f (df x) x
+hRiccati : ∀ x ∈ Ioo a b, HasDerivAt q (-k ^ 2 - q x ^ 2) x
+ha : f a = 0
+hb : f b = 0
+hprod : ContinuousOn (fun x => q x * f x ^ 2) (Icc a b)
+hdprod : ∀ x ∈ Ioo a b, HasDerivAt (fun y => q y * f y ^ 2) ((-k ^ 2 - q x ^ 2) * f x ^ 2 + 2 * q x * f x * df x) x
+hiF : IntervalIntegrable (fun x => f x ^ 2) volume a b
+hiD : IntervalIntegrable (fun x => df x ^ 2) volume a b
+hiQF : IntervalIntegrable (fun x => q x ^ 2 * f x ^ 2) volume a b
+hiCross : IntervalIntegrable (fun x => q x * f x * df x) volume a b
+⊢ ℝ → ℝ
+logs/v1.0_completion/WirtingerAttempt.lean:28:19: error: don't know how to synthesize implicit argument `f`
+  @ContinuousOn.sub ℝ ℝ PseudoMetricSpace.toUniformSpace.toTopologicalSpace
+    PseudoMetricSpace.toUniformSpace.toTopologicalSpace Real.instSub IsTopologicalAddGroup.to_continuousSub
+    (fun x => ?m.626) (fun x => q x ^ 2) (Icc a b) continuousOn_const (ContinuousOn.pow hq 2)
+context:
+a b k : ℝ
+hab : a ≤ b
+f df q : ℝ → ℝ
+hf : ContinuousOn f (Icc a b)
+hdf : ContinuousOn df (Icc a b)
+hq : ContinuousOn q (Icc a b)
+hderiv : ∀ x ∈ Ioo a b, HasDerivAt f (df x) x
+hRiccati : ∀ x ∈ Ioo a b, HasDerivAt q (-k ^ 2 - q x ^ 2) x
+ha : f a = 0
+hb : f b = 0
+hprod : ContinuousOn (fun x => q x * f x ^ 2) (Icc a b)
+hdprod : ∀ x ∈ Ioo a b, HasDerivAt (fun y => q y * f y ^ 2) ((-k ^ 2 - q x ^ 2) * f x ^ 2 + 2 * q x * f x * df x) x
+hiF : IntervalIntegrable (fun x => f x ^ 2) volume a b
+hiD : IntervalIntegrable (fun x => df x ^ 2) volume a b
+hiQF : IntervalIntegrable (fun x => q x ^ 2 * f x ^ 2) volume a b
+hiCross : IntervalIntegrable (fun x => q x * f x * df x) volume a b
+⊢ ℝ → ℝ
+logs/v1.0_completion/WirtingerAttempt.lean:28:38: error: don't know how to synthesize placeholder
+context:
+a b k : ℝ
+hab : a ≤ b
+f df q : ℝ → ℝ
+hf : ContinuousOn f (Icc a b)
+hdf : ContinuousOn df (Icc a b)
+hq : ContinuousOn q (Icc a b)
+hderiv : ∀ x ∈ Ioo a b, HasDerivAt f (df x) x
+hRiccati : ∀ x ∈ Ioo a b, HasDerivAt q (-k ^ 2 - q x ^ 2) x
+ha : f a = 0
+hb : f b = 0
+hprod : ContinuousOn (fun x => q x * f x ^ 2) (Icc a b)
+hdprod : ∀ x ∈ Ioo a b, HasDerivAt (fun y => q y * f y ^ 2) ((-k ^ 2 - q x ^ 2) * f x ^ 2 + 2 * q x * f x * df x) x
+hiF : IntervalIntegrable (fun x => f x ^ 2) volume a b
+hiD : IntervalIntegrable (fun x => df x ^ 2) volume a b
+hiQF : IntervalIntegrable (fun x => q x ^ 2 * f x ^ 2) volume a b
+hiCross : IntervalIntegrable (fun x => q x * f x * df x) volume a b
+⊢ ℝ
+logs/v1.0_completion/WirtingerAttempt.lean:28:7: error: failed to infer `have` declaration type
+logs/v1.0_completion/WirtingerAttempt.lean:17:60: error: unsolved goals
+a b k : ℝ
+hab : a ≤ b
+f df q : ℝ → ℝ
+hf : ContinuousOn f (Icc a b)
+hdf : ContinuousOn df (Icc a b)
+hq : ContinuousOn q (Icc a b)
+hderiv : ∀ x ∈ Ioo a b, HasDerivAt f (df x) x
+hRiccati : ∀ x ∈ Ioo a b, HasDerivAt q (-k ^ 2 - q x ^ 2) x
+ha : f a = 0
+hb : f b = 0
+hprod : ContinuousOn (fun x => q x * f x ^ 2) (Icc a b)
+hdprod : ∀ x ∈ Ioo a b, HasDerivAt (fun y => q y * f y ^ 2) ((-k ^ 2 - q x ^ 2) * f x ^ 2 + 2 * q x * f x * df x) x
+hiF : IntervalIntegrable (fun x => f x ^ 2) volume a b
+hiD : IntervalIntegrable (fun x => df x ^ 2) volume a b
+hiQF : IntervalIntegrable (fun x => q x ^ 2 * f x ^ 2) volume a b
+hiCross : IntervalIntegrable (fun x => q x * f x * df x) volume a b
+⊢ k ^ 2 * ∫ (x : ℝ) in a..b, f x ^ 2 ≤ ∫ (x : ℝ) in a..b, df x ^ 2
+logs/v1.0_completion/WirtingerAttempt.lean:82:2: error: No goals to be solved

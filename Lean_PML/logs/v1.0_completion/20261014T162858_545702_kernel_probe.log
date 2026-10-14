@@ -1,0 +1,8 @@
+LeanPML/Analysis/MultiplierExponential.lean:108:31: error: Application type mismatch: The argument
+  hlinear
+has type
+  ∀ (F : C(↑(Set.Icc (-C) C), ℝ)), ‖linear F‖ ≤ 1 * ‖F‖
+but is expected to have type
+  ∀ (x : ?m.173), ‖?m.163 x‖ ≤ 1 * ‖x‖
+in the application
+  LinearMap.mkContinuous ?m.163 1 hlinear

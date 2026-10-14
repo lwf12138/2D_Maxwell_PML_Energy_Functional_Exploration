@@ -1,0 +1,31 @@
+def TemperedDistribution.MemSobolev.{u_1, u_2} : {E : Type u_1} →
+  {F : Type u_2} →
+    [inst : NormedAddCommGroup E] →
+      [inst_1 : NormedAddCommGroup F] →
+        [inst_2 : InnerProductSpace ℝ E] →
+          [FiniteDimensional ℝ E] →
+            [inst_4 : MeasurableSpace E] →
+              [BorelSpace E] →
+                [inst_6 : NormedSpace ℂ F] →
+                  [CompleteSpace F] → ℝ → (p : ENNReal) → [hp : Fact (1 ≤ p)] → TemperedDistribution E F → Prop :=
+fun {E} {F} [NormedAddCommGroup E] [NormedAddCommGroup F] [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
+    [MeasurableSpace E] [BorelSpace E] [NormedSpace ℂ F] [CompleteSpace F] s p [Fact (1 ≤ p)] f =>
+  ∃ f', (TemperedDistribution.besselPotential E F s) f = MeasureTheory.Lp.toTemperedDistribution f'
+TemperedDistribution.memSobolev_zero_iff.{u_1, u_2} {E : Type u_1} {F : Type u_2} [NormedAddCommGroup E]
+  [NormedAddCommGroup F] [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
+  [NormedSpace ℂ F] [CompleteSpace F] {p : ENNReal} [hp : Fact (1 ≤ p)] {f : TemperedDistribution E F} :
+  TemperedDistribution.MemSobolev 0 p f ↔ ∃ f', f = MeasureTheory.Lp.toTemperedDistribution f'
+TemperedDistribution.MemSobolev.lineDerivOp.{u_1, u_2} {E : Type u_1} {F : Type u_2} [NormedAddCommGroup E]
+  [NormedAddCommGroup F] [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
+  [InnerProductSpace ℂ F] [CompleteSpace F] {s : ℝ} {f : TemperedDistribution E F}
+  (hf : TemperedDistribution.MemSobolev s 2 f) {m : E} :
+  TemperedDistribution.MemSobolev (s - 1) 2 (LineDeriv.lineDerivOp m f)
+MeasureTheory.MemLp.exist_eLpNorm_sub_le.{u_3, u_4} {E : Type u_3} {F : Type u_4} [MeasurableSpace E]
+  [NormedAddCommGroup F] [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E] [BorelSpace E]
+  [NormedSpace ℝ F] {μ : MeasureTheory.Measure E} [MeasureTheory.IsFiniteMeasureOnCompacts μ] {p : ENNReal} (hp : p ≠ ⊤)
+  (hp₂ : 1 ≤ p) {f : E → F} (hf : MeasureTheory.MemLp f p μ) {ε : ℝ} (hε : 0 < ε) :
+  ∃ g, HasCompactSupport g ∧ ContDiff ℝ (↑⊤) g ∧ MeasureTheory.eLpNorm (f - g) p μ ≤ ENNReal.ofReal ε
+MeasureTheory.Lp.dense_hasCompactSupport_contDiff.{u_3, u_4} {E : Type u_3} {F : Type u_4} [MeasurableSpace E]
+  [NormedAddCommGroup F] [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E] [BorelSpace E]
+  [NormedSpace ℝ F] {μ : MeasureTheory.Measure E} [MeasureTheory.IsFiniteMeasureOnCompacts μ] {p : ENNReal} (hp : p ≠ ⊤)
+  [hp₂ : Fact (1 ≤ p)] : Dense {f | ∃ g, ↑↑f =ᵐ[μ] g ∧ HasCompactSupport g ∧ ContDiff ℝ (↑⊤) g}

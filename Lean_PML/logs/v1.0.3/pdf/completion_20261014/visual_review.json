@@ -1,0 +1,36 @@
+{
+  "reviewed_at": "2026-10-14T12:29:21.098418+08:00",
+  "method": "Poppler 120 dpi render + model visual inspection of every modified full page; glyph/annotation geometry tested before write",
+  "pages": {
+    "4": {
+      "passed": true,
+      "notes": "底部新五不变量说明完整，未遮挡原方程或旧左右旁注。",
+      "image_sha256": "58b7a5442048f75ae301351cf35441e8e0b1ff18acc8587f190a3ac85a07b225"
+    },
+    "9": {
+      "passed": true,
+      "notes": "§5.3末尾两行限定说明与下一节标题分离；勾、W¹∞及H₀¹字形清楚。",
+      "image_sha256": "eeae26c737782e89f29f532b4e26a646ce95a51a673bd7106193e29e04b67dcf"
+    },
+    "10": {
+      "passed": true,
+      "notes": "主定理后空白处两行范围说明清楚；保守常数和时间jet可见，原(6.7)–(6.10)未遮挡。",
+      "image_sha256": "1c440a8e1b235405925fabd3af1c5583a61a0e21f0ba7427016679ec31421745"
+    },
+    "11": {
+      "passed": true,
+      "notes": "段间范围说明与原(7.2)及7.2标题不重叠；旧“未完成”有明确历史说明。",
+      "image_sha256": "62930e95a0ea04ee1472822f239080d45804988ff93b370d54dcc97c9de2ab35"
+    },
+    "14": {
+      "passed": true,
+      "notes": "(9.6)后两行说明位于空白，与9.3标题保持间隔；无红勾冒充输入。",
+      "image_sha256": "a5bdb251ca6546f6b6a39c0c1e22d8351627685068696c46756f010d37d60392"
+    },
+    "16": {
+      "passed": true,
+      "notes": "§11.3末尾新静态变体说明完整，不覆盖原能量式或下一节。",
+      "image_sha256": "e809330500454a9941eb5814a142449be495d15d479eeeb46d2e1fbdeb7ef403"
+    }
+  }
+}

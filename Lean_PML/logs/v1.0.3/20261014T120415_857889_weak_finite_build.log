@@ -1,0 +1,129 @@
+ℹ [3002/3011] Replayed LeanPML.PML.WeakOriginalSystem
+info: LeanPML/PML/WeakOriginalSystem.lean:187:4: Try this:
+  [apply] abel_nf
+⚠ [3003/3011] Replayed LeanPML.PML.WeakPrimitiveSystem
+warning: LeanPML/PML/WeakPrimitiveSystem.lean:94:23: This simp argument is unused:
+  smul_sub
+
+Hint: Omit it from the simp argument list.
+  simp only [smul_add, s̵m̵u̵l̵_̵s̵u̵b̵,̵ ̵neg_smul, sub_neg_eq_add] at hmain ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/WeakPrimitiveSystem.lean:112:34: This simp argument is unused:
+  map_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [map_sub, map_smul, m̵a̵p̵_̵n̵e̵g̵,̵ ̵smul_sub, neg_smul, neg_neg]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/WeakPrimitiveSystem.lean:112:63: This simp argument is unused:
+  neg_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [map_sub, map_smul, map_neg, smul_sub, neg_smul,̵ ̵n̵e̵g̵_̵n̵e̵g̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/WeakPrimitiveSystem.lean:120:63: This simp argument is unused:
+  neg_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [map_sub, map_smul, map_neg, smul_sub, neg_smul,̵ ̵n̵e̵g̵_̵n̵e̵g̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [3010/3011] Replayed LeanPML.PML.WeakPathAssembly
+warning: LeanPML/PML/WeakPathAssembly.lean:183:13: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/WeakPathAssembly.lean:184:14: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/WeakPathAssembly.lean:185:11: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/WeakPathAssembly.lean:186:17: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✖ [3011/3011] Building LeanPML.PML.WeakFiniteProblem (11s)
+trace: .> LEAN_PATH=/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Cli/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/batteries/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Qq/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/aesop/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/proofwidgets/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/importGraph/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/plausible/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/mathlib/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean /Users/wcli/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/LeanPML/PML/WeakFiniteProblem.lean -o /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/WeakFiniteProblem.olean -i /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/WeakFiniteProblem.ilean -c /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/WeakFiniteProblem.c --setup /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/WeakFiniteProblem.setup.json --json
+error: LeanPML/PML/WeakFiniteProblem.lean:77:60: Unknown identifier `W₀x`
+error: LeanPML/PML/WeakFiniteProblem.lean:77:64: Unknown identifier `W₀y`
+error: LeanPML/PML/WeakFiniteProblem.lean:78:21: Unknown identifier `W₀x`
+error: LeanPML/PML/WeakFiniteProblem.lean:78:25: Unknown identifier `W₀y`
+error: LeanPML/PML/WeakFiniteProblem.lean:79:36: Unknown identifier `W₀x`
+error: LeanPML/PML/WeakFiniteProblem.lean:79:40: Unknown identifier `W₀y`
+error: LeanPML/PML/WeakFiniteProblem.lean:79:44: Unknown identifier `hWx`
+error: LeanPML/PML/WeakFiniteProblem.lean:79:48: Unknown identifier `hWy`
+error: LeanPML/PML/WeakFiniteProblem.lean:86:37: Unknown identifier `hWx`
+error: LeanPML/PML/WeakFiniteProblem.lean:86:41: Unknown identifier `hWy`
+error: LeanPML/PML/WeakFiniteProblem.lean:87:56: Application type mismatch: The argument
+  (reconstruction O ht).left
+has type
+  O.q t + τ • (O.fields t).P = κ • ↑↑(O.u t) 0
+but is expected to have type
+  PolarConstraint κ τ ?m.100
+in the application
+  stateConstraints_of_graph D C κ τ ?m.100 (O.u t) ?m.110 (reconstruction O ht).left
+error: LeanPML/PML/WeakFiniteProblem.lean:99:39: Unknown identifier `W₀x`
+error: LeanPML/PML/WeakFiniteProblem.lean:99:43: Unknown identifier `W₀y`
+error: LeanPML/PML/WeakFiniteProblem.lean:102:42: Application type mismatch: The argument
+  t
+has type
+  ℝ
+of sort `Type` but is expected to have type
+  ?m.194 ∈ Icc 0 T
+of sort `Prop` in the application
+  eqOn_Icc_of_Ioo O.nonneg_time (ContinuousOn.add hcont.z (ContinuousOn.const_smul hcont.R τ))
+    (ContinuousOn.const_smul hcont.v κ) ?m.184 hdeg.polar t
+error: LeanPML/PML/WeakFiniteProblem.lean:103:10: No goals to be solved
+error: LeanPML/PML/WeakFiniteProblem.lean:110:87: Application type mismatch: The argument
+  t
+has type
+  ℝ
+of sort `Type` but is expected to have type
+  ?m.375 ∈ Icc 0 T
+of sort `Prop` in the application
+  eqOn_Icc_of_Ioo O.nonneg_time hcont.Λx
+    (ContinuousOn.add hgradx
+      (Continuous.comp_continuousOn (ContinuousLinearMap.continuous (physicalX D.measure C)) hcont.ψx))
+    ?m.373 ?m.374 t
+error: LeanPML/PML/WeakFiniteProblem.lean:111:4: No goals to be solved
+error: LeanPML/PML/WeakFiniteProblem.lean:121:87: Application type mismatch: The argument
+  t
+has type
+  ℝ
+of sort `Type` but is expected to have type
+  ?m.488 ∈ Icc 0 T
+of sort `Prop` in the application
+  eqOn_Icc_of_Ioo O.nonneg_time hcont.Λy
+    (ContinuousOn.add hgrady
+      (Continuous.comp_continuousOn (ContinuousLinearMap.continuous (physicalY D.measure C)) hcont.ψy))
+    ?m.486 ?m.487 t
+error: LeanPML/PML/WeakFiniteProblem.lean:122:4: No goals to be solved
+error: LeanPML/PML/WeakFiniteProblem.lean:143:22: Function expected at
+  base_constraints O W₀x W₀y ?m.154
+but this term has type
+  StateCoercivityConstraints D.measure C (weakGreenDomain D).spatial (weakPoincareDomain D) κ τ
+    (O.baseState W₀x W₀y ?m.153)
+
+Note: Expected a function because this term is being applied to the argument
+  hWy
+error: LeanPML/PML/WeakFiniteProblem.lean:144:45: Application type mismatch: The argument
+  W₀x
+has type
+  ↥(WeightedL2 D.measure C.wx)
+of sort `Type` but is expected to have type
+  DegenerateJetCompatibility O J
+of sort `Prop` in the application
+  @first_constraints D C ε κ τ μ T O J W₀x
+error: Lean exited with code 1
+Some required targets logged failures:
+- LeanPML.PML.WeakFiniteProblem
+error: build failed

@@ -1,0 +1,11 @@
+{
+  "status": "completed_verified",
+  "ROADMAP_v1_main_complete": true,
+  "V7_main_alignment_complete": true,
+  "audit_count": 1058,
+  "unique_audited_declarations": 1050,
+  "new_audited_declarations": 61,
+  "isolated_exit_code": 0,
+  "source_unchanged_after_final_verification": true,
+  "remaining_v1_main_analysis_interfaces": []
+}

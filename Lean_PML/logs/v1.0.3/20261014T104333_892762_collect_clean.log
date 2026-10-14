@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "files_matched": 70,
+  "dependencies": 9,
+  "commands": [
+    {
+      "kind": "lake_build",
+      "metadata": "logs/v1.0.3/clean/20261014T103606_231824_lake_build.json",
+      "log": "logs/v1.0.3/clean/20261014T103606_231824_lake_build.log",
+      "actual_cwd": "/private/var/folders/9m/zcq3jbg90sx_fc7fv3zn0hnc0000gn/T/LeanPML_v1_0_clean_ca02buym",
+      "exit_code": 0,
+      "output_sha256": "ea74d2f4080f2c18930f38f3f84aee59946cc5a1477a0c790b43d465567cff7d"
+    },
+    {
+      "kind": "axioms_audit",
+      "metadata": "logs/v1.0.3/clean/20261014T104156_004472_axioms_audit.json",
+      "log": "logs/v1.0.3/clean/20261014T104156_004472_axioms_audit.log",
+      "actual_cwd": "/private/var/folders/9m/zcq3jbg90sx_fc7fv3zn0hnc0000gn/T/LeanPML_v1_0_clean_ca02buym",
+      "exit_code": 0,
+      "output_sha256": "c55e3a8f94b2a7237bf7a0ddb3c8f1c78b9e0122cbc6bf9cc88a7764a30d0da2"
+    },
+    {
+      "kind": "lean_version",
+      "metadata": "logs/v1.0.3/clean/20261014T104158_304157_lean_version.json",
+      "log": "logs/v1.0.3/clean/20261014T104158_304157_lean_version.log",
+      "actual_cwd": "/private/var/folders/9m/zcq3jbg90sx_fc7fv3zn0hnc0000gn/T/LeanPML_v1_0_clean_ca02buym",
+      "exit_code": 0,
+      "output_sha256": "3736756da8bde35bd0454e07bb977d28449cd4128a9c1b7aed35f45fc8bfe602"
+    }
+  ]
+}

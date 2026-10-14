@@ -1,0 +1,19 @@
+{
+  "stage": "v1.0.2",
+  "command": [
+    "lake",
+    "env",
+    "lean",
+    "LeanPML/PML/WeightedForcing.lean"
+  ],
+  "command_display": "lake env lean LeanPML/PML/WeightedForcing.lean",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-14T11:04:33.551903+08:00",
+  "output_file": "20261014T110433_551903_M2_forcing_check.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 1,
+  "status": "finished",
+  "ended_at": "2026-10-14T11:04:52.328444+08:00",
+  "elapsed_seconds": 18.776
+}

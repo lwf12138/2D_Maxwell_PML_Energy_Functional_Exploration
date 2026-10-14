@@ -1,0 +1,14 @@
+import LeanPML.Rectangle.WeakPoincare
+import Mathlib.Analysis.Real.Pi.Bounds
+import Mathlib.Analysis.Calculus.ContDiff.Deriv
+import Mathlib.MeasureTheory.Integral.IntervalIntegral.AbsolutelyContinuousFun
+#check ContDiffOn.derivWithin
+#check HasDerivWithinAt.derivWithin
+#check ContDiffOn.continuousOn_derivWithin
+#check IsOpen.ae_eq_zero_of_integral_contDiff_smul_eq_zero
+#check AbsolutelyContinuousOnInterval.const_of_ae_hasDerivAt_zero
+#check Real.pi_gt_three
+#check IsCompact.exists_isMinOn
+#check IsCompact.exists_isMaxOn
+#check HasCompactSupport.exists_pos_lt_subset_ball
+#check intervalIntegral.integral_eq_integral_of_support_subset

@@ -1,0 +1,253 @@
+LeanPML.Rectangle.cutoffSequence_toL2_convergence (D : LeanPML.Rectangle.Rect) (f : LeanPML.Rectangle.SmoothField)
+  (hzero : LeanPML.Rectangle.ZeroBoundary D ↑f) :
+  Filter.Tendsto (fun n => (LeanPML.Rectangle.SmoothField.toL2 D) (LeanPML.Rectangle.cutoffSequence D f n).field)
+      Filter.atTop (nhds ((LeanPML.Rectangle.SmoothField.toL2 D) f)) ∧
+    Filter.Tendsto
+        (fun n => (LeanPML.Rectangle.SmoothField.toL2 D) (LeanPML.Rectangle.cutoffSequence D f n).field.derivativeX)
+        Filter.atTop (nhds ((LeanPML.Rectangle.SmoothField.toL2 D) f.derivativeX)) ∧
+      Filter.Tendsto
+        (fun n => (LeanPML.Rectangle.SmoothField.toL2 D) (LeanPML.Rectangle.cutoffSequence D f n).field.derivativeY)
+        Filter.atTop (nhds ((LeanPML.Rectangle.SmoothField.toL2 D) f.derivativeY))
+LeanPML.Rectangle.smoothToWeakH1_mem_zeroBoundaryGraph (D : LeanPML.Rectangle.Rect) (f : LeanPML.Rectangle.SmoothField)
+  (hzero : LeanPML.Rectangle.ZeroBoundary D ↑f) :
+  LeanPML.Rectangle.smoothToWeakH1 D f ∈ LeanPML.Rectangle.zeroBoundaryGraph D
+LeanPML.Rectangle.rectangleBubble_weakH01 (D : LeanPML.Rectangle.Rect) :
+  LeanPML.Rectangle.smoothToWeakH1 D (LeanPML.Rectangle.rectangleBubble D) ∈ LeanPML.Rectangle.zeroBoundaryGraph D ∧
+    (LeanPML.Rectangle.SmoothField.toL2 D) (LeanPML.Rectangle.rectangleBubble D) ≠ 0
+LeanPML.Rectangle.smooth_zero_mem_weakZeroFieldDomain (D : LeanPML.Rectangle.Rect) (f : LeanPML.Rectangle.SmoothField)
+  (hzero : LeanPML.Rectangle.ZeroBoundary D ↑f) :
+  (LeanPML.Rectangle.SmoothField.toL2 D) f ∈ LeanPML.Rectangle.weakZeroFieldDomain D
+LeanPML.Rectangle.smooth_trace_zero_mem_weakZeroFieldDomain (D : LeanPML.Rectangle.Rect)
+  (v : ↥(LeanPML.Rectangle.fieldDomain D)) (htrace : (LeanPML.Rectangle.trace D) v = 0) :
+  ↑v ∈ LeanPML.Rectangle.weakZeroFieldDomain D
+LeanPML.PML.weak_product_test (D : LeanPML.Rectangle.Rect) (m : LeanPML.PML.RegionalWeakCoefficient D)
+  (f : LeanPML.Rectangle.TestFunction D) (i : Fin 2) :
+  LeanPML.Rectangle.HasWeakPartial D i (m.value.operator ((LeanPML.Rectangle.SmoothField.toL2 D) f.field))
+    ((m.derivative i).operator ((LeanPML.Rectangle.SmoothField.toL2 D) f.field) +
+      m.value.operator ((LeanPML.Rectangle.SmoothField.toL2 D) (LeanPML.Rectangle.smoothPartial i f.field)))
+LeanPML.PML.weakCoefficientGraphMap_mem (D : LeanPML.Rectangle.Rect) (m : LeanPML.PML.RegionalWeakCoefficient D)
+  (u : ↥(LeanPML.Rectangle.zeroBoundaryGraph D)) :
+  (LeanPML.PML.weakCoefficientGraphMap D m) ↑u ∈ LeanPML.Rectangle.weakH1Graph D
+LeanPML.PML.weakCoefficientMul_value (D : LeanPML.Rectangle.Rect) (m : LeanPML.PML.RegionalWeakCoefficient D)
+  (u : ↥(LeanPML.Rectangle.zeroBoundaryGraph D)) : ↑(LeanPML.PML.weakCoefficientMul D m u) 0 = m.value.operator (↑↑u 0)
+LeanPML.PML.weakCoefficientMul_derivatives (D : LeanPML.Rectangle.Rect) (m : LeanPML.PML.RegionalWeakCoefficient D)
+  (u : ↥(LeanPML.Rectangle.zeroBoundaryGraph D)) :
+  ↑(LeanPML.PML.weakCoefficientMul D m u) 1 = (m.derivative 0).operator (↑↑u 0) + m.value.operator (↑↑u 1) ∧
+    ↑(LeanPML.PML.weakCoefficientMul D m u) 2 = (m.derivative 1).operator (↑↑u 0) + m.value.operator (↑↑u 2)
+LeanPML.PML.hasDerivAt_weakCoefficientMul (D : LeanPML.Rectangle.Rect) (m : LeanPML.PML.RegionalWeakCoefficient D)
+  {u : ℝ → ↥(LeanPML.Rectangle.zeroBoundaryGraph D)} {udot : ↥(LeanPML.Rectangle.zeroBoundaryGraph D)} {t : ℝ}
+  (hpath : HasDerivAt u udot t) :
+  HasDerivAt (fun s => LeanPML.PML.weakCoefficientMul D m (u s)) (LeanPML.PML.weakCoefficientMul D m udot) t
+LeanPML.PML.weakCoefficient_nonzero_call :
+  ↑(LeanPML.PML.weakCoefficientMul LeanPML.Rectangle.ParameterCertificate.unitSquare
+          (LeanPML.PML.weakCoefficientOfSmooth LeanPML.Rectangle.ParameterCertificate.unitSquare
+            LeanPML.PML.weakCoefficientOne)
+          LeanPML.PML.weakCoefficientExampleInput)
+      0 ≠
+    0
+LeanPML.PML.weight_absorption_squares (c p r S : ℝ) (hc_pos : 0 < c) (hp_nonneg : 0 ≤ p) (hr_nonneg : 0 ≤ r)
+  (hp_le : p ≤ S) (hr_le : r ≤ S) (hS_le : S ≤ c / 4) :
+  LeanPML.PML.energyWeightX c p r * p ^ 2 ≤ c * S ∧ LeanPML.PML.energyWeightX c p r * r ^ 2 ≤ c * S
+LeanPML.PML.weight_difference_square (c p r S : ℝ) (hc_pos : 0 < c) (hp_nonneg : 0 ≤ p) (hr_nonneg : 0 ≤ r)
+  (hp_le : p ≤ S) (hr_le : r ≤ S) (hS_le : S ≤ c / 4) : LeanPML.PML.energyWeightX c p r * (r - p) ^ 2 ≤ 2 * c * S
+LeanPML.Analysis.sqrt_weight_mul_abs_le (w m B : ℝ) (hw_nonneg : 0 ≤ w) (hB_nonneg : 0 ≤ B) (hbound : w * m ^ 2 ≤ B) :
+  |√w * m| ≤ √B
+LeanPML.Analysis.weightedForcing_norm_sq_le.{u_1} {α : Type u_1} [MeasurableSpace α] (ν : MeasureTheory.Measure α)
+  (w m : α → ℝ) (hw : Measurable w) (hm : Measurable m) (hw_nonneg : ∀ (x : α), 0 ≤ w x) (B : ℝ) (hB_nonneg : 0 ≤ B)
+  (hbound : ∀ (x : α), w x * m x ^ 2 ≤ B) (g : ↥(LeanPML.Analysis.ScalarL2 ν)) :
+  ‖(LeanPML.Analysis.weightedForcing ν w m hw hm hw_nonneg B hB_nonneg hbound) g‖ ^ 2 ≤ B * ‖g‖ ^ 2
+LeanPML.Analysis.physicalL2_weightedForcing.{u_1} {α : Type u_1} [MeasurableSpace α] (ν : MeasureTheory.Measure α)
+  (w m : α → ℝ) (hw : Measurable w) (hm : Measurable m) (hgap : ∀ (x : α), w x = 0 ∨ 1 ≤ w x)
+  (hw_nonneg : ∀ (x : α), 0 ≤ w x) (B : ℝ) (hB_nonneg : 0 ≤ B) (hbound : ∀ (x : α), w x * m x ^ 2 ≤ B)
+  (hzero : ∀ (x : α), w x = 0 → m x = 0) (C : ℝ) (hm_bound : ∀ (x : α), |m x| ≤ C)
+  (g : ↥(LeanPML.Analysis.ScalarL2 ν)) :
+  (LeanPML.Analysis.physicalL2 ν w hw hgap)
+      ((LeanPML.Analysis.weightedForcing ν w m hw hm hw_nonneg B hB_nonneg hbound) g) =
+    (LeanPML.Analysis.boundedMul ν m hm C hm_bound) g
+LeanPML.PML.SpatialAbsorption.xAbsorptionLift_norm_sq.{u_1} {α : Type u_1} [MeasurableSpace α] [Nonempty α]
+  (ν : MeasureTheory.Measure α) (C : LeanPML.PML.SpatialAbsorption α) (other : Bool)
+  (g : ↥(LeanPML.Analysis.ScalarL2 ν)) :
+  ‖(LeanPML.PML.SpatialAbsorption.xAbsorptionLift ν C other) g‖ ^ 2 ≤ C.c * C.S * ‖g‖ ^ 2
+LeanPML.PML.SpatialAbsorption.physical_xAbsorptionLift.{u_1} {α : Type u_1} [MeasurableSpace α] [Nonempty α]
+  (ν : MeasureTheory.Measure α) (C : LeanPML.PML.SpatialAbsorption α) (other : Bool)
+  (g : ↥(LeanPML.Analysis.ScalarL2 ν)) :
+  (LeanPML.Analysis.physicalL2 ν C.wx ⋯ ⋯) ((LeanPML.PML.SpatialAbsorption.xAbsorptionLift ν C other) g) =
+    ((if other = true then C.rCoeff else C.pCoeff).operator ν) g
+LeanPML.PML.SpatialAbsorption.differenceLift_norm_sq.{u_1} {α : Type u_1} [MeasurableSpace α] [Nonempty α]
+  (ν : MeasureTheory.Measure α) (C : LeanPML.PML.SpatialAbsorption α) (g : ↥(LeanPML.Analysis.ScalarL2 ν)) :
+  ‖(LeanPML.PML.SpatialAbsorption.differenceLift ν C) g‖ ^ 2 ≤ 2 * C.c * C.S * ‖g‖ ^ 2
+LeanPML.PML.SpatialAbsorption.physical_differenceLift.{u_1} {α : Type u_1} [MeasurableSpace α] [Nonempty α]
+  (ν : MeasureTheory.Measure α) (C : LeanPML.PML.SpatialAbsorption α) (g : ↥(LeanPML.Analysis.ScalarL2 ν)) :
+  (LeanPML.Analysis.physicalL2 ν C.wx ⋯ ⋯) ((LeanPML.PML.SpatialAbsorption.differenceLift ν C) g) =
+    (C.rCoeff.operator ν) g - (C.pCoeff.operator ν) g
+LeanPML.PML.SpatialAbsorption.physical_auxiliaryRateX.{u_1} {α : Type u_1} [MeasurableSpace α] [Nonempty α]
+  (ν : MeasureTheory.Measure α) (C : LeanPML.PML.SpatialAbsorption α) (h l : ↥(LeanPML.Analysis.ScalarL2 ν)) :
+  (LeanPML.Analysis.physicalL2 ν C.wx ⋯ ⋯) (LeanPML.PML.SpatialAbsorption.auxiliaryRateX ν C h l) =
+    (C.rCoeff.operator ν) h - (C.pCoeff.operator ν) l
+LeanPML.PML.SpatialAbsorption.auxiliaryRateX_norm_sq.{u_1} {α : Type u_1} [MeasurableSpace α] [Nonempty α]
+  (ν : MeasureTheory.Measure α) (C : LeanPML.PML.SpatialAbsorption α) (h l : ↥(LeanPML.Analysis.ScalarL2 ν)) :
+  ‖LeanPML.PML.SpatialAbsorption.auxiliaryRateX ν C h l‖ ^ 2 ≤ 2 * C.c * C.S * (‖h‖ ^ 2 + ‖l‖ ^ 2)
+LeanPML.PML.SpatialAbsorption.auxiliaryRate_weak_norm_sq (D : LeanPML.Rectangle.Rect)
+  (C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)) (u : ↥(LeanPML.Rectangle.weakH1Graph D))
+  (L : ↥(LeanPML.Rectangle.weakHDivGraph D)) :
+  ‖LeanPML.PML.SpatialAbsorption.auxiliaryRateX D.measure C (↑u 1) (↑L 0)‖ ^ 2 +
+      ‖LeanPML.PML.SpatialAbsorption.auxiliaryRateX D.measure C.swap (↑u 2) (↑L 1)‖ ^ 2 ≤
+    2 * C.c * C.S * (‖↑u 1‖ ^ 2 + ‖↑u 2‖ ^ 2 + ‖↑L 0‖ ^ 2 + ‖↑L 1‖ ^ 2)
+LeanPML.PML.SpatialAbsorption.auxiliary_derivative_weighted_representative.{u_1} {α : Type u_1} [MeasurableSpace α]
+  [Nonempty α] (ν : MeasureTheory.Measure α) (C : LeanPML.PML.SpatialAbsorption α)
+  (φ : ℝ → ↥(LeanPML.Analysis.ScalarL2 ν)) (h l dφ : ↥(LeanPML.Analysis.ScalarL2 ν)) (t : ℝ) (hpath : HasDerivAt φ dφ t)
+  (hODE : dφ = (C.rCoeff.operator ν) h - (C.pCoeff.operator ν) l) :
+  ∃ W, HasDerivAt φ ((LeanPML.Analysis.physicalL2 ν C.wx ⋯ ⋯) W) t ∧ ‖W‖ ^ 2 ≤ 2 * C.c * C.S * (‖h‖ ^ 2 + ‖l‖ ^ 2)
+LeanPML.PML.SpatialAbsorption.auxiliaryRateX_eq_damped.{u_1} {α : Type u_1} [MeasurableSpace α] [Nonempty α]
+  (ν : MeasureTheory.Measure α) (C : LeanPML.PML.SpatialAbsorption α) (W : ↥(LeanPML.Analysis.WeightedL2 ν C.wx))
+  (h l : ↥(LeanPML.Analysis.ScalarL2 ν)) (hspace : l = h + (LeanPML.Analysis.physicalL2 ν C.wx ⋯ ⋯) W) :
+  LeanPML.PML.SpatialAbsorption.auxiliaryRateX ν C h l =
+    -(LeanPML.Analysis.weightedMul ν C.wx C.pCoeff.value ⋯ C.pCoeff.bound ⋯) W +
+      (LeanPML.PML.SpatialAbsorption.differenceLift ν C) h
+LeanPML.PML.SpatialAbsorption.auxiliaryWeightedHistory_initial.{u_1} {α : Type u_1} [MeasurableSpace α] [Nonempty α]
+  (ν : MeasureTheory.Measure α) (C : LeanPML.PML.SpatialAbsorption α) (W₀ : ↥(LeanPML.Analysis.WeightedL2 ν C.wx))
+  (h l : ℝ → ↥(LeanPML.Analysis.ScalarL2 ν)) : LeanPML.PML.SpatialAbsorption.auxiliaryWeightedHistory ν C W₀ h l 0 = W₀
+LeanPML.PML.SpatialAbsorption.continuousOn_auxiliaryWeightedHistory.{u_1} {α : Type u_1} [MeasurableSpace α]
+  [Nonempty α] (ν : MeasureTheory.Measure α) (C : LeanPML.PML.SpatialAbsorption α)
+  (W₀ : ↥(LeanPML.Analysis.WeightedL2 ν C.wx)) (h l : ℝ → ↥(LeanPML.Analysis.ScalarL2 ν)) (T : ℝ) (hT : 0 ≤ T)
+  (hh : ContinuousOn h (Set.Icc 0 T)) (hl : ContinuousOn l (Set.Icc 0 T)) :
+  ContinuousOn (LeanPML.PML.SpatialAbsorption.auxiliaryWeightedHistory ν C W₀ h l) (Set.Icc 0 T)
+LeanPML.PML.SpatialAbsorption.hasDerivAt_auxiliaryWeightedHistory.{u_1} {α : Type u_1} [MeasurableSpace α] [Nonempty α]
+  (ν : MeasureTheory.Measure α) (C : LeanPML.PML.SpatialAbsorption α) (W₀ : ↥(LeanPML.Analysis.WeightedL2 ν C.wx))
+  (h l : ℝ → ↥(LeanPML.Analysis.ScalarL2 ν)) (T t : ℝ) (hh : ContinuousOn h (Set.Icc 0 T))
+  (hl : ContinuousOn l (Set.Icc 0 T)) (ht : t ∈ Set.Ioo 0 T) :
+  HasDerivAt (LeanPML.PML.SpatialAbsorption.auxiliaryWeightedHistory ν C W₀ h l)
+    (LeanPML.PML.SpatialAbsorption.auxiliaryRateX ν C (h t) (l t)) t
+LeanPML.PML.SpatialAbsorption.physical_auxiliaryWeightedHistory.{u_1} {α : Type u_1} [MeasurableSpace α] [Nonempty α]
+  (ν : MeasureTheory.Measure α) (C : LeanPML.PML.SpatialAbsorption α) (W₀ : ↥(LeanPML.Analysis.WeightedL2 ν C.wx))
+  (φ h l : ℝ → ↥(LeanPML.Analysis.ScalarL2 ν)) (T : ℝ) (hφ : ContinuousOn φ (Set.Icc 0 T))
+  (hh : ContinuousOn h (Set.Icc 0 T)) (hl : ContinuousOn l (Set.Icc 0 T))
+  (hinitial : (LeanPML.Analysis.physicalL2 ν C.wx ⋯ ⋯) W₀ = φ 0)
+  (hODE : ∀ s ∈ Set.Ioo 0 T, HasDerivAt φ ((C.rCoeff.operator ν) (h s) - (C.pCoeff.operator ν) (l s)) s) {t : ℝ}
+  (ht : t ∈ Set.Icc 0 T) :
+  (LeanPML.Analysis.physicalL2 ν C.wx ⋯ ⋯) (LeanPML.PML.SpatialAbsorption.auxiliaryWeightedHistory ν C W₀ h l t) = φ t
+LeanPML.PML.SpatialAbsorption.auxiliary_weighted_membership.{u_1} {α : Type u_1} [MeasurableSpace α] [Nonempty α]
+  (ν : MeasureTheory.Measure α) (C : LeanPML.PML.SpatialAbsorption α) (W₀ : ↥(LeanPML.Analysis.WeightedL2 ν C.wx))
+  (φ h l : ℝ → ↥(LeanPML.Analysis.ScalarL2 ν)) (T : ℝ) (hφ : ContinuousOn φ (Set.Icc 0 T))
+  (hh : ContinuousOn h (Set.Icc 0 T)) (hl : ContinuousOn l (Set.Icc 0 T))
+  (hinitial : (LeanPML.Analysis.physicalL2 ν C.wx ⋯ ⋯) W₀ = φ 0)
+  (hODE : ∀ s ∈ Set.Ioo 0 T, HasDerivAt φ ((C.rCoeff.operator ν) (h s) - (C.pCoeff.operator ν) (l s)) s) {t : ℝ}
+  (ht : t ∈ Set.Icc 0 T) :
+  MeasureTheory.MemLp (fun x => √(C.wx x) * ↑↑(φ t) x) 2 ν ∧ ∀ᵐ (x : α) ∂ν, C.wx x = 0 → ↑↑(φ t) x = 0
+LeanPML.PML.SpatialAbsorption.hasDerivAt_auxiliaryWeightedHistory_damped.{u_1} {α : Type u_1} [MeasurableSpace α]
+  [Nonempty α] (ν : MeasureTheory.Measure α) (C : LeanPML.PML.SpatialAbsorption α)
+  (W₀ : ↥(LeanPML.Analysis.WeightedL2 ν C.wx)) (φ h l : ℝ → ↥(LeanPML.Analysis.ScalarL2 ν)) (T t : ℝ)
+  (hφ : ContinuousOn φ (Set.Icc 0 T)) (hh : ContinuousOn h (Set.Icc 0 T)) (hl : ContinuousOn l (Set.Icc 0 T))
+  (hinitial : (LeanPML.Analysis.physicalL2 ν C.wx ⋯ ⋯) W₀ = φ 0)
+  (hODE : ∀ s ∈ Set.Ioo 0 T, HasDerivAt φ ((C.rCoeff.operator ν) (h s) - (C.pCoeff.operator ν) (l s)) s)
+  (hspace : l t = h t + φ t) (ht : t ∈ Set.Ioo 0 T) :
+  HasDerivAt (LeanPML.PML.SpatialAbsorption.auxiliaryWeightedHistory ν C W₀ h l)
+    (-(LeanPML.Analysis.weightedMul ν C.wx C.pCoeff.value ⋯ C.pCoeff.bound ⋯)
+          (LeanPML.PML.SpatialAbsorption.auxiliaryWeightedHistory ν C W₀ h l t) +
+      (LeanPML.PML.SpatialAbsorption.differenceLift ν C) (h t))
+    t
+LeanPML.PML.SpatialAbsorption.hasDerivAt_auxiliaryRateX.{u_1} {α : Type u_1} [MeasurableSpace α] [Nonempty α]
+  (ν : MeasureTheory.Measure α) (C : LeanPML.PML.SpatialAbsorption α) (h l : ℝ → ↥(LeanPML.Analysis.ScalarL2 ν))
+  (dh dl : ↥(LeanPML.Analysis.ScalarL2 ν)) (t : ℝ) (hh : HasDerivAt h dh t) (hl : HasDerivAt l dl t) :
+  HasDerivAt (fun s => LeanPML.PML.SpatialAbsorption.auxiliaryRateX ν C (h s) (l s))
+      (LeanPML.PML.SpatialAbsorption.auxiliaryRateX ν C dh dl) t ∧
+    ‖LeanPML.PML.SpatialAbsorption.auxiliaryRateX ν C dh dl‖ ^ 2 ≤ 2 * C.c * C.S * (‖dh‖ ^ 2 + ‖dl‖ ^ 2)
+LeanPML.PML.SpatialAbsorption.auxiliary_weak_field_membership (D : LeanPML.Rectangle.Rect)
+  (C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)) (W₀ : ↥(LeanPML.Analysis.WeightedL2 D.measure C.wx))
+  (φ : ℝ → ↥(LeanPML.Analysis.ScalarL2 D.measure)) (u : ℝ → ↥(LeanPML.Rectangle.weakH1Graph D))
+  (L : ℝ → ↥(LeanPML.Rectangle.weakHDivGraph D)) (T : ℝ) (hφ : ContinuousOn φ (Set.Icc 0 T))
+  (hu : ContinuousOn u (Set.Icc 0 T)) (hL : ContinuousOn L (Set.Icc 0 T))
+  (hinitial : (LeanPML.Analysis.physicalL2 D.measure C.wx ⋯ ⋯) W₀ = φ 0)
+  (hODE :
+    ∀ s ∈ Set.Ioo 0 T,
+      HasDerivAt φ ((C.rCoeff.operator D.measure) (↑(u s) 1) - (C.pCoeff.operator D.measure) (↑(L s) 0)) s)
+  {t : ℝ} (ht : t ∈ Set.Icc 0 T) :
+  MeasureTheory.MemLp (fun x => √(C.wx x) * ↑↑(φ t) x) 2 D.measure ∧
+    ∀ᵐ (x : ℝ × ℝ) ∂D.measure, C.a x = 0 → ↑↑(φ t) x = 0
+LeanPML.Examples.WeightedEvolution.initial_physical :
+  (LeanPML.Analysis.physicalL2 LeanPML.Rectangle.ParameterCertificate.unitSquare.measure
+        LeanPML.Examples.WeightedEvolution.coefficients.wx ⋯ ⋯)
+      LeanPML.Examples.WeightedEvolution.initial =
+    LeanPML.Examples.WeightedEvolution.f
+LeanPML.Examples.WeightedEvolution.path_derivative (t : ℝ) :
+  HasDerivAt LeanPML.Examples.WeightedEvolution.path
+    ((LeanPML.Examples.WeightedEvolution.coefficients.rCoeff.operator
+          LeanPML.Rectangle.ParameterCertificate.unitSquare.measure)
+        0 -
+      (LeanPML.Examples.WeightedEvolution.coefficients.pCoeff.operator
+          LeanPML.Rectangle.ParameterCertificate.unitSquare.measure)
+        (LeanPML.Examples.WeightedEvolution.path t))
+    t
+LeanPML.Examples.WeightedEvolution.nonzero_weighted_propagation (T t : ℝ) (ht : t ∈ Set.Icc 0 T) :
+  LeanPML.Examples.WeightedEvolution.f ≠ 0 ∧
+    MeasureTheory.MemLp
+        (fun x =>
+          √(LeanPML.Examples.WeightedEvolution.coefficients.wx x) * ↑↑(LeanPML.Examples.WeightedEvolution.path t) x)
+        2 LeanPML.Rectangle.ParameterCertificate.unitSquare.measure ∧
+      ∀ᵐ (x : ℝ × ℝ) ∂LeanPML.Rectangle.ParameterCertificate.unitSquare.measure,
+        LeanPML.Examples.WeightedEvolution.coefficients.wx x = 0 → ↑↑(LeanPML.Examples.WeightedEvolution.path t) x = 0
+LeanPML.Examples.WeightedEvolution.nonzero_weighted_path_derivative (T t : ℝ) (ht : t ∈ Set.Ioo 0 T) :
+  HasDerivAt
+    (LeanPML.PML.SpatialAbsorption.auxiliaryWeightedHistory LeanPML.Rectangle.ParameterCertificate.unitSquare.measure
+      LeanPML.Examples.WeightedEvolution.coefficients LeanPML.Examples.WeightedEvolution.initial (fun x => 0)
+      LeanPML.Examples.WeightedEvolution.path)
+    (LeanPML.PML.SpatialAbsorption.auxiliaryRateX LeanPML.Rectangle.ParameterCertificate.unitSquare.measure
+      LeanPML.Examples.WeightedEvolution.coefficients 0 (LeanPML.Examples.WeightedEvolution.path t))
+    t
+LeanPML.Examples.WeightedEvolution.nonzero_rate_derivative (t : ℝ) :
+  HasDerivAt
+      (fun s =>
+        LeanPML.PML.SpatialAbsorption.auxiliaryRateX LeanPML.Rectangle.ParameterCertificate.unitSquare.measure
+          LeanPML.Examples.WeightedEvolution.coefficients 0 (LeanPML.Examples.WeightedEvolution.path s))
+      (LeanPML.PML.SpatialAbsorption.auxiliaryRateX LeanPML.Rectangle.ParameterCertificate.unitSquare.measure
+        LeanPML.Examples.WeightedEvolution.coefficients 0 (-LeanPML.Examples.WeightedEvolution.path t))
+      t ∧
+    ‖LeanPML.PML.SpatialAbsorption.auxiliaryRateX LeanPML.Rectangle.ParameterCertificate.unitSquare.measure
+            LeanPML.Examples.WeightedEvolution.coefficients 0 (-LeanPML.Examples.WeightedEvolution.path t)‖ ^
+        2 ≤
+      2 * LeanPML.Examples.WeightedEvolution.coefficients.c * LeanPML.Examples.WeightedEvolution.coefficients.S *
+        (‖0‖ ^ 2 + ‖-LeanPML.Examples.WeightedEvolution.path t‖ ^ 2)
+structure LeanPML.PML.RegionalWeakCoefficient (D : LeanPML.Rectangle.Rect) : Type
+number of parameters: 1
+fields:
+  LeanPML.PML.RegionalWeakCoefficient.value : LeanPML.PML.RegionalBounded D
+  LeanPML.PML.RegionalWeakCoefficient.derivative : Fin 2 → LeanPML.PML.RegionalBounded D
+  LeanPML.PML.RegionalWeakCoefficient.weak_partial : ∀ (i : Fin 2),
+      LeanPML.Rectangle.HasWeakPartial D i self.value.toL2 (self.derivative i).toL2
+constructor:
+  LeanPML.PML.RegionalWeakCoefficient.mk {D : LeanPML.Rectangle.Rect} (value : LeanPML.PML.RegionalBounded D)
+    (derivative : Fin 2 → LeanPML.PML.RegionalBounded D)
+    (weak_partial : ∀ (i : Fin 2), LeanPML.Rectangle.HasWeakPartial D i value.toL2 (derivative i).toL2) :
+    LeanPML.PML.RegionalWeakCoefficient D
+structure LeanPML.PML.RegionalBounded (D : LeanPML.Rectangle.Rect) : Type
+number of parameters: 1
+fields:
+  LeanPML.PML.RegionalBounded.value : ℝ × ℝ → ℝ
+  LeanPML.PML.RegionalBounded.measurable : Measurable self.value
+  LeanPML.PML.RegionalBounded.bound : ℝ
+  LeanPML.PML.RegionalBounded.bound_nonneg : 0 ≤ self.bound
+  LeanPML.PML.RegionalBounded.bound_on : ∀ x ∈ D.openSet, |self.value x| ≤ self.bound
+constructor:
+  LeanPML.PML.RegionalBounded.mk {D : LeanPML.Rectangle.Rect} (value : ℝ × ℝ → ℝ) (measurable : Measurable value)
+    (bound : ℝ) (bound_nonneg : 0 ≤ bound) (bound_on : ∀ x ∈ D.openSet, |value x| ≤ bound) :
+    LeanPML.PML.RegionalBounded D
+structure LeanPML.PML.SpatialAbsorption.{u_1} (α : Type u_1) [MeasurableSpace α] : Type u_1
+number of parameters: 2
+fields:
+  LeanPML.PML.SpatialAbsorption.c : ℝ
+  LeanPML.PML.SpatialAbsorption.S : ℝ
+  LeanPML.PML.SpatialAbsorption.c_pos : 0 < self.c
+  LeanPML.PML.SpatialAbsorption.p : α → ℝ
+  LeanPML.PML.SpatialAbsorption.r : α → ℝ
+  LeanPML.PML.SpatialAbsorption.p_measurable : Measurable self.p
+  LeanPML.PML.SpatialAbsorption.r_measurable : Measurable self.r
+  LeanPML.PML.SpatialAbsorption.p_nonneg : ∀ (x : α), 0 ≤ self.p x
+  LeanPML.PML.SpatialAbsorption.r_nonneg : ∀ (x : α), 0 ≤ self.r x
+  LeanPML.PML.SpatialAbsorption.p_le_S : ∀ (x : α), self.p x ≤ self.S
+  LeanPML.PML.SpatialAbsorption.r_le_S : ∀ (x : α), self.r x ≤ self.S
+  LeanPML.PML.SpatialAbsorption.S_le_quarter : self.S ≤ self.c / 4
+constructor:
+  LeanPML.PML.SpatialAbsorption.mk.{u_1} {α : Type u_1} [MeasurableSpace α] (c S : ℝ) (c_pos : 0 < c) (p r : α → ℝ)
+    (p_measurable : Measurable p) (r_measurable : Measurable r) (p_nonneg : ∀ (x : α), 0 ≤ p x)
+    (r_nonneg : ∀ (x : α), 0 ≤ r x) (p_le_S : ∀ (x : α), p x ≤ S) (r_le_S : ∀ (x : α), r x ≤ S)
+    (S_le_quarter : S ≤ c / 4) : LeanPML.PML.SpatialAbsorption α

@@ -1,0 +1,117 @@
+{
+  "time": "2026-10-14T10:03:36.109977+08:00",
+  "mathlib_commit": "fabf563a7c95a166b8d7b6efca11c8b4dc9d911f",
+  "source_declarations": [
+    {
+      "path": ".lake/packages/mathlib/Mathlib/Analysis/Distribution/Sobolev.lean",
+      "line": 149,
+      "source_declaration": "def MemSobolev (s : ℝ) (p : ℝ≥0∞) [hp : Fact (1 ≤ p)] (f : 𝓢'(E, F)) : Prop :=",
+      "sha256": "a7eceaaf55f7404685371117a908b0a67d3cf29cb058db614667d00c75fc0a3b"
+    },
+    {
+      "path": ".lake/packages/mathlib/Mathlib/Analysis/Distribution/Sobolev.lean",
+      "line": 316,
+      "source_declaration": "theorem MemSobolev.lineDerivOp {s : ℝ} {f : 𝓢'(E, F)} (hf : MemSobolev s 2 f) {m : E} :\n    MemSobolev (s - 1) 2 (∂_{m} f) := by",
+      "sha256": "a7eceaaf55f7404685371117a908b0a67d3cf29cb058db614667d00c75fc0a3b"
+    },
+    {
+      "path": ".lake/packages/mathlib/Mathlib/Analysis/Distribution/Sobolev.lean",
+      "line": 153,
+      "source_declaration": "theorem memSobolev_zero_iff {p : ℝ≥0∞} [hp : Fact (1 ≤ p)] {f : 𝓢'(E, F)} : MemSobolev 0 p f ↔\n    ∃ (f' : Lp F p (volume : Measure E)), f = f' := by",
+      "sha256": "a7eceaaf55f7404685371117a908b0a67d3cf29cb058db614667d00c75fc0a3b"
+    },
+    {
+      "path": ".lake/packages/mathlib/Mathlib/Analysis/Distribution/Sobolev.lean",
+      "line": 233,
+      "source_declaration": "theorem memSobolev_zero_iff_exists_fourier {f : 𝓢'(E, F)} :\n    MemSobolev 0 2 f ↔ ∃ (f' : Lp F 2 (volume : Measure E)), 𝓕 f = f' := by",
+      "sha256": "a7eceaaf55f7404685371117a908b0a67d3cf29cb058db614667d00c75fc0a3b"
+    },
+    {
+      "path": ".lake/packages/mathlib/Mathlib/Analysis/Distribution/AEEqOfIntegralContDiff.lean",
+      "line": 219,
+      "source_declaration": "theorem IsOpen.ae_eq_zero_of_integral_contDiff_smul_eq_zero {U : Set E} (hU : IsOpen U)\n    (hf : LocallyIntegrableOn f U μ)\n    (h : ∀ (g : E → ℝ), ContDiff ℝ ∞ g → HasCompactSupport g → tsupport g ⊆ U →\n        ∫ x, g x • f x ∂μ = 0) :\n    ∀ᵐ x ∂μ, x ∈ U → f x = 0 :=",
+      "sha256": "ed84729d6b60d1d061a43d8f6649c91b9089118e6fc8675bd3d550d272a00e60"
+    },
+    {
+      "path": ".lake/packages/mathlib/Mathlib/Analysis/Normed/Lp/SmoothApprox.lean",
+      "line": 39,
+      "source_declaration": "theorem exist_eLpNorm_sub_le_of_continuous (μ : Measure E := by volume_tac)",
+      "sha256": "b241b4d50c8705f60930b08595330ff34c9b5c145562a6cf542e2e8a9982512f"
+    },
+    {
+      "path": ".lake/packages/mathlib/Mathlib/Analysis/Normed/Lp/SmoothApprox.lean",
+      "line": 82,
+      "source_declaration": "theorem exist_eLpNorm_sub_le {p : ℝ≥0∞} (hp : p ≠ ⊤) (hp₂ : 1 ≤ p) {f : E → F} (hf : MemLp f p μ)\n    {ε : ℝ} (hε : 0 < ε) :\n    ∃ g, HasCompactSupport g ∧ ContDiff ℝ ∞ g ∧ eLpNorm (f - g) p μ ≤ ENNReal.ofReal ε := by",
+      "sha256": "b241b4d50c8705f60930b08595330ff34c9b5c145562a6cf542e2e8a9982512f"
+    },
+    {
+      "path": ".lake/packages/mathlib/Mathlib/Analysis/Normed/Lp/SmoothApprox.lean",
+      "line": 97,
+      "source_declaration": "theorem _root_.MeasureTheory.Lp.dense_hasCompactSupport_contDiff {p : ℝ≥0∞} (hp : p ≠ ⊤)\n    [hp₂ : Fact (1 ≤ p)] :\n    Dense {f : Lp F p μ | ∃ (g : E → F), f =ᵐ[μ] g ∧ HasCompactSupport g ∧ ContDiff ℝ ∞ g} := by",
+      "sha256": "b241b4d50c8705f60930b08595330ff34c9b5c145562a6cf542e2e8a9982512f"
+    },
+    {
+      "path": ".lake/packages/mathlib/Mathlib/Analysis/FunctionalSpaces/SobolevInequality.lean",
+      "line": 442,
+      "source_declaration": "theorem eLpNorm_le_eLpNorm_fderiv_one {u : E → F} (hu : ContDiff ℝ 1 u) (h2u : HasCompactSupport u)\n    {p : ℝ≥0} (hp : NNReal.HolderConjugate (finrank ℝ E) p) :\n    eLpNorm u p μ ≤ eLpNormLESNormFDerivOneConst μ p * eLpNorm (fderiv ℝ u) 1 μ := by",
+      "sha256": "1662f6e7094f20176f0910a34f75378b4b40af40929da7919d81394f14650d5e"
+    },
+    {
+      "path": ".lake/packages/mathlib/Mathlib/Topology/Algebra/Module/Basic.lean",
+      "line": 174,
+      "source_declaration": "theorem Submodule.isClosed_topologicalClosure (s : Submodule R M) :\n    IsClosed (s.topologicalClosure : Set M) := isClosed_closure",
+      "sha256": "a123266b8c9975e7adffa7e4cf6f70ef25207f85ba67334b6d03b042f21b1853"
+    },
+    {
+      "path": ".lake/packages/mathlib/Mathlib/Topology/Algebra/Module/Basic.lean",
+      "line": 197,
+      "source_declaration": "instance Submodule.topologicalClosure.completeSpace {M' : Type*} [AddCommMonoid M'] [Module R M']\n    [UniformSpace M'] [ContinuousAdd M'] [ContinuousConstSMul R M'] [CompleteSpace M']\n    (U : Submodule R M') : CompleteSpace U.topologicalClosure :=",
+      "sha256": "a123266b8c9975e7adffa7e4cf6f70ef25207f85ba67334b6d03b042f21b1853"
+    }
+  ],
+  "protected_against_v05": {
+    "lean-toolchain": {
+      "expected": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee",
+      "actual": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee"
+    },
+    "lakefile.toml": {
+      "expected": "3a3ab926f99cfeb3ae9fa6309696858b0aabb7ce62469de72405a74dd64fab9e",
+      "actual": "3a3ab926f99cfeb3ae9fa6309696858b0aabb7ce62469de72405a74dd64fab9e"
+    },
+    "lake-manifest.json": {
+      "expected": "6bd522ed18f94813b2e6fb5e7b9ea39d95a5098df2465acc0d815a09bb5dbf33",
+      "actual": "6bd522ed18f94813b2e6fb5e7b9ea39d95a5098df2465acc0d815a09bb5dbf33"
+    },
+    "ROADMAP_lean_PML_revised.md": {
+      "expected": "9a6438549e4d49714b915bd9632d13eab7f1b5164df1741d190dc97640be3659",
+      "actual": "9a6438549e4d49714b915bd9632d13eab7f1b5164df1741d190dc97640be3659"
+    },
+    "docs/model_contract.md": {
+      "expected": "27fdc413425e2b65f0b31a4c4a533d5f52eb24a4af30f18f5fae080a1846fc23",
+      "actual": "27fdc413425e2b65f0b31a4c4a533d5f52eb24a4af30f18f5fae080a1846fc23"
+    },
+    "docs/scope.md": {
+      "expected": "dff8fc9bf26935a12927a2c05950b44431020d5eb8e022f7c8565a9ec054b539",
+      "actual": "dff8fc9bf26935a12927a2c05950b44431020d5eb8e022f7c8565a9ec054b539"
+    },
+    "../results/V7_Maxwell_Debye_PML/V7_global_energy.md": {
+      "expected": "0a7f73a25cb119eeb75b3e7b3c3f2fbb3b319250f3354ed4dcad0ecff8eff4fb",
+      "actual": "0a7f73a25cb119eeb75b3e7b3c3f2fbb3b319250f3354ed4dcad0ecff8eff4fb"
+    },
+    "../results/V7_Maxwell_Debye_PML/V7_global_energy.tex": {
+      "expected": "7345e2f2b8558df5f68252985d119465085b01aa8005b0f7c861f0831ab6387a",
+      "actual": "7345e2f2b8558df5f68252985d119465085b01aa8005b0f7c861f0831ab6387a"
+    },
+    "../results/V7_Maxwell_Debye_PML/V7_global_energy.pdf": {
+      "expected": "c6c9978af6d3fbc54ef76b02a5d509e6dda169795c6181d64c7c56ccbe4e3aaa",
+      "actual": "c6c9978af6d3fbc54ef76b02a5d509e6dda169795c6181d64c7c56ccbe4e3aaa"
+    },
+    "../results/V7_Maxwell_Debye_PML/proof_audit.md": {
+      "expected": "a2b2ac0a54c5dd8e0fa43c45d4a21185b5d433d5a94c4fb0680f41baec7ffa9a",
+      "actual": "a2b2ac0a54c5dd8e0fa43c45d4a21185b5d433d5a94c4fb0680f41baec7ffa9a"
+    }
+  },
+  "protected_all_match": true,
+  "search_scope": "fixed mathlib Mathlib tree; Sobolev/WeakDeriv/weakDeriv/HDiv/Hdiv/H₀¹ plus distribution/test-function APIs",
+  "negative_search_interpretation": "未定位到可直接实例化本矩形 H₀¹ / H(div) 的完整现成接口；这不是断言所有其他命名下均不存在相关数学工具。"
+}

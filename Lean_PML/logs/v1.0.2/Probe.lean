@@ -1,0 +1,11 @@
+import LeanPML.Rectangle.WeakSpaces
+import LeanPML.Rectangle.Poincare
+#check Submodule.span_induction
+#check closure_minimal
+#check Submodule.topologicalClosure_coe
+#check Continuous.inner
+#check Continuous.norm
+#check Submodule.topologicalClosure_minimal
+#check LeanPML.Rectangle.ZeroBoundary.add_smul
+#check LeanPML.Rectangle.SmoothField.derivativeXLinear
+#print LeanPML.PML.ConditionalPoincare

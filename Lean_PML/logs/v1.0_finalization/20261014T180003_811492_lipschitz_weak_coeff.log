@@ -1,0 +1,39 @@
+LeanPML/PML/LipschitzCoefficients.lean:87:28: error: Type mismatch
+  (TestFunction.zeroBoundary φ).left y ⟨LT.lt.le hy.left, LT.lt.le hy.right⟩
+has type
+  ↑φ.field (D.xhi, y) = 0
+but is expected to have type
+  g D.xlo = 0
+LeanPML/PML/LipschitzCoefficients.lean:88:28: error: Type mismatch
+  (TestFunction.zeroBoundary φ).right.left y ⟨LT.lt.le hy.left, LT.lt.le hy.right⟩
+has type
+  ↑φ.field (D.xlo, y) = 0
+but is expected to have type
+  g D.xhi = 0
+LeanPML/PML/LipschitzCoefficients.lean:104:62: error: Type mismatch
+  rfl
+has type
+  ?m.304 = ?m.304
+but is expected to have type
+  RegionalBounded.value ?m.300 x✝¹ = f x✝¹.1
+LeanPML/PML/LipschitzCoefficients.lean:103:29: warning: This simp argument is unused:
+  one_ne_zero
+
+Hint: Omit it from the simp argument list.
+  simp only [̵F̵i̵n̵.̵i̵s̵V̵a̵l̵u̵e̵,̵o̵n̵e̵_̵n̵e̵_̵z̵e̵r̵o̵,̵i̵t̵e̵_̵f̵a̵l̵s̵e̵,̵h̵z̵]̵[̲F̲i̲n̲.̲i̲s̲V̲a̲l̲u̲e̲,̲ ̲i̲t̲e̲_̲f̲a̲l̲s̲e̲,̲ ̲h̲z̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/PML/LipschitzCoefficients.lean:103:41: warning: This simp argument is unused:
+  ite_false
+
+Hint: Omit it from the simp argument list.
+  simp only [̵F̵i̵n̵.̵i̵s̵V̵a̵l̵u̵e̵,̵o̵n̵e̵_̵n̵e̵_̵z̵e̵r̵o̵,̵i̵t̵e̵_̵f̵a̵l̵s̵e̵,̵h̵z̵]̵[̲F̲i̲n̲.̲i̲s̲V̲a̲l̲u̲e̲,̲ ̲o̲n̲e̲_̲n̲e̲_̲z̲e̲r̲o̲,̲ ̲h̲z̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/PML/LipschitzCoefficients.lean:103:51: warning: This simp argument is unused:
+  hz
+
+Hint: Omit it from the simp argument list.
+  simp only [Fin.isValue, ̲one_ne_zero, ̲ite_false,̵h̵z̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

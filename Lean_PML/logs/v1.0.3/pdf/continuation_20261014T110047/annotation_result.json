@@ -1,0 +1,310 @@
+{
+  "pages": 18,
+  "modified_pages": [
+    8
+  ],
+  "before_sha256": "4451ed9d022f167b2d66dbb95dd98066cee2c066cb92b935583a6d745d429bf7",
+  "after_sha256": "d37a6939f5235a6d1d3becd6a88230d28e515dc511348da676588f70c0acf487",
+  "old_annotations": 211,
+  "new_annotations": 215,
+  "added_ticks": 4,
+  "added_notes": 0,
+  "original_text_preserved": true,
+  "old_annotations_preserved": true,
+  "overlap_check": "passed",
+  "visual_review": "passed",
+  "entries": [
+    {
+      "id": "smooth-zero-trace-graph-bridge",
+      "page": 8,
+      "printed_page": 8,
+      "formula": "§5.2 H₀¹ 初值：光滑零迹进入图闭包的辅助结论（原文未单列）",
+      "tick": true,
+      "x": 5,
+      "top": 281,
+      "font_size": 6,
+      "lines": [
+        "光滑零迹",
+        "图逼近已证",
+        "H₀¹ 桥接"
+      ],
+      "theorems": [
+        "LeanPML.Rectangle.smoothToWeakH1_mem_zeroBoundaryGraph",
+        "LeanPML.Rectangle.cutoffSequence_toL2_convergence",
+        "LeanPML.Rectangle.rectangleBubble_weakH01"
+      ],
+      "modules": [
+        "LeanPML/Rectangle/SmoothWeakClosure.lean"
+      ],
+      "scope": "任意现有 SmoothField 四边 ZeroBoundary，经真实内部紧支截断及函数/双偏导 L² 收敛进入现有 H₀¹ 图闭包；非预先紧支多项式泡非零调用。不是一般弱迹核刻画或弱主定理。",
+      "rect_top": [
+        4,
+        279,
+        51.0,
+        305.4
+      ],
+      "build_audit": {
+        "lake_build": {
+          "metadata": "logs/v1.0.2/20261014T112814_522179_continuation_lake_build.json",
+          "log": "logs/v1.0.2/20261014T112814_522179_continuation_lake_build.log",
+          "exit_code": 0,
+          "command": [
+            "lake",
+            "build"
+          ],
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "output_sha256": "330fa7b2a40623816d4effb1b570f68d838c138f6ad19bacdba729860090c6b3"
+        },
+        "axioms_audit": {
+          "metadata": "logs/v1.0.2/20261014T112845_938004_continuation_axioms_audit.json",
+          "log": "logs/v1.0.2/20261014T112845_938004_continuation_axioms_audit.log",
+          "exit_code": 0,
+          "command": [
+            "lake",
+            "env",
+            "lean",
+            "Audit.lean"
+          ],
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "output_sha256": "8510bb29587cf36e849fa88eabb4cbf8b436f668bd9be5a25b07a60982b1fd51"
+        },
+        "declaration_types": {
+          "metadata": "logs/v1.0.2/20261014T112845_938003_continuation_types_final.json",
+          "log": "logs/v1.0.2/20261014T112845_938003_continuation_types_final.log",
+          "exit_code": 0,
+          "command": [
+            "lake",
+            "env",
+            "lean",
+            "logs/v1.0.2/continuation_20261014T110047/Types.lean"
+          ],
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "output_sha256": "3f5d82e6351f02c81fae2bb8149b7fa8e426d2125ab4545a1882e8754f097134"
+        }
+      },
+      "source_hashes": {
+        "LeanPML/Rectangle/SmoothWeakClosure.lean": "3a3444e5ad1c04f649c69001ec12db58d14673fb7f44a59b6c2eaaed3b54a00a"
+      }
+    },
+    {
+      "id": "actual-weak-field-5-8",
+      "page": 8,
+      "printed_page": 8,
+      "formula": "(5.8) 实际弱场与加权历史估计",
+      "tick": true,
+      "x": 535,
+      "top": 558,
+      "font_size": 6,
+      "lines": [
+        "(5.8) 弱场",
+        "精确加权界",
+        "需辅助演化",
+        "非弱主定理"
+      ],
+      "theorems": [
+        "LeanPML.PML.SpatialAbsorption.auxiliary_weak_memory_bound",
+        "LeanPML.PML.SpatialAbsorption.auxiliary_weighted_integral_bound"
+      ],
+      "modules": [
+        "LeanPML/PML/WeightedMemoryBound.lean",
+        "LeanPML/Analysis/DissipativeMemoryEstimate.lean"
+      ],
+      "scope": "真实 weakH1Graph/H(div) 路径闭区间连续、初始加权成员、内部普通 L² HasDerivAt 辅助演化及空间兼容下，构造并识别 WeightedL2 历史，证明原常数 2、4cSt。可积性已证；不预设全时段加权成员。未完成原弱八式总装、(5.7) 场指数核原样公式或自动 C²。",
+      "rect_top": [
+        534,
+        556,
+        581.0,
+        590.6
+      ],
+      "build_audit": {
+        "lake_build": {
+          "metadata": "logs/v1.0.2/20261014T112814_522179_continuation_lake_build.json",
+          "log": "logs/v1.0.2/20261014T112814_522179_continuation_lake_build.log",
+          "exit_code": 0,
+          "command": [
+            "lake",
+            "build"
+          ],
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "output_sha256": "330fa7b2a40623816d4effb1b570f68d838c138f6ad19bacdba729860090c6b3"
+        },
+        "axioms_audit": {
+          "metadata": "logs/v1.0.2/20261014T112845_938004_continuation_axioms_audit.json",
+          "log": "logs/v1.0.2/20261014T112845_938004_continuation_axioms_audit.log",
+          "exit_code": 0,
+          "command": [
+            "lake",
+            "env",
+            "lean",
+            "Audit.lean"
+          ],
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "output_sha256": "8510bb29587cf36e849fa88eabb4cbf8b436f668bd9be5a25b07a60982b1fd51"
+        },
+        "declaration_types": {
+          "metadata": "logs/v1.0.2/20261014T112845_938003_continuation_types_final.json",
+          "log": "logs/v1.0.2/20261014T112845_938003_continuation_types_final.log",
+          "exit_code": 0,
+          "command": [
+            "lake",
+            "env",
+            "lean",
+            "logs/v1.0.2/continuation_20261014T110047/Types.lean"
+          ],
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "output_sha256": "3f5d82e6351f02c81fae2bb8149b7fa8e426d2125ab4545a1882e8754f097134"
+        }
+      },
+      "source_hashes": {
+        "LeanPML/PML/WeightedMemoryBound.lean": "98371900b9193c5568641aed08e57e376fa57c01dcaaf4c0670778bc88fdc63e",
+        "LeanPML/Analysis/DissipativeMemoryEstimate.lean": "f2800b02e5d20c57c78bce79c7fed8fcd357d88868539bbc0d2dc86a04e0737b"
+      }
+    },
+    {
+      "id": "weighted-rate-bound",
+      "page": 8,
+      "printed_page": 8,
+      "formula": "(5.8) 后未编号 φ_t 加权估计",
+      "tick": true,
+      "x": 535,
+      "top": 613,
+      "font_size": 6,
+      "lines": [
+        "导数加权界",
+        "弱梯度分量",
+        "需真实导数"
+      ],
+      "theorems": [
+        "LeanPML.PML.SpatialAbsorption.auxiliaryRate_weak_norm_sq",
+        "LeanPML.PML.SpatialAbsorption.auxiliary_derivative_weighted_representative",
+        "LeanPML.PML.SpatialAbsorption.hasDerivAt_auxiliaryRateX"
+      ],
+      "modules": [
+        "LeanPML/PML/WeightedForcing.lean",
+        "LeanPML/PML/AuxiliaryWeightedEvolution.lean"
+      ],
+      "scope": "两个真实弱梯度/通量分量的加权右端平方界 2cS(梯度平方和+通量平方和)。普通导数经 HasDerivAt 和原演化识别；下一层需真实输入导数，未称自动 C² 或完整原系统同源层已构造。",
+      "rect_top": [
+        534,
+        611,
+        581.0,
+        637.4
+      ],
+      "build_audit": {
+        "lake_build": {
+          "metadata": "logs/v1.0.2/20261014T112814_522179_continuation_lake_build.json",
+          "log": "logs/v1.0.2/20261014T112814_522179_continuation_lake_build.log",
+          "exit_code": 0,
+          "command": [
+            "lake",
+            "build"
+          ],
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "output_sha256": "330fa7b2a40623816d4effb1b570f68d838c138f6ad19bacdba729860090c6b3"
+        },
+        "axioms_audit": {
+          "metadata": "logs/v1.0.2/20261014T112845_938004_continuation_axioms_audit.json",
+          "log": "logs/v1.0.2/20261014T112845_938004_continuation_axioms_audit.log",
+          "exit_code": 0,
+          "command": [
+            "lake",
+            "env",
+            "lean",
+            "Audit.lean"
+          ],
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "output_sha256": "8510bb29587cf36e849fa88eabb4cbf8b436f668bd9be5a25b07a60982b1fd51"
+        },
+        "declaration_types": {
+          "metadata": "logs/v1.0.2/20261014T112845_938003_continuation_types_final.json",
+          "log": "logs/v1.0.2/20261014T112845_938003_continuation_types_final.log",
+          "exit_code": 0,
+          "command": [
+            "lake",
+            "env",
+            "lean",
+            "logs/v1.0.2/continuation_20261014T110047/Types.lean"
+          ],
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "output_sha256": "3f5d82e6351f02c81fae2bb8149b7fa8e426d2125ab4545a1882e8754f097134"
+        }
+      },
+      "source_hashes": {
+        "LeanPML/PML/WeightedForcing.lean": "99b4c12bbf0c540507bcd7a2d6cd37ca0625adcd834f2c24bac8d628c0821f22",
+        "LeanPML/PML/AuxiliaryWeightedEvolution.lean": "1b6fe9f25ce06ef88ac99aad161720c30c6257783bb47a4d5e754690c6e1509e"
+      }
+    },
+    {
+      "id": "weighted-membership-propagation",
+      "page": 8,
+      "printed_page": 8,
+      "formula": "(5.8) 后加权可积性保持子结论",
+      "tick": true,
+      "x": 5,
+      "top": 640,
+      "font_size": 6,
+      "lines": [
+        "成员保持",
+        "初始加权",
+        "普通L²演化",
+        "非自动C²"
+      ],
+      "theorems": [
+        "LeanPML.PML.SpatialAbsorption.auxiliary_weak_field_membership",
+        "LeanPML.PML.SpatialAbsorption.physical_auxiliaryWeightedHistory"
+      ],
+      "modules": [
+        "LeanPML/PML/AuxiliaryWeightedEvolution.lean"
+      ],
+      "scope": "初始 WeightedL2 成员和普通 L² 连续路径/内部真实演化推出全时段加权成员及零区值为零；连续性和内部 C¹ 来自构造历史，非有限范数界直接推出 C²。保留 T=0、两个端点，不要求端点 PDE。",
+      "rect_top": [
+        4,
+        638,
+        50.3349609375,
+        672.6
+      ],
+      "build_audit": {
+        "lake_build": {
+          "metadata": "logs/v1.0.2/20261014T112814_522179_continuation_lake_build.json",
+          "log": "logs/v1.0.2/20261014T112814_522179_continuation_lake_build.log",
+          "exit_code": 0,
+          "command": [
+            "lake",
+            "build"
+          ],
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "output_sha256": "330fa7b2a40623816d4effb1b570f68d838c138f6ad19bacdba729860090c6b3"
+        },
+        "axioms_audit": {
+          "metadata": "logs/v1.0.2/20261014T112845_938004_continuation_axioms_audit.json",
+          "log": "logs/v1.0.2/20261014T112845_938004_continuation_axioms_audit.log",
+          "exit_code": 0,
+          "command": [
+            "lake",
+            "env",
+            "lean",
+            "Audit.lean"
+          ],
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "output_sha256": "8510bb29587cf36e849fa88eabb4cbf8b436f668bd9be5a25b07a60982b1fd51"
+        },
+        "declaration_types": {
+          "metadata": "logs/v1.0.2/20261014T112845_938003_continuation_types_final.json",
+          "log": "logs/v1.0.2/20261014T112845_938003_continuation_types_final.log",
+          "exit_code": 0,
+          "command": [
+            "lake",
+            "env",
+            "lean",
+            "logs/v1.0.2/continuation_20261014T110047/Types.lean"
+          ],
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "output_sha256": "3f5d82e6351f02c81fae2bb8149b7fa8e426d2125ab4545a1882e8754f097134"
+        }
+      },
+      "source_hashes": {
+        "LeanPML/PML/AuxiliaryWeightedEvolution.lean": "1b6fe9f25ce06ef88ac99aad161720c30c6257783bb47a4d5e754690c6e1509e"
+      }
+    }
+  ]
+}

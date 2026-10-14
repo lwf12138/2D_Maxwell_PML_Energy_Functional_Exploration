@@ -1,5 +1,5 @@
 name = "leanPML"
-version = "0.0.3"
+version = "1.0.0"
 
 # 两个入口都属于默认构建；Audit 不是仅供手动运行的旁支文件。
 defaultTargets = ["LeanPML", "Audit"]

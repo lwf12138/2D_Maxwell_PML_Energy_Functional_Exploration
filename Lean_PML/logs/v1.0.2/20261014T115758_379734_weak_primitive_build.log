@@ -1,0 +1,65 @@
+⚠ [3002/3003] Replayed LeanPML.PML.WeakOriginalSystem
+info: LeanPML/PML/WeakOriginalSystem.lean:188:4: Try this:
+  [apply] abel_nf
+warning: LeanPML/PML/WeakOriginalSystem.lean:187:4: 'congr 1' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+✖ [3003/3003] Building LeanPML.PML.WeakPrimitiveSystem (10s)
+trace: .> LEAN_PATH=/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Cli/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/batteries/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Qq/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/aesop/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/proofwidgets/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/importGraph/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/plausible/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/mathlib/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean /Users/wcli/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/LeanPML/PML/WeakPrimitiveSystem.lean -o /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/WeakPrimitiveSystem.olean -i /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/WeakPrimitiveSystem.ilean -c /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/WeakPrimitiveSystem.c --setup /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/WeakPrimitiveSystem.setup.json --json
+error: LeanPML/PML/WeakPrimitiveSystem.lean:95:2: failed to synthesize
+  CommSemiring ↥(ScalarL2 D.measure)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+warning: LeanPML/PML/WeakPrimitiveSystem.lean:94:23: This simp argument is unused:
+  smul_sub
+
+Hint: Omit it from the simp argument list.
+  simp only [smul_add, s̵m̵u̵l̵_̵s̵u̵b̵,̵ ̵neg_smul, sub_neg_eq_add] at hmain ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+info: LeanPML/PML/WeakPrimitiveSystem.lean:120:4: Try this:
+  [apply] abel_nf
+error: LeanPML/PML/WeakPrimitiveSystem.lean:113:2: unsolved goals
+case right
+D : Rect
+C : SpatialAbsorption (ℝ × ℝ)
+ε κ τ μ T : ℝ
+O : OriginalInterval D C ε κ τ μ T
+t : ℝ
+ht : t ∈ Ioo 0 T
+hraw :
+  HasDerivAt (phiX D μ (historyU D O.electric O.u₀) O.fields)
+      (-μ • ((C.pCoeff.operator D.measure) (O.fields t).Hy - (C.rCoeff.operator D.measure) (O.fields t).Hy) +
+        (O.fields t).Qy)
+      t ∧
+    HasDerivAt (phiY D μ (historyU D O.electric O.u₀) O.fields)
+      (μ • ((C.rCoeff.operator D.measure) (O.fields t).Hx - (C.pCoeff.operator D.measure) (O.fields t).Hx) -
+        (O.fields t).Qx)
+      t
+hrec :
+  O.q t + τ • (O.fields t).P = κ • ↑↑(O.u t) 0 ∧
+    (O.fields t).Z1 = -ε • (C.bCoeff.operator D.measure) (↑↑(O.u t) 0) ∧
+      (O.fields t).Z2 = -(C.bCoeff.operator D.measure) (O.q t) ∧
+        (O.fields t).Qx = (C.pCoeff.operator D.measure) (O.φy t) ∧
+          (O.fields t).Qy = -(C.rCoeff.operator D.measure) (O.φx t)
+⊢ μ • (C.rCoeff.operator D.measure) (O.fields t).Hx +
+      (-1 • μ • (C.pCoeff.operator D.measure) (O.fields t).Hx +
+        (-1 • (C.pCoeff.operator D.measure) (-1 • μ • (O.fields t).Hx) + (C.pCoeff.operator D.measure) (↑↑(O.u t) 2))) =
+    (C.pCoeff.operator D.measure) (↑↑(O.u t) 2) + -1 • (C.rCoeff.operator D.measure) (-1 • μ • (O.fields t).Hx)
+warning: LeanPML/PML/WeakPrimitiveSystem.lean:119:24: This simp argument is unused:
+  map_smul
+
+Hint: Omit it from the simp argument list.
+  simp only [map_sub, m̵a̵p̵_̵s̵m̵u̵l̵,̵ ̵smul_sub, neg_smul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: LeanPML/PML/WeakPrimitiveSystem.lean:159:44: Type mismatch: After simplification, term
+  ha
+ has type
+  C.p x + C.r x = 0
+but is expected to have type
+  C.swap.p x + C.swap.r x = 0
+error: Lean exited with code 1
+Some required targets logged failures:
+- LeanPML.PML.WeakPrimitiveSystem
+error: build failed

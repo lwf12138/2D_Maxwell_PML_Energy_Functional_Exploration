@@ -1,0 +1,10 @@
+LeanPML/PML/WeakCkRegularity.lean:88:2: error: Type mismatch: After simplification, term
+  hhistory
+ has type
+  @HasDerivAt ℝ DenselyNormedField.toNontriviallyNormedField (↥(ScalarL2 D.measure)) (ScalarL2 D.measure).toAddCommGroup
+    Lp.instModule PseudoMetricSpace.toUniformSpace.toTopologicalSpace ⋯ (fun s => ↑↑(historyU D O.electric O.u₀ s) 0)
+    (O.fields t).E t
+but is expected to have type
+  @HasDerivAt ℝ DenselyNormedField.toNontriviallyNormedField (↥(ScalarL2 D.measure))
+    Lp.instNormedAddCommGroup.toAddCommGroup Lp.instNormedSpace.toModule
+    PseudoMetricSpace.toUniformSpace.toTopologicalSpace ⋯ (fun t => ↑↑(O.u t) 0) (O.fields t).E t

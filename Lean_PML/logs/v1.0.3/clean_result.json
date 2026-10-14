@@ -1,0 +1,164 @@
+{
+  "time": "2026-10-14T10:43:34.066737",
+  "engineering_status": "passed",
+  "mathematical_stages_complete": false,
+  "root": "/var/folders/9m/zcq3jbg90sx_fc7fv3zn0hnc0000gn/T/LeanPML_v1_0_clean_ca02buym",
+  "own_compilation_products_copied": false,
+  "dependency_cache_reused": true,
+  "not_a_cache_free_test": true,
+  "source_and_lock_match": {
+    "LeanPML/Analysis/EnergyCalculus.lean": true,
+    "LeanPML/Analysis/WeightedL2.lean": true,
+    "LeanPML/Analysis/WeightedL2Operators.lean": true,
+    "LeanPML/Debye/ScalarEnergy.lean": true,
+    "LeanPML/Examples/CompatibleData.lean": true,
+    "LeanPML/Examples/DegenerateBranches.lean": true,
+    "LeanPML/Examples/FullDomainProfile.lean": true,
+    "LeanPML/Examples/PathHelpers.lean": true,
+    "LeanPML/Examples/SmoothBump.lean": true,
+    "LeanPML/Examples/StaticMode.lean": true,
+    "LeanPML/Examples/WeakAnalysis.lean": true,
+    "LeanPML/Examples/WeakSpaces.lean": true,
+    "LeanPML/PML/AuxiliaryMemory.lean": true,
+    "LeanPML/PML/BalanceAbstract.lean": true,
+    "LeanPML/PML/BalanceBlocks.lean": true,
+    "LeanPML/PML/BalanceInterfaces.lean": true,
+    "LeanPML/PML/ClassicalSystem.lean": true,
+    "LeanPML/PML/Coefficients.lean": true,
+    "LeanPML/PML/Coercivity.lean": true,
+    "LeanPML/PML/DissipationClosure.lean": true,
+    "LeanPML/PML/Energy.lean": true,
+    "LeanPML/PML/EnergyIntegrals.lean": true,
+    "LeanPML/PML/Equivalence.lean": true,
+    "LeanPML/PML/GradientControl.lean": true,
+    "LeanPML/PML/LocalDebye.lean": true,
+    "LeanPML/PML/LocalElectric.lean": true,
+    "LeanPML/PML/LocalSpatial.lean": true,
+    "LeanPML/PML/MainAbstract.lean": true,
+    "LeanPML/PML/MainSmoothRectangle.lean": true,
+    "LeanPML/PML/Obstructions/SingleLayer.lean": true,
+    "LeanPML/PML/Obstructions/UnrestrictedData.lean": true,
+    "LeanPML/PML/OriginalAssembly.lean": true,
+    "LeanPML/PML/OriginalSystem.lean": true,
+    "LeanPML/PML/PhysicalControl.lean": true,
+    "LeanPML/PML/PrimitiveEvolution.lean": true,
+    "LeanPML/PML/PrimitiveSystem.lean": true,
+    "LeanPML/PML/SpatialBalance.lean": true,
+    "LeanPML/PML/SpatialCoefficients.lean": true,
+    "LeanPML/PML/State.lean": true,
+    "LeanPML/PML/TimeInvariants.lean": true,
+    "LeanPML/PML/WeightedCalculus.lean": true,
+    "LeanPML/PML/Weights.lean": true,
+    "LeanPML/Rectangle/Boundary.lean": true,
+    "LeanPML/Rectangle/BoundaryTime.lean": true,
+    "LeanPML/Rectangle/Domain.lean": true,
+    "LeanPML/Rectangle/Fields.lean": true,
+    "LeanPML/Rectangle/Green.lean": true,
+    "LeanPML/Rectangle/HistoryL2.lean": true,
+    "LeanPML/Rectangle/InterfaceAssembly.lean": true,
+    "LeanPML/Rectangle/L2Paths.lean": true,
+    "LeanPML/Rectangle/ParameterCertificate.lean": true,
+    "LeanPML/Rectangle/Poincare.lean": true,
+    "LeanPML/Rectangle/RegionalCoefficients.lean": true,
+    "LeanPML/Rectangle/SmoothPaths.lean": true,
+    "LeanPML/Rectangle/StatePaths.lean": true,
+    "LeanPML/Rectangle/TimeSpace.lean": true,
+    "LeanPML/Rectangle/WeakGreen.lean": true,
+    "LeanPML/Rectangle/WeakPaths.lean": true,
+    "LeanPML/Rectangle/WeakPoincare.lean": true,
+    "LeanPML/Rectangle/WeakSpaces.lean": true,
+    "LeanPML/Time/Constancy.lean": true,
+    "LeanPML/Time/Monotonicity.lean": true,
+    "LeanPML/Tutorial/LocalEnergy.lean": true,
+    "LeanPML/Tutorial/ScalarEnergy.lean": true,
+    "LeanPML.lean": true,
+    "Audit.lean": true,
+    "lean-toolchain": true,
+    "lakefile.toml": true,
+    "lake-manifest.json": true,
+    "scripts/run_logged.py": true
+  },
+  "dependencies": [
+    {
+      "name": "mathlib",
+      "expected": "fabf563a7c95a166b8d7b6efca11c8b4dc9d911f",
+      "actual": "fabf563a7c95a166b8d7b6efca11c8b4dc9d911f",
+      "matches": true
+    },
+    {
+      "name": "plausible",
+      "expected": "63045536fe95024e6c18fc7b48e03f506701c5bc",
+      "actual": "63045536fe95024e6c18fc7b48e03f506701c5bc",
+      "matches": true
+    },
+    {
+      "name": "LeanSearchClient",
+      "expected": "c5d5b8fe6e5158def25cd28eb94e4141ad97c843",
+      "actual": "c5d5b8fe6e5158def25cd28eb94e4141ad97c843",
+      "matches": true
+    },
+    {
+      "name": "importGraph",
+      "expected": "5c7542ed018c78194f1e2b903eaf6a792b74c03d",
+      "actual": "5c7542ed018c78194f1e2b903eaf6a792b74c03d",
+      "matches": true
+    },
+    {
+      "name": "proofwidgets",
+      "expected": "24b0d9dc081c5423f8eec7e866c441e5184f29d9",
+      "actual": "24b0d9dc081c5423f8eec7e866c441e5184f29d9",
+      "matches": true
+    },
+    {
+      "name": "aesop",
+      "expected": "e3cb2f741431ce31bf73549fb52316a57368b06f",
+      "actual": "e3cb2f741431ce31bf73549fb52316a57368b06f",
+      "matches": true
+    },
+    {
+      "name": "Qq",
+      "expected": "f46324995fca5f0483b742e4eb4daec7f4ee50d2",
+      "actual": "f46324995fca5f0483b742e4eb4daec7f4ee50d2",
+      "matches": true
+    },
+    {
+      "name": "batteries",
+      "expected": "fa08db58b30eb033edcdab331bba000827f9f785",
+      "actual": "fa08db58b30eb033edcdab331bba000827f9f785",
+      "matches": true
+    },
+    {
+      "name": "Cli",
+      "expected": "92564e5770e4d09f2d86dfbf8ada1e9c715b384c",
+      "actual": "92564e5770e4d09f2d86dfbf8ada1e9c715b384c",
+      "matches": true
+    }
+  ],
+  "commands": [
+    {
+      "kind": "lake_build",
+      "metadata": "logs/v1.0.3/clean/20261014T103606_231824_lake_build.json",
+      "log": "logs/v1.0.3/clean/20261014T103606_231824_lake_build.log",
+      "actual_cwd": "/private/var/folders/9m/zcq3jbg90sx_fc7fv3zn0hnc0000gn/T/LeanPML_v1_0_clean_ca02buym",
+      "exit_code": 0,
+      "output_sha256": "ea74d2f4080f2c18930f38f3f84aee59946cc5a1477a0c790b43d465567cff7d"
+    },
+    {
+      "kind": "axioms_audit",
+      "metadata": "logs/v1.0.3/clean/20261014T104156_004472_axioms_audit.json",
+      "log": "logs/v1.0.3/clean/20261014T104156_004472_axioms_audit.log",
+      "actual_cwd": "/private/var/folders/9m/zcq3jbg90sx_fc7fv3zn0hnc0000gn/T/LeanPML_v1_0_clean_ca02buym",
+      "exit_code": 0,
+      "output_sha256": "c55e3a8f94b2a7237bf7a0ddb3c8f1c78b9e0122cbc6bf9cc88a7764a30d0da2"
+    },
+    {
+      "kind": "lean_version",
+      "metadata": "logs/v1.0.3/clean/20261014T104158_304157_lean_version.json",
+      "log": "logs/v1.0.3/clean/20261014T104158_304157_lean_version.log",
+      "actual_cwd": "/private/var/folders/9m/zcq3jbg90sx_fc7fv3zn0hnc0000gn/T/LeanPML_v1_0_clean_ca02buym",
+      "exit_code": 0,
+      "output_sha256": "3736756da8bde35bd0454e07bb977d28449cd4128a9c1b7aed35f45fc8bfe602"
+    }
+  ],
+  "note": "完整 LeanPML/Audit 在隔离目录重建；当前未提交新文件均已复制，旧光滑回归仍参与。此通过不补足弱主定理缺口。"
+}

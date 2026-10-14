@@ -1,0 +1,8 @@
+LeanPML/PML/WeakCoefficients.lean:58:67: error: expected token
+LeanPML/PML/WeakCoefficients.lean:58:56: error: Type mismatch
+  ContDiff ℝ
+has type
+  WithTop ℕ∞ → (?m.14 → ?m.17) → Prop
+but is expected to have type
+  Prop
+LeanPML/PML/WeakCoefficients.lean:61:86: error: expected token

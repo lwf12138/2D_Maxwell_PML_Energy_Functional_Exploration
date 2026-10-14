@@ -1,0 +1,56 @@
+✖ [2986/2986] Building LeanPML.Rectangle.WeakLocality (12s)
+trace: .> LEAN_PATH=/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Cli/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/batteries/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Qq/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/aesop/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/proofwidgets/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/importGraph/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/plausible/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/mathlib/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean /Users/wcli/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/LeanPML/Rectangle/WeakLocality.lean -o /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/Rectangle/WeakLocality.olean -i /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/Rectangle/WeakLocality.ilean -c /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/Rectangle/WeakLocality.c --setup /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/Rectangle/WeakLocality.setup.json --json
+error: LeanPML/Rectangle/WeakLocality.lean:23:65: Application type mismatch: The argument
+  hnotSupport
+has type
+  x ∉ tsupport ↑φ
+of sort `Prop` but is expected to have type
+  Type ?u.41
+of sort `Type (?u.41 + 1)` in the application
+  @fderiv_of_notMem_tsupport hnotSupport
+error: LeanPML/Rectangle/WeakLocality.lean:49:4: unsolved goals
+case pos
+D : Rect
+i : Fin 2
+f g : ↥(ScalarL2 D.measure)
+hpartial : HasWeakPartial D i f g
+S : Set (ℝ × ℝ)
+hS_open : IsOpen S
+hS_inside : S ⊆ D.openSet
+hf_zero : ∀ᵐ (x : ℝ × ℝ) ∂D.measure, x ∈ S → ↑↑f x = 0
+hg_integrable : Integrable (↑↑g) D.measure
+test : ℝ × ℝ → ℝ
+htest_smooth : ContDiff ℝ ∞ test
+htest_compact : HasCompactSupport test
+htest_support : tsupport test ⊆ S
+φ : TestFunction D := { field := ⟨test, htest_smooth⟩, compact := htest_compact, support_inside := ⋯ }
+x : ℝ × ℝ
+hzero : x ∈ S → ↑↑f x = 0
+htest : ↑↑((SmoothField.toL2 D) (smoothPartial i φ.field)) x = ↑(smoothPartial i φ.field) x
+hx : x ∈ S
+⊢ 0 = 0 x
+error: LeanPML/Rectangle/WeakLocality.lean:50:4: unsolved goals
+case neg
+D : Rect
+i : Fin 2
+f g : ↥(ScalarL2 D.measure)
+hpartial : HasWeakPartial D i f g
+S : Set (ℝ × ℝ)
+hS_open : IsOpen S
+hS_inside : S ⊆ D.openSet
+hf_zero : ∀ᵐ (x : ℝ × ℝ) ∂D.measure, x ∈ S → ↑↑f x = 0
+hg_integrable : Integrable (↑↑g) D.measure
+test : ℝ × ℝ → ℝ
+htest_smooth : ContDiff ℝ ∞ test
+htest_compact : HasCompactSupport test
+htest_support : tsupport test ⊆ S
+φ : TestFunction D := { field := ⟨test, htest_smooth⟩, compact := htest_compact, support_inside := ⋯ }
+x : ℝ × ℝ
+hzero : x ∈ S → ↑↑f x = 0
+htest : ↑↑((SmoothField.toL2 D) (smoothPartial i φ.field)) x = ↑(smoothPartial i φ.field) x
+hx : x ∉ S
+⊢ 0 = 0 x
+error: Lean exited with code 1
+Some required targets logged failures:
+- LeanPML.Rectangle.WeakLocality
+error: build failed

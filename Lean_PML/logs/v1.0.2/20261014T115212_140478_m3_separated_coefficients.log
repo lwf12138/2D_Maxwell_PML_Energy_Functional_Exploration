@@ -1,0 +1,104 @@
+✖ [2996/2996] Building LeanPML.PML.SeparatedWeakCoefficients (5.4s)
+trace: .> LEAN_PATH=/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Cli/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/batteries/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Qq/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/aesop/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/proofwidgets/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/importGraph/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/plausible/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/mathlib/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean /Users/wcli/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/LeanPML/PML/SeparatedWeakCoefficients.lean -o /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/SeparatedWeakCoefficients.olean -i /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/SeparatedWeakCoefficients.ilean -c /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/SeparatedWeakCoefficients.c --setup /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/SeparatedWeakCoefficients.setup.json --json
+error: LeanPML/PML/SeparatedWeakCoefficients.lean:72:61: unsolved goals
+D : Rect
+m : RegionalBounded D
+p : ℝ → ℝ
+hseparated : ∀ z ∈ D.openSet, m.value z = p z.1
+φ : TestFunction D
+z : ℝ × ℝ
+hm : ↑↑m.toL2 z = m.value z
+hφ : ↑↑((SmoothField.toL2 D) (smoothPartial 1 φ.field)) z = ↑(smoothPartial 1 φ.field) z
+⊢ ↑↑((SmoothField.toL2 D) φ.field.derivativeY) z = dy (↑φ.field) z ∨ m.value z = 0
+error: LeanPML/PML/SeparatedWeakCoefficients.lean:77:6: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ∫ (z : ℝ × ℝ), m.value z * ↑φ.field.derivativeY z ∂D.measure
+in the target expression
+  0 = -∫ (a : ℝ × ℝ), m.value a * dy (↑φ.field) a ∂D.measure
+
+D : Rect
+m : RegionalBounded D
+p : ℝ → ℝ
+hseparated : ∀ z ∈ D.openSet, m.value z = p z.1
+φ : TestFunction D
+hrewrite :
+  (fun z => ↑↑m.toL2 z * ↑↑((SmoothField.toL2 D) (smoothPartial 1 φ.field)) z) =ᵐ[D.measure] fun z =>
+    m.value z * dy (↑φ.field) z
+⊢ 0 = -∫ (a : ℝ × ℝ), m.value a * dy (↑φ.field) a ∂D.measure
+warning: LeanPML/PML/SeparatedWeakCoefficients.lean:68:30: This simp argument is unused:
+  neg_eq_zero
+
+Hint: Omit it from the simp argument list.
+  simp only [inner_zero_left,̵ ̵n̵e̵g̵_̵e̵q̵_̵z̵e̵r̵o̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/SeparatedWeakCoefficients.lean:75:13: This simp argument is unused:
+  hφ
+
+Hint: Omit it from the simp argument list.
+  simp [hm,h̵φ̵,̵ ̲smoothPartial, ̲SmoothField.derivativeY_apply]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/SeparatedWeakCoefficients.lean:75:30: This simp argument is unused:
+  SmoothField.derivativeY_apply
+
+Hint: Omit it from the simp argument list.
+  simp [̵h̵m̵,̵h̵φ̵,̵s̵m̵o̵o̵t̵h̵P̵a̵r̵t̵i̵a̵l̵,̵S̵m̵o̵o̵t̵h̵F̵i̵e̵l̵d̵.̵d̵e̵r̵i̵v̵a̵t̵i̵v̵e̵Y̵_̵a̵p̵p̵l̵y̵]̵[̲h̲m̲,̲ ̲h̲φ̲,̲ ̲s̲m̲o̲o̲t̲h̲P̲a̲r̲t̲i̲a̲l̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: LeanPML/PML/SeparatedWeakCoefficients.lean:97:61: unsolved goals
+D : Rect
+m : RegionalBounded D
+r : ℝ → ℝ
+hseparated : ∀ z ∈ D.openSet, m.value z = r z.2
+φ : TestFunction D
+z : ℝ × ℝ
+hm : ↑↑m.toL2 z = m.value z
+hφ : ↑↑((SmoothField.toL2 D) (smoothPartial 0 φ.field)) z = ↑(smoothPartial 0 φ.field) z
+⊢ ↑↑((SmoothField.toL2 D) φ.field.derivativeX) z = dx (↑φ.field) z ∨ m.value z = 0
+error: LeanPML/PML/SeparatedWeakCoefficients.lean:104:6: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ∫ (z : ℝ × ℝ),
+    m.value z * ↑φ.field.derivativeX z ∂(volume.restrict (Ioo D.xlo D.xhi)).prod (volume.restrict (Ioo D.ylo D.yhi))
+in the target expression
+  0 =
+    -∫ (a : ℝ × ℝ),
+        m.value a * dx (↑φ.field) a ∂(volume.restrict (Ioo D.xlo D.xhi)).prod (volume.restrict (Ioo D.ylo D.yhi))
+
+D : Rect
+m : RegionalBounded D
+r : ℝ → ℝ
+hseparated : ∀ z ∈ D.openSet, m.value z = r z.2
+φ : TestFunction D
+hrewrite :
+  (fun z => ↑↑m.toL2 z * ↑↑((SmoothField.toL2 D) (smoothPartial 0 φ.field)) z) =ᵐ[D.measure] fun z =>
+    m.value z * dx (↑φ.field) z
+hintegrable :
+  Integrable (fun z => m.value z * ↑φ.field.derivativeX z)
+    ((volume.restrict (Ioo D.xlo D.xhi)).prod (volume.restrict (Ioo D.ylo D.yhi)))
+⊢ 0 =
+    -∫ (a : ℝ × ℝ),
+        m.value a * dx (↑φ.field) a ∂(volume.restrict (Ioo D.xlo D.xhi)).prod (volume.restrict (Ioo D.ylo D.yhi))
+warning: LeanPML/PML/SeparatedWeakCoefficients.lean:93:30: This simp argument is unused:
+  neg_eq_zero
+
+Hint: Omit it from the simp argument list.
+  simp only [inner_zero_left,̵ ̵n̵e̵g̵_̵e̵q̵_̵z̵e̵r̵o̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/SeparatedWeakCoefficients.lean:100:13: This simp argument is unused:
+  hφ
+
+Hint: Omit it from the simp argument list.
+  simp [hm,h̵φ̵,̵ ̲smoothPartial, ̲SmoothField.derivativeX_apply]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/SeparatedWeakCoefficients.lean:100:30: This simp argument is unused:
+  SmoothField.derivativeX_apply
+
+Hint: Omit it from the simp argument list.
+  simp [̵h̵m̵,̵h̵φ̵,̵s̵m̵o̵o̵t̵h̵P̵a̵r̵t̵i̵a̵l̵,̵S̵m̵o̵o̵t̵h̵F̵i̵e̵l̵d̵.̵d̵e̵r̵i̵v̵a̵t̵i̵v̵e̵X̵_̵a̵p̵p̵l̵y̵]̵[̲h̲m̲,̲ ̲h̲φ̲,̲ ̲s̲m̲o̲o̲t̲h̲P̲a̲r̲t̲i̲a̲l̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: Lean exited with code 1
+Some required targets logged failures:
+- LeanPML.PML.SeparatedWeakCoefficients
+error: build failed

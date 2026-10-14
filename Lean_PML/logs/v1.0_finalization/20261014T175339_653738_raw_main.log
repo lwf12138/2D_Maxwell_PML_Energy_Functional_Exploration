@@ -1,0 +1,21 @@
+LeanPML/PML/MainRepresentedWeak.lean:67:20: error: Application type mismatch: The argument
+  hint
+has type
+  Integrable (fieldEnergyDensity D.measure A.represented.spatial ε κ τ μ U) D.measure
+but is expected to have type
+  Integrable (fun z => F z (A.represented.spatial.p z) (A.represented.spatial.r z)) D.measure
+in the application
+  hrepr.right.mp hint
+LeanPML/PML/MainRepresentedWeak.lean:67:38: error: Application type mismatch: The argument
+  hrepr.left
+has type
+  ∫ (z : ℝ × ℝ), F z (A.represented.spatial.p z) (A.represented.spatial.r z) ∂D.measure =
+    ∫ (z : ℝ × ℝ), F z (A.coefficients.p.value.value z) (A.coefficients.r.value.value z) ∂D.measure
+but is expected to have type
+  ∫ (x : ℝ × ℝ), fieldEnergyDensity D.measure A.represented.spatial ε κ τ μ U x ∂D.measure =
+    ∫ (z : ℝ × ℝ),
+      Obstructions.singleLayerEnergy ε κ τ μ A.c (A.coefficients.p.value.value z) (A.coefficients.r.value.value z)
+        (↑↑U.v z) (↑↑U.V z) (↑↑U.R z) (↑↑U.z z) (↑↑(spatialComponentX U) z) (↑↑(spatialComponentY U) z) (↑↑U.Λx z)
+        (↑↑U.Λy z) ∂D.measure
+in the application
+  Eq.trans hknown hrepr.left

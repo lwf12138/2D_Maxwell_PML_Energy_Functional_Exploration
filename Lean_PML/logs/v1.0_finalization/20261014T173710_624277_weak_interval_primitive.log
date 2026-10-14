@@ -1,0 +1,8 @@
+LeanPML/Analysis/WeakIntervalRepresentative.lean:28:18: warning: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+LeanPML/Analysis/WeakIntervalRepresentative.lean:20:44: warning: Variable name `hab` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`

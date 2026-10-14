@@ -1,0 +1,50 @@
+LeanPML/PML/WeightedMemoryBound.lean:46:55: error(lean.invalidField): Invalid field `weighted_absorption_inner_nonneg`: The environment does not contain `LeanPML.PML.SpatialAbsorption.weighted_absorption_inner_nonneg`, so it is not possible to project the field `weighted_absorption_inner_nonneg` from an expression
+  C
+of type `SpatialAbsorption α`
+LeanPML/PML/WeightedMemoryBound.lean:59:74: error: failed to prove positivity/nonnegativity/nonzeroness
+LeanPML/PML/WeightedMemoryBound.lean:101:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ∫ (x : ℝ) in 0..t, ‖(⇑(weakH1Coordinate D 1) ∘ u) x‖ ^ 2 + ‖(⇑(weakH1Coordinate D 2) ∘ u) x‖ ^ 2
+in the target expression
+  ‖auxiliaryWeightedHistory D.measure C W₀x (fun s => ↑(u s) 1) (fun s => ↑(L s) 0) t‖ ^ 2 +
+      ‖auxiliaryWeightedHistory D.measure C.swap W₀y (fun s => ↑(u s) 2) (fun s => ↑(L s) 1) t‖ ^ 2 ≤
+    2 * (‖W₀x‖ ^ 2 + ‖W₀y‖ ^ 2) + 4 * C.c * C.S * t * ∫ (s : ℝ) in 0..t, ‖↑(u s) 1‖ ^ 2 + ‖↑(u s) 2‖ ^ 2
+
+D : Rect
+C : SpatialAbsorption (ℝ × ℝ)
+W₀x : ↥(WeightedL2 D.measure C.wx)
+W₀y : ↥(WeightedL2 D.measure C.swap.wx)
+φx φy : ℝ → ↥(ScalarL2 D.measure)
+u : ℝ → ↥(weakH1Graph D)
+L : ℝ → ↥(weakHDivGraph D)
+T : ℝ
+hφx : ContinuousOn φx (Icc 0 T)
+hφy : ContinuousOn φy (Icc 0 T)
+hu : ContinuousOn u (Icc 0 T)
+hL : ContinuousOn L (Icc 0 T)
+hinitial_x : (physicalL2 D.measure C.wx ⋯ ⋯) W₀x = φx 0
+hinitial_y : (physicalL2 D.measure C.swap.wx ⋯ ⋯) W₀y = φy 0
+hODE_x :
+  ∀ s ∈ Ioo 0 T, HasDerivAt φx ((C.rCoeff.operator D.measure) (↑(u s) 1) - (C.pCoeff.operator D.measure) (↑(L s) 0)) s
+hODE_y :
+  ∀ s ∈ Ioo 0 T,
+    HasDerivAt φy ((C.swap.rCoeff.operator D.measure) (↑(u s) 2) - (C.swap.pCoeff.operator D.measure) (↑(L s) 1)) s
+hspace_x : ∀ s ∈ Ioo 0 T, ↑(L s) 0 = ↑(u s) 1 + φx s
+hspace_y : ∀ s ∈ Ioo 0 T, ↑(L s) 1 = ↑(u s) 2 + φy s
+t : ℝ
+ht : t ∈ Icc 0 T
+hgx : ContinuousOn (⇑(weakH1Coordinate D 1) ∘ u) (Icc 0 T)
+hgy : ContinuousOn (⇑(weakH1Coordinate D 2) ∘ u) (Icc 0 T)
+hLx : ContinuousOn (⇑(weakHDivCoordinate D 0) ∘ L) (Icc 0 T)
+hLy : ContinuousOn (⇑(weakHDivCoordinate D 1) ∘ L) (Icc 0 T)
+hx :
+  ‖auxiliaryWeightedHistory D.measure C W₀x (fun s => ↑(u s) 1) (fun s => ↑(L s) 0) t‖ ^ 2 ≤
+    2 * ‖W₀x‖ ^ 2 + 4 * C.c * C.S * t * ∫ (s : ℝ) in 0..t, ‖↑(u s) 1‖ ^ 2
+hy :
+  ‖auxiliaryWeightedHistory D.measure C.swap W₀y (fun s => ↑(u s) 2) (fun s => ↑(L s) 1) t‖ ^ 2 ≤
+    2 * ‖W₀y‖ ^ 2 + 4 * C.swap.c * C.swap.S * t * ∫ (s : ℝ) in 0..t, ‖↑(u s) 2‖ ^ 2
+hsub : Icc 0 t ⊆ Icc 0 T
+hix : IntervalIntegrable (fun x => ‖(⇑(weakH1Coordinate D 1) ∘ u) x‖ ^ 2) volume 0 t
+hiy : IntervalIntegrable (fun x => ‖(⇑(weakH1Coordinate D 2) ∘ u) x‖ ^ 2) volume 0 t
+⊢ ‖auxiliaryWeightedHistory D.measure C W₀x (fun s => ↑(u s) 1) (fun s => ↑(L s) 0) t‖ ^ 2 +
+      ‖auxiliaryWeightedHistory D.measure C.swap W₀y (fun s => ↑(u s) 2) (fun s => ↑(L s) 1) t‖ ^ 2 ≤
+    2 * (‖W₀x‖ ^ 2 + ‖W₀y‖ ^ 2) + 4 * C.c * C.S * t * ∫ (s : ℝ) in 0..t, ‖↑(u s) 1‖ ^ 2 + ‖↑(u s) 2‖ ^ 2

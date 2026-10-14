@@ -1,0 +1,54 @@
+LeanPML/Rectangle/WeakSpaces.lean:169:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  {x | ∀ (i : ?m.43), ?p i x}
+in the target expression
+  IsClosed fun U =>
+    ∀ (φ : TestFunction D),
+      ⟪U 1, (SmoothField.toL2 D) φ.field⟫_ℝ = -⟪U 0, (SmoothField.toL2 D) (smoothPartial 0 φ.field)⟫_ℝ
+
+case h₁
+D : Rect
+⊢ IsClosed fun U =>
+    ∀ (φ : TestFunction D),
+      ⟪U 1, (SmoothField.toL2 D) φ.field⟫_ℝ = -⟪U 0, (SmoothField.toL2 D) (smoothPartial 0 φ.field)⟫_ℝ
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    fun U =>
+      ∀ (φ : TestFunction D),
+        ⟪U 1, (SmoothField.toL2 D) φ.field⟫_ℝ = -⟪U 0, (SmoothField.toL2 D) (smoothPartial 0 φ.field)⟫_ℝ
+  has type
+    (Fin 3 → ↥(ScalarL2 D.measure)) → Prop
+  but is expected to have type
+    Set (Fin 3 → ↥(ScalarL2 D.measure))
+  in the application
+    IsClosed fun U =>
+      ∀ (φ : TestFunction D),
+        ⟪U 1, (SmoothField.toL2 D) φ.field⟫_ℝ = -⟪U 0, (SmoothField.toL2 D) (smoothPartial 0 φ.field)⟫_ℝ
+LeanPML/Rectangle/WeakSpaces.lean:169:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  {x | ∀ (i : ?m.43), ?p i x}
+in the target expression
+  IsClosed fun U =>
+    ∀ (φ : TestFunction D),
+      ⟪U 2, (SmoothField.toL2 D) φ.field⟫_ℝ = -⟪U 0, (SmoothField.toL2 D) (smoothPartial 1 φ.field)⟫_ℝ
+
+case h₂
+D : Rect
+⊢ IsClosed fun U =>
+    ∀ (φ : TestFunction D),
+      ⟪U 2, (SmoothField.toL2 D) φ.field⟫_ℝ = -⟪U 0, (SmoothField.toL2 D) (smoothPartial 1 φ.field)⟫_ℝ
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    fun U =>
+      ∀ (φ : TestFunction D),
+        ⟪U 2, (SmoothField.toL2 D) φ.field⟫_ℝ = -⟪U 0, (SmoothField.toL2 D) (smoothPartial 1 φ.field)⟫_ℝ
+  has type
+    (Fin 3 → ↥(ScalarL2 D.measure)) → Prop
+  but is expected to have type
+    Set (Fin 3 → ↥(ScalarL2 D.measure))
+  in the application
+    IsClosed fun U =>
+      ∀ (φ : TestFunction D),
+        ⟪U 2, (SmoothField.toL2 D) φ.field⟫_ℝ = -⟪U 0, (SmoothField.toL2 D) (smoothPartial 1 φ.field)⟫_ℝ

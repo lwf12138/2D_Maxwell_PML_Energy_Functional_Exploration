@@ -1,0 +1,8 @@
+LeanPML/Analysis/WeakIntervalRepresentative.lean:28:18: warning: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+LeanPML/Analysis/WeakIntervalRepresentative.lean:55:23: error: Invalid projection: Projections extract constructor fields for one-constructor inductive types. The expression
+  mem_uIcc.mp hy
+has type `a ≤ y ∧ y ≤ x ∨ x ≤ y ∧ y ≤ a` which is not a one-constructor inductive type.
+LeanPML/Analysis/WeakIntervalRepresentative.lean:70:11: error(lean.unknownIdentifier): Unknown identifier `not_mem_Icc_iff.mp`
+LeanPML/Analysis/WeakIntervalRepresentative.lean:70:40: error: Tactic `rcases` failed: `x✝ : ?m.542` is not an inductive datatype

@@ -1,0 +1,7 @@
+{
+  "LeanPML/Examples/WeakBranchRegression.lean": "048a8293c8cc1853ae6200ea08b083f275d07664066c4357ae7e19139057a568",
+  "LeanPML/PML/WeakRegionalAbsorption.lean": "fd0bba38b74bcc9aefc5e5f22a287d305d331f71b75fb1d53acbafc50798da62",
+  "LeanPML/PML/MainWeakRectangle.lean": "3a6eb1c9647783030b310691dce4c075e9376d9d4647d0dcafd93850f67acab1",
+  "lean-toolchain": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee",
+  "lake-manifest.json": "6bd522ed18f94813b2e6fb5e7b9ea39d95a5098df2465acc0d815a09bb5dbf33"
+}

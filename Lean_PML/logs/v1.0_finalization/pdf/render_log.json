@@ -1,0 +1,82 @@
+[
+  {
+    "command": [
+      "pdftoppm",
+      "-f",
+      "3",
+      "-l",
+      "3",
+      "-r",
+      "140",
+      "-singlefile",
+      "-png",
+      "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf",
+      "logs/v1.0_finalization/pdf/page_3"
+    ],
+    "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "",
+    "page": 3
+  },
+  {
+    "command": [
+      "pdftoppm",
+      "-f",
+      "9",
+      "-l",
+      "9",
+      "-r",
+      "140",
+      "-singlefile",
+      "-png",
+      "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf",
+      "logs/v1.0_finalization/pdf/page_9"
+    ],
+    "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "",
+    "page": 9
+  },
+  {
+    "command": [
+      "pdftoppm",
+      "-f",
+      "10",
+      "-l",
+      "10",
+      "-r",
+      "140",
+      "-singlefile",
+      "-png",
+      "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf",
+      "logs/v1.0_finalization/pdf/page_10"
+    ],
+    "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "",
+    "page": 10
+  },
+  {
+    "command": [
+      "pdftoppm",
+      "-f",
+      "15",
+      "-l",
+      "15",
+      "-r",
+      "140",
+      "-singlefile",
+      "-png",
+      "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf",
+      "logs/v1.0_finalization/pdf/page_15"
+    ],
+    "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "",
+    "page": 15
+  }
+]

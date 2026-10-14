@@ -1,0 +1,10 @@
+LeanPML/Analysis/WeightedL2Operators.lean:28:28: error(lean.invalidField): Invalid field `congr`: The environment does not contain `And.congr`, so it is not possible to project the field `congr` from an expression
+  Lp.memLp ↑X
+of type
+  AEStronglyMeasurable (↑↑↑X) ν ∧ eLpNorm (↑↑↑X) 2 ν < ⊤
+LeanPML/Analysis/WeightedL2Operators.lean:44:6: error: Type mismatch
+  Filter.mp_mem ?m.86 ?m.78
+has type
+  ?m.83 ∈ ?m.81
+but is expected to have type
+  (boundedMul ν m hm C hm_bound ∘SL (weightedSubspace ν w).subtypeL) X ∈ weightedSubspace ν w

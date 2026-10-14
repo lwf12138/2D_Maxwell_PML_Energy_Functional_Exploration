@@ -1,0 +1,12 @@
+import LeanPML
+#check LeanPML.Rectangle.weak_green
+#check LeanPML.Rectangle.weak_poincare
+#print LeanPML.Rectangle.weakGreenDomain
+#print LeanPML.Rectangle.weakPoincareDomain
+#check LeanPML.Rectangle.hasDerivAt_weakH1_coordinate
+#check LeanPML.Rectangle.hasDerivAt_weakHDiv_coordinate
+#check LeanPML.PML.auxiliary_memory_formula
+#check LeanPML.PML.auxiliary_zero_absorption_preserved
+#print LeanPML.Rectangle.TestFunction
+#print LeanPML.Rectangle.zeroBoundaryGraph
+#check LeanPML.PML.SmoothRectangle.main_energy_estimate_smoothRectangle

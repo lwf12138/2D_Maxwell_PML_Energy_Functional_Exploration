@@ -1,0 +1,19 @@
+[
+  "LeanPML.PML.Weak.OriginalInterval.auxiliary_reconstruction",
+  "LeanPML.PML.Weak.OriginalInterval.original_auxiliary_control",
+  "LeanPML.PML.Weak.OriginalInterval.original_auxiliary_initial_control",
+  "LeanPML.PML.Weak.V7TimeRegularity.fluxDot_eq",
+  "LeanPML.PML.Weak.V7TimeRegularity.flux_second",
+  "LeanPML.PML.Weak.V7TimeRegularity.toOriginalJet",
+  "LeanPML.PML.Weak.V7TimeRegularity.main_energy_and_auxiliary",
+  "LeanPML.PML.Weak.reverse_hasDerivAt",
+  "LeanPML.PML.Weak.primitive_to_original_WeakAt",
+  "LeanPML.PML.Weak.primitive_to_original_WeakOn",
+  "LeanPML.PML.Weak.reverse_compatible",
+  "LeanPML.Analysis.operator_memory_formula",
+  "LeanPML.PML.SpatialAbsorption.auxiliary_operator_memory",
+  "LeanPML.PML.Weak.OriginalInterval.operator_memory_both",
+  "LeanPML.Examples.WeakStaticMode.closeout_main_call",
+  "LeanPML.Examples.WeakStaticMode.reverse_static_call",
+  "LeanPML.Examples.WeakStaticMode.kernel_static_call"
+]

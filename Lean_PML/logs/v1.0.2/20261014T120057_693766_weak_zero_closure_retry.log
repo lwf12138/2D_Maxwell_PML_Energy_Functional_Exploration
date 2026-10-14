@@ -1,0 +1,49 @@
+✔ [3000/3001] Built LeanPML.Rectangle.WeakCompactApprox (11s)
+✖ [3001/3001] Building LeanPML.PML.WeakZeroProduct (4.4s)
+trace: .> LEAN_PATH=/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Cli/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/batteries/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Qq/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/aesop/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/proofwidgets/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/importGraph/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/plausible/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/mathlib/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean /Users/wcli/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/LeanPML/PML/WeakZeroProduct.lean -o /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/WeakZeroProduct.olean -i /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/WeakZeroProduct.ilean -c /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/WeakZeroProduct.c --setup /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/WeakZeroProduct.setup.json --json
+error: LeanPML/PML/WeakZeroProduct.lean:277:4: Tactic `apply` failed: could not unify the conclusion of `@funext`
+  ?f = ?g
+with the goal
+  ↑((fun n => (SmoothField.toL2 D) (mollifiedField (ρ n) (compactWeakProductDerivative m f i) ⋯)) n) =
+    ↑((fun n => (SmoothField.toL2 D) (smoothPartial i (F n))) n)
+
+Note: The full type of `@funext` is
+  ∀ {α : Sort ?u.51} {β : α → Sort ?u.50} {f g : (x : α) → β x}, (∀ (x : α), f x = g x) → f = g
+
+D : Rect
+m : RegionalWeakCoefficient D
+f : TestFunction D
+δ : ℝ
+hδ : 0 < δ
+hinside :
+  ∀ (ρ : ContDiffBump 0),
+    ρ.rOut ≤ δ →
+      HasCompactSupport ↑(mollifiedField ρ (compactWeakProduct m f) ⋯) ∧
+        tsupport ↑(mollifiedField ρ (compactWeakProduct m f) ⋯) ⊆ D.openSet
+ρ : ℕ → ContDiffBump 0 := ⋯
+hρ :
+  Tendsto (fun n => (shrinkingMollifier δ hδ n).rOut) atTop (𝓝 0) ∧
+    (∀ (n : ℕ), (shrinkingMollifier δ hδ n).rOut ≤ δ) ∧
+      ∀ (n : ℕ), (shrinkingMollifier δ hδ n).rOut ≤ 2 * (shrinkingMollifier δ hδ n).rIn
+F : ℕ → SmoothField := ⋯
+tests : ℕ → TestFunction D := ⋯
+u : ↥(zeroBoundaryGraph D) := ⋯
+hvalue :
+  Tendsto (fun n => (SmoothField.toL2 D) (mollifiedField (ρ n) (compactWeakProduct m f) ⋯)) atTop
+    (𝓝 (m.value.operator ((SmoothField.toL2 D) f.field)))
+i : Fin 2
+C : ℝ
+hC : 0 ≤ C
+hbound : ∀ (x : ℝ × ℝ), ‖compactWeakProductDerivative m f i x‖ ≤ C
+hconv :
+  Tendsto (fun n => (SmoothField.toL2 D) (mollifiedField (ρ n) (compactWeakProductDerivative m f i) ⋯)) atTop
+    (𝓝
+      ((m.derivative i).operator ((SmoothField.toL2 D) f.field) +
+        m.value.operator ((SmoothField.toL2 D) (smoothPartial i f.field))))
+n : ℕ
+⊢ ↑((fun n => (SmoothField.toL2 D) (mollifiedField (ρ n) (compactWeakProductDerivative m f i) ⋯)) n) =
+    ↑((fun n => (SmoothField.toL2 D) (smoothPartial i (F n))) n)
+error: Lean exited with code 1
+Some required targets logged failures:
+- LeanPML.PML.WeakZeroProduct
+error: build failed

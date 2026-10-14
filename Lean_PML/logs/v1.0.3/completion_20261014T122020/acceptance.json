@@ -1,0 +1,112 @@
+{
+  "time": "2026-10-14T12:29:21.098418+08:00",
+  "stage_status": {
+    "v1.0.1": "complete: actual weak graph/weighted construction and both closure bridges",
+    "v1.0.2": "complete: declared regional continuous-representative W1inf class, weak Green/Poincare, propagation, legal lift uniqueness",
+    "v1.0.3": "complete: verified weak original-system a priori version; not a claim of all minimal V7 regularity"
+  },
+  "commands": {
+    "build": {
+      "metadata": "logs/v1.0.3/20261014T121921_205678_lake_build.json",
+      "log": "logs/v1.0.3/20261014T121921_205678_lake_build.log",
+      "exit_code": 0,
+      "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+      "command": [
+        "lake",
+        "build"
+      ]
+    },
+    "audit": {
+      "metadata": "logs/v1.0.3/20261014T122038_234964_axioms_audit.json",
+      "log": "logs/v1.0.3/20261014T122038_234964_axioms_audit.log",
+      "exit_code": 0,
+      "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "Audit.lean"
+      ]
+    },
+    "v102_build": {
+      "metadata": "logs/v1.0.2/20261014T122020_722023_lake_build.json",
+      "log": "logs/v1.0.2/20261014T122020_722023_lake_build.log",
+      "exit_code": 0,
+      "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+      "command": [
+        "lake",
+        "build"
+      ]
+    },
+    "v102_audit": {
+      "metadata": "logs/v1.0.2/20261014T122024_703113_axioms_audit.json",
+      "log": "logs/v1.0.2/20261014T122024_703113_axioms_audit.log",
+      "exit_code": 0,
+      "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "Audit.lean"
+      ]
+    },
+    "types": {
+      "metadata": "logs/v1.0.3/20261014T122040_030951_final_type_review.json",
+      "log": "logs/v1.0.3/20261014T122040_030951_final_type_review.log",
+      "exit_code": 0,
+      "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "logs/v1.0.3/completion_20261014T122020/TypeReview.lean"
+      ]
+    }
+  },
+  "source_snapshot": "source_snapshot.json",
+  "formal_files": 92,
+  "audited_declarations": 913,
+  "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "sorryAx": false,
+  "semantic_review": "semantic_review.md",
+  "isolated": "isolated_result.json",
+  "isolated_logs": "isolated_logs",
+  "own_compiled_artifacts_copied": false,
+  "dependency_cache_reused": true,
+  "source_hashes_still_current": true,
+  "pdf": "logs/v1.0.3/pdf/completion_20261014/annotation_result.json",
+  "pdf_visual": "logs/v1.0.3/pdf/completion_20261014/visual_review.json",
+  "pdf_pages": [
+    4,
+    9,
+    10,
+    11,
+    14,
+    16
+  ],
+  "pdf_new_ticks": 4,
+  "pdf_new_notes": 2,
+  "range_differences": [
+    "保守CP=2Lx，非精确π常数",
+    "区域弱系数连续代表是明确表示选择；未另证明一般商类代表选择",
+    "OriginalJet图/L2时间正则性含λ_tt两个分量及P_tt闭区间连续",
+    "T=0初始导数层相容单列；没有端点PDE要求"
+  ],
+  "nonzero_main_call": "LeanPML.Examples.WeakStaticMode.main_call",
+  "nonzero_main_regression": "LeanPML.Examples.WeakStaticMode.nonzero_static_regression",
+  "no_general_wellposedness_claim": true,
+  "no_remote_publication": true,
+  "documents": [
+    "README.md",
+    "PROGRESS.md",
+    "reports/weak_theorem.md",
+    "docs/theorem_inventory.md",
+    "docs/claim_ledger.md",
+    "docs/source_inventory.md",
+    "docs/pdf_formalization_marks.md"
+  ]
+}

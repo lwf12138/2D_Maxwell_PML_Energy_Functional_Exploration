@@ -1,0 +1,11 @@
+import LeanPML.PML.WeakZeroProduct
+#print LeanPML.PML.weakCoefficientMul_mem_zeroBoundaryGraph
+#check LeanPML.PML.weakZeroCoefficientMulCLM
+#print axioms LeanPML.Rectangle.mollifiedField_toL2_tendsto
+#print axioms LeanPML.Rectangle.mollifiedField_support_inside
+#print axioms LeanPML.Rectangle.mollifiedField_fderiv
+#print axioms LeanPML.PML.compactWeakProduct_integral_partial
+#print axioms LeanPML.PML.compactWeakProduct_mollified_partial
+#print axioms LeanPML.PML.weakCoefficientMul_test_mem_zeroBoundaryGraph
+#print axioms LeanPML.PML.weakCoefficientMul_mem_zeroBoundaryGraph
+#print axioms LeanPML.PML.weakZeroCoefficientMul_nonzero

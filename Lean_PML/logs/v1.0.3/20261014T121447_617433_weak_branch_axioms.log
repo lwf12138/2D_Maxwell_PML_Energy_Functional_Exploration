@@ -1,0 +1,48 @@
+def LeanPML.Examples.WeakBranchRegression.zeroInterval : (D : LeanPML.Rectangle.Rect) →
+  (C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)) →
+    (ε κ τ μ T : ℝ) → 0 ≤ T → LeanPML.PML.Weak.OriginalInterval D C ε κ τ μ T :=
+fun D C ε κ τ μ T hT =>
+  { nonneg_time := hT, fields := fun x => LeanPML.Examples.WeakBranchRegression.zeroOriginalState D,
+    derivatives := fun x => LeanPML.Examples.WeakBranchRegression.zeroOriginalState D, electric := fun x => 0,
+    flux := fun x => 0, u₀ := 0, q₀ := 0, continuous_fields := ⋯, continuous_electric := ⋯, continuous_flux := ⋯,
+    electric_value := ⋯, flux_x := ⋯, flux_y := ⋯, equations := ⋯, initial_compatible := ⋯ }
+def LeanPML.Examples.WeakBranchRegression.zeroJet : (D : LeanPML.Rectangle.Rect) →
+  (C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)) →
+    (ε κ τ μ T : ℝ) →
+      (hT : 0 ≤ T) →
+        LeanPML.PML.Weak.OriginalJet (LeanPML.Examples.WeakBranchRegression.zeroInterval D C ε κ τ μ T hT) :=
+fun D C ε κ τ μ T hT =>
+  { electricDot := fun x => 0, fluxDot := fun x => 0, electricDDot := fun x => 0, polarDDot := fun x => 0,
+    fluxDDotX := fun x => 0, fluxDDotY := fun x => 0, electric_deriv := ⋯, flux_deriv := ⋯, electricDot_value := ⋯,
+    electric_second := ⋯, polar_second := ⋯, flux_second_x := ⋯, flux_second_y := ⋯, continuous_electricDot := ⋯,
+    continuous_fluxDot := ⋯, continuous_polarDot := ⋯, continuous_polarDDot := ⋯ }
+theorem LeanPML.Examples.WeakBranchRegression.configuration_main : ∀ (xActive yActive : Bool) (T : ℝ) (hT : 0 ≤ T),
+  have C := (LeanPML.PML.WeakRegionalAbsorption.certificateConfiguration xActive yActive).spatial;
+  let O :=
+    LeanPML.Examples.WeakBranchRegression.zeroInterval LeanPML.Rectangle.ParameterCertificate.unitSquare C 1 1 1 1 T hT;
+  O.EnergyConclusions
+    (LeanPML.Examples.WeakBranchRegression.zeroJet LeanPML.Rectangle.ParameterCertificate.unitSquare C 1 1 1 1 T hT) 0
+    0 :=
+fun xActive yActive T hT =>
+  id
+    (have hphysical :=
+      LeanPML.Examples.WeakBranchRegression.zero_initial_weighted LeanPML.Rectangle.ParameterCertificate.unitSquare
+        (LeanPML.PML.WeakRegionalAbsorption.certificateConfiguration xActive yActive).spatial 1 1 1 1 T hT;
+    LeanPML.PML.Weak.OriginalInterval.main_energy_estimate_WeakOriginal
+      (LeanPML.Examples.WeakBranchRegression.zeroInterval LeanPML.Rectangle.ParameterCertificate.unitSquare
+        (LeanPML.PML.WeakRegionalAbsorption.certificateConfiguration xActive yActive).spatial 1 1 1 1 T hT)
+      (LeanPML.Examples.WeakBranchRegression.zeroJet LeanPML.Rectangle.ParameterCertificate.unitSquare
+        (LeanPML.PML.WeakRegionalAbsorption.certificateConfiguration xActive yActive).spatial 1 1 1 1 T hT)
+      0 0 (LeanPML.Examples.WeakBranchRegression.configuration_parameters xActive yActive) hphysical.left
+      hphysical.right
+      (LeanPML.Examples.WeakBranchRegression.zero_degenerate LeanPML.Rectangle.ParameterCertificate.unitSquare
+        (LeanPML.PML.WeakRegionalAbsorption.certificateConfiguration xActive yActive).spatial 1 1 1 1 T hT))
+'LeanPML.Examples.WeakBranchRegression.zero_degenerate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.Examples.WeakBranchRegression.zero_initial_weighted' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.Examples.WeakBranchRegression.configuration_parameters' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'LeanPML.Examples.WeakBranchRegression.configuration_main' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.Examples.WeakBranchRegression.all_four_configurations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

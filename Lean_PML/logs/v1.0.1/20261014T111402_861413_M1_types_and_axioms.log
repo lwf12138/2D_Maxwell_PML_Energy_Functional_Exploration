@@ -1,0 +1,238 @@
+theorem LeanPML.Rectangle.smoothToWeakH1_mem_zeroBoundaryGraph : ∀ (D : LeanPML.Rectangle.Rect)
+  (f : LeanPML.Rectangle.SmoothField),
+  LeanPML.Rectangle.ZeroBoundary D ↑f → LeanPML.Rectangle.smoothToWeakH1 D f ∈ LeanPML.Rectangle.zeroBoundaryGraph D :=
+fun D f hzero =>
+  have hthree := LeanPML.Rectangle.cutoffSequence_toL2_convergence D f hzero;
+  have hgraph :=
+    tendsto_subtype_rng.mpr
+      (tendsto_pi_nhds.mpr fun i =>
+        List.Mem.casesOn (motive := fun a x =>
+          List.finRange 3 = a →
+            Fintype.complete i ≍ x →
+              Filter.Tendsto
+                (fun i_1 => ↑(LeanPML.Rectangle.smoothToWeakH1 D (LeanPML.Rectangle.cutoffSequence D f i_1).field) i)
+                Filter.atTop (nhds (↑(LeanPML.Rectangle.smoothToWeakH1 D f) i)))
+          (Fintype.complete i)
+          (fun as h =>
+            List.cons.noConfusion h fun head_eq =>
+              Eq.ndrec (motive := fun i =>
+                ∀ (this : i ∈ Fintype.elems),
+                  (fun x1 x2 => (fun i => i) x1 :: x2) ⟨1, Nat.le_of_lt (Nat.le_refl 3)⟩
+                        ((fun x1 x2 => (fun i => i) x1 :: x2) ⟨2, Nat.le_refl 3⟩ []) ≍
+                      as →
+                    this ≍ List.Mem.head as →
+                      Filter.Tendsto
+                        (fun i_1 =>
+                          ↑(LeanPML.Rectangle.smoothToWeakH1 D (LeanPML.Rectangle.cutoffSequence D f i_1).field) i)
+                        Filter.atTop (nhds (↑(LeanPML.Rectangle.smoothToWeakH1 D f) i)))
+                (fun this tail_eq =>
+                  Eq.ndrec (motive := fun as =>
+                    this ≍ List.Mem.head as →
+                      Filter.Tendsto
+                        (fun i =>
+                          ↑(LeanPML.Rectangle.smoothToWeakH1 D (LeanPML.Rectangle.cutoffSequence D f i).field)
+                            ((fun i => i) ⟨0, Nat.le_of_lt (Nat.le_of_lt (Nat.le_refl 3))⟩))
+                        Filter.atTop
+                        (nhds
+                          (↑(LeanPML.Rectangle.smoothToWeakH1 D f)
+                            ((fun i => i) ⟨0, Nat.le_of_lt (Nat.le_of_lt (Nat.le_refl 3))⟩))))
+                    (fun h => hthree.left) (eq_of_heq tail_eq))
+                (eq_of_heq head_eq) (Fintype.complete i))
+          (fun b {as} a h =>
+            List.cons.noConfusion h fun head_eq =>
+              Eq.ndrec (motive := fun b =>
+                (fun x1 x2 => (fun i => i) x1 :: x2) ⟨1, Nat.le_of_lt (Nat.le_refl 3)⟩
+                      ((fun x1 x2 => (fun i => i) x1 :: x2) ⟨2, Nat.le_refl 3⟩ []) ≍
+                    as →
+                  Fintype.complete i ≍ List.Mem.tail b a →
+                    Filter.Tendsto
+                      (fun i_1 =>
+                        ↑(LeanPML.Rectangle.smoothToWeakH1 D (LeanPML.Rectangle.cutoffSequence D f i_1).field) i)
+                      Filter.atTop (nhds (↑(LeanPML.Rectangle.smoothToWeakH1 D f) i)))
+                (fun tail_eq =>
+                  Eq.ndrec (motive := fun {as} =>
+                    ∀ (a : List.Mem i as),
+                      Fintype.complete i ≍
+                          List.Mem.tail ((fun i => i) ⟨0, Nat.le_of_lt (Nat.le_of_lt (Nat.le_refl 3))⟩) a →
+                        Filter.Tendsto
+                          (fun i_1 =>
+                            ↑(LeanPML.Rectangle.smoothToWeakH1 D (LeanPML.Rectangle.cutoffSequence D f i_1).field) i)
+                          Filter.atTop (nhds (↑(LeanPML.Rectangle.smoothToWeakH1 D f) i)))
+                    (fun a h =>
+                      List.Mem.casesOn (motive := fun a_1 x =>
+                        (fun x1 x2 => (fun i => i) x1 :: x2) ⟨1, Nat.le_of_lt (Nat.le_refl 3)⟩
+                              ((fun x1 x2 => (fun i => i) x1 :: x2) ⟨2, Nat.le_refl 3⟩ []) =
+                            a_1 →
+                          a ≍ x →
+                            Filter.Tendsto
+                              (fun i_1 =>
+                                ↑(LeanPML.Rectangle.smoothToWeakH1 D (LeanPML.Rectangle.cutoffSequence D f i_1).field)
+                                  i)
+                              Filter.atTop (nhds (↑(LeanPML.Rectangle.smoothToWeakH1 D f) i)))
+                        a
+                        (fun as h =>
+                          List.cons.noConfusion h fun head_eq =>
+                            Eq.ndrec (motive := fun i =>
+                              ∀
+                                (a :
+                                  List.Mem i
+                                    ((fun x1 x2 => (fun i => i) x1 :: x2) ⟨1, Nat.le_of_lt (Nat.le_refl 3)⟩
+                                      ((fun x1 x2 => (fun i => i) x1 :: x2) ⟨2, Nat.le_refl 3⟩ []))),
+                                (fun x1 x2 => (fun i => i) x1 :: x2) ⟨2, Nat.le_refl 3⟩ [] ≍ as →
+                                  a ≍ List.Mem.head as →
+                                    Filter.Tendsto
+                                      (fun i_1 =>
+                                        ↑(LeanPML.Rectangle.smoothToWeakH1 D
+                                              (LeanPML.Rectangle.cutoffSequence D f i_1).field)
+                                          i)
+                                      Filter.atTop (nhds (↑(LeanPML.Rectangle.smoothToWeakH1 D f) i)))
+                              (fun a tail_eq =>
+                                Eq.ndrec (motive := fun as =>
+                                  a ≍ List.Mem.head as →
+                                    Filter.Tendsto
+                                      (fun i =>
+                                        ↑(LeanPML.Rectangle.smoothToWeakH1 D
+                                              (LeanPML.Rectangle.cutoffSequence D f i).field)
+                                          ((fun i => i) ⟨1, Nat.le_of_lt (Nat.le_refl 3)⟩))
+                                      Filter.atTop
+                                      (nhds
+                                        (↑(LeanPML.Rectangle.smoothToWeakH1 D f)
+                                          ((fun i => i) ⟨1, Nat.le_of_lt (Nat.le_refl 3)⟩))))
+                                  (fun h => hthree.right.left) (eq_of_heq tail_eq))
+                              (eq_of_heq head_eq) a)
+                        (fun b {as} a_1 h =>
+                          List.cons.noConfusion h fun head_eq =>
+                            Eq.ndrec (motive := fun b =>
+                              (fun x1 x2 => (fun i => i) x1 :: x2) ⟨2, Nat.le_refl 3⟩ [] ≍ as →
+                                a ≍ List.Mem.tail b a_1 →
+                                  Filter.Tendsto
+                                    (fun i_1 =>
+                                      ↑(LeanPML.Rectangle.smoothToWeakH1 D
+                                            (LeanPML.Rectangle.cutoffSequence D f i_1).field)
+                                        i)
+                                    Filter.atTop (nhds (↑(LeanPML.Rectangle.smoothToWeakH1 D f) i)))
+                              (fun tail_eq =>
+                                Eq.ndrec (motive := fun {as} =>
+                                  ∀ (a_2 : List.Mem i as),
+                                    a ≍ List.Mem.tail ((fun i => i) ⟨1, Nat.le_of_lt (Nat.le_refl 3)⟩) a_2 →
+                                      Filter.Tendsto
+                                        (fun i_1 =>
+                                          ↑(LeanPML.Rectangle.smoothToWeakH1 D
+                                                (LeanPML.Rectangle.cutoffSequence D f i_1).field)
+                                            i)
+                                        Filter.atTop (nhds (↑(LeanPML.Rectangle.smoothToWeakH1 D f) i)))
+                                  (fun a_2 h =>
+                                    List.Mem.casesOn (motive := fun a x =>
+                                      (fun x1 x2 => (fun i => i) x1 :: x2) ⟨2, Nat.le_refl 3⟩ [] = a →
+                                        a_2 ≍ x →
+                                          Filter.Tendsto
+                                            (fun i_1 =>
+                                              ↑(LeanPML.Rectangle.smoothToWeakH1 D
+                                                    (LeanPML.Rectangle.cutoffSequence D f i_1).field)
+                                                i)
+                                            Filter.atTop (nhds (↑(LeanPML.Rectangle.smoothToWeakH1 D f) i)))
+                                      a_2
+                                      (fun as h =>
+                                        List.cons.noConfusion h fun head_eq =>
+                                          Eq.ndrec (motive := fun i =>
+                                            ∀
+                                              (a :
+                                                List.Mem i
+                                                  ((fun x1 x2 => (fun i => i) x1 :: x2) ⟨2, Nat.le_refl 3⟩ [])),
+                                              [] ≍ as →
+                                                a ≍ List.Mem.head as →
+                                                  Filter.Tendsto
+                                                    (fun i_1 =>
+                                                      ↑(LeanPML.Rectangle.smoothToWeakH1 D
+                                                            (LeanPML.Rectangle.cutoffSequence D f i_1).field)
+                                                        i)
+                                                    Filter.atTop (nhds (↑(LeanPML.Rectangle.smoothToWeakH1 D f) i)))
+                                            (fun a tail_eq =>
+                                              Eq.ndrec (motive := fun as =>
+                                                a ≍ List.Mem.head as →
+                                                  Filter.Tendsto
+                                                    (fun i =>
+                                                      ↑(LeanPML.Rectangle.smoothToWeakH1 D
+                                                            (LeanPML.Rectangle.cutoffSequence D f i).field)
+                                                        ((fun i => i) ⟨2, Nat.le_refl 3⟩))
+                                                    Filter.atTop
+                                                    (nhds
+                                                      (↑(LeanPML.Rectangle.smoothToWeakH1 D f)
+                                                        ((fun i => i) ⟨2, Nat.le_refl 3⟩))))
+                                                (fun h => hthree.right.right) (eq_of_heq tail_eq))
+                                            (eq_of_heq head_eq) a_2)
+                                      (fun b {as} a h =>
+                                        List.cons.noConfusion h fun head_eq =>
+                                          Eq.ndrec (motive := fun b =>
+                                            [] ≍ as →
+                                              a_2 ≍ List.Mem.tail b a →
+                                                Filter.Tendsto
+                                                  (fun i_1 =>
+                                                    ↑(LeanPML.Rectangle.smoothToWeakH1 D
+                                                          (LeanPML.Rectangle.cutoffSequence D f i_1).field)
+                                                      i)
+                                                  Filter.atTop (nhds (↑(LeanPML.Rectangle.smoothToWeakH1 D f) i)))
+                                            (fun tail_eq =>
+                                              Eq.ndrec (motive := fun {as} =>
+                                                ∀ (a : List.Mem i as),
+                                                  a_2 ≍ List.Mem.tail ((fun i => i) ⟨2, Nat.le_refl 3⟩) a →
+                                                    Filter.Tendsto
+                                                      (fun i_1 =>
+                                                        ↑(LeanPML.Rectangle.smoothToWeakH1 D
+                                                              (LeanPML.Rectangle.cutoffSequence D f i_1).field)
+                                                          i)
+                                                      Filter.atTop (nhds (↑(LeanPML.Rectangle.smoothToWeakH1 D f) i)))
+                                                (fun a h =>
+                                                  List.Mem.casesOn (motive := fun a_3 x =>
+                                                    [] = a_3 →
+                                                      a ≍ x →
+                                                        Filter.Tendsto
+                                                          (fun i_1 =>
+                                                            ↑(LeanPML.Rectangle.smoothToWeakH1 D
+                                                                  (LeanPML.Rectangle.cutoffSequence D f i_1).field)
+                                                              i)
+                                                          Filter.atTop
+                                                          (nhds (↑(LeanPML.Rectangle.smoothToWeakH1 D f) i)))
+                                                    a (fun as h => False.elim (noConfusion_of_Nat List.ctorIdx h))
+                                                    (fun b {as} a_3 h => False.elim (noConfusion_of_Nat List.ctorIdx h))
+                                                    (Eq.refl []) (HEq.refl a))
+                                                (eq_of_heq tail_eq) a)
+                                            (eq_of_heq head_eq))
+                                      (Eq.refl ((fun x1 x2 => (fun i => i) x1 :: x2) ⟨2, Nat.le_refl 3⟩ []))
+                                      (HEq.refl a_2))
+                                  (eq_of_heq tail_eq) a_1)
+                              (eq_of_heq head_eq))
+                        (Eq.refl
+                          ((fun x1 x2 => (fun i => i) x1 :: x2) ⟨1, Nat.le_of_lt (Nat.le_refl 3)⟩
+                            ((fun x1 x2 => (fun i => i) x1 :: x2) ⟨2, Nat.le_refl 3⟩ [])))
+                        (HEq.refl a))
+                    (eq_of_heq tail_eq) a)
+                (eq_of_heq head_eq))
+          (Eq.refl (List.finRange 3)) (HEq.refl (Fintype.complete i)));
+  have hclosed :=
+    Submodule.isClosed_topologicalClosure
+      (Submodule.span ℝ (Set.range fun φ => LeanPML.Rectangle.smoothToWeakH1 D φ.field));
+  IsClosed.mem_of_tendsto hclosed hgraph
+    (Filter.Eventually.of_forall fun n =>
+      LeanPML.Rectangle.test_mem_zeroBoundaryGraph D (LeanPML.Rectangle.cutoffSequence D f n))
+LeanPML.Rectangle.cutoffSequence_toL2_convergence (D : LeanPML.Rectangle.Rect) (f : LeanPML.Rectangle.SmoothField)
+  (hzero : LeanPML.Rectangle.ZeroBoundary D ↑f) :
+  Filter.Tendsto (fun n => (LeanPML.Rectangle.SmoothField.toL2 D) (LeanPML.Rectangle.cutoffSequence D f n).field)
+      Filter.atTop (nhds ((LeanPML.Rectangle.SmoothField.toL2 D) f)) ∧
+    Filter.Tendsto
+        (fun n => (LeanPML.Rectangle.SmoothField.toL2 D) (LeanPML.Rectangle.cutoffSequence D f n).field.derivativeX)
+        Filter.atTop (nhds ((LeanPML.Rectangle.SmoothField.toL2 D) f.derivativeX)) ∧
+      Filter.Tendsto
+        (fun n => (LeanPML.Rectangle.SmoothField.toL2 D) (LeanPML.Rectangle.cutoffSequence D f n).field.derivativeY)
+        Filter.atTop (nhds ((LeanPML.Rectangle.SmoothField.toL2 D) f.derivativeY))
+LeanPML.Rectangle.rectangleBubble_weakH01 (D : LeanPML.Rectangle.Rect) :
+  LeanPML.Rectangle.smoothToWeakH1 D (LeanPML.Rectangle.rectangleBubble D) ∈ LeanPML.Rectangle.zeroBoundaryGraph D ∧
+    (LeanPML.Rectangle.SmoothField.toL2 D) (LeanPML.Rectangle.rectangleBubble D) ≠ 0
+LeanPML.Rectangle.smooth_trace_zero_mem_weakZeroFieldDomain (D : LeanPML.Rectangle.Rect)
+  (v : ↥(LeanPML.Rectangle.fieldDomain D)) (htrace : (LeanPML.Rectangle.trace D) v = 0) :
+  ↑v ∈ LeanPML.Rectangle.weakZeroFieldDomain D
+'LeanPML.Rectangle.cutoffSequence_toL2_convergence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.Rectangle.smoothToWeakH1_mem_zeroBoundaryGraph' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.Rectangle.rectangleBubble_weakH01' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.Rectangle.smooth_zero_mem_weakZeroFieldDomain' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.Rectangle.smooth_trace_zero_mem_weakZeroFieldDomain' depends on axioms: [propext, Classical.choice, Quot.sound]

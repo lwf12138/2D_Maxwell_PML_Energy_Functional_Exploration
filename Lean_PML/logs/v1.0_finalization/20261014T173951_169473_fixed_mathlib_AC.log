@@ -1,0 +1,7 @@
+✔ [2609/2614] Built Mathlib.Order.Interval.Finset.Gaps (2.5s)
+✔ [2610/2614] Built Mathlib.MeasureTheory.Integral.IntervalIntegral.LebesgueDifferentiationThm (3.1s)
+✔ [2611/2614] Built Mathlib.Algebra.BigOperators.Group.Finset.Gaps (1.1s)
+✔ [2612/2614] Built Mathlib.MeasureTheory.Integral.IntervalIntegral.Slope (3.4s)
+✔ [2613/2614] Built Mathlib.MeasureTheory.Integral.IntervalIntegral.DerivIntegrable (1.6s)
+✔ [2614/2614] Built Mathlib.MeasureTheory.Integral.IntervalIntegral.AbsolutelyContinuousFun (2.8s)
+Build completed successfully (2614 jobs).

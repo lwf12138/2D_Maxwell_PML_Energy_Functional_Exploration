@@ -1,6 +1,115 @@
+# 2026-10-14 v1.0 finalization：一般弱系数已接入 V7 主线
+
+> 2026-10-14 发布标识整理：Lake 包版本已同步为 `1.0.0`，旧连续代表注释已更新。数学声明与证明未变，构建和公理审计重新通过；当前源码相对下述最终验收快照的两项差异及补充证据见 [整理记录](logs/v1.0_metadata_cleanup/record.md)。旧验收日志和快照保留不变。
+
+> **最终验收通过（2026-10-14）：ROADMAP v1.0.1–v1.0.3 主线完成。** 119 个正式 Lean 文件进入默认构建；1058 次公理审计输出（1050 个不同声明），无 sorryAx；当前源码隔离构建及完整审计通过。范围为报告列明的 V7 足够正则弱图空间兼容类，T=0 合法初始 jet 语义单列。
+
+本轮补齐一般分离 W¹,∞ 的连续代表构造、原 (10.2) 幂次剖面全族及精确阈值最小分支。精确 π 常数、实际标量指数记忆核和 Cᵏ 入口直接复用前轮证明。**最终工程、语义与 PDF 验收以 [本轮记录](logs/v1.0_finalization/acceptance.json) 为准**；下方旧“缺口/完成”文字均保留其历史日期含义。
+
+推荐入口是 [MainGeneralWeak.lean](LeanPML/PML/MainGeneralWeak.lean) 的 `main_energy_GeneralWeakCk`（T>0）及 `main_energy_GeneralWeakJet`（T≥0，T=0 初始导数图兼容单列）。它们从原八个实际 L² 场及内部原方程、整个矩形 PEC、原材料/区域弱系数与精确阈值、初始兼容和实际加权成员出发，在证明中构造连续代表和已证空间接口。输出 (6.7)–(6.10)；配套 `auxiliary_current_GeneralWeakCk/Jet` 与 `auxiliary_initial_GeneralWeakJet` 给输入原 Z/Q 和 u/q/φ 的 (8.4)–(8.8) 当前/初值控制。
+
+没有独立的 p/r 连续性输入，没有 Green/Poincaré/目标能量假设；没有正吸收下界、磁法向/散度约束或域内分区边界条件。采用 $C_P^2=(\pi^2/L_x^2+\pi^2/L_y^2)^{-1}$。不是一般解存在唯一性、严格衰减或任意分布解理论。
+
+建议先读三条声明：
+
+1. [一维真实弱导数→积分原函数与代表](LeanPML/Analysis/WeakIntervalRepresentative.lean)：`exists_regional_lipschitz_representative`。
+2. [二维分离系数→合法连续代表](LeanPML/PML/WeakAbsorptionRepresentative.lean)：`RawWeakRegionalAbsorption.representatives`。
+3. [原系统主入口](LeanPML/PML/MainGeneralWeak.lean)：`OriginalInterval.main_energy_GeneralWeakCk`。
+
+随后看 [原幂次剖面](LeanPML/Examples/OriginalPowerProfile.lean) 与 [新非零静态/四分支调用](LeanPML/Examples/GeneralWeakRegression.lean)。将光标放在 `have`、`calc` 后查看 InfoView 的当前目标；F12 查结构字段与 mathlib 依赖；导入陈旧时执行 **Lean 4: Restart Server**。
+
+```bash
+python3 scripts/run_logged.py --stage v1.0_finalization lake_build lake build
+python3 scripts/run_logged.py --stage v1.0_finalization axioms_audit lake env lean Audit.lean
+```
+
+完整命题、(6.6)/T=0 语义、论文映射及学习说明见 [弱定理报告](reports/weak_theorem.md)；[语义审查](logs/v1.0_finalization/semantic_review.md) 与 [PDF 账本](docs/pdf_formalization_marks.md) 分别记录命题范围和标记。隔离复现不复制项目编译产物，复用固定精确依赖缓存，并非完全无缓存测试。
+
+---
+
+# 以下为此前验收记录（历史原文保留）
+
+# LeanPML：光滑版本与弱图空间兼容原解的全域先验定理
+
+> 2026-10-14 closeout 最新对齐状态：本轮新增连接已验证，但 V7 原文逐项对齐仍未完成。一般连续代表、精确 π 常数及标量指数核识别仍列为缺口。下文既有“当前版本完成”指已列明假设与保守常数下的版本，不表示这些差异已经消除。详见本文件 closeout 追加节及 `logs/v1.0_closeout/semantic_review.md`。
+
+## 2026-10-14 v1.0 数学闭合与本地验收通过
+
+新弱版本已从实际原八式推出 (6.7)–(6.10)，包含图范数界、真实导数、准确耗散下界、闭区间单调性、积分平衡和输入原 E/H/P 控制。没有预设能量目标或未证 Green/Poincaré。旧 v0.5 光滑证明及实例保持不变。
+
+当前源码、完整输入和差异见 [弱定理报告](reports/weak_theorem.md)；逐项工程/PDF验收见 [总记录](logs/v1.0.3/completion_20261014T122020/acceptance.json)。下方此前段落中的“尚未完成”均保留为历史。
+
+- **v1.0.1**：真实弱图/加权空间及一般零迹桥接，补齐 [粗糙乘积零迹保持](LeanPML/PML/WeakZeroProduct.lean)。
+- **v1.0.2**：[规范唯一](LeanPML/PML/WeakLiftCompatibility.lean)、区域 W¹,∞ 乘法、弱 Green/Poincaré、五不变量及已证 (5.8) 接到原辅助演化。
+- **v1.0.3**：[弱原八式主定理](LeanPML/PML/MainWeakRectangle.lean)、[区域入口/原剖面积分](LeanPML/PML/WeakCanonicalEnergy.lean)、[非零静态解实际调用](LeanPML/Examples/WeakStaticMode.lean)、[四分支](LeanPML/Examples/WeakBranchRegression.lean)与不兼容增长排除。两阶段构建、913条审计和当前源码隔离复现均通过，见总记录。
+
+范围：真实 H₀¹/H(div) 图路径，区域弱系数的连续代表及显式时间 jet；不再要求未知场联合 C∞。仍使用 **C_P=2Lx**，不是论文精确 π 常数。原式只在内部时间区间；闭区间连续、初值兼容及 T=0 初始导数兼容单列。不是一般弱解存在唯一性或严格衰减定理。
+
+优先读 `weakCoefficientMul_mem_zeroBoundaryGraph` → `CompatibleLift.u_unique` → `main_energy_estimate_RegionalWeak`。InfoView 看每个具名 have/calc 后的目标，F12 查结构字段和依赖；导入陈旧时 **Lean 4: Restart Server**。
+
+```bash
+lake build
+lake env lean Audit.lean
+```
+
+带完整命令/退出码的复现使用 `python3 scripts/run_logged.py --stage v1.0.3 lake_build lake build` 与 `python3 scripts/run_logged.py --stage v1.0.3 axioms_audit lake env lean Audit.lean`。隔离构建复用精确依赖缓存，不复制项目编译产物。
+
+---
+
+# 以下为此前版本的原始说明
+
 # LeanPML：光滑兼容解类的全域先验能量定理
 
-用途：从原八变量方程读到真实 L² 两层能量、耗散和有限区间单调性。**v0.5.1、v0.5.2、v0.5.3 已分别验收，整个 v0.5 完成。** 下方保留 v0.4 原说明作为历史；其中“本轮/下一阶段”指当时，不代表当前状态。准确命题和全部输入见 [光滑定理报告](reports/smooth_theorem.md)，历史见 [PROGRESS](PROGRESS.md)。本轮止于 v0.5，没有实施 v1.0。
+用途：从原八变量方程读到真实 L² 两层能量、耗散和有限区间单调性。**v0.5.1、v0.5.2、v0.5.3 已分别验收，整个 v0.5 完成。** 下方保留 v0.4 原说明作为历史；其中“本轮/下一阶段”指当时，不代表当前状态。准确命题和全部输入见 [光滑定理报告](reports/smooth_theorem.md)，历史见 [PROGRESS](PROGRESS.md)。v0.5 的证明及输入保持不变；最新弱分析进展见下节；其后的旧阶段段落保留历史。
+
+## 2026-10-14 再次补齐：M1 已证，实际加权 (5.8) 已接通
+
+当前证据优先于下方历史阶段文字。新增数学证明见 [弱空间报告](reports/weak_theorem.md)：
+
+- [SmoothWeakClosure](LeanPML/Rectangle/SmoothWeakClosure.lean) 证明任意旧光滑四边零迹函数的内部紧支 H¹ 图逼近，已用非预先紧支多项式泡调用。v1.0.1 对应遗留连接补齐。
+- [WeightedMemoryBound](LeanPML/PML/WeightedMemoryBound.lean) 证明真实弱场、实际 WeightedL2 和 Bochner 历史上的精确 (5.8)，同时给出原辅助场的密度可积性和积分界。成员资格由普通 L² 演化与初始加权成员推出，没有预设全时段加权成员。导数右端与非零调用见 [AuxiliaryWeightedEvolution](LeanPML/PML/AuxiliaryWeightedEvolution.lean)、[WeightedEvolution](LeanPML/Examples/WeightedEvolution.lean)。
+- [WeakCoefficients](LeanPML/PML/WeakCoefficients.lean) 证明真实区域 W¹,∞ × H₀¹→H¹ 的弱乘积法则；[WeakDirectionalPoincare](LeanPML/Rectangle/WeakDirectionalPoincare.lean) 证明方向估计和单偏导零分离。尚缺乘积保持 H₀¹、分离弱系数入口、零水平集性质及提升唯一性。
+
+**v1.0.2 仍部分完成；v1.0.3 弱原系统主定理仍未完成。** 新结果没有放宽旧 v0.5 主定理的输入，也没有把辅助演化实例称为非零弱 PDE 解。没有本轮新的隔离总装复现；下方旧独立构建仅对应当时源码。
+
+优先阅读 `smoothToWeakH1_mem_zeroBoundaryGraph` → `auxiliary_weak_memory_bound` → `weakCoefficientMul_derivatives`。光标放在 `have`/`calc` 后看 InfoView，F12 跳转；导入陈旧时 **Lean 4: Restart Server**。复现：`python3 scripts/run_logged.py --stage v1.0.2 continuation_lake_build lake build`，随后 `python3 scripts/run_logged.py --stage v1.0.2 continuation_axioms_audit lake env lean Audit.lean`。
+
+[本轮新验收及源码哈希](logs/v1.0.2/continuation_20261014T110047/acceptance.json)；[PDF 证据账本](docs/pdf_formalization_marks.md)。以下旧阶段段落保留历史含义。
+
+## 2026-10-14 追加：弱分析子项已实现，v1.0 尚未闭合
+
+本轮新增 [WeakGreen](LeanPML/Rectangle/WeakGreen.lean)、[WeakPoincare](LeanPML/Rectangle/WeakPoincare.lean)、[WeakPaths](LeanPML/Rectangle/WeakPaths.lean)、[AuxiliaryMemory](LeanPML/PML/AuxiliaryMemory.lean) 和 [非零调用](LeanPML/Examples/WeakAnalysis.lean)。以下 v1.0.1 文字保留为前一轮历史；当前状态以本段和 [弱空间报告](reports/weak_theorem.md) 为准。
+
+已证明 H₀¹ 图闭包 × H(div) 弱 Green、保守 CP=2Lx 的弱 Poincaré，并实际填入旧空间接口；图范数真实时间导数可投影到 L² 梯度/散度。(5.7) 已完成固定空间点的真实时间积分版本，尚未完成 (5.8) 加权传播。
+
+**v1.0.1 仍部分完成，v1.0.2 部分完成，v1.0.3 主定理未完成。** 尚缺一般光滑零迹的图范数逼近、W¹∞ 乘积法则、加权传播、规范唯一性和弱原系统总装。旧 v0.5 主定理、静态/增长/退化回归保持，不冒称新的弱主定理调用。
+
+优先读 `Rectangle.weak_green`、`Rectangle.weak_poincare`、`PML.auxiliary_memory_formula`。InfoView 中逐步查看 `hspan`、`hclosed`、`hFTC`；F12 查看调用的闭包、连续性和 FTC 引理。导入未刷新时用 **Lean 4: Restart Server**。
+
+复现命令、准确假设与源码位置见报告；实际 [v1.0.2 验收记录](logs/v1.0.2/acceptance.json) / [v1.0.3 交付记录](logs/v1.0.3/acceptance.json) 区分构建通过与数学阶段未完成。隔离工程不复制项目编译产物，复用精确依赖缓存；[独立环境](logs/v1.0.3/clean_environment.json) 与 [结果](logs/v1.0.3/clean_result.json) 如实记录。
+
+## v1.0.1 当前进展：空间构造子项通过，连接仍有缺口
+
+本轮新增 [弱空间构造](LeanPML/Rectangle/WeakSpaces.lean)、[加权空间算子](LeanPML/Analysis/WeightedL2Operators.lean) 和 [非零调用](LeanPML/Examples/WeakSpaces.lean)。没有更新依赖或进入 v1.0.2。具体 API、实际类型、来源与失败/成功记录集中在 [阶段记录](logs/v1.0.1/stage_record.md) 和 [验收记录](logs/v1.0.1/acceptance.json)。
+
+建议先读这三条声明，再回到下方保留的 v0.5 主定理：
+
+1. `Rectangle.HasWeakPartial`：对象是实际 L² 商类，弱偏导由所有内部紧支 C∞ 测试函数的积分配对定义；`HasWeakPartial.unique` 证明导数唯一。
+2. `Rectangle.weakSpatialDomain_smooth`：新弱梯度与旧光滑函数的真实偏导相同。`weakH1Graph/weakHDivGraph` 是闭且完备的实际图空间，`zeroBoundaryGraph` 是内部紧支光滑图的张成闭包。
+3. `Analysis.physicalL2_range_iff`：恢复映射的像恰是“平方根加权可积且零区 a.e. 为零”的普通 L² 类。旧 WeightedL2 的嵌入、完备性及积分表示全部复用；`weightedMul` 只让**有界系数**作用，未把无界能量权重当成普通 L² 有界乘子。
+
+新弱空间不要求未知场 C∞；只有测试函数和光滑桥接使用 C∞。图表示采用最大值乘积范数，并已证明它与分量平方和的双边控制。梯度、散度仍有受限定义域；没有增加吸收正下界、边界磁条件或全域正阻尼。
+
+**v1.0.1 暂按部分完成登记。** 所有旧光滑场已进入弱 H¹，光滑通量已进入弱 H(div)，非零紧支场已进入 H₀¹ 闭包；但所有旧光滑零迹场进入该闭包的一般图范数逼近尚未实现。弱迹/弱 Green、Poincaré、W¹∞ 乘积与切片、加权传播及提升唯一性仍待后续。现有光滑 PDE 主定理的联合 C∞、C(K) 和实际加权路径假设**没有因此放宽**。
+
+在 InfoView 中先查看弱导数定义的 `∀ φ`，再看 `eq_zero_of_test_inner` 的 a.e. 结论，以及 `weakH1Graph_isClosed` 如何用连续配对保持导数。F12 可跳到固定 mathlib 的 `IsOpen.ae_eq_zero_of_integral_contDiff_smul_eq_zero`（`Mathlib/Analysis/Distribution/AEEqOfIntegralContDiff.lean:219`）。`TemperedDistribution.MemSobolev`（`Sobolev.lean:149`）是全空间 Bessel 势表示，不是这里的矩形 H₀¹；普通 Lp 光滑密度也不能直接代替图范数或无界权重下的逼近。
+
+```bash
+python3 scripts/run_logged.py --stage v1.0.1 lake_build lake build
+python3 scripts/run_logged.py --stage v1.0.1 axioms_audit lake env lean Audit.lean
+```
+
+命令在本工程根目录运行。导入过期时先构建，再执行 **Lean 4: Restart File**。本轮保留 v0.5 全部证明及回归，未修改 PDF、路线图、模型合同或依赖锁文件。
 
 ## 先读三条声明
 
@@ -67,7 +176,9 @@ for stage in v0.5.1 v0.5.2 v0.5.3; do
 done
 ```
 
-| 阶段 | 验收 | 本轮完整构建 / 独立审计 | 审计声明数（含历史） |
+下表保留 v0.5 的独立验收，新增空间的当前验证见上方 v1.0.1 记录。
+
+| 阶段 | 验收 | 当时完整构建 / 独立审计 | 审计声明数（含历史） |
 |---|---|---|---|
 | v0.5.1 | 通过 | [构建](logs/v0.5.1/20261014T005346_311276_lake_build.log) / [审计](logs/v0.5.1/20261014T005434_779198_axioms_audit.log) | 619 |
 | v0.5.2 | 通过 | [构建](logs/v0.5.2/20261014T011030_802569_lake_build.log) / [审计](logs/v0.5.2/20261014T011311_263210_axioms_audit.log) | 683 |
@@ -75,11 +186,11 @@ done
 
 审计只有 `propext`、`Classical.choice`、`Quot.sound`，没有 `sorryAx` 或自定义占位公理。结构字段另做语义检查，不能用公理审计代替范围检查。失败日志、命令、退出码和源码哈希保留。最终整体验收见 [overall_acceptance.json](logs/v0.5.3/overall_acceptance.json)。Lean v4.31.0 和 mathlib `fabf563a7c95a166b8d7b6efca11c8b4dc9d911f` 未变。
 
-## PDF 与下一阶段
+## PDF 历史与后续工作
 
-指定副本保留18页和200条旧批注；第5/8/10/12/15/16页新增6个带范围红勾，第11/14页只补说明。详见 [PDF账本](docs/pdf_formalization_marks.md)、[逐页视觉检查](logs/v0.5.3/pdf/visual_review.json)。原论文、模型合同、路线图和历史日志保持。路线图旧“待实现”是冻结文本，当前实现状态以源码和本轮证据为准。
+以下是 v0.5 的 PDF 历史，本轮 v1.0.1 未修改副本：指定副本保留18页和200条旧批注；第5/8/10/12/15/16页新增6个带范围红勾，第11/14页只补说明。详见 [PDF账本](docs/pdf_formalization_marks.md)、[逐页视觉检查](logs/v0.5.3/pdf/visual_review.json)。原论文、模型合同、路线图和历史日志保持。路线图旧“待实现”是冻结文本，当前实现状态以源码和本轮证据为准。
 
-下一步仅交接 **v1.0.1**：核验并构造真实弱导数/H₀¹/H(div) 与退化加权图空间，连接已完成的光滑版本；之后再做弱 Green、W¹,∞、(5.7)/(5.8) 加权传播和提升规范唯一性。精确 π 常数、一般解存在唯一性、严格/指数衰减均未被本轮证明。本轮不继续实施。
+本轮交接停在 **v1.0.1 部分完成**：优先补齐一般光滑零迹场进入新 H₀¹ 闭包的图范数逼近连接。v1.0.2 再处理弱 Green/Poincaré、W¹∞ 系数、(5.7)/(5.8) 加权传播和提升规范唯一性，本轮没有实施。精确 π 常数、一般解存在唯一性、严格/指数衰减仍未证明。
 
 ---
 
@@ -245,3 +356,41 @@ $$\widetilde p(x)=p(\max(x_-,\min(x_+,x))),\quad
 本次逐项范围及历史更正见 [对齐记录](logs/v0.4_alignment/alignment_record.md) 和 [独立语义检查](logs/v0.4_alignment/semantic_review.md)。构建、审计及 PDF 验收结果在本次 [验收记录](logs/v0.4_alignment/acceptance.json) 中登记；旧 v0.4 日志仅对应旧源码。
 
 本次对齐验证： [完整构建](logs/v0.4_alignment/20261014T000055_917026_lake_build.log)、[独立审计](logs/v0.4_alignment/20261014T000341_178705_axioms_audit.log)、[类型检查](logs/v0.4_alignment/20261014T000341_178709_interface_types.log) 均退出 0；共审计590个声明，新增53项。PDF页3/4/7/15已按实际范围对齐，详见[账本](docs/pdf_formalization_marks.md)及[视觉检查](logs/v0.4_alignment/pdf/visual_review.json)。
+
+
+## 2026-10-14：v1.0 closeout 新增连接（保留前述历史状态）
+
+本轮六项对齐中：(6.6) 所需 λ_tt 已由真实图导数与辅助演化推出；(8.4)–(8.8) 已直接控制输入原 Z1/Z2/Qx/Qy 并接到初值能量；弱 primitive 反向重构的八个真实导数、八式及兼容已证明。新增加权空间算子指数记忆公式，与已有历史及原辅助场连接。非零静态路径调用了新正则性入口、反向映射和两个方向的核公式。
+
+仍未完成：一般分离 W¹,∞ 的连续代表自动构造；原 (5.1) 精确 π 常数；算子指数与逐点标量指数乘法的识别。当前仍用 C_P=2Lx，区域连续代表仍单列，T=0 的初始导数兼容仍保留。因此“本轮已实现连接验证通过”与“V7 原文逐项对齐完成”分开登记，后者仍为否。
+
+新增源码：`PML/WeakPhysicalControl.lean`、`PML/WeakV7Regularity.lean`、`PML/WeakReverse.lean`、`Analysis/OperatorMemory.lean`、`PML/AuxiliaryOperatorMemory.lean`、`Examples/WeakCloseout.lean`（均在 LeanPML 下）。逐字段和缺口核查见 `logs/v1.0_closeout/semantic_review.md`；构建、审计、隔离复现及最终哈希见该目录的验收记录。未更改旧数学证明、路线图、模型合同或依赖版本。
+
+建议先读 `V7TimeRegularity.flux_second`（真实导数如何产生）、`original_auxiliary_initial_control`（重构识别和初值界）、`primitive_to_original_WeakAt`（八式反向链）。指数核随后读 `operator_memory_formula` 和 `operator_memory_both`。VS Code 打开工程根，在 `have`/`calc` 后移动光标看 InfoView；F12 跳到被调用引理。刷新导入可先运行 `lake build`，再执行 Lean: Restart File。
+
+复现本轮：
+```sh
+python3 scripts/run_logged.py --stage v1.0_closeout lake_build lake build
+python3 scripts/run_logged.py --stage v1.0_closeout axioms_audit lake env lean Audit.lean
+```
+mathlib 精确 API：`hasDerivAt_exp_smul_const` 在 `Mathlib/Analysis/SpecialFunctions/Exponential.lean:382`；`HasDerivAt.clm_apply` 在 `Mathlib/Analysis/Calculus/Deriv/Mul.lean:643`；FTC 位于 `Mathlib/MeasureTheory/Integral/IntervalIntegral/FundThmCalculus.lean`。本轮完整类型打印见 `logs/v1.0_closeout/TypeReview.lean` 及对应运行日志。
+
+
+## 2026-10-14 最新收尾：精确常数与标量核已接通
+
+**当前已核验版本通过；ROADMAP v1.0 主线尚未全部完成。** 本轮证明原 (5.1) π 常数并接入最终弱原系统能量、原 (5.7) 的实际标量指数乘子/Bochner 公式；核验原 c=1/128、S=1/512 数值阈值。真实 Cᵏ 字段可在 T>0 构造路径及规范端点导数槽；T=0 继续明确初始导数兼容。一般分离 W¹,∞→连续代表仍缺，`WeakRegionalAbsorption` 的区域连续性没有被删除或伪装为已证。
+
+先读三条声明：
+1. [weak_sharp_poincare](LeanPML/Rectangle/SharpPoincare.lean)：一维→Fubini→H¹ 图闭包；保守常数版本保留。
+2. [scalar_memory_both](LeanPML/PML/AuxiliaryScalarMemory.lean)：双方向真实原辅助场与标量指数核；每时刻商类等式。
+3. [main_energy_RegionalSharpCk](LeanPML/PML/WeakCanonicalTime.lean)：从区域原系数、原八式、初始兼容和真实正则性到精确常数主结论。
+
+完整输入、T=0 与非零调用见 [弱定理报告最新节](reports/weak_theorem.md)，核查记录见 [semantic_review.md](logs/v1.0_completion/semantic_review.md)。[SharpWeak.lean](LeanPML/Examples/SharpWeak.lean) 有非零实际静态解调用和正能量/零耗散回归。InfoView 中逐步查看 `have`/`calc` 的目标，F12 查原结构字段；刷新导入先构建，再执行 Lean: Restart File。
+
+```sh
+cd '/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML'
+python3 scripts/run_logged.py --stage v1.0_completion lake_build lake build
+python3 scripts/run_logged.py --stage v1.0_completion axioms_audit lake env lean Audit.lean
+```
+
+本轮实际通过完整构建、997项审计、类型审查和当前源码隔离复现。隔离未复制本项目编译产物，复用精确依赖缓存。证据：[acceptance.json](logs/v1.0_completion/acceptance.json)、[isolated_result.json](logs/v1.0_completion/isolated_result.json)。没有升级依赖、修改原论文/合同/路线图或提交远端。

@@ -1,0 +1,8 @@
+import LeanPML.Analysis.DissipativeMemoryEstimate
+#check LeanPML.Analysis.norm_le_initial_add_integral_forcing
+#check LeanPML.Analysis.dissipative_memory_square_bound
+#print axioms LeanPML.Analysis.regularized_memory_rate_le
+#print axioms LeanPML.Analysis.regularized_memory_bound
+#print axioms LeanPML.Analysis.norm_le_initial_add_integral_forcing
+#print axioms LeanPML.Analysis.square_intervalIntegral_le_mul_integral_square
+#print axioms LeanPML.Analysis.dissipative_memory_square_bound

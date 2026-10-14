@@ -1,0 +1,18 @@
+{
+  "stage": "v1.0_closeout",
+  "command": [
+    "lake",
+    "build",
+    "LeanPML.Examples.WeakCloseout"
+  ],
+  "command_display": "lake build LeanPML.Examples.WeakCloseout",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-14T15:11:13.605009+08:00",
+  "output_file": "20261014T151113_605009_closeout_examples_retry.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 1,
+  "status": "finished",
+  "ended_at": "2026-10-14T15:11:41.452818+08:00",
+  "elapsed_seconds": 27.847
+}

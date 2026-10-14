@@ -1,0 +1,20 @@
+⚠ [3025/3025] Built LeanPML.Analysis.WeakIntervalRepresentative (7.3s)
+warning: LeanPML/Analysis/WeakIntervalRepresentative.lean:32:18: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: LeanPML/Analysis/WeakIntervalRepresentative.lean:24:44: Variable name `hab` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/Analysis/WeakIntervalRepresentative.lean:171:54: Variable name `hab` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/Analysis/WeakIntervalRepresentative.lean:173:39: Variable name `hc` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Build completed successfully (3025 jobs).

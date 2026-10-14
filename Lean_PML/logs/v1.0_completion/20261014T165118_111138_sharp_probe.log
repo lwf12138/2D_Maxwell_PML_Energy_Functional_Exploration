@@ -1,0 +1,32 @@
+LeanPML/Rectangle/SharpPoincare.lean:164:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  fun x => deriv (fun s => ↑φ.field (s, y)) x
+in the target expression
+  (Real.pi / (D.xhi - D.xlo)) ^ 2 * ∫ (x : ℝ), ↑φ.field (x, y) ^ 2 ≤ ∫ (x : ℝ), deriv (fun x => ↑φ.field (x, y)) x ^ 2
+
+D : Rect
+φ : TestFunction D
+y : ℝ
+hsupp : (tsupport fun x => ↑φ.field (x, y)) ⊆ Ioo D.xlo D.xhi
+hcompact : HasCompactSupport fun x => ↑φ.field (x, y)
+hsmooth : ContDiff ℝ 1 fun x => ↑φ.field (x, y)
+hbound :
+  (Real.pi / (D.xhi - D.xlo)) ^ 2 * ∫ (x : ℝ), ↑φ.field (x, y) ^ 2 ≤ ∫ (x : ℝ), deriv (fun x => ↑φ.field (x, y)) x ^ 2
+heq : (fun x => deriv (fun s => ↑φ.field (s, y)) x) = fun x => dx ↑φ.field (x, y)
+⊢ (Real.pi / D.Lx) ^ 2 * ∫ (x : ℝ), ↑φ.field (x, y) ^ 2 ≤ ∫ (x : ℝ), dx ↑φ.field (x, y) ^ 2
+LeanPML/Rectangle/SharpPoincare.lean:183:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  fun y => deriv (fun s => ↑φ.field (x, s)) y
+in the target expression
+  (Real.pi / (D.yhi - D.ylo)) ^ 2 * ∫ (x_1 : ℝ), ↑φ.field (x, x_1) ^ 2 ≤
+    ∫ (x_1 : ℝ), deriv (fun y => ↑φ.field (x, y)) x_1 ^ 2
+
+D : Rect
+φ : TestFunction D
+x : ℝ
+hsupp : (tsupport fun y => ↑φ.field (x, y)) ⊆ Ioo D.ylo D.yhi
+hcompact : HasCompactSupport fun y => ↑φ.field (x, y)
+hsmooth : ContDiff ℝ 1 fun y => ↑φ.field (x, y)
+hbound :
+  (Real.pi / (D.yhi - D.ylo)) ^ 2 * ∫ (x_1 : ℝ), ↑φ.field (x, x_1) ^ 2 ≤
+    ∫ (x_1 : ℝ), deriv (fun y => ↑φ.field (x, y)) x_1 ^ 2
+heq : (fun y => deriv (fun s => ↑φ.field (x, s)) y) = fun y => dy ↑φ.field (x, y)
+⊢ (Real.pi / D.Ly) ^ 2 * ∫ (y : ℝ), ↑φ.field (x, y) ^ 2 ≤ ∫ (y : ℝ), dy ↑φ.field (x, y) ^ 2

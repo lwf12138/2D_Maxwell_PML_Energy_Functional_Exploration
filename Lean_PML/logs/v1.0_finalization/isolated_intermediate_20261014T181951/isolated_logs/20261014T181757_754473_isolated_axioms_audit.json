@@ -1,0 +1,19 @@
+{
+  "stage": "v1.0_finalization",
+  "command": [
+    "lake",
+    "env",
+    "lean",
+    "Audit.lean"
+  ],
+  "command_display": "lake env lean Audit.lean",
+  "cwd": "/private/var/folders/9m/zcq3jbg90sx_fc7fv3zn0hnc0000gn/T/LeanPML_v1_finalization_1qtyl5ok",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-14T18:17:57.754473+08:00",
+  "output_file": "20261014T181757_754473_isolated_axioms_audit.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-14T18:18:03.057029+08:00",
+  "elapsed_seconds": 5.302
+}

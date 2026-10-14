@@ -1,0 +1,61 @@
+LeanPML/PML/WeakCkRegularity.lean:76:42: error(lean.unknownIdentifier): Unknown identifier `hT`
+LeanPML/PML/WeakCkRegularity.lean:76:45: error(lean.unknownIdentifier): Unknown identifier `R.u_graph`
+LeanPML/PML/WeakCkRegularity.lean:82:42: error(lean.unknownIdentifier): Unknown identifier `hT`
+LeanPML/PML/WeakCkRegularity.lean:82:45: error(lean.unknownIdentifier): Unknown identifier `R.u_value`
+LeanPML/PML/WeakCkRegularity.lean:95:35: error(lean.unknownIdentifier): Unknown identifier `hT`
+LeanPML/PML/WeakCkRegularity.lean:94:50: error: unsolved goals
+D : Rect
+C : SpatialAbsorption (ℝ × ℝ)
+ε κ τ μ T : ℝ
+O : OriginalInterval D C ε κ τ μ T
+⊢ EqOn (derivWithin (fun t => (O.fields t).E) (Icc 0 T)) (fun t => (O.derivatives t).E) (Icc 0 T) ∧
+    EqOn (derivWithin (fun t => (O.fields t).P) (Icc 0 T)) (fun t => (O.derivatives t).P) (Icc 0 T)
+LeanPML/PML/WeakCkRegularity.lean:114:17: error(lean.unknownIdentifier): Unknown identifier `R.derivative_slots`
+LeanPML/PML/WeakCkRegularity.lean:113:63: error: unsolved goals
+D : Rect
+C : SpatialAbsorption (ℝ × ℝ)
+ε κ τ μ T : ℝ
+O : OriginalInterval D C ε κ τ μ T
+⊢ ContDiffOn ℝ 1 (fun t => (O.derivatives t).E) (Icc 0 T) ∧ ContDiffOn ℝ 1 (fun t => (O.derivatives t).P) (Icc 0 T)
+LeanPML/PML/WeakCkRegularity.lean:127:58: error: Invalid field notation: Function `electric_graph` does not have a usable parameter of type `ClosedCkRegularity ...` for which to substitute `R`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+LeanPML/PML/WeakCkRegularity.lean:145:59: error: Invalid field notation: Function `derivatives_c1` does not have a usable parameter of type `ClosedCkRegularity ...` for which to substitute `R`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+LeanPML/PML/WeakCkRegularity.lean:146:56: error: Invalid field notation: Function `derivatives_c1` does not have a usable parameter of type `ClosedCkRegularity ...` for which to substitute `R`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+LeanPML/PML/WeakCkRegularity.lean:147:29: error: Invalid field notation: Function `electric_graph` does not have a usable parameter of type `ClosedCkRegularity ...` for which to substitute `R`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+LeanPML/PML/WeakCkRegularity.lean:149:26: error: Invalid field notation: Function `derivatives_c1` does not have a usable parameter of type `ClosedCkRegularity ...` for which to substitute `R`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+LeanPML/PML/WeakCkRegularity.lean:150:27: error: Invalid field notation: Function `derivatives_c1` does not have a usable parameter of type `ClosedCkRegularity ...` for which to substitute `R`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+LeanPML/PML/WeakCkRegularity.lean:130:30: error: Invalid field notation: Function `electric_graph` does not have a usable parameter of type `ClosedCkRegularity ...` for which to substitute `R`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+LeanPML/PML/WeakCkRegularity.lean:129:23: error: unsolved goals
+D : Rect
+C : SpatialAbsorption (ℝ × ℝ)
+ε κ τ μ T : ℝ
+O : OriginalInterval D C ε κ τ μ T
+R : ClosedCkRegularity O
+hT : 0 < T
+⊢ ∀ t ∈ Icc 0 T, ↑↑(derivWithin O.electric (Icc 0 T) t) 0 = (O.derivatives t).E
+LeanPML/PML/WeakCkRegularity.lean:127:25: error: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+LeanPML/PML/WeakCkRegularity.lean:159:44: error(lean.invalidField): Invalid field `toTimeRegularity`: The environment does not contain `LeanPML.PML.Weak.ClosedCkRegularity.toTimeRegularity`, so it is not possible to project the field `toTimeRegularity` from an expression
+  R
+of type `ClosedCkRegularity O`
+LeanPML/PML/WeakCkRegularity.lean:161:21: error(lean.invalidField): Invalid field `toTimeRegularity`: The environment does not contain `LeanPML.PML.Weak.ClosedCkRegularity.toTimeRegularity`, so it is not possible to project the field `toTimeRegularity` from an expression
+  R
+of type `ClosedCkRegularity O`
+LeanPML/PML/WeakCkRegularity.lean:162:9: error(lean.unknownIdentifier): Unknown identifier `R.toTimeRegularity`
+LeanPML/PML/WeakCkRegularity.lean:163:2: error: No goals to be solved

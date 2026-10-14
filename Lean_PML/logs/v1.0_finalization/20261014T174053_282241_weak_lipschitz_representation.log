@@ -1,0 +1,55 @@
+LeanPML/Analysis/WeakIntervalRepresentative.lean:30:18: warning: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+LeanPML/Analysis/WeakIntervalRepresentative.lean:22:44: warning: Variable name `hab` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+LeanPML/Analysis/WeakIntervalRepresentative.lean:186:23: error(lean.invalidField): Invalid field `ae_hasDerivAt_integral`: The environment does not contain `Function.ae_hasDerivAt_integral`, so it is not possible to project the field `ae_hasDerivAt_integral` from an expression
+  hd
+of type
+  ∀ (x : ℝ), IntegrableAtFilter d (𝓝 x) volume
+LeanPML/Analysis/WeakIntervalRepresentative.lean:187:11: error: Function expected at
+  hx
+but this term has type
+  x ∈ ?m.195
+
+Note: Expected a function because this term is being applied to the argument
+  a
+LeanPML/Analysis/WeakIntervalRepresentative.lean:216:28: error(lean.unknownIdentifier): Unknown identifier `continuous_primitive`
+LeanPML/Analysis/WeakIntervalRepresentative.lean:239:9: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  LE Type
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+LeanPML/Analysis/WeakIntervalRepresentative.lean:239:11: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  OfNat Type 0
+numerals are polymorphic in Lean, but the numeral `0` cannot be used in a context where the expected type is
+  Type
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+LeanPML/Analysis/WeakIntervalRepresentative.lean:254:9: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  LE Type
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+LeanPML/Analysis/WeakIntervalRepresentative.lean:254:11: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  OfNat Type 0
+numerals are polymorphic in Lean, but the numeral `0` cannot be used in a context where the expected type is
+  Type
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+LeanPML/Analysis/WeakIntervalRepresentative.lean:277:14: error(lean.unknownIdentifier): Unknown identifier `MeasureTheory.eqOn_open_of_ae_eq`
+LeanPML/Analysis/WeakIntervalRepresentative.lean:270:40: error: unsolved goals
+a b S : ℝ
+hab : a < b
+hS : 0 ≤ S
+f F : ℝ → ℝ
+hF : Continuous F
+hrep : f =ᵐ[volume.restrict (Ioo a b)] F
+hf_bounds : ∀ᵐ (x : ℝ) ∂volume.restrict (Ioo a b), 0 ≤ f x ∧ f x ≤ S
+G : ℝ → ℝ := fun x => max 0 (min S (F x))
+hG : Continuous G
+heq_ae : F =ᵐ[volume.restrict (Ioo a b)] G
+⊢ ∀ x ∈ Icc a b, 0 ≤ F x ∧ F x ≤ S

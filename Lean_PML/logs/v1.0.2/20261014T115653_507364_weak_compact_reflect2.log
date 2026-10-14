@@ -1,0 +1,22 @@
+LeanPML/Rectangle/WeakCompactApprox.lean:157:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  fderiv ℝ (↑k ∘ HSub.hSub x) y
+in the target expression
+  (fderiv ℝ (fun z => ↑k (x - z)) y) (1, 0) = -(fderiv ℝ (↑k) (x - y)) (1, 0)
+
+case «0»
+k : SmoothField
+x y : ℝ × ℝ
+hmap : HasFDerivAt (fun z => x - z) (0 - ContinuousLinearMap.id ℝ (ℝ × ℝ)) y
+hcomp : HasFDerivAt (↑k ∘ HSub.hSub x) (fderiv ℝ (↑k) (x - y) ∘SL (0 - ContinuousLinearMap.id ℝ (ℝ × ℝ))) y
+⊢ (fderiv ℝ (fun z => ↑k (x - z)) y) (1, 0) = -(fderiv ℝ (↑k) (x - y)) (1, 0)
+LeanPML/Rectangle/WeakCompactApprox.lean:160:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  fderiv ℝ (↑k ∘ HSub.hSub x) y
+in the target expression
+  (fderiv ℝ (fun z => ↑k (x - z)) y) (0, 1) = -(fderiv ℝ (↑k) (x - y)) (0, 1)
+
+case «1»
+k : SmoothField
+x y : ℝ × ℝ
+hmap : HasFDerivAt (fun z => x - z) (0 - ContinuousLinearMap.id ℝ (ℝ × ℝ)) y
+hcomp : HasFDerivAt (↑k ∘ HSub.hSub x) (fderiv ℝ (↑k) (x - y) ∘SL (0 - ContinuousLinearMap.id ℝ (ℝ × ℝ))) y
+⊢ (fderiv ℝ (fun z => ↑k (x - z)) y) (0, 1) = -(fderiv ℝ (↑k) (x - y)) (0, 1)

@@ -1,0 +1,6 @@
+LeanPML/Rectangle/WeakSpaces.lean:124:10: error(lean.unknownIdentifier): Unknown identifier `isClosed_setOf_forall`
+LeanPML/Rectangle/WeakSpaces.lean:125:10: error: No goals to be solved
+LeanPML/Rectangle/WeakSpaces.lean:124:10: error(lean.unknownIdentifier): Unknown identifier `isClosed_setOf_forall`
+LeanPML/Rectangle/WeakSpaces.lean:125:10: error: No goals to be solved
+LeanPML/Rectangle/WeakSpaces.lean:152:8: error(lean.unknownIdentifier): Unknown identifier `isClosed_setOf_forall`
+LeanPML/Rectangle/WeakSpaces.lean:153:8: error: No goals to be solved

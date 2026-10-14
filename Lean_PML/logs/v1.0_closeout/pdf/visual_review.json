@@ -1,0 +1,19 @@
+{
+  "time": "2026-10-14T15:19:41.870813",
+  "pages_reviewed": [
+    4,
+    8,
+    10,
+    13
+  ],
+  "method": "pdftoppm 1500px full-page PNG + view_image 逐页目视检查",
+  "checks": {
+    "red_ticks_visible": true,
+    "chinese_readable": true,
+    "no_new_clipping": true,
+    "no_new_overlap": true,
+    "old_marks_preserved": true,
+    "range_matches_proofs": true
+  },
+  "notes": "第4、8页顶部追加限定；第10页正文段间仅说明；第13页底部限定。全部页数、正文和旧批注由结构脚本另行核验。"
+}

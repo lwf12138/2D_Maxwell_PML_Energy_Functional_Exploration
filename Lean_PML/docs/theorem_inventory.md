@@ -1428,3 +1428,102 @@ T22–T28 的上述 **Conditional 实际空间版本** 已有完整证明链；�
 T30 在**所选强光滑兼容类**完成；T31、T06传播完整范围、T07提升规范唯一性、T36/T37的Laplace/完美匹配均不升级。$C_P=2L_x$，不是T08原式精确π常数。$T=0$保留初始导数层条件，闭区间结论与内部真实求导分别列明。
 
 三个阶段分别通过 [v0.5.1](../logs/v0.5.1/acceptance.json)、[v0.5.2](../logs/v0.5.2/acceptance.json)、[v0.5.3](../logs/v0.5.3/acceptance.json)；最后构建/740项审计覆盖全部当前模块。完整纸面对应与19输入字段审查见 [报告](../reports/smooth_theorem.md)，总体及保护检查见 [整体验收](../logs/v0.5.3/overall_acceptance.json)。
+
+
+## 2026-10-14：v1.0.1 构造子项追加（阶段部分完成）
+
+历史条目不覆盖。当前声明与实际类型/审计见 [阶段记录](../logs/v1.0.1/stage_record.md) 和 [验收](../logs/v1.0.1/acceptance.json)。
+
+| 条目/范围 | 新增或复用的实际证据 | 尚未完成 |
+|---|---|---|
+| T10，(5.5)–(5.6) | 原 WeightedL2 已有闭性/完备性、零延拓、单射和连续嵌入；新 `Analysis.physicalL2_range_iff` 精确刻画像；`weightedMul_norm_le/physicalL2_weightedMul` 处理有界系数 | 不由此得到 (5.7)/(5.8) 传播、无界权重的普通乘法或加权光滑密度 |
+| T12、T31 的空间基础，(6.6) | `Rectangle.HasWeakPartial/HasWeakDivergence` 使用真实测试积分；唯一性、闭图与完备性；`zeroBoundaryGraph` 为 H₀¹ 闭包表示；`weakSpatialDomain/weakDivergence` 为受限算子；`weakSpatialDomain_smooth` 连接旧真实偏导 | 一般旧光滑零迹域→H₀¹ 闭包的图范数逼近未完成；弱迹核识别、弱 Green/Poincaré 仍待实现；不把整个 T12/T31 标成完成 |
+| 光滑/非零调用 | `Examples.WeakSpaces.physicalTest_nonzero_member`、`physicalTest_gradient_bridge` 复用旧非零物理区 bump；`absorption_weighted_range` 复用真实吸收系数 | 空间成员证书，不是弱 PDE 显式解或全时段正则性传播 |
+
+没有修改 `SmoothCompatibleSolution` 或其 v0.5 主定理输入。新的弱图允许非经典可微的未知场，但这一成员范围变化尚未代替主定理的联合 C∞、C(K) 和加权时间路径条件。
+
+
+## 2026-10-14：v1.0.2 弱分析增量（部分交付）
+
+历史记录保持。本轮 `LeanPML.Rectangle.weak_green` 从真实弱散度测试定义和 H₀¹ 图闭包推出 (7.5) 零迹式；`weakGreenDomain` 已填入旧空间接口，无一般 Green 输入、无通量法向零条件。`weak_poincare/weakPoincareDomain` 推广已证 CP=2Lx；未证明 (5.1) 精确 π 常数。对应 T08/T17 的上述子范围完成，不自动完成能量律的新弱原模型接入。
+
+`hasDerivAt_weakH1_coordinate/hasDerivAt_weakHDiv_coordinate` 从实际图范数导数得到 L² 坐标导数，支持 T12 的空间时间连接；没有据此证明弱原系统产生这些路径。
+
+`LeanPML.PML.auxiliary_memory_formula` 完成 (5.7) 固定空间点、闭区间连续/内部真实导数的实际积分公式；`auxiliary_zero_absorption_preserved` 保留初值条件。T06 的 (5.8)、φ_t 加权传播及 C² 正则性仍未完成。
+
+T07 规范唯一性仍缺切片/弱零水平集或等价路线；`weak_zero_of_gradient_zero` 只完成零梯度到零场的最后一步。T31 弱主定理未合成，(6.7)–(6.10) 保持旧光滑范围。`Examples.WeakAnalysis` 非零回归只调用新分析接口，不是假称新 PDE 解。
+
+一般旧光滑零迹到 H₀¹ 图闭包仍未补齐；区域 W¹∞ 乘积、加权传播、兼容总装仍为后续必要接口。本轮未新增任何把这些目标当成字段的空间或解结构。实际类型及证据见 [报告](../reports/weak_theorem.md)、[v1.0.2 记录](../logs/v1.0.2/acceptance.json)、[v1.0.3 记录](../logs/v1.0.3/acceptance.json)。
+
+
+## 2026-10-14 v1.0 数学补齐增量（保留上述历史）
+
+M1：`LeanPML.Rectangle.smoothToWeakH1_mem_zeroBoundaryGraph` 与 `cutoffSequence_toL2_convergence` 实际补齐一般光滑零迹到现有 H₀¹ 的图逼近；`rectangleBubble_weakH01` 为非预先紧支非零调用。
+
+M2：`LeanPML.PML.SpatialAbsorption.auxiliary_weak_field_membership`、`auxiliary_weak_memory_bound`、`auxiliary_weighted_integral_bound` 从初始加权成员、普通 L² 连续路径与内部真实辅助演化得到实际加权传播和精确 (5.8)。`auxiliaryRate_weak_norm_sq` 给出原文随后 φ_t 界，`hasDerivAt_auxiliaryRateX` 处理有真实输入导数的下一层。它们是实际弱场/加权路径结论，不是原八变量主定理；(5.7) 的场版指数核未单列，采用等价 Bochner 历史识别。
+
+M3：`LeanPML.PML.weakCoefficientMul_derivatives` 证明区域 W¹,∞ × H₀¹→H¹；`LeanPML.Rectangle.weak_directional_poincare`、`weak_zero_of_dx_zero`、`weak_zero_of_dy_zero` 证明方向子结论。§5.3 整体仍未完成：首先缺一般弱乘积属于 H₀¹ 的图逼近；随后是分离横向导数、零水平集梯度与双提升差值的连接。
+
+不变边界：T10 的已有加权空间结果复用；T11/T12 及 §5.3 不因本轮桥接/方向零分离而整体完成。T17/T18/T22–T28 的旧条件性/光滑版本保持，未增加弱原系统主结论。v1.0.3 仍未数学合成，M4 的原八式/兼容总装未完成。
+
+准确类型、哈希、语义审查和日志：[本轮记录](../logs/v1.0.2/continuation_20261014T110047/acceptance.json)；[完整说明](../reports/weak_theorem.md)。旧验收不覆盖、不追改。
+
+
+## 2026-10-14 v1.0 最终弱图空间版本追加（保留上述历史）
+
+当前源码/输入类型/隔离构建/公理审计见 [总验收](../logs/v1.0.3/completion_20261014T122020/acceptance.json)，完整命题见 [报告](../reports/weak_theorem.md)。不根据文件名或旧进度推断完成。
+
+| 条目/原式 | 本轮实际声明（前缀 LeanPML） | 完成范围与输入 |
+|---|---|---|
+| T02–T04；(2.3)–(2.6) | `PML.Weak.all_invariants_eq_initial`、`OriginalInterval.reconstruction`、`primitive_main` | 真实 H₀¹/L² Bochner历史，五个L²不变量保持、初始兼容→闭区间重构、原系统→primitive；不新增任意弱正则双向等价声明。 |
+| T10/加权成员；(5.6)–(5.8) | `PML.weakCoefficientMul_mem_zeroBoundaryGraph`；`PML.Weak.OriginalInterval.weighted_membership`、`memory_bound` | 同一H₀¹闭包内的粗糙乘积保持；实际原辅助演化接到既有加权成员与精确5.8。采用等价空间值历史/ODE路线，不另声称指数核代表元公式已提升。 |
+| §5.3 | `PML.Weak.CompatibleLift.u_unique/state_unique/energy_independent/twoLayerEnergy_independent`；`OriginalInterval.historical_energy_independent` | 两合法提升对应同一原状态，弱图/L²/加权商类意义唯一；需要区域连续代表、分离及非负。规范差值不是上层独立输入。 |
+| T15/17/18；(7.5)–(7.8) | `PML.Weak.OriginalInterval.base_evolution/first_evolution/finiteProblem` | 已证弱Green/Poincaré及真实图投影连接同源两层；无独立第一导数层PDE、未证交换或Green输入。 |
+| T22–T28；(6.7)–(6.10)、(9.5)–(9.7) | `PML.Weak.main_energy_estimate_RegionalWeak`、`OriginalInterval.main_energy_estimate_WeakOriginal` | 实际弱原八式上的闭区间图界、原EHP控制、内部真实能量律/定量耗散、单调性与FTC。CP=2Lx，OriginalJet技术时间正则性明确；非一般弱解。 |
+| 原p/r积分 | `PML.Weak.RegionalIntegrals.energy_integrable_and_eq/dissipation_integrable_and_eq` | 区域原幅度、内部代表a.e.一致、密度可积，既有能量/耗散与原剖面实际积分相等。 |
+| §11.3/分支/错误主张 | `Examples.WeakStaticMode.nonzero_static_regression`、`WeakBranchRegression.all_four_configurations`、`WeakRegression.growthInitial_no_weak_compatible_lift`、`single_layer_scope_preserved` | 非零弱原解调用；四配置含不对称与T0；实际增长初值无合法提升；单层仅否定指定候选。 |
+
+没有给原(5.1)精确常数、一般存在唯一性、最低正则性、非零弱迹理论、严格/指数衰减或任意幅度结论登记完成。v0.5证明与回归原样保留。当前v1.0完成指上述实际已核验版本；与V7的差异见报告逐字段表。
+
+
+## 2026-10-14：v1.0 closeout 新增连接（保留前述历史状态）
+
+本轮六项对齐中：(6.6) 所需 λ_tt 已由真实图导数与辅助演化推出；(8.4)–(8.8) 已直接控制输入原 Z1/Z2/Qx/Qy 并接到初值能量；弱 primitive 反向重构的八个真实导数、八式及兼容已证明。新增加权空间算子指数记忆公式，与已有历史及原辅助场连接。非零静态路径调用了新正则性入口、反向映射和两个方向的核公式。
+
+仍未完成：一般分离 W¹,∞ 的连续代表自动构造；原 (5.1) 精确 π 常数；算子指数与逐点标量指数乘法的识别。当前仍用 C_P=2Lx，区域连续代表仍单列，T=0 的初始导数兼容仍保留。因此“本轮已实现连接验证通过”与“V7 原文逐项对齐完成”分开登记，后者仍为否。
+
+新增源码：`PML/WeakPhysicalControl.lean`、`PML/WeakV7Regularity.lean`、`PML/WeakReverse.lean`、`Analysis/OperatorMemory.lean`、`PML/AuxiliaryOperatorMemory.lean`、`Examples/WeakCloseout.lean`（均在 LeanPML 下）。逐字段和缺口核查见 `logs/v1.0_closeout/semantic_review.md`；构建、审计、隔离复现及最终哈希见该目录的验收记录。未更改旧数学证明、路线图、模型合同或依赖版本。
+
+
+## 2026-10-14 v1.0_completion 逐项追加
+
+历史条目保留；新证据不覆盖旧阶段范围。
+
+- T10/加权相关、(5.7)：`LeanPML.Analysis.dampingKernel_eq_scalarExpMultiplier`；`LeanPML.PML.Weak.OriginalInterval.scalar_memory_both`、`scalar_memory_physical_x/y`。实际加权/普通 L² 标量核，双方向 Bochner 可积，固定时刻商类。已有(5.8)复用。
+- (5.1)/Poincaré依赖：`LeanPML.Rectangle.weak_sharp_poincare`、`sharpWeakPoincareDomain`；真实 H₀¹，原π常数，已由 MainSharpWeakRectangle 调用。
+- (10.1)：`LeanPML.Rectangle.ParameterCertificate.original_parameters_threshold`、`original_amplitude_certificate`；原数值与精确 CP 匹配，不附带(10.2)任意剖面族。
+- T17–T18/T22–T28 主线新常数入口：`LeanPML.PML.Weak.OriginalInterval.main_energy_estimate_SharpWeakOriginal`；`LeanPML.PML.Weak.main_energy_RegionalSharpCk`；(6.7)–(6.10)、(8.4)–(8.8)原场及初值界。新Cᵏ入口T>0，旧jet入口含T=0明确兼容。
+- (6.6)：`LeanPML.PML.Weak.V7ClosedCkCore.regularity` 与 `canonical_fields` 从实际 Cᵏ 构造路径；不是正则性自动传播。
+- 未完成：一般分离 W¹,∞ 连续代表。当前区域入口仍含连续性字段，不能整项标完整弱V7。
+
+完整声明、依赖和证据见 reports/weak_theorem.md 最新节；logs/v1.0_completion/acceptance.json（997项审计及当前源码隔离复现）。
+
+
+## 2026-10-14 v1.0_finalization 追加：一般原始弱系数连接闭合
+
+本轮用真实分布弱导数证明积分原函数及 Lipschitz 代表，经二维张量测试/Fubini 接入 `RawWeakRegionalAbsorption`；新 `OriginalInterval.main_energy_GeneralWeakCk/Jet` 不再输入 p/r 连续性。乘子、加权空间、原式、实际能量积分 a.e. 一致由 `WeakCoefficientTransport`、`MainRepresentedWeak` 证明。T>0 的 (6.6) Cᵏ 入口及 T=0 合法初始 jet 分支分别保留语义；没有增加端点 PDE。
+
+原 (10.2) 幂次剖面 m≥2 全族在 `Examples/OriginalPowerProfile.lean` 真实构造，`original_profile_main` 调用新入口；`representative_nonconstant` 验证非恒定代表。`original_threshold_exact` 验证 c*=π²/1152，复用原精确参数。非零静态实际原解在 `Examples/GeneralWeakRegression.lean` 调用新主定理，并有正恒定能量与零耗散。四分支、旧不兼容增长排除和指定单层失败仍进入默认构建。
+
+(6.7)–(6.10)、(8.4)–(8.8)、§5.3 的具体声明及输入/调用表见 [最新报告](../reports/weak_theorem.md)，正式类型和全部证据见 [本轮语义审查](../logs/v1.0_finalization/semantic_review.md) / [总验收](../logs/v1.0_finalization/acceptance.json)。此前“连续代表/精确常数/核识别待实现”保留为对应日期历史，不覆盖旧验收。
+
+不扩张为一般存在唯一性、严格衰减、任意幅度或任意八变量裸 L² 范数等价。ROADMAP 原复选框按用户要求不修改，逐项实际完成状态登记在本轮验收矩阵。
+
+
+### v1.0_finalization 最终工程与 PDF 验收（2026-10-14）
+
+当前119个正式 Lean 文件全部可达，默认构建3131 jobs通过；1058次审计输出覆盖1050个不同声明，本轮新增61个不同审计声明，无 sorryAx，仅标准 propext/Classical.choice/Quot.sound。当前源码隔离重编和完整审计通过，复用精确依赖缓存、不复制项目编译产物。源文件在最终验证后未改变。
+
+PDF 实际/印刷第3、9、10、15页新增5勾及1条限定说明，18页和231条旧批注全部保留；最终237条批注。逐页渲染和碰撞检查通过，详见本轮 `pdf/annotation_result.json`、`pdf/visual_review.json`。旧第一次隔离结果保留为 `isolated_intermediate_*`：它之后曾补充当前辅助变量控制，因此不作为最终源码证据；最终隔离使用新目录重新从零构建。
+
+最终依据为 [acceptance.json](../logs/v1.0_finalization/acceptance.json) 与 [source_snapshot.json](../logs/v1.0_finalization/source_snapshot.json)。主线没有尚未兑现的分析接口；T=0初始图状态条件及先验解正则性保留为明示的数学输入，不宣称适定性、严格衰减或任意分布解理论。

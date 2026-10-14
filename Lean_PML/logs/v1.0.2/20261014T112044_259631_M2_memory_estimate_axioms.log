@@ -1,0 +1,16 @@
+LeanPML.Analysis.norm_le_initial_add_integral_forcing.{u_1} {H : Type u_1} [NormedAddCommGroup H]
+  [InnerProductSpace ℝ H] (B : H →L[ℝ] H) (hB : ∀ (X : H), 0 ≤ inner ℝ X (B X)) (W F : ℝ → H) {T t : ℝ}
+  (hW : ContinuousOn W (Set.Icc 0 T)) (hF : ContinuousOn F (Set.Icc 0 T))
+  (hODE : ∀ s ∈ Set.Ioo 0 T, HasDerivAt W (-B (W s) + F s) s) (ht : t ∈ Set.Icc 0 T) :
+  ‖W t‖ ≤ ‖W 0‖ + ∫ (s : ℝ) in 0..t, ‖F s‖
+LeanPML.Analysis.dissipative_memory_square_bound.{u_1} {H : Type u_1} [NormedAddCommGroup H] [InnerProductSpace ℝ H]
+  (B : H →L[ℝ] H) (hB : ∀ (X : H), 0 ≤ inner ℝ X (B X)) (W F : ℝ → H) {T t : ℝ} (hW : ContinuousOn W (Set.Icc 0 T))
+  (hF : ContinuousOn F (Set.Icc 0 T)) (hODE : ∀ s ∈ Set.Ioo 0 T, HasDerivAt W (-B (W s) + F s) s)
+  (ht : t ∈ Set.Icc 0 T) : ‖W t‖ ^ 2 ≤ 2 * ‖W 0‖ ^ 2 + 2 * t * ∫ (s : ℝ) in 0..t, ‖F s‖ ^ 2
+'LeanPML.Analysis.regularized_memory_rate_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.Analysis.regularized_memory_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.Analysis.norm_le_initial_add_integral_forcing' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.Analysis.square_intervalIntegral_le_mul_integral_square' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'LeanPML.Analysis.dissipative_memory_square_bound' depends on axioms: [propext, Classical.choice, Quot.sound]

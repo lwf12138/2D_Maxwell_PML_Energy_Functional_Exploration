@@ -1,0 +1,19 @@
+{
+  "stage": "v1.0.2",
+  "command": [
+    "lake",
+    "env",
+    "lean",
+    "LeanPML/Rectangle/WeakPoincare.lean"
+  ],
+  "command_display": "lake env lean LeanPML/Rectangle/WeakPoincare.lean",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-14T10:26:25.340181+08:00",
+  "output_file": "20261014T102625_340181_weak_poincare_check.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 1,
+  "status": "finished",
+  "ended_at": "2026-10-14T10:26:33.697835+08:00",
+  "elapsed_seconds": 8.357
+}

@@ -1,0 +1,18 @@
+{
+  "stage": "v1.0.2",
+  "command": [
+    "lake",
+    "build",
+    "LeanPML.Examples.WeakAnalysis"
+  ],
+  "command_display": "lake build LeanPML.Examples.WeakAnalysis",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-14T10:30:30.702765+08:00",
+  "output_file": "20261014T103030_702765_examples_build.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 1,
+  "status": "finished",
+  "ended_at": "2026-10-14T10:30:38.726661+08:00",
+  "elapsed_seconds": 8.024
+}

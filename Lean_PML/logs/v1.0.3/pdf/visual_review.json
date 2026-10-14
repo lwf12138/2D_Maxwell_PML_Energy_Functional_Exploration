@@ -1,0 +1,28 @@
+{
+  "checked_at": "2026-10-14T10:44:39.351121",
+  "pdf_sha256": "4451ed9d022f167b2d66dbb95dd98066cee2c066cb92b935583a6d745d429bf7",
+  "method": "Poppler 135 DPI 渲染三页后逐张由 view_image 检查；另有字符/批注矩形无交叠检查。",
+  "pages": [
+    {
+      "page": 7,
+      "printed_page": 7,
+      "result": "passed",
+      "observation": "新保守弱 Poincaré 说明在 §5 标题与5.1小标题间，未遮挡公式；无 π 原式完成勾。"
+    },
+    {
+      "page": 8,
+      "printed_page": 8,
+      "result": "passed",
+      "observation": "(5.7) 点上时间积分版限定说明位于页底正文与页码之间；可见、未裁切，(5.8)无新完成勾。"
+    },
+    {
+      "page": 11,
+      "printed_page": 11,
+      "result": "passed",
+      "observation": "新矢量红勾和两行弱零迹 Green 范围在7.3标题前空白；与旧光滑/条件性批注不重叠。"
+    }
+  ],
+  "overall": "passed",
+  "old_annotations_preserved": true,
+  "old_pending_notes": "作为历史保留；新增限定文字说明目前仅弱零迹 Green 已补齐，完整弱主定理未完成。"
+}

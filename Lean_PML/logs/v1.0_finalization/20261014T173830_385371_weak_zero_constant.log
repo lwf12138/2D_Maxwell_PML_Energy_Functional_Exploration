@@ -1,0 +1,9 @@
+LeanPML/Analysis/WeakIntervalRepresentative.lean:29:18: warning: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+LeanPML/Analysis/WeakIntervalRepresentative.lean:21:44: warning: Variable name `hab` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+LeanPML/Analysis/WeakIntervalRepresentative.lean:122:19: error(lean.unknownIdentifier): Unknown identifier `not_mem_union.mp`

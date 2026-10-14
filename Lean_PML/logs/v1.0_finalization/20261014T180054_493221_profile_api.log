@@ -1,0 +1,21 @@
+logs/v1.0_finalization/profile_api.lean:2:7: error: Invalid field notation: Function `Function.const_mul` does not have a usable parameter of type `Function` for which to substitute `LipschitzWith`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+logs/v1.0_finalization/profile_api.lean:3:7: error(lean.unknownIdentifier): Unknown constant `LipschitzWith.mul_const`
+logs/v1.0_finalization/profile_api.lean:4:7: error(lean.unknownIdentifier): Unknown constant `LipschitzWith.sub_const`
+logs/v1.0_finalization/profile_api.lean:5:7: error: Invalid field notation: Function `Function.const_sub` does not have a usable parameter of type `Function` for which to substitute `LipschitzWith`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+lipschitzWith_one_norm.{u_2} {E : Type u_2} [SeminormedAddGroup E] : LipschitzWith 1 norm
+logs/v1.0_finalization/profile_api.lean:7:7: error: Invalid field notation: Function `Function.const_mul` does not have a usable parameter of type `Function` for which to substitute `LipschitzWith`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+pow_le_one₀.{u_2} {M₀ : Type u_2} [MonoidWithZero M₀] [Preorder M₀] {a : M₀} [PosMulMono M₀] {n : ℕ} (ha₀ : 0 ≤ a)
+  (ha₁ : a ≤ 1) : a ^ n ≤ 1
+abs_pow_sub_pow_le.{u_1} {α : Type u_1} [CommRing α] [LinearOrder α] (a b : α) (n : ℕ) [IsOrderedRing α] :
+  |a ^ n - b ^ n| ≤ |a - b| * ↑n * max |a| |b| ^ (n - 1)
+LipschitzWith.of_dist_le_mul.{u, v} {α : Type u} {β : Type v} [PseudoMetricSpace α] [PseudoMetricSpace β] {K : NNReal}
+  {f : α → β} : (∀ (x y : α), dist (f x) (f y) ≤ ↑K * dist x y) → LipschitzWith K f
+ContDiff.of_le.{u, uE, uF} {𝕜 : Type u} [NontriviallyNormedField 𝕜] {E : Type uE} [NormedAddCommGroup E]
+  [NormedSpace 𝕜 E] {F : Type uF} [NormedAddCommGroup F] [NormedSpace 𝕜 F] {f : E → F} {m n : WithTop ℕ∞}
+  (h : ContDiff 𝕜 n f) (hmn : m ≤ n) : ContDiff 𝕜 m f

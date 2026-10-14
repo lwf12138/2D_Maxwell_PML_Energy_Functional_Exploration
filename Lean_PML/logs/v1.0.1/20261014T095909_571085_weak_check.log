@@ -1,0 +1,21 @@
+LeanPML/Rectangle/WeakSpaces.lean:308:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (weakLift ?D) ⟨(SmoothField.toL2 ?D) ?f, ⋯⟩
+in the target expression
+  ↑((weakLift D) ⟨(SmoothField.toL2 D) f, ⋯⟩) 1 = (SmoothField.toL2 D) f.derivativeX ∧
+    ↑((weakLift D) ⟨(SmoothField.toL2 D) f, ⋯⟩) 2 = (SmoothField.toL2 D) f.derivativeY
+
+D : Rect
+f : SmoothField
+⊢ ↑((weakLift D) ⟨(SmoothField.toL2 D) f, ⋯⟩) 1 = (SmoothField.toL2 D) f.derivativeX ∧
+    ↑((weakLift D) ⟨(SmoothField.toL2 D) f, ⋯⟩) 2 = (SmoothField.toL2 D) f.derivativeY
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    Exists.intro (smoothToWeakH1 D f) (weakValue_smooth D f)
+  has type
+    ∃ y, (weakValue D) y = (SmoothField.toL2 D) f
+  but is expected to have type
+    (SmoothField.toL2 D) f ∈ (weakSpatialDomain D).domain
+  in the application
+    ⟨(SmoothField.toL2 D) f, ⋯⟩

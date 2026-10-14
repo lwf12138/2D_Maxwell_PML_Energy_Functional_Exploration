@@ -1,0 +1,64 @@
+LeanPML/Examples/GeneralWeakRegression.lean:42:2: error: unsolved goals
+z : ℝ × ℝ
+hz : z ∈ rectangleDomain unitSquare.xlo unitSquare.xhi unitSquare.ylo unitSquare.yhi
+⊢ amplitudeS = unitSquare.openSet.indicator (regionalBoundedOfSmooth unitSquare ⟨fun x => amplitudeS, ⋯⟩).value z
+LeanPML/Examples/GeneralWeakRegression.lean:46:2: error: unsolved goals
+z : ℝ × ℝ
+hz : z ∈ rectangleDomain unitSquare.xlo unitSquare.xhi unitSquare.ylo unitSquare.yhi
+⊢ 0 = unitSquare.openSet.indicator (regionalBoundedOfSmooth unitSquare ⟨fun x => 0, ⋯⟩).value z
+LeanPML/Examples/GeneralWeakRegression.lean:43:72: warning: This simp argument is unused:
+  hz
+
+Hint: Omit it from the simp argument list.
+  simp [RawWeakRegionalAbsorption.rawSpatial, ̲RegionalBounded.extended,h̵z̵,̵
+  ̵  ̵ ̵ ̵ ̵ ̵staticAbsorption,
+  ̲ ̲ ̲ ̲ ̲ ̲ ̲forgetContinuous, ̲WeakRegionalAbsorption.constant,
+  ̵  ̵ ̵ ̵ ̵ ̵weakCoefficientOfSmooth,
+  ̲ ̲ ̲ ̲ ̲ ̲ ̲WeakStaticMode.coefficients]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/Examples/GeneralWeakRegression.lean:47:72: warning: This simp argument is unused:
+  hz
+
+Hint: Omit it from the simp argument list.
+  simp [RawWeakRegionalAbsorption.rawSpatial, ̲RegionalBounded.extended,h̵z̵,̵
+  ̵  ̵ ̵ ̵ ̵ ̵staticAbsorption,
+  ̲ ̲ ̲ ̲ ̲ ̲ ̲forgetContinuous, ̲WeakRegionalAbsorption.constant,
+  ̵  ̵ ̵ ̵ ̵ ̵weakCoefficientOfSmooth,
+  ̲ ̲ ̲ ̲ ̲ ̲ ̲WeakStaticMode.coefficients]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LeanPML/Examples/GeneralWeakRegression.lean:91:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (physicalL2 ?ν ?v ?hv ?hgv) ((weightedChangeRepresentative ?ν ?w ?v ?heq) ?X)
+in the target expression
+  (physicalL2 unitSquare.measure staticAbsorption.rawSpatial.swap.wx ⋯ ⋯) staticInitialY = WeakStaticMode.oneField
+
+⊢ (physicalL2 unitSquare.measure staticAbsorption.rawSpatial.swap.wx ⋯ ⋯) staticInitialY = WeakStaticMode.oneField
+LeanPML/Examples/GeneralWeakRegression.lean:96:33: error(lean.invalidField): Invalid field `small`: The environment does not contain `LeanPML.PML.CoercivityParameters.small`, so it is not possible to project the field `small` from an expression
+  WeakStaticMode.sharpParameters
+of type
+  CoercivityParameters WeakStaticMode.coefficients 1 1 1 1 (sharpPoincareConstant unitSquare)
+LeanPML/Examples/GeneralWeakRegression.lean:105:4: error: Type mismatch: After simplification, term
+  Eq.symm (WeakStaticMode.auxiliary_x T hT 0)
+ has type
+  @Eq (↥(ScalarL2 unitSquare.measure)) 0 ((WeakStaticMode.solution T hT).φx 0)
+but is expected to have type
+  @Eq (↥(ScalarL2 unitSquare.measure)) 0 ((staticSolution T hT).φx 0)
+LeanPML/Examples/GeneralWeakRegression.lean:106:4: error: Type mismatch: After simplification, term
+  static_initial_physical
+ has type
+  (physicalL2 unitSquare.measure staticAbsorption.rawSpatial.swap.wx ⋯ ⋯) staticInitialY = WeakStaticMode.oneField
+but is expected to have type
+  (physicalL2 unitSquare.measure staticAbsorption.rawSpatial.swap.wx ⋯ ⋯) staticInitialY = (staticSolution T hT).φy 0
+LeanPML/Examples/GeneralWeakRegression.lean:117:4: error: Type mismatch: After simplification, term
+  Eq.symm (WeakStaticMode.auxiliary_x T (LT.lt.le hT) 0)
+ has type
+  @Eq (↥(ScalarL2 unitSquare.measure)) 0 ((WeakStaticMode.solution T ⋯).φx 0)
+but is expected to have type
+  @Eq (↥(ScalarL2 unitSquare.measure)) 0 ((staticSolution T ⋯).φx 0)
+LeanPML/Examples/GeneralWeakRegression.lean:118:4: error: Type mismatch: After simplification, term
+  static_initial_physical
+ has type
+  (physicalL2 unitSquare.measure staticAbsorption.rawSpatial.swap.wx ⋯ ⋯) staticInitialY = WeakStaticMode.oneField
+but is expected to have type
+  (physicalL2 unitSquare.measure staticAbsorption.rawSpatial.swap.wx ⋯ ⋯) staticInitialY = (staticSolution T ⋯).φy 0

@@ -1,0 +1,7 @@
+⚠ [3002/3002] Built LeanPML.PML.WeakOriginalSystem (10s)
+info: LeanPML/PML/WeakOriginalSystem.lean:188:4: Try this:
+  [apply] abel_nf
+warning: LeanPML/PML/WeakOriginalSystem.lean:187:4: 'congr 1' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+Build completed successfully (3002 jobs).

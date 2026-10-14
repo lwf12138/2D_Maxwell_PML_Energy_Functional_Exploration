@@ -1,0 +1,63 @@
+✖ [2638/2638] Building LeanPML.PML.AuxiliaryMemory (5.0s)
+trace: .> LEAN_PATH=/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Cli/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/batteries/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Qq/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/aesop/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/proofwidgets/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/importGraph/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/plausible/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/mathlib/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean /Users/wcli/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/LeanPML/PML/AuxiliaryMemory.lean -o /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/AuxiliaryMemory.olean -i /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/AuxiliaryMemory.ilean -c /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/AuxiliaryMemory.c --setup /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/AuxiliaryMemory.setup.json --json
+error: LeanPML/PML/AuxiliaryMemory.lean:42:4: Type mismatch: After simplification, term
+  intervalIntegral.integral_eq_sub_of_hasDerivAt_of_le ht.left
+    (ContinuousOn.mul (Continuous.continuousOn hexp) (ContinuousOn.mono hφ hsub)) hprod
+    (ContinuousOn.intervalIntegrable_of_Icc ht.left hintegrand)
+ has type
+  ∫ (y : ℝ) in 0..t, Real.exp (σ * y) * ((ρ - σ) * g y) =
+    ((fun s => Real.exp (σ * s)) * φ) t - ((fun s => Real.exp (σ * s)) * φ) 0
+but is expected to have type
+  ∫ (s : ℝ) in 0..t, Real.exp (σ * s) * ((ρ - σ) * g s) = Real.exp (σ * t) * φ t - φ 0
+error: LeanPML/PML/AuxiliaryMemory.lean:51:8: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  -σ * (t - s)
+in the target expression
+  (fun x => Real.exp (-σ * (t - x)) * g x) s = (fun x => Real.exp (-σ * t) * (Real.exp (σ * x) * g x)) s
+
+σ ρ T : ℝ
+φ g : ℝ → ℝ
+hφ : ContinuousOn φ (Icc 0 T)
+hg : ContinuousOn g (Icc 0 T)
+hODE : ∀ s ∈ Ioo 0 T, HasDerivAt φ (-σ * φ s + (ρ - σ) * g s) s
+t : ℝ
+ht : t ∈ Icc 0 T
+hsub : Icc 0 t ⊆ Icc 0 T
+hexp : Continuous fun s => Real.exp (σ * s)
+hintegrand : ContinuousOn (fun s => Real.exp (σ * s) * ((ρ - σ) * g s)) (Icc 0 t)
+hprod : ∀ s ∈ Ioo 0 t, HasDerivAt (fun s => Real.exp (σ * s) * φ s) (Real.exp (σ * s) * ((ρ - σ) * g s)) s
+hFTC : ∫ (s : ℝ) in 0..t, Real.exp (σ * s) * ((ρ - σ) * g s) = Real.exp (σ * t) * φ t - φ 0
+s : ℝ
+hs : s ∈ uIcc 0 t
+⊢ (fun x => Real.exp (-σ * (t - x)) * g x) s = (fun x => Real.exp (-σ * t) * (Real.exp (σ * x) * g x)) s
+info: LeanPML/PML/AuxiliaryMemory.lean:62:38: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+error: LeanPML/PML/AuxiliaryMemory.lean:63:15: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (ρ - σ) * ∫ (s : ℝ) in 0..t, Real.exp (σ * s) * g s
+in the target expression
+  φ t = Real.exp (-σ * t) * φ 0 + (ρ - σ) * (Real.exp (-σ * t) * ∫ (s : ℝ) in 0..t, Real.exp (σ * s) * g s)
+
+σ ρ T : ℝ
+φ g : ℝ → ℝ
+hφ : ContinuousOn φ (Icc 0 T)
+hg : ContinuousOn g (Icc 0 T)
+hODE : ∀ s ∈ Ioo 0 T, HasDerivAt φ (-σ * φ s + (ρ - σ) * g s) s
+t : ℝ
+ht : t ∈ Icc 0 T
+hsub : Icc 0 t ⊆ Icc 0 T
+hexp : Continuous fun s => Real.exp (σ * s)
+hintegrand : ContinuousOn (fun s => Real.exp (σ * s) * ((ρ - σ) * g s)) (Icc 0 t)
+hprod : ∀ s ∈ Ioo 0 t, HasDerivAt (fun s => Real.exp (σ * s) * φ s) (Real.exp (σ * s) * ((ρ - σ) * g s)) s
+hFTC : (ρ - σ) * ∫ (s : ℝ) in 0..t, Real.exp (σ * s) * g s = Real.exp (σ * t) * φ t - φ 0
+hkernel :
+  ∫ (s : ℝ) in 0..t, Real.exp (-σ * (t - s)) * g s = Real.exp (-σ * t) * ∫ (s : ℝ) in 0..t, Real.exp (σ * s) * g s
+hfactor : ∫ (s : ℝ) in 0..t, Real.exp (σ * s) * ((ρ - σ) * g s) = (ρ - σ) * ∫ (s : ℝ) in 0..t, Real.exp (σ * s) * g s
+hexpcancel : Real.exp (-σ * t) * Real.exp (σ * t) = 1
+⊢ φ t = Real.exp (-σ * t) * φ 0 + (ρ - σ) * (Real.exp (-σ * t) * ∫ (s : ℝ) in 0..t, Real.exp (σ * s) * g s)
+error: Lean exited with code 1
+Some required targets logged failures:
+- LeanPML.PML.AuxiliaryMemory
+error: build failed

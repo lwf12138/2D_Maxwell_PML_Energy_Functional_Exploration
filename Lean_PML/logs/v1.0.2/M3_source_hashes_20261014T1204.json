@@ -1,0 +1,6 @@
+{
+  "LeanPML/Rectangle/WeakLocality.lean": "43ff7920f2527c92fb7d590891af7b79546fa018b8179b4eb7f294416cb63f97",
+  "LeanPML/PML/SeparatedWeakCoefficients.lean": "ea94d8a606e8ba30c673482e5cf2d2def03dc64a7ac4a6258eb35e65a325b2b5",
+  "LeanPML/PML/LiftUniqueness.lean": "0aa92314b0301de74880e00bb1cc5a93b5b63f8881dbcdb23386b7005106f831",
+  "LeanPML/PML/WeakLiftCompatibility.lean": "e98e0f565dce6fe3d2a06d9480b91a3a834d91815789572156a357912bc4970c"
+}

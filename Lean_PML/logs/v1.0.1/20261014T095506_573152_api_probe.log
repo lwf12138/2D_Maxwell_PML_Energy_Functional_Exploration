@@ -1,0 +1,54 @@
+logs/v1.0.1/ApiProbe.lean:5:7: error(lean.unknownIdentifier): Unknown constant `MeasureTheory.Lp.integrable`
+MeasureTheory.MemLp.integrable.{u_1, u_5} {α : Type u_1} {ε : Type u_5} {m : MeasurableSpace α} {μ : Measure α}
+  [TopologicalSpace ε] [ContinuousENorm ε] {q : ENNReal} (hq1 : 1 ≤ q) {f : α → ε} [IsFiniteMeasure μ]
+  (hfq : MemLp f q μ) : Integrable f μ
+MeasureTheory.Integrable.locallyIntegrable.{u_1, u_3} {X : Type u_1} {ε : Type u_3} [MeasurableSpace X]
+  [TopologicalSpace X] [TopologicalSpace ε] [ContinuousENorm ε] {f : X → ε} {μ : Measure X} (hf : Integrable f μ) :
+  LocallyIntegrable f μ
+logs/v1.0.1/ApiProbe.lean:8:7: error(lean.unknownIdentifier): Unknown constant `MeasureTheory.Integrable.locallyIntegrableOn`
+IsOpen.ae_eq_zero_of_integral_contDiff_smul_eq_zero.{u_1, u_2} {E : Type u_1} [NormedAddCommGroup E] [NormedSpace ℝ E]
+  [FiniteDimensional ℝ E] {F : Type u_2} [NormedAddCommGroup F] [NormedSpace ℝ F] [CompleteSpace F] [MeasurableSpace E]
+  [BorelSpace E] {f : E → F} {μ : Measure E} {U : Set E} (hU : IsOpen U) (hf : LocallyIntegrableOn f U μ)
+  (h : ∀ (g : E → ℝ), ContDiff ℝ (↑⊤) g → HasCompactSupport g → tsupport g ⊆ U → ∫ (x : E), g x • f x ∂μ = 0) :
+  ∀ᵐ (x : E) ∂μ, x ∈ U → f x = 0
+Submodule.isClosed_topologicalClosure.{u, v} {R : Type u} {M : Type v} [Semiring R] [TopologicalSpace M]
+  [AddCommMonoid M] [Module R M] [ContinuousConstSMul R M] [ContinuousAdd M] (s : Submodule R M) :
+  IsClosed ↑s.topologicalClosure
+Submodule.topologicalClosure_minimal.{u, v} {R : Type u} {M : Type v} [Semiring R] [TopologicalSpace M]
+  [AddCommMonoid M] [Module R M] [ContinuousConstSMul R M] [ContinuousAdd M] (s : Submodule R M) {t : Submodule R M}
+  (h : s ≤ t) (ht : IsClosed ↑t) : s.topologicalClosure ≤ t
+IsClosed.completeSpace_coe.{u} {α : Type u} [UniformSpace α] [CompleteSpace α] {s : Set α} [hs : IsClosed s] :
+  CompleteSpace ↑s
+Continuous.inner.{u_1, u_2, u_4} {𝕜 : Type u_1} {E : Type u_2} [RCLike 𝕜] [SeminormedAddCommGroup E]
+  [InnerProductSpace 𝕜 E] {α : Type u_4} [TopologicalSpace α] {f g : α → E} (hf : Continuous f) (hg : Continuous g) :
+  Continuous fun t => inner 𝕜 (f t) (g t)
+continuous_apply.{u_5, u_6} {ι : Type u_5} {A : ι → Type u_6} [T : (i : ι) → TopologicalSpace (A i)] (i : ι) :
+  Continuous fun p => p i
+inner_smul_left.{u_1, u_2} {𝕜 : Type u_1} {E : Type u_2} [RCLike 𝕜] [SeminormedAddCommGroup E] [InnerProductSpace 𝕜 E]
+  (x y : E) (r : 𝕜) : inner 𝕜 (r • x) y = (starRingEnd 𝕜) r * inner 𝕜 x y
+inner_smul_right.{u_1, u_2} {𝕜 : Type u_1} {E : Type u_2} [RCLike 𝕜] [SeminormedAddCommGroup E] [InnerProductSpace 𝕜 E]
+  (x y : E) (r : 𝕜) : inner 𝕜 x (r • y) = r * inner 𝕜 x y
+HasCompactSupport.add.{u_2, u_4} {α : Type u_2} {β : Type u_4} [TopologicalSpace α] [AddZeroClass β] {f f' : α → β}
+  (hf : HasCompactSupport f) (hf' : HasCompactSupport f') : HasCompactSupport (f + f')
+HasCompactSupport.smul_left.{u_2, u_7, u_8} {α : Type u_2} {M : Type u_7} {R : Type u_8} [TopologicalSpace α] [Zero M]
+  [SMulZeroClass R M] {f : α → R} {f' : α → M} (hf : HasCompactSupport f') : HasCompactSupport (f • f')
+tsupport_add.{u_1, u_2} {X : Type u_1} {α : Type u_2} [TopologicalSpace X] [AddZeroClass α] (f g : X → α) :
+  (tsupport fun x => f x + g x) ⊆ tsupport f ∪ tsupport g
+tsupport_smul_subset_left.{u_1, u_9, u_10} {X : Type u_1} [TopologicalSpace X] {M : Type u_9} {α : Type u_10} [Zero M]
+  [Zero α] [SMulWithZero M α] (f : X → M) (g : X → α) : (tsupport fun x => f x • g x) ⊆ tsupport f
+logs/v1.0.1/ApiProbe.lean:21:7: error(lean.unknownIdentifier): Unknown identifier `image_subset_iff`
+MeasureTheory.Lp.ext.{u_1, u_4} {α : Type u_1} {E : Type u_4} {m : MeasurableSpace α} {p : ENNReal} {μ : Measure α}
+  [NormedAddCommGroup E] {f g : ↥(Lp E p μ)} (h : ↑↑f =ᵐ[μ] ↑↑g) : f = g
+ContinuousLinearMap.codRestrict.{u_1, u_2, u_4, u_5} {R₁ : Type u_1} {R₂ : Type u_2} [Semiring R₁] [Semiring R₂]
+  {σ₁₂ : R₁ →+* R₂} {M₁ : Type u_4} {M₂ : Type u_5} [TopologicalSpace M₁] [AddCommMonoid M₁] [Module R₁ M₁]
+  [TopologicalSpace M₂] [AddCommMonoid M₂] [Module R₂ M₂] (f : M₁ →SL[σ₁₂] M₂) (p : Submodule R₂ M₂)
+  (h : ∀ (x : M₁), f x ∈ p) : M₁ →SL[σ₁₂] ↥p
+Submodule.subtypeL.{u_1, u_2} {R : Type u_1} [Semiring R] {M : Type u_2} [TopologicalSpace M] [AddCommMonoid M]
+  [Module R M] (p : Submodule R M) : ↥p →L[R] M
+MeasureTheory.Lp.coeFn_sub.{u_1, u_4} {α : Type u_1} {E : Type u_4} {m : MeasurableSpace α} {p : ENNReal}
+  {μ : Measure α} [NormedAddCommGroup E] (f g : ↥(Lp E p μ)) : ↑↑(f - g) =ᵐ[μ] ↑↑f - ↑↑g
+HasCompactSupport.zero.{u_9, u_10} {α : Type u_9} {β : Type u_10} [TopologicalSpace α] [Zero β] : HasCompactSupport 0
+Submodule.subset_span.{u_1, u_4} {R : Type u_1} {M : Type u_4} [Semiring R] [AddCommMonoid M] [Module R M] {s : Set M} :
+  s ⊆ ↑(Submodule.span R s)
+Submodule.le_topologicalClosure.{u, v} {R : Type u} {M : Type v} [Semiring R] [TopologicalSpace M] [AddCommMonoid M]
+  [Module R M] [ContinuousConstSMul R M] [ContinuousAdd M] (s : Submodule R M) : s ≤ s.topologicalClosure

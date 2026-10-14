@@ -1,0 +1,9 @@
+LeanPML/Analysis/DissipativeMemoryEstimate.lean:132:50: error: Application type mismatch: The argument
+  hpos
+has type
+  0 < t
+but is expected to have type
+  0 < (t * ∫ (s : ℝ) in 0..t, g s ^ 2) - I ^ 2
+in the application
+  nonneg_of_mul_nonneg_left hfactor hpos
+LeanPML/Analysis/DissipativeMemoryEstimate.lean:133:2: error: `dsimp` made no progress

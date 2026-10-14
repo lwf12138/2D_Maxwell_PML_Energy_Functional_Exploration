@@ -1,0 +1,47 @@
+structure LeanPML.PML.Weak.CompatibleLift (D : LeanPML.Rectangle.Rect) (C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ))
+  (ε κ τ μ : ℝ) (F : LeanPML.PML.Weak.OriginalState D) : Type
+number of parameters: 7
+fields:
+  LeanPML.PML.Weak.CompatibleLift.u : ↥(LeanPML.Rectangle.zeroBoundaryGraph D)
+  LeanPML.PML.Weak.CompatibleLift.q : ↥(LeanPML.Analysis.ScalarL2 D.measure)
+  LeanPML.PML.Weak.CompatibleLift.ψx : ↥(LeanPML.Analysis.WeightedL2 D.measure C.wx)
+  LeanPML.PML.Weak.CompatibleLift.ψy : ↥(LeanPML.Analysis.WeightedL2 D.measure C.wy)
+  LeanPML.PML.Weak.CompatibleLift.polar : self.q + τ • F.P = κ • ↑↑self.u 0
+  LeanPML.PML.Weak.CompatibleLift.flux_x : μ • F.Hy = ↑↑self.u 1 + (LeanPML.PML.physicalX D.measure C) self.ψx
+  LeanPML.PML.Weak.CompatibleLift.flux_y : -μ • F.Hx = ↑↑self.u 2 + (LeanPML.PML.physicalY D.measure C) self.ψy
+  LeanPML.PML.Weak.CompatibleLift.memory1 : F.Z1 = -ε • (C.bCoeff.operator D.measure) (↑↑self.u 0)
+  LeanPML.PML.Weak.CompatibleLift.memory2 : F.Z2 = -(C.bCoeff.operator D.measure) self.q
+  LeanPML.PML.Weak.CompatibleLift.auxiliaryX : F.Qx =
+      (C.pCoeff.operator D.measure) ((LeanPML.PML.physicalY D.measure C) self.ψy)
+  LeanPML.PML.Weak.CompatibleLift.auxiliaryY : F.Qy =
+      -(C.rCoeff.operator D.measure) ((LeanPML.PML.physicalX D.measure C) self.ψx)
+constructor:
+  LeanPML.PML.Weak.CompatibleLift.mk {D : LeanPML.Rectangle.Rect} {C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)}
+    {ε κ τ μ : ℝ} {F : LeanPML.PML.Weak.OriginalState D} (u : ↥(LeanPML.Rectangle.zeroBoundaryGraph D))
+    (q : ↥(LeanPML.Analysis.ScalarL2 D.measure)) (ψx : ↥(LeanPML.Analysis.WeightedL2 D.measure C.wx))
+    (ψy : ↥(LeanPML.Analysis.WeightedL2 D.measure C.wy)) (polar : q + τ • F.P = κ • ↑↑u 0)
+    (flux_x : μ • F.Hy = ↑↑u 1 + (LeanPML.PML.physicalX D.measure C) ψx)
+    (flux_y : -μ • F.Hx = ↑↑u 2 + (LeanPML.PML.physicalY D.measure C) ψy)
+    (memory1 : F.Z1 = -ε • (C.bCoeff.operator D.measure) (↑↑u 0)) (memory2 : F.Z2 = -(C.bCoeff.operator D.measure) q)
+    (auxiliaryX : F.Qx = (C.pCoeff.operator D.measure) ((LeanPML.PML.physicalY D.measure C) ψy))
+    (auxiliaryY : F.Qy = -(C.rCoeff.operator D.measure) ((LeanPML.PML.physicalX D.measure C) ψx)) :
+    LeanPML.PML.Weak.CompatibleLift D C ε κ τ μ F
+LeanPML.PML.Weak.CompatibleLift.u_unique {D : LeanPML.Rectangle.Rect} {C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)}
+  {ε κ τ μ : ℝ} {F : LeanPML.PML.Weak.OriginalState D} (m : LeanPML.PML.SeparatedRegionalWeakCoefficients D)
+  (hp_match : ∀ x ∈ D.openSet, m.p.value.value x = C.p x) (hr_match : ∀ x ∈ D.openSet, m.r.value.value x = C.r x)
+  (hp_continuous : ContinuousOn m.p.value.value D.openSet) (hr_continuous : ContinuousOn m.r.value.value D.openSet)
+  (L M : LeanPML.PML.Weak.CompatibleLift D C ε κ τ μ F) : L.u = M.u
+LeanPML.PML.Weak.CompatibleLift.energy_independent {D : LeanPML.Rectangle.Rect}
+  {C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)} {ε κ τ μ : ℝ} {F : LeanPML.PML.Weak.OriginalState D}
+  (m : LeanPML.PML.SeparatedRegionalWeakCoefficients D) (hp_match : ∀ x ∈ D.openSet, m.p.value.value x = C.p x)
+  (hr_match : ∀ x ∈ D.openSet, m.r.value.value x = C.r x) (hp_continuous : ContinuousOn m.p.value.value D.openSet)
+  (hr_continuous : ContinuousOn m.r.value.value D.openSet) (L M : LeanPML.PML.Weak.CompatibleLift D C ε κ τ μ F) :
+  LeanPML.PML.fieldEnergy D.measure C ε κ τ μ L.state = LeanPML.PML.fieldEnergy D.measure C ε κ τ μ M.state
+'LeanPML.PML.Weak.regional_operator_eq_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.Weak.weighted_physical_zero_zone' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.Weak.CompatibleLift.gradient_difference' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.Weak.CompatibleLift.u_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.Weak.CompatibleLift.state_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.Weak.CompatibleLift.energy_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.Weak.CompatibleLift.twoLayerEnergy_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.Weak.nonzero_lift_energy_choice_call' depends on axioms: [propext, Classical.choice, Quot.sound]

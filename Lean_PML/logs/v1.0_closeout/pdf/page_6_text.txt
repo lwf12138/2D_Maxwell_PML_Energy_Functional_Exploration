@@ -1,0 +1,67 @@
+V7：Maxwell–Debye PML 全域能量 2026-09-24
+更具体地，对第 5 节中支撑在物理区的非零初值族，Z = Z = Q = Q = 0、ϕ = 0，
+1,0 2,0 x,0 y,0 0
+且吸收系数与全部初值的乘积为零。对原方程消去 Q ,Q ,Z ,Z ，得到
+x y 1 2
+µ(sH b SC(cid:0)H ) = S −1∂ E b ,
+y y0 x x
+µ(sH b SC(cid:0)H ) = (cid:0)S −1∂ E b , (3.4)
+x x0 y y
+s(ϵE b +P b )(cid:0)(ϵE +P ) = S −1∂ H b SC(cid:0)S −1∂ H b SC.
+0 0 x x y y y x
+b b b b
+例如磁场消元先给出µs(S /S )H = ∂ E+µH ；初值支集上p = r = 0，再用H = S HSC 得第
+x y y x y0 y y y
+b b
+一式。电场消元给出sS S (ϵE+P)，而初值项为ϵE +P ；除以S S 时该初值不变。因此常用非
+x y 0 0 x y
+零物理初值也保留标准坐标拉伸的初值源项。对一般非零PML记忆初值，应使用式(3.1)–(3.2)，
+不能擅自化为式 (3.4)。
+4 独立复核 V6：全域恒等式成立，但原 Schur 条件不够
+4.1 权重延拓、完整能量和耗散
+在 Z 上定义 σ /a = 0、b/a = 0，其余处按通常比值定义。这些权重有界可测；后续只作时
+i
+间求导，不对它们作空间微分。在兼容类 ϕ = 0 于 Z 下，定义整个 Ω 上的
+Z n X
+1 σ
+E = µϵ(E +au)2+jλj2+ i ϕ2+µϵbu2
+B 2 a i
+Ω i o (4.1)
+(cid:2) (cid:3)
+µ
++ (1+2aτ)P2+2(a+bτ)Pq+(a2+b(1+aτ))q2 dxdy,
+κ
+Z nX (cid:16) (cid:17)
+σ b
+D = σ 1+ i λ2+ jruj2+µϵabu2
+B i a i a
+Ω i o (4.2)
+µ
++ [τP2+τ(a2(cid:0)b)P2+abq2] dxdy (cid:21) 0.
+κ t
+在 Z 上能量密度是 1(µϵE2+jλj2+µP2/κ)，即原 Maxwell–Debye 能量的 µ 倍。极化矩阵的
+2
+行列式为
+b+abτ +2a3τ +b(2a2(cid:0)b)τ2.
+它在 a > 0 时严格为正，在 a = b = 0 时矩阵为 diag(1,0)，故式 (4.1) 全域非负。跨零吸收区的
+扩展状态范数等价不能只靠正角区 Sylvester 判据推断。
+命题 4.1 (V6 全域平衡). 对足够正则的兼容解，令 W = E +au，有
+Z
+E′ = (cid:0)D (cid:0) ura(cid:1)λdxdy+hW,λ(cid:1)ni . (4.3)
+B B ∂Ω
+Ω
+证明. 逐分量记 h = ∂ u,v = ∂ E,f = ϕ ,l = λ = h+f。有 f = σ h(cid:0)σ l、l = v+σ h(cid:0)σ l。
+i i i i t j i t j i
+直接展开得
+(cid:16) (cid:17) (cid:16) (cid:17)
+1 σ σ b
+∂ l2+ i f2 = (v+ah)l(cid:0)σ 1+ i l2(cid:0) h2.
+t i
+2 a a a
+在Z 上则是 1∂ jλj2 = λ(cid:1)rE。极化关系给出κW = τP +(1+aτ)P+aq。令Q = (1+2aτ)P2+
+2 t t B
+2(a+bτ)Pq+(a2+b(1+aτ))q2。逐项展开并使用 q = P 得到
+t
+(P +aP +bq)κW = 1∂ Q +τP2+τ(a2(cid:0)b)P2+abq2.
+t 2 t B t
+6

@@ -1,0 +1,5 @@
+import LeanPML
+import Mathlib.MeasureTheory.Function.AbsolutelyContinuous
+#check Convex.lipschitzOnWith_of_nnnorm_deriv_le
+#check AbsolutelyContinuousOnInterval.exists_bound
+#check LeanPML.Rectangle.weak_poincare

@@ -1,0 +1,7 @@
+Convex.lipschitzOnWith_of_nnnorm_deriv_le.{u_3, u_4} {𝕜 : Type u_3} {G : Type u_4} [RCLike 𝕜] [NormedAddCommGroup G]
+  [NormedSpace 𝕜 G] {f : 𝕜 → G} {s : Set 𝕜} {C : NNReal} (hf : ∀ x ∈ s, DifferentiableAt 𝕜 f x)
+  (bound : ∀ x ∈ s, ‖deriv f x‖₊ ≤ C) (hs : Convex ℝ s) : LipschitzOnWith C f s
+AbsolutelyContinuousOnInterval.exists_bound.{u_2} {F : Type u_2} [SeminormedAddCommGroup F] {a b : ℝ} {f : ℝ → F}
+  (hf : AbsolutelyContinuousOnInterval f a b) : ∃ C, ∀ x ∈ Set.uIcc a b, ‖f x‖ ≤ C
+LeanPML.Rectangle.weak_poincare (D : LeanPML.Rectangle.Rect) (v : ↥(LeanPML.Rectangle.zeroBoundaryGraph D)) :
+  ‖↑↑v 0‖ ^ 2 ≤ LeanPML.Rectangle.poincareConstant D ^ 2 * (‖↑↑v 1‖ ^ 2 + ‖↑↑v 2‖ ^ 2)

@@ -1,0 +1,11 @@
+import LeanPML.PML.WeakAbsorptionRepresentative
+#check LipschitzWith.const_mul
+#check LipschitzWith.mul_const
+#check LipschitzWith.sub_const
+#check LipschitzWith.const_sub
+#check lipschitzWith_one_norm
+#check LipschitzWith.const_mul
+#check pow_le_one₀
+#check abs_pow_sub_pow_le
+#check LipschitzWith.of_dist_le_mul
+#check ContDiff.of_le

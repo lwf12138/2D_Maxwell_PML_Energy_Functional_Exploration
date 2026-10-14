@@ -1,0 +1,18 @@
+{
+  "stage": "v1.0.2",
+  "command": [
+    "lake",
+    "build",
+    "LeanPML.PML.WeakZeroProduct"
+  ],
+  "command_display": "lake build LeanPML.PML.WeakZeroProduct",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-14T11:55:49.917899+08:00",
+  "output_file": "20261014T115549_917899_weak_zero_integral.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-14T11:56:22.459713+08:00",
+  "elapsed_seconds": 32.541
+}

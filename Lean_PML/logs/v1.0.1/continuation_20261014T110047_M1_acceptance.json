@@ -1,0 +1,53 @@
+{
+  "status": "M1 target completed; previously recorded general smooth zero-trace bridge resolved",
+  "history_not_overwritten": true,
+  "sources": {
+    "LeanPML/Rectangle/SmoothWeakClosure.lean": "3a3444e5ad1c04f649c69001ec12db58d14673fb7f44a59b6c2eaaed3b54a00a"
+  },
+  "current_full_validation": {
+    "lake_build": {
+      "metadata": "logs/v1.0.2/20261014T112814_522179_continuation_lake_build.json",
+      "log": "logs/v1.0.2/20261014T112814_522179_continuation_lake_build.log",
+      "exit_code": 0,
+      "command": [
+        "lake",
+        "build"
+      ],
+      "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+      "output_sha256": "330fa7b2a40623816d4effb1b570f68d838c138f6ad19bacdba729860090c6b3"
+    },
+    "axioms_audit": {
+      "metadata": "logs/v1.0.2/20261014T112845_938004_continuation_axioms_audit.json",
+      "log": "logs/v1.0.2/20261014T112845_938004_continuation_axioms_audit.log",
+      "exit_code": 0,
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "Audit.lean"
+      ],
+      "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+      "output_sha256": "8510bb29587cf36e849fa88eabb4cbf8b436f668bd9be5a25b07a60982b1fd51"
+    },
+    "declaration_types": {
+      "metadata": "logs/v1.0.2/20261014T112845_938003_continuation_types_final.json",
+      "log": "logs/v1.0.2/20261014T112845_938003_continuation_types_final.log",
+      "exit_code": 0,
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "logs/v1.0.2/continuation_20261014T110047/Types.lean"
+      ],
+      "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+      "output_sha256": "3f5d82e6351f02c81fae2bb8149b7fa8e426d2125ab4545a1882e8754f097134"
+    }
+  },
+  "semantic_review": "logs/v1.0.2/continuation_20261014T110047/M1_M3_final_semantic_review.md",
+  "full_current_snapshot": "logs/v1.0.2/continuation_20261014T110047/acceptance.json",
+  "not_claimed": [
+    "general weak trace-kernel characterization",
+    "gauge uniqueness",
+    "weak original PDE main theorem"
+  ]
+}

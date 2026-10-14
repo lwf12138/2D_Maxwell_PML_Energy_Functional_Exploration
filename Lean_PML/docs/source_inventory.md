@@ -197,3 +197,52 @@ v0.0.1 完成项：
 新增分析 API 来自**当前锁定 mathlib**，不是联网教程：`Mathlib/Analysis/SpecialFunctions/SmoothTransition.lean`（`Real.smoothTransition`）；`Mathlib/Analysis/SpecialFunctions/SmoothTransition.lean`（`expNegInvGlue`）；`Mathlib/Analysis/Calculus/Deriv/Support.lean`（导数支撑）；`Mathlib/Analysis/Calculus/FDeriv/Symmetric.lean`（混合导数对称）。读取/补获取现有提交的模块缓存没有改变版本或锁文件。
 
 路线图 v0.5 的状态文字/复选框仍为“待实现”，它是受保护的历史文本，本轮没有修改。当前实现以 [三阶段整体验收](../logs/v0.5.3/overall_acceptance.json)、源码及真实日志为依据；旧日志不充当新源码的证据。
+
+
+## 2026-10-14：弱分析增量来源复核
+
+本轮开始时全部 61 个正式源码与 logs/v1.0.1/acceptance.json 一致，原 V7 md/tex/pdf 未改变；当前基线见 logs/v1.0.2/baseline_comparison.json 及 baseline_20261014T102331.json。
+重读 (5.1)、(5.7)/(5.8)、§5.3、(6.6) 和 (7.5)，只登记实际已证弱 Green、保守弱 Poincaré、图路径导数与固定点时间积分子结论。
+路线图的旧“待实现”没有回写；完整阶段仍未验收。数学来源未变不等于旧构建验证当前增量，后者由本轮实际日志另证。
+
+
+## 2026-10-14 再次续作来源复核
+
+本轮起点与正式源码/锁文件/原始来源哈希见 `logs/v1.0.2/continuation_20261014T110047/baseline.json`；最终逐项比较见同目录 `acceptance.json`。原 V7 Markdown、TeX、PDF、模型合同、路线图和依赖锁定均未修改；没有从旧成功日志推断本轮新增证明通过。M1 对应矩形 H₀¹ 图逼近，M2 对应 (5.8) 及其后未编号 φ_t 界，M3 的方向估计仅为 §5.3 辅助结论（原文未单列），不虚构公式编号。原文精确 π 常数仍未证明。
+
+
+## 2026-10-14 v1.0 最终本地版本：来源与锁定复核
+
+本轮基线 [baseline.json](../logs/v1.0.2/completion_20261014T114638/baseline.json) 与当前哈希逐项核对。原V7 md/tex/pdf、路线图、模型合同、lean-toolchain/lakefile/manifest以及75个此前正式模块全部保持；仅新增正式模块、追加导入和审计。没有以旧日志替代本輪源码验证。
+
+[当前源码快照](../logs/v1.0.3/completion_20261014T122020/source_snapshot.json)、[保护文件及逐项比较](../logs/v1.0.3/completion_20261014T122020/verification_before_pdf.json)、[隔离目录和精确依赖复用说明](../logs/v1.0.3/completion_20261014T122020/isolated_result.json)、[总验收](../logs/v1.0.3/completion_20261014T122020/acceptance.json)。固定 Lean 4.31.0 / mathlib fabf563a7c95a166b8d7b6efca11c8b4dc9d911f。PDF只改指定副本，旧批注与原文保持；备份哈希见PDF账本。
+
+路线图状态文字冻结不改。V7 (6.6)和精确π常数与实际弱图/时间jet、保守2Lx的差别有明确报告，不静默更改合同。
+
+
+2026-10-14 v1.0 closeout：当前正式源码及锁定配置与上一 completion 快照核对通过，见 `logs/v1.0_closeout/baseline.json`。本轮原始 V7 md/tex/pdf、路线图及模型合同未改；旧哈希仍作为历史版本保留。新证明与当前论文 (6.6)、(8.4)–(8.8)、命题2.1、(5.7) 对照；精确常数及一般连续代表仍未补齐。
+
+
+## 2026-10-14 v1.0_completion 来源复核追加
+
+基线及最终哈希分别见 logs/v1.0_completion/baseline_20261014T162626.json、acceptance.json。V7 md/tex/原pdf、模型合同、路线图及依赖锁均保持原版本。本轮数学新增使用固定本地 mathlib；未升级依赖。旧closeout源码与基线匹配；新增精确CP、标量核、真实Cᵏ桥接及调用均由本轮日志重新验证，不沿用旧日志证明新文件。指定副本PDF单独追加，备份与前后哈希在 logs/v1.0_completion/pdf/backup.json 和 annotation_result.json。
+
+
+## 2026-10-14 v1.0_finalization 追加：一般原始弱系数连接闭合
+
+本轮用真实分布弱导数证明积分原函数及 Lipschitz 代表，经二维张量测试/Fubini 接入 `RawWeakRegionalAbsorption`；新 `OriginalInterval.main_energy_GeneralWeakCk/Jet` 不再输入 p/r 连续性。乘子、加权空间、原式、实际能量积分 a.e. 一致由 `WeakCoefficientTransport`、`MainRepresentedWeak` 证明。T>0 的 (6.6) Cᵏ 入口及 T=0 合法初始 jet 分支分别保留语义；没有增加端点 PDE。
+
+原 (10.2) 幂次剖面 m≥2 全族在 `Examples/OriginalPowerProfile.lean` 真实构造，`original_profile_main` 调用新入口；`representative_nonconstant` 验证非恒定代表。`original_threshold_exact` 验证 c*=π²/1152，复用原精确参数。非零静态实际原解在 `Examples/GeneralWeakRegression.lean` 调用新主定理，并有正恒定能量与零耗散。四分支、旧不兼容增长排除和指定单层失败仍进入默认构建。
+
+(6.7)–(6.10)、(8.4)–(8.8)、§5.3 的具体声明及输入/调用表见 [最新报告](../reports/weak_theorem.md)，正式类型和全部证据见 [本轮语义审查](../logs/v1.0_finalization/semantic_review.md) / [总验收](../logs/v1.0_finalization/acceptance.json)。此前“连续代表/精确常数/核识别待实现”保留为对应日期历史，不覆盖旧验收。
+
+不扩张为一般存在唯一性、严格衰减、任意幅度或任意八变量裸 L² 范数等价。ROADMAP 原复选框按用户要求不修改，逐项实际完成状态登记在本轮验收矩阵。
+
+
+### v1.0_finalization 最终工程与 PDF 验收（2026-10-14）
+
+当前119个正式 Lean 文件全部可达，默认构建3131 jobs通过；1058次审计输出覆盖1050个不同声明，本轮新增61个不同审计声明，无 sorryAx，仅标准 propext/Classical.choice/Quot.sound。当前源码隔离重编和完整审计通过，复用精确依赖缓存、不复制项目编译产物。源文件在最终验证后未改变。
+
+PDF 实际/印刷第3、9、10、15页新增5勾及1条限定说明，18页和231条旧批注全部保留；最终237条批注。逐页渲染和碰撞检查通过，详见本轮 `pdf/annotation_result.json`、`pdf/visual_review.json`。旧第一次隔离结果保留为 `isolated_intermediate_*`：它之后曾补充当前辅助变量控制，因此不作为最终源码证据；最终隔离使用新目录重新从零构建。
+
+最终依据为 [acceptance.json](../logs/v1.0_finalization/acceptance.json) 与 [source_snapshot.json](../logs/v1.0_finalization/source_snapshot.json)。主线没有尚未兑现的分析接口；T=0初始图状态条件及先验解正则性保留为明示的数学输入，不宣称适定性、严格衰减或任意分布解理论。

@@ -1,0 +1,54 @@
+✔ [2997/2999] Built Mathlib.Analysis.Calculus.BumpFunction.Normed (3.5s)
+✔ [2998/2999] Built Mathlib.Analysis.Calculus.BumpFunction.Convolution (1.7s)
+✖ [2999/2999] Building LeanPML.Rectangle.WeakCompactApprox (7.7s)
+trace: .> LEAN_PATH=/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Cli/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/batteries/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Qq/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/aesop/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/proofwidgets/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/importGraph/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/plausible/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/mathlib/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean /Users/wcli/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/LeanPML/Rectangle/WeakCompactApprox.lean -o /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/Rectangle/WeakCompactApprox.olean -i /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/Rectangle/WeakCompactApprox.ilean -c /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/Rectangle/WeakCompactApprox.c --setup /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/Rectangle/WeakCompactApprox.setup.json --json
+error: LeanPML/Rectangle/WeakCompactApprox.lean:23:4: failed to synthesize instance of type class
+  volume.IsAddLeftInvariant
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: LeanPML/Rectangle/WeakCompactApprox.lean:32:16: failed to synthesize instance of type class
+  volume.IsAddLeftInvariant
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: LeanPML/Rectangle/WeakCompactApprox.lean:36:2: Type mismatch: After simplification, term
+  hdist
+ has type
+  @LE.le ℝ Real.instLE ‖(ρ.normed volume ⋆[lsmul ℝ ℝ, volume] g) x‖ C
+but is expected to have type
+  @LE.le ℝ Real.instLE ‖↑(mollifiedField ρ g hg) x‖ C
+error: LeanPML/Rectangle/WeakCompactApprox.lean:56:4: Type mismatch: After simplification, term
+  Tendsto.pow (Tendsto.sub hx tendsto_const_nhds) 2
+ has type
+  Tendsto (fun x_1 => (↑(F x_1) x - ?m.274) ^ 2) atTop (𝓝 ((↑↑g x - ?m.274) ^ 2))
+but is expected to have type
+  Tendsto (fun n => (↑(F n) x - ↑↑g x) ^ 2) atTop (𝓝 0)
+error: LeanPML/Rectangle/WeakCompactApprox.lean:69:16: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ↑↑((SmoothField.toL2 D) (F n)) x
+in the target expression
+  (↑↑((SmoothField.toL2 D) (F n)) - ↑↑g) x ^ 2 = (↑(F n) x - ↑↑g x) ^ 2
+
+D : Rect
+F : ℕ → SmoothField
+g : ↥(ScalarL2 D.measure)
+C : ℝ
+hC : 0 ≤ C
+hbound : ∀ (n : ℕ) (x : ℝ × ℝ), ‖↑(F n) x‖ ≤ C
+hgbound : ∀ᵐ (x : ℝ × ℝ) ∂D.measure, ‖↑↑g x‖ ≤ C
+hconv : ∀ᵐ (x : ℝ × ℝ) ∂D.measure, Tendsto (fun n => ↑(F n) x) atTop (𝓝 (↑↑g x))
+hdominated : ∀ (n : ℕ), ∀ᵐ (x : ℝ × ℝ) ∂D.measure, ‖(↑(F n) x - ↑↑g x) ^ 2‖ ≤ (2 * C) ^ 2
+hpointwise : ∀ᵐ (x : ℝ × ℝ) ∂D.measure, Tendsto (fun n => (↑(F n) x - ↑↑g x) ^ 2) atTop (𝓝 0)
+hintegral : Tendsto (fun n => ∫ (a : ℝ × ℝ), ((↑(F n) - ↑↑g) ^ 2) a ∂D.measure) atTop (𝓝 (∫ (a : ℝ × ℝ), 0 ∂D.measure))
+n : ℕ
+x : ℝ × ℝ
+hsub : ↑↑((SmoothField.toL2 D) (F n) - g) x = (↑↑((SmoothField.toL2 D) (F n)) - ↑↑g) x
+hF : ↑↑((SmoothField.toL2 D) (F n)) x = ↑(F n) x
+⊢ (↑↑((SmoothField.toL2 D) (F n)) - ↑↑g) x ^ 2 = (↑(F n) x - ↑↑g x) ^ 2
+error: LeanPML/Rectangle/WeakCompactApprox.lean:87:14: failed to synthesize instance of type class
+  volume.IsAddHaarMeasure
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+warning: LeanPML/Rectangle/WeakCompactApprox.lean:94:16: declaration uses `sorry`
+error: Lean exited with code 1
+Some required targets logged failures:
+- LeanPML.Rectangle.WeakCompactApprox
+error: build failed

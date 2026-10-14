@@ -1,0 +1,5 @@
+{
+  "report": "reports/weak_theorem.md",
+  "formal_types": "logs/v1.0.3/20261014T122040_030951_final_type_review.log",
+  "review": "semantic_review.md"
+}

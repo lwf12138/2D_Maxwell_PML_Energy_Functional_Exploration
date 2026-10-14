@@ -1,0 +1,85 @@
+LeanPML/Rectangle/WeakDirectionalPoincare.lean:94:37: error: linarith failed to find a contradiction
+case right
+a b : ℝ × ℝ
+hab : a ≤ b
+f : ℝ × ℝ → ℝ
+hf : ContDiff ℝ ∞ f
+hboundary : ∀ x ∈ Icc a.1 b.1, f (x, b.2) = 0
+χ : ℝ × ℝ → ℝ := fun z => z.2 - a.2
+fx : ℝ × ℝ → ℝ := fun z => (fderiv ℝ f z) (0, 1)
+hχ : ContDiff ℝ ∞ χ
+hfx : Continuous fx
+hfχ : ContDiff ℝ ∞ fun z => χ z * f z
+hdx : ∀ (z : ℝ × ℝ), (fderiv ℝ (fun z => χ z * f z) z) (0, 1) = f z + χ z * fx z
+hright : ∫ (x : ℝ) in a.1..b.1, f (x, b.2) * (χ (x, b.2) * f (x, b.2)) = 0
+hzeroDeriv : ∀ (z : ℝ × ℝ), fderiv ℝ (fun x => 0) z = 0
+hgreen :
+  (∫ (z : ℝ × ℝ) in Icc a b, f z ^ 2) + ∫ (z : ℝ × ℝ) in Icc a b, χ z * f z * fx z =
+    -∫ (z : ℝ × ℝ) in Icc a b, χ z * f z * fx z
+hiF : Integrable (fun z => f z ^ 2) (volume.restrict (Icc a b))
+hiCross : Integrable (fun z => χ z * f z * fx z) (volume.restrict (Icc a b))
+hiDx : Integrable (fun z => fx z ^ 2) (volume.restrict (Icc a b))
+hiWeighted : Integrable (fun z => χ z ^ 2 * fx z ^ 2) (volume.restrict (Icc a b))
+hleft :
+  ∫ (z : ℝ × ℝ) in Icc a b, f z * (f z + χ z * fx z) =
+    (∫ (z : ℝ × ℝ) in Icc a b, f z ^ 2) + ∫ (z : ℝ × ℝ) in Icc a b, χ z * f z * fx z
+hrightCross :
+  ∫ (z : ℝ × ℝ) in Icc a b, (fderiv ℝ f z) (0, 1) * ((z.2 - a.2) * f z) = ∫ (z : ℝ × ℝ) in Icc a b, χ z * f z * fx z
+hzero : (∫ (z : ℝ × ℝ) in Icc a b, f z ^ 2) + 2 * ∫ (z : ℝ × ℝ) in Icc a b, χ z * f z * fx z = 0
+hsquare : 0 ≤ ∫ (z : ℝ × ℝ) in Icc a b, (f z + 2 * χ z * fx z) ^ 2
+hsquare_expand :
+  ∫ (z : ℝ × ℝ) in Icc a b, (f z + 2 * χ z * fx z) ^ 2 =
+    ((∫ (z : ℝ × ℝ) in Icc a b, f z ^ 2) + 4 * ∫ (z : ℝ × ℝ) in Icc a b, χ z * f z * fx z) +
+      4 * ∫ (z : ℝ × ℝ) in Icc a b, χ z ^ 2 * fx z ^ 2
+z : ℝ × ℝ
+hz : z ∈ Icc a b
+a✝ : b.1 - a.1 < z.2 - a.2
+⊢ False
+failed
+LeanPML/Rectangle/WeakDirectionalPoincare.lean:95:52: error: linarith failed to find a contradiction
+a b : ℝ × ℝ
+hab : a ≤ b
+f : ℝ × ℝ → ℝ
+hf : ContDiff ℝ ∞ f
+hboundary : ∀ x ∈ Icc a.1 b.1, f (x, b.2) = 0
+χ : ℝ × ℝ → ℝ := fun z => z.2 - a.2
+fx : ℝ × ℝ → ℝ := fun z => (fderiv ℝ f z) (0, 1)
+hχ : ContDiff ℝ ∞ χ
+hfx : Continuous fx
+hfχ : ContDiff ℝ ∞ fun z => χ z * f z
+hdx : ∀ (z : ℝ × ℝ), (fderiv ℝ (fun z => χ z * f z) z) (0, 1) = f z + χ z * fx z
+hright : ∫ (x : ℝ) in a.1..b.1, f (x, b.2) * (χ (x, b.2) * f (x, b.2)) = 0
+hzeroDeriv : ∀ (z : ℝ × ℝ), fderiv ℝ (fun x => 0) z = 0
+hgreen :
+  (∫ (z : ℝ × ℝ) in Icc a b, f z ^ 2) + ∫ (z : ℝ × ℝ) in Icc a b, χ z * f z * fx z =
+    -∫ (z : ℝ × ℝ) in Icc a b, χ z * f z * fx z
+hiF : Integrable (fun z => f z ^ 2) (volume.restrict (Icc a b))
+hiCross : Integrable (fun z => χ z * f z * fx z) (volume.restrict (Icc a b))
+hiDx : Integrable (fun z => fx z ^ 2) (volume.restrict (Icc a b))
+hiWeighted : Integrable (fun z => χ z ^ 2 * fx z ^ 2) (volume.restrict (Icc a b))
+hleft :
+  ∫ (z : ℝ × ℝ) in Icc a b, f z * (f z + χ z * fx z) =
+    (∫ (z : ℝ × ℝ) in Icc a b, f z ^ 2) + ∫ (z : ℝ × ℝ) in Icc a b, χ z * f z * fx z
+hrightCross :
+  ∫ (z : ℝ × ℝ) in Icc a b, (fderiv ℝ f z) (0, 1) * ((z.2 - a.2) * f z) = ∫ (z : ℝ × ℝ) in Icc a b, χ z * f z * fx z
+hzero : (∫ (z : ℝ × ℝ) in Icc a b, f z ^ 2) + 2 * ∫ (z : ℝ × ℝ) in Icc a b, χ z * f z * fx z = 0
+hsquare : 0 ≤ ∫ (z : ℝ × ℝ) in Icc a b, (f z + 2 * χ z * fx z) ^ 2
+hsquare_expand :
+  ∫ (z : ℝ × ℝ) in Icc a b, (f z + 2 * χ z * fx z) ^ 2 =
+    ((∫ (z : ℝ × ℝ) in Icc a b, f z ^ 2) + 4 * ∫ (z : ℝ × ℝ) in Icc a b, χ z * f z * fx z) +
+      4 * ∫ (z : ℝ × ℝ) in Icc a b, χ z ^ 2 * fx z ^ 2
+z : ℝ × ℝ
+hz : z ∈ Icc a b
+hχbounds : 0 ≤ χ z ∧ χ z ≤ b.1 - a.1
+a✝ : (b.2 - a.2) ^ 2 < χ z ^ 2
+⊢ False
+failed
+LeanPML/Rectangle/WeakDirectionalPoincare.lean:51:51: warning: This simp argument is unused:
+  sub_zero
+
+Hint: Omit it from the simp argument list.
+  simp only [hdx, hzeroDeriv, zero_apply, add_zero, zero_add, mul_zero,
+      intervalIntegral.integral_zero, integral_zero, s̵u̵b̵_̵zero,̵ ̵z̵e̵r̵o̵_sub, neg_zero, χ, sub_self, zero_mul,
+  ̲  ̲ ̲ ̲hright] at hgreen
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

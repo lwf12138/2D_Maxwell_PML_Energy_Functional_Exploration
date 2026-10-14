@@ -1,0 +1,25 @@
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+LeanPML/Examples/OriginalPowerProfile.lean:75:13: error: unsolved goals
+η : ℝ
+m : ℕ
+x y : ℝ
+hpow :
+  |clippedBase x ^ m - clippedBase y ^ m| ≤
+    |clippedBase x - clippedBase y| * ↑m * max |clippedBase x| |clippedBase y| ^ (m - 1)
+hmax : 0 ≤ max |clippedBase x| |clippedBase y| ∧ max |clippedBase x| |clippedBase y| ≤ 1
+hpowbound : max |clippedBase x| |clippedBase y| ^ (m - 1) ≤ 1
+hbase : |clippedBase x - clippedBase y| ≤ 2 * |x - y|
+hdiff : |clippedBase x ^ m - clippedBase y ^ m| ≤ 2 * ↑m * |x - y|
+⊢ |η| * ↑m * |x - y| * 2 = |x - y| * ↑⟨|η| * ↑m * 2, ⋯⟩
+LeanPML/Examples/OriginalPowerProfile.lean:72:54: warning: This simp argument is unused:
+  NNReal.coe_mk
+
+Hint: Omit it from the simp argument list.
+  simp only [̵R̵e̵a̵l̵.̵d̵i̵s̵t̵_̵e̵q̵,̵e̵x̵t̵e̵n̵s̵i̵o̵n̵,̵←̵ ̵m̵u̵l̵_̵s̵u̵b̵,̵a̵b̵s̵_̵m̵u̵l̵,̵N̵N̵R̵e̵a̵l̵.̵c̵o̵e̵_̵m̵k̵]̵[̲R̲e̲a̲l̲.̲d̲i̲s̲t̲_̲e̲q̲,̲ ̲e̲x̲t̲e̲n̲s̲i̲o̲n̲,̲ ̲←̲ ̲m̲u̲l̲_̲s̲u̲b̲,̲ ̲a̲b̲s̲_̲m̲u̲l̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

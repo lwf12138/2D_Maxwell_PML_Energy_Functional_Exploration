@@ -1,0 +1,64 @@
+ℹ [3006/3007] Replayed LeanPML.PML.WeakOriginalSystem
+info: LeanPML/PML/WeakOriginalSystem.lean:187:4: Try this:
+  [apply] abel_nf
+✖ [3007/3007] Building LeanPML.PML.WeakLiftCompatibility (4.2s)
+trace: .> LEAN_PATH=/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Cli/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/batteries/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Qq/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/aesop/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/proofwidgets/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/importGraph/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/plausible/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/mathlib/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean /Users/wcli/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/LeanPML/PML/WeakLiftCompatibility.lean -o /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/WeakLiftCompatibility.olean -i /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/WeakLiftCompatibility.ilean -c /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/WeakLiftCompatibility.c --setup /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/WeakLiftCompatibility.setup.json --json
+error: LeanPML/PML/WeakLiftCompatibility.lean:68:4: failed to synthesize
+  CommSemiring ↥(ScalarL2 D.measure)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: LeanPML/PML/WeakLiftCompatibility.lean:71:4: failed to synthesize
+  CommSemiring ↥(ScalarL2 D.measure)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: LeanPML/PML/WeakLiftCompatibility.lean:113:28: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ↑↑((physicalX D.measure C) M.ψx) x
+in the target expression
+  (↑↑((physicalX D.measure C) M.ψx) - ↑↑((physicalX D.measure C) L.ψx)) x = 0 ∧
+    (↑↑((physicalY D.measure C) M.ψy) - ↑↑((physicalY D.measure C) L.ψy)) x = 0
+
+D : Rect
+C : SpatialAbsorption (ℝ × ℝ)
+ε κ τ μ : ℝ
+F : OriginalState D
+m : SeparatedRegionalWeakCoefficients D
+hp_match : ∀ x ∈ D.openSet, m.p.value.value x = C.p x
+hr_match : ∀ x ∈ D.openSet, m.r.value.value x = C.r x
+hp_continuous : ContinuousOn m.p.value.value D.openSet
+hr_continuous : ContinuousOn m.r.value.value D.openSet
+L M : CompatibleLift D C ε κ τ μ F
+g : ↥(zeroBoundaryGraph D) := L.u - M.u
+hgradient :
+  ↑↑(L.u - M.u) 1 = (physicalX D.measure C) M.ψx - (physicalX D.measure C) L.ψx ∧
+    ↑↑(L.u - M.u) 2 = (physicalY D.measure C) M.ψy - (physicalY D.measure C) L.ψy
+hp_derivative : m.p.value.operator (↑↑g 2) = 0
+hr_derivative : m.r.value.operator (↑↑g 1) = 0
+hgx : ↑↑g 1 = (physicalX D.measure C) M.ψx - (physicalX D.measure C) L.ψx
+hgy : ↑↑g 2 = (physicalY D.measure C) M.ψy - (physicalY D.measure C) L.ψy
+x : ℝ × ℝ
+hL : C.p x + C.r x = 0 → ↑↑((physicalX D.measure C) L.ψx) x = 0 ∧ ↑↑((physicalY D.measure C) L.ψy) x = 0
+hM : C.p x + C.r x = 0 → ↑↑((physicalX D.measure C) M.ψx) x = 0 ∧ ↑↑((physicalY D.measure C) M.ψy) x = 0
+hsubx :
+  ↑↑((physicalX D.measure C) M.ψx - (physicalX D.measure C) L.ψx) x =
+    (↑↑((physicalX D.measure C) M.ψx) - ↑↑((physicalX D.measure C) L.ψx)) x
+hsuby :
+  ↑↑((physicalY D.measure C) M.ψy - (physicalY D.measure C) L.ψy) x =
+    (↑↑((physicalY D.measure C) M.ψy) - ↑↑((physicalY D.measure C) L.ψy)) x
+hx : x ∈ rectangleDomain D.xlo D.xhi D.ylo D.yhi
+hzero : m.p.value.value x + m.r.value.value x = 0
+hsum : C.p x + C.r x = 0
+⊢ (↑↑((physicalX D.measure C) M.ψx) - ↑↑((physicalX D.measure C) L.ψx)) x = 0 ∧
+    (↑↑((physicalY D.measure C) M.ψy) - ↑↑((physicalY D.measure C) L.ψy)) x = 0
+error: LeanPML/PML/WeakLiftCompatibility.lean:146:45: No goals to be solved
+error: LeanPML/PML/WeakLiftCompatibility.lean:147:27: Application type mismatch: The argument
+  hpolar
+has type
+  L.q + τ • F.P = κ • ↑↑M.u 0
+but is expected to have type
+  L.q + ?m.100 = M.q + ?m.100
+in the application
+  add_right_cancel hpolar
+error: Lean exited with code 1
+Some required targets logged failures:
+- LeanPML.PML.WeakLiftCompatibility
+error: build failed

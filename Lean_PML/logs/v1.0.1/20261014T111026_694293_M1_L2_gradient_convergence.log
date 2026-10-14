@@ -1,0 +1,39 @@
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+LeanPML/Rectangle/SmoothWeakClosure.lean:452:22: error: don't know how to synthesize implicit argument `z`
+  @cutoffSequence_eventually_eq_with_derivatives D f ?m.90
+context:
+D : Rect
+f : SmoothField
+hzero : ZeroBoundary D ↑f
+M : ℝ
+hM : 0 ≤ M
+hpartial : ∀ z ∈ D.closedSet, ‖dx (↑f) z‖ ≤ M ∧ ‖dy (↑f) z‖ ≤ M
+B : ℝ
+hB : 0 ≤ B
+htransition : ∀ (x : ℝ), ‖deriv Real.smoothTransition x‖ ≤ B
+C : ℝ
+hfunction : ∀ x ∈ D.closedSet, ‖↑f x‖ ≤ C
+⊢ ℝ × ℝ
+LeanPML/Rectangle/SmoothWeakClosure.lean:452:7: error: failed to infer `have` declaration type
+LeanPML/Rectangle/SmoothWeakClosure.lean:448:54: error: unsolved goals
+D : Rect
+f : SmoothField
+hzero : ZeroBoundary D ↑f
+M : ℝ
+hM : 0 ≤ M
+hpartial : ∀ z ∈ D.closedSet, ‖dx (↑f) z‖ ≤ M ∧ ‖dy (↑f) z‖ ≤ M
+B : ℝ
+hB : 0 ≤ B
+htransition : ∀ (x : ℝ), ‖deriv Real.smoothTransition x‖ ≤ B
+C : ℝ
+hfunction : ∀ x ∈ D.closedSet, ‖↑f x‖ ≤ C
+⊢ Tendsto (fun n => (SmoothField.toL2 D) (cutoffSequence D f n).field) atTop (𝓝 ((SmoothField.toL2 D) f)) ∧
+    Tendsto (fun n => (SmoothField.toL2 D) (cutoffSequence D f n).field.derivativeX) atTop
+        (𝓝 ((SmoothField.toL2 D) f.derivativeX)) ∧
+      Tendsto (fun n => (SmoothField.toL2 D) (cutoffSequence D f n).field.derivativeY) atTop
+        (𝓝 ((SmoothField.toL2 D) f.derivativeY))

@@ -1,0 +1,18 @@
+LeanPML/PML/WeakCoefficients.lean:185:9: error(nested.lean.propRecLargeElim): Tactic `cases` failed with a nested error:
+Tactic `induction` failed: recursor `Exists.casesOn` can only eliminate into `Prop`
+
+D : Rect
+f : SmoothField
+x✝ : ∃ C, ∀ x ∈ ↑f '' D.closedSet, ‖x‖ ≤ C
+⊢ RegionalBounded D
+LeanPML/PML/WeakCoefficients.lean:199:2: error: Tactic `rfl` failed: The left-hand side
+  (regionalBoundedOfSmooth D f).value x
+is not definitionally equal to the right-hand side
+  ↑f x
+
+D : Rect
+f : SmoothField
+x : ℝ × ℝ
+hx : ↑↑(regionalBoundedOfSmooth D f).toL2 x = (regionalBoundedOfSmooth D f).value x
+hf : ↑↑((SmoothField.toL2 D) f) x = ↑f x
+⊢ (regionalBoundedOfSmooth D f).value x = ↑f x

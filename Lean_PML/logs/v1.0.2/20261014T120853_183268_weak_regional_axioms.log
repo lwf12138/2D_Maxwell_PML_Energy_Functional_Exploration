@@ -1,0 +1,40 @@
+structure LeanPML.PML.WeakRegionalAbsorption (D : LeanPML.Rectangle.Rect) : Type
+number of parameters: 1
+fields:
+  LeanPML.PML.WeakRegionalAbsorption.coefficients : LeanPML.PML.SeparatedRegionalWeakCoefficients D
+  LeanPML.PML.WeakRegionalAbsorption.c : ℝ
+  LeanPML.PML.WeakRegionalAbsorption.S : ℝ
+  LeanPML.PML.WeakRegionalAbsorption.c_pos : 0 < self.c
+  LeanPML.PML.WeakRegionalAbsorption.S_nonneg : 0 ≤ self.S
+  LeanPML.PML.WeakRegionalAbsorption.S_le_quarter : self.S ≤ self.c / 4
+  LeanPML.PML.WeakRegionalAbsorption.profileX_bounds : ∀ x ∈ Set.Icc D.xlo D.xhi,
+      0 ≤ self.coefficients.profileX x ∧ self.coefficients.profileX x ≤ self.S
+  LeanPML.PML.WeakRegionalAbsorption.profileY_bounds : ∀ y ∈ Set.Icc D.ylo D.yhi,
+      0 ≤ self.coefficients.profileY y ∧ self.coefficients.profileY y ≤ self.S
+  LeanPML.PML.WeakRegionalAbsorption.p_continuous : ContinuousOn self.coefficients.p.value.value D.openSet
+  LeanPML.PML.WeakRegionalAbsorption.r_continuous : ContinuousOn self.coefficients.r.value.value D.openSet
+constructor:
+  LeanPML.PML.WeakRegionalAbsorption.mk {D : LeanPML.Rectangle.Rect}
+    (coefficients : LeanPML.PML.SeparatedRegionalWeakCoefficients D) (c S : ℝ) (c_pos : 0 < c) (S_nonneg : 0 ≤ S)
+    (S_le_quarter : S ≤ c / 4)
+    (profileX_bounds : ∀ x ∈ Set.Icc D.xlo D.xhi, 0 ≤ coefficients.profileX x ∧ coefficients.profileX x ≤ S)
+    (profileY_bounds : ∀ y ∈ Set.Icc D.ylo D.yhi, 0 ≤ coefficients.profileY y ∧ coefficients.profileY y ≤ S)
+    (p_continuous : ContinuousOn coefficients.p.value.value D.openSet)
+    (r_continuous : ContinuousOn coefficients.r.value.value D.openSet) : LeanPML.PML.WeakRegionalAbsorption D
+def LeanPML.PML.WeakRegionalAbsorption.spatial : {D : LeanPML.Rectangle.Rect} →
+  LeanPML.PML.WeakRegionalAbsorption D → LeanPML.PML.SpatialAbsorption (ℝ × ℝ) :=
+fun {D} A =>
+  { c := A.c, S := A.S, c_pos := ⋯, p := A.coefficients.p.value.extended, r := A.coefficients.r.value.extended,
+    p_measurable := ⋯, r_measurable := ⋯, p_nonneg := ⋯, r_nonneg := ⋯, p_le_S := ⋯, r_le_S := ⋯, S_le_quarter := ⋯ }
+'LeanPML.PML.WeakRegionalAbsorption.regional_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.WeakRegionalAbsorption.p_match' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.WeakRegionalAbsorption.r_match' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.WeakRegionalAbsorption.profiles_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.WeakRegionalAbsorption.operators_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.WeakRegionalAbsorption.weights_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.WeakRegionalAbsorption.integral_profiles' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.WeakRegionalAbsorption.integrable_profiles_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.WeakRegionalAbsorption.certificate_threshold' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.WeakRegionalAbsorption.certificate_four_branches' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

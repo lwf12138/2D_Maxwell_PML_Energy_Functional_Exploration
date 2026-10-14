@@ -1,0 +1,18 @@
+{
+  "pages": 18,
+  "modified_pages": [
+    7,
+    8,
+    11
+  ],
+  "before_sha256": "730b9d79a305e563791d49cbc5edc0e790895168f171f359af2d4f395eba79ce",
+  "after_sha256": "4451ed9d022f167b2d66dbb95dd98066cee2c066cb92b935583a6d745d429bf7",
+  "old_annotations": 208,
+  "new_annotations": 211,
+  "added_ticks": 1,
+  "added_notes": 2,
+  "original_text_preserved": true,
+  "old_annotations_preserved": true,
+  "overlap_check": "passed",
+  "visual_review": "pending"
+}

@@ -1,0 +1,6 @@
+LeanPML/Rectangle/WeakPoincare.lean:57:4: error: Type mismatch: After simplification, term
+  ZeroBoundary.add_smul D hf hg 1
+ has type
+  ZeroBoundary D fun z => ↑f z + ↑g z
+but is expected to have type
+  ZeroBoundary D (↑f + ↑g)

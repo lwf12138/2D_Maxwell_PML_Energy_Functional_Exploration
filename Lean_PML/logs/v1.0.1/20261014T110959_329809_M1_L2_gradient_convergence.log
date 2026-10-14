@@ -1,0 +1,147 @@
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+LeanPML/Rectangle/SmoothWeakClosure.lean:324:39: error: unsolved goals
+case e'_2
+D : Rect
+f : SmoothField
+δ : ℝ
+hδ : 0 < δ
+z : ℝ × ℝ
+htransition : ∀ (x : ℝ), HasDerivAt Real.smoothTransition (deriv Real.smoothTransition x) x
+hleft :
+  HasDerivAt (Real.smoothTransition ∘ fun x => (id x - D.xlo - δ) / δ)
+    (deriv Real.smoothTransition ((z.1 - D.xlo - δ) / δ) * (1 / δ)) z.1
+hright :
+  HasDerivAt (Real.smoothTransition ∘ fun x => (((fun x => D.xhi) - id) x - δ) / δ)
+    (deriv Real.smoothTransition ((D.xhi - z.1 - δ) / δ) * ((0 - 1) / δ)) z.1
+hbottom : HasDerivAt (fun x => ((z.2 - D.ylo - δ) / δ).smoothTransition) 0 z.1
+htop : HasDerivAt (fun x => ((D.yhi - z.2 - δ) / δ).smoothTransition) 0 z.1
+hproduct :
+  HasDerivAt
+    (((((fun x => ((x - D.xlo - δ) / δ).smoothTransition) * fun x => ((D.xhi - x - δ) / δ).smoothTransition) * fun x =>
+          ((z.2 - D.ylo - δ) / δ).smoothTransition) *
+        fun x => ((D.yhi - z.2 - δ) / δ).smoothTransition) *
+      fun x => ↑f (x, z.2))
+    ((((deriv Real.smoothTransition ((z.1 - D.xlo - δ) / δ) * (1 / δ) * ((D.xhi - z.1 - δ) / δ).smoothTransition +
+                  ((z.1 - D.xlo - δ) / δ).smoothTransition *
+                    (deriv Real.smoothTransition ((D.xhi - z.1 - δ) / δ) * ((0 - 1) / δ))) *
+                ((z.2 - D.ylo - δ) / δ).smoothTransition +
+              ((z.1 - D.xlo - δ) / δ).smoothTransition * ((D.xhi - z.1 - δ) / δ).smoothTransition * 0) *
+            ((D.yhi - z.2 - δ) / δ).smoothTransition +
+          ((z.1 - D.xlo - δ) / δ).smoothTransition * ((D.xhi - z.1 - δ) / δ).smoothTransition *
+              ((z.2 - D.ylo - δ) / δ).smoothTransition *
+            0) *
+        ↑f (z.1, z.2) +
+      ((z.1 - D.xlo - δ) / δ).smoothTransition * ((D.xhi - z.1 - δ) / δ).smoothTransition *
+            ((z.2 - D.ylo - δ) / δ).smoothTransition *
+          ((D.yhi - z.2 - δ) / δ).smoothTransition *
+        dx (↑f) z)
+    z.1
+⊢ deriv
+      (fun x =>
+        (x * δ⁻¹ - D.xlo * δ⁻¹ - δ * δ⁻¹).smoothTransition * (-(x * δ⁻¹) - δ * δ⁻¹ + δ⁻¹ * D.xhi).smoothTransition *
+              (-(δ * δ⁻¹) + δ⁻¹ * z.2 - δ⁻¹ * D.ylo).smoothTransition *
+            (-(δ * δ⁻¹) - δ⁻¹ * z.2 + δ⁻¹ * D.yhi).smoothTransition *
+          ↑f (x, z.2))
+      z.1 =
+    deriv
+      (((((fun x => (-(D.xlo * δ⁻¹) - δ * δ⁻¹ + δ⁻¹ * x).smoothTransition) * fun x =>
+              (-(δ * δ⁻¹) + δ⁻¹ * D.xhi - δ⁻¹ * x).smoothTransition) *
+            fun x => (-(δ * δ⁻¹) + δ⁻¹ * z.2 - δ⁻¹ * D.ylo).smoothTransition) *
+          fun x => (-(δ * δ⁻¹) - δ⁻¹ * z.2 + δ⁻¹ * D.yhi).smoothTransition) *
+        fun x => ↑f (x, z.2))
+      z.1
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+LeanPML/Rectangle/SmoothWeakClosure.lean:349:39: error: unsolved goals
+case e'_2
+D : Rect
+f : SmoothField
+δ : ℝ
+hδ : 0 < δ
+z : ℝ × ℝ
+htransition : ∀ (x : ℝ), HasDerivAt Real.smoothTransition (deriv Real.smoothTransition x) x
+hbottom :
+  HasDerivAt (Real.smoothTransition ∘ fun x => (id x - D.ylo - δ) / δ)
+    (deriv Real.smoothTransition ((z.2 - D.ylo - δ) / δ) * (1 / δ)) z.2
+htop :
+  HasDerivAt (Real.smoothTransition ∘ fun x => (((fun x => D.yhi) - id) x - δ) / δ)
+    (deriv Real.smoothTransition ((D.yhi - z.2 - δ) / δ) * ((0 - 1) / δ)) z.2
+hleft : HasDerivAt (fun x => ((z.1 - D.xlo - δ) / δ).smoothTransition) 0 z.2
+hright : HasDerivAt (fun x => ((D.xhi - z.1 - δ) / δ).smoothTransition) 0 z.2
+hproduct :
+  HasDerivAt
+    (((((fun x => ((z.1 - D.xlo - δ) / δ).smoothTransition) * fun x => ((D.xhi - z.1 - δ) / δ).smoothTransition) *
+          fun x => ((x - D.ylo - δ) / δ).smoothTransition) *
+        fun x => ((D.yhi - x - δ) / δ).smoothTransition) *
+      fun y => ↑f (z.1, y))
+    ((((0 * ((D.xhi - z.1 - δ) / δ).smoothTransition + ((z.1 - D.xlo - δ) / δ).smoothTransition * 0) *
+                ((z.2 - D.ylo - δ) / δ).smoothTransition +
+              ((z.1 - D.xlo - δ) / δ).smoothTransition * ((D.xhi - z.1 - δ) / δ).smoothTransition *
+                (deriv Real.smoothTransition ((z.2 - D.ylo - δ) / δ) * (1 / δ))) *
+            ((D.yhi - z.2 - δ) / δ).smoothTransition +
+          ((z.1 - D.xlo - δ) / δ).smoothTransition * ((D.xhi - z.1 - δ) / δ).smoothTransition *
+              ((z.2 - D.ylo - δ) / δ).smoothTransition *
+            (deriv Real.smoothTransition ((D.yhi - z.2 - δ) / δ) * ((0 - 1) / δ))) *
+        ↑f (z.1, z.2) +
+      ((z.1 - D.xlo - δ) / δ).smoothTransition * ((D.xhi - z.1 - δ) / δ).smoothTransition *
+            ((z.2 - D.ylo - δ) / δ).smoothTransition *
+          ((D.yhi - z.2 - δ) / δ).smoothTransition *
+        dy (↑f) z)
+    z.2
+⊢ deriv
+      (fun y =>
+        (z.1 * δ⁻¹ - D.xlo * δ⁻¹ - δ * δ⁻¹).smoothTransition * (-(z.1 * δ⁻¹) - δ * δ⁻¹ + δ⁻¹ * D.xhi).smoothTransition *
+              (-(δ * δ⁻¹) + δ⁻¹ * y - δ⁻¹ * D.ylo).smoothTransition *
+            (-(δ * δ⁻¹) - δ⁻¹ * y + δ⁻¹ * D.yhi).smoothTransition *
+          ↑f (z.1, y))
+      z.2 =
+    deriv
+      (((((fun x => (z.1 * δ⁻¹ - D.xlo * δ⁻¹ - δ * δ⁻¹).smoothTransition) * fun x =>
+              (-(z.1 * δ⁻¹) - δ * δ⁻¹ + δ⁻¹ * D.xhi).smoothTransition) *
+            fun x => (-(δ * δ⁻¹) - δ⁻¹ * D.ylo + δ⁻¹ * x).smoothTransition) *
+          fun x => (-(δ * δ⁻¹) + δ⁻¹ * D.yhi - δ⁻¹ * x).smoothTransition) *
+        fun y => ↑f (z.1, y))
+      z.2
+LeanPML/Rectangle/SmoothWeakClosure.lean:395:32: error: `dsimp` made no progress
+LeanPML/Rectangle/SmoothWeakClosure.lean:452:22: error: don't know how to synthesize implicit argument `z`
+  @cutoffSequence_eventually_eq_with_derivatives D f ?m.90
+context:
+D : Rect
+f : SmoothField
+hzero : ZeroBoundary D ↑f
+M : ℝ
+hM : 0 ≤ M
+hpartial : ∀ z ∈ D.closedSet, ‖dx (↑f) z‖ ≤ M ∧ ‖dy (↑f) z‖ ≤ M
+B : ℝ
+hB : 0 ≤ B
+htransition : ∀ (x : ℝ), ‖deriv Real.smoothTransition x‖ ≤ B
+C : ℝ
+hfunction : ∀ x ∈ D.closedSet, ‖↑f x‖ ≤ C
+⊢ ℝ × ℝ
+LeanPML/Rectangle/SmoothWeakClosure.lean:452:7: error: failed to infer `have` declaration type
+LeanPML/Rectangle/SmoothWeakClosure.lean:448:54: error: unsolved goals
+D : Rect
+f : SmoothField
+hzero : ZeroBoundary D ↑f
+M : ℝ
+hM : 0 ≤ M
+hpartial : ∀ z ∈ D.closedSet, ‖dx (↑f) z‖ ≤ M ∧ ‖dy (↑f) z‖ ≤ M
+B : ℝ
+hB : 0 ≤ B
+htransition : ∀ (x : ℝ), ‖deriv Real.smoothTransition x‖ ≤ B
+C : ℝ
+hfunction : ∀ x ∈ D.closedSet, ‖↑f x‖ ≤ C
+⊢ Tendsto (fun n => (SmoothField.toL2 D) (cutoffSequence D f n).field) atTop (𝓝 ((SmoothField.toL2 D) f)) ∧
+    Tendsto (fun n => (SmoothField.toL2 D) (cutoffSequence D f n).field.derivativeX) atTop
+        (𝓝 ((SmoothField.toL2 D) f.derivativeX)) ∧
+      Tendsto (fun n => (SmoothField.toL2 D) (cutoffSequence D f n).field.derivativeY) atTop
+        (𝓝 ((SmoothField.toL2 D) f.derivativeY))

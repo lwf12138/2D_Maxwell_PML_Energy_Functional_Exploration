@@ -1,0 +1,116 @@
+[
+  {
+    "page": 4,
+    "command": [
+      "/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdftoppm",
+      "-f",
+      "4",
+      "-l",
+      "4",
+      "-r",
+      "120",
+      "-png",
+      "-singlefile",
+      "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf",
+      "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v1.0.3/pdf/completion_20261014/final_page_04"
+    ],
+    "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "page": 9,
+    "command": [
+      "/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdftoppm",
+      "-f",
+      "9",
+      "-l",
+      "9",
+      "-r",
+      "120",
+      "-png",
+      "-singlefile",
+      "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf",
+      "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v1.0.3/pdf/completion_20261014/final_page_09"
+    ],
+    "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "page": 10,
+    "command": [
+      "/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdftoppm",
+      "-f",
+      "10",
+      "-l",
+      "10",
+      "-r",
+      "120",
+      "-png",
+      "-singlefile",
+      "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf",
+      "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v1.0.3/pdf/completion_20261014/final_page_10"
+    ],
+    "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "page": 11,
+    "command": [
+      "/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdftoppm",
+      "-f",
+      "11",
+      "-l",
+      "11",
+      "-r",
+      "120",
+      "-png",
+      "-singlefile",
+      "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf",
+      "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v1.0.3/pdf/completion_20261014/final_page_11"
+    ],
+    "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "page": 14,
+    "command": [
+      "/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdftoppm",
+      "-f",
+      "14",
+      "-l",
+      "14",
+      "-r",
+      "120",
+      "-png",
+      "-singlefile",
+      "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf",
+      "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v1.0.3/pdf/completion_20261014/final_page_14"
+    ],
+    "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "page": 16,
+    "command": [
+      "/Users/wcli/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdftoppm",
+      "-f",
+      "16",
+      "-l",
+      "16",
+      "-r",
+      "120",
+      "-png",
+      "-singlefile",
+      "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf",
+      "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v1.0.3/pdf/completion_20261014/final_page_16"
+    ],
+    "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+    "exit_code": 0,
+    "output": ""
+  }
+]

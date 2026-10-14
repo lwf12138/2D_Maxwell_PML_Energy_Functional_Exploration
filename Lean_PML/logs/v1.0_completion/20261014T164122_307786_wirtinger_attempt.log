@@ -1,0 +1,17 @@
+logs/v1.0_completion/WirtingerAttempt.lean:23:29: error: `simp` made no progress
+logs/v1.0_completion/WirtingerAttempt.lean:23:29: error: `simp` made no progress
+logs/v1.0_completion/WirtingerAttempt.lean:23:29: error: `simp` made no progress
+logs/v1.0_completion/WirtingerAttempt.lean:17:60: error: unsolved goals
+a b k : ℝ
+hab : a ≤ b
+f df q : ℝ → ℝ
+hf : ContinuousOn f (Icc a b)
+hdf : ContinuousOn df (Icc a b)
+hq : ContinuousOn q (Icc a b)
+hderiv : ∀ x ∈ Ioo a b, HasDerivAt f (df x) x
+hRiccati : ∀ x ∈ Ioo a b, HasDerivAt q (-k ^ 2 - q x ^ 2) x
+ha : f a = 0
+hb : f b = 0
+hprod : ContinuousOn (fun x => q x * f x ^ 2) (Icc a b)
+hdprod : ∀ x ∈ Ioo a b, HasDerivAt (fun y => q y * f y ^ 2) ((-k ^ 2 - q x ^ 2) * f x ^ 2 + 2 * q x * f x * df x) x
+⊢ k ^ 2 * ∫ (x : ℝ) in a..b, f x ^ 2 ≤ ∫ (x : ℝ) in a..b, df x ^ 2

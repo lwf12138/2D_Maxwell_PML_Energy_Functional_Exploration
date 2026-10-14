@@ -1,0 +1,159 @@
+{
+  "pages": 18,
+  "modified_pages": [
+    7,
+    8,
+    11
+  ],
+  "before_sha256": "730b9d79a305e563791d49cbc5edc0e790895168f171f359af2d4f395eba79ce",
+  "after_sha256": "4451ed9d022f167b2d66dbb95dd98066cee2c066cb92b935583a6d745d429bf7",
+  "old_annotations": 208,
+  "new_annotations": 211,
+  "added_ticks": 1,
+  "added_notes": 2,
+  "original_text_preserved": true,
+  "old_annotations_preserved": true,
+  "overlap_check": "passed",
+  "visual_review": "passed",
+  "entries": [
+    {
+      "id": "weak-poincare-conservative",
+      "page": 7,
+      "printed_page": 7,
+      "formula": "(5.1) 的保守常数子结论",
+      "tick": false,
+      "x": 68,
+      "top": 520,
+      "font_size": 7,
+      "lines": [
+        "v1.0.2：弱 H₀¹ Poincaré 已证，C_P=2Lx；保守常数，非原式精确 π 常数。"
+      ],
+      "theorems": [
+        "LeanPML.Rectangle.weak_poincare",
+        "LeanPML.Rectangle.weakPoincareDomain"
+      ],
+      "modules": [
+        "LeanPML/Rectangle/WeakPoincare.lean"
+      ],
+      "scope": "在紧支光滑图闭包定义的 H₀¹ 上推广保守常数。一般旧光滑零迹场进入闭包的逼近仍缺；不标原精确公式完成。",
+      "rect_top": [
+        67,
+        518,
+        301.4833984375,
+        529.0
+      ],
+      "build_audit": {
+        "lake_build": {
+          "metadata": "logs/v1.0.3/20261014T104157_124733_lake_build.json",
+          "log": "logs/v1.0.3/20261014T104157_124733_lake_build.log",
+          "sha256": "bcba62051e3fe5f4d6acf75b9c6eb6d55c818d11f1349a34bad92ff70a3edf6b",
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "exit_code": 0
+        },
+        "axioms_audit": {
+          "metadata": "logs/v1.0.3/20261014T104239_987027_axioms_audit.json",
+          "log": "logs/v1.0.3/20261014T104239_987027_axioms_audit.log",
+          "sha256": "c55e3a8f94b2a7237bf7a0ddb3c8f1c78b9e0122cbc6bf9cc88a7764a30d0da2",
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "exit_code": 0
+        }
+      },
+      "source_hashes": {
+        "LeanPML/Rectangle/WeakPoincare.lean": "3b1a717eddbae6b838929bcfacb7fd5238373aabd7809c4731af20fc20d74489"
+      }
+    },
+    {
+      "id": "memory-pointwise-scope",
+      "page": 8,
+      "printed_page": 8,
+      "formula": "(5.7) 点上的真实时间积分子结论",
+      "tick": false,
+      "x": 68,
+      "top": 780,
+      "font_size": 7,
+      "lines": [
+        "v1.0.2 (5.7)：点上真实 ODE/时间积分版已证；弱场连接及 (5.8) 加权传播未完成。"
+      ],
+      "theorems": [
+        "LeanPML.PML.auxiliary_memory_formula"
+      ],
+      "modules": [
+        "LeanPML/PML/AuxiliaryMemory.lean"
+      ],
+      "scope": "实际实值时间函数闭区间连续、内部 HasDerivAt，推出变常数公式；梯度输入尚未与弱场识别，不标加权传播完成。",
+      "rect_top": [
+        67,
+        778,
+        323.748046875,
+        789.0
+      ],
+      "build_audit": {
+        "lake_build": {
+          "metadata": "logs/v1.0.3/20261014T104157_124733_lake_build.json",
+          "log": "logs/v1.0.3/20261014T104157_124733_lake_build.log",
+          "sha256": "bcba62051e3fe5f4d6acf75b9c6eb6d55c818d11f1349a34bad92ff70a3edf6b",
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "exit_code": 0
+        },
+        "axioms_audit": {
+          "metadata": "logs/v1.0.3/20261014T104239_987027_axioms_audit.json",
+          "log": "logs/v1.0.3/20261014T104239_987027_axioms_audit.log",
+          "sha256": "c55e3a8f94b2a7237bf7a0ddb3c8f1c78b9e0122cbc6bf9cc88a7764a30d0da2",
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "exit_code": 0
+        }
+      },
+      "source_hashes": {
+        "LeanPML/PML/AuxiliaryMemory.lean": "c566c58ad87d4d08ab83ff720496f41b350bf92015af4cbc606549e2bfa82432"
+      }
+    },
+    {
+      "id": "weak-green-zero-trace",
+      "page": 11,
+      "printed_page": 11,
+      "formula": "(7.5) 零迹弱 Green",
+      "tick": true,
+      "x": 68,
+      "top": 490,
+      "font_size": 7,
+      "lines": [
+        "v1.0.2 (7.5)：H₀¹ × H(div) 弱零迹 Green；通量无额外边界条件。",
+        "H₀¹ 为紧支光滑图闭包；非零迹理论、弱 PML 主定理仍未完成。"
+      ],
+      "theorems": [
+        "LeanPML.Rectangle.weak_green",
+        "LeanPML.Rectangle.weakGreenDomain"
+      ],
+      "modules": [
+        "LeanPML/Rectangle/WeakGreen.lean"
+      ],
+      "scope": "真实弱散度测试配对经线性张成及图范数闭包推广；已填入旧受限空间接口。无一般 Green 输入，无 Λ·n=0；不是最终弱原系统定理。",
+      "rect_top": [
+        67,
+        488,
+        284.11181640625,
+        508.2
+      ],
+      "build_audit": {
+        "lake_build": {
+          "metadata": "logs/v1.0.3/20261014T104157_124733_lake_build.json",
+          "log": "logs/v1.0.3/20261014T104157_124733_lake_build.log",
+          "sha256": "bcba62051e3fe5f4d6acf75b9c6eb6d55c818d11f1349a34bad92ff70a3edf6b",
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "exit_code": 0
+        },
+        "axioms_audit": {
+          "metadata": "logs/v1.0.3/20261014T104239_987027_axioms_audit.json",
+          "log": "logs/v1.0.3/20261014T104239_987027_axioms_audit.log",
+          "sha256": "c55e3a8f94b2a7237bf7a0ddb3c8f1c78b9e0122cbc6bf9cc88a7764a30d0da2",
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "exit_code": 0
+        }
+      },
+      "source_hashes": {
+        "LeanPML/Rectangle/WeakGreen.lean": "5eec477aab6006841e87c0d02ec3105268a666c6a9c1dca251774b7ba111ac58"
+      }
+    }
+  ],
+  "visual_record": "logs/v1.0.3/pdf/visual_review.json"
+}

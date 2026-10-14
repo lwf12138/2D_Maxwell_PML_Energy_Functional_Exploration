@@ -1,0 +1,18 @@
+{
+  "stage": "v1.0.3",
+  "command": [
+    "lake",
+    "build",
+    "LeanPML.PML.MainWeakRectangle"
+  ],
+  "command_display": "lake build LeanPML.PML.MainWeakRectangle",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-14T12:07:31.094947+08:00",
+  "output_file": "20261014T120731_094947_weak_main_build.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 1,
+  "status": "finished",
+  "ended_at": "2026-10-14T12:07:40.681824+08:00",
+  "elapsed_seconds": 9.587
+}

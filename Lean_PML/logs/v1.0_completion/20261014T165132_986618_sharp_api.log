@@ -1,0 +1,42 @@
+HasCompactSupport.comp_isClosedEmbedding.{u_2, u_3, u_4} {α : Type u_2} {α' : Type u_3} {β : Type u_4}
+  [TopologicalSpace α] [TopologicalSpace α'] [Zero β] {f : α → β} (hf : HasCompactSupport f) {g : α' → α}
+  (hg : Topology.IsClosedEmbedding g) : HasCompactSupport (f ∘ g)
+logs/v1.0_completion/SharpProbe.lean:3:7: error(lean.unknownIdentifier): Unknown identifier `isClosedEmbedding_prodMk_left`
+logs/v1.0_completion/SharpProbe.lean:4:7: error(lean.unknownIdentifier): Unknown identifier `isClosedEmbedding_prodMk_right`
+tsupport_comp_subset_preimage.{u_1, u_2, u_9} {X : Type u_1} {α : Type u_2} [Zero α] [TopologicalSpace X] {Y : Type u_9}
+  [TopologicalSpace Y] (g : Y → α) {f : X → Y} (hf : Continuous f) : tsupport (g ∘ f) ⊆ f ⁻¹' tsupport g
+tsupport_add.{u_1, u_2} {X : Type u_1} {α : Type u_2} [TopologicalSpace X] [AddZeroClass α] (f g : X → α) :
+  (tsupport fun x => f x + g x) ⊆ tsupport f ∪ tsupport g
+logs/v1.0_completion/SharpProbe.lean:7:7: error(lean.unknownIdentifier): Unknown identifier `tsupport_const_smul_subset`
+MeasureTheory.integral_prod_symm.{u_1, u_2, u_3} {α : Type u_1} {β : Type u_2} {E : Type u_3} [MeasurableSpace α]
+  [MeasurableSpace β] {μ : MeasureTheory.Measure α} {ν : MeasureTheory.Measure β} [NormedAddCommGroup E]
+  [MeasureTheory.SFinite ν] [NormedSpace ℝ E] [MeasureTheory.SFinite μ] (f : α × β → E)
+  (hf : MeasureTheory.Integrable f (μ.prod ν)) : ∫ (z : α × β), f z ∂μ.prod ν = ∫ (y : β), ∫ (x : α), f (x, y) ∂μ ∂ν
+MeasureTheory.Integrable.integral_prod_left.{u_1, u_2, u_3} {α : Type u_1} {β : Type u_2} {E : Type u_3}
+  [MeasurableSpace α] [MeasurableSpace β] {μ : MeasureTheory.Measure α} {ν : MeasureTheory.Measure β}
+  [NormedAddCommGroup E] [MeasureTheory.SFinite ν] [NormedSpace ℝ E] ⦃f : α × β → E⦄
+  (hf : MeasureTheory.Integrable f (μ.prod ν)) : MeasureTheory.Integrable (fun x => ∫ (y : β), f (x, y) ∂ν) μ
+MeasureTheory.Integrable.integral_prod_right.{u_1, u_2, u_3} {α : Type u_1} {β : Type u_2} {E : Type u_3}
+  [MeasurableSpace α] [MeasurableSpace β] {μ : MeasureTheory.Measure α} {ν : MeasureTheory.Measure β}
+  [NormedAddCommGroup E] [MeasureTheory.SFinite ν] [NormedSpace ℝ E] [MeasureTheory.SFinite μ] ⦃f : α × β → E⦄
+  (hf : MeasureTheory.Integrable f (μ.prod ν)) : MeasureTheory.Integrable (fun y => ∫ (x : α), f (x, y) ∂μ) ν
+MeasureTheory.integral_eq_setIntegral.{u_1, u_3} {X : Type u_1} {E : Type u_3} {mX : MeasurableSpace X}
+  [NormedAddCommGroup E] [NormedSpace ℝ E] {s : Set X} {μ : MeasureTheory.Measure X} (hs : ∀ᵐ (x : X) ∂μ, x ∈ s)
+  (f : X → E) : ∫ (x : X), f x ∂μ = ∫ (x : X) in s, f x ∂μ
+MeasureTheory.setIntegral_eq_integral_of_forall_compl_eq_zero.{u_1, u_3} {X : Type u_1} {E : Type u_3}
+  {mX : MeasurableSpace X} [NormedAddCommGroup E] [NormedSpace ℝ E] {f : X → E} {s : Set X}
+  {μ : MeasureTheory.Measure X} (h : ∀ x ∉ s, f x = 0) : ∫ (x : X) in s, f x ∂μ = ∫ (x : X), f x ∂μ
+logs/v1.0_completion/SharpProbe.lean:13:7: error(lean.unknownIdentifier): Unknown constant `HasCompactSupport.integrable`
+HasCompactSupport.fderiv.{u_1, u_2, u_3} (𝕜 : Type u_1) [NontriviallyNormedField 𝕜] {E : Type u_2} [AddCommGroup E]
+  [Module 𝕜 E] [TopologicalSpace E] {F : Type u_3} [AddCommGroup F] [Module 𝕜 F] [TopologicalSpace F] {f : E → F}
+  (hf : HasCompactSupport f) : HasCompactSupport (fderiv 𝕜 f)
+HasCompactSupport.deriv.{u, v} {𝕜 : Type u} [NontriviallyNormedField 𝕜] {E : Type v} [NormedAddCommGroup E]
+  [NormedSpace 𝕜 E] {f : 𝕜 → E} (hf : HasCompactSupport f) : HasCompactSupport (deriv f)
+HasCompactSupport.add.{u_2, u_4} {α : Type u_2} {β : Type u_4} [TopologicalSpace α] [AddZeroClass β] {f f' : α → β}
+  (hf : HasCompactSupport f) (hf' : HasCompactSupport f') : HasCompactSupport (f + f')
+HasCompactSupport.zero.{u_9, u_10} {α : Type u_9} {β : Type u_10} [TopologicalSpace α] [Zero β] : HasCompactSupport 0
+HasCompactSupport.smul_left.{u_2, u_7, u_8} {α : Type u_2} {M : Type u_7} {R : Type u_8} [TopologicalSpace α] [Zero M]
+  [SMulZeroClass R M] {f : α → R} {f' : α → M} (hf : HasCompactSupport f') : HasCompactSupport (f • f')
+tsupport_smul_subset_right.{u_1, u_9, u_10} {X : Type u_1} [TopologicalSpace X] {M : Type u_9} {α : Type u_10} [Zero α]
+  [SMulZeroClass M α] (f : X → M) (g : X → α) : (tsupport fun x => f x • g x) ⊆ tsupport g
+Real.sqrt_sq_eq_abs (x : ℝ) : √(x ^ 2) = |x|

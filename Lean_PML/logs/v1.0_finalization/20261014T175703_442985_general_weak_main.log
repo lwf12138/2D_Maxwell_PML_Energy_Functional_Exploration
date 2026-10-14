@@ -1,0 +1,91 @@
+LeanPML/PML/MainGeneralWeak.lean:27:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  A.rawSpatial.p z
+in the target expression
+  energyWeightX A.c (A.rawSpatial.swap.p z) (A.rawSpatial.swap.r z) =
+    energyWeightX A.c (A.represented.spatial.swap.p z) (A.represented.spatial.swap.r z)
+
+D : Rect
+A : RawWeakRegionalAbsorption D
+z : ℝ × ℝ
+hp : A.rawSpatial.p z = A.represented.spatial.p z
+hr : A.rawSpatial.r z = A.represented.spatial.r z
+⊢ energyWeightX A.c (A.rawSpatial.swap.p z) (A.rawSpatial.swap.r z) =
+    energyWeightX A.c (A.represented.spatial.swap.p z) (A.represented.spatial.swap.r z)
+LeanPML/PML/MainGeneralWeak.lean:62:3: error: Application type mismatch: The argument
+  R.u_graph
+has type
+  ContDiffOn ℝ 2 O.u (Icc 0 T)
+but is expected to have type
+  ContDiffOn ℝ 2 O.representedInterval.u (Icc 0 T)
+in the application
+  V7ClosedCkCore.mk R.u_graph
+LeanPML/PML/MainGeneralWeak.lean:66:4: error: Type mismatch
+  J.electric_deriv
+has type
+  ∀ t ∈ Ioo 0 T, HasDerivAt O.electric (J.electricDot t) t
+but is expected to have type
+  ∀ t ∈ Ioo 0 T, HasDerivAt O.representedInterval.electric (J.electricDot t) t
+LeanPML/PML/MainGeneralWeak.lean:73:10: error: Application type mismatch: The argument
+  h.polar
+has type
+  T = 0 → (O.fields 0).P + τ • (O.derivatives 0).P = κ • (O.fields 0).E
+but is expected to have type
+  T = 0 →
+    (O.representedInterval.fields 0).P + τ • (O.representedInterval.derivatives 0).P =
+      κ • (O.representedInterval.fields 0).E
+in the application
+  DegenerateJetCompatibility.mk h.polar
+LeanPML/PML/MainGeneralWeak.lean:75:4: error: Type mismatch: After simplification, term
+  h.spatialX hT
+ has type
+  ↑(J.fluxDot 0) 0 =
+    ↑↑(O.electric 0) 1 + (A.rawSpatial.rCoeff.operator D.measure) (↑↑(O.u 0) 1) -
+      (A.rawSpatial.pCoeff.operator D.measure) (↑(O.flux 0) 0)
+but is expected to have type
+  ↑((O.representedJet J).fluxDot 0) 0 =
+    ↑↑(O.representedInterval.electric 0) 1 +
+        (A.rawSpatial.rCoeff.operator D.measure) (↑↑(O.representedInterval.u 0) 1) -
+      (A.rawSpatial.pCoeff.operator D.measure) (↑(O.representedInterval.flux 0) 0)
+LeanPML/PML/MainGeneralWeak.lean:77:4: error: Type mismatch: After simplification, term
+  h.spatialY hT
+ has type
+  ↑(J.fluxDot 0) 1 =
+    ↑↑(O.electric 0) 2 + (A.rawSpatial.pCoeff.operator D.measure) (↑↑(O.u 0) 2) -
+      (A.rawSpatial.rCoeff.operator D.measure) (↑(O.flux 0) 1)
+but is expected to have type
+  ↑((O.representedJet J).fluxDot 0) 1 =
+    ↑↑(O.representedInterval.electric 0) 2 +
+        (A.rawSpatial.pCoeff.operator D.measure) (↑↑(O.representedInterval.u 0) 2) -
+      (A.rawSpatial.rCoeff.operator D.measure) (↑(O.representedInterval.flux 0) 1)
+LeanPML/PML/MainGeneralWeak.lean:95:43: error: Application type mismatch: The argument
+  hX
+has type
+  (physicalL2 D.measure A.rawSpatial.wx ⋯ ⋯) X = O.φx 0
+but is expected to have type
+  (physicalL2 D.measure A.rawSpatial.wx ⋯ ⋯) X = O.representedInterval.φx 0
+in the application
+  Eq.trans (RawWeakRegionalAbsorption.initial_physical A X Y).left hX
+LeanPML/PML/MainGeneralWeak.lean:96:43: error: Application type mismatch: The argument
+  hY
+has type
+  (physicalL2 D.measure A.rawSpatial.swap.wx ⋯ ⋯) Y = O.φy 0
+but is expected to have type
+  (physicalL2 D.measure A.rawSpatial.swap.wx ⋯ ⋯) Y = O.representedInterval.φy 0
+in the application
+  Eq.trans (RawWeakRegionalAbsorption.initial_physical A X Y).right hY
+LeanPML/PML/MainGeneralWeak.lean:110:38: error: Application type mismatch: The argument
+  hX
+has type
+  (physicalL2 D.measure A.rawSpatial.wx ⋯ ⋯) X = O.φx 0
+but is expected to have type
+  (physicalL2 D.measure A.rawSpatial.wx ⋯ ⋯) X = O.representedInterval.φx 0
+in the application
+  Eq.trans (RawWeakRegionalAbsorption.initial_physical A X Y).left hX
+LeanPML/PML/MainGeneralWeak.lean:110:76: error: Application type mismatch: The argument
+  hY
+has type
+  (physicalL2 D.measure A.rawSpatial.swap.wx ⋯ ⋯) Y = O.φy 0
+but is expected to have type
+  (physicalL2 D.measure A.rawSpatial.swap.wx ⋯ ⋯) Y = O.representedInterval.φy 0
+in the application
+  Eq.trans (RawWeakRegionalAbsorption.initial_physical A X Y).right hY

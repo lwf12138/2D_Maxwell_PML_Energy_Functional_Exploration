@@ -1,0 +1,62 @@
+'LeanPML.Examples.WeakStaticMode.originalAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanPML.Examples.WeakStaticMode.originalAt (t : ℝ) :
+  LeanPML.PML.Weak.OriginalAt LeanPML.Rectangle.ParameterCertificate.unitSquare
+    LeanPML.Examples.WeakStaticMode.coefficients 1 1 1 1 (fun x => LeanPML.Examples.WeakStaticMode.state)
+    LeanPML.Examples.WeakStaticMode.zeroState t 0 LeanPML.Examples.WeakStaticMode.flux
+'LeanPML.Examples.WeakStaticMode.main_call' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanPML.Examples.WeakStaticMode.main_call (T : ℝ) (hT : 0 ≤ T) :
+  (LeanPML.Examples.WeakStaticMode.solution T hT).EnergyConclusions (LeanPML.Examples.WeakStaticMode.jet T hT) 0
+    LeanPML.Examples.WeakStaticMode.initialY
+'LeanPML.Examples.WeakStaticMode.oneField_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanPML.Examples.WeakStaticMode.oneField_ne_zero : LeanPML.Examples.WeakStaticMode.oneField ≠ 0
+'LeanPML.Examples.WeakStaticMode.physical_initialY' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanPML.Examples.WeakStaticMode.physical_initialY :
+  (LeanPML.Analysis.physicalL2 LeanPML.Rectangle.ParameterCertificate.unitSquare.measure
+        LeanPML.Examples.WeakStaticMode.coefficients.swap.wx ⋯ ⋯)
+      LeanPML.Examples.WeakStaticMode.initialY =
+    LeanPML.Examples.WeakStaticMode.oneField
+'LeanPML.Examples.WeakStaticMode.energy_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanPML.Examples.WeakStaticMode.energy_pos (T : ℝ) (hT : 0 ≤ T) {t : ℝ} (ht : t ∈ Set.Icc 0 T) :
+  0 <
+    (LeanPML.Examples.WeakStaticMode.solution T hT).energy (LeanPML.Examples.WeakStaticMode.jet T hT) 0
+      LeanPML.Examples.WeakStaticMode.initialY t
+'LeanPML.Examples.WeakStaticMode.energy_constant' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanPML.Examples.WeakStaticMode.energy_constant (T : ℝ) (hT : 0 ≤ T) (t : ℝ) :
+  (LeanPML.Examples.WeakStaticMode.solution T hT).energy (LeanPML.Examples.WeakStaticMode.jet T hT) 0
+      LeanPML.Examples.WeakStaticMode.initialY t =
+    (LeanPML.Examples.WeakStaticMode.solution T hT).energy (LeanPML.Examples.WeakStaticMode.jet T hT) 0
+      LeanPML.Examples.WeakStaticMode.initialY 0
+'LeanPML.Examples.WeakStaticMode.dissipation_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanPML.Examples.WeakStaticMode.dissipation_zero (T : ℝ) (hT : 0 ≤ T) {t : ℝ} (ht : t ∈ Set.Ioo 0 T) :
+  (LeanPML.Examples.WeakStaticMode.solution T hT).dissipation (LeanPML.Examples.WeakStaticMode.jet T hT) 0
+      LeanPML.Examples.WeakStaticMode.initialY t =
+    0
+'LeanPML.Examples.WeakStaticMode.nonzero_static_regression' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanPML.Examples.WeakStaticMode.nonzero_static_regression (T : ℝ) (hT : 0 ≤ T) {t : ℝ} (ht : t ∈ Set.Ioo 0 T) :
+  0 <
+      (LeanPML.Examples.WeakStaticMode.solution T hT).energy (LeanPML.Examples.WeakStaticMode.jet T hT) 0
+        LeanPML.Examples.WeakStaticMode.initialY t ∧
+    (LeanPML.Examples.WeakStaticMode.solution T hT).energy (LeanPML.Examples.WeakStaticMode.jet T hT) 0
+          LeanPML.Examples.WeakStaticMode.initialY t =
+        (LeanPML.Examples.WeakStaticMode.solution T hT).energy (LeanPML.Examples.WeakStaticMode.jet T hT) 0
+          LeanPML.Examples.WeakStaticMode.initialY 0 ∧
+      (LeanPML.Examples.WeakStaticMode.solution T hT).dissipation (LeanPML.Examples.WeakStaticMode.jet T hT) 0
+          LeanPML.Examples.WeakStaticMode.initialY t =
+        0
+def LeanPML.Examples.WeakStaticMode.solution : (T : ℝ) →
+  0 ≤ T →
+    LeanPML.PML.Weak.OriginalInterval LeanPML.Rectangle.ParameterCertificate.unitSquare
+      LeanPML.Examples.WeakStaticMode.coefficients 1 1 1 1 T :=
+fun T hT =>
+  { nonneg_time := hT, fields := fun x => LeanPML.Examples.WeakStaticMode.state,
+    derivatives := fun x => LeanPML.Examples.WeakStaticMode.zeroState, electric := fun x => 0,
+    flux := fun x => LeanPML.Examples.WeakStaticMode.flux, u₀ := 0, q₀ := 0, continuous_fields := ⋯,
+    continuous_electric := ⋯, continuous_flux := ⋯, electric_value := ⋯, flux_x := ⋯, flux_y := ⋯, equations := ⋯,
+    initial_compatible := LeanPML.Examples.WeakStaticMode.solution._proof_8 }
+def LeanPML.Examples.WeakStaticMode.jet : (T : ℝ) →
+  (hT : 0 ≤ T) → LeanPML.PML.Weak.OriginalJet (LeanPML.Examples.WeakStaticMode.solution T hT) :=
+fun T hT =>
+  { electricDot := fun x => 0, fluxDot := fun x => 0, electricDDot := fun x => 0, polarDDot := fun x => 0,
+    fluxDDotX := fun x => 0, fluxDDotY := fun x => 0, electric_deriv := ⋯, flux_deriv := ⋯, electricDot_value := ⋯,
+    electric_second := ⋯, polar_second := ⋯, flux_second_x := ⋯, flux_second_y := ⋯, continuous_electricDot := ⋯,
+    continuous_fluxDot := ⋯, continuous_polarDot := ⋯, continuous_polarDDot := ⋯ }

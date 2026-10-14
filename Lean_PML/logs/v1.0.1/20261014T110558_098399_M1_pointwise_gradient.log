@@ -1,0 +1,8 @@
+LeanPML/Rectangle/SmoothWeakClosure.lean:242:20: error(lean.invalidField): Invalid field `sub_const`: The environment does not contain `Continuous.sub_const`, so it is not possible to project the field `sub_const` from an expression
+  continuous_fst
+of type
+  Continuous[instTopologicalSpaceProd, ?m.91] Prod.fst
+LeanPML/Rectangle/SmoothWeakClosure.lean:246:20: error(lean.invalidField): Invalid field `sub_const`: The environment does not contain `Continuous.sub_const`, so it is not possible to project the field `sub_const` from an expression
+  continuous_snd
+of type
+  Continuous[instTopologicalSpaceProd, ?m.171] Prod.snd

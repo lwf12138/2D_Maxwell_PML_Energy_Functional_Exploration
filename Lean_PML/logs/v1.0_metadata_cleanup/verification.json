@@ -1,0 +1,41 @@
+{
+  "time": "2026-10-14T19:36:29.804126+08:00",
+  "status": "verified",
+  "scope": "仅旧注释和包版本整理；无数学声明/证明修改",
+  "baseline": "logs/v1.0_finalization/source_snapshot.json",
+  "changes": {
+    "LeanPML/PML/WeakCanonicalTime.lean": {
+      "before": "b82e2c241d8bf7b26438c864b681a0a5baabb4d734718c3a002ac2165a85afe6",
+      "after": "ad7ef56e2349e5ce39ee66f29017936d9330d36211737c9350e9492403220e9d"
+    },
+    "lakefile.toml": {
+      "before": "3a3ab926f99cfeb3ae9fa6309696858b0aabb7ce62469de72405a74dd64fab9e",
+      "after": "a6b22fc78ed6d589d793937b5b57ad3bbeb3752d43507cd2f197bdd984cd65bb"
+    }
+  },
+  "commands": {
+    "lake_build": {
+      "metadata": "logs/v1.0_metadata_cleanup/20261014T193430_072456_lake_build.json",
+      "log": "logs/v1.0_metadata_cleanup/20261014T193430_072456_lake_build.log",
+      "exit_code": 0
+    },
+    "axioms_audit": {
+      "metadata": "logs/v1.0_metadata_cleanup/20261014T193529_928767_axioms_audit.json",
+      "log": "logs/v1.0_metadata_cleanup/20261014T193529_928767_axioms_audit.log",
+      "exit_code": 0
+    }
+  },
+  "audit_outputs": 1058,
+  "unique_audited_declarations": 1050,
+  "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "sorryAx": false,
+  "lean_toolchain_unchanged": true,
+  "dependency_manifest_unchanged": true,
+  "lean_code_without_comments_unchanged": true,
+  "isolated_build_rerun": false,
+  "README_sha256": "f7e9cba564ddd3a7c48d49944150ece305f0f09e11c219c800525e7569a9bde5"
+}

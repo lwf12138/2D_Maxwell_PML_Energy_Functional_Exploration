@@ -1,0 +1,18 @@
+MeasureTheory.Measure.integrableOn_of_bounded.{u_1, u_5} {α : Type u_1} {E : Type u_5} {mα : MeasurableSpace α}
+  [NormedAddCommGroup E] {s : Set α} {μ : MeasureTheory.Measure α} {f : α → E} (s_finite : μ s ≠ ⊤)
+  (f_mble : MeasureTheory.AEStronglyMeasurable f μ) {M : ℝ} (f_bdd : ∀ᵐ (a : α) ∂μ.restrict s, ‖f a‖ ≤ M) :
+  MeasureTheory.IntegrableOn f s μ
+MeasureTheory.integrable_indicator_iff.{u_1, u_4} {α : Type u_1} {ε' : Type u_4} {mα : MeasurableSpace α} {s : Set α}
+  {μ : MeasureTheory.Measure α} [TopologicalSpace ε'] [ESeminormedAddMonoid ε'] {f : α → ε'} (hs : MeasurableSet s) :
+  MeasureTheory.Integrable (s.indicator f) μ ↔ MeasureTheory.IntegrableOn f s μ
+logs/v1.0_finalization/CheckAPI.lean:6:7: error(lean.unknownIdentifier): Unknown identifier `MeasureTheory.MeasureTheory`
+MeasureTheory.setIntegral_congr_fun.{u_1, u_3} {X : Type u_1} {E : Type u_3} {mX : MeasurableSpace X}
+  [NormedAddCommGroup E] [NormedSpace ℝ E] {f g : X → E} {s : Set X} {μ : MeasureTheory.Measure X}
+  (hs : MeasurableSet s) (h : Set.EqOn f g s) : ∫ (x : X) in s, f x ∂μ = ∫ (x : X) in s, g x ∂μ
+MeasureTheory.integral_indicator.{u_1, u_3} {X : Type u_1} {E : Type u_3} {mX : MeasurableSpace X}
+  [NormedAddCommGroup E] [NormedSpace ℝ E] {f : X → E} {s : Set X} {μ : MeasureTheory.Measure X}
+  (hs : MeasurableSet s) : ∫ (x : X), s.indicator f x ∂μ = ∫ (x : X) in s, f x ∂μ
+measure_Ioo_lt_top.{u_1} {α : Type u_1} [Preorder α] [TopologicalSpace α] [CompactIccSpace α] {m : MeasurableSpace α}
+  {μ : MeasureTheory.Measure α} [MeasureTheory.IsLocallyFiniteMeasure μ] {a b : α} : μ (Set.Ioo a b) < ⊤
+Real.volume_Ioo {a b : ℝ} : MeasureTheory.volume (Set.Ioo a b) = ENNReal.ofReal (b - a)
+ContDiffBump.{u_1} {E : Type u_1} (c : E) : Type

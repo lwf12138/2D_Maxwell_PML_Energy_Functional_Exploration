@@ -1,0 +1,34 @@
+✖ [2998/2998] Building LeanPML.PML.WeakRegionalAbsorption (9.3s)
+trace: .> LEAN_PATH=/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Cli/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/batteries/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Qq/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/aesop/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/proofwidgets/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/importGraph/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/plausible/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/mathlib/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean /Users/wcli/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/LeanPML/PML/WeakRegionalAbsorption.lean -o /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/WeakRegionalAbsorption.olean -i /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/WeakRegionalAbsorption.ilean -c /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/WeakRegionalAbsorption.c --setup /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/WeakRegionalAbsorption.setup.json --json
+error: LeanPML/PML/WeakRegionalAbsorption.lean:112:4: Tactic `apply` failed: could not unify the conclusion of `@Lp.ext`
+  ?f = ?g
+with the goal
+  ↑↑(A.coefficients.p.value.operator f) =ᵐ[D.measure] ↑↑((A.spatial.pCoeff.operator D.measure) f)
+
+Note: The full type of `@Lp.ext` is
+  ∀ {α : Type ?u.17} {E : Type ?u.16} {m : MeasurableSpace α} {p : ENNReal} {μ : Measure α}
+    [inst : NormedAddCommGroup E] {f g : ↥(Lp E p μ)}, ↑↑f =ᵐ[μ] ↑↑g → f = g
+
+case left
+D : Rect
+A : WeakRegionalAbsorption D
+f : ↥(ScalarL2 D.measure)
+⊢ ↑↑(A.coefficients.p.value.operator f) =ᵐ[D.measure] ↑↑((A.spatial.pCoeff.operator D.measure) f)
+error: LeanPML/PML/WeakRegionalAbsorption.lean:119:4: Tactic `apply` failed: could not unify the conclusion of `@Lp.ext`
+  ?f = ?g
+with the goal
+  ↑↑(A.coefficients.r.value.operator f) =ᵐ[D.measure] ↑↑((A.spatial.rCoeff.operator D.measure) f)
+
+Note: The full type of `@Lp.ext` is
+  ∀ {α : Type ?u.25} {E : Type ?u.24} {m : MeasurableSpace α} {p : ENNReal} {μ : Measure α}
+    [inst : NormedAddCommGroup E] {f g : ↥(Lp E p μ)}, ↑↑f =ᵐ[μ] ↑↑g → f = g
+
+case right
+D : Rect
+A : WeakRegionalAbsorption D
+f : ↥(ScalarL2 D.measure)
+⊢ ↑↑(A.coefficients.r.value.operator f) =ᵐ[D.measure] ↑↑((A.spatial.rCoeff.operator D.measure) f)
+error: Lean exited with code 1
+Some required targets logged failures:
+- LeanPML.PML.WeakRegionalAbsorption
+error: build failed

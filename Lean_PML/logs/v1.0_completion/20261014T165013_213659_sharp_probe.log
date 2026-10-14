@@ -1,0 +1,54 @@
+LeanPML/Rectangle/SharpPoincare.lean:162:2: error: Type mismatch: After simplification, term
+  hbound
+ has type
+  (Real.pi / (D.xhi - D.xlo)) ^ 2 * ∫ (x : ℝ), ↑φ.field (x, y) ^ 2 ≤ ∫ (x : ℝ), deriv (fun x => ↑φ.field (x, y)) x ^ 2
+but is expected to have type
+  (Real.pi / (D.xhi - D.xlo)) ^ 2 * ∫ (x : ℝ), ↑φ.field (x, y) ^ 2 ≤ ∫ (x : ℝ), dx ↑φ.field (x, y) ^ 2
+LeanPML/Rectangle/SharpPoincare.lean:178:2: error: Type mismatch: After simplification, term
+  hbound
+ has type
+  (Real.pi / (D.yhi - D.ylo)) ^ 2 * ∫ (x_1 : ℝ), ↑φ.field (x, x_1) ^ 2 ≤
+    ∫ (x_1 : ℝ), deriv (fun y => ↑φ.field (x, y)) x_1 ^ 2
+but is expected to have type
+  (Real.pi / (D.yhi - D.ylo)) ^ 2 * ∫ (y : ℝ), ↑φ.field (x, y) ^ 2 ≤ ∫ (y : ℝ), dy ↑φ.field (x, y) ^ 2
+LeanPML/Rectangle/SharpPoincare.lean:187:4: error: Type mismatch
+  HasCompactSupport.comp_left (HasCompactSupport.fderiv ℝ φ.compact) ?m.116
+has type
+  HasCompactSupport (?m.114 ∘ fderiv ℝ ↑φ.field)
+but is expected to have type
+  HasCompactSupport (dx ↑φ.field)
+LeanPML/Rectangle/SharpPoincare.lean:187:39: error: `simp` made no progress
+LeanPML/Rectangle/SharpPoincare.lean:189:4: error: Type mismatch
+  HasCompactSupport.comp_left (HasCompactSupport.fderiv ℝ φ.compact) ?m.144
+has type
+  HasCompactSupport (?m.142 ∘ fderiv ℝ ↑φ.field)
+but is expected to have type
+  HasCompactSupport (dy ↑φ.field)
+LeanPML/Rectangle/SharpPoincare.lean:189:39: error: `simp` made no progress
+LeanPML/Rectangle/SharpPoincare.lean:192:6: error: Application type mismatch: The argument
+  IsCompact.mul φ.compact φ.compact
+has type
+  IsCompact (tsupport ↑φ.field * tsupport ↑φ.field)
+but is expected to have type
+  HasCompactSupport fun b => ↑φ.field b ^ 2
+in the application
+  Continuous.integrable_of_hasCompactSupport (Continuous.pow (SmoothField.continuous φ.field) 2)
+    (IsCompact.mul φ.compact φ.compact)
+LeanPML/Rectangle/SharpPoincare.lean:194:75: error: Application type mismatch: The argument
+  IsCompact.mul hcx hcx
+has type
+  IsCompact (tsupport (dx ↑φ.field) * tsupport (dx ↑φ.field))
+but is expected to have type
+  HasCompactSupport fun b => ↑φ.field.derivativeX b ^ 2
+in the application
+  Continuous.integrable_of_hasCompactSupport (Continuous.pow (SmoothField.continuous φ.field.derivativeX) 2)
+    (IsCompact.mul hcx hcx)
+LeanPML/Rectangle/SharpPoincare.lean:196:75: error: Application type mismatch: The argument
+  IsCompact.mul hcy hcy
+has type
+  IsCompact (tsupport (dy ↑φ.field) * tsupport (dy ↑φ.field))
+but is expected to have type
+  HasCompactSupport fun b => ↑φ.field.derivativeY b ^ 2
+in the application
+  Continuous.integrable_of_hasCompactSupport (Continuous.pow (SmoothField.continuous φ.field.derivativeY) 2)
+    (IsCompact.mul hcy hcy)

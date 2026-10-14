@@ -1,0 +1,747 @@
+structure LeanPML.PML.Weak.OriginalInterval (D : LeanPML.Rectangle.Rect) (C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ))
+  (ε κ τ μ T : ℝ) : Type
+number of parameters: 7
+fields:
+  LeanPML.PML.Weak.OriginalInterval.nonneg_time : 0 ≤ T
+  LeanPML.PML.Weak.OriginalInterval.fields : ℝ → LeanPML.PML.Weak.OriginalState D
+  LeanPML.PML.Weak.OriginalInterval.derivatives : ℝ → LeanPML.PML.Weak.OriginalState D
+  LeanPML.PML.Weak.OriginalInterval.electric : ℝ → ↥(LeanPML.Rectangle.zeroBoundaryGraph D)
+  LeanPML.PML.Weak.OriginalInterval.flux : ℝ → ↥(LeanPML.Rectangle.weakHDivGraph D)
+  LeanPML.PML.Weak.OriginalInterval.u₀ : ↥(LeanPML.Rectangle.zeroBoundaryGraph D)
+  LeanPML.PML.Weak.OriginalInterval.q₀ : ↥(LeanPML.Analysis.ScalarL2 D.measure)
+  LeanPML.PML.Weak.OriginalInterval.continuous_fields : LeanPML.PML.Weak.OriginalContinuousOn self.fields (Set.Icc 0 T)
+  LeanPML.PML.Weak.OriginalInterval.continuous_electric : ContinuousOn self.electric (Set.Icc 0 T)
+  LeanPML.PML.Weak.OriginalInterval.continuous_flux : ContinuousOn self.flux (Set.Icc 0 T)
+  LeanPML.PML.Weak.OriginalInterval.electric_value : ∀ t ∈ Set.Icc 0 T, ↑↑(self.electric t) 0 = (self.fields t).E
+  LeanPML.PML.Weak.OriginalInterval.flux_x : ∀ t ∈ Set.Icc 0 T, ↑(self.flux t) 0 = μ • (self.fields t).Hy
+  LeanPML.PML.Weak.OriginalInterval.flux_y : ∀ t ∈ Set.Icc 0 T, ↑(self.flux t) 1 = -μ • (self.fields t).Hx
+  LeanPML.PML.Weak.OriginalInterval.equations : ∀ t ∈ Set.Ioo 0 T,
+      LeanPML.PML.Weak.OriginalAt D C ε κ τ μ self.fields (self.derivatives t) t (self.electric t) (self.flux t)
+  LeanPML.PML.Weak.OriginalInterval.initial_compatible : ∀ (i : Fin 5),
+      LeanPML.PML.Weak.invariants D C ε κ τ μ self.fields (LeanPML.PML.Weak.historyU D self.electric self.u₀)
+          (LeanPML.PML.Weak.historyQ D self.fields self.q₀) 0 i =
+        0
+constructor:
+  LeanPML.PML.Weak.OriginalInterval.mk {D : LeanPML.Rectangle.Rect} {C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)}
+    {ε κ τ μ T : ℝ} (nonneg_time : 0 ≤ T) (fields derivatives : ℝ → LeanPML.PML.Weak.OriginalState D)
+    (electric : ℝ → ↥(LeanPML.Rectangle.zeroBoundaryGraph D)) (flux : ℝ → ↥(LeanPML.Rectangle.weakHDivGraph D))
+    (u₀ : ↥(LeanPML.Rectangle.zeroBoundaryGraph D)) (q₀ : ↥(LeanPML.Analysis.ScalarL2 D.measure))
+    (continuous_fields : LeanPML.PML.Weak.OriginalContinuousOn fields (Set.Icc 0 T))
+    (continuous_electric : ContinuousOn electric (Set.Icc 0 T)) (continuous_flux : ContinuousOn flux (Set.Icc 0 T))
+    (electric_value : ∀ t ∈ Set.Icc 0 T, ↑↑(electric t) 0 = (fields t).E)
+    (flux_x : ∀ t ∈ Set.Icc 0 T, ↑(flux t) 0 = μ • (fields t).Hy)
+    (flux_y : ∀ t ∈ Set.Icc 0 T, ↑(flux t) 1 = -μ • (fields t).Hx)
+    (equations :
+      ∀ t ∈ Set.Ioo 0 T, LeanPML.PML.Weak.OriginalAt D C ε κ τ μ fields (derivatives t) t (electric t) (flux t))
+    (initial_compatible :
+      ∀ (i : Fin 5),
+        LeanPML.PML.Weak.invariants D C ε κ τ μ fields (LeanPML.PML.Weak.historyU D electric u₀)
+            (LeanPML.PML.Weak.historyQ D fields q₀) 0 i =
+          0) :
+    LeanPML.PML.Weak.OriginalInterval D C ε κ τ μ T
+structure LeanPML.PML.Weak.OriginalAt (D : LeanPML.Rectangle.Rect) (C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ))
+  (ε κ τ μ : ℝ) (F : ℝ → LeanPML.PML.Weak.OriginalState D) (dF : LeanPML.PML.Weak.OriginalState D) (t : ℝ)
+  (e : ↥(LeanPML.Rectangle.zeroBoundaryGraph D)) (L : ↥(LeanPML.Rectangle.weakHDivGraph D)) : Prop
+number of parameters: 11
+parents:
+  LeanPML.PML.Weak.OriginalAt.toOriginalHasDerivAt : LeanPML.PML.Weak.OriginalHasDerivAt F dF t
+fields:
+  LeanPML.PML.Weak.OriginalHasDerivAt.E : HasDerivAt (fun s => (F s).E) dF.E t
+  LeanPML.PML.Weak.OriginalHasDerivAt.Hx : HasDerivAt (fun s => (F s).Hx) dF.Hx t
+  LeanPML.PML.Weak.OriginalHasDerivAt.Hy : HasDerivAt (fun s => (F s).Hy) dF.Hy t
+  LeanPML.PML.Weak.OriginalHasDerivAt.P : HasDerivAt (fun s => (F s).P) dF.P t
+  LeanPML.PML.Weak.OriginalHasDerivAt.Z1 : HasDerivAt (fun s => (F s).Z1) dF.Z1 t
+  LeanPML.PML.Weak.OriginalHasDerivAt.Z2 : HasDerivAt (fun s => (F s).Z2) dF.Z2 t
+  LeanPML.PML.Weak.OriginalHasDerivAt.Qx : HasDerivAt (fun s => (F s).Qx) dF.Qx t
+  LeanPML.PML.Weak.OriginalHasDerivAt.Qy : HasDerivAt (fun s => (F s).Qy) dF.Qy t
+  LeanPML.PML.Weak.OriginalAt.electric_value : ↑↑e 0 = (F t).E
+  LeanPML.PML.Weak.OriginalAt.flux_x : ↑L 0 = μ • (F t).Hy
+  LeanPML.PML.Weak.OriginalAt.flux_y : ↑L 1 = -μ • (F t).Hx
+  LeanPML.PML.Weak.OriginalAt.electric : μ • ε • dF.E =
+      ↑L 2 -
+        μ •
+          (ε • (C.aCoeff.operator D.measure) (F t).E + dF.P + (C.aCoeff.operator D.measure) (F t).P - (F t).Z1 -
+            (F t).Z2)
+  LeanPML.PML.Weak.OriginalAt.magneticX : μ • dF.Hx =
+      -↑↑e 2 - μ • ((C.rCoeff.operator D.measure) (F t).Hx - (C.pCoeff.operator D.measure) (F t).Hx) + (F t).Qx
+  LeanPML.PML.Weak.OriginalAt.magneticY : μ • dF.Hy =
+      ↑↑e 1 - μ • ((C.pCoeff.operator D.measure) (F t).Hy - (C.rCoeff.operator D.measure) (F t).Hy) + (F t).Qy
+  LeanPML.PML.Weak.OriginalAt.debye : τ • dF.P + (F t).P = κ • (F t).E
+  LeanPML.PML.Weak.OriginalAt.memory1 : dF.Z1 = -ε • (C.bCoeff.operator D.measure) (F t).E
+  LeanPML.PML.Weak.OriginalAt.memory2 : dF.Z2 = -(C.bCoeff.operator D.measure) (F t).P
+  LeanPML.PML.Weak.OriginalAt.auxiliaryX : dF.Qx =
+      (C.pCoeff.operator D.measure)
+        (-(F t).Qx + μ • ((C.rCoeff.operator D.measure) (F t).Hx - (C.pCoeff.operator D.measure) (F t).Hx))
+  LeanPML.PML.Weak.OriginalAt.auxiliaryY : dF.Qy =
+      (C.rCoeff.operator D.measure)
+        (-(F t).Qy + μ • ((C.pCoeff.operator D.measure) (F t).Hy - (C.rCoeff.operator D.measure) (F t).Hy))
+constructor:
+  LeanPML.PML.Weak.OriginalAt.mk {D : LeanPML.Rectangle.Rect} {C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)} {ε κ τ μ : ℝ}
+    {F : ℝ → LeanPML.PML.Weak.OriginalState D} {dF : LeanPML.PML.Weak.OriginalState D} {t : ℝ}
+    {e : ↥(LeanPML.Rectangle.zeroBoundaryGraph D)} {L : ↥(LeanPML.Rectangle.weakHDivGraph D)}
+    (toOriginalHasDerivAt : LeanPML.PML.Weak.OriginalHasDerivAt F dF t) (electric_value : ↑↑e 0 = (F t).E)
+    (flux_x : ↑L 0 = μ • (F t).Hy) (flux_y : ↑L 1 = -μ • (F t).Hx)
+    (electric :
+      μ • ε • dF.E =
+        ↑L 2 -
+          μ •
+            (ε • (C.aCoeff.operator D.measure) (F t).E + dF.P + (C.aCoeff.operator D.measure) (F t).P - (F t).Z1 -
+              (F t).Z2))
+    (magneticX :
+      μ • dF.Hx =
+        -↑↑e 2 - μ • ((C.rCoeff.operator D.measure) (F t).Hx - (C.pCoeff.operator D.measure) (F t).Hx) + (F t).Qx)
+    (magneticY :
+      μ • dF.Hy =
+        ↑↑e 1 - μ • ((C.pCoeff.operator D.measure) (F t).Hy - (C.rCoeff.operator D.measure) (F t).Hy) + (F t).Qy)
+    (debye : τ • dF.P + (F t).P = κ • (F t).E) (memory1 : dF.Z1 = -ε • (C.bCoeff.operator D.measure) (F t).E)
+    (memory2 : dF.Z2 = -(C.bCoeff.operator D.measure) (F t).P)
+    (auxiliaryX :
+      dF.Qx =
+        (C.pCoeff.operator D.measure)
+          (-(F t).Qx + μ • ((C.rCoeff.operator D.measure) (F t).Hx - (C.pCoeff.operator D.measure) (F t).Hx)))
+    (auxiliaryY :
+      dF.Qy =
+        (C.rCoeff.operator D.measure)
+          (-(F t).Qy + μ • ((C.pCoeff.operator D.measure) (F t).Hy - (C.rCoeff.operator D.measure) (F t).Hy))) :
+    LeanPML.PML.Weak.OriginalAt D C ε κ τ μ F dF t e L
+field notation resolution order:
+  LeanPML.PML.Weak.OriginalAt, LeanPML.PML.Weak.OriginalHasDerivAt
+structure LeanPML.PML.Weak.V7ClosedCkCore {D : LeanPML.Rectangle.Rect} {C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)}
+  {ε κ τ μ T : ℝ} (O : LeanPML.PML.Weak.OriginalInterval D C ε κ τ μ T) : Prop
+number of parameters: 8
+fields:
+  LeanPML.PML.Weak.V7ClosedCkCore.u_graph : ContDiffOn ℝ 2 O.u (Set.Icc 0 T)
+  LeanPML.PML.Weak.V7ClosedCkCore.u_value : ContDiffOn ℝ 3 (fun t => ↑↑(O.u t) 0) (Set.Icc 0 T)
+  LeanPML.PML.Weak.V7ClosedCkCore.polar : ContDiffOn ℝ 2 (fun t => (O.fields t).P) (Set.Icc 0 T)
+  LeanPML.PML.Weak.V7ClosedCkCore.flux : ContDiffOn ℝ 1 O.flux (Set.Icc 0 T)
+constructor:
+  LeanPML.PML.Weak.V7ClosedCkCore.mk {D : LeanPML.Rectangle.Rect} {C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)}
+    {ε κ τ μ T : ℝ} {O : LeanPML.PML.Weak.OriginalInterval D C ε κ τ μ T} (u_graph : ContDiffOn ℝ 2 O.u (Set.Icc 0 T))
+    (u_value : ContDiffOn ℝ 3 (fun t => ↑↑(O.u t) 0) (Set.Icc 0 T))
+    (polar : ContDiffOn ℝ 2 (fun t => (O.fields t).P) (Set.Icc 0 T)) (flux : ContDiffOn ℝ 1 O.flux (Set.Icc 0 T)) :
+    LeanPML.PML.Weak.V7ClosedCkCore O
+structure LeanPML.PML.Weak.ClosedCkRegularity {D : LeanPML.Rectangle.Rect} {C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)}
+  {ε κ τ μ T : ℝ} (O : LeanPML.PML.Weak.OriginalInterval D C ε κ τ μ T) : Prop
+number of parameters: 8
+fields:
+  LeanPML.PML.Weak.ClosedCkRegularity.u_graph : ContDiffOn ℝ 2 O.u (Set.Icc 0 T)
+  LeanPML.PML.Weak.ClosedCkRegularity.u_value : ContDiffOn ℝ 3 (fun t => ↑↑(O.u t) 0) (Set.Icc 0 T)
+  LeanPML.PML.Weak.ClosedCkRegularity.polar : ContDiffOn ℝ 2 (fun t => (O.fields t).P) (Set.Icc 0 T)
+  LeanPML.PML.Weak.ClosedCkRegularity.flux : ContDiffOn ℝ 1 O.flux (Set.Icc 0 T)
+  LeanPML.PML.Weak.ClosedCkRegularity.electric_endpoint : ∀ (t : ℝ),
+      t = 0 ∨ t = T → derivWithin (fun s => (O.fields s).E) (Set.Icc 0 T) t = (O.derivatives t).E
+  LeanPML.PML.Weak.ClosedCkRegularity.polar_endpoint : ∀ (t : ℝ),
+      t = 0 ∨ t = T → derivWithin (fun s => (O.fields s).P) (Set.Icc 0 T) t = (O.derivatives t).P
+constructor:
+  LeanPML.PML.Weak.ClosedCkRegularity.mk {D : LeanPML.Rectangle.Rect} {C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)}
+    {ε κ τ μ T : ℝ} {O : LeanPML.PML.Weak.OriginalInterval D C ε κ τ μ T} (u_graph : ContDiffOn ℝ 2 O.u (Set.Icc 0 T))
+    (u_value : ContDiffOn ℝ 3 (fun t => ↑↑(O.u t) 0) (Set.Icc 0 T))
+    (polar : ContDiffOn ℝ 2 (fun t => (O.fields t).P) (Set.Icc 0 T)) (flux : ContDiffOn ℝ 1 O.flux (Set.Icc 0 T))
+    (electric_endpoint :
+      ∀ (t : ℝ), t = 0 ∨ t = T → derivWithin (fun s => (O.fields s).E) (Set.Icc 0 T) t = (O.derivatives t).E)
+    (polar_endpoint :
+      ∀ (t : ℝ), t = 0 ∨ t = T → derivWithin (fun s => (O.fields s).P) (Set.Icc 0 T) t = (O.derivatives t).P) :
+    LeanPML.PML.Weak.ClosedCkRegularity O
+structure LeanPML.PML.Weak.V7TimeRegularity {D : LeanPML.Rectangle.Rect} {C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)}
+  {ε κ τ μ T : ℝ} (O : LeanPML.PML.Weak.OriginalInterval D C ε κ τ μ T) : Type
+number of parameters: 8
+fields:
+  LeanPML.PML.Weak.V7TimeRegularity.electricDot : ℝ → ↥(LeanPML.Rectangle.zeroBoundaryGraph D)
+  LeanPML.PML.Weak.V7TimeRegularity.fluxDot : ℝ → ↥(LeanPML.Rectangle.weakHDivGraph D)
+  LeanPML.PML.Weak.V7TimeRegularity.electricDDot : ℝ → ↥(LeanPML.Analysis.ScalarL2 D.measure)
+  LeanPML.PML.Weak.V7TimeRegularity.polarDDot : ℝ → ↥(LeanPML.Analysis.ScalarL2 D.measure)
+  LeanPML.PML.Weak.V7TimeRegularity.electric_deriv : ∀ t ∈ Set.Ioo 0 T, HasDerivAt O.electric (self.electricDot t) t
+  LeanPML.PML.Weak.V7TimeRegularity.flux_deriv : ∀ t ∈ Set.Ioo 0 T, HasDerivAt O.flux (self.fluxDot t) t
+  LeanPML.PML.Weak.V7TimeRegularity.electricDot_value : ∀ t ∈ Set.Icc 0 T,
+      ↑↑(self.electricDot t) 0 = (O.derivatives t).E
+  LeanPML.PML.Weak.V7TimeRegularity.electric_second : ∀ t ∈ Set.Ioo 0 T,
+      HasDerivAt (fun s => (O.derivatives s).E) (self.electricDDot t) t
+  LeanPML.PML.Weak.V7TimeRegularity.polar_second : ∀ t ∈ Set.Ioo 0 T,
+      HasDerivAt (fun s => (O.derivatives s).P) (self.polarDDot t) t
+  LeanPML.PML.Weak.V7TimeRegularity.continuous_electricDot : ContinuousOn self.electricDot (Set.Icc 0 T)
+  LeanPML.PML.Weak.V7TimeRegularity.continuous_fluxDot : ContinuousOn self.fluxDot (Set.Icc 0 T)
+  LeanPML.PML.Weak.V7TimeRegularity.continuous_polarDot : ContinuousOn (fun t => (O.derivatives t).P) (Set.Icc 0 T)
+  LeanPML.PML.Weak.V7TimeRegularity.continuous_polarDDot : ContinuousOn self.polarDDot (Set.Icc 0 T)
+constructor:
+  LeanPML.PML.Weak.V7TimeRegularity.mk {D : LeanPML.Rectangle.Rect} {C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)}
+    {ε κ τ μ T : ℝ} {O : LeanPML.PML.Weak.OriginalInterval D C ε κ τ μ T}
+    (electricDot : ℝ → ↥(LeanPML.Rectangle.zeroBoundaryGraph D)) (fluxDot : ℝ → ↥(LeanPML.Rectangle.weakHDivGraph D))
+    (electricDDot polarDDot : ℝ → ↥(LeanPML.Analysis.ScalarL2 D.measure))
+    (electric_deriv : ∀ t ∈ Set.Ioo 0 T, HasDerivAt O.electric (electricDot t) t)
+    (flux_deriv : ∀ t ∈ Set.Ioo 0 T, HasDerivAt O.flux (fluxDot t) t)
+    (electricDot_value : ∀ t ∈ Set.Icc 0 T, ↑↑(electricDot t) 0 = (O.derivatives t).E)
+    (electric_second : ∀ t ∈ Set.Ioo 0 T, HasDerivAt (fun s => (O.derivatives s).E) (electricDDot t) t)
+    (polar_second : ∀ t ∈ Set.Ioo 0 T, HasDerivAt (fun s => (O.derivatives s).P) (polarDDot t) t)
+    (continuous_electricDot : ContinuousOn electricDot (Set.Icc 0 T))
+    (continuous_fluxDot : ContinuousOn fluxDot (Set.Icc 0 T))
+    (continuous_polarDot : ContinuousOn (fun t => (O.derivatives t).P) (Set.Icc 0 T))
+    (continuous_polarDDot : ContinuousOn polarDDot (Set.Icc 0 T)) : LeanPML.PML.Weak.V7TimeRegularity O
+structure LeanPML.PML.Weak.OriginalJet {D : LeanPML.Rectangle.Rect} {C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)}
+  {ε κ τ μ T : ℝ} (O : LeanPML.PML.Weak.OriginalInterval D C ε κ τ μ T) : Type
+number of parameters: 8
+fields:
+  LeanPML.PML.Weak.OriginalJet.electricDot : ℝ → ↥(LeanPML.Rectangle.zeroBoundaryGraph D)
+  LeanPML.PML.Weak.OriginalJet.fluxDot : ℝ → ↥(LeanPML.Rectangle.weakHDivGraph D)
+  LeanPML.PML.Weak.OriginalJet.electricDDot : ℝ → ↥(LeanPML.Analysis.ScalarL2 D.measure)
+  LeanPML.PML.Weak.OriginalJet.polarDDot : ℝ → ↥(LeanPML.Analysis.ScalarL2 D.measure)
+  LeanPML.PML.Weak.OriginalJet.fluxDDotX : ℝ → ↥(LeanPML.Analysis.ScalarL2 D.measure)
+  LeanPML.PML.Weak.OriginalJet.fluxDDotY : ℝ → ↥(LeanPML.Analysis.ScalarL2 D.measure)
+  LeanPML.PML.Weak.OriginalJet.electric_deriv : ∀ t ∈ Set.Ioo 0 T, HasDerivAt O.electric (self.electricDot t) t
+  LeanPML.PML.Weak.OriginalJet.flux_deriv : ∀ t ∈ Set.Ioo 0 T, HasDerivAt O.flux (self.fluxDot t) t
+  LeanPML.PML.Weak.OriginalJet.electricDot_value : ∀ t ∈ Set.Icc 0 T, ↑↑(self.electricDot t) 0 = (O.derivatives t).E
+  LeanPML.PML.Weak.OriginalJet.electric_second : ∀ t ∈ Set.Ioo 0 T,
+      HasDerivAt (fun s => (O.derivatives s).E) (self.electricDDot t) t
+  LeanPML.PML.Weak.OriginalJet.polar_second : ∀ t ∈ Set.Ioo 0 T,
+      HasDerivAt (fun s => (O.derivatives s).P) (self.polarDDot t) t
+  LeanPML.PML.Weak.OriginalJet.flux_second_x : ∀ t ∈ Set.Ioo 0 T,
+      HasDerivAt (fun s => ↑(self.fluxDot s) 0) (self.fluxDDotX t) t
+  LeanPML.PML.Weak.OriginalJet.flux_second_y : ∀ t ∈ Set.Ioo 0 T,
+      HasDerivAt (fun s => ↑(self.fluxDot s) 1) (self.fluxDDotY t) t
+  LeanPML.PML.Weak.OriginalJet.continuous_electricDot : ContinuousOn self.electricDot (Set.Icc 0 T)
+  LeanPML.PML.Weak.OriginalJet.continuous_fluxDot : ContinuousOn self.fluxDot (Set.Icc 0 T)
+  LeanPML.PML.Weak.OriginalJet.continuous_polarDot : ContinuousOn (fun t => (O.derivatives t).P) (Set.Icc 0 T)
+  LeanPML.PML.Weak.OriginalJet.continuous_polarDDot : ContinuousOn self.polarDDot (Set.Icc 0 T)
+constructor:
+  LeanPML.PML.Weak.OriginalJet.mk {D : LeanPML.Rectangle.Rect} {C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)}
+    {ε κ τ μ T : ℝ} {O : LeanPML.PML.Weak.OriginalInterval D C ε κ τ μ T}
+    (electricDot : ℝ → ↥(LeanPML.Rectangle.zeroBoundaryGraph D)) (fluxDot : ℝ → ↥(LeanPML.Rectangle.weakHDivGraph D))
+    (electricDDot polarDDot fluxDDotX fluxDDotY : ℝ → ↥(LeanPML.Analysis.ScalarL2 D.measure))
+    (electric_deriv : ∀ t ∈ Set.Ioo 0 T, HasDerivAt O.electric (electricDot t) t)
+    (flux_deriv : ∀ t ∈ Set.Ioo 0 T, HasDerivAt O.flux (fluxDot t) t)
+    (electricDot_value : ∀ t ∈ Set.Icc 0 T, ↑↑(electricDot t) 0 = (O.derivatives t).E)
+    (electric_second : ∀ t ∈ Set.Ioo 0 T, HasDerivAt (fun s => (O.derivatives s).E) (electricDDot t) t)
+    (polar_second : ∀ t ∈ Set.Ioo 0 T, HasDerivAt (fun s => (O.derivatives s).P) (polarDDot t) t)
+    (flux_second_x : ∀ t ∈ Set.Ioo 0 T, HasDerivAt (fun s => ↑(fluxDot s) 0) (fluxDDotX t) t)
+    (flux_second_y : ∀ t ∈ Set.Ioo 0 T, HasDerivAt (fun s => ↑(fluxDot s) 1) (fluxDDotY t) t)
+    (continuous_electricDot : ContinuousOn electricDot (Set.Icc 0 T))
+    (continuous_fluxDot : ContinuousOn fluxDot (Set.Icc 0 T))
+    (continuous_polarDot : ContinuousOn (fun t => (O.derivatives t).P) (Set.Icc 0 T))
+    (continuous_polarDDot : ContinuousOn polarDDot (Set.Icc 0 T)) : LeanPML.PML.Weak.OriginalJet O
+structure LeanPML.PML.WeakRegionalAbsorption (D : LeanPML.Rectangle.Rect) : Type
+number of parameters: 1
+fields:
+  LeanPML.PML.WeakRegionalAbsorption.coefficients : LeanPML.PML.SeparatedRegionalWeakCoefficients D
+  LeanPML.PML.WeakRegionalAbsorption.c : ℝ
+  LeanPML.PML.WeakRegionalAbsorption.S : ℝ
+  LeanPML.PML.WeakRegionalAbsorption.c_pos : 0 < self.c
+  LeanPML.PML.WeakRegionalAbsorption.S_nonneg : 0 ≤ self.S
+  LeanPML.PML.WeakRegionalAbsorption.S_le_quarter : self.S ≤ self.c / 4
+  LeanPML.PML.WeakRegionalAbsorption.profileX_bounds : ∀ x ∈ Set.Icc D.xlo D.xhi,
+      0 ≤ self.coefficients.profileX x ∧ self.coefficients.profileX x ≤ self.S
+  LeanPML.PML.WeakRegionalAbsorption.profileY_bounds : ∀ y ∈ Set.Icc D.ylo D.yhi,
+      0 ≤ self.coefficients.profileY y ∧ self.coefficients.profileY y ≤ self.S
+  LeanPML.PML.WeakRegionalAbsorption.p_continuous : ContinuousOn self.coefficients.p.value.value D.openSet
+  LeanPML.PML.WeakRegionalAbsorption.r_continuous : ContinuousOn self.coefficients.r.value.value D.openSet
+constructor:
+  LeanPML.PML.WeakRegionalAbsorption.mk {D : LeanPML.Rectangle.Rect}
+    (coefficients : LeanPML.PML.SeparatedRegionalWeakCoefficients D) (c S : ℝ) (c_pos : 0 < c) (S_nonneg : 0 ≤ S)
+    (S_le_quarter : S ≤ c / 4)
+    (profileX_bounds : ∀ x ∈ Set.Icc D.xlo D.xhi, 0 ≤ coefficients.profileX x ∧ coefficients.profileX x ≤ S)
+    (profileY_bounds : ∀ y ∈ Set.Icc D.ylo D.yhi, 0 ≤ coefficients.profileY y ∧ coefficients.profileY y ≤ S)
+    (p_continuous : ContinuousOn coefficients.p.value.value D.openSet)
+    (r_continuous : ContinuousOn coefficients.r.value.value D.openSet) : LeanPML.PML.WeakRegionalAbsorption D
+LeanPML.PML.Weak.V7ClosedCkCore.main_energy {D : LeanPML.Rectangle.Rect} {C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)}
+  {ε κ τ μ T : ℝ} {O : LeanPML.PML.Weak.OriginalInterval D C ε κ τ μ T} (R : LeanPML.PML.Weak.V7ClosedCkCore O)
+  (hT : 0 < T) (W₀x : ↥(LeanPML.Analysis.WeightedL2 D.measure C.wx))
+  (W₀y : ↥(LeanPML.Analysis.WeightedL2 D.measure C.swap.wx))
+  (hp : LeanPML.PML.CoercivityParameters C ε κ τ μ (LeanPML.Rectangle.sharpPoincareConstant D))
+  (hWx : (LeanPML.Analysis.physicalL2 D.measure C.wx ⋯ ⋯) W₀x = O.φx 0)
+  (hWy : (LeanPML.Analysis.physicalL2 D.measure C.swap.wx ⋯ ⋯) W₀y = O.φy 0) :
+  (LeanPML.PML.Weak.V7ClosedCkCore.canonicalInterval hT).SharpEnergyConclusions (⋯.toTimeRegularity hT).toOriginalJet
+      W₀x W₀y ∧
+    ∀ t ∈ Set.Icc 0 T,
+      (LeanPML.PML.Weak.V7ClosedCkCore.canonicalInterval hT).SharpOriginalAuxiliaryBounds
+        ((LeanPML.PML.Weak.V7ClosedCkCore.canonicalInterval hT).sharpEnergy (⋯.toTimeRegularity hT).toOriginalJet W₀x
+          W₀y 0)
+        t
+LeanPML.PML.Weak.main_energy_RegionalSharpCk (D : LeanPML.Rectangle.Rect) (A : LeanPML.PML.WeakRegionalAbsorption D)
+  (ε κ τ μ T : ℝ) (hε : 0 < ε) (hκ : 0 < κ) (hτ : 0 < τ) (hμ : 0 < μ) (hT : 0 < T)
+  (hsmall : A.c ≤ LeanPML.PML.threshold ε κ τ μ (LeanPML.Rectangle.sharpPoincareConstant D))
+  (O : LeanPML.PML.Weak.OriginalInterval D A.spatial ε κ τ μ T) (R : LeanPML.PML.Weak.V7ClosedCkCore O)
+  (W₀x : ↥(LeanPML.Analysis.WeightedL2 D.measure A.spatial.wx))
+  (W₀y : ↥(LeanPML.Analysis.WeightedL2 D.measure A.spatial.swap.wx))
+  (hWx : (LeanPML.Analysis.physicalL2 D.measure A.spatial.wx ⋯ ⋯) W₀x = O.φx 0)
+  (hWy : (LeanPML.Analysis.physicalL2 D.measure A.spatial.swap.wx ⋯ ⋯) W₀y = O.φy 0) :
+  (LeanPML.PML.Weak.V7ClosedCkCore.canonicalInterval hT).SharpEnergyConclusions (⋯.toTimeRegularity hT).toOriginalJet
+      W₀x W₀y ∧
+    ∀ t ∈ Set.Icc 0 T,
+      (LeanPML.PML.Weak.V7ClosedCkCore.canonicalInterval hT).SharpOriginalAuxiliaryBounds
+        ((LeanPML.PML.Weak.V7ClosedCkCore.canonicalInterval hT).sharpEnergy (⋯.toTimeRegularity hT).toOriginalJet W₀x
+          W₀y 0)
+        t
+LeanPML.PML.Weak.OriginalInterval.main_energy_estimate_SharpWeakOriginal {D : LeanPML.Rectangle.Rect}
+  {C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)} {ε κ τ μ T : ℝ} (O : LeanPML.PML.Weak.OriginalInterval D C ε κ τ μ T)
+  (J : LeanPML.PML.Weak.OriginalJet O) (W₀x : ↥(LeanPML.Analysis.WeightedL2 D.measure C.wx))
+  (W₀y : ↥(LeanPML.Analysis.WeightedL2 D.measure C.swap.wx))
+  (hp : LeanPML.PML.CoercivityParameters C ε κ τ μ (LeanPML.Rectangle.sharpPoincareConstant D))
+  (hWx : (LeanPML.Analysis.physicalL2 D.measure C.wx ⋯ ⋯) W₀x = O.φx 0)
+  (hWy : (LeanPML.Analysis.physicalL2 D.measure C.swap.wx ⋯ ⋯) W₀y = O.φy 0)
+  (hdeg : LeanPML.PML.Weak.DegenerateJetCompatibility O J) : O.SharpEnergyConclusions J W₀x W₀y
+LeanPML.PML.Weak.OriginalInterval.sharp_original_auxiliary_initial_control {D : LeanPML.Rectangle.Rect}
+  {C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)} {ε κ τ μ T : ℝ} (O : LeanPML.PML.Weak.OriginalInterval D C ε κ τ μ T)
+  (J : LeanPML.PML.Weak.OriginalJet O) (W₀x : ↥(LeanPML.Analysis.WeightedL2 D.measure C.wx))
+  (W₀y : ↥(LeanPML.Analysis.WeightedL2 D.measure C.swap.wx))
+  (hp : LeanPML.PML.CoercivityParameters C ε κ τ μ (LeanPML.Rectangle.sharpPoincareConstant D))
+  (hWx : (LeanPML.Analysis.physicalL2 D.measure C.wx ⋯ ⋯) W₀x = O.φx 0)
+  (hWy : (LeanPML.Analysis.physicalL2 D.measure C.swap.wx ⋯ ⋯) W₀y = O.φy 0)
+  (hdeg : LeanPML.PML.Weak.DegenerateJetCompatibility O J) {t : ℝ} (ht : t ∈ Set.Icc 0 T) :
+  O.SharpOriginalAuxiliaryBounds (O.sharpEnergy J W₀x W₀y 0) t
+LeanPML.Rectangle.weak_sharp_poincare (D : LeanPML.Rectangle.Rect) (v : ↥(LeanPML.Rectangle.zeroBoundaryGraph D)) :
+  ‖↑↑v 0‖ ^ 2 ≤ LeanPML.Rectangle.sharpPoincareConstant D ^ 2 * (‖↑↑v 1‖ ^ 2 + ‖↑↑v 2‖ ^ 2)
+LeanPML.Rectangle.ParameterCertificate.original_parameters_threshold :
+  LeanPML.Rectangle.ParameterCertificate.oldC ≤
+    LeanPML.PML.threshold 1 1 1 1
+      (LeanPML.Rectangle.sharpPoincareConstant LeanPML.Rectangle.ParameterCertificate.unitSquare)
+LeanPML.PML.SpatialAbsorption.auxiliary_scalar_memory_physical.{u_1} {α : Type u_1} [MeasurableSpace α] [Nonempty α]
+  (ν : MeasureTheory.Measure α) (C : LeanPML.PML.SpatialAbsorption α) (W₀ : ↥(LeanPML.Analysis.WeightedL2 ν C.wx))
+  (φ h l : ℝ → ↥(LeanPML.Analysis.ScalarL2 ν)) (T : ℝ) (hφ : ContinuousOn φ (Set.Icc 0 T))
+  (hh : ContinuousOn h (Set.Icc 0 T)) (hl : ContinuousOn l (Set.Icc 0 T))
+  (hinitial : (LeanPML.Analysis.physicalL2 ν C.wx ⋯ ⋯) W₀ = φ 0)
+  (hODE : ∀ s ∈ Set.Ioo 0 T, HasDerivAt φ ((C.rCoeff.operator ν) (h s) - (C.pCoeff.operator ν) (l s)) s)
+  (hspace : ∀ s ∈ Set.Icc 0 T, l s = h s + φ s) {t : ℝ} (ht : t ∈ Set.Icc 0 T) :
+  IntervalIntegrable
+      (fun s =>
+        (LeanPML.PML.SpatialAbsorption.scalarKernelL2 ν C (s - t))
+          ((C.rCoeff.operator ν) (h s) - (C.pCoeff.operator ν) (h s)))
+      MeasureTheory.volume 0 t ∧
+    φ t =
+      (LeanPML.PML.SpatialAbsorption.scalarKernelL2 ν C (-t)) (φ 0) +
+        ∫ (s : ℝ) in 0..t,
+          (LeanPML.PML.SpatialAbsorption.scalarKernelL2 ν C (s - t))
+            ((C.rCoeff.operator ν) (h s) - (C.pCoeff.operator ν) (h s))
+LeanPML.Analysis.dampingKernel_eq_scalarExpMultiplier.{u_1} {α : Type u_1} [MeasurableSpace α]
+  (ν : MeasureTheory.Measure α) (w m : α → ℝ) (hw : Measurable w) (hm : Measurable m) (C : ℝ)
+  (hbound : ∀ (x : α), |m x| ≤ C) (t : ℝ) :
+  LeanPML.Analysis.dampingKernel (LeanPML.Analysis.weightedMul ν w m hm C hbound) t =
+    LeanPML.Analysis.scalarExpMultiplier ν w m hm C hbound t
+LeanPML.PML.Weak.CompatibleLift.twoLayerEnergy_independent {D : LeanPML.Rectangle.Rect}
+  {C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)} {ε κ τ μ K : ℝ} {F₀ F₁ : LeanPML.PML.Weak.OriginalState D}
+  (m : LeanPML.PML.SeparatedRegionalWeakCoefficients D) (hp_match : ∀ x ∈ D.openSet, m.p.value.value x = C.p x)
+  (hr_match : ∀ x ∈ D.openSet, m.r.value.value x = C.r x) (hp_continuous : ContinuousOn m.p.value.value D.openSet)
+  (hr_continuous : ContinuousOn m.r.value.value D.openSet) (L₀ M₀ : LeanPML.PML.Weak.CompatibleLift D C ε κ τ μ F₀)
+  (L₁ M₁ : LeanPML.PML.Weak.CompatibleLift D C ε κ τ μ F₁) :
+  LeanPML.PML.twoLayerEnergy D.measure C ε κ τ μ K L₀.state L₁.state =
+    LeanPML.PML.twoLayerEnergy D.measure C ε κ τ μ K M₀.state M₁.state
+structure LeanPML.PML.Weak.PrimitiveIntervalData (D : LeanPML.Rectangle.Rect)
+  (C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)) (ε κ τ μ T : ℝ) : Type
+number of parameters: 7
+fields:
+  LeanPML.PML.Weak.PrimitiveIntervalData.u : ℝ → ↥(LeanPML.Rectangle.zeroBoundaryGraph D)
+  LeanPML.PML.Weak.PrimitiveIntervalData.e : ℝ → ↥(LeanPML.Rectangle.zeroBoundaryGraph D)
+  LeanPML.PML.Weak.PrimitiveIntervalData.flux : ℝ → ↥(LeanPML.Rectangle.weakHDivGraph D)
+  LeanPML.PML.Weak.PrimitiveIntervalData.fluxDot : ℝ → ↥(LeanPML.Rectangle.weakHDivGraph D)
+  LeanPML.PML.Weak.PrimitiveIntervalData.P : ℝ → ↥(LeanPML.Analysis.ScalarL2 D.measure)
+  LeanPML.PML.Weak.PrimitiveIntervalData.q : ℝ → ↥(LeanPML.Analysis.ScalarL2 D.measure)
+  LeanPML.PML.Weak.PrimitiveIntervalData.Edot : ℝ → ↥(LeanPML.Analysis.ScalarL2 D.measure)
+  LeanPML.PML.Weak.PrimitiveIntervalData.Pdot : ℝ → ↥(LeanPML.Analysis.ScalarL2 D.measure)
+  LeanPML.PML.Weak.PrimitiveIntervalData.hu : ∀ t ∈ Set.Ioo 0 T, HasDerivAt self.u (self.e t) t
+  LeanPML.PML.Weak.PrimitiveIntervalData.he : ∀ t ∈ Set.Ioo 0 T, HasDerivAt (fun s => ↑↑(self.e s) 0) (self.Edot t) t
+  LeanPML.PML.Weak.PrimitiveIntervalData.hflux : ∀ t ∈ Set.Ioo 0 T, HasDerivAt self.flux (self.fluxDot t) t
+  LeanPML.PML.Weak.PrimitiveIntervalData.hP : ∀ t ∈ Set.Ioo 0 T, HasDerivAt self.P (self.Pdot t) t
+  LeanPML.PML.Weak.PrimitiveIntervalData.hq : ∀ t ∈ Set.Ioo 0 T, HasDerivAt self.q (self.P t) t
+  LeanPML.PML.Weak.PrimitiveIntervalData.polar : ∀ t ∈ Set.Icc 0 T, self.q t + τ • self.P t = κ • ↑↑(self.u t) 0
+  LeanPML.PML.Weak.PrimitiveIntervalData.auxiliaryX : ∀ t ∈ Set.Ioo 0 T,
+      HasDerivAt (fun s => ↑(self.flux s) 0 - ↑↑(self.u s) 1)
+        ((C.rCoeff.operator D.measure) (↑↑(self.u t) 1) - (C.pCoeff.operator D.measure) (↑(self.flux t) 0)) t
+  LeanPML.PML.Weak.PrimitiveIntervalData.auxiliaryY : ∀ t ∈ Set.Ioo 0 T,
+      HasDerivAt (fun s => ↑(self.flux s) 1 - ↑↑(self.u s) 2)
+        ((C.pCoeff.operator D.measure) (↑↑(self.u t) 2) - (C.rCoeff.operator D.measure) (↑(self.flux t) 1)) t
+  LeanPML.PML.Weak.PrimitiveIntervalData.main : ∀ t ∈ Set.Ioo 0 T,
+      μ •
+          (ε •
+                  (self.Edot t + (C.aCoeff.operator D.measure) (↑↑(self.e t) 0) +
+                    (C.bCoeff.operator D.measure) (↑↑(self.u t) 0)) +
+                self.Pdot t +
+              (C.aCoeff.operator D.measure) (self.P t) +
+            (C.bCoeff.operator D.measure) (self.q t)) =
+        ↑(self.flux t) 2
+constructor:
+  LeanPML.PML.Weak.PrimitiveIntervalData.mk {D : LeanPML.Rectangle.Rect} {C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)}
+    {ε κ τ μ T : ℝ} (u e : ℝ → ↥(LeanPML.Rectangle.zeroBoundaryGraph D))
+    (flux fluxDot : ℝ → ↥(LeanPML.Rectangle.weakHDivGraph D))
+    (P q Edot Pdot : ℝ → ↥(LeanPML.Analysis.ScalarL2 D.measure)) (hu : ∀ t ∈ Set.Ioo 0 T, HasDerivAt u (e t) t)
+    (he : ∀ t ∈ Set.Ioo 0 T, HasDerivAt (fun s => ↑↑(e s) 0) (Edot t) t)
+    (hflux : ∀ t ∈ Set.Ioo 0 T, HasDerivAt flux (fluxDot t) t) (hP : ∀ t ∈ Set.Ioo 0 T, HasDerivAt P (Pdot t) t)
+    (hq : ∀ t ∈ Set.Ioo 0 T, HasDerivAt q (P t) t) (polar : ∀ t ∈ Set.Icc 0 T, q t + τ • P t = κ • ↑↑(u t) 0)
+    (auxiliaryX :
+      ∀ t ∈ Set.Ioo 0 T,
+        HasDerivAt (fun s => ↑(flux s) 0 - ↑↑(u s) 1)
+          ((C.rCoeff.operator D.measure) (↑↑(u t) 1) - (C.pCoeff.operator D.measure) (↑(flux t) 0)) t)
+    (auxiliaryY :
+      ∀ t ∈ Set.Ioo 0 T,
+        HasDerivAt (fun s => ↑(flux s) 1 - ↑↑(u s) 2)
+          ((C.pCoeff.operator D.measure) (↑↑(u t) 2) - (C.rCoeff.operator D.measure) (↑(flux t) 1)) t)
+    (main :
+      ∀ t ∈ Set.Ioo 0 T,
+        μ •
+            (ε • (Edot t + (C.aCoeff.operator D.measure) (↑↑(e t) 0) + (C.bCoeff.operator D.measure) (↑↑(u t) 0)) +
+                  Pdot t +
+                (C.aCoeff.operator D.measure) (P t) +
+              (C.bCoeff.operator D.measure) (q t)) =
+          ↑(flux t) 2) :
+    LeanPML.PML.Weak.PrimitiveIntervalData D C ε κ τ μ T
+LeanPML.PML.Weak.primitive_to_original_WeakOn {D : LeanPML.Rectangle.Rect} {C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)}
+  {ε κ τ μ T : ℝ} (Q : LeanPML.PML.Weak.PrimitiveIntervalData D C ε κ τ μ T) (hμ : μ ≠ 0) (t : ℝ) :
+  t ∈ Set.Ioo 0 T →
+    LeanPML.PML.Weak.OriginalAt D C ε κ τ μ (LeanPML.PML.Weak.reverseFields D C ε μ Q.u Q.e Q.flux Q.P Q.q)
+      (LeanPML.PML.Weak.reverseDerivatives D C ε μ (Q.e t) (Q.fluxDot t) (Q.P t) (Q.Edot t) (Q.Pdot t)) t (Q.e t)
+      (Q.flux t)
+structure LeanPML.PML.RawWeakRegionalAbsorption (D : LeanPML.Rectangle.Rect) : Type
+number of parameters: 1
+fields:
+  LeanPML.PML.RawWeakRegionalAbsorption.coefficients : LeanPML.PML.SeparatedRegionalWeakCoefficients D
+  LeanPML.PML.RawWeakRegionalAbsorption.c : ℝ
+  LeanPML.PML.RawWeakRegionalAbsorption.S : ℝ
+  LeanPML.PML.RawWeakRegionalAbsorption.c_pos : 0 < self.c
+  LeanPML.PML.RawWeakRegionalAbsorption.S_nonneg : 0 ≤ self.S
+  LeanPML.PML.RawWeakRegionalAbsorption.S_le_quarter : self.S ≤ self.c / 4
+  LeanPML.PML.RawWeakRegionalAbsorption.profileX_bounds : ∀ x ∈ Set.Icc D.xlo D.xhi,
+      0 ≤ self.coefficients.profileX x ∧ self.coefficients.profileX x ≤ self.S
+  LeanPML.PML.RawWeakRegionalAbsorption.profileY_bounds : ∀ y ∈ Set.Icc D.ylo D.yhi,
+      0 ≤ self.coefficients.profileY y ∧ self.coefficients.profileY y ≤ self.S
+constructor:
+  LeanPML.PML.RawWeakRegionalAbsorption.mk {D : LeanPML.Rectangle.Rect}
+    (coefficients : LeanPML.PML.SeparatedRegionalWeakCoefficients D) (c S : ℝ) (c_pos : 0 < c) (S_nonneg : 0 ≤ S)
+    (S_le_quarter : S ≤ c / 4)
+    (profileX_bounds : ∀ x ∈ Set.Icc D.xlo D.xhi, 0 ≤ coefficients.profileX x ∧ coefficients.profileX x ≤ S)
+    (profileY_bounds : ∀ y ∈ Set.Icc D.ylo D.yhi, 0 ≤ coefficients.profileY y ∧ coefficients.profileY y ≤ S) :
+    LeanPML.PML.RawWeakRegionalAbsorption D
+structure LeanPML.PML.SeparatedRegionalWeakCoefficients (D : LeanPML.Rectangle.Rect) : Type
+number of parameters: 1
+fields:
+  LeanPML.PML.SeparatedRegionalWeakCoefficients.p : LeanPML.PML.RegionalWeakCoefficient D
+  LeanPML.PML.SeparatedRegionalWeakCoefficients.r : LeanPML.PML.RegionalWeakCoefficient D
+  LeanPML.PML.SeparatedRegionalWeakCoefficients.profileX : ℝ → ℝ
+  LeanPML.PML.SeparatedRegionalWeakCoefficients.profileY : ℝ → ℝ
+  LeanPML.PML.SeparatedRegionalWeakCoefficients.p_separated : ∀ z ∈ D.openSet, self.p.value.value z = self.profileX z.1
+  LeanPML.PML.SeparatedRegionalWeakCoefficients.r_separated : ∀ z ∈ D.openSet, self.r.value.value z = self.profileY z.2
+constructor:
+  LeanPML.PML.SeparatedRegionalWeakCoefficients.mk {D : LeanPML.Rectangle.Rect}
+    (p r : LeanPML.PML.RegionalWeakCoefficient D) (profileX profileY : ℝ → ℝ)
+    (p_separated : ∀ z ∈ D.openSet, p.value.value z = profileX z.1)
+    (r_separated : ∀ z ∈ D.openSet, r.value.value z = profileY z.2) : LeanPML.PML.SeparatedRegionalWeakCoefficients D
+structure LeanPML.PML.RegionalWeakCoefficient (D : LeanPML.Rectangle.Rect) : Type
+number of parameters: 1
+fields:
+  LeanPML.PML.RegionalWeakCoefficient.value : LeanPML.PML.RegionalBounded D
+  LeanPML.PML.RegionalWeakCoefficient.derivative : Fin 2 → LeanPML.PML.RegionalBounded D
+  LeanPML.PML.RegionalWeakCoefficient.weak_partial : ∀ (i : Fin 2),
+      LeanPML.Rectangle.HasWeakPartial D i self.value.toL2 (self.derivative i).toL2
+constructor:
+  LeanPML.PML.RegionalWeakCoefficient.mk {D : LeanPML.Rectangle.Rect} (value : LeanPML.PML.RegionalBounded D)
+    (derivative : Fin 2 → LeanPML.PML.RegionalBounded D)
+    (weak_partial : ∀ (i : Fin 2), LeanPML.Rectangle.HasWeakPartial D i value.toL2 (derivative i).toL2) :
+    LeanPML.PML.RegionalWeakCoefficient D
+structure LeanPML.PML.RegionalBounded (D : LeanPML.Rectangle.Rect) : Type
+number of parameters: 1
+fields:
+  LeanPML.PML.RegionalBounded.value : ℝ × ℝ → ℝ
+  LeanPML.PML.RegionalBounded.measurable : Measurable self.value
+  LeanPML.PML.RegionalBounded.bound : ℝ
+  LeanPML.PML.RegionalBounded.bound_nonneg : 0 ≤ self.bound
+  LeanPML.PML.RegionalBounded.bound_on : ∀ x ∈ D.openSet, |self.value x| ≤ self.bound
+constructor:
+  LeanPML.PML.RegionalBounded.mk {D : LeanPML.Rectangle.Rect} (value : ℝ × ℝ → ℝ) (measurable : Measurable value)
+    (bound : ℝ) (bound_nonneg : 0 ≤ bound) (bound_on : ∀ x ∈ D.openSet, |value x| ≤ bound) :
+    LeanPML.PML.RegionalBounded D
+structure LeanPML.PML.Weak.DegenerateJetCompatibility {D : LeanPML.Rectangle.Rect}
+  {C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)} {ε κ τ μ T : ℝ} (O : LeanPML.PML.Weak.OriginalInterval D C ε κ τ μ T)
+  (J : LeanPML.PML.Weak.OriginalJet O) : Prop
+number of parameters: 9
+fields:
+  LeanPML.PML.Weak.DegenerateJetCompatibility.polar : T = 0 →
+      (O.fields 0).P + τ • (O.derivatives 0).P = κ • (O.fields 0).E
+  LeanPML.PML.Weak.DegenerateJetCompatibility.spatialX : T = 0 →
+      ↑(J.fluxDot 0) 0 =
+        ↑↑(O.electric 0) 1 + (C.rCoeff.operator D.measure) (↑↑(O.u 0) 1) - (C.pCoeff.operator D.measure) (↑(O.flux 0) 0)
+  LeanPML.PML.Weak.DegenerateJetCompatibility.spatialY : T = 0 →
+      ↑(J.fluxDot 0) 1 =
+        ↑↑(O.electric 0) 2 + (C.pCoeff.operator D.measure) (↑↑(O.u 0) 2) - (C.rCoeff.operator D.measure) (↑(O.flux 0) 1)
+constructor:
+  LeanPML.PML.Weak.DegenerateJetCompatibility.mk {D : LeanPML.Rectangle.Rect}
+    {C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)} {ε κ τ μ T : ℝ} {O : LeanPML.PML.Weak.OriginalInterval D C ε κ τ μ T}
+    {J : LeanPML.PML.Weak.OriginalJet O} (polar : T = 0 → (O.fields 0).P + τ • (O.derivatives 0).P = κ • (O.fields 0).E)
+    (spatialX :
+      T = 0 →
+        ↑(J.fluxDot 0) 0 =
+          ↑↑(O.electric 0) 1 + (C.rCoeff.operator D.measure) (↑↑(O.u 0) 1) -
+            (C.pCoeff.operator D.measure) (↑(O.flux 0) 0))
+    (spatialY :
+      T = 0 →
+        ↑(J.fluxDot 0) 1 =
+          ↑↑(O.electric 0) 2 + (C.pCoeff.operator D.measure) (↑↑(O.u 0) 2) -
+            (C.rCoeff.operator D.measure) (↑(O.flux 0) 1)) :
+    LeanPML.PML.Weak.DegenerateJetCompatibility O J
+structure LeanPML.PML.Weak.OriginalInterval.SharpEnergyConclusions {D : LeanPML.Rectangle.Rect}
+  {C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)} {ε κ τ μ T : ℝ} (O : LeanPML.PML.Weak.OriginalInterval D C ε κ τ μ T)
+  (J : LeanPML.PML.Weak.OriginalJet O) (W₀x : ↥(LeanPML.Analysis.WeightedL2 D.measure C.wx))
+  (W₀y : ↥(LeanPML.Analysis.WeightedL2 D.measure C.swap.wx)) : Prop
+number of parameters: 11
+fields:
+  LeanPML.PML.Weak.OriginalInterval.SharpEnergyConclusions.bounds : ∀ t ∈ Set.Icc 0 T,
+      O.sharpGraphEnergySquare J W₀x W₀y t / 4 ≤ O.sharpEnergy J W₀x W₀y t ∧
+        O.sharpEnergy J W₀x W₀y t ≤ O.sharpGraphEnergySquare J W₀x W₀y t
+  LeanPML.PML.Weak.OriginalInterval.SharpEnergyConclusions.law : ∀ t ∈ Set.Ioo 0 T,
+      HasDerivAt (O.sharpEnergy J W₀x W₀y) (-O.sharpDissipation J W₀x W₀y t) t ∧
+        (LeanPML.PML.fieldSpatialDissipation D.measure C (O.baseState W₀x W₀y t) +
+                  LeanPML.PML.scaleK ε κ μ (LeanPML.Rectangle.sharpPoincareConstant D) *
+                    LeanPML.PML.fieldSpatialDissipation D.measure C (O.firstState J t)) /
+                2 +
+              μ * τ / (4 * κ) *
+                (‖(O.derivatives t).P‖ ^ 2 +
+                  LeanPML.PML.scaleK ε κ μ (LeanPML.Rectangle.sharpPoincareConstant D) * ‖J.polarDDot t‖ ^ 2) ≤
+            O.sharpDissipation J W₀x W₀y t ∧
+          0 ≤ O.sharpDissipation J W₀x W₀y t
+  LeanPML.PML.Weak.OriginalInterval.SharpEnergyConclusions.monotone : AntitoneOn (O.sharpEnergy J W₀x W₀y) (Set.Icc 0 T)
+  LeanPML.PML.Weak.OriginalInterval.SharpEnergyConclusions.initial_bounds : ∀ t ∈ Set.Icc 0 T,
+      0 ≤ O.sharpEnergy J W₀x W₀y t ∧ O.sharpEnergy J W₀x W₀y t ≤ O.sharpEnergy J W₀x W₀y 0
+  LeanPML.PML.Weak.OriginalInterval.SharpEnergyConclusions.integrable : ∀ (t₁ t₂ : ℝ),
+      0 ≤ t₁ → t₁ ≤ t₂ → t₂ ≤ T → IntervalIntegrable (O.sharpDissipation J W₀x W₀y) MeasureTheory.volume t₁ t₂
+  LeanPML.PML.Weak.OriginalInterval.SharpEnergyConclusions.balance : ∀ (t₁ t₂ : ℝ),
+      0 ≤ t₁ →
+        t₁ ≤ t₂ →
+          t₂ ≤ T →
+            O.sharpEnergy J W₀x W₀y t₂ + ∫ (t : ℝ) in t₁..t₂, O.sharpDissipation J W₀x W₀y t =
+              O.sharpEnergy J W₀x W₀y t₁
+  LeanPML.PML.Weak.OriginalInterval.SharpEnergyConclusions.physical : ∀ t ∈ Set.Icc 0 T,
+      ε * ‖(O.fields t).E‖ ^ 2 + μ * (‖(O.fields t).Hx‖ ^ 2 + ‖(O.fields t).Hy‖ ^ 2) + κ⁻¹ * ‖(O.fields t).P‖ ^ 2 ≤
+        4 / μ * O.sharpEnergy J W₀x W₀y t
+  LeanPML.PML.Weak.OriginalInterval.SharpEnergyConclusions.physical_initial : ∀ t ∈ Set.Icc 0 T,
+      ε * ‖(O.fields t).E‖ ^ 2 + μ * (‖(O.fields t).Hx‖ ^ 2 + ‖(O.fields t).Hy‖ ^ 2) + κ⁻¹ * ‖(O.fields t).P‖ ^ 2 ≤
+        4 / μ * O.sharpEnergy J W₀x W₀y 0
+constructor:
+  LeanPML.PML.Weak.OriginalInterval.SharpEnergyConclusions.mk {D : LeanPML.Rectangle.Rect}
+    {C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)} {ε κ τ μ T : ℝ} {O : LeanPML.PML.Weak.OriginalInterval D C ε κ τ μ T}
+    {J : LeanPML.PML.Weak.OriginalJet O} {W₀x : ↥(LeanPML.Analysis.WeightedL2 D.measure C.wx)}
+    {W₀y : ↥(LeanPML.Analysis.WeightedL2 D.measure C.swap.wx)}
+    (bounds :
+      ∀ t ∈ Set.Icc 0 T,
+        O.sharpGraphEnergySquare J W₀x W₀y t / 4 ≤ O.sharpEnergy J W₀x W₀y t ∧
+          O.sharpEnergy J W₀x W₀y t ≤ O.sharpGraphEnergySquare J W₀x W₀y t)
+    (law :
+      ∀ t ∈ Set.Ioo 0 T,
+        HasDerivAt (O.sharpEnergy J W₀x W₀y) (-O.sharpDissipation J W₀x W₀y t) t ∧
+          (LeanPML.PML.fieldSpatialDissipation D.measure C (O.baseState W₀x W₀y t) +
+                    LeanPML.PML.scaleK ε κ μ (LeanPML.Rectangle.sharpPoincareConstant D) *
+                      LeanPML.PML.fieldSpatialDissipation D.measure C (O.firstState J t)) /
+                  2 +
+                μ * τ / (4 * κ) *
+                  (‖(O.derivatives t).P‖ ^ 2 +
+                    LeanPML.PML.scaleK ε κ μ (LeanPML.Rectangle.sharpPoincareConstant D) * ‖J.polarDDot t‖ ^ 2) ≤
+              O.sharpDissipation J W₀x W₀y t ∧
+            0 ≤ O.sharpDissipation J W₀x W₀y t)
+    (monotone : AntitoneOn (O.sharpEnergy J W₀x W₀y) (Set.Icc 0 T))
+    (initial_bounds :
+      ∀ t ∈ Set.Icc 0 T, 0 ≤ O.sharpEnergy J W₀x W₀y t ∧ O.sharpEnergy J W₀x W₀y t ≤ O.sharpEnergy J W₀x W₀y 0)
+    (integrable :
+      ∀ (t₁ t₂ : ℝ),
+        0 ≤ t₁ → t₁ ≤ t₂ → t₂ ≤ T → IntervalIntegrable (O.sharpDissipation J W₀x W₀y) MeasureTheory.volume t₁ t₂)
+    (balance :
+      ∀ (t₁ t₂ : ℝ),
+        0 ≤ t₁ →
+          t₁ ≤ t₂ →
+            t₂ ≤ T →
+              O.sharpEnergy J W₀x W₀y t₂ + ∫ (t : ℝ) in t₁..t₂, O.sharpDissipation J W₀x W₀y t =
+                O.sharpEnergy J W₀x W₀y t₁)
+    (physical :
+      ∀ t ∈ Set.Icc 0 T,
+        ε * ‖(O.fields t).E‖ ^ 2 + μ * (‖(O.fields t).Hx‖ ^ 2 + ‖(O.fields t).Hy‖ ^ 2) + κ⁻¹ * ‖(O.fields t).P‖ ^ 2 ≤
+          4 / μ * O.sharpEnergy J W₀x W₀y t)
+    (physical_initial :
+      ∀ t ∈ Set.Icc 0 T,
+        ε * ‖(O.fields t).E‖ ^ 2 + μ * (‖(O.fields t).Hx‖ ^ 2 + ‖(O.fields t).Hy‖ ^ 2) + κ⁻¹ * ‖(O.fields t).P‖ ^ 2 ≤
+          4 / μ * O.sharpEnergy J W₀x W₀y 0) :
+    O.SharpEnergyConclusions J W₀x W₀y
+structure LeanPML.PML.Weak.OriginalInterval.SharpOriginalAuxiliaryBounds {D : LeanPML.Rectangle.Rect}
+  {C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)} {ε κ τ μ T : ℝ} (O : LeanPML.PML.Weak.OriginalInterval D C ε κ τ μ T)
+  (B t : ℝ) : Prop
+number of parameters: 10
+fields:
+  LeanPML.PML.Weak.OriginalInterval.SharpOriginalAuxiliaryBounds.displacement : ‖↑↑(O.u t) 0‖ ^ 2 ≤
+      8 * LeanPML.Rectangle.sharpPoincareConstant D ^ 2 * B
+  LeanPML.PML.Weak.OriginalInterval.SharpOriginalAuxiliaryBounds.auxiliary : ‖O.φx t‖ ^ 2 + ‖O.φy t‖ ^ 2 ≤ 4 * B
+  LeanPML.PML.Weak.OriginalInterval.SharpOriginalAuxiliaryBounds.primitivePolar : ‖O.q t‖ ^ 2 ≤
+      (16 * κ ^ 2 * LeanPML.Rectangle.sharpPoincareConstant D ^ 2 + 8 * κ * τ ^ 2 / μ) * B
+  LeanPML.PML.Weak.OriginalInterval.SharpOriginalAuxiliaryBounds.electricMemory : ‖(O.fields t).Z1‖ ^ 2 ≤
+      8 * ε ^ 2 * C.S ^ 4 * LeanPML.Rectangle.sharpPoincareConstant D ^ 2 * B
+  LeanPML.PML.Weak.OriginalInterval.SharpOriginalAuxiliaryBounds.polarMemory : ‖(O.fields t).Z2‖ ^ 2 ≤
+      C.S ^ 4 * (16 * κ ^ 2 * LeanPML.Rectangle.sharpPoincareConstant D ^ 2 + 8 * κ * τ ^ 2 / μ) * B
+  LeanPML.PML.Weak.OriginalInterval.SharpOriginalAuxiliaryBounds.magneticAuxiliary : ‖(O.fields t).Qx‖ ^ 2 +
+        ‖(O.fields t).Qy‖ ^ 2 ≤
+      4 * C.S ^ 2 * B
+constructor:
+  LeanPML.PML.Weak.OriginalInterval.SharpOriginalAuxiliaryBounds.mk {D : LeanPML.Rectangle.Rect}
+    {C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)} {ε κ τ μ T : ℝ} {O : LeanPML.PML.Weak.OriginalInterval D C ε κ τ μ T}
+    {B t : ℝ} (displacement : ‖↑↑(O.u t) 0‖ ^ 2 ≤ 8 * LeanPML.Rectangle.sharpPoincareConstant D ^ 2 * B)
+    (auxiliary : ‖O.φx t‖ ^ 2 + ‖O.φy t‖ ^ 2 ≤ 4 * B)
+    (primitivePolar :
+      ‖O.q t‖ ^ 2 ≤ (16 * κ ^ 2 * LeanPML.Rectangle.sharpPoincareConstant D ^ 2 + 8 * κ * τ ^ 2 / μ) * B)
+    (electricMemory : ‖(O.fields t).Z1‖ ^ 2 ≤ 8 * ε ^ 2 * C.S ^ 4 * LeanPML.Rectangle.sharpPoincareConstant D ^ 2 * B)
+    (polarMemory :
+      ‖(O.fields t).Z2‖ ^ 2 ≤
+        C.S ^ 4 * (16 * κ ^ 2 * LeanPML.Rectangle.sharpPoincareConstant D ^ 2 + 8 * κ * τ ^ 2 / μ) * B)
+    (magneticAuxiliary : ‖(O.fields t).Qx‖ ^ 2 + ‖(O.fields t).Qy‖ ^ 2 ≤ 4 * C.S ^ 2 * B) :
+    O.SharpOriginalAuxiliaryBounds B t
+structure LeanPML.PML.Weak.CompatibleLift (D : LeanPML.Rectangle.Rect) (C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ))
+  (ε κ τ μ : ℝ) (F : LeanPML.PML.Weak.OriginalState D) : Type
+number of parameters: 7
+fields:
+  LeanPML.PML.Weak.CompatibleLift.u : ↥(LeanPML.Rectangle.zeroBoundaryGraph D)
+  LeanPML.PML.Weak.CompatibleLift.q : ↥(LeanPML.Analysis.ScalarL2 D.measure)
+  LeanPML.PML.Weak.CompatibleLift.ψx : ↥(LeanPML.Analysis.WeightedL2 D.measure C.wx)
+  LeanPML.PML.Weak.CompatibleLift.ψy : ↥(LeanPML.Analysis.WeightedL2 D.measure C.wy)
+  LeanPML.PML.Weak.CompatibleLift.polar : self.q + τ • F.P = κ • ↑↑self.u 0
+  LeanPML.PML.Weak.CompatibleLift.flux_x : μ • F.Hy = ↑↑self.u 1 + (LeanPML.PML.physicalX D.measure C) self.ψx
+  LeanPML.PML.Weak.CompatibleLift.flux_y : -μ • F.Hx = ↑↑self.u 2 + (LeanPML.PML.physicalY D.measure C) self.ψy
+  LeanPML.PML.Weak.CompatibleLift.memory1 : F.Z1 = -ε • (C.bCoeff.operator D.measure) (↑↑self.u 0)
+  LeanPML.PML.Weak.CompatibleLift.memory2 : F.Z2 = -(C.bCoeff.operator D.measure) self.q
+  LeanPML.PML.Weak.CompatibleLift.auxiliaryX : F.Qx =
+      (C.pCoeff.operator D.measure) ((LeanPML.PML.physicalY D.measure C) self.ψy)
+  LeanPML.PML.Weak.CompatibleLift.auxiliaryY : F.Qy =
+      -(C.rCoeff.operator D.measure) ((LeanPML.PML.physicalX D.measure C) self.ψx)
+constructor:
+  LeanPML.PML.Weak.CompatibleLift.mk {D : LeanPML.Rectangle.Rect} {C : LeanPML.PML.SpatialAbsorption (ℝ × ℝ)}
+    {ε κ τ μ : ℝ} {F : LeanPML.PML.Weak.OriginalState D} (u : ↥(LeanPML.Rectangle.zeroBoundaryGraph D))
+    (q : ↥(LeanPML.Analysis.ScalarL2 D.measure)) (ψx : ↥(LeanPML.Analysis.WeightedL2 D.measure C.wx))
+    (ψy : ↥(LeanPML.Analysis.WeightedL2 D.measure C.wy)) (polar : q + τ • F.P = κ • ↑↑u 0)
+    (flux_x : μ • F.Hy = ↑↑u 1 + (LeanPML.PML.physicalX D.measure C) ψx)
+    (flux_y : -μ • F.Hx = ↑↑u 2 + (LeanPML.PML.physicalY D.measure C) ψy)
+    (memory1 : F.Z1 = -ε • (C.bCoeff.operator D.measure) (↑↑u 0)) (memory2 : F.Z2 = -(C.bCoeff.operator D.measure) q)
+    (auxiliaryX : F.Qx = (C.pCoeff.operator D.measure) ((LeanPML.PML.physicalY D.measure C) ψy))
+    (auxiliaryY : F.Qy = -(C.rCoeff.operator D.measure) ((LeanPML.PML.physicalX D.measure C) ψx)) :
+    LeanPML.PML.Weak.CompatibleLift D C ε κ τ μ F
+LeanPML.Analysis.exists_regional_lipschitz_representative {a b : ℝ} (hab : a < b) (f d : ℝ → ℝ) (hf : Measurable f)
+  (hd : Measurable d) (B : ℝ) (C : NNReal) (hf_bound : ∀ x ∈ Set.Ioo a b, ‖f x‖ ≤ B)
+  (hd_bound : ∀ x ∈ Set.Ioo a b, ‖d x‖ ≤ ↑C)
+  (hweak :
+    ∀ (η : ℝ → ℝ),
+      ContDiff ℝ (↑⊤) η →
+        HasCompactSupport η →
+          tsupport η ⊆ Set.Ioo a b → ∫ (x : ℝ) in Set.Ioo a b, deriv η x * f x = -∫ (x : ℝ) in Set.Ioo a b, η x * d x) :
+  ∃ F, LipschitzWith C F ∧ f =ᵐ[MeasureTheory.volume.restrict (Set.Ioo a b)] F
+LeanPML.PML.RawWeakRegionalAbsorption.representatives {D : LeanPML.Rectangle.Rect}
+  (A : LeanPML.PML.RawWeakRegionalAbsorption D) :
+  ∃ p r,
+    Continuous p ∧
+      Continuous r ∧
+        A.coefficients.profileX =ᵐ[MeasureTheory.volume.restrict (Set.Ioo D.xlo D.xhi)] p ∧
+          A.coefficients.profileY =ᵐ[MeasureTheory.volume.restrict (Set.Ioo D.ylo D.yhi)] r ∧
+            (∀ x ∈ Set.Icc D.xlo D.xhi, 0 ≤ p x ∧ p x ≤ A.S) ∧ ∀ y ∈ Set.Icc D.ylo D.yhi, 0 ≤ r y ∧ r y ≤ A.S
+LeanPML.PML.RawWeakRegionalAbsorption.weighted_spaces_eq {D : LeanPML.Rectangle.Rect}
+  (A : LeanPML.PML.RawWeakRegionalAbsorption D) :
+  (LeanPML.Analysis.weightedSubspace D.measure A.represented.spatial.wx =
+      LeanPML.Analysis.weightedSubspace D.measure fun z =>
+        LeanPML.PML.energyWeightX A.c (A.coefficients.p.value.value z) (A.coefficients.r.value.value z)) ∧
+    LeanPML.Analysis.weightedSubspace D.measure A.represented.spatial.wy =
+      LeanPML.Analysis.weightedSubspace D.measure fun z =>
+        LeanPML.PML.energyWeightY A.c (A.coefficients.p.value.value z) (A.coefficients.r.value.value z)
+LeanPML.PML.RawWeakRegionalAbsorption.energy_integral_original {D : LeanPML.Rectangle.Rect}
+  (A : LeanPML.PML.RawWeakRegionalAbsorption D) (ε κ τ μ : ℝ)
+  (U : LeanPML.PML.FieldState D.measure A.represented.spatial.wx A.represented.spatial.wy) :
+  have f := fun z =>
+    LeanPML.PML.Obstructions.singleLayerEnergy ε κ τ μ A.c (A.coefficients.p.value.value z)
+      (A.coefficients.r.value.value z) (↑↑U.v z) (↑↑U.V z) (↑↑U.R z) (↑↑U.z z)
+      (↑↑U.Λx z - ↑↑((LeanPML.PML.physicalX D.measure A.represented.spatial) U.ψx) z)
+      (↑↑U.Λy z - ↑↑((LeanPML.PML.physicalY D.measure A.represented.spatial) U.ψy) z) (↑↑U.Λx z) (↑↑U.Λy z);
+  MeasureTheory.Integrable f D.measure ∧
+    LeanPML.PML.fieldEnergy D.measure A.represented.spatial ε κ τ μ U = ∫ (z : ℝ × ℝ), f z ∂D.measure
+LeanPML.PML.Weak.OriginalInterval.main_energy_GeneralWeakCk {D : LeanPML.Rectangle.Rect}
+  {A : LeanPML.PML.RawWeakRegionalAbsorption D} {ε κ τ μ T : ℝ}
+  (O : LeanPML.PML.Weak.OriginalInterval D A.rawSpatial ε κ τ μ T) (R : LeanPML.PML.Weak.V7ClosedCkCore O) (hT : 0 < T)
+  (hε : 0 < ε) (hκ : 0 < κ) (hτ : 0 < τ) (hμ : 0 < μ)
+  (hsmall : A.c ≤ LeanPML.PML.threshold ε κ τ μ (LeanPML.Rectangle.sharpPoincareConstant D))
+  (X : ↥(LeanPML.Analysis.WeightedL2 D.measure A.rawSpatial.wx))
+  (Y : ↥(LeanPML.Analysis.WeightedL2 D.measure A.rawSpatial.swap.wx))
+  (hX : (LeanPML.Analysis.physicalL2 D.measure A.rawSpatial.wx ⋯ ⋯) X = O.φx 0)
+  (hY : (LeanPML.Analysis.physicalL2 D.measure A.rawSpatial.swap.wx ⋯ ⋯) Y = O.φy 0) :
+  let O' := LeanPML.PML.Weak.V7ClosedCkCore.canonicalInterval hT;
+  have J := (⋯.toTimeRegularity hT).toOriginalJet;
+  O'.SharpEnergyConclusions J (A.initialX X) (A.initialY Y) ∧
+    ∀ t ∈ Set.Icc 0 T, O'.SharpOriginalAuxiliaryBounds (O'.sharpEnergy J (A.initialX X) (A.initialY Y) 0) t
+LeanPML.PML.Weak.OriginalInterval.main_energy_GeneralWeakJet {D : LeanPML.Rectangle.Rect}
+  {A : LeanPML.PML.RawWeakRegionalAbsorption D} {ε κ τ μ T : ℝ}
+  (O : LeanPML.PML.Weak.OriginalInterval D A.rawSpatial ε κ τ μ T) (J : LeanPML.PML.Weak.OriginalJet O)
+  (hdeg : LeanPML.PML.Weak.DegenerateJetCompatibility O J) (hε : 0 < ε) (hκ : 0 < κ) (hτ : 0 < τ) (hμ : 0 < μ)
+  (hsmall : A.c ≤ LeanPML.PML.threshold ε κ τ μ (LeanPML.Rectangle.sharpPoincareConstant D))
+  (X : ↥(LeanPML.Analysis.WeightedL2 D.measure A.rawSpatial.wx))
+  (Y : ↥(LeanPML.Analysis.WeightedL2 D.measure A.rawSpatial.swap.wx))
+  (hX : (LeanPML.Analysis.physicalL2 D.measure A.rawSpatial.wx ⋯ ⋯) X = O.φx 0)
+  (hY : (LeanPML.Analysis.physicalL2 D.measure A.rawSpatial.swap.wx ⋯ ⋯) Y = O.φy 0) :
+  O.representedInterval.SharpEnergyConclusions (O.representedJet J) (A.initialX X) (A.initialY Y)
+LeanPML.PML.Weak.OriginalInterval.auxiliary_initial_GeneralWeakJet {D : LeanPML.Rectangle.Rect}
+  {A : LeanPML.PML.RawWeakRegionalAbsorption D} {ε κ τ μ T : ℝ}
+  (O : LeanPML.PML.Weak.OriginalInterval D A.rawSpatial ε κ τ μ T) (J : LeanPML.PML.Weak.OriginalJet O)
+  (hdeg : LeanPML.PML.Weak.DegenerateJetCompatibility O J) (hε : 0 < ε) (hκ : 0 < κ) (hτ : 0 < τ) (hμ : 0 < μ)
+  (hsmall : A.c ≤ LeanPML.PML.threshold ε κ τ μ (LeanPML.Rectangle.sharpPoincareConstant D))
+  (X : ↥(LeanPML.Analysis.WeightedL2 D.measure A.rawSpatial.wx))
+  (Y : ↥(LeanPML.Analysis.WeightedL2 D.measure A.rawSpatial.swap.wx))
+  (hX : (LeanPML.Analysis.physicalL2 D.measure A.rawSpatial.wx ⋯ ⋯) X = O.φx 0)
+  (hY : (LeanPML.Analysis.physicalL2 D.measure A.rawSpatial.swap.wx ⋯ ⋯) Y = O.φy 0) {t : ℝ} (ht : t ∈ Set.Icc 0 T) :
+  O.representedInterval.SharpOriginalAuxiliaryBounds
+    (O.representedInterval.sharpEnergy (O.representedJet J) (A.initialX X) (A.initialY Y) 0) t
+LeanPML.PML.Weak.twoLayerEnergy_independent_GeneralWeak {D : LeanPML.Rectangle.Rect}
+  (A : LeanPML.PML.RawWeakRegionalAbsorption D) {ε κ τ μ K : ℝ} {F₀ F₁ : LeanPML.PML.Weak.OriginalState D}
+  (L₀ M₀ : LeanPML.PML.Weak.CompatibleLift D A.represented.spatial ε κ τ μ F₀)
+  (L₁ M₁ : LeanPML.PML.Weak.CompatibleLift D A.represented.spatial ε κ τ μ F₁) :
+  LeanPML.PML.twoLayerEnergy D.measure A.represented.spatial ε κ τ μ K L₀.state L₁.state =
+    LeanPML.PML.twoLayerEnergy D.measure A.represented.spatial ε κ τ μ K M₀.state M₁.state
+LeanPML.Examples.OriginalPower.absorption (m : ℕ) (ηx ηy : ℝ) (hηx : 0 < ηx) (hηy : 0 < ηy) (hxS : ηx ≤ 1 / 512)
+  (hyS : ηy ≤ 1 / 512) : LeanPML.PML.RawWeakRegionalAbsorption LeanPML.Rectangle.ParameterCertificate.unitSquare
+LeanPML.Examples.OriginalPower.representative_nonconstant {m : ℕ} (hm : 2 ≤ m) (ηx ηy : ℝ) (hηx : 0 < ηx) (hηy : 0 < ηy)
+  (hxS : ηx ≤ 1 / 512) (hyS : ηy ≤ 1 / 512) :
+  (LeanPML.Examples.OriginalPower.absorption m ηx ηy hηx hηy hxS hyS).profileX 0 = 0 ∧
+    0 < (LeanPML.Examples.OriginalPower.absorption m ηx ηy hηx hηy hxS hyS).profileX (3 / 4)
+LeanPML.Examples.GeneralWeak.original_profile_main (m : ℕ) (ηx ηy : ℝ) (hηx : 0 < ηx) (hηy : 0 < ηy)
+  (hxS : ηx ≤ 1 / 512) (hyS : ηy ≤ 1 / 512) (T : ℝ) (hT : 0 ≤ T) :
+  have A := LeanPML.Examples.OriginalPower.absorption m ηx ηy hηx hηy hxS hyS;
+  let O :=
+    LeanPML.Examples.WeakBranchRegression.zeroInterval LeanPML.Rectangle.ParameterCertificate.unitSquare A.rawSpatial 1
+      1 1 1 T hT;
+  have J :=
+    LeanPML.Examples.WeakBranchRegression.zeroJet LeanPML.Rectangle.ParameterCertificate.unitSquare A.rawSpatial 1 1 1 1
+      T hT;
+  O.representedInterval.SharpEnergyConclusions (O.representedJet J) (A.initialX 0) (A.initialY 0)
+LeanPML.Examples.GeneralWeak.static_ck_call (T : ℝ) (hT : 0 < T) :
+  let O := LeanPML.PML.Weak.V7ClosedCkCore.canonicalInterval hT;
+  have J := (⋯.toTimeRegularity hT).toOriginalJet;
+  O.SharpEnergyConclusions J (LeanPML.Examples.GeneralWeak.staticAbsorption.initialX 0)
+      (LeanPML.Examples.GeneralWeak.staticAbsorption.initialY LeanPML.Examples.GeneralWeak.staticInitialY) ∧
+    ∀ t ∈ Set.Icc 0 T,
+      O.SharpOriginalAuxiliaryBounds
+        (O.sharpEnergy J (LeanPML.Examples.GeneralWeak.staticAbsorption.initialX 0)
+          (LeanPML.Examples.GeneralWeak.staticAbsorption.initialY LeanPML.Examples.GeneralWeak.staticInitialY) 0)
+        t
+LeanPML.Examples.GeneralWeak.static_main_call (T : ℝ) (hT : 0 ≤ T) :
+  (LeanPML.Examples.GeneralWeak.staticSolution T hT).representedInterval.SharpEnergyConclusions
+    ((LeanPML.Examples.GeneralWeak.staticSolution T hT).representedJet (LeanPML.Examples.GeneralWeak.staticJet T hT))
+    (LeanPML.Examples.GeneralWeak.staticAbsorption.initialX 0)
+    (LeanPML.Examples.GeneralWeak.staticAbsorption.initialY LeanPML.Examples.GeneralWeak.staticInitialY)
+LeanPML.Examples.GeneralWeak.static_dissipation_zero (T : ℝ) (hT : 0 ≤ T) {t : ℝ} (ht : t ∈ Set.Ioo 0 T) :
+  (LeanPML.Examples.GeneralWeak.staticSolution T hT).representedInterval.sharpDissipation
+      ((LeanPML.Examples.GeneralWeak.staticSolution T hT).representedJet (LeanPML.Examples.GeneralWeak.staticJet T hT))
+      (LeanPML.Examples.GeneralWeak.staticAbsorption.initialX 0)
+      (LeanPML.Examples.GeneralWeak.staticAbsorption.initialY LeanPML.Examples.GeneralWeak.staticInitialY) t =
+    0
+LeanPML.PML.Weak.OriginalInterval.auxiliary_current_GeneralWeakCk {D : LeanPML.Rectangle.Rect}
+  {A : LeanPML.PML.RawWeakRegionalAbsorption D} {ε κ τ μ T : ℝ}
+  (O : LeanPML.PML.Weak.OriginalInterval D A.rawSpatial ε κ τ μ T) (R : LeanPML.PML.Weak.V7ClosedCkCore O) (hT : 0 < T)
+  (hε : 0 < ε) (hκ : 0 < κ) (hτ : 0 < τ) (hμ : 0 < μ)
+  (hsmall : A.c ≤ LeanPML.PML.threshold ε κ τ μ (LeanPML.Rectangle.sharpPoincareConstant D))
+  (X : ↥(LeanPML.Analysis.WeightedL2 D.measure A.rawSpatial.wx))
+  (Y : ↥(LeanPML.Analysis.WeightedL2 D.measure A.rawSpatial.swap.wx))
+  (hX : (LeanPML.Analysis.physicalL2 D.measure A.rawSpatial.wx ⋯ ⋯) X = O.φx 0)
+  (hY : (LeanPML.Analysis.physicalL2 D.measure A.rawSpatial.swap.wx ⋯ ⋯) Y = O.φy 0) :
+  let O' := LeanPML.PML.Weak.V7ClosedCkCore.canonicalInterval hT;
+  have J := (⋯.toTimeRegularity hT).toOriginalJet;
+  ∀ t ∈ Set.Icc 0 T, O'.SharpOriginalAuxiliaryBounds (O'.sharpEnergy J (A.initialX X) (A.initialY Y) t) t
+LeanPML.PML.Weak.OriginalInterval.auxiliary_current_GeneralWeakJet {D : LeanPML.Rectangle.Rect}
+  {A : LeanPML.PML.RawWeakRegionalAbsorption D} {ε κ τ μ T : ℝ}
+  (O : LeanPML.PML.Weak.OriginalInterval D A.rawSpatial ε κ τ μ T) (J : LeanPML.PML.Weak.OriginalJet O)
+  (hdeg : LeanPML.PML.Weak.DegenerateJetCompatibility O J) (hε : 0 < ε) (hκ : 0 < κ) (hτ : 0 < τ) (hμ : 0 < μ)
+  (hsmall : A.c ≤ LeanPML.PML.threshold ε κ τ μ (LeanPML.Rectangle.sharpPoincareConstant D))
+  (X : ↥(LeanPML.Analysis.WeightedL2 D.measure A.rawSpatial.wx))
+  (Y : ↥(LeanPML.Analysis.WeightedL2 D.measure A.rawSpatial.swap.wx))
+  (hX : (LeanPML.Analysis.physicalL2 D.measure A.rawSpatial.wx ⋯ ⋯) X = O.φx 0)
+  (hY : (LeanPML.Analysis.physicalL2 D.measure A.rawSpatial.swap.wx ⋯ ⋯) Y = O.φy 0) {t : ℝ} (ht : t ∈ Set.Icc 0 T) :
+  O.representedInterval.SharpOriginalAuxiliaryBounds
+    (O.representedInterval.sharpEnergy (O.representedJet J) (A.initialX X) (A.initialY Y) t) t

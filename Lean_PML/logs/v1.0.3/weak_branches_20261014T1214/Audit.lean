@@ -1,0 +1,9 @@
+import LeanPML.Examples.WeakBranchRegression
+#print LeanPML.Examples.WeakBranchRegression.zeroInterval
+#print LeanPML.Examples.WeakBranchRegression.zeroJet
+#print LeanPML.Examples.WeakBranchRegression.configuration_main
+#print axioms LeanPML.Examples.WeakBranchRegression.zero_degenerate
+#print axioms LeanPML.Examples.WeakBranchRegression.zero_initial_weighted
+#print axioms LeanPML.Examples.WeakBranchRegression.configuration_parameters
+#print axioms LeanPML.Examples.WeakBranchRegression.configuration_main
+#print axioms LeanPML.Examples.WeakBranchRegression.all_four_configurations

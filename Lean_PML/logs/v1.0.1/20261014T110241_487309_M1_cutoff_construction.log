@@ -1,0 +1,37 @@
+LeanPML/Rectangle/SmoothWeakClosure.lean:77:6: error: Tactic `apply` failed: could not unify the conclusion of `@ContDiff.mul`
+  ContDiff ?𝕜 ?n fun x => ?f x * ?g x
+with the goal
+  (fun z =>
+      ((z.1 - D.xlo - δ) / δ).smoothTransition * ((D.xhi - z.1 - δ) / δ).smoothTransition *
+          ((z.2 - D.ylo - δ) / δ).smoothTransition *
+        ((D.yhi - z.2 - δ) / δ).smoothTransition) ∈
+    smoothFields
+
+Note: The full type of `@ContDiff.mul` is
+  ∀ {𝕜 : Type ?u.60} [inst : NontriviallyNormedField 𝕜] {E : Type ?u.61} [inst_1 : NormedAddCommGroup E]
+    [inst_2 : NormedSpace 𝕜 E] {n : ℕ∞ω} {𝔸 : Type ?u.59} [inst_3 : NormedRing 𝔸] [inst_4 : NormedAlgebra 𝕜 𝔸]
+    {f g : E → 𝔸}, ContDiff 𝕜 n f → ContDiff 𝕜 n g → ContDiff 𝕜 n fun x => f x * g x
+
+D : Rect
+δ : ℝ
+⊢ (fun z =>
+      ((z.1 - D.xlo - δ) / δ).smoothTransition * ((D.xhi - z.1 - δ) / δ).smoothTransition *
+          ((z.2 - D.ylo - δ) / δ).smoothTransition *
+        ((D.yhi - z.2 - δ) / δ).smoothTransition) ∈
+    smoothFields
+LeanPML/Rectangle/SmoothWeakClosure.lean:90:4: error: failed to prove positivity/nonnegativity/nonzeroness
+LeanPML/Rectangle/SmoothWeakClosure.lean:92:6: error: Application type mismatch: The argument
+  mul_nonneg (mul_nonneg (Real.smoothTransition.nonneg ?m.35) (Real.smoothTransition.nonneg ?m.36))
+    (Real.smoothTransition.nonneg ?m.37)
+has type
+  0 ≤ Real.smoothTransition ?m.35 * Real.smoothTransition ?m.36 * Real.smoothTransition ?m.37
+but is expected to have type
+  ((z.1 - D.xlo - δ) / δ).smoothTransition * ((D.xhi - z.1 - δ) / δ).smoothTransition *
+      ((z.2 - D.ylo - δ) / δ).smoothTransition ≤
+    1
+in the application
+  mul_le_one₀
+    (mul_nonneg (mul_nonneg (Real.smoothTransition.nonneg ?m.35) (Real.smoothTransition.nonneg ?m.36))
+      (Real.smoothTransition.nonneg ?m.37))
+LeanPML/Rectangle/SmoothWeakClosure.lean:109:13: warning: declaration uses `sorry`
+LeanPML/Rectangle/SmoothWeakClosure.lean:148:13: warning: declaration uses `sorry`

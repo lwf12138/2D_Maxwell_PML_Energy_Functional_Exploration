@@ -1,0 +1,26 @@
+LeanPML/Analysis/WeakIntervalRepresentative.lean:29:18: warning: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+LeanPML/Analysis/WeakIntervalRepresentative.lean:21:44: warning: Variable name `hab` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+LeanPML/Analysis/WeakIntervalRepresentative.lean:119:13: error(lean.unknownIdentifier): Unknown identifier `tsupport_sub_subset`
+LeanPML/Analysis/WeakIntervalRepresentative.lean:120:6: error: No goals to be solved
+LeanPML/Analysis/WeakIntervalRepresentative.lean:108:52: error: unsolved goals
+a b : ℝ
+hab : a < b
+f : ℝ → ℝ
+hf : LocallyIntegrable f volume
+hweak : ∀ (η : ℝ → ℝ), ContDiff ℝ ∞ η → HasCompactSupport η → tsupport η ⊆ Ioo a b → ∫ (x : ℝ), deriv η x * f x = 0
+ρ : ℝ → ℝ
+hρ : ContDiff ℝ ∞ ρ
+hρc : HasCompactSupport ρ
+hρs : tsupport ρ ⊆ Ioo a b
+hρint : ∫ (x : ℝ), ρ x = 1
+c : ℝ := ∫ (x : ℝ), ρ x * f x
+hpair :
+  ∀ (η : ℝ → ℝ),
+    ContDiff ℝ ∞ η → HasCompactSupport η → tsupport η ⊆ Ioo a b → ∫ (x : ℝ), η x * f x = (∫ (x : ℝ), η x) * c
+⊢ ∀ᵐ (x : ℝ), x ∈ Ioo a b → f x = c

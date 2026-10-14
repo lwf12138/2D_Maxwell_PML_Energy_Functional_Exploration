@@ -1,0 +1,311 @@
+{
+  "pages": 18,
+  "modified_pages": [
+    7,
+    8,
+    10,
+    13,
+    15
+  ],
+  "before_sha256": "6081973deddfb3f83a806095042131e7b2cfc4ecb1f6e5d8e61194b232b1a322",
+  "after_sha256": "ac8430fa24c936013550a0c71e480b72c4d6801067a1afcee8398de42c8d941e",
+  "old_annotations": 225,
+  "new_annotations": 231,
+  "added_ticks": 5,
+  "added_notes": 1,
+  "original_text_preserved": true,
+  "old_annotations_preserved": true,
+  "overlap_check": "passed",
+  "visual_review": "passed; visual_review.json",
+  "entries": [
+    {
+      "id": "sharp_poincare",
+      "page": 7,
+      "formula": "(5.1)",
+      "tick": true,
+      "x": 55,
+      "top": 11,
+      "font_size": 6.5,
+      "lines": [
+        "v1.0本轮：(5.1) 原 π 常数已证；真实矩形 H₀¹ 图闭包，含两方向 Fubini。",
+        "已接入精确阈值及新弱原系统能量入口；不要求常数最优性另证。"
+      ],
+      "scope": "一维 Dirichlet–Wirtinger → 切片 → Fubini → H¹ 图闭包；CP²=(π²/Lx²+π²/Ly²)⁻¹。",
+      "modules": [
+        "LeanPML/Rectangle/SharpPoincare.lean"
+      ],
+      "theorems": [
+        "LeanPML.Rectangle.weak_sharp_poincare",
+        "LeanPML.Rectangle.sharpPoincareConstant_sq",
+        "LeanPML.Rectangle.sharpWeakPoincareDomain"
+      ],
+      "rect_top": [
+        54,
+        9,
+        281.62158203125,
+        28.2
+      ],
+      "build_audit": {
+        "build": {
+          "metadata": "logs/v1.0_completion/20261014T170041_585017_lake_build.json",
+          "log": "logs/v1.0_completion/20261014T170041_585017_lake_build.log",
+          "exit_code": 0
+        },
+        "audit": {
+          "metadata": "logs/v1.0_completion/20261014T170212_199650_axioms_audit.json",
+          "log": "logs/v1.0_completion/20261014T170212_199650_axioms_audit.log",
+          "exit_code": 0
+        },
+        "types": {
+          "metadata": "logs/v1.0_completion/20261014T170234_873529_type_review.json",
+          "log": "logs/v1.0_completion/20261014T170234_873529_type_review.log",
+          "exit_code": 0
+        }
+      },
+      "source_hashes": {
+        "LeanPML/Rectangle/SharpPoincare.lean": "03d72e195aa3f354784113b574337c3a795cacba0ac76904ccc92e1f0e088730"
+      }
+    },
+    {
+      "id": "scalar_kernel",
+      "page": 8,
+      "formula": "(5.7)",
+      "tick": true,
+      "x": 55,
+      "top": 269,
+      "font_size": 6.3,
+      "lines": [
+        "本轮 (5.7)：标量指数乘子/Bochner 公式已证；双方向、逐时刻商类，含零吸收。"
+      ],
+      "scope": "追加更新旧算子核待识别说明：有界吸收乘子指数已等于 exp(tp) 乘子，并识别原辅助场。无共同零测集全时间结论；固定差值系数在积分内。",
+      "modules": [
+        "LeanPML/Analysis/MultiplierExponential.lean",
+        "LeanPML/PML/AuxiliaryScalarMemory.lean"
+      ],
+      "theorems": [
+        "LeanPML.Analysis.dampingKernel_eq_scalarExpMultiplier",
+        "LeanPML.PML.Weak.OriginalInterval.scalar_memory_both",
+        "LeanPML.PML.Weak.OriginalInterval.scalar_memory_physical_x",
+        "LeanPML.PML.Weak.OriginalInterval.scalar_memory_physical_y"
+      ],
+      "rect_top": [
+        54,
+        267,
+        295.36982421875,
+        277.3
+      ],
+      "build_audit": {
+        "build": {
+          "metadata": "logs/v1.0_completion/20261014T170041_585017_lake_build.json",
+          "log": "logs/v1.0_completion/20261014T170041_585017_lake_build.log",
+          "exit_code": 0
+        },
+        "audit": {
+          "metadata": "logs/v1.0_completion/20261014T170212_199650_axioms_audit.json",
+          "log": "logs/v1.0_completion/20261014T170212_199650_axioms_audit.log",
+          "exit_code": 0
+        },
+        "types": {
+          "metadata": "logs/v1.0_completion/20261014T170234_873529_type_review.json",
+          "log": "logs/v1.0_completion/20261014T170234_873529_type_review.log",
+          "exit_code": 0
+        }
+      },
+      "source_hashes": {
+        "LeanPML/Analysis/MultiplierExponential.lean": "255aa23566acaf2da0ae4cf084c66d7845862f63e3c00a026975c181cf9878bf",
+        "LeanPML/PML/AuxiliaryScalarMemory.lean": "ae15dea64763418969911b3bb9a1931026adaabc5c1e6e3ad860a5546d05e891"
+      }
+    },
+    {
+      "id": "ck_bridge",
+      "page": 10,
+      "formula": "(6.6) 正则性充分性连接",
+      "tick": false,
+      "x": 55,
+      "top": 547,
+      "font_size": 6.3,
+      "lines": [
+        "本轮 (6.6) 连接已证：T>0 的真实 C^k 构造路径；T=0 初始导数层兼容另列。"
+      ],
+      "scope": "不是正则性自动传播完成勾。正长度 canonicalInterval 规范 E/P 端点导数槽；原场不变，不增加端点 PDE。",
+      "modules": [
+        "LeanPML/PML/WeakCanonicalTime.lean"
+      ],
+      "theorems": [
+        "LeanPML.PML.Weak.V7ClosedCkCore.regularity",
+        "LeanPML.PML.Weak.V7ClosedCkCore.canonical_fields",
+        "LeanPML.PML.Weak.V7ClosedCkCore.main_energy"
+      ],
+      "rect_top": [
+        54,
+        545,
+        269.673974609375,
+        555.3
+      ],
+      "build_audit": {
+        "build": {
+          "metadata": "logs/v1.0_completion/20261014T170041_585017_lake_build.json",
+          "log": "logs/v1.0_completion/20261014T170041_585017_lake_build.log",
+          "exit_code": 0
+        },
+        "audit": {
+          "metadata": "logs/v1.0_completion/20261014T170212_199650_axioms_audit.json",
+          "log": "logs/v1.0_completion/20261014T170212_199650_axioms_audit.log",
+          "exit_code": 0
+        },
+        "types": {
+          "metadata": "logs/v1.0_completion/20261014T170234_873529_type_review.json",
+          "log": "logs/v1.0_completion/20261014T170234_873529_type_review.log",
+          "exit_code": 0
+        }
+      },
+      "source_hashes": {
+        "LeanPML/PML/WeakCanonicalTime.lean": "b82e2c241d8bf7b26438c864b681a0a5baabb4d734718c3a002ac2165a85afe6"
+      }
+    },
+    {
+      "id": "sharp_main",
+      "page": 10,
+      "formula": "(6.7)–(6.10) 精确常数版",
+      "tick": true,
+      "x": 55,
+      "top": 609,
+      "font_size": 6.3,
+      "lines": [
+        "本轮 (6.7)–(6.10)：原 π 常数；弱图/C^k 类；区域连续代表仍输入，非完整 W¹,∞ 对齐。"
+      ],
+      "scope": "(6.7)图界、(6.8)定量耗散与真实求导、(6.9)单调/Bochner时间平衡、(6.10)原场控制。T≥0 jet入口保留退化兼容；Ck规范入口T>0。代表选择仍未证。",
+      "modules": [
+        "LeanPML/PML/MainSharpWeakRectangle.lean",
+        "LeanPML/PML/WeakCanonicalTime.lean"
+      ],
+      "theorems": [
+        "LeanPML.PML.Weak.OriginalInterval.main_energy_estimate_SharpWeakOriginal",
+        "LeanPML.PML.Weak.main_energy_RegionalSharpCk",
+        "LeanPML.Examples.WeakStaticMode.canonical_main_call"
+      ],
+      "rect_top": [
+        54,
+        607,
+        314.094482421875,
+        617.3
+      ],
+      "build_audit": {
+        "build": {
+          "metadata": "logs/v1.0_completion/20261014T170041_585017_lake_build.json",
+          "log": "logs/v1.0_completion/20261014T170041_585017_lake_build.log",
+          "exit_code": 0
+        },
+        "audit": {
+          "metadata": "logs/v1.0_completion/20261014T170212_199650_axioms_audit.json",
+          "log": "logs/v1.0_completion/20261014T170212_199650_axioms_audit.log",
+          "exit_code": 0
+        },
+        "types": {
+          "metadata": "logs/v1.0_completion/20261014T170234_873529_type_review.json",
+          "log": "logs/v1.0_completion/20261014T170234_873529_type_review.log",
+          "exit_code": 0
+        }
+      },
+      "source_hashes": {
+        "LeanPML/PML/MainSharpWeakRectangle.lean": "f7e6a4252bab443b715d1a00d7860fc6af05528943c6e20f22256bbff0961c44",
+        "LeanPML/PML/WeakCanonicalTime.lean": "b82e2c241d8bf7b26438c864b681a0a5baabb4d734718c3a002ac2165a85afe6"
+      }
+    },
+    {
+      "id": "sharp_aux",
+      "page": 13,
+      "formula": "(8.4)–(8.8)",
+      "tick": true,
+      "x": 55,
+      "top": 497,
+      "font_size": 6.5,
+      "lines": [
+        "本轮 (8.4)–(8.8)：精确 C_P 下输入原 Z/Q 与 u/q/φ 的控制及初值界。",
+        "所选弱图路径、初始兼容；不表示任意八变量裸 L² 范数等价。"
+      ],
+      "scope": "通过同一原解的闭区间兼容保持识别 O.fields 中 Z1/Z2/Qx/Qy；常数保持原式。",
+      "modules": [
+        "LeanPML/PML/MainSharpWeakRectangle.lean"
+      ],
+      "theorems": [
+        "LeanPML.PML.Weak.OriginalInterval.sharp_original_auxiliary_control",
+        "LeanPML.PML.Weak.OriginalInterval.sharp_original_auxiliary_initial_control"
+      ],
+      "rect_top": [
+        54,
+        495,
+        268.79296875,
+        514.2
+      ],
+      "build_audit": {
+        "build": {
+          "metadata": "logs/v1.0_completion/20261014T170041_585017_lake_build.json",
+          "log": "logs/v1.0_completion/20261014T170041_585017_lake_build.log",
+          "exit_code": 0
+        },
+        "audit": {
+          "metadata": "logs/v1.0_completion/20261014T170212_199650_axioms_audit.json",
+          "log": "logs/v1.0_completion/20261014T170212_199650_axioms_audit.log",
+          "exit_code": 0
+        },
+        "types": {
+          "metadata": "logs/v1.0_completion/20261014T170234_873529_type_review.json",
+          "log": "logs/v1.0_completion/20261014T170234_873529_type_review.log",
+          "exit_code": 0
+        }
+      },
+      "source_hashes": {
+        "LeanPML/PML/MainSharpWeakRectangle.lean": "f7e6a4252bab443b715d1a00d7860fc6af05528943c6e20f22256bbff0961c44"
+      }
+    },
+    {
+      "id": "original_parameters",
+      "page": 15,
+      "formula": "(10.1) 及后续小量不等式",
+      "tick": true,
+      "x": 55,
+      "top": 11,
+      "font_size": 6.5,
+      "lines": [
+        "本轮 (10.1)：原数值阈值已证；C_P²=2/π²，K=48/π²，c=1/128，S=1/512。",
+        "严格使用 π>3；不附带宣称 (10.2) 全族连续代表构造或解存在性完成。"
+      ],
+      "scope": "三条显式小量与KS²严格界，接回min阈值；未单独证明显示的min最小分支等式。",
+      "modules": [
+        "LeanPML/Rectangle/SharpParameterCertificate.lean"
+      ],
+      "theorems": [
+        "LeanPML.Rectangle.ParameterCertificate.original_parameters_threshold",
+        "LeanPML.Rectangle.ParameterCertificate.original_amplitude_certificate",
+        "LeanPML.Rectangle.ParameterCertificate.original_parameters_explicit"
+      ],
+      "rect_top": [
+        54,
+        9,
+        288.968994140625,
+        28.2
+      ],
+      "build_audit": {
+        "build": {
+          "metadata": "logs/v1.0_completion/20261014T170041_585017_lake_build.json",
+          "log": "logs/v1.0_completion/20261014T170041_585017_lake_build.log",
+          "exit_code": 0
+        },
+        "audit": {
+          "metadata": "logs/v1.0_completion/20261014T170212_199650_axioms_audit.json",
+          "log": "logs/v1.0_completion/20261014T170212_199650_axioms_audit.log",
+          "exit_code": 0
+        },
+        "types": {
+          "metadata": "logs/v1.0_completion/20261014T170234_873529_type_review.json",
+          "log": "logs/v1.0_completion/20261014T170234_873529_type_review.log",
+          "exit_code": 0
+        }
+      },
+      "source_hashes": {
+        "LeanPML/Rectangle/SharpParameterCertificate.lean": "17c2295d79ff31fe1457a3a2a29e0ec1b4bc60f43e1a5e10876a804ee3a29835"
+      }
+    }
+  ]
+}

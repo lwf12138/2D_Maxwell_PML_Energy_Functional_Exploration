@@ -1,0 +1,10 @@
+✔ [2600/2608] Built Mathlib.Order.Monotone.Extension (953ms)
+✔ [2601/2608] Built Mathlib.Order.SuccPred.IntervalSucc (1.8s)
+✔ [2602/2608] Built Mathlib.MeasureTheory.Covering.Vitali (3.0s)
+✔ [2603/2608] Built Mathlib.Topology.EMetricSpace.BoundedVariation (4.3s)
+✔ [2604/2608] Built Mathlib.MeasureTheory.Covering.DensityTheorem (2.0s)
+✔ [2605/2608] Built Mathlib.MeasureTheory.Covering.OneDim (1.4s)
+✔ [2606/2608] Built Mathlib.Analysis.Calculus.Monotone (1.8s)
+✔ [2607/2608] Built Mathlib.Analysis.BoundedVariation (1.5s)
+✔ [2608/2608] Built Mathlib.MeasureTheory.Function.AbsolutelyContinuous (2.9s)
+Build completed successfully (2608 jobs).

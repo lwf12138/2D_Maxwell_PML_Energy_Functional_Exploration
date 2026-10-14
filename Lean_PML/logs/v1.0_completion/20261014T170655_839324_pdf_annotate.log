@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v1.0_completion/pdf/annotate_pdf.py", line 33, in <module>
+    assert all(ord(c) in pdfmetrics.getFont('WeakChinese').face.charToGlyph for l in e['lines'] for c in l)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

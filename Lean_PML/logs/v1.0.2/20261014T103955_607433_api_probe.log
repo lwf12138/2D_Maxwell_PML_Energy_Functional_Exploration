@@ -1,0 +1,32 @@
+Submodule.span_induction.{u_1, u_4} {R : Type u_1} {M : Type u_4} [Semiring R] [AddCommMonoid M] [Module R M]
+  {s : Set M} {p : (x : M) → x ∈ Submodule.span R s → Prop} (mem : ∀ (x : M) (h : x ∈ s), p x ⋯) (zero : p 0 ⋯)
+  (add : ∀ (x y : M) (hx : x ∈ Submodule.span R s) (hy : y ∈ Submodule.span R s), p x hx → p y hy → p (x + y) ⋯)
+  (smul : ∀ (a : R) (x : M) (hx : x ∈ Submodule.span R s), p x hx → p (a • x) ⋯) {x : M} (hx : x ∈ Submodule.span R s) :
+  p x hx
+closure_minimal.{u} {X : Type u} [TopologicalSpace X] {s t : Set X} (h₁ : s ⊆ t) (h₂ : IsClosed t) : closure s ⊆ t
+Submodule.topologicalClosure_coe.{u, v} {R : Type u} {M : Type v} [Semiring R] [TopologicalSpace M] [AddCommMonoid M]
+  [Module R M] [ContinuousConstSMul R M] [ContinuousAdd M] (s : Submodule R M) : ↑s.topologicalClosure = closure ↑s
+Continuous.inner.{u_1, u_2, u_4} {𝕜 : Type u_1} {E : Type u_2} [RCLike 𝕜] [SeminormedAddCommGroup E]
+  [InnerProductSpace 𝕜 E] {α : Type u_4} [TopologicalSpace α] {f g : α → E} (hf : Continuous f) (hg : Continuous g) :
+  Continuous fun t => inner 𝕜 (f t) (g t)
+Continuous.norm.{u_1, u_4} {α : Type u_1} {E : Type u_4} [SeminormedAddGroup E] [TopologicalSpace α] {f : α → E} :
+  Continuous f → Continuous fun x => ‖f x‖
+Submodule.topologicalClosure_minimal.{u, v} {R : Type u} {M : Type v} [Semiring R] [TopologicalSpace M]
+  [AddCommMonoid M] [Module R M] [ContinuousConstSMul R M] [ContinuousAdd M] (s : Submodule R M) {t : Submodule R M}
+  (h : s ≤ t) (ht : IsClosed ↑t) : s.topologicalClosure ≤ t
+LeanPML.Rectangle.ZeroBoundary.add_smul (D : LeanPML.Rectangle.Rect) {f g : ℝ × ℝ → ℝ}
+  (hf : LeanPML.Rectangle.ZeroBoundary D f) (hg : LeanPML.Rectangle.ZeroBoundary D g) (c : ℝ) :
+  LeanPML.Rectangle.ZeroBoundary D fun z => f z + c * g z
+LeanPML.Rectangle.SmoothField.derivativeXLinear : LeanPML.Rectangle.SmoothField →ₗ[ℝ] LeanPML.Rectangle.SmoothField
+structure LeanPML.PML.ConditionalPoincare.{u_1} {α : Type u_1} [MeasurableSpace α] {ν : MeasureTheory.Measure α}
+  (spatial : LeanPML.PML.ConditionalSpatialDomain ν) (CP : ℝ) : Type u_1
+number of parameters: 5
+fields:
+  LeanPML.PML.ConditionalPoincare.zeroTrace : Submodule ℝ ↥spatial.domain
+  LeanPML.PML.ConditionalPoincare.estimate : ∀ f ∈ self.zeroTrace,
+      ‖↑f‖ ^ 2 ≤ CP ^ 2 * (‖spatial.componentX f‖ ^ 2 + ‖spatial.componentY f‖ ^ 2)
+constructor:
+  LeanPML.PML.ConditionalPoincare.mk.{u_1} {α : Type u_1} [MeasurableSpace α] {ν : MeasureTheory.Measure α}
+    {spatial : LeanPML.PML.ConditionalSpatialDomain ν} {CP : ℝ} (zeroTrace : Submodule ℝ ↥spatial.domain)
+    (estimate : ∀ f ∈ zeroTrace, ‖↑f‖ ^ 2 ≤ CP ^ 2 * (‖spatial.componentX f‖ ^ 2 + ‖spatial.componentY f‖ ^ 2)) :
+    LeanPML.PML.ConditionalPoincare spatial CP

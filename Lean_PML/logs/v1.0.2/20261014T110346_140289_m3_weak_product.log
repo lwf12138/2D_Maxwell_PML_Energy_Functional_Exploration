@@ -1,0 +1,6 @@
+LeanPML/PML/WeakCoefficients.lean:63:2: error: Type mismatch: After simplification, term
+  hx
+ has type
+  @Eq ℝ (↑↑(m.operator ((SmoothField.toL2 D) ⟨fun x => 1, ⋯⟩)) x) (m.value x)
+but is expected to have type
+  @Eq ℝ (↑↑m.toL2 x) (m.value x)

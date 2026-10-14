@@ -1,0 +1,41 @@
+theorem LeanPML.PML.weakCoefficientMul_mem_zeroBoundaryGraph : ∀ (D : LeanPML.Rectangle.Rect)
+  (m : LeanPML.PML.RegionalWeakCoefficient D) (u : ↥(LeanPML.Rectangle.zeroBoundaryGraph D)),
+  LeanPML.PML.weakCoefficientMul D m u ∈ LeanPML.Rectangle.zeroBoundaryGraph D :=
+fun D m u =>
+  let ambientZero := Submodule.map (LeanPML.Rectangle.weakH1Graph D).subtype (LeanPML.Rectangle.zeroBoundaryGraph D);
+  let target := Submodule.comap (↑(LeanPML.PML.weakCoefficientGraphMap D m)) ambientZero;
+  have hzeroClosed :=
+    Submodule.isClosed_topologicalClosure
+      (Submodule.span ℝ (Set.range fun φ => LeanPML.Rectangle.smoothToWeakH1 D φ.field));
+  have hambientClosed :=
+    id
+      (Topology.IsClosedEmbedding.isClosedMap
+        (IsClosed.isClosedEmbedding_subtypeVal (LeanPML.Rectangle.weakH1Graph_isClosed D))
+        (↑(LeanPML.Rectangle.zeroBoundaryGraph D)) hzeroClosed);
+  have htargetClosed :=
+    IsClosed.preimage (ContinuousLinearMap.continuous (LeanPML.PML.weakCoefficientGraphMap D m)) hambientClosed;
+  have hspan :=
+    Submodule.span_le.mpr fun ⦃a⦄ a_1 =>
+      Exists.casesOn a_1 fun f h =>
+        h ▸
+          Exists.intro
+            (LeanPML.PML.weakCoefficientMul D m
+              ⟨LeanPML.Rectangle.smoothToWeakH1 D f.field, LeanPML.Rectangle.test_mem_zeroBoundaryGraph D f⟩)
+            ⟨LeanPML.PML.weakCoefficientMul_test_mem_zeroBoundaryGraph D m f, rfl⟩;
+  have hclosed :=
+    Submodule.topologicalClosure_minimal
+      (Submodule.span ℝ (Set.range fun f => LeanPML.Rectangle.smoothToWeakH1 D f.field)) hspan htargetClosed u.property;
+  Exists.casesOn hclosed fun v h =>
+    And.casesOn h fun hv hvalue =>
+      have hidentify := Subtype.ext (Eq.symm hvalue);
+      Eq.mpr (id (congrArg (fun _a => _a ∈ LeanPML.Rectangle.zeroBoundaryGraph D) hidentify)) hv
+LeanPML.PML.weakZeroCoefficientMulCLM (D : LeanPML.Rectangle.Rect) (m : LeanPML.PML.RegionalWeakCoefficient D) :
+  ↥(LeanPML.Rectangle.zeroBoundaryGraph D) →L[ℝ] ↥(LeanPML.Rectangle.zeroBoundaryGraph D)
+'LeanPML.Rectangle.mollifiedField_toL2_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.Rectangle.mollifiedField_support_inside' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.Rectangle.mollifiedField_fderiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.compactWeakProduct_integral_partial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.compactWeakProduct_mollified_partial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.weakCoefficientMul_test_mem_zeroBoundaryGraph' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.weakCoefficientMul_mem_zeroBoundaryGraph' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.weakZeroCoefficientMul_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]

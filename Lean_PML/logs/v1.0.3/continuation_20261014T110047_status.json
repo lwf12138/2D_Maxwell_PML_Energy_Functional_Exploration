@@ -1,0 +1,67 @@
+{
+  "status": "not_mathematically_complete",
+  "weak_main_theorem": false,
+  "current_engineering_record": "logs/v1.0.2/continuation_20261014T110047/acceptance.json",
+  "current_full_validation": {
+    "lake_build": {
+      "metadata": "logs/v1.0.2/20261014T112814_522179_continuation_lake_build.json",
+      "log": "logs/v1.0.2/20261014T112814_522179_continuation_lake_build.log",
+      "exit_code": 0,
+      "command": [
+        "lake",
+        "build"
+      ],
+      "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+      "output_sha256": "330fa7b2a40623816d4effb1b570f68d838c138f6ad19bacdba729860090c6b3"
+    },
+    "axioms_audit": {
+      "metadata": "logs/v1.0.2/20261014T112845_938004_continuation_axioms_audit.json",
+      "log": "logs/v1.0.2/20261014T112845_938004_continuation_axioms_audit.log",
+      "exit_code": 0,
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "Audit.lean"
+      ],
+      "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+      "output_sha256": "8510bb29587cf36e849fa88eabb4cbf8b436f668bd9be5a25b07a60982b1fd51"
+    },
+    "declaration_types": {
+      "metadata": "logs/v1.0.2/20261014T112845_938003_continuation_types_final.json",
+      "log": "logs/v1.0.2/20261014T112845_938003_continuation_types_final.log",
+      "exit_code": 0,
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "logs/v1.0.2/continuation_20261014T110047/Types.lean"
+      ],
+      "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+      "output_sha256": "3f5d82e6351f02c81fae2bb8149b7fa8e426d2125ab4545a1882e8754f097134"
+    }
+  },
+  "isolation_this_round": {
+    "run": false,
+    "reason": "M4 mathematical assembly is not completed; previous isolated build is historical, not evidence for current additions"
+  },
+  "pdf": {
+    "result": "logs/v1.0.3/pdf/continuation_20261014T110047/annotation_result.json",
+    "visual_review": "logs/v1.0.3/pdf/continuation_20261014T110047/visual_review.json",
+    "backup": {
+      "path": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v1.0.3/pdf/continuation_20261014T110047/V7_global_energy_副本_before_v1.0_continuation_20261014T113330_937905+0800.pdf",
+      "sha256": "4451ed9d022f167b2d66dbb95dd98066cee2c066cb92b935583a6d745d429bf7",
+      "timestamp": "20261014T113330_937905+0800"
+    },
+    "target": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf",
+    "sha256": "d37a6939f5235a6d1d3becd6a88230d28e515dc511348da676588f70c0acf487",
+    "pages": 18,
+    "old_annotations": 211,
+    "new_annotations": 215,
+    "modified_pages": [
+      8
+    ],
+    "added_ticks": 4,
+    "scope": "M1图逼近、实际弱场(5.8)、导数加权界、初始成员传播；无§5.3唯一性或弱主定理勾"
+  }
+}

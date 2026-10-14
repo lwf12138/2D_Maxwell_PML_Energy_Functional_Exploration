@@ -1,0 +1,150 @@
+{
+  "time": "2026-10-14T18:26:42.966440",
+  "status": "completed_verified",
+  "ROADMAP_v1_main_complete": true,
+  "current_new_version_verified": true,
+  "V7_main_alignment_complete": true,
+  "stages": {
+    "v1.0.1": "完成：真实弱图/H0闭包/加权空间及所需逼近与乘法",
+    "v1.0.2": "完成：弱Green、精确Poincare、一般弱系数代表、记忆/加权保持、提升唯一性",
+    "v1.0.3": "完成：一般原弱系数主入口、同源真实路径、原变量控制、非零回归、隔离/类型/PDF验收"
+  },
+  "main_theorems": [
+    "LeanPML.PML.Weak.OriginalInterval.main_energy_GeneralWeakCk",
+    "LeanPML.PML.Weak.OriginalInterval.main_energy_GeneralWeakJet"
+  ],
+  "controls": [
+    "LeanPML.PML.Weak.OriginalInterval.auxiliary_current_GeneralWeakCk",
+    "LeanPML.PML.Weak.OriginalInterval.auxiliary_current_GeneralWeakJet",
+    "LeanPML.PML.Weak.OriginalInterval.auxiliary_initial_GeneralWeakJet"
+  ],
+  "lift_independence": "LeanPML.PML.Weak.twoLayerEnergy_independent_GeneralWeak",
+  "mathematics": {
+    "general_weak_representative": "proved from actual regional weak derivatives, called inside final raw-original-system entrance",
+    "sharp_rectangle_constant": "CP²=(π²/Lx²+π²/Ly²)⁻¹, proved and used",
+    "original_threshold": "c*=π²/1152; c=1/128,S=1/512; exact arithmetic and rigorous π bounds",
+    "original_power_profile": "all natural m≥2, 0<ηx,ηy≤1/512; true weak derivatives, all branches, nonconstant representative, main call",
+    "scalar_memory": "previous proved scalar/operator exponential identification reused and applicable to same represented original path",
+    "time_regularity": "T>0 actual closed-interval Ck core → canonical slots → derived λtt; only interior PDE",
+    "T_zero": "explicit lawful initial jet compatibility; no implication from empty interior or singleton Ck",
+    "nonzero_solution": "static_main_call/static_ck_call, positive constant energy, interior D=0",
+    "formulas": [
+      "(2.3)–(2.6) in declared weak path class",
+      "(5.1)",
+      "(5.7)–(5.8)",
+      "§5.3",
+      "(6.7)–(6.10)",
+      "(8.4)–(8.8)",
+      "(9.5)–(9.7)",
+      "(10.1)–(10.2)"
+    ]
+  },
+  "commands": {
+    "build": {
+      "metadata": "logs/v1.0_finalization/20261014T181951_587380_lake_build.json",
+      "log": "logs/v1.0_finalization/20261014T181951_587380_lake_build.log",
+      "exit_code": 0
+    },
+    "audit": {
+      "metadata": "logs/v1.0_finalization/20261014T182113_565033_axioms_audit.json",
+      "log": "logs/v1.0_finalization/20261014T182113_565033_axioms_audit.log",
+      "exit_code": 0
+    },
+    "types": {
+      "metadata": "logs/v1.0_finalization/20261014T182149_492115_type_review.json",
+      "log": "logs/v1.0_finalization/20261014T182149_492115_type_review.log",
+      "exit_code": 0
+    }
+  },
+  "audit_count": 1058,
+  "unique_audited_declarations": 1050,
+  "new_audited_declarations": 61,
+  "standard_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "sorryAx": false,
+  "formal_files": 119,
+  "all_formal_modules_reachable": true,
+  "isolated_result": "logs/v1.0_finalization/isolated_result.json",
+  "isolated_directory": "/var/folders/9m/zcq3jbg90sx_fc7fv3zn0hnc0000gn/T/LeanPML_v1_finalization_r81gkebp",
+  "isolated_exit_code": 0,
+  "own_build_artifacts_copied": false,
+  "dependency_cache_reused": true,
+  "source_snapshot": "logs/v1.0_finalization/source_snapshot.json",
+  "source_unchanged_after_final_verification": true,
+  "protected_hashes": {
+    "lean-toolchain": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee",
+    "lakefile.toml": "3a3ab926f99cfeb3ae9fa6309696858b0aabb7ce62469de72405a74dd64fab9e",
+    "lake-manifest.json": "6bd522ed18f94813b2e6fb5e7b9ea39d95a5098df2465acc0d815a09bb5dbf33",
+    "ROADMAP_lean_PML_revised.md": "9a6438549e4d49714b915bd9632d13eab7f1b5164df1741d190dc97640be3659",
+    "docs/model_contract.md": "27fdc413425e2b65f0b31a4c4a533d5f52eb24a4af30f18f5fae080a1846fc23",
+    "../results/V7_Maxwell_Debye_PML/V7_global_energy.md": "0a7f73a25cb119eeb75b3e7b3c3f2fbb3b319250f3354ed4dcad0ecff8eff4fb",
+    "../results/V7_Maxwell_Debye_PML/V7_global_energy.tex": "7345e2f2b8558df5f68252985d119465085b01aa8005b0f7c861f0831ab6387a",
+    "../results/V7_Maxwell_Debye_PML/V7_global_energy.pdf": "c6c9978af6d3fbc54ef76b02a5d509e6dda169795c6181d64c7c56ccbe4e3aaa"
+  },
+  "old_formal_modules_unchanged": true,
+  "new_files": [
+    "LeanPML/Analysis/WeakIntervalRepresentative.lean",
+    "LeanPML/Rectangle/OriginalParameterThreshold.lean",
+    "LeanPML/Examples/GeneralWeakRegression.lean",
+    "LeanPML/Examples/WeakRepresentative.lean",
+    "LeanPML/Examples/OriginalPowerProfile.lean",
+    "LeanPML/PML/WeakCoefficientTransport.lean",
+    "LeanPML/PML/LipschitzCoefficients.lean",
+    "LeanPML/PML/MainRepresentedWeak.lean",
+    "LeanPML/PML/MainGeneralWeak.lean",
+    "LeanPML/PML/SeparatedRepresentative.lean",
+    "LeanPML/PML/WeakAbsorptionRepresentative.lean"
+  ],
+  "semantic_review": "logs/v1.0_finalization/semantic_review.md",
+  "remaining_v1_main_analysis_interfaces": [],
+  "explicit_scope": [
+    "给定足够正则、初始兼容原解的先验定理",
+    "区域分离弱导数的有界代表表示；换代表a.e.一致已证明",
+    "T>0 Ck入口和T=0合法初始jet入口分开",
+    "商类/逐时刻a.e.；未交换为共同零测集全时间点态等式"
+  ],
+  "not_claimed": [
+    "一般解存在唯一性",
+    "严格或指数衰减",
+    "任意幅度/任意八变量初值稳定性",
+    "单点Ck自动决定任意jet",
+    "可选Laplace/V6分析",
+    "R/D分支"
+  ],
+  "pdf": {
+    "pages": 18,
+    "modified_pages": [
+      3,
+      9,
+      10,
+      15
+    ],
+    "before_sha256": "ac8430fa24c936013550a0c71e480b72c4d6801067a1afcee8398de42c8d941e",
+    "after_sha256": "65f70840af149ef0e0e0967b4d6e34db75195019a0f022d6ff24d86953b25c67",
+    "old_annotations": 231,
+    "new_annotations": 237,
+    "added_ticks": 5,
+    "added_notes": 1,
+    "original_text_preserved": true,
+    "old_annotations_preserved": true,
+    "overlap_check": "passed",
+    "visual_review": "passed; visual_review.json"
+  },
+  "pdf_target": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf",
+  "pdf_ledger": "docs/pdf_formalization_marks.md",
+  "no_dependency_or_global_toolchain_change": true,
+  "no_commit_or_push": true,
+  "document_hashes": {
+    "README.md": "c6ce7d42ead7d9c348ffef51acc4d58c49adbd24c32214a1fbad904c42621dbb",
+    "PROGRESS.md": "d9153fa3e06f282bccb91492271e647f8ef666a6b24f8de1a1223afc8c6201c7",
+    "reports/weak_theorem.md": "7840f0f575e6451eeab1e7e272992e825257b0328b15d3820d0d86ddda2935cc",
+    "docs/theorem_inventory.md": "8bd6d70fa3329b96d6c3d5480d426468188d2a00795d7bdc6bdcf2204d1ad32a",
+    "docs/claim_ledger.md": "2b8684a370d2d738fb3a909a845eecc0a9d3a29a601a4cc8933f42dc3cd65dbb",
+    "docs/scope.md": "2a6c2f0f1e71439f8e96cc2a54192001cdd359e05bdd6c86e192f3668efa4fb5",
+    "docs/source_inventory.md": "ad4a2bb4c4ca2e478eac3b028f6fa15977c6205f4dde34988db977536f56fed9",
+    "docs/pdf_formalization_marks.md": "1029cd8554375c407ef9904b2afe4f63881167b023704930726e8423e734aa18"
+  }
+}

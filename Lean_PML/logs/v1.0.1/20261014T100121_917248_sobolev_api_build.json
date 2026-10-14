@@ -1,0 +1,18 @@
+{
+  "stage": "v1.0.1",
+  "command": [
+    "lake",
+    "build",
+    "Mathlib.Analysis.Distribution.Sobolev"
+  ],
+  "command_display": "lake build Mathlib.Analysis.Distribution.Sobolev",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-14T10:01:21.917248+08:00",
+  "output_file": "20261014T100121_917248_sobolev_api_build.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 0,
+  "status": "finished",
+  "ended_at": "2026-10-14T10:04:06.334249+08:00",
+  "elapsed_seconds": 164.416
+}

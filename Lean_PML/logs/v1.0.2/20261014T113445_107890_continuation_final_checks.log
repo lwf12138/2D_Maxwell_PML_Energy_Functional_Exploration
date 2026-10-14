@@ -1,0 +1,15 @@
+{
+  "formal_files": 75,
+  "new_formal_modules": 9,
+  "new_lean_lines": 1935,
+  "audited": 851,
+  "new_audited": 55,
+  "source_hashes_still_match": true,
+  "protected_files_unchanged": true,
+  "pdf_review": "passed",
+  "M1": "complete",
+  "M2": "exact field propagation results proved",
+  "M3": "partial",
+  "M4": "not complete",
+  "acceptance": "logs/v1.0.2/continuation_20261014T110047/acceptance.json"
+}

@@ -1,0 +1,197 @@
+{
+  "entries": [
+    {
+      "id": "reverse",
+      "page": 4,
+      "formula": "命题2.1、(2.5)–(2.6)反向",
+      "tick": true,
+      "x": 55,
+      "top": 11,
+      "font_size": 6.5,
+      "lines": [
+        "v1.0收尾：弱图路径反向重构；八个真实导数、八式及兼容已核验。",
+        "H₀¹ 电场 / H(div) 通量；内部时间方程，不代表一般分布解等价或存在性。"
+      ],
+      "scope": "弱图路径 primitive_to_original_WeakOn；保留前向与光滑历史标注。",
+      "modules": [
+        "LeanPML/PML/WeakReverse.lean"
+      ],
+      "theorems": [
+        "LeanPML.PML.Weak.primitive_to_original_WeakOn",
+        "LeanPML.PML.Weak.reverse_compatible",
+        "LeanPML.Examples.WeakStaticMode.reverse_static_call"
+      ],
+      "rect_top": [
+        54,
+        9,
+        281.885009765625,
+        28.2
+      ],
+      "build_audit": {
+        "build": {
+          "metadata": "logs/v1.0_closeout/20261014T151343_633853_lake_build.json",
+          "log": "logs/v1.0_closeout/20261014T151343_633853_lake_build.log",
+          "exit_code": 0
+        },
+        "audit": {
+          "metadata": "logs/v1.0_closeout/20261014T151414_302002_axioms_audit.json",
+          "log": "logs/v1.0_closeout/20261014T151414_302002_axioms_audit.log",
+          "exit_code": 0
+        },
+        "types": {
+          "metadata": "logs/v1.0_closeout/20261014T151430_137891_type_review.json",
+          "log": "logs/v1.0_closeout/20261014T151430_137891_type_review.log",
+          "exit_code": 0
+        }
+      },
+      "source_hashes": {
+        "LeanPML/PML/WeakReverse.lean": "97c60601fddd45b52cd6b8d6fc44a25568278852738e8fb6b92a6ae1c110b164"
+      }
+    },
+    {
+      "id": "kernel",
+      "page": 8,
+      "formula": "(5.7) 空间值算子指数子结论",
+      "tick": true,
+      "x": 55,
+      "top": 11,
+      "font_size": 6.5,
+      "lines": [
+        "v1.0收尾 (5.7)：加权商类算子指数记忆式；与原辅助场及旧历史连接。",
+        "两个方向含零吸收；逐点标量指数核的代表元识别仍待完成。"
+      ],
+      "scope": "B为有界吸收乘子，证明Bochner核exp((s-t)B)公式；不声称已识别点值exp(-p(x)(t-s))。",
+      "modules": [
+        "LeanPML/Analysis/OperatorMemory.lean",
+        "LeanPML/PML/AuxiliaryOperatorMemory.lean"
+      ],
+      "theorems": [
+        "LeanPML.Analysis.operator_memory_formula",
+        "LeanPML.PML.SpatialAbsorption.auxiliary_operator_memory",
+        "LeanPML.PML.Weak.OriginalInterval.operator_memory_both"
+      ],
+      "rect_top": [
+        54,
+        9,
+        273.956787109375,
+        28.2
+      ],
+      "build_audit": {
+        "build": {
+          "metadata": "logs/v1.0_closeout/20261014T151343_633853_lake_build.json",
+          "log": "logs/v1.0_closeout/20261014T151343_633853_lake_build.log",
+          "exit_code": 0
+        },
+        "audit": {
+          "metadata": "logs/v1.0_closeout/20261014T151414_302002_axioms_audit.json",
+          "log": "logs/v1.0_closeout/20261014T151414_302002_axioms_audit.log",
+          "exit_code": 0
+        },
+        "types": {
+          "metadata": "logs/v1.0_closeout/20261014T151430_137891_type_review.json",
+          "log": "logs/v1.0_closeout/20261014T151430_137891_type_review.log",
+          "exit_code": 0
+        }
+      },
+      "source_hashes": {
+        "LeanPML/Analysis/OperatorMemory.lean": "926c558e0c83d5780f4028d8711983ae9e203881ccfecc8af1182e4a0bd26f47",
+        "LeanPML/PML/AuxiliaryOperatorMemory.lean": "0f7e07a164e6418fd79f3c1522466a577309300cfa5e12e3750dc3851e6881f2"
+      }
+    },
+    {
+      "id": "regularity",
+      "page": 10,
+      "formula": "(6.6) 正则性连接说明",
+      "tick": false,
+      "x": 55,
+      "top": 433,
+      "font_size": 6.5,
+      "lines": [
+        "v1.0收尾 (6.6)连接：λ_tt由图导数及辅助演化推出；T=0初始兼容仍单列。"
+      ],
+      "scope": "不是给正则性假设打完成勾；λ_tt不再作为独立输入。未声明与整套C^k正则性定义等价。",
+      "modules": [
+        "LeanPML/PML/WeakV7Regularity.lean"
+      ],
+      "theorems": [
+        "LeanPML.PML.Weak.V7TimeRegularity.flux_second",
+        "LeanPML.PML.Weak.V7TimeRegularity.main_energy_and_auxiliary"
+      ],
+      "rect_top": [
+        54,
+        431,
+        267.449951171875,
+        441.5
+      ],
+      "build_audit": {
+        "build": {
+          "metadata": "logs/v1.0_closeout/20261014T151343_633853_lake_build.json",
+          "log": "logs/v1.0_closeout/20261014T151343_633853_lake_build.log",
+          "exit_code": 0
+        },
+        "audit": {
+          "metadata": "logs/v1.0_closeout/20261014T151414_302002_axioms_audit.json",
+          "log": "logs/v1.0_closeout/20261014T151414_302002_axioms_audit.log",
+          "exit_code": 0
+        },
+        "types": {
+          "metadata": "logs/v1.0_closeout/20261014T151430_137891_type_review.json",
+          "log": "logs/v1.0_closeout/20261014T151430_137891_type_review.log",
+          "exit_code": 0
+        }
+      },
+      "source_hashes": {
+        "LeanPML/PML/WeakV7Regularity.lean": "f2f00a417618bfc5c7dc953bcbbff501a1d3de8ac26f673806a92af57c4dbb1c"
+      }
+    },
+    {
+      "id": "rawcontrol",
+      "page": 13,
+      "formula": "(8.4)–(8.8)输入原变量控制",
+      "tick": true,
+      "x": 55,
+      "top": 764,
+      "font_size": 6.5,
+      "lines": [
+        "v1.0收尾 (8.4)–(8.8)：输入原 Z1/Z2/Qx/Qy 的 L² 控制及初值能量界。",
+        "含 u、q、φ；保守 C_P=2Lx，仍采用列明的弱图路径与初始兼容。"
+      ],
+      "scope": "实际O.fields原变量由兼容保持识别后接PhysicalControl，常数未放宽；不是任意裸八变量范数等价。",
+      "modules": [
+        "LeanPML/PML/WeakPhysicalControl.lean"
+      ],
+      "theorems": [
+        "LeanPML.PML.Weak.OriginalInterval.original_auxiliary_control",
+        "LeanPML.PML.Weak.OriginalInterval.original_auxiliary_initial_control"
+      ],
+      "rect_top": [
+        54,
+        762,
+        269.275390625,
+        781.2
+      ],
+      "build_audit": {
+        "build": {
+          "metadata": "logs/v1.0_closeout/20261014T151343_633853_lake_build.json",
+          "log": "logs/v1.0_closeout/20261014T151343_633853_lake_build.log",
+          "exit_code": 0
+        },
+        "audit": {
+          "metadata": "logs/v1.0_closeout/20261014T151414_302002_axioms_audit.json",
+          "log": "logs/v1.0_closeout/20261014T151414_302002_axioms_audit.log",
+          "exit_code": 0
+        },
+        "types": {
+          "metadata": "logs/v1.0_closeout/20261014T151430_137891_type_review.json",
+          "log": "logs/v1.0_closeout/20261014T151430_137891_type_review.log",
+          "exit_code": 0
+        }
+      },
+      "source_hashes": {
+        "LeanPML/PML/WeakPhysicalControl.lean": "2d720823d43e4cb0920f0d0ec03454bdd088ddc5326eb05b955e47331142832c"
+      }
+    }
+  ],
+  "font": "/System/Library/Fonts/Supplemental/Arial Unicode.ttf",
+  "input_sha256": "667d475bbc8bd4912f8d04f54d0c0288a7dac95f3671d68114641cecadd0c4dd"
+}

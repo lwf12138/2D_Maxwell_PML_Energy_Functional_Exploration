@@ -1,0 +1,40 @@
+LeanPML/PML/WeakCoefficients.lean:58:46: error: Application type mismatch: The argument
+  contDiff_const
+has type
+  ContDiff ?m.12 ?m.20 fun x => ?m.21
+but is expected to have type
+  (fun x => 1) ∈ smoothFields
+in the application
+  ⟨fun x => 1, ⋯⟩
+LeanPML/PML/WeakCoefficients.lean:62:40: error: Application type mismatch: The argument
+  contDiff_const
+has type
+  ContDiff ?m.23 ?m.31 fun x => ?m.32
+but is expected to have type
+  (fun x => 1) ∈ smoothFields
+in the application
+  ⟨fun x => 1, ⋯⟩
+LeanPML/PML/WeakCoefficients.lean:61:65: error: Application type mismatch: The argument
+  contDiff_const
+has type
+  ContDiff ?m.47 ?m.55 fun x => ?m.56
+but is expected to have type
+  (fun x => 1) ∈ smoothFields
+in the application
+  ⟨fun x => 1, ⋯⟩
+LeanPML/PML/WeakCoefficients.lean:71:9: error: unexpected token ':'; expected 'lemma'
+LeanPML/PML/WeakCoefficients.lean:72:60: error: unexpected identifier; expected 'lemma'
+LeanPML/PML/WeakCoefficients.lean:115:10: error(lean.invalidField): Invalid field `partial`: The environment does not contain `LeanPML.PML.RegionalWeakCoefficient.partial`, so it is not possible to project the field `partial` from an expression
+  m
+of type `RegionalWeakCoefficient D`
+LeanPML/PML/WeakCoefficients.lean:118:18: error(lean.invalidField): Invalid field `weak_partial`: The environment does not contain `LeanPML.PML.RegionalWeakCoefficient.weak_partial`, so it is not possible to project the field `weak_partial` from an expression
+  m
+of type `RegionalWeakCoefficient D`
+LeanPML/PML/WeakCoefficients.lean:116:76: error: unsolved goals
+D : Rect
+m : RegionalWeakCoefficient D
+f : TestFunction D
+i : Fin 2
+φ : TestFunction D
+⊢ ⟪sorry + m.value.operator ((SmoothField.toL2 D) (smoothPartial i f.field)), (SmoothField.toL2 D) φ.field⟫_ℝ =
+    -⟪m.value.operator ((SmoothField.toL2 D) f.field), (SmoothField.toL2 D) (smoothPartial i φ.field)⟫_ℝ

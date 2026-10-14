@@ -1,0 +1,7 @@
+LeanPML/Rectangle/OriginalParameterThreshold.lean:33:77: error: unsolved goals
+hpi_ne : Real.pi ≠ 0
+hroot_ne : √48 ≠ 0
+hfirst : 1 / √(48 / Real.pi ^ 2) = Real.pi / √48
+hsecond : 1 / (8 * 3 * (48 / Real.pi ^ 2)) = Real.pi ^ 2 / 1152
+⊢ min (Real.pi / √48) (min (Real.pi ^ 2 / 48 * (1 / 24)) (1 / 24)) =
+    min (Real.pi / √48) (min (Real.pi ^ 2 / 1152) (1 / 24))

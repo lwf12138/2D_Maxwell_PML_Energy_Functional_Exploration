@@ -1,0 +1,97 @@
+ℹ [3002/3038] Replayed LeanPML.PML.WeakOriginalSystem
+info: LeanPML/PML/WeakOriginalSystem.lean:187:4: Try this:
+  [apply] abel_nf
+⚠ [3003/3038] Replayed LeanPML.PML.WeakPrimitiveSystem
+warning: LeanPML/PML/WeakPrimitiveSystem.lean:94:23: This simp argument is unused:
+  smul_sub
+
+Hint: Omit it from the simp argument list.
+  simp only [smul_add, s̵m̵u̵l̵_̵s̵u̵b̵,̵ ̵neg_smul, sub_neg_eq_add] at hmain ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/WeakPrimitiveSystem.lean:112:34: This simp argument is unused:
+  map_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [map_sub, map_smul, m̵a̵p̵_̵n̵e̵g̵,̵ ̵smul_sub, neg_smul, neg_neg]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/WeakPrimitiveSystem.lean:112:63: This simp argument is unused:
+  neg_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [map_sub, map_smul, map_neg, smul_sub, neg_smul,̵ ̵n̵e̵g̵_̵n̵e̵g̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/WeakPrimitiveSystem.lean:120:63: This simp argument is unused:
+  neg_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [map_sub, map_smul, map_neg, smul_sub, neg_smul,̵ ̵n̵e̵g̵_̵n̵e̵g̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [3010/3038] Replayed LeanPML.PML.WeakPathAssembly
+warning: LeanPML/PML/WeakPathAssembly.lean:183:13: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/WeakPathAssembly.lean:184:14: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/WeakPathAssembly.lean:185:11: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/WeakPathAssembly.lean:186:17: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✖ [3038/3038] Building LeanPML.Examples.WeakStaticMode (14s)
+trace: .> LEAN_PATH=/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Cli/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/batteries/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Qq/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/aesop/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/proofwidgets/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/importGraph/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/plausible/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/mathlib/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean /Users/wcli/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/LeanPML/Examples/WeakStaticMode.lean -o /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/Examples/WeakStaticMode.olean -i /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/Examples/WeakStaticMode.ilean -c /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/Examples/WeakStaticMode.c --setup /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/Examples/WeakStaticMode.setup.json --json
+error: LeanPML/Examples/WeakStaticMode.lean:48:45: unsolved goals
+⊢ (SmoothField.toL2 unitSquare) (SmoothField.derivativeX 0) = 0
+warning: LeanPML/Examples/WeakStaticMode.lean:103:34: This simp argument is unused:
+  neg_smul
+
+Hint: Omit it from the simp argument list.
+  simp [̵s̵t̵a̵t̵e̵,̵z̵e̵r̵o̵S̵t̵a̵t̵e̵,̵n̵e̵g̵_̵s̵m̵u̵l̵,̵s̵m̵u̵l̵_̵n̵e̵g̵]̵[̲s̲t̲a̲t̲e̲,̲ ̲z̲e̲r̲o̲S̲t̲a̲t̲e̲,̲ ̲s̲m̲u̲l̲_̲n̲e̲g̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: LeanPML/Examples/WeakStaticMode.lean:152:31: Type mismatch
+  hasDerivAt_const t ?m.45
+has type
+  HasDerivAt (fun x => ?m.45)
+    (@OfNat.ofNat ?m.42 0 (@Zero.toOfNat0 ?m.42 SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toZero)) t
+but is expected to have type
+  HasDerivAt (solution T hT).electric
+    (@OfNat.ofNat (↥(zeroBoundaryGraph unitSquare)) 0
+      (@Zero.toOfNat0 (↥(zeroBoundaryGraph unitSquare)) (zeroBoundaryGraph unitSquare).zero))
+    t
+error: LeanPML/Examples/WeakStaticMode.lean:185:6: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ↑↑((physicalL2 unitSquare.measure coefficients.swap.wx ⋯ ⋯)
+          (weightedOfFunction unitSquare.measure coefficients.swap.wx (fun x => 1) ⋯))
+    x
+in the target expression
+  ↑↑((physicalL2 unitSquare.measure coefficients.swap.wx ⋯ ⋯) initialY) x = ↑↑oneField x
+
+hrecover :
+  ↑↑((physicalL2 unitSquare.measure coefficients.swap.wx ⋯ ⋯)
+          (weightedOfFunction unitSquare.measure coefficients.swap.wx (fun x => 1) ⋯)) =ᵐ[unitSquare.measure]
+    fun x => 1
+x : ℝ × ℝ
+hr :
+  ↑↑((physicalL2 unitSquare.measure coefficients.swap.wx ⋯ ⋯)
+            (weightedOfFunction unitSquare.measure coefficients.swap.wx (fun x => 1) ⋯))
+      x =
+    1
+ho : ↑↑((SmoothField.toL2 unitSquare) weakCoefficientOne) x = ↑weakCoefficientOne x
+⊢ ↑↑((physicalL2 unitSquare.measure coefficients.swap.wx ⋯ ⋯) initialY) x = ↑↑oneField x
+error: Lean exited with code 1
+Some required targets logged failures:
+- LeanPML.Examples.WeakStaticMode
+error: build failed

@@ -1,0 +1,45 @@
+日志: /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v1.0.2/20261014T103607_336643_declaration_types.log
+LeanPML.Rectangle.weak_green (D : LeanPML.Rectangle.Rect) (v : ↥(LeanPML.Rectangle.zeroBoundaryGraph D))
+  (L : ↥(LeanPML.Rectangle.weakHDivGraph D)) : inner ℝ (↑↑v 1) (↑L 0) + inner ℝ (↑↑v 2) (↑L 1) = -inner ℝ (↑↑v 0) (↑L 2)
+LeanPML.Rectangle.weak_poincare (D : LeanPML.Rectangle.Rect) (v : ↥(LeanPML.Rectangle.zeroBoundaryGraph D)) :
+  ‖↑↑v 0‖ ^ 2 ≤ LeanPML.Rectangle.poincareConstant D ^ 2 * (‖↑↑v 1‖ ^ 2 + ‖↑↑v 2‖ ^ 2)
+def LeanPML.Rectangle.weakGreenDomain : (D : LeanPML.Rectangle.Rect) → LeanPML.PML.ConditionalGreenDomain D.measure ℝ :=
+fun D =>
+  { spatial := LeanPML.Rectangle.weakZeroSpatialDomain D, fluxDomain := LeanPML.Rectangle.weakFluxDomain D,
+    divergence := LeanPML.Rectangle.weakDivergence D, trace := 0, boundary := 0, green := ⋯ }
+def LeanPML.Rectangle.weakPoincareDomain : (D : LeanPML.Rectangle.Rect) →
+  LeanPML.PML.ConditionalPoincare (LeanPML.Rectangle.weakGreenDomain D).spatial
+    (LeanPML.Rectangle.poincareConstant D) :=
+fun D =>
+  LeanPML.PML.ConditionalPoincare.ofGreenTrace (LeanPML.Rectangle.weakGreenDomain D)
+    (LeanPML.Rectangle.poincareConstant D) ⋯
+LeanPML.Rectangle.hasDerivAt_weakH1_coordinate (D : LeanPML.Rectangle.Rect) (i : Fin 3)
+  {U : ℝ → ↥(LeanPML.Rectangle.weakH1Graph D)} {Udot : ↥(LeanPML.Rectangle.weakH1Graph D)} {t : ℝ}
+  (hpath : HasDerivAt U Udot t) : HasDerivAt (fun s => ↑(U s) i) (↑Udot i) t
+LeanPML.Rectangle.hasDerivAt_weakHDiv_coordinate (D : LeanPML.Rectangle.Rect) (i : Fin 3)
+  {L : ℝ → ↥(LeanPML.Rectangle.weakHDivGraph D)} {Ldot : ↥(LeanPML.Rectangle.weakHDivGraph D)} {t : ℝ}
+  (hpath : HasDerivAt L Ldot t) : HasDerivAt (fun s => ↑(L s) i) (↑Ldot i) t
+LeanPML.PML.auxiliary_memory_formula (σ ρ T : ℝ) (φ g : ℝ → ℝ) (hφ : ContinuousOn φ (Set.Icc 0 T))
+  (hg : ContinuousOn g (Set.Icc 0 T)) (hODE : ∀ s ∈ Set.Ioo 0 T, HasDerivAt φ (-σ * φ s + (ρ - σ) * g s) s) {t : ℝ}
+  (ht : t ∈ Set.Icc 0 T) : φ t = Real.exp (-σ * t) * φ 0 + (ρ - σ) * ∫ (s : ℝ) in 0..t, Real.exp (-σ * (t - s)) * g s
+LeanPML.PML.auxiliary_zero_absorption_preserved (T : ℝ) (φ g : ℝ → ℝ) (hφ : ContinuousOn φ (Set.Icc 0 T))
+  (hg : ContinuousOn g (Set.Icc 0 T)) (hODE : ∀ s ∈ Set.Ioo 0 T, HasDerivAt φ 0 s) (hinitial : φ 0 = 0) {t : ℝ}
+  (ht : t ∈ Set.Icc 0 T) : φ t = 0
+structure LeanPML.Rectangle.TestFunction (D : LeanPML.Rectangle.Rect) : Type
+number of parameters: 1
+fields:
+  LeanPML.Rectangle.TestFunction.field : LeanPML.Rectangle.SmoothField
+  LeanPML.Rectangle.TestFunction.compact : HasCompactSupport ↑self.field
+  LeanPML.Rectangle.TestFunction.support_inside : tsupport ↑self.field ⊆ D.openSet
+constructor:
+  LeanPML.Rectangle.TestFunction.mk {D : LeanPML.Rectangle.Rect} (field : LeanPML.Rectangle.SmoothField)
+    (compact : HasCompactSupport ↑field) (support_inside : tsupport ↑field ⊆ D.openSet) :
+    LeanPML.Rectangle.TestFunction D
+def LeanPML.Rectangle.zeroBoundaryGraph : (D : LeanPML.Rectangle.Rect) →
+  Submodule ℝ ↥(LeanPML.Rectangle.weakH1Graph D) :=
+fun D => (Submodule.span ℝ (Set.range fun φ => LeanPML.Rectangle.smoothToWeakH1 D φ.field)).topologicalClosure
+LeanPML.PML.SmoothRectangle.main_energy_estimate_smoothRectangle {D : LeanPML.Rectangle.Rect}
+  {R : LeanPML.Rectangle.RegionalAbsorption D} {ε κ τ μ T : ℝ}
+  (s : LeanPML.PML.SmoothRectangle.SmoothCompatibleSolution R ε κ τ μ T) :
+  LeanPML.PML.SmoothRectangle.SmoothEnergyConclusions s
+退出码: 0 ；元数据: /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v1.0.2/20261014T103607_336643_declaration_types.json

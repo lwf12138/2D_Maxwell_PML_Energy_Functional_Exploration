@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v1.0.1/verify_delivery.py", line 68, in <module>
+    'failure_logs':[str(p.relative_to(root)) for p in out.glob('*.json') if (lambda j: j.get('command') and j.get('exit_code') not in [None,0])(json.loads(p.read_text()))]}
+  File "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v1.0.1/verify_delivery.py", line 68, in <listcomp>
+    'failure_logs':[str(p.relative_to(root)) for p in out.glob('*.json') if (lambda j: j.get('command') and j.get('exit_code') not in [None,0])(json.loads(p.read_text()))]}
+  File "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v1.0.1/verify_delivery.py", line 68, in <lambda>
+    'failure_logs':[str(p.relative_to(root)) for p in out.glob('*.json') if (lambda j: j.get('command') and j.get('exit_code') not in [None,0])(json.loads(p.read_text()))]}
+AttributeError: 'list' object has no attribute 'get'

@@ -1,0 +1,87 @@
+日志: /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v1.0.1/20261014T100755_820429_declaration_types.log
+structure LeanPML.Rectangle.TestFunction (D : Rect) : Type
+number of parameters: 1
+fields:
+  LeanPML.Rectangle.TestFunction.field : SmoothField
+  LeanPML.Rectangle.TestFunction.compact : HasCompactSupport ↑self.field
+  LeanPML.Rectangle.TestFunction.support_inside : tsupport ↑self.field ⊆ D.openSet
+constructor:
+  LeanPML.Rectangle.TestFunction.mk {D : Rect} (field : SmoothField) (compact : HasCompactSupport ↑field)
+    (support_inside : tsupport ↑field ⊆ D.openSet) : TestFunction D
+def LeanPML.Rectangle.HasWeakPartial : (D : Rect) → Fin 2 → ↥(ScalarL2 D.measure) → ↥(ScalarL2 D.measure) → Prop :=
+fun D i f g =>
+  ∀ (φ : TestFunction D),
+    inner ℝ g ((SmoothField.toL2 D) φ.field) = -inner ℝ f ((SmoothField.toL2 D) (smoothPartial i φ.field))
+def LeanPML.Rectangle.HasWeakDivergence : (D : Rect) →
+  ↥(ScalarL2 D.measure) → ↥(ScalarL2 D.measure) → ↥(ScalarL2 D.measure) → Prop :=
+fun D X Y d =>
+  ∀ (φ : TestFunction D),
+    inner ℝ d ((SmoothField.toL2 D) φ.field) =
+      -inner ℝ X ((SmoothField.toL2 D) φ.field.derivativeX) - inner ℝ Y ((SmoothField.toL2 D) φ.field.derivativeY)
+def LeanPML.Rectangle.weakH1Graph : (D : Rect) → Submodule ℝ (Fin 3 → ↥(ScalarL2 D.measure)) :=
+fun D =>
+  { carrier := {U | HasWeakPartial D 0 (U 0) (U 1) ∧ HasWeakPartial D 1 (U 0) (U 2)}, add_mem' := ⋯, zero_mem' := ⋯,
+    smul_mem' := ⋯ }
+def LeanPML.Rectangle.weakHDivGraph : (D : Rect) → Submodule ℝ (Fin 3 → ↥(ScalarL2 D.measure)) :=
+fun D => { carrier := {U | HasWeakDivergence D (U 0) (U 1) (U 2)}, add_mem' := ⋯, zero_mem' := ⋯, smul_mem' := ⋯ }
+def LeanPML.Rectangle.zeroBoundaryGraph : (D : Rect) → Submodule ℝ ↥(weakH1Graph D) :=
+fun D => (Submodule.span ℝ (Set.range fun φ => smoothToWeakH1 D φ.field)).topologicalClosure
+def LeanPML.Rectangle.weakSpatialDomain : (D : Rect) → LeanPML.PML.ConditionalSpatialDomain D.measure :=
+fun D =>
+  { domain := weakFieldDomain D, componentX := (LinearMap.proj 1 ∘ₗ (weakH1Graph D).subtype) ∘ₗ weakLift D,
+    componentY := (LinearMap.proj 2 ∘ₗ (weakH1Graph D).subtype) ∘ₗ weakLift D }
+def LeanPML.Rectangle.weakZeroSpatialDomain : (D : Rect) → LeanPML.PML.ConditionalSpatialDomain D.measure :=
+fun D =>
+  { domain := weakZeroFieldDomain D, componentX := (weakSpatialDomain D).componentX ∘ₗ Submodule.inclusion ⋯,
+    componentY := (weakSpatialDomain D).componentY ∘ₗ Submodule.inclusion ⋯ }
+def LeanPML.Rectangle.weakDivergence : (D : Rect) → ↥(weakFluxDomain D) →ₗ[ℝ] ↥(ScalarL2 D.measure) :=
+fun D => (LinearMap.proj 2 ∘ₗ (weakHDivGraph D).subtype) ∘ₗ ↑(LinearEquiv.ofInjective (weakFlux D) ⋯).symm
+LeanPML.Rectangle.eq_zero_of_test_inner (D : Rect) (f : ↥(ScalarL2 D.measure))
+  (htest : ∀ (φ : TestFunction D), inner ℝ f ((SmoothField.toL2 D) φ.field) = 0) : f = 0
+LeanPML.Rectangle.HasWeakPartial.unique {D : Rect} {i : Fin 2} {f g h : ↥(ScalarL2 D.measure)}
+  (hg : HasWeakPartial D i f g) (hh : HasWeakPartial D i f h) : g = h
+LeanPML.Rectangle.HasWeakDivergence.unique {D : Rect} {X Y d e : ↥(ScalarL2 D.measure)} (hd : HasWeakDivergence D X Y d)
+  (he : HasWeakDivergence D X Y e) : d = e
+LeanPML.Rectangle.weakSpatialDomain_smooth (D : Rect) (f : SmoothField) :
+  (weakSpatialDomain D).componentX ⟨(SmoothField.toL2 D) f, ⋯⟩ = (SmoothField.toL2 D) f.derivativeX ∧
+    (weakSpatialDomain D).componentY ⟨(SmoothField.toL2 D) f, ⋯⟩ = (SmoothField.toL2 D) f.derivativeY
+LeanPML.Rectangle.smoothFieldDomain_le_weak (D : Rect) : fieldDomain D ≤ weakFieldDomain D
+LeanPML.Rectangle.weakDivergence_spec (D : Rect) (L : ↥(weakFluxDomain D)) :
+  HasWeakDivergence D (↑L).1 (↑L).2 ((weakDivergence D) L)
+LeanPML.Rectangle.graph_norm_sq_equivalence (D : Rect) (U : Fin 3 → ↥(ScalarL2 D.measure)) :
+  ‖U‖ ^ 2 ≤ ‖U 0‖ ^ 2 + ‖U 1‖ ^ 2 + ‖U 2‖ ^ 2 ∧ ‖U 0‖ ^ 2 + ‖U 1‖ ^ 2 + ‖U 2‖ ^ 2 ≤ 3 * ‖U‖ ^ 2
+LeanPML.Analysis.weightedSubspace_isClosed.{u_1} {α : Type u_1} [MeasurableSpace α] (ν : MeasureTheory.Measure α)
+  (w : α → ℝ) (hw : Measurable w) : IsClosed ↑(weightedSubspace ν w)
+LeanPML.Analysis.weighted_completeSpace.{u_1} {α : Type u_1} [MeasurableSpace α] (ν : MeasureTheory.Measure α)
+  (w : α → ℝ) (hw : Measurable w) : CompleteSpace ↥(WeightedL2 ν w)
+LeanPML.Analysis.physicalL2_norm_sq_le.{u_1} {α : Type u_1} [MeasurableSpace α] (ν : MeasureTheory.Measure α)
+  (w : α → ℝ) (hw : Measurable w) (hgap : ∀ (x : α), w x = 0 ∨ 1 ≤ w x) (X : ↥(WeightedL2 ν w)) :
+  ‖(physicalL2 ν w hw hgap) X‖ ^ 2 ≤ ‖X‖ ^ 2
+LeanPML.Analysis.physicalL2_zero_on_zero.{u_1} {α : Type u_1} [MeasurableSpace α] (ν : MeasureTheory.Measure α)
+  (w : α → ℝ) (hw : Measurable w) (hgap : ∀ (x : α), w x = 0 ∨ 1 ≤ w x) (X : ↥(WeightedL2 ν w)) :
+  ∀ᵐ (x : α) ∂ν, w x = 0 → ↑↑((physicalL2 ν w hw hgap) X) x = 0
+LeanPML.Analysis.physicalL2_injective.{u_1} {α : Type u_1} [MeasurableSpace α] (ν : MeasureTheory.Measure α) (w : α → ℝ)
+  (hw : Measurable w) (hgap : ∀ (x : α), w x = 0 ∨ 1 ≤ w x) : Function.Injective ⇑(physicalL2 ν w hw hgap)
+LeanPML.Analysis.physicalL2_range_iff.{u_1} {α : Type u_1} [MeasurableSpace α] (ν : MeasureTheory.Measure α) (w : α → ℝ)
+  (hw : Measurable w) (hgap : ∀ (x : α), w x = 0 ∨ 1 ≤ w x) (f : ↥(ScalarL2 ν)) :
+  (∃ X, (physicalL2 ν w hw hgap) X = f) ↔
+    MeasureTheory.MemLp (fun x => √(w x) * ↑↑f x) 2 ν ∧ ∀ᵐ (x : α) ∂ν, w x = 0 → ↑↑f x = 0
+LeanPML.Analysis.weightedMul.{u_1} {α : Type u_1} [MeasurableSpace α] (ν : MeasureTheory.Measure α) (w m : α → ℝ)
+  (hm : Measurable m) (C : ℝ) (hm_bound : ∀ (x : α), |m x| ≤ C) : ↥(WeightedL2 ν w) →L[ℝ] ↥(WeightedL2 ν w)
+LeanPML.Analysis.weightedMul_norm_le.{u_1} {α : Type u_1} [MeasurableSpace α] (ν : MeasureTheory.Measure α)
+  (w m : α → ℝ) (hm : Measurable m) (C : ℝ) (hm_bound : ∀ (x : α), |m x| ≤ C) (X : ↥(WeightedL2 ν w)) :
+  ‖(weightedMul ν w m hm C hm_bound) X‖ ≤ C * ‖X‖
+LeanPML.Analysis.physicalL2_weightedMul.{u_1} {α : Type u_1} [MeasurableSpace α] (ν : MeasureTheory.Measure α)
+  (w m : α → ℝ) (hw : Measurable w) (hgap : ∀ (x : α), w x = 0 ∨ 1 ≤ w x) (hm : Measurable m) (C : ℝ)
+  (hm_bound : ∀ (x : α), |m x| ≤ C) (X : ↥(WeightedL2 ν w)) :
+  (physicalL2 ν w hw hgap) ((weightedMul ν w m hm C hm_bound) X) =
+    (boundedMul ν m hm C hm_bound) ((physicalL2 ν w hw hgap) X)
+LeanPML.Examples.WeakSpaces.physicalTest_nonzero_member :
+  smoothToWeakH1 ParameterCertificate.unitSquare LeanPML.Examples.WeakSpaces.physicalTest.field ∈
+      zeroBoundaryGraph ParameterCertificate.unitSquare ∧
+    (SmoothField.toL2 ParameterCertificate.unitSquare) LeanPML.Examples.WeakSpaces.physicalTest.field ≠ 0
+LeanPML.Examples.WeakSpaces.absorption_weighted_range.{u_1} {α : Type u_1} [MeasurableSpace α]
+  (ν : MeasureTheory.Measure α) (C : LeanPML.PML.SpatialAbsorption α) (f : ↥(ScalarL2 ν)) :
+  (∃ X, (physicalL2 ν C.wx ⋯ ⋯) X = f) ↔
+    MeasureTheory.MemLp (fun x => √(C.wx x) * ↑↑f x) 2 ν ∧ ∀ᵐ (x : α) ∂ν, C.a x = 0 → ↑↑f x = 0
+退出码: 0 ；元数据: /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/logs/v1.0.1/20261014T100755_820429_declaration_types.json

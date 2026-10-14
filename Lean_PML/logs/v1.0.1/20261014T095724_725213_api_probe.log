@@ -1,0 +1,77 @@
+MeasureTheory.MemLp.integrable.{u_1, u_5} {α : Type u_1} {ε : Type u_5} {m : MeasurableSpace α} {μ : Measure α}
+  [TopologicalSpace ε] [ContinuousENorm ε] {q : ENNReal} (hq1 : 1 ≤ q) {f : α → ε} [IsFiniteMeasure μ]
+  (hfq : MemLp f q μ) : Integrable f μ
+MeasureTheory.Integrable.locallyIntegrable.{u_1, u_3} {X : Type u_1} {ε : Type u_3} [MeasurableSpace X]
+  [TopologicalSpace X] [TopologicalSpace ε] [ContinuousENorm ε] {f : X → ε} {μ : Measure X} (hf : Integrable f μ) :
+  LocallyIntegrable f μ
+MeasureTheory.LocallyIntegrable.locallyIntegrableOn.{u_1, u_3} {X : Type u_1} {ε : Type u_3} [MeasurableSpace X]
+  [TopologicalSpace X] [TopologicalSpace ε] [ContinuousENorm ε] {f : X → ε} {μ : Measure X} (hf : LocallyIntegrable f μ)
+  (s : Set X) : LocallyIntegrableOn f s μ
+IsOpen.ae_eq_zero_of_integral_contDiff_smul_eq_zero.{u_1, u_2} {E : Type u_1} [NormedAddCommGroup E] [NormedSpace ℝ E]
+  [FiniteDimensional ℝ E] {F : Type u_2} [NormedAddCommGroup F] [NormedSpace ℝ F] [CompleteSpace F] [MeasurableSpace E]
+  [BorelSpace E] {f : E → F} {μ : Measure E} {U : Set E} (hU : IsOpen U) (hf : LocallyIntegrableOn f U μ)
+  (h : ∀ (g : E → ℝ), ContDiff ℝ (↑⊤) g → HasCompactSupport g → tsupport g ⊆ U → ∫ (x : E), g x • f x ∂μ = 0) :
+  ∀ᵐ (x : E) ∂μ, x ∈ U → f x = 0
+Submodule.isClosed_topologicalClosure.{u, v} {R : Type u} {M : Type v} [Semiring R] [TopologicalSpace M]
+  [AddCommMonoid M] [Module R M] [ContinuousConstSMul R M] [ContinuousAdd M] (s : Submodule R M) :
+  IsClosed ↑s.topologicalClosure
+Submodule.topologicalClosure_minimal.{u, v} {R : Type u} {M : Type v} [Semiring R] [TopologicalSpace M]
+  [AddCommMonoid M] [Module R M] [ContinuousConstSMul R M] [ContinuousAdd M] (s : Submodule R M) {t : Submodule R M}
+  (h : s ≤ t) (ht : IsClosed ↑t) : s.topologicalClosure ≤ t
+IsClosed.completeSpace_coe.{u} {α : Type u} [UniformSpace α] [CompleteSpace α] {s : Set α} [hs : IsClosed s] :
+  CompleteSpace ↑s
+Continuous.inner.{u_1, u_2, u_4} {𝕜 : Type u_1} {E : Type u_2} [RCLike 𝕜] [SeminormedAddCommGroup E]
+  [InnerProductSpace 𝕜 E] {α : Type u_4} [TopologicalSpace α] {f g : α → E} (hf : Continuous f) (hg : Continuous g) :
+  Continuous fun t => inner 𝕜 (f t) (g t)
+continuous_apply.{u_5, u_6} {ι : Type u_5} {A : ι → Type u_6} [T : (i : ι) → TopologicalSpace (A i)] (i : ι) :
+  Continuous fun p => p i
+inner_smul_left.{u_1, u_2} {𝕜 : Type u_1} {E : Type u_2} [RCLike 𝕜] [SeminormedAddCommGroup E] [InnerProductSpace 𝕜 E]
+  (x y : E) (r : 𝕜) : inner 𝕜 (r • x) y = (starRingEnd 𝕜) r * inner 𝕜 x y
+inner_smul_right.{u_1, u_2} {𝕜 : Type u_1} {E : Type u_2} [RCLike 𝕜] [SeminormedAddCommGroup E] [InnerProductSpace 𝕜 E]
+  (x y : E) (r : 𝕜) : inner 𝕜 x (r • y) = r * inner 𝕜 x y
+HasCompactSupport.add.{u_2, u_4} {α : Type u_2} {β : Type u_4} [TopologicalSpace α] [AddZeroClass β] {f f' : α → β}
+  (hf : HasCompactSupport f) (hf' : HasCompactSupport f') : HasCompactSupport (f + f')
+HasCompactSupport.smul_left.{u_2, u_7, u_8} {α : Type u_2} {M : Type u_7} {R : Type u_8} [TopologicalSpace α] [Zero M]
+  [SMulZeroClass R M] {f : α → R} {f' : α → M} (hf : HasCompactSupport f') : HasCompactSupport (f • f')
+tsupport_add.{u_1, u_2} {X : Type u_1} {α : Type u_2} [TopologicalSpace X] [AddZeroClass α] (f g : X → α) :
+  (tsupport fun x => f x + g x) ⊆ tsupport f ∪ tsupport g
+tsupport_smul_subset_left.{u_1, u_9, u_10} {X : Type u_1} [TopologicalSpace X] {M : Type u_9} {α : Type u_10} [Zero M]
+  [Zero α] [SMulWithZero M α] (f : X → M) (g : X → α) : (tsupport fun x => f x • g x) ⊆ tsupport f
+Set.setOf_forall.{u_2, u_5} {β : Type u_2} {ι : Sort u_5} (p : ι → β → Prop) : {x | ∀ (i : ι), p i x} = ⋂ i, {x | p i x}
+MeasureTheory.Lp.ext.{u_1, u_4} {α : Type u_1} {E : Type u_4} {m : MeasurableSpace α} {p : ENNReal} {μ : Measure α}
+  [NormedAddCommGroup E] {f g : ↥(Lp E p μ)} (h : ↑↑f =ᵐ[μ] ↑↑g) : f = g
+ContinuousLinearMap.codRestrict.{u_1, u_2, u_4, u_5} {R₁ : Type u_1} {R₂ : Type u_2} [Semiring R₁] [Semiring R₂]
+  {σ₁₂ : R₁ →+* R₂} {M₁ : Type u_4} {M₂ : Type u_5} [TopologicalSpace M₁] [AddCommMonoid M₁] [Module R₁ M₁]
+  [TopologicalSpace M₂] [AddCommMonoid M₂] [Module R₂ M₂] (f : M₁ →SL[σ₁₂] M₂) (p : Submodule R₂ M₂)
+  (h : ∀ (x : M₁), f x ∈ p) : M₁ →SL[σ₁₂] ↥p
+Submodule.subtypeL.{u_1, u_2} {R : Type u_1} [Semiring R] {M : Type u_2} [TopologicalSpace M] [AddCommMonoid M]
+  [Module R M] (p : Submodule R M) : ↥p →L[R] M
+MeasureTheory.Lp.coeFn_sub.{u_1, u_4} {α : Type u_1} {E : Type u_4} {m : MeasurableSpace α} {p : ENNReal}
+  {μ : Measure α} [NormedAddCommGroup E] (f g : ↥(Lp E p μ)) : ↑↑(f - g) =ᵐ[μ] ↑↑f - ↑↑g
+HasCompactSupport.zero.{u_9, u_10} {α : Type u_9} {β : Type u_10} [TopologicalSpace α] [Zero β] : HasCompactSupport 0
+Submodule.subset_span.{u_1, u_4} {R : Type u_1} {M : Type u_4} [Semiring R] [AddCommMonoid M] [Module R M] {s : Set M} :
+  s ⊆ ↑(Submodule.span R s)
+Submodule.le_topologicalClosure.{u, v} {R : Type u} {M : Type v} [Semiring R] [TopologicalSpace M] [AddCommMonoid M]
+  [Module R M] [ContinuousConstSMul R M] [ContinuousAdd M] (s : Submodule R M) : s ≤ s.topologicalClosure
+LinearEquiv.ofInjective.{u_1, u_3, u_5, u_7} {R : Type u_1} {R₂ : Type u_3} {M : Type u_5} {M₂ : Type u_7} [Semiring R]
+  [Semiring R₂] [AddCommMonoid M] [AddCommMonoid M₂] {module_M : Module R M} {module_M₂ : Module R₂ M₂} {σ₁₂ : R →+* R₂}
+  {σ₂₁ : R₂ →+* R} (f : M →ₛₗ[σ₁₂] M₂) [RingHomInvPair σ₁₂ σ₂₁] [RingHomInvPair σ₂₁ σ₁₂] (h : Function.Injective ⇑f) :
+  M ≃ₛₗ[σ₁₂] ↥f.range
+LinearEquiv.ofInjective_apply.{u_1, u_3, u_5, u_7} {R : Type u_1} {R₂ : Type u_3} {M : Type u_5} {M₂ : Type u_7}
+  [Semiring R] [Semiring R₂] [AddCommMonoid M] [AddCommMonoid M₂] {module_M : Module R M} {module_M₂ : Module R₂ M₂}
+  {σ₁₂ : R →+* R₂} {σ₂₁ : R₂ →+* R} (f : M →ₛₗ[σ₁₂] M₂) [RingHomInvPair σ₁₂ σ₂₁] [RingHomInvPair σ₂₁ σ₁₂]
+  {h : Function.Injective ⇑f} (x : M) : ↑((LinearEquiv.ofInjective f h) x) = f x
+LinearEquiv.symm_apply_apply.{u_1, u_6, u_7, u_9} {R : Type u_1} {S : Type u_6} {M : Type u_7} {M₂ : Type u_9}
+  [Semiring R] [Semiring S] [AddCommMonoid M] [AddCommMonoid M₂] {module_M : Module R M} {module_S_M₂ : Module S M₂}
+  {σ : R →+* S} {σ' : S →+* R} {re₁ : RingHomInvPair σ σ'} {re₂ : RingHomInvPair σ' σ} (e : M ≃ₛₗ[σ] M₂) (b : M) :
+  e.symm (e b) = b
+LinearMap.proj.{u, x, i} {R : Type u} {ι : Type x} [Semiring R] {φ : ι → Type i} [(i : ι) → AddCommMonoid (φ i)]
+  [(i : ι) → Module R (φ i)] (i : ι) : ((i : ι) → φ i) →ₗ[R] φ i
+norm_le_pi_norm.{u_1, u_4} {ι : Type u_1} {G : ι → Type u_4} [Fintype ι] [(i : ι) → SeminormedAddGroup (G i)]
+  (f : (i : ι) → G i) (i : ι) : ‖f i‖ ≤ ‖f‖
+pi_norm_le_iff_of_nonneg.{u_1, u_4} {ι : Type u_1} {G : ι → Type u_4} [Fintype ι] [(i : ι) → SeminormedAddGroup (G i)]
+  {x : (i : ι) → G i} {r : ℝ} (hr : 0 ≤ r) : ‖x‖ ≤ r ↔ ∀ (i : ι), ‖x i‖ ≤ r
+LeanPML.Rectangle.SmoothField.coe_toL2 (D : LeanPML.Rectangle.Rect) (f : LeanPML.Rectangle.SmoothField) :
+  ↑↑((LeanPML.Rectangle.SmoothField.toL2 D) f) =ᵐ[D.measure] ↑f
+LeanPML.Analysis.weighted_completeSpace.{u_1} {α : Type u_1} [MeasurableSpace α] (ν : Measure α) (w : α → ℝ)
+  (hw : Measurable w) : CompleteSpace ↥(LeanPML.Analysis.WeightedL2 ν w)

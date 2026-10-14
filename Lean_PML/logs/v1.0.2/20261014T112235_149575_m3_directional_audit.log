@@ -1,0 +1,19 @@
+LeanPML.Rectangle.poincare_integral_top_zero (a b : ℝ × ℝ) (hab : a ≤ b) (f : ℝ × ℝ → ℝ) (hf : ContDiff ℝ (↑⊤) f)
+  (hboundary : ∀ x ∈ Set.Icc a.1 b.1, f (x, b.2) = 0) :
+  ∫ (z : ℝ × ℝ) in Set.Icc a b, f z ^ 2 ≤
+    (2 * (b.2 - a.2)) ^ 2 * ∫ (z : ℝ × ℝ) in Set.Icc a b, (fderiv ℝ f z) (0, 1) ^ 2
+LeanPML.Rectangle.weak_directional_poincare (D : LeanPML.Rectangle.Rect) (v : ↥(LeanPML.Rectangle.zeroBoundaryGraph D))
+  (i : Fin 2) :
+  ‖↑↑v 0‖ ^ 2 ≤
+    LeanPML.Rectangle.directionalPoincareConstant D i ^ 2 * ‖↑↑v (LeanPML.Rectangle.partialGraphIndex i)‖ ^ 2
+LeanPML.Rectangle.weak_zero_of_dx_zero (D : LeanPML.Rectangle.Rect) (v : ↥(LeanPML.Rectangle.zeroBoundaryGraph D))
+  (hx : ↑↑v 1 = 0) : v = 0
+LeanPML.Rectangle.weak_zero_of_dy_zero (D : LeanPML.Rectangle.Rect) (v : ↥(LeanPML.Rectangle.zeroBoundaryGraph D))
+  (hy : ↑↑v 2 = 0) : v = 0
+'LeanPML.Rectangle.poincare_integral_top_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.Rectangle.smooth_directional_poincare' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.Rectangle.weak_directional_poincare' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.Rectangle.weak_zero_of_partial_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.Rectangle.weak_zero_of_dx_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.Rectangle.weak_zero_of_dy_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.Rectangle.nonzero_directional_poincare_call' depends on axioms: [propext, Classical.choice, Quot.sound]

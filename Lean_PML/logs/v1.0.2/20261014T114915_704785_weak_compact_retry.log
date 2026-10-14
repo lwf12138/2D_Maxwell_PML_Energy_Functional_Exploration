@@ -1,0 +1,14 @@
+LeanPML/Rectangle/WeakCompactApprox.lean:24:4: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  volume.IsAddLeftInvariant
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+LeanPML/Rectangle/WeakCompactApprox.lean:33:16: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  volume.IsAddLeftInvariant
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+LeanPML/Rectangle/WeakCompactApprox.lean:37:31: warning: declaration uses `sorry`
+LeanPML/Rectangle/WeakCompactApprox.lean:88:14: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  volume.IsAddHaarMeasure
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+LeanPML/Rectangle/WeakCompactApprox.lean:95:16: warning: declaration uses `sorry`

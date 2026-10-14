@@ -1,0 +1,122 @@
+ℹ [3002/3013] Replayed LeanPML.PML.WeakOriginalSystem
+info: LeanPML/PML/WeakOriginalSystem.lean:187:4: Try this:
+  [apply] abel_nf
+⚠ [3003/3013] Replayed LeanPML.PML.WeakPrimitiveSystem
+warning: LeanPML/PML/WeakPrimitiveSystem.lean:94:23: This simp argument is unused:
+  smul_sub
+
+Hint: Omit it from the simp argument list.
+  simp only [smul_add, s̵m̵u̵l̵_̵s̵u̵b̵,̵ ̵neg_smul, sub_neg_eq_add] at hmain ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/WeakPrimitiveSystem.lean:112:34: This simp argument is unused:
+  map_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [map_sub, map_smul, m̵a̵p̵_̵n̵e̵g̵,̵ ̵smul_sub, neg_smul, neg_neg]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/WeakPrimitiveSystem.lean:112:63: This simp argument is unused:
+  neg_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [map_sub, map_smul, map_neg, smul_sub, neg_smul,̵ ̵n̵e̵g̵_̵n̵e̵g̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/WeakPrimitiveSystem.lean:120:63: This simp argument is unused:
+  neg_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [map_sub, map_smul, map_neg, smul_sub, neg_smul,̵ ̵n̵e̵g̵_̵n̵e̵g̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [3010/3013] Replayed LeanPML.PML.WeakPathAssembly
+warning: LeanPML/PML/WeakPathAssembly.lean:183:13: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/WeakPathAssembly.lean:184:14: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/WeakPathAssembly.lean:185:11: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/WeakPathAssembly.lean:186:17: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3011/3013] Replayed LeanPML.PML.WeakFiniteProblem
+warning: LeanPML/PML/WeakFiniteProblem.lean:145:17: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/WeakFiniteProblem.lean:148:14: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/WeakFiniteProblem.lean:149:15: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✖ [3013/3013] Building LeanPML.PML.WeakPhysicalControl (32s)
+trace: .> LEAN_PATH=/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Cli/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/batteries/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Qq/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/aesop/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/proofwidgets/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/importGraph/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/plausible/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/mathlib/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean /Users/wcli/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/LeanPML/PML/WeakPhysicalControl.lean -o /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/WeakPhysicalControl.olean -i /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/WeakPhysicalControl.ilean -c /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/WeakPhysicalControl.c --setup /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/WeakPhysicalControl.setup.json --json
+error: LeanPML/PML/WeakPhysicalControl.lean:70:4: Type mismatch: After simplification, term
+  hbounds.auxiliary
+ has type
+  ‖(physicalX D.measure C) ((O.sameSource J W₀x W₀y).base t).ψx‖ ^ 2 +
+      ‖(physicalY D.measure C) ((O.sameSource J W₀x W₀y).base t).ψy‖ ^ 2 ≤
+    4 *
+      twoLayerEnergy D.measure C ε κ τ μ (scaleK ε κ μ (poincareConstant D)) ((O.sameSource J W₀x W₀y).base t)
+        ((O.sameSource J W₀x W₀y).first t)
+but is expected to have type
+  ‖O.φx t‖ ^ 2 + ‖O.φy t‖ ^ 2 ≤ 4 * O.energy J W₀x W₀y t
+error: LeanPML/PML/WeakPhysicalControl.lean:71:4: Type mismatch: After simplification, term
+  hbounds.primitivePolar
+ has type
+  ‖reconstructQ κ τ ((O.sameSource J W₀x W₀y).base t)‖ ^ 2 ≤
+    (16 * κ ^ 2 * poincareConstant D ^ 2 + 8 * κ * τ ^ 2 / μ) *
+      twoLayerEnergy D.measure C ε κ τ μ (scaleK ε κ μ (poincareConstant D)) ((O.sameSource J W₀x W₀y).base t)
+        ((O.sameSource J W₀x W₀y).first t)
+but is expected to have type
+  ‖O.q t‖ ^ 2 ≤ (16 * κ ^ 2 * poincareConstant D ^ 2 + 8 * κ * τ ^ 2 / μ) * O.energy J W₀x W₀y t
+error: LeanPML/PML/WeakPhysicalControl.lean:72:4: Type mismatch: After simplification, term
+  hbounds.electricMemory
+ has type
+  ‖reconstructZ1 D.measure C ε ((O.sameSource J W₀x W₀y).base t)‖ ^ 2 ≤
+    8 * ε ^ 2 * C.S ^ 4 * poincareConstant D ^ 2 *
+      twoLayerEnergy D.measure C ε κ τ μ (scaleK ε κ μ (poincareConstant D)) ((O.sameSource J W₀x W₀y).base t)
+        ((O.sameSource J W₀x W₀y).first t)
+but is expected to have type
+  ‖(O.fields t).Z1‖ ^ 2 ≤ 8 * ε ^ 2 * C.S ^ 4 * poincareConstant D ^ 2 * O.energy J W₀x W₀y t
+error: LeanPML/PML/WeakPhysicalControl.lean:73:4: Type mismatch: After simplification, term
+  hbounds.polarMemory
+ has type
+  ‖reconstructZ2 D.measure C κ τ ((O.sameSource J W₀x W₀y).base t)‖ ^ 2 ≤
+    C.S ^ 4 * (16 * κ ^ 2 * poincareConstant D ^ 2 + 8 * κ * τ ^ 2 / μ) *
+      twoLayerEnergy D.measure C ε κ τ μ (scaleK ε κ μ (poincareConstant D)) ((O.sameSource J W₀x W₀y).base t)
+        ((O.sameSource J W₀x W₀y).first t)
+but is expected to have type
+  ‖(O.fields t).Z2‖ ^ 2 ≤ C.S ^ 4 * (16 * κ ^ 2 * poincareConstant D ^ 2 + 8 * κ * τ ^ 2 / μ) * O.energy J W₀x W₀y t
+error: LeanPML/PML/WeakPhysicalControl.lean:74:4: Type mismatch: After simplification, term
+  hbounds.magneticAuxiliary
+ has type
+  ‖reconstructAuxX D.measure C ((O.sameSource J W₀x W₀y).base t)‖ ^ 2 +
+      ‖reconstructAuxY D.measure C ((O.sameSource J W₀x W₀y).base t)‖ ^ 2 ≤
+    4 * C.S ^ 2 *
+      twoLayerEnergy D.measure C ε κ τ μ (scaleK ε κ μ (poincareConstant D)) ((O.sameSource J W₀x W₀y).base t)
+        ((O.sameSource J W₀x W₀y).first t)
+but is expected to have type
+  ‖(O.fields t).Qx‖ ^ 2 + ‖(O.fields t).Qy‖ ^ 2 ≤ 4 * C.S ^ 2 * O.energy J W₀x W₀y t
+error: Lean exited with code 1
+Some required targets logged failures:
+- LeanPML.PML.WeakPhysicalControl
+error: build failed

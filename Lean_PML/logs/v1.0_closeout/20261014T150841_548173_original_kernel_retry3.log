@@ -1,0 +1,95 @@
+⚠ [2608/2730] Replayed LeanPML.Analysis.OperatorMemory
+warning: LeanPML/Analysis/OperatorMemory.lean:42:15: `ContinuousLinearMap.mul_apply` has been deprecated: Use `mul_apply_eq_comp` instead
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.mul_apply` to `mul_apply_eq_comp x`).
+ℹ [3003/3012] Replayed LeanPML.PML.WeakOriginalSystem
+info: LeanPML/PML/WeakOriginalSystem.lean:187:4: Try this:
+  [apply] abel_nf
+⚠ [3004/3012] Replayed LeanPML.PML.WeakPrimitiveSystem
+warning: LeanPML/PML/WeakPrimitiveSystem.lean:94:23: This simp argument is unused:
+  smul_sub
+
+Hint: Omit it from the simp argument list.
+  simp only [smul_add, s̵m̵u̵l̵_̵s̵u̵b̵,̵ ̵neg_smul, sub_neg_eq_add] at hmain ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/WeakPrimitiveSystem.lean:112:34: This simp argument is unused:
+  map_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [map_sub, map_smul, m̵a̵p̵_̵n̵e̵g̵,̵ ̵smul_sub, neg_smul, neg_neg]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/WeakPrimitiveSystem.lean:112:63: This simp argument is unused:
+  neg_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [map_sub, map_smul, map_neg, smul_sub, neg_smul,̵ ̵n̵e̵g̵_̵n̵e̵g̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/WeakPrimitiveSystem.lean:120:63: This simp argument is unused:
+  neg_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [map_sub, map_smul, map_neg, smul_sub, neg_smul,̵ ̵n̵e̵g̵_̵n̵e̵g̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [3011/3012] Replayed LeanPML.PML.WeakPathAssembly
+warning: LeanPML/PML/WeakPathAssembly.lean:183:13: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/WeakPathAssembly.lean:184:14: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/WeakPathAssembly.lean:185:11: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/WeakPathAssembly.lean:186:17: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✖ [3012/3012] Building LeanPML.PML.AuxiliaryOperatorMemory (11s)
+trace: .> LEAN_PATH=/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Cli/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/batteries/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Qq/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/aesop/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/proofwidgets/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/importGraph/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/plausible/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/mathlib/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean /Users/wcli/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/LeanPML/PML/AuxiliaryOperatorMemory.lean -o /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/AuxiliaryOperatorMemory.olean -i /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/AuxiliaryOperatorMemory.ilean -c /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/AuxiliaryOperatorMemory.c --setup /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/AuxiliaryOperatorMemory.setup.json --json
+error: LeanPML/PML/AuxiliaryOperatorMemory.lean:43:34: failed to synthesize instance of type class
+  IsTopologicalRing (↥(WeightedL2 ν C.wx) →L[ℝ] ↥(WeightedL2 ν C.wx))
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: LeanPML/PML/AuxiliaryOperatorMemory.lean:46:7: failed to synthesize instance of type class
+  IsTopologicalRing (↥(WeightedL2 ν C.wx) →L[ℝ] ↥(WeightedL2 ν C.wx))
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: LeanPML/PML/AuxiliaryOperatorMemory.lean:47:26: failed to synthesize instance of type class
+  IsTopologicalRing (↥(WeightedL2 ν C.wx) →L[ℝ] ↥(WeightedL2 ν C.wx))
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: LeanPML/PML/AuxiliaryOperatorMemory.lean:63:3: failed to synthesize instance of type class
+  IsTopologicalRing (↥(WeightedL2 ν C.wx) →L[ℝ] ↥(WeightedL2 ν C.wx))
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: LeanPML/PML/AuxiliaryOperatorMemory.lean:64:24: failed to synthesize instance of type class
+  IsTopologicalRing (↥(WeightedL2 ν C.wx) →L[ℝ] ↥(WeightedL2 ν C.wx))
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: LeanPML/PML/AuxiliaryOperatorMemory.lean:79:26: Invalid field `exponentialHistory`: The environment does not contain `LeanPML.PML.SpatialAbsorption.exponentialHistory`, so it is not possible to project the field `exponentialHistory` from an expression
+  C
+of type `SpatialAbsorption (ℝ × ℝ)`
+error: LeanPML/PML/AuxiliaryOperatorMemory.lean:80:31: Invalid field `exponentialHistory`: The environment does not contain `LeanPML.PML.SpatialAbsorption.exponentialHistory`, so it is not possible to project the field `exponentialHistory` from an expression
+  C.swap
+of type `SpatialAbsorption (ℝ × ℝ)`
+error: LeanPML/PML/AuxiliaryOperatorMemory.lean:82:13: Invalid field `auxiliary_operator_memory`: The environment does not contain `LeanPML.PML.SpatialAbsorption.auxiliary_operator_memory`, so it is not possible to project the field `auxiliary_operator_memory` from an expression
+  C
+of type `SpatialAbsorption (ℝ × ℝ)`
+error: LeanPML/PML/AuxiliaryOperatorMemory.lean:89:18: Invalid field `auxiliary_operator_memory`: The environment does not contain `LeanPML.PML.SpatialAbsorption.auxiliary_operator_memory`, so it is not possible to project the field `auxiliary_operator_memory` from an expression
+  C.swap
+of type `SpatialAbsorption (ℝ × ℝ)`
+error: Lean exited with code 1
+Some required targets logged failures:
+- LeanPML.PML.AuxiliaryOperatorMemory
+error: build failed

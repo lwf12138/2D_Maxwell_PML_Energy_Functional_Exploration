@@ -1,0 +1,57 @@
+LeanPML/PML/WeightedForcing.lean:158:0: warning: automatically included section variable(s) unused in theorem `LeanPML.PML.SpatialAbsorption.forcing_wx_nonneg`:
+  [Nonempty α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Nonempty α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+LeanPML/PML/WeightedForcing.lean:163:8: warning: automatically included section variable(s) unused in theorem `_private.LeanPML.PML.WeightedForcing.0.LeanPML.PML.SpatialAbsorption.x_lift_bound`:
+  [Nonempty α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Nonempty α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+LeanPML/PML/WeightedForcing.lean:177:90: error: unexpected identifier; expected ')', ',' or ':'
+LeanPML/PML/WeightedForcing.lean:177:21: error: unsolved goals
+case false
+α : Type u_1
+inst✝¹ : MeasurableSpace α
+inst✝ : Nonempty α
+ν : Measure α
+C : SpatialAbsorption α
+⊢ Measurable fun x => C.p x
+
+case true
+α : Type u_1
+inst✝¹ : MeasurableSpace α
+inst✝ : Nonempty α
+ν : Measure α
+C : SpatialAbsorption α
+⊢ Measurable fun x => C.r x
+LeanPML/PML/WeightedForcing.lean:182:0: error: (deterministic) timeout at `isDefEq`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+LeanPML/PML/WeightedForcing.lean:188:8: warning: automatically included section variable(s) unused in theorem `_private.LeanPML.PML.WeightedForcing.0.LeanPML.PML.SpatialAbsorption.absorption_zero_of_wx_zero`:
+  [Nonempty α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Nonempty α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+LeanPML/PML/WeightedForcing.lean:200:10: error: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+LeanPML/PML/WeightedForcing.lean:198:61: error: (deterministic) timeout at `«tactic execution»`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+LeanPML/PML/WeightedForcing.lean:221:8: error: (kernel) unknown constant 'LeanPML.PML.SpatialAbsorption.xAbsorptionLift_norm_sq'
+LeanPML/PML/WeightedForcing.lean:232:0: warning: automatically included section variable(s) unused in theorem `LeanPML.PML.SpatialAbsorption.swap_wx_eq_wy`:
+  [Nonempty α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Nonempty α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`

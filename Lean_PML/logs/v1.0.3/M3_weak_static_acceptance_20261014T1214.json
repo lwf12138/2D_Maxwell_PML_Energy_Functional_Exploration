@@ -1,0 +1,29 @@
+{
+  "source": "LeanPML/Examples/WeakStaticMode.lean",
+  "sha256": "778ceb39c0f1ebc745c1b369b83e85867f60be9699d1c16160e8ec221c9f09b0",
+  "build_log": "logs/v1.0.3/20261014T121111_059807_m3_weak_static_main.log",
+  "audit_log": "logs/v1.0.3/20261014T121413_498634_m3_weak_static_audit.log",
+  "build_exit_code": 0,
+  "audit_exit_code": 0,
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "scope": "nonzero actual weak original eight-equation static path; p=S,r=0; no extra magnetic boundary condition",
+  "completed": [
+    "actual OriginalInterval and OriginalJet",
+    "actual nonzero L2 field",
+    "actual weighted initial field and recovery",
+    "new weak original main theorem invocation",
+    "positive energy on Icc",
+    "constant actual energy",
+    "zero dissipation on Ioo"
+  ],
+  "not_claimed": [
+    "original compactly supported F example verbatim",
+    "general solution existence",
+    "dissipation-zero endpoints through current theorem",
+    "four-coefficient-branch regression in this file"
+  ]
+}

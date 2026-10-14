@@ -1,0 +1,18 @@
+{
+  "stage": "v1.0_closeout",
+  "command": [
+    "lake",
+    "build",
+    "LeanPML.PML.AuxiliaryOperatorMemory"
+  ],
+  "command_display": "lake build LeanPML.PML.AuxiliaryOperatorMemory",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-14T15:04:54.961606+08:00",
+  "output_file": "20261014T150454_961606_original_kernel.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 1,
+  "status": "finished",
+  "ended_at": "2026-10-14T15:05:14.883465+08:00",
+  "elapsed_seconds": 19.921
+}

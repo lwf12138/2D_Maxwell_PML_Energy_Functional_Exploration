@@ -1,0 +1,2302 @@
+{
+  "target": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf",
+  "sha256": "d37a6939f5235a6d1d3becd6a88230d28e515dc511348da676588f70c0acf487",
+  "page_count": 18,
+  "annotations": 215,
+  "pages": [
+    {
+      "page": 1,
+      "width": 595.28,
+      "height": 841.89,
+      "text": "v0.2.3 标注图例：红勾只对应旁注中的已验证结论。\n代数：实数恒等式与系数界；局部时间：真实时间函数的求导与保持。\n空间/PDE：场、积分与边界接口仍待完成；定义和假设不计证明。\nV7：二维 Maxwell–Debye PML 的全域单调能量\n常数移位乘子、时间导数层与显式小幅度条件\n基于上传原问题、V6 正文与完整性审查的研究工作稿\n2026 年 9 月 24 日\nLean 验证标记（截至 v0.2.2，2026-10-10）：红勾对应已编译并通过公理审计的结果。\n“局部时间”指固定空间点版本；磁不变量、空间积分和完整 PML 主定理尚未验证。\n摘要\n研究原八变量二维TMMaxwell–PML系统，保留P+τP =κE，外边界为PEC。首先给\nt\n出原变量与primitive变量的完整时域映射、全部初值不变量、可检验且演化保持的兼容提升\n类，并保留Laplace变换中的非零初值项。独立复核V6全域平衡，证明其点态Schur条件不\n能覆盖从零连续起步的非平凡吸收剖面。主要新结果是一个小吸收幅度下的全域单调能量先验\n定理：不改变方程，采用常数c的乘子u +cu、奇异但可积的辅助变量权重和一阶时间导数层，\nt\n构造 E 7 =F c [u,P,q,ϕ]+KF c [u t ,P t ,q t ,ϕ t ]。在明确的材料–域尺度条件和 max i kσ i k ∞ (cid:20)c/4\n下，证明能量与指定的加权一阶图范数等价，控制原电磁场、极化与四个 PML 辅助变量，并\n满足 E′ =(cid:0)D (cid:20)0。证明不要求吸收系数有正下界，不要求其梯度小，也不要求内部子区分\n7 7\n别耗散。给出保留物理区、四个边层、四个角层及连续零起点的多项式剖面。任意幅度下的一\n般全域单调能量尚未证明；本文不声称已证明整个初边值问题的适定性。\n目录\n1 研究对象、输入依据与结论范围 3\n2 原八变量与 primitive 系统：时域等价 3\n2.1 原系统的归一化形式 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3\n2.2 变量提升和初值不变量 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4\n2.3 任意八变量初值的真实增长反例 . . . . . . . . . . . . . . . . . . . . . . . . . . . 5\n3 非零初值、历史和严格坐标拉伸的对应 5\n4 独立复核 V6：全域恒等式成立，但原 Schur 条件不够 6\n4.1 权重延拓、完整能量和耗散 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6\n4.2 Schur 条件不能一直延伸到零起点 . . . . . . . . . . . . . . . . . . . . . . . . . 7\n5 新的全域结构与相容能量空间 7\n5.1 域尺度、幅度条件与权重 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7\n5.2 可检查的初值类及其保持 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8\n1",
+      "annotations": [
+        {
+          "rect": [
+            68.031,
+            335.178,
+            237.122,
+            350.855
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            68.031,
+            303.667,
+            278.569,
+            319.343
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            84.395,
+            283.064,
+            207.668,
+            298.74
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            84.395,
+            262.461,
+            218.577,
+            278.137
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            84.395,
+            241.858,
+            262.213,
+            257.535
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            68.031,
+            210.346,
+            269.85,
+            226.023
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            68.031,
+            178.834,
+            355.247,
+            194.511
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            84.395,
+            158.232,
+            240.395,
+            173.908
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            84.395,
+            137.629,
+            276.713,
+            153.305
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            68.031,
+            106.117,
+            226.213,
+            121.793
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            84.395,
+            85.514,
+            229.486,
+            101.191
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            84.395,
+            64.911,
+            229.486,
+            80.588
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            67.0,
+            747.49,
+            317.0,
+            779.89
+          ],
+          "text": "v0.2.3 标注图例：红勾只对应旁注中的已验证结论。\n代数：实数恒等式与系数界；局部时间：真实时间函数的求导与保持。\n空间/PDE：场、积分与边界接口仍待完成；定义和假设不计证明。",
+          "id": "LeanPML.v0.2.3.legend"
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "width": 595.28,
+      "height": 841.89,
+      "text": "V7：Maxwell–Debye PML 全域能量 2026-09-24\n5.3 原函数规范的唯一性 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9\n6 V7 能量和主定理 9\n7 能量求导：完整局部恒等式及所有边界项 10\n7.1 常数移位的空间恒等式 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10\n7.2 电块与 Debye 块的完整恒等式 . . . . . . . . . . . . . . . . . . . . . . . . . . . 11\n7.3 Green 公式和精确的两层耗散 . . . . . . . . . . . . . . . . . . . . . . . . . . . 11\n8 全域正定性与原状态控制的证明 12\n8.1 下界 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12\n8.2 上界 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13\n8.3 原八变量的具体控制 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13\n9 关键闭合：用导数层和 Debye 耗散控制边层 13\n9.1 单层耗散的可用下界 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13\n9.2 PDE 相容关系提供跨边层的全域空间估计 . . . . . . . . . . . . . . . . . . . . . 14\n9.3 Debye 耗散吸收最高时间项 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14\n10 满足全部条件的二维 PML 配置 15\n11 主要候选的失败原因与静态模态 15\n11.1 仅把 a 换成常数 c 仍然不够 . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15\n11.2 V6 椭圆修正的完整导数仍不直接抵消 . . . . . . . . . . . . . . . . . . . . . . . 16\n11.3 静态方向没有通过零能量被掩盖 . . . . . . . . . . . . . . . . . . . . . . . . . . 16\n12 与外部文献的模型和定理范围核对 16\n13 V6 到 V7 的准确进展及未完成范围 17\nA 计算验证的内容与边界 17\n2",
+      "annotations": [
+        {
+          "rect": [
+            84.395,
+            759.779,
+            207.668,
+            775.456
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            68.031,
+            728.267,
+            169.702,
+            743.944
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            68.031,
+            696.756,
+            280.759,
+            712.432
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            84.395,
+            676.153,
+            218.577,
+            691.829
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            84.395,
+            655.55,
+            260.317,
+            671.226
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            84.395,
+            634.947,
+            255.912,
+            650.624
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            68.031,
+            603.435,
+            237.122,
+            619.112
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            84.395,
+            582.833,
+            131.304,
+            598.509
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            84.395,
+            562.23,
+            131.304,
+            577.906
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            84.395,
+            541.627,
+            207.668,
+            557.303
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            68.031,
+            510.115,
+            303.845,
+            525.792
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            84.395,
+            489.512,
+            207.668,
+            505.189
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            84.395,
+            468.91,
+            311.549,
+            484.586
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            84.395,
+            448.307,
+            245.94,
+            463.983
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            68.031,
+            416.795,
+            244.212,
+            432.471
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            68.031,
+            385.283,
+            241.394,
+            400.96
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            84.395,
+            364.68,
+            247.588,
+            380.357
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            84.395,
+            344.078,
+            296.062,
+            359.754
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            84.395,
+            323.475,
+            266.867,
+            339.151
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            68.031,
+            291.963,
+            252.303,
+            307.639
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            68.031,
+            260.451,
+            263.079,
+            276.127
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            68.031,
+            228.939,
+            193.486,
+            244.616
+          ],
+          "text": "",
+          "id": ""
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "width": 595.28,
+      "height": 841.89,
+      "text": "V7：Maxwell–Debye PML 全域能量 2026-09-24\nv0.4 对齐：古典包装显式给出 E、Hx、Hy 的空间可导证据；八方程输入本身不保证空间光滑。\n1 研究对象、输入依据与结论范围\n本稿固定上传原文件 sources/energy_functional_problem.tex 中的八变量模型；对照\nresults/v6_tex/nonlocal_memory_strict_pml_analysis.tex、同目录报告，以及 results/\nv6_mathematical_completeness_review_20260924.md。审查稿只作为待核验材料，不作为证\n明依据。原始文件的哈希与本次检查的文件范围另见交付包的 source_manifest.json。本稿的\n主结论是定理 6.1，其完整证明见第 7–9 节。\n设\nΩ = (x−,x\n+\n)(cid:2)(y−,y\n+\n), L\nx\n= x\n+\n(cid:0)x−, L\ny\n= y\n+\n(cid:0)y−.\n这是整个截断计算域，而不是单个角层。材料参数为正常数。全篇考虑实值场；复值场可对相应\n内积取实部。所有未注明下标的范数均为 L2(Ω) 范数。记\nσold(x) σold(y)\nϵ = ϵ\n0\nϵ∞ > 0, κ = χ = ϵ\n0\n(ϵ\ns\n(cid:0)ϵ∞) > 0, p(x) = x , r(y) = y . (1.1)\nϵ ϵ\n0 0\n其中 µ > 0,τ > 0。下文的归一化吸收系数为 σ = p,σ = r；不再用原有电导率量纲的 σold。设\nx y i\np,r 2 W1,∞，非负，且在矩形物理区的相应坐标区间上为零。记\na = p+r, b = pr, Z = fa = 0g, Ω = fa > 0g.\n+\n所有集合与权重均按几乎处处意义理解。Ω 不被假定为单一 Lipschitz 子域；本文不在其边界\n+\n上进行主要分部积分。\n2 原八变量与 primitive 系统：时域等价\n2.1 原系统的归一化形式\n以 Z = P 、Z = P 简记电辅助变量。原系统准确地变为\n1 z,1 2 z,2\nϵE = ∂ H (cid:0)∂ H (cid:0)ϵaE (cid:0)P (cid:0)aP +Z +Z ,\nt x y y x t 1 2\nµH = (cid:0)∂ E (cid:0)µ(r(cid:0)p)H +Q ,\nx,t y x x\nµH = ∂ E (cid:0)µ(p(cid:0)r)H +Q ,\ny,t x y y\nτP +P = κE, (2.1) 光滑 primitive\nt\n重构核验\nZ = (cid:0)ϵbE, Z = (cid:0)bP, 八条方程\n1,t 2,t\nQ = (cid:0)pQ +µp(r(cid:0)p)H ,\nx,t x x\nQ = (cid:0)rQ +µr(p(cid:0)r)H .\ny,t y y\n外边界条件为\nE = 0 于∂Ω. (2.2)\n这里 α = 1 仅将极化律变成 Debye 一阶方程，P 未被删除。\n3",
+      "annotations": [
+        {
+          "rect": [
+            136.954,
+            654.909,
+            154.303,
+            667.608
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            245.043,
+            654.909,
+            251.984,
+            667.608
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            257.438,
+            654.909,
+            264.379,
+            667.608
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            534.0,
+            207.49,
+            587.00293,
+            233.89
+          ],
+          "text": "(2.1)\n八条方程为原解输入；勾仅表示从光滑 primitive 重构的满足性，非解存在。\nLeanPML.PML.Concrete.original_reconstruct_at\nLeanPML.PML.Concrete.primitive_to_original_rectangle\n证据：\nlogs/v0.4.4/20261013T230822_044824_lake_build.log\nlogs/v0.4.4/20261013T231144_117778_axioms_audit.log",
+          "id": "LeanPML.v0.4.v04-original-recovery"
+        },
+        {
+          "rect": [
+            67.0,
+            785.39,
+            340.927246,
+            795.89
+          ],
+          "text": "(2.1)：旧光滑重构核验的接口限定\n原式定义不打新勾。旧高层的光滑代表原已成立，本次正式推出空间DifferentiableAt及坐标HasDerivAt，并给带PEC反向古典包装；不是认为底层fderiv等式自动可导。\nLeanPML.PML.Concrete.originalClassicalOn_of_liftIdentified\nLeanPML.PML.Concrete.primitive_to_original_classical_rectangle\n证据：\nlogs/v0.4_alignment/20261014T000055_917026_lake_build.log\nlogs/v0.4_alignment/20261014T000341_178705_axioms_audit.log",
+          "id": "LeanPML.v0.4_alignment.classical-original"
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "width": 595.28,
+      "height": 841.89,
+      "text": "V7：Maxwell–Debye PML 全域能量 2026-09-24\nv0.4：光滑场层结果；旧点态批注保留历史范围。下列勾不表示解存在或完整弱空间结论。\n对齐补充：古典双向映射已显式携带真实空间可导；仅所选强光滑类，非完整弱解理论。\n2.2 变量提升和初值不变量\n取初始原函数 u ,q ，定义\n0 0\nZ Z\nt t\nu(t) = u + E(s)ds, q(t) = q + P(s)ds, λ = (µH ,(cid:0)µH ), ϕ = λ(cid:0)ru. (2.3) 历史提升\n0 0 y x 初值与求导\n0 0\n由于材料参数和吸收系数不依赖时间，原系统给出以下五个时间不变量：\n五个时间 C D = q+τP (cid:0)κu, C 局 D 部时间\n不变量\n光滑场版 C = Z +ϵbu, C = Z +bq, (2.4) CZ1/CZ2\nz1 1 z2 2 局部时间\nC = Q (cid:0)pϕ , C = Q +rϕ .\nx x y y y x\n例如 ∂ C = P +τP (cid:0)κE = 0，两个 C 的导数直接为零。磁场方程还给出\nt D t z\nϕ = (cid:0)(p(cid:0)r)λ +Q , ϕ = (p(cid:0)r)λ (cid:0)Q .\nx,t x y y,t y x\n所以\n∂ (Q +rϕ ) = (cid:0)rQ +r(p(cid:0)r)λ +r[(cid:0)(p(cid:0)r)λ +Q ] = 0,\nt y x y x x y\n∂ (Q (cid:0)pϕ ) = 0 同理。这些是不使用 Laplace 变换的初值核验。\nt x y\n命题 2.1 (完整时域对应). 若式 (2.4) 的五个初值均为零，则对所有存在的时刻\n初 保 始 持 兼 与 容 重构 Z 1 = (cid:0)ϵbu, Z 2 = (cid:0)bq, Q x = pϕ y , Q y = (cid:0)rϕ x , (2.5) 仅 兼 Z 容 1 保 /Z 持 2\n光滑场版\n并且提升变量满足\nµfϵ(u +au +bu)+P +aP +bqg = divλ,\ntt t t\nϕ +pϕ = (r(cid:0)p)∂ u,\nx,t x x 双向八方程\n光滑类\nϕ y,t +rϕ y = (p(cid:0)r)∂ y u, (2.6) 固定初始\n原函数\nλ = ru+ϕ,\nq = P, q+τP = κu, u = E.\nt t\n反之，任何足够正则的式 (2.6) 的解，按式 (2.3)、(2.5) 重构，均满足原八变量方程 (2.1)。\n证明. 将 Z +Z = (cid:0)ϵbu(cid:0)bq 代回电场方程，并注意 divλ = µ(∂ H (cid:0)∂ H )，即得第一式。代\n1 2 x y y x\n入 Q = (cid:0)rϕ ，有 ϕ = (r(cid:0)p)∂ u(cid:0)pϕ ；另一分量相同。反向代回恢复电、磁及 Debye 方\ny x x,t x x\n程。辅助方程也直接成立，例如\n∂ (pϕ ) = p[(p(cid:0)r)∂ u(cid:0)rϕ ] = (cid:0)pQ +µp(r(cid:0)p)H ,\nt y y y x x\n其中使用 λ = ∂ u+ϕ = (cid:0)µH 。四个辅助变量都被核验，而不是只验证消元后的波方程。\ny y y x\n对于非零不变量，primitive主方程右端增加µ(C +C )，ϕ方程右端增加(C ,(cid:0)C )；C 6= 0\nz1 z2 y x D\n也改变极化兼容关系。因此不能将任意八变量初值直接解释为无源 primitive 初值。\n4\n红勾仅覆盖旁注所列范围。完整来源及 Lean 定理名可点击红勾区域查看批注。",
+      "annotations": [
+        {
+          "rect": [
+            228.712,
+            449.938,
+            246.061,
+            462.636
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            195.755,
+            258.722,
+            213.104,
+            271.421
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            283.097,
+            258.722,
+            300.446,
+            271.421
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            319.867,
+            258.722,
+            337.216,
+            271.421
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            483.573,
+            258.722,
+            500.922,
+            271.421
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            532.0,
+            636.89,
+            594.0,
+            660.89
+          ],
+          "text": "(2.4) 仅 CD：固定空间点的真实导数为零和区间常值；初始零兼容推出全时段兼容。u,q的积分构造、函数空间尚未形式化。\n\n模块：LeanPML/PML/TimeInvariants.lean\n定理命名空间：LeanPML.PML\n声明：hasDerivAt_CD_zero; CD_eq_initial; CD_compatibility\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。",
+          "id": ""
+        },
+        {
+          "rect": [
+            532.0,
+            615.89,
+            594.0,
+            639.89
+          ],
+          "text": "(2.4) 仅 CZ1、CZ2 的真实求导及常值保持，允许 b=0。磁辅助不变量 Cx、Cy 尚未形式化。\n\n模块：LeanPML/PML/TimeInvariants.lean\n定理命名空间：LeanPML.PML\n声明：hasDerivAt_CZ1_zero; hasDerivAt_CZ2_zero; CZ1_eq_initial; CZ2_eq_initial\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。",
+          "id": ""
+        },
+        {
+          "rect": [
+            532.0,
+            413.89,
+            594.0,
+            437.89
+          ],
+          "text": "(2.5) 仅 Z1=-εbu、Z2=-bq 的固定空间点版本，从初始兼容和原时间方程推出全时段兼容。Qx,Qy重构与完整时域等价未完成。\n\n模块：LeanPML/PML/TimeInvariants.lean\n定理命名空间：LeanPML.PML\n声明：CZ1_compatibility; CZ2_compatibility; Z1_zero_of_zero_absorption; Z2_zero_of_zero_absorption\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。",
+          "id": ""
+        },
+        {
+          "rect": [
+            534.0,
+            699.69,
+            581.0,
+            717.89
+          ],
+          "text": "(2.3)\n真实点态时间积分初值、内部求导；C(K) 连续正则性下与 L² Bochner 历史积分相等。定义本身不计证明。\nLeanPML.PML.Concrete.integralLift_initial\nLeanPML.PML.Concrete.hasDerivAt_integralLift\nLeanPML.Rectangle.toL2_integralLift_on_Icc\n证据：\nlogs/v0.4.4/20261013T230822_044824_lake_build.log\nlogs/v0.4.4/20261013T231144_117778_axioms_audit.log",
+          "id": "LeanPML.v0.4.v04-historical-lift"
+        },
+        {
+          "rect": [
+            3.0,
+            629.49,
+            44.0,
+            655.89
+          ],
+          "text": "(2.4)\n从原八式、真实历史提升及混合微分推出任意初始不变量场的保持；实际 L² 表示一致。旧三个点态批注保留。\nLeanPML.PML.Concrete.five_invariants_on_Icc\nLeanPML.PML.Concrete.five_invariants_toLp_eq_of_continuous\n证据：\nlogs/v0.4.4/20261013T230822_044824_lake_build.log\nlogs/v0.4.4/20261013T231144_117778_axioms_audit.log",
+          "id": "LeanPML.v0.4.v04-five-invariants"
+        },
+        {
+          "rect": [
+            3.0,
+            408.49,
+            50.0,
+            434.89
+          ],
+          "text": "(2.5)\n仅初始五不变量为零作输入，推出全区间兼容及四辅助量重构；不是零解。\nLeanPML.PML.Concrete.compatible_lift_on_Icc\nLeanPML.PML.Concrete.reconstruct_lift_eqOn\n证据：\nlogs/v0.4.4/20261013T230822_044824_lake_build.log\nlogs/v0.4.4/20261013T231144_117778_axioms_audit.log",
+          "id": "LeanPML.v0.4.v04-compatibility"
+        },
+        {
+          "rect": [
+            534.0,
+            320.29,
+            581.0,
+            354.89
+          ],
+          "text": "(2.6)、命题 2.1\n所选光滑类，固定初始原函数；包含反向四辅助方程。无解存在唯一性或提升规范唯一性结论。\nLeanPML.PML.Concrete.original_to_primitive_rectangle\nLeanPML.PML.Concrete.primitive_to_original_rectangle\nLeanPML.PML.Concrete.lift_reconstruct_eqOn\n证据：\nlogs/v0.4.4/20261013T230822_044824_lake_build.log\nlogs/v0.4.4/20261013T231144_117778_axioms_audit.log",
+          "id": "LeanPML.v0.4.v04-equivalence"
+        },
+        {
+          "rect": [
+            67.0,
+            785.89,
+            308.34082,
+            795.89
+          ],
+          "text": "范围图例\nv0.4：光滑场层结果；旧点态批注保留历史范围。下列勾不表示解存在或完整弱空间结论。\n\n证据：\nlogs/v0.4.4/20261013T230822_044824_lake_build.log\nlogs/v0.4.4/20261013T231144_117778_axioms_audit.log",
+          "id": "LeanPML.v0.4.v04-history-note4"
+        },
+        {
+          "rect": [
+            67.0,
+            773.89,
+            303.0,
+            783.89
+          ],
+          "text": "(2.6)、命题2.1：旧双向光滑标注补充\n现有红勾保留。准确包装同时携带原E/H与primitive u/E/Λ可导；推荐入口由光滑识别及μ非零生成空间证据，域内改写原系数，实际调用古典链。初值、PEC、强正则性仍需声明；未发布v0.5主定理。\nLeanPML.PML.Concrete.original_to_primitive_classical_rectangle\nLeanPML.PML.Concrete.primitive_to_original_classical_rectangle\nLeanPML.Rectangle.RegionalAbsorption.originalRegionalFiniteIntervalProblem\n证据：\nlogs/v0.4_alignment/20261014T000055_917026_lake_build.log\nlogs/v0.4_alignment/20261014T000341_178705_axioms_audit.log",
+          "id": "LeanPML.v0.4_alignment.classical-equivalence"
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "width": 595.28,
+      "height": 841.89,
+      "text": "V7：Maxwell–Debye PML 全域能量 2026-09-24\nv0.5：完整增长场、八式/PEC及真实L²增长已核验；初始磁辅助不兼容。\n2.3 任意八变量初值的真实增长反例\n命题 2.2. 若物理区含非空开集，则原八变量系统在允许所有八变量初值的类上不存在一个有限\n初能量、统一控制磁场 L2 范数且单调不增的能量。\n证明. 取非恒定 ψ 2 C ∞ (Ω )，令\nc phys\n(H ,H ) = trψ, (Q ,Q ) = µrψ, E = P = Z = Z = 0.\nx y x y 1 2\n支集处 p = r = 0，且 ∂ H (cid:0)∂ H = t(ψ (cid:0)ψ ) = 0。故这些函数满足全部原方程及 PEC。磁\nx y y x xy yx\n能按 t2 增长。若 E (cid:21) CkHk2 且 E(t) (cid:20) E(0) < 1，立即矛盾。\n此反例针对显示的八变量方程允许的任意初值；它不属于后文兼容类，并未满足另加的无磁\n荷约束。它不能用于否定通常从物理场启动、PML 辅助变量为零的相容实验。\n3 非零初值、历史和严格坐标拉伸的对应\n本节的变换公式在 Laplace 变换存在的半平面成立；主定理证明不依赖它们，也不预先假设\n长期稳定。对命题 2.1 的兼容解，精确公式是\nE b = sub(cid:0)u , P b = sqb(cid:0)q ,\n0 0\n(1+τs)P b = κE b +τP , (1+τs)qb= κub+τq ,\n0 0\n(s+σ )ϕ b = (σ (cid:0)σ )∂ ub+ϕ , j 6= i, (3.1)\ni i j i i i0\nλ b = s+σ j ∂ ub+ ϕ i0 .\ni i\ns+σ s+σ\ni i\n主方程的完整变换为\n(cid:2) (cid:3)\nµ(s2+as+b)(ϵub+qb)(cid:0)divλ b = µ (s+a)(ϵu +q )+ϵE +P . (3.2)\n0 0 0 0\n例如 u 产生 (cid:0)su (cid:0)E ，q = P 产生 (cid:0)sq (cid:0)P ；这些项均未略去。\ntt 0 0 tt t 0 0\n在零初值/零记忆的算子关系中，令\nS (s,x) = 1+p(x)/s, S (s,y) = 1+r(y)/s, ϵ (s) = ϵ+κ/(1+τs).\nx y D\n原变量与 V6 所写的 stretched-coordinate 磁场 HSC 不是同名相同状态，而是\nH b = S H b SC, H b = S H b SC, λ b = µS H b SC, λ b = (cid:0)µS H b SC. (3.3)\nx x x y y y x y y y x x\nS −1 的时域实现是因果滤波器，例如\ni\nZ\nt\nHSC(t) = H (t)(cid:0)p e −p(t−s)H (s)ds,\nx x x\n0\nHSC 使用 r。这样可得到严格的 ∂ 7! S −1∂ 结构，而没有修改 PML 系数。分离依赖保证 S 可\ny i i i y\n穿过 ∂ 、S 可穿过 ∂ 。\nx x y\n5",
+      "annotations": [
+        {
+          "rect": [
+            158.772,
+            464.745,
+            176.121,
+            477.444
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            67.0,
+            781.89,
+            292.736328,
+            795.89
+          ],
+          "text": "§2.3 命题2.2与H=t∇ψ未编号公式\n实际完整双向剖面、物理区C∞紧支ψ及正梯度平方积分；同一全未来H=t∇ψ场八式/PEC通过，磁L²=t²G，任意历史初值不能修复Cx。只排除固定正磁控制+有限初值+全未来单调这组能量条件。不是兼容类反例，也不否定所有能量。\nLeanPML.PML.Obstructions.fullProfile_unrestricted_classical\nLeanPML.PML.Obstructions.fullProfile_unrestricted_norm_growth\nLeanPML.PML.Obstructions.fullProfile_unrestricted_not_compatible\nLeanPML.PML.Obstructions.fullProfile_unrestricted_unbounded\nLeanPML.PML.Obstructions.fullProfile_unrestricted_no_coercive_antitone_energy\n证据：\nlogs/v0.5.3/20261014T011533_485975_lake_build.log\nlogs/v0.5.3/20261014T011752_801259_axioms_audit.log",
+          "id": "LeanPML.v0.5.unrestricted-growth"
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "width": 595.28,
+      "height": 841.89,
+      "text": "V7：Maxwell–Debye PML 全域能量 2026-09-24\n更具体地，对第 5 节中支撑在物理区的非零初值族，Z = Z = Q = Q = 0、ϕ = 0，\n1,0 2,0 x,0 y,0 0\n且吸收系数与全部初值的乘积为零。对原方程消去 Q ,Q ,Z ,Z ，得到\nx y 1 2\nµ(sH b SC(cid:0)H ) = S −1∂ E b ,\ny y0 x x\nµ(sH b SC(cid:0)H ) = (cid:0)S −1∂ E b , (3.4)\nx x0 y y\ns(ϵE b +P b )(cid:0)(ϵE +P ) = S −1∂ H b SC(cid:0)S −1∂ H b SC.\n0 0 x x y y y x\nb b b b\n例如磁场消元先给出µs(S /S )H = ∂ E+µH ；初值支集上p = r = 0，再用H = S HSC 得第\nx y y x y0 y y y\nb b\n一式。电场消元给出sS S (ϵE+P)，而初值项为ϵE +P ；除以S S 时该初值不变。因此常用非\nx y 0 0 x y\n零物理初值也保留标准坐标拉伸的初值源项。对一般非零PML记忆初值，应使用式(3.1)–(3.2)，\n不能擅自化为式 (3.4)。\n4 独立复核 V6：全域恒等式成立，但原 Schur 条件不够\n4.1 权重延拓、完整能量和耗散\n在 Z 上定义 σ /a = 0、b/a = 0，其余处按通常比值定义。这些权重有界可测；后续只作时\ni\n间求导，不对它们作空间微分。在兼容类 ϕ = 0 于 Z 下，定义整个 Ω 上的\nZ n X\n1 σ\nE = µϵ(E +au)2+jλj2+ i ϕ2+µϵbu2\nB 2 a i\nΩ i o (4.1)\n(cid:2) (cid:3)\nµ\n+ (1+2aτ)P2+2(a+bτ)Pq+(a2+b(1+aτ))q2 dxdy,\nκ\nZ nX (cid:16) (cid:17)\nσ b\nD = σ 1+ i λ2+ jruj2+µϵabu2\nB i a i a\nΩ i o (4.2)\nµ\n+ [τP2+τ(a2(cid:0)b)P2+abq2] dxdy (cid:21) 0.\nκ t\n在 Z 上能量密度是 1(µϵE2+jλj2+µP2/κ)，即原 Maxwell–Debye 能量的 µ 倍。极化矩阵的\n2\n行列式为\nb+abτ +2a3τ +b(2a2(cid:0)b)τ2.\n它在 a > 0 时严格为正，在 a = b = 0 时矩阵为 diag(1,0)，故式 (4.1) 全域非负。跨零吸收区的\n扩展状态范数等价不能只靠正角区 Sylvester 判据推断。\n命题 4.1 (V6 全域平衡). 对足够正则的兼容解，令 W = E +au，有\nZ\nE′ = (cid:0)D (cid:0) ura(cid:1)λdxdy+hW,λ(cid:1)ni . (4.3)\nB B ∂Ω\nΩ\n证明. 逐分量记 h = ∂ u,v = ∂ E,f = ϕ ,l = λ = h+f。有 f = σ h(cid:0)σ l、l = v+σ h(cid:0)σ l。\ni i i i t j i t j i\n直接展开得\n(cid:16) (cid:17) (cid:16) (cid:17)\n1 σ σ b\n∂ l2+ i f2 = (v+ah)l(cid:0)σ 1+ i l2(cid:0) h2.\nt i\n2 a a a\n在Z 上则是 1∂ jλj2 = λ(cid:1)rE。极化关系给出κW = τP +(1+aτ)P+aq。令Q = (1+2aτ)P2+\n2 t t B\n2(a+bτ)Pq+(a2+b(1+aτ))q2。逐项展开并使用 q = P 得到\nt\n(P +aP +bq)κW = 1∂ Q +τP2+τ(a2(cid:0)b)P2+abq2.\nt 2 t B t\n6",
+      "annotations": [
+        {
+          "rect": [
+            168.651,
+            760.327,
+            175.592,
+            773.025
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            471.847,
+            615.048,
+            489.196,
+            627.747
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            503.163,
+            615.048,
+            520.512,
+            627.747
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            152.119,
+            597.434,
+            169.468,
+            610.133
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            383.359,
+            268.578,
+            400.708,
+            281.277
+          ],
+          "text": "",
+          "id": ""
+        }
+      ]
+    },
+    {
+      "page": 7,
+      "width": 595.28,
+      "height": 841.89,
+      "text": "V7：Maxwell–Debye PML 全域能量 2026-09-24\n将此式乘 µ/κ，即为所列极化能量导数与耗散。电块为\nϵ\nϵ(u +au +bu)W = ∂ (W2+bu2)+ϵabu2.\ntt t t\n2\n主方程乘 W 并在整个 Ω 一次积分。由于 rW = rE+aru+ura，前两项与空间块抵消，只剩\n式 (4.3)。\n若u 2 H1(Ω)，PEC保证u(t)零迹，故W 零迹，外边界项为零。仅有E = 0而不限制u 的边\n0 0 0\n界迹，不能推出这个结论。若人为把域分为Lipschitz子区，内部面Σ的两项为Wλ+(cid:1)n++Wλ −(cid:1)n −，\n在 W 单值、λ 2 H(div) 的法向迹相容条件下抵消。这里无需要求每个子区能量分别下降。连续\n吸收剖面也不要求另设人工拼接能量。\n4.2 Schur 条件不能一直延伸到零起点\n正角区的 V6 条件是\n(cid:16) (cid:17)\n(ra)TC −1ra (cid:20) 4(1(cid:0)δ)µϵab, C = diag σ (1+σ /a) , 0 < δ < 1. (4.4)\nλ λ i i\n固定一个 r(y) > 0 且满足 Fubini 截面性质的 y，舍去左端非负的另一分量，得\np\njp ′ (x)j (cid:20) 2 (1(cid:0)δ)µϵr(2p+r)p(x) (cid:20) Cp(x).\nR\n若在从 p(x ) = 0 到正吸收层的整个区间都成立，则绝对连续性给出 p(x) (cid:20) C x p(s)ds，从而\n0 x0\np (cid:17) 0。左侧 PML 只需反向参数化区间。同样结论适用于 r。在 r = 0 的边层，点态 (u,λ ) 耗散\nx\n矩阵的 u2 系数为零，半正定性更直接要求 p ′ = 0。因此式 (4.4) 只能用于远离零界面的正角子\n域，不能用来覆盖常用的连续起步剖面。这是否定该充分条件的全域适用性，不是否定所有可能\n能量。\n5 新的全域结构与相容能量空间\nv1.0.2：弱 H₀¹ Poincaré 已证，C_P=2Lx；保守常数，非原式精确 π 常数。\n5.1 域尺度、幅度条件与权重\n矩形 Dirichlet Poincaré 常数可取\n(cid:18) (cid:19)\nπ2 π2\n−1\nC2 = + , kvk2 (cid:20) C2krvk2 (v 2 H1(Ω)). (5.1) v0.4 保守版\nP L2 x L2 y P 0 C_P = 2Lx\n非原精确值\n证明只需对 x,y 的一维零端点 Wirtinger 不等式分别积分再相加；一般 H1 函数由密度推广。定\n0\n对齐：幅度界 义\nn o\n仅闭坐标区间\nκτ κ\n域\n积\n外\n分\n截\na.\n回\ne.\n代\n一\n表\n致\nA = ϵ+2κ, K = 8µAC\nP\n2, c∗ = min K −1/2,\n8AK\n,\n8Aτ\n> 0. (5.2) 参\n正\n数\n性\n代\n已\n数\n证\n本稿的附加条件为\n(5.3) 为输入\n旧勾仅指 0 < c (cid:20) c∗, S := maxfkpk ∞,krk ∞ g (cid:20) c/4. (5.3) 阈值等价\n阈值等价 实数条件\n可固定 c = c∗ ，因此条件完全由材料、域和吸收幅度决定，独立于解。K 的量纲为时间平方，c 的\n量纲为时间的倒数。立即有\nκ 1 1\na (cid:20) c/2, b (cid:20) c2/16, ac(cid:0)b (cid:21) 0, c2K (cid:20) 1, cτ (cid:20) < < . (5.4) 全部系数界\n8A 16 4 固定点\n7\n红勾仅覆盖旁注所列范围。完整来源及 Lean 定理名可点击红勾区域查看批注。",
+      "annotations": [
+        {
+          "rect": [
+            86.664,
+            692.872,
+            104.013,
+            705.57
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            359.025,
+            408.232,
+            376.374,
+            420.931
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            532.0,
+            165.89,
+            594.0,
+            189.89
+          ],
+          "text": "(5.2) A、K、c* 的定义及正性已验证；CP只是给定正参数。(5.1)的矩形Poincaré不等式尚未证明。\n\n模块：LeanPML/PML/Coefficients.lean\n定理命名空间：LeanPML.PML\n声明：materialA_pos; scaleK_pos; threshold_pos\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。",
+          "id": ""
+        },
+        {
+          "rect": [
+            532.0,
+            125.89,
+            594.0,
+            149.89
+          ],
+          "text": "(5.3) 仅 c≤c* 与 c²K≤1、8cAK≤κτ、8cAτ≤κ 的双向等价；L∞吸收场及空间幅度条件未在本阶段构造。\n\n模块：LeanPML/PML/Coefficients.lean\n定理命名空间：LeanPML.PML\n声明：le_threshold_iff_explicit\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。",
+          "id": ""
+        },
+        {
+          "rect": [
+            532.0,
+            60.89,
+            594.0,
+            84.89
+          ],
+          "text": "(5.4) 从非负p,r、幅度限制和精确阈值推出所列 a,b,ac-b,c²K,cτ 的界。是固定空间点的实数代数，保留零吸收。\n\n模块：LeanPML/PML/Coefficients.lean\n定理命名空间：LeanPML.PML\n声明：absorptionSum_le_half; absorptionProduct_le_c_sq_sixteenth; absorptionSum_mul_sub_product_nonneg; le_threshold_iff_explicit; c_mul_tau_bounds\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。",
+          "id": ""
+        },
+        {
+          "rect": [
+            7.0,
+            129.49,
+            41.0039062,
+            155.89
+          ],
+          "text": "(5.3) 为输入\n旧勾仅指\n阈值等价\n原标记保留。限定范围：(5.3) 仅 c≤c* 与 c²K≤1、8cAK≤κτ、8cAτ≤κ 的双向等价；L∞吸收场及空间幅度条件未在本阶段构造。\n待完成：(5.3) 本身是输入；尚无 L∞ 场和空间幅度模型",
+          "id": "LeanPML.v0.2.3.clarify-threshold"
+        },
+        {
+          "rect": [
+            534.0,
+            223.49,
+            567.007812,
+            249.89
+          ],
+          "text": "(5.1)\n已证明同一迹核上的 CP=2Lx，从而 K=32μ(ε+2κ)Lx²；未证明原文精确 π 常数，无完成勾。\nLeanPML.Rectangle.poincare_estimate\nLeanPML.Rectangle.scaleK_rectangle\n证据：\nlogs/v0.4.4/20261013T230822_044824_lake_build.log\nlogs/v0.4.4/20261013T231144_117778_axioms_audit.log",
+          "id": "LeanPML.v0.4.v04-poincare-conservative"
+        },
+        {
+          "rect": [
+            3.0,
+            171.29,
+            42.3417969,
+            205.89
+          ],
+          "text": "(5.2)–(5.3)：物理幅度域范围\n假设范围说明，不给假设打完成勾。原p/r非负/幅度仅Icc坐标区间；内部截回代表与原场在闭矩形和体积分a.e.一致，权重/成员/能量耗散可积积分正式连接。保留全零、边层、角层，原技术延拓不需域外物理幅度界。\nLeanPML.Rectangle.RegionalAbsorption.coefficients_eq_closed\nLeanPML.Rectangle.RegionalAbsorption.coefficients_ae\nLeanPML.Rectangle.RegionalAbsorption.weighted_memLp_iff\nLeanPML.Rectangle.RegionalAbsorption.fieldEnergy_eq_regional_integral\nLeanPML.Rectangle.RegionalAbsorption.fieldDissipation_eq_regional_integral\n证据：\nlogs/v0.4_alignment/20261014T000055_917026_lake_build.log\nlogs/v0.4_alignment/20261014T000341_178705_axioms_audit.log",
+          "id": "LeanPML.v0.4_alignment.regional-amplitude"
+        },
+        {
+          "rect": [
+            67.0,
+            312.89,
+            301.483398,
+            323.89
+          ],
+          "text": "(5.1) 的保守常数子结论\n在紧支光滑图闭包定义的 H₀¹ 上推广保守常数。一般旧光滑零迹场进入闭包的逼近仍缺；不标原精确公式完成。\nLeanPML.Rectangle.weak_poincare\nLeanPML.Rectangle.weakPoincareDomain\n{\"lake_build\": {\"metadata\": \"logs/v1.0.3/20261014T104157_124733_lake_build.json\", \"log\": \"logs/v1.0.3/20261014T104157_124733_lake_build.log\", \"sha256\": \"bcba62051e3fe5f4d6acf75b9c6eb6d55c818d11f1349a34bad92ff70a3edf6b\", \"cwd\": \"/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML\", \"exit_code\": 0}, \"axioms_audit\": {\"metadata\": \"logs/v1.0.3/20261014T104239_987027_axioms_audit.json\", \"log\": \"logs/v1.0.3/20261014T104239_987027_axioms_audit.log\", \"sha256\": \"c55e3a8f94b2a7237bf7a0ddb3c8f1c78b9e0122cbc6bf9cc88a7764a30d0da2\", \"cwd\": \"/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML\", \"exit_code\": 0}}",
+          "id": "LeanPML.v1.0.partial.weak-poincare-conservative"
+        }
+      ]
+    },
+    {
+      "page": 8,
+      "width": 595.28,
+      "height": 841.89,
+      "text": "V7：Maxwell–Debye PML 全域能量 2026-09-24\nv0.5：非零紧支兼容数据子族；初始八式、迹与有限图数据已核验，非存在性。\n其中 b (cid:20) a2/4 且 a (cid:20) c/2 蕴含 ac(cid:0)b (cid:21) 0。\n定义新的辅助权重\nc(cid:0)r c(cid:0)p\n(5.5) 为定义 w = , w = 于Ω ; w = w = 0 于Z. (5.5) 权重分支\n旧勾仅指 x a y a + x y 含零吸收\n零分支计算\n在 Ω 上 w (cid:21) 3/2 (cid:21) 1。它们在零吸收界面附近可能无界；本文不把这点隐去，也不假称对任意\n+ i 下界/无界\n系数性质\nL2 辅助变量都有限。定义 Hilbert 空间\n( )\nZ\nX\nL2 = ψ : ψ = 0 于Z, kψk2 := w ψ2 < 1 . (5.6)\nw w i i\nΩ+\ni\n因 w (cid:21) 1，该空间连续嵌入 L2(Ω)2。 加权空间嵌入\ni\n含零区处理\nv0.3.1：实际加权 L² 闭子空间及零延拓；(5.5)–(5.6) 定义录入本身不计证明。\n5.2 可检查的初值类及其保持\n光滑零迹 定义 5.1 (兼容提升初值类 C ). 原八变量初值属于 C ，指存在 u 2 H1(Ω)，令\n图逼近已证 c c 0 0\nH₀¹ 桥接\nq = κu (cid:0)τP , λ = (µH ,(cid:0)µH ), ϕ = λ (cid:0)ru ,\n0 0 0 0 y0 x0 0 0 0\n满足式 (2.5) 的四个初值约束，且 ϕ 2 L2。主定理还要求所生成的一阶时间导数初值有第 6 节\n0 w\n定义的有限图范数，并满足相应 PEC 迹相容。这些时间导数不是自由数据，而由原 PDE 决定，\n例如\nP = (κE (cid:0)P )/τ, ϕ = σ ∂ u (cid:0)σ λ ,\nt0 0 0 i,t0 j i 0 i i0\nE 由式 (2.1) 第一式计算。\nt0\n该定义特别要求物理零吸收区 λ = ru ，以及 u 零边界迹。它是实质性的初值限制，不只\n0 0 0\n是给全部八变量状态重新命名；例如任意磁静态背景或带磁荷数据未必属于此类。\n原场零区 五个不变量已证明保持。E 的 PEC 迹与式 (2.3) 保证 u(t) 零迹。在 Z 上 ϕ = 0，因此\nt 时间保持\n保持\n须初值 f=0\n须初始φ=0 ϕ = 0 保持。辅助 ODE 的显式公式是\n0 空间接口待证\nZ\nt\nϕ (t) = e −σitϕ +(σ (cid:0)σ ) e −σi(t−s)∂ u(s)ds. (5.7)\ni i0 j i i\n0\n由于 w (σ (cid:0)σ )2 (cid:20) ca (cid:20) 2cS，得到\ni j i\nZ\nt (5.8) 弱场\nkϕ(t)k2 (cid:20) 2kϕ k2 +4cSt kru(s)k2ds. (5.8) 精确加权界\nw 0 w 需辅助演化\n0\n非弱主定理\n此外 w σ2 (cid:20) cS、w σ2 (cid:20) cS，故\ni i i j\nkϕ k2 (cid:20) 2cS(kruk2+kλk2). 导数加权界\nt w 弱梯度分量\n需真实导数\n成员保持 对时间微分后的 ODE 同样适用。因此在本文足够正则解的类中，兼容条件与所需的加权可积性\n初始加权\n普通L²演化 保持。式 (5.8) 只用于确认空间定义与演化相容，并非用有限时间 Gronwall 冒充最终单调结论。\n非自动C²\n这个初值类是无限维且包含常见非零启动。取任意 f,g,ψ 2 C ∞ (Ω )，令\nc phys\nE = f, P = g, H = ψ /µ, H = (cid:0)ψ /µ, u = ψ, q = κψ(cid:0)τg, ϕ = 0. (5.9)\n0 0 y0 x x0 y 0 0 0\n原四个 PML 辅助初值均为零。P 可以为零，也可以等于 κE ，或为任意上述紧支极化脉冲；H\n0 0 0\n是通常的无散紧支磁场脉冲族。所有有限阶初始空间/时间迹条件对这样的光滑紧支数据均有自然\n意义。这里陈述的是非平凡的可容许初始数据族，不借此声称已证明它们的全局解存在。\nv1.0.2 (5.7)：点上真实 ODE/时间积分版已证；弱场连接及 (5.8) 加权传播未完成。\n8\n红勾仅覆盖旁注所列范围。完整来源及 Lean 定理名可点击红勾区域查看批注。",
+      "annotations": [
+        {
+          "rect": [
+            108.447,
+            498.986,
+            125.796,
+            511.685
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            505.962,
+            498.986,
+            512.902,
+            511.685
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            116.884,
+            424.247,
+            134.234,
+            436.946
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            309.328,
+            360.114,
+            326.677,
+            372.813
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            117.154,
+            169.667,
+            134.503,
+            182.366
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            532.0,
+            708.89,
+            594.0,
+            732.89
+          ],
+          "text": "(5.5) w的正吸收分支和零延拓定义及分支性质；零区取0。尚未构造(5.6)的加权函数空间。\n\n模块：LeanPML/PML/Weights.lean\n定理命名空间：LeanPML.PML\n声明：energyWeightX; energyWeightY; weights_of_sum_zero\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。",
+          "id": ""
+        },
+        {
+          "rect": [
+            532.0,
+            678.89,
+            594.0,
+            702.89
+          ],
+          "text": "正吸收分支w≥3/2，及满足幅度限制的趋零吸收族无统一有限上界。下界不适用于零延拓；未证明加权空间嵌入。\n\n模块：LeanPML/PML/Weights.lean\n定理命名空间：LeanPML.PML\n声明：energyWeights_lower_bound; energyWeights_unbounded\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。",
+          "id": ""
+        },
+        {
+          "rect": [
+            534.0,
+            343.49,
+            587.0,
+            369.89
+          ],
+          "text": "§5.2：在 Z 上 φ_t=0，因此 φ₀=0 保持（未编号）\n固定点两个时间函数闭区间连续，内部真实辅助演化；非负吸收且 a=0，从初始 l(0)=h(0) 推出整段 l=h，包括 T=0。\n待完成：不是 (5.7) 一般积分解公式、五个不变量整体、加权正则性或 PDE 提升。\n\nLeanPML.PML.zeroSpatial_compatibility_preserved\n\n当前证据：\nlogs/v0.2.3/20261010T232910_472603_lake_build_retry.log\nlogs/v0.2.3/20261010T232931_121820_axioms_audit_retry.log",
+          "id": "LeanPML.v0.2.3.zero-preservation"
+        },
+        {
+          "rect": [
+            7.0,
+            707.49,
+            41.0039062,
+            733.89
+          ],
+          "text": "(5.5) 为定义\n旧勾仅指\n零分支计算\n原标记保留。限定范围：(5.5) w的正吸收分支和零延拓定义及分支性质；零区取0。尚未构造(5.6)的加权函数空间。\n待完成：定义本身不是待证结论；(5.6) 加权空间",
+          "id": "LeanPML.v0.2.3.clarify-weight-definition"
+        },
+        {
+          "rect": [
+            534.0,
+            612.69,
+            587.0,
+            630.89
+          ],
+          "text": "(5.6) 后“该空间连续嵌入 L²(Ω)²”\n实际加权空间使用 √wψ 的 L² 闭子空间；恢复映射在全域 ν-a.e. 上定义，零吸收区为零，两个分量满足普通 L² 平方和不超过加权平方和。可测性和正区权重间隙由 SpatialAbsorption 原始条件推导。\n待完成：具体矩形 Sobolev/零迹/真实弱梯度及演化保持仍待完成；本勾不覆盖 (5.7)–(5.8)。\n\nLeanPML.PML.auxiliary_embedding_square\nLeanPML.PML.physical_zero_on_absorption_zero\n\n当前证据：\nlogs/v0.3.1/20261013T002136_137117_lake_build.log\nlogs/v0.3.1/20261013T002105_759533_axioms_audit.log",
+          "id": "LeanPML.v0.3.1.weighted-embedding"
+        },
+        {
+          "rect": [
+            67.0,
+            600.39,
+            290.384033,
+            610.89
+          ],
+          "text": "v0.3.1：实际加权 L² 闭子空间及零延拓；(5.5)–(5.6) 定义录入本身不计证明。",
+          "id": "LeanPML.v0.3.1.weighted-model"
+        },
+        {
+          "rect": [
+            3.0,
+            347.49,
+            48.734375,
+            373.89
+          ],
+          "text": "§5.2 五不变量保持段后的零区保持（未编号）\n从原方程、历史提升、五初始兼容及零区 φ₀=0 推出 φ=0；保留一般空间区域，不声称(5.7)/(5.8)传播。\nLeanPML.PML.Concrete.original_zero_region_preserved\n证据：\nlogs/v0.4.4/20261013T230822_044824_lake_build.log\nlogs/v0.4.4/20261013T231144_117778_axioms_audit.log",
+          "id": "LeanPML.v0.4.v04-zero-region"
+        },
+        {
+          "rect": [
+            67.0,
+            781.89,
+            310.785889,
+            795.89
+          ],
+          "text": "§5.2数据类的§11.1启动子族\n实际f紧支于[-1/4,1/4]²，L²非零；u0=0 E0=P0=f q0=-f H/原aux0，八条原方程只在t=0核验，五初始兼容、三迹、零区、真实加权成员及正有限图平方。时间延拓不是区间PDE解；非一般解存在或加权传播。只覆盖这个启动子族，不替代所有§5.2一般数据。\nLeanPML.Examples.CompatibleData.physical_data_certificate\nLeanPML.Examples.CompatibleData.physical_initial_traces\nLeanPML.Examples.CompatibleData.initial_derivatives\nLeanPML.Examples.CompatibleData.initialGraphSquare_formula\n证据：\nlogs/v0.5.3/20261014T011533_485975_lake_build.log\nlogs/v0.5.3/20261014T011752_801259_axioms_audit.log",
+          "id": "LeanPML.v0.5.compatible-data-subfamily"
+        },
+        {
+          "rect": [
+            67.0,
+            52.89,
+            323.748047,
+            63.89
+          ],
+          "text": "(5.7) 点上的真实时间积分子结论\n实际实值时间函数闭区间连续、内部 HasDerivAt，推出变常数公式；梯度输入尚未与弱场识别，不标加权传播完成。\nLeanPML.PML.auxiliary_memory_formula\n{\"lake_build\": {\"metadata\": \"logs/v1.0.3/20261014T104157_124733_lake_build.json\", \"log\": \"logs/v1.0.3/20261014T104157_124733_lake_build.log\", \"sha256\": \"bcba62051e3fe5f4d6acf75b9c6eb6d55c818d11f1349a34bad92ff70a3edf6b\", \"cwd\": \"/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML\", \"exit_code\": 0}, \"axioms_audit\": {\"metadata\": \"logs/v1.0.3/20261014T104239_987027_axioms_audit.json\", \"log\": \"logs/v1.0.3/20261014T104239_987027_axioms_audit.log\", \"sha256\": \"c55e3a8f94b2a7237bf7a0ddb3c8f1c78b9e0122cbc6bf9cc88a7764a30d0da2\", \"cwd\": \"/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML\", \"exit_code\": 0}}",
+          "id": "LeanPML.v1.0.partial.memory-pointwise-scope"
+        },
+        {
+          "rect": [
+            4.0,
+            536.49,
+            51.0,
+            562.89
+          ],
+          "text": "§5.2 H₀¹ 初值：光滑零迹进入图闭包的辅助结论（原文未单列）\n任意现有 SmoothField 四边 ZeroBoundary，经真实内部紧支截断及函数/双偏导 L² 收敛进入现有 H₀¹ 图闭包；非预先紧支多项式泡非零调用。不是一般弱迹核刻画或弱主定理。\nLeanPML.Rectangle.smoothToWeakH1_mem_zeroBoundaryGraph\nLeanPML.Rectangle.cutoffSequence_toL2_convergence\nLeanPML.Rectangle.rectangleBubble_weakH01\n{\"lake_build\": {\"metadata\": \"logs/v1.0.2/20261014T112814_522179_continuation_lake_build.json\", \"log\": \"logs/v1.0.2/20261014T112814_522179_continuation_lake_build.log\", \"exit_code\": 0, \"command\": [\"lake\", \"build\"], \"cwd\": \"/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML\", \"output_sha256\": \"330fa7b2a40623816d4effb1b570f68d838c138f6ad19bacdba729860090c6b3\"}, \"axioms_audit\": {\"metadata\": \"logs/v1.0.2/20261014T112845_938004_continuation_axioms_audit.json\", \"log\": \"logs/v1.0.2/20261014T112845_938004_continuation_axioms_audit.log\", \"exit_code\": 0, \"command\": [\"lake\", \"env\", \"lean\", \"Audit.lean\"], \"cwd\": \"/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML\", \"output_sha256\": \"8510bb29587cf36e849fa88eabb4cbf8b436f668bd9be5a25b07a60982b1fd51\"}, \"declaration_types\": {\"metadata\": \"logs/v1.0.2/20261014T112845_938003_continuation_types_final.json\", \"log\": \"logs/v1.0.2/20261014T112845_938003_continuation_types_final.log\", \"exit_code\": 0, \"command\": [\"lake\", \"env\", \"lean\", \"logs/v1.0.2/continuation_20261014T110047/Types.lean\"], \"cwd\": \"/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML\", \"output_sha256\": \"3f5d82e6351f02c81fae2bb8149b7fa8e426d2125ab4545a1882e8754f097134\"}}",
+          "id": "LeanPML.v1.0.continuation.smooth-zero-trace-graph-bridge"
+        },
+        {
+          "rect": [
+            534.0,
+            251.29,
+            581.0,
+            285.89
+          ],
+          "text": "(5.8) 实际弱场与加权历史估计\n真实 weakH1Graph/H(div) 路径闭区间连续、初始加权成员、内部普通 L² HasDerivAt 辅助演化及空间兼容下，构造并识别 WeightedL2 历史，证明原常数 2、4cSt。可积性已证；不预设全时段加权成员。未完成原弱八式总装、(5.7) 场指数核原样公式或自动 C²。\nLeanPML.PML.SpatialAbsorption.auxiliary_weak_memory_bound\nLeanPML.PML.SpatialAbsorption.auxiliary_weighted_integral_bound\n{\"lake_build\": {\"metadata\": \"logs/v1.0.2/20261014T112814_522179_continuation_lake_build.json\", \"log\": \"logs/v1.0.2/20261014T112814_522179_continuation_lake_build.log\", \"exit_code\": 0, \"command\": [\"lake\", \"build\"], \"cwd\": \"/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML\", \"output_sha256\": \"330fa7b2a40623816d4effb1b570f68d838c138f6ad19bacdba729860090c6b3\"}, \"axioms_audit\": {\"metadata\": \"logs/v1.0.2/20261014T112845_938004_continuation_axioms_audit.json\", \"log\": \"logs/v1.0.2/20261014T112845_938004_continuation_axioms_audit.log\", \"exit_code\": 0, \"command\": [\"lake\", \"env\", \"lean\", \"Audit.lean\"], \"cwd\": \"/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML\", \"output_sha256\": \"8510bb29587cf36e849fa88eabb4cbf8b436f668bd9be5a25b07a60982b1fd51\"}, \"declaration_types\": {\"metadata\": \"logs/v1.0.2/20261014T112845_938003_continuation_types_final.json\", \"log\": \"logs/v1.0.2/20261014T112845_938003_continuation_types_final.log\", \"exit_code\": 0, \"command\": [\"lake\", \"env\", \"lean\", \"logs/v1.0.2/continuation_20261014T110047/Types.lean\"], \"cwd\": \"/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML\", \"output_sha256\": \"3f5d82e6351f02c81fae2bb8149b7fa8e426d2125ab4545a1882e8754f097134\"}}",
+          "id": "LeanPML.v1.0.continuation.actual-weak-field-5-8"
+        },
+        {
+          "rect": [
+            534.0,
+            204.49,
+            581.0,
+            230.89
+          ],
+          "text": "(5.8) 后未编号 φ_t 加权估计\n两个真实弱梯度/通量分量的加权右端平方界 2cS(梯度平方和+通量平方和)。普通导数经 HasDerivAt 和原演化识别；下一层需真实输入导数，未称自动 C² 或完整原系统同源层已构造。\nLeanPML.PML.SpatialAbsorption.auxiliaryRate_weak_norm_sq\nLeanPML.PML.SpatialAbsorption.auxiliary_derivative_weighted_representative\nLeanPML.PML.SpatialAbsorption.hasDerivAt_auxiliaryRateX\n{\"lake_build\": {\"metadata\": \"logs/v1.0.2/20261014T112814_522179_continuation_lake_build.json\", \"log\": \"logs/v1.0.2/20261014T112814_522179_continuation_lake_build.log\", \"exit_code\": 0, \"command\": [\"lake\", \"build\"], \"cwd\": \"/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML\", \"output_sha256\": \"330fa7b2a40623816d4effb1b570f68d838c138f6ad19bacdba729860090c6b3\"}, \"axioms_audit\": {\"metadata\": \"logs/v1.0.2/20261014T112845_938004_continuation_axioms_audit.json\", \"log\": \"logs/v1.0.2/20261014T112845_938004_continuation_axioms_audit.log\", \"exit_code\": 0, \"command\": [\"lake\", \"env\", \"lean\", \"Audit.lean\"], \"cwd\": \"/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML\", \"output_sha256\": \"8510bb29587cf36e849fa88eabb4cbf8b436f668bd9be5a25b07a60982b1fd51\"}, \"declaration_types\": {\"metadata\": \"logs/v1.0.2/20261014T112845_938003_continuation_types_final.json\", \"log\": \"logs/v1.0.2/20261014T112845_938003_continuation_types_final.log\", \"exit_code\": 0, \"command\": [\"lake\", \"env\", \"lean\", \"logs/v1.0.2/continuation_20261014T110047/Types.lean\"], \"cwd\": \"/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML\", \"output_sha256\": \"3f5d82e6351f02c81fae2bb8149b7fa8e426d2125ab4545a1882e8754f097134\"}}",
+          "id": "LeanPML.v1.0.continuation.weighted-rate-bound"
+        },
+        {
+          "rect": [
+            4.0,
+            169.29,
+            50.3349609,
+            203.89
+          ],
+          "text": "(5.8) 后加权可积性保持子结论\n初始 WeightedL2 成员和普通 L² 连续路径/内部真实演化推出全时段加权成员及零区值为零；连续性和内部 C¹ 来自构造历史，非有限范数界直接推出 C²。保留 T=0、两个端点，不要求端点 PDE。\nLeanPML.PML.SpatialAbsorption.auxiliary_weak_field_membership\nLeanPML.PML.SpatialAbsorption.physical_auxiliaryWeightedHistory\n{\"lake_build\": {\"metadata\": \"logs/v1.0.2/20261014T112814_522179_continuation_lake_build.json\", \"log\": \"logs/v1.0.2/20261014T112814_522179_continuation_lake_build.log\", \"exit_code\": 0, \"command\": [\"lake\", \"build\"], \"cwd\": \"/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML\", \"output_sha256\": \"330fa7b2a40623816d4effb1b570f68d838c138f6ad19bacdba729860090c6b3\"}, \"axioms_audit\": {\"metadata\": \"logs/v1.0.2/20261014T112845_938004_continuation_axioms_audit.json\", \"log\": \"logs/v1.0.2/20261014T112845_938004_continuation_axioms_audit.log\", \"exit_code\": 0, \"command\": [\"lake\", \"env\", \"lean\", \"Audit.lean\"], \"cwd\": \"/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML\", \"output_sha256\": \"8510bb29587cf36e849fa88eabb4cbf8b436f668bd9be5a25b07a60982b1fd51\"}, \"declaration_types\": {\"metadata\": \"logs/v1.0.2/20261014T112845_938003_continuation_types_final.json\", \"log\": \"logs/v1.0.2/20261014T112845_938003_continuation_types_final.log\", \"exit_code\": 0, \"command\": [\"lake\", \"env\", \"lean\", \"logs/v1.0.2/continuation_20261014T110047/Types.lean\"], \"cwd\": \"/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML\", \"output_sha256\": \"3f5d82e6351f02c81fae2bb8149b7fa8e426d2125ab4545a1882e8754f097134\"}}",
+          "id": "LeanPML.v1.0.continuation.weighted-membership-propagation"
+        }
+      ]
+    },
+    {
+      "page": 9,
+      "width": 595.28,
+      "height": 841.89,
+      "text": "V7：Maxwell–Debye PML 全域能量 2026-09-24\n5.3 原函数规范的唯一性\n若同一个原八变量状态有两个满足定义 5.1 的提升，两者之差可写为\nu 7! u+g, q 7! q+κg, ϕ 7! ϕ(cid:0)rg,\n其中 g 与时间无关，g 2 H1(Ω)。原变量重构与 ϕ = 0 于 Z 要求\n0\nbg = 0, p∂ g = 0, r∂ g = 0, rg = 0 于Z.\ny x\n对几乎处处满足p(x) > 0的垂直切片，∂ g = 0，而切片两端零迹，故g = 0于该切片。对r(y) > 0\ny\n的水平切片同理。于是 g = 0 于 Ω ；Sobolev 函数在其零水平集上的弱梯度几乎处处为零，再\n+\n结合 Z 上的梯度条件，得 rg = 0 于整个域。H1 的 Poincaré 不等式给出 g = 0。所以本类中的\n0\n提升没有未固定的原函数规范自由度。能量并未沿任意不可观察的规范方向取值。\n6 V7 能量和主定理\n对满足\nz = R, z+τR = κv, Λ = rv+ψ (6.1)\nt\n的四元组 U = (v,R,z,ψ)，定义\nZ n (cid:2) (cid:3) X\n1\nF [U] = µϵ v2+2cvv +(b+ac)v2 +jΛj2+ w ψ2\nc 2 t t i i\nΩ i o (6.2) 积分/内积表示\n(cid:2) (cid:3)\nµ 非 PDE 能量律\n+ (1+(a+c)τ)R2+2(c+bτ)Rz+(ac+b(1+cτ))z2 dxdy.\nκ\nP\n在 ψ = 0 的 Z 上， w ψ2 按零定义。F 的每个点态时间块不必独立正定；其全域正定性使用\ni i i c\n约束 (6.1) 与 Poincaré，不是遗漏交叉项。\n定义两层状态\nU = (u,P,q,ϕ), U = (u ,P ,q ,ϕ ) = (E,P ,P,ϕ ), (6.3)\n0 1 t t t t t t\n相应通量为 Λ = λ、Λ = λ 。它们满足同一个 primitive 型系统，因为所有系数与时间无关。定\n0 1 t\n义\nE (t) = F [U (t)]+KF [U (t)]. (6.4)\n7 c 0 c 1\n这是局部时间状态与必要历史的能量。u,q 可由式 (2.3) 的已有历史计算；E ,P ,λ ,ϕ 由当前原\nt t t t\n变量和空间导数计算，不需要未来解。常数 c,K 只依赖模型参数与域尺度。\n为准确陈述范数，令\nµ\nN(U)2 = µϵkv k2+ kRk2+kΛk2+kψk2, N = N(U ). (6.5)\nt κ w j j\n空间约束为 v 2 H1(Ω)、ψ 2 L2、v ,R 2 L2，z = κv(cid:0)τR。在这个约束空间上 N 是范数，因为\n0 w t\nrv = Λ(cid:0)ψ 且 v 零迹；N = 0 蕴含全部约束变量为零。N2+KN2 是本文的一阶加权图范数平\n0 1\n方，不是裸八变量 L2 范数。\n9\nv0.3.1：(6.2)–(6.5) 已建立实际 L² / 积分定义；图范数零分离及 PDE 能量律待完成。",
+      "annotations": [
+        {
+          "rect": [
+            278.772,
+            731.23,
+            296.121,
+            743.929
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            97.573,
+            336.138,
+            114.922,
+            348.836
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            312.381,
+            199.071,
+            329.73,
+            211.77
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            534.0,
+            393.69,
+            590.670898,
+            411.89
+          ],
+          "text": "(6.2) 实际积分/内积表示及由该式推出的路径求导（原文未单列）\n真实 FieldState 的三个旧块密度可积，F_c 的内积表达与整个 ν 空间上的密度积分相等；各分量在其实际普通/加权空间中 HasDerivAt 时，积分能量导数为 fieldEnergyRate。未交换未经证明的逐点导数与积分。\n待完成：primitive 方程、真实梯度、Green/PEC 尚未代入，导数未化为 −D_c；不代表正定性、图范数等价或 PDE 能量律。\n\nLeanPML.PML.fieldEnergyDensity_integrable\nLeanPML.PML.fieldEnergy_eq_integral\nLeanPML.PML.hasDerivAt_integral_fieldEnergy\n\n当前证据：\nlogs/v0.3.1/20261013T002136_137117_lake_build.log\nlogs/v0.3.1/20261013T002105_759533_axioms_audit.log",
+          "id": "LeanPML.v0.3.1.energy-integral-inner"
+        },
+        {
+          "rect": [
+            67.0,
+            22.89,
+            329.585938,
+            33.89
+          ],
+          "text": "v0.3.1：(6.2)–(6.5) 已建立实际 L² / 积分定义；图范数零分离及 PDE 能量律待完成。",
+          "id": "LeanPML.v0.3.1.states-energy-definitions"
+        }
+      ]
+    },
+    {
+      "page": 10,
+      "width": 595.28,
+      "height": 841.89,
+      "text": "v0.3.2–3：条件性空间结论；具体矩形接口、耗散闭合与时间单调性仍待完成。\nV7：Maxwell–Debye PML 全域能量 2026-09-24\nv0.3.4–5：条件性主结论已闭合；矩形 Green、Poincaré、迹和微分交换仍须证明。顶部旧说明保留为历史。\nv0.5：(6.7)–(6.10) 矩形光滑兼容类已证；保守 C_P=2Lx，强正则性输入。\n定理 6.1 (小幅度分离变系数下的全域单调能量). 设域、材料与系数满足第 1 节及式 (5.3)。设\n原八变量解满足 PEC，初值属于 C ，提升后的解在 [0,T] 上足够正则。一组充分的正则性为\nc\nu 2 C2([0,T];H1(Ω))\\C3([0,T];L2(Ω)),\nv0.4 输入 0\n光滑/加权 P 2 C2([0,T];L2(Ω)), ϕ 2 C2([0,T];L2), (6.6)\n正则性 w\n非自动传播\nλ 2 C1([0,T];H(div;Ω)), q = κu(cid:0)τP,\n并满足式 (2.6)。那么能量 (6.4) 非负，并有\n1\n(N2+KN2) (cid:20) E (cid:20) N2+KN2. (6.7) 条件性图范数界\n4 0 1 7 0 1 Poincaré 接口\n令 S[U] 由式 (7.2) 定义，S = S[U ]。则存在第 7 节显式定义的 D ，满足\nj j 7\n(cid:0) (cid:1)\n1 µτ\nE′ = (cid:0)D , D (cid:21) (S +KS )+ kP k2+KkP k2 (cid:21) 0. (6.8) 条件性\n7 7 7 2 0 1 4κ t tt 耗散闭合\n精确剩余量\n因而对所有 0 (cid:20) t (cid:20) t (cid:20) T，\n1 2\nZ\nt2\nE 7 (t 2 )+ D 7 (t)dt = E 7 (t 1 ), E 7 (t 2 ) (cid:20) E 7 (t 1 ). (6.9) 条件性单调\nt1 与积分平衡\n闭区间版本\n能量直接控制原电磁场和极化：\n4\nϵkEk2+µ(kH k2+kH k2)+κ −1kPk2 (cid:20) E . (6.10) 兼容重构下\nx y 7\nµ L² 控制\n以上常数不依赖 T、吸收梯度或吸收的正下界。\n正则性 (6.6) 是保证全部求导与 Green 公式合法的充分条件，不声称是最低要求。本定理\n是已存在的足够正则解的先验定理；未在这里另证强解/弱解存在性、唯一性或正则性传播。若解\n存在于所有 t (cid:21) 0，则式 (6.9) 对任意两个非负时刻成立。\n7 能量求导：完整局部恒等式及所有边界项\n7.1 常数移位的空间恒等式\n对于一层 U = (v,R,z,ψ)，记 h = ∂ v、V = ∂ v 、l = Λ 、f = ψ = l(cid:0)h。辅助方程给出\ni i t i i\nf = σ h(cid:0)σ l, l = V +σ h(cid:0)σ l.\nt j i t j i\n在 a > 0 处，完整展开为\n1\n∂ (l2+w f2) = lV +(l+w (l(cid:0)h))(σ h(cid:0)σ l)\nt i i j i\n2 局部时间版\n(7.1)\nσ (c+σ ) σ (c(cid:0)σ ) 空间接口待证\n= (V +ch)l(cid:0) i i l2(cid:0) j j h2. 积分待完成\na a\n使用的等式是 σ +aw = c。在 Z 上 f = 0,l = h，因而同一恒等式写成\nj i\n1\n∂ jrvj2 = (rv +crv)(cid:1)rv(cid:0)cjrvj2. 局部时间版\nt t 零区须兼容\n2\n空间接口待证\n10",
+      "annotations": [
+        {
+          "rect": [
+            483.801,
+            760.327,
+            501.15,
+            773.025
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            119.392,
+            648.009,
+            136.741,
+            660.708
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            203.266,
+            648.009,
+            220.615,
+            660.708
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            141.675,
+            590.878,
+            159.024,
+            603.577
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            315.331,
+            590.878,
+            322.272,
+            603.577
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            130.879,
+            381.904,
+            148.228,
+            394.603
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            190.435,
+            346.676,
+            207.784,
+            359.375
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            534.0,
+            130.49,
+            587.0,
+            156.89
+          ],
+          "text": "(7.1) 的正吸收分支\na>0 下权重平衡、数值恒等式，以及真实时间 h'=V、l'=V+σⱼh−σᵢl 推出的 Fsp 求导；包含两个方向。\n待完成：h 与真实空间梯度、混合导数交换、可测可积、空间积分、Green/PEC 未实现。\n\nLeanPML.PML.spatial_weight_balance\nLeanPML.PML.spatial_rate_identity\nLeanPML.PML.hasDerivAt_spatialAuxiliary\nLeanPML.PML.hasDerivAt_spatialEnergy_pos\nLeanPML.PML.hasDerivAt_spatialEnergy2D\n\n当前证据：\nlogs/v0.2.3/20261010T232910_472603_lake_build_retry.log\nlogs/v0.2.3/20261010T232931_121820_axioms_audit_retry.log",
+          "id": "LeanPML.v0.2.3.spatial-positive"
+        },
+        {
+          "rect": [
+            534.0,
+            59.49,
+            587.0,
+            85.89
+          ],
+          "text": "(7.1) 后零吸收区未编号二维公式\nh 的实际时间导数给出 h²/2 和双分量平方和的导数；接回分支能量时明确需要 l=h，保留 c(hx²+hy²)。\n待完成：p=r=0 不自动给出兼容；完整 PDE 中零辅助量来源、实际梯度及空间积分仍待兑现。\n\nLeanPML.PML.hasDerivAt_zeroSpatialComponent\nLeanPML.PML.hasDerivAt_zeroSpatial2D\nLeanPML.PML.hasDerivAt_spatialEnergy_zero\nLeanPML.PML.zeroSpatial_compatibility_preserved\n\n当前证据：\nlogs/v0.2.3/20261010T232910_472603_lake_build_retry.log\nlogs/v0.2.3/20261010T232931_121820_axioms_audit_retry.log",
+          "id": "LeanPML.v0.2.3.spatial-zero"
+        },
+        {
+          "rect": [
+            534.0,
+            618.49,
+            586.7,
+            634.89
+          ],
+          "text": "(6.7)\n实际同源两层能量与同一 graphSquare7 的精确 1/4、1 双边界；材料正性、原阈值、两层极化/空间约束及零迹 Poincaré 接口下成立，能量零则两层全部坐标零。\n待完成：具体矩形 Poincaré、完整原 PDE 对应；不是裸八变量范数等价或单调性。\n\nLeanPML.PML.energy7_bounds_Conditional\nLeanPML.PML.energy7_zero_Conditional\n\n当前证据：\nlogs/v0.3.3/20261013T100156_159842_lake_build.log\nlogs/v0.3.3/20261013T100321_602582_axioms_audit.log",
+          "id": "LeanPML.v0.3.3.graph-bound"
+        },
+        {
+          "rect": [
+            534.0,
+            439.29,
+            579.5,
+            456.89
+          ],
+          "text": "(6.10)\nPhysicalControlBounds.physical：实际 L² 重构 E、H、P 的原常数控制 (4/μ)E7；由同源图界与材料条件推得。\n待完成：原八变量 PDE 与 primitive 双向等价、提升唯一性。\n\nLeanPML.PML.physicalControl_Conditional\n\n当前证据：\nlogs/v0.3.3/20261013T100156_159842_lake_build.log\nlogs/v0.3.3/20261013T100321_602582_axioms_audit.log",
+          "id": "LeanPML.v0.3.3.physical-fields"
+        },
+        {
+          "rect": [
+            67.0,
+            820.69,
+            284.637695,
+            830.89
+          ],
+          "text": "v0.3.2–3：条件性空间结论；具体矩形接口、耗散闭合与时间单调性仍待完成。",
+          "id": "LeanPML.v0.3.3.scope-10"
+        },
+        {
+          "rect": [
+            534.0,
+            551.49,
+            581.0,
+            577.89
+          ],
+          "text": "(6.8)\n(6.8) 的精确剩余耗散下界与非负性；原层演化、同源真实路径和共同迹 Poincaré 下，时间在内部。\n待完成：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。\n\nLeanPML.PML.dissipation7_lower_Conditional\nLeanPML.PML.dissipation7_nonneg_Conditional\n\n当前证据：\nlogs/v0.3.5/20261013T214810_766115_lake_build.log\nlogs/v0.3.5/20261013T214845_382134_axioms_audit.log",
+          "id": "LeanPML.v0.3.5.main-dissipation"
+        },
+        {
+          "rect": [
+            534.0,
+            489.49,
+            581.0,
+            515.89
+          ],
+          "text": "(6.9)\n(6.9) 有限闭区间单调不增与真实时间积分平衡；两层分量闭区间连续和静态兼容，内部真实演化；积分平衡另需 second.R=P_tt 连续。\n待完成：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。\n\nLeanPML.PML.energy7_antitoneOn_Conditional\nLeanPML.PML.energy7_integral_balance_Conditional\nLeanPML.PML.main_energy_estimate_Conditional\n\n当前证据：\nlogs/v0.3.5/20261013T214810_766115_lake_build.log\nlogs/v0.3.5/20261013T214845_382134_axioms_audit.log",
+          "id": "LeanPML.v0.3.5.main-balance"
+        },
+        {
+          "rect": [
+            67.0,
+            788.89,
+            355.705078,
+            798.89
+          ],
+          "text": "v0.3.4–5：条件性主结论已闭合；矩形 Green、Poincaré、迹和微分交换仍须证明。顶部旧说明保留为历史。",
+          "id": "LeanPML.v0.3.5.legend10"
+        },
+        {
+          "rect": [
+            3.0,
+            688.29,
+            35.0,
+            722.89
+          ],
+          "text": "(6.6)\n选用 C∞ 空间延拓、C(K) 的统一时间正则性及实际加权路径可微作为强于 V7 弱类的条件；已证明到普通/加权路径导数的连接。假设不打勾。\nLeanPML.Rectangle.hasDerivAt_toL2_of_pointwise\nLeanPML.Rectangle.hasDerivAt_weighted_smooth\n证据：\nlogs/v0.4.4/20261013T230822_044824_lake_build.log\nlogs/v0.4.4/20261013T231144_117778_axioms_audit.log",
+          "id": "LeanPML.v0.4.v04-regularity-input"
+        },
+        {
+          "rect": [
+            67.0,
+            773.89,
+            296.548096,
+            787.89
+          ],
+          "text": "定理6.1及(6.7)–(6.10)\n从原八变量、只在Ioo×整个矩形的真实原方程、PEC、材料/区域界、初始兼容及已列强光滑/普通/加权正则性构造具体问题。原p/r实际积分、graph/4≤E≤graph、准确闭合、antitone、FTC平衡及输入原E/H/P L²控制均通过。CP=2Lx，不是原精确π常数或完整弱V7；不附带存在唯一或严格衰减。T0必要图初始条件明确保留。\nLeanPML.PML.SmoothRectangle.main_energy_estimate_smoothRectangle\nLeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.energy_graph_bounds\nLeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.energy_law_and_closure\nLeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.energy_antitone\nLeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.energy_integral_balance\nLeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.physical_current_bound\nLeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.energy_eq_original_integrals\n证据：\nlogs/v0.5.3/20261014T011533_485975_lake_build.log\nlogs/v0.5.3/20261014T011752_801259_axioms_audit.log",
+          "id": "LeanPML.v0.5.concrete-main"
+        }
+      ]
+    },
+    {
+      "page": 11,
+      "width": 595.28,
+      "height": 841.89,
+      "text": "v0.3.2：旧勾保留历史范围；现已接通实际空间块，Green 与正则性仍为输入接口。\nV7：Maxwell–Debye PML 全域能量 2026-09-24\nv0.4：矩形光滑 Green 与真实微分交换已接通；旧“待完成”批注保留历史，弱空间仍未完成。\nv0.5：原场总装使用已证矩形 Green/两层 PEC；(7.5) 旧光滑勾保留，弱范围未扩展。\n由此定义全域非负空间耗散\nZ (cid:20) (cid:21)\nX σ (c+σ ) σ (c(cid:0)σ )\n点态非负 S[U] = i i Λ2+ j j (∂ v)2 dxdy 分量积分非负\n空间积分 a i a i 真实梯度\n待完成 Ω Z +i∈{x,y} (7.2) 接口待完成\n+ cjrvj2dxdy, j 6= i.\nZ\n此处的耗散权重是有界的，尽管能量权重 w 可无界。加权空间的时间链式法则由 ψ 2 C1(L2) 保 仅系数界\n加权空间求导 i w 非空间积分\n需该空间\n证。计算未对 w ,p,r 作空间微分。\n路径可导 i\n加权路径\n真实场恢复\n7.2 电块与 Debye 块的完整恒等式 需加权可导\n电块为\n(cid:2) (cid:3)\nϵ\nϵ(v +av +bv)(v +cv) = ∂ v2+2cvv +(b+ac)v2\ntt t t 2 t (cid:2) t t (cid:3) (7.3) 局部时间\n真实求导\n+ϵ (a(cid:0)c)v2+bcv2 .\nt\n积分待完成\n由式 (6.1) 得\nκ(v +cv) = τR +(1+cτ)R+cz. 兼容求导\nt t 须邻域关系\n将右侧与 R +aR+bz 相乘，并用 z = R，得到\nt t\n(R +aR+bz)(v +cv)\nt t\nh i\n1\n= ∂ t (1+(a+c)τ)R2+2(c+bτ)Rz+(ac+b(1+cτ))z2 (7.4) 局部时间\n2κ 真实求导\nh i\n1\n+ τR2+(a(cid:0)c+τ(ac(cid:0)b))R2+bcz2 . 积分待完成\nκ t\n例如右侧导数的 R z 系数是 (c+bτ)/κ，R2 系数包含由 Rz 求导得到的 (c+bτ)/κ；扣除它才产\nt\n生耗散系数中的 (cid:0)c(cid:0)bτ。因此 ac(cid:0)b 的符号和 c 的系数并非从 V6 直接猜测。\nv1.0.2 (7.5)：H₀¹ × H(div) 弱零迹 Green；通量无额外边界条件。\nH₀¹ 为紧支光滑图闭包；非零迹理论、弱 PML 主定理仍未完成。\n7.3 Green 公式和精确的两层耗散\n一层主方程是\nµ[ϵ(v +av +bv)+R +aR+bz] = divΛ.\ntt t t\n乘以 v +cv，有\nt\nZ Z\n矩形光滑 (v +cv)divΛ = (cid:0) (rv +crv)(cid:1)Λ+hv +cv,Λ(cid:1)ni . (7.5) Green 接口\n四边 Green t t t ∂Ω 具体矩形证明\nΩ Ω 待完成\n两层 PEC\n边界消去\n这是 H1 与 H(div) 的 Green 公式；光滑情形下边界配对就是通常曲面积分。由式 (7.1)–(7.4)\n0\n得\nF [U] ′ = (cid:0)D [U]+hv +cv,Λ(cid:1)ni , (7.6) 条件性空间\nc c t ∂Ω 能量恒等式\nGreen/正则性\n其中 Z 接口\nD [U] = S[U]+µϵ [(a(cid:0)c)v2+bcv2]dxdy\nc t\nZΩ (7.7) (7.7) 实际\nµ 积分定义\n+ [τR2+(a(cid:0)c+τ(ac(cid:0)b))R2+bcz2]dxdy. 符号未定\nκ t\nΩ\n11\nv0.3.1 新勾限实际分量积分/范数路径求导；旧勾保留历史范围，Green/PEC 与 PDE 能量律未完成。\n红勾仅覆盖旁注所列范围。完整来源及 Lean 定理名可点击红勾区域查看批注。",
+      "annotations": [
+        {
+          "rect": [
+            97.573,
+            518.501,
+            114.922,
+            531.2
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            474.323,
+            184.551,
+            491.672,
+            197.25
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            505.639,
+            184.551,
+            522.988,
+            197.25
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            532.0,
+            659.89,
+            594.0,
+            683.89
+          ],
+          "text": "(7.2) 仅分式耗散系数非负及有界性已证；未证明空间积分或全域恒等式。零区c|∇v|²仍按原文保留。\n\n模块：LeanPML/PML/Weights.lean\n定理命名空间：LeanPML.PML\n声明：dissipationPlus_bounds; dissipationPlus_le_five_quarters; dissipationMinus_bounds\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。",
+          "id": ""
+        },
+        {
+          "rect": [
+            532.0,
+            545.89,
+            594.0,
+            569.89
+          ],
+          "text": "(7.3) 电块代数与实际时间函数HasDerivAt求导。二阶证据直接针对deriv v；Fe含ε/2，完整能量还需μ和空间积分。De未宣称非负。\n\n模块：LeanPML/PML/LocalElectric.lean\n定理命名空间：LeanPML.PML\n声明：electric_rate_identity; hasDerivAt_electricEnergyAlong; hasDerivAt_electricEnergyAlong_exampleU\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。",
+          "id": ""
+        },
+        {
+          "rect": [
+            532.0,
+            494.89,
+            594.0,
+            518.89
+          ],
+          "text": "由真实导数与邻域内z+τR=κv，推出κv_t=R+τR_t，再推出移位约束。单点兼容不足以求导。\n\n模块：LeanPML/PML/LocalDebye.lean\n定理命名空间：LeanPML.PML\n声明：polar_constraint_derivative; polar_shifted_constraint\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。",
+          "id": ""
+        },
+        {
+          "rect": [
+            532.0,
+            418.89,
+            594.0,
+            442.89
+          ],
+          "text": "(7.4) Q逐项真实求导，再由邻域兼容和κ≠0证明FD=Q/(2κ)的HasDerivAt恒等式；含开区间入口和非零路径实例。未乘μ、未空间积分；DD未宣称非负。\n\n模块：LeanPML/PML/LocalDebye.lean\n定理命名空间：LeanPML.PML\n声明：polar_rate_algebra; hasDerivAt_polarQuadratic; hasDerivAt_polarEnergy; hasDerivAt_polarEnergy_on_Ioo; hasDerivAt_example_polarEnergy\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。",
+          "id": ""
+        },
+        {
+          "rect": [
+            7.0,
+            720.49,
+            48.0,
+            746.89
+          ],
+          "text": "(7.2) 被积式的点态非负与独立零区密度（不是整式）\n0≤p,r≤S≤c/4、c>0 下，两个方向的分支密度非负；零区精确为 c(hx²+hy²)。\n待完成：该勾只指被积子表达式；没有完成 (7.2) 积分算子、可积性、加权路径求导或全域能量恒等式。\n\nLeanPML.PML.spatialDissipation_nonneg\nLeanPML.PML.spatialDissipation2D_nonneg\nLeanPML.PML.spatialDissipation2D_of_sum_zero\n\n当前证据：\nlogs/v0.2.3/20261010T232910_472603_lake_build_retry.log\nlogs/v0.2.3/20261010T232931_121820_axioms_audit_retry.log",
+          "id": "LeanPML.v0.2.3.spatial-pointwise"
+        },
+        {
+          "rect": [
+            549.0,
+            536.09,
+            580.0,
+            545.89
+          ],
+          "text": "积分待完成\n原标记保留。限定范围：(7.3) 电块代数与实际时间函数HasDerivAt求导。二阶证据直接针对deriv v；Fe含ε/2，完整能量还需μ和空间积分。De未宣称非负。\n待完成：实际场、μ 因子、空间积分；De 未证非负",
+          "id": "LeanPML.v0.2.3.electric-space-pending"
+        },
+        {
+          "rect": [
+            549.0,
+            408.09,
+            580.0,
+            417.89
+          ],
+          "text": "积分待完成\n原标记保留。限定范围：(7.4) Q逐项真实求导，再由邻域兼容和κ≠0证明FD=Q/(2κ)的HasDerivAt恒等式；含开区间入口和非零路径实例。未乘μ、未空间积分；DD未宣称非负。\n待完成：实际场、μ 因子、空间积分；DD 未证非负",
+          "id": "LeanPML.v0.2.3.polar-space-pending"
+        },
+        {
+          "rect": [
+            7.0,
+            647.49,
+            60.0,
+            673.89
+          ],
+          "text": "(7.2) 后“加权空间的时间链式法则由 ψ∈C¹(L²_w) 保证”\n在已构造的实际加权内积空间上，由 HasDerivAt X Xdot t 推出 ‖X‖²/2 的导数为内积，并由连续恢复映射得到物理 L² 路径导数。需要该加权范数下的导数，普通 L²/逐点可导不能代替。\n待完成：一般辅助 PDE 的加权正则性传播、真实空间梯度和 Green/PEC 仍待完成；不把本链式法则等同于整个 (7.2) 能量恒等式。\n\nLeanPML.Analysis.hasDerivAt_weighted_half_norm_sq\nLeanPML.Analysis.hasDerivAt_physicalL2\n\n当前证据：\nlogs/v0.3.1/20261013T002136_137117_lake_build.log\nlogs/v0.3.1/20261013T002105_759533_axioms_audit.log",
+          "id": "LeanPML.v0.3.1.weighted-time"
+        },
+        {
+          "rect": [
+            534.0,
+            720.49,
+            587.0,
+            746.89
+          ],
+          "text": "(7.2) 的 L² 分量密度积分与非负子结论\n四个有界可测耗散系数按方向乘实际 L² 分量平方，密度可积且积分非负；全零吸收 a.e. 时 S=c(‖h_x‖²+‖h_y‖²)。h=Λ−ψ 是 L² 分量，零区贡献保留。\n待完成：真实 h=∂ᵢv 接口未实现；本轮未单独形式化 Ω₊/Z 两个限制积分的分区等式，也未证明空间块与 primitive/Green 组合后的能量律。\n\nLeanPML.PML.fieldSpatialDissipation_integrable\nLeanPML.PML.fieldSpatialDissipation_eq_integral\nLeanPML.PML.fieldSpatialDissipation_nonneg\nLeanPML.PML.fieldSpatialDissipation_of_zeroAbsorption\n\n当前证据：\nlogs/v0.3.1/20261013T002136_137117_lake_build.log\nlogs/v0.3.1/20261013T002105_759533_axioms_audit.log",
+          "id": "LeanPML.v0.3.1.spatial-integral"
+        },
+        {
+          "rect": [
+            67.0,
+            23.39,
+            356.837646,
+            33.89
+          ],
+          "text": "v0.3.1 新勾限实际分量积分/范数路径求导；旧勾保留历史范围，Green/PEC 与 PDE 能量律未完成。",
+          "id": "LeanPML.v0.3.1.spatial-scope-update"
+        },
+        {
+          "rect": [
+            534.0,
+            82.49,
+            562.003906,
+            108.89
+          ],
+          "text": "(7.7) 实际\n积分定义\n符号未定",
+          "id": "LeanPML.v0.3.1.dissipation-definition"
+        },
+        {
+          "rect": [
+            534.0,
+            133.09,
+            583.102783,
+            164.89
+          ],
+          "text": "(7.6)，并使用 (7.7) 既有定义\n已有真实空间能量和耗散，从 StateHasDerivAt、primitive 主/辅助演化、兼容及空间导数关系与一般 Green 接口推出含边界 HasDerivAt；零迹下边界消失。\n待完成：具体矩形域/Green/迹与正则性实例；不表示 D_c≥0。\n\nLeanPML.PML.hasDerivAt_fieldEnergy_boundary_Conditional\nLeanPML.PML.hasDerivAt_fieldEnergy_zeroTrace_Conditional\n\n当前证据：\nlogs/v0.3.3/20261013T100156_159842_lake_build.log\nlogs/v0.3.3/20261013T100321_602582_axioms_audit.log",
+          "id": "LeanPML.v0.3.3.single-balance"
+        },
+        {
+          "rect": [
+            534.0,
+            207.99,
+            569.0,
+            232.89
+          ],
+          "text": "Green 接口\n具体矩形证明\n待完成",
+          "id": "LeanPML.v0.3.3.green-interface"
+        },
+        {
+          "rect": [
+            67.0,
+            820.69,
+            297.04375,
+            830.89
+          ],
+          "text": "v0.3.2：旧勾保留历史范围；现已接通实际空间块，Green 与正则性仍为输入接口。",
+          "id": "LeanPML.v0.3.3.scope-11"
+        },
+        {
+          "rect": [
+            534.0,
+            616.49,
+            581.0,
+            642.89
+          ],
+          "text": "(7.2) 后加权链式法则说明（未编号）\n实际加权坐标恢复为所选光滑辅助场，普通 L² 导数由真实 C(K) 路径识别；加权范数正则性仍是输入，非自动传播。\nLeanPML.Rectangle.weighted_smooth_recovery\nLeanPML.Rectangle.hasDerivAt_weighted_smooth\n证据：\nlogs/v0.4.4/20261013T230822_044824_lake_build.log\nlogs/v0.4.4/20261013T231144_117778_axioms_audit.log",
+          "id": "LeanPML.v0.4.v04-weighted-recovery"
+        },
+        {
+          "rect": [
+            3.0,
+            196.29,
+            50.3427734,
+            230.89
+          ],
+          "text": "(7.5)\n真实全矩形四边公式，右−左+上−下；u₀零迹+PEC推出u迹，内部真实求导推出E_t迹。另要求闭端点E_t迹时，T=0须初始导数迹。弱H₀¹–H(div) Green未证明。\nLeanPML.Rectangle.green_L2\nLeanPML.Rectangle.greenDomain\nLeanPML.Rectangle.boundary_multiplier_zero\nLeanPML.Rectangle.twoLayer_zeroBoundary\n证据：\nlogs/v0.4.4/20261013T230822_044824_lake_build.log\nlogs/v0.4.4/20261013T231144_117778_axioms_audit.log",
+          "id": "LeanPML.v0.4.v04-green"
+        },
+        {
+          "rect": [
+            67.0,
+            785.89,
+            314.34668,
+            795.89
+          ],
+          "text": "范围图例\nv0.4：矩形光滑 Green 与真实微分交换已接通；旧“待完成”批注保留历史，弱空间仍未完成。\n\n证据：\nlogs/v0.4.4/20261013T230822_044824_lake_build.log\nlogs/v0.4.4/20261013T231144_117778_axioms_audit.log",
+          "id": "LeanPML.v0.4.v04-history-note11"
+        },
+        {
+          "rect": [
+            67.0,
+            774.89,
+            296.358398,
+            784.89
+          ],
+          "text": "(7.5)已证矩形Green在原场入口的使用\n说明已存在的真实矩形光滑Green及两层边界消去在具体主定理链内调用；不重复叠加旧完成勾，不把输入PEC或弱Green理论标为证明成果。\nLeanPML.Rectangle.green_L2\nLeanPML.Rectangle.greenDomain\nLeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.problem\nLeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.energy_law_and_closure\n证据：\nlogs/v0.5.3/20261014T011533_485975_lake_build.log\nlogs/v0.5.3/20261014T011752_801259_axioms_audit.log",
+          "id": "LeanPML.v0.5.green-concrete-use"
+        },
+        {
+          "rect": [
+            67.0,
+            333.69,
+            284.111816,
+            353.89
+          ],
+          "text": "(7.5) 零迹弱 Green\n真实弱散度测试配对经线性张成及图范数闭包推广；已填入旧受限空间接口。无一般 Green 输入，无 Λ·n=0；不是最终弱原系统定理。\nLeanPML.Rectangle.weak_green\nLeanPML.Rectangle.weakGreenDomain\n{\"lake_build\": {\"metadata\": \"logs/v1.0.3/20261014T104157_124733_lake_build.json\", \"log\": \"logs/v1.0.3/20261014T104157_124733_lake_build.log\", \"sha256\": \"bcba62051e3fe5f4d6acf75b9c6eb6d55c818d11f1349a34bad92ff70a3edf6b\", \"cwd\": \"/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML\", \"exit_code\": 0}, \"axioms_audit\": {\"metadata\": \"logs/v1.0.3/20261014T104239_987027_axioms_audit.json\", \"log\": \"logs/v1.0.3/20261014T104239_987027_axioms_audit.log\", \"sha256\": \"c55e3a8f94b2a7237bf7a0ddb3c8f1c78b9e0122cbc6bf9cc88a7764a30d0da2\", \"cwd\": \"/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML\", \"exit_code\": 0}}",
+          "id": "LeanPML.v1.0.partial.weak-green-zero-trace"
+        }
+      ]
+    },
+    {
+      "page": 12,
+      "width": 595.28,
+      "height": 841.89,
+      "text": "v0.3.2–3：(7.8) 右式现已条件性证明；右侧旧注保留为历史，不包含耗散非负。\nV7：Maxwell–Debye PML 全域能量 2026-09-24\nv0.3.4–5 更新：耗散闭合、有限区间单调性与积分平衡已在分析接口下证明；既有待完成旁注保留为历史。\nv0.5：(7.8) 已由原模型光滑兼容路径推出；同源导数层与两层边界已接通。\n单层 D 一般不是非负的；不能到这里就宣告完成定理。由于 c 是常数，式 (7.5) 没有 vra 余项。\nc\n这是对 V6 主要障碍的结构性消除，而非估计时漏掉梯度。\n对 U ，v = u,v = E 零迹；对 U ，v = E,v = E 零迹。后者由强解 PEC 的时间可微性保\n0 t 1 t t\n证。因此两层外边界通量都为零；对全域直接积分不产生内部边界。若分区积分，共面上 (v +cv)\nt\n的单值迹及 Λ 2 H(div) 的法向迹使两项逐面对消。所以\nj\n条件性两层 D = D [U ]+KD [U ], E′ = (cid:0)D . (7.8) 左式实际定义\n恒等式 7 c 0 c 1 7 7 右式能量律\n需空间接口 仍待完成\n未证耗散闭合\n8 全域正定性与原状态控制的证明\n由 z = κv(cid:0)τR，极化二次型可精确重写为\nA R2+2κc(1(cid:0)aτ (cid:0)bτ2)vR+κ2Gv2, (8.1) 约束消元\nR Q及FD\n其中\nA = 1+(a(cid:0)c)τ +(ac(cid:0)b)τ2+bcτ3, G = ac+b(1+cτ).\nR\n由式 (5.4) 的较宽条件 cτ (cid:20) 1/4，逐项可验\n3 5 37 9\n(cid:20) A (cid:20) , 0 (cid:20) 1(cid:0)aτ (cid:0)bτ2 (cid:20) 1, 0 (cid:20) G (cid:20) c2, 0 (cid:20) b+ac (cid:20) c2. (8.2) 全部四组\n4 R 4 64 16 系数上下界\n例如 A (cid:21) 1(cid:0)cτ；上界可丢弃 (a(cid:0)c)τ (cid:20) 0，再用 acτ2 (cid:20) (cτ)2/2、bcτ3 (cid:20) (cτ)3/16。\nR\n令 B = kΛk2+kψk2。由 w (cid:21) 1、ψ = 0 于 Z 和 rv = Λ(cid:0)ψ，\nsp w i\nkrvk2 (cid:20) 2B , kvk2 (cid:20) 2C2B . (8.3) 空间约束下\nsp P sp 梯度控制\n函数控制需\nPoincaré 接口\n8.1 下界\nYoung 不等式给出\nj2µϵc(v,v )j (cid:20) 1µϵkv k2+2µϵc2kvk2,\nt 2 t\nj2µc((1(cid:0)aτ (cid:0)bτ2)v,R)j (cid:20) 1µκ −1kRk2+4µκc2kvk2.\n4\n丢弃非负的 v2 对角项后，由式 (8.2) 得\n2F [U] (cid:21) 1µϵkv k2+ 1µκ −1kRk2+B (cid:0)2µAc2kvk2.\nc 2 t 2 sp\n而\n2µAc2kvk2 (cid:20) 4µAc2C2B = 1Kc2B (cid:20) 1B .\nP sp 2 sp 2 sp\n所以 F [U] (cid:21) N(U)2/4。 条件性下界\nc\nPoincaré 接口\n12\n红勾仅覆盖旁注所列范围。完整来源及 Lean 定理名可点击红勾区域查看批注。",
+      "annotations": [
+        {
+          "rect": [
+            428.38,
+            760.327,
+            445.729,
+            773.025
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            97.573,
+            479.714,
+            114.922,
+            492.413
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            224.011,
+            238.98,
+            241.36,
+            251.679
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            532.0,
+            543.89,
+            594.0,
+            567.89
+          ],
+          "text": "(8.1) 在单点z+τR=κv下精确重写Q，及由调用者得到FD表达式（仍除以2κ）。不是完整能量正定性。\n\n模块：LeanPML/PML/LocalDebye.lean\n定理命名空间：LeanPML.PML\n声明：polarQuadratic_eq_reduced; polarEnergy_eq_reduced\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。",
+          "id": ""
+        },
+        {
+          "rect": [
+            532.0,
+            443.89,
+            594.0,
+            467.89
+          ],
+          "text": "(8.2) 全部四组界，保留3/4、5/4、37/64、9/16；最高入口从材料正性、c≤c*及吸收幅度推导中间界，没有预设目标界。\n\n模块：LeanPML/PML/LocalDebye.lean\n定理命名空间：LeanPML.PML\n声明：polar_coefficients_bounds_of_local_conditions; polar_coefficients_bounds_of_threshold\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。",
+          "id": ""
+        },
+        {
+          "rect": [
+            534.0,
+            647.49,
+            572.0,
+            673.89
+          ],
+          "text": "左式实际定义\n右式能量律\n仍待完成",
+          "id": "LeanPML.v0.3.1.two-layer-definition"
+        },
+        {
+          "rect": [
+            6.0,
+            641.09,
+            54.8,
+            672.89
+          ],
+          "text": "(7.8) 右侧真实两层能量恒等式\n从 I 内原层 primitive 演化，经同源真实邻域求导推出导数层同系统，两层分别零迹，固定同一K，实际证明 HasDerivAt energy7 (-dissipation7) t，t∈interior I。\n待完成：具体矩形 Green/迹/微分交换仍是接口；没有 D7≥0、积分平衡或时间单调性。\n\nLeanPML.PML.hasDerivAt_energy7_Conditional\n\n当前证据：\nlogs/v0.3.3/20261013T100156_159842_lake_build.log\nlogs/v0.3.3/20261013T100321_602582_axioms_audit.log",
+          "id": "LeanPML.v0.3.3.two-balance"
+        },
+        {
+          "rect": [
+            534.0,
+            357.09,
+            583.99043,
+            388.89
+          ],
+          "text": "(8.3)\n实际加权零延拓与 Λ=∇v+ψ 推出梯度平方≤2B_sp；一般零迹 Poincaré 接口下进一步得到位移平方≤2CP²B_sp。\n待完成：梯度和 Poincaré 的具体矩形实现；第二条不代表已经证明 Poincaré 本身。\n\nLeanPML.PML.gradient_square_le_spatialBudget\nLeanPML.PML.state_norm_sq_le_spatialBudget\n\n当前证据：\nlogs/v0.3.3/20261013T100156_159842_lake_build.log\nlogs/v0.3.3/20261013T100321_602582_axioms_audit.log",
+          "id": "LeanPML.v0.3.3.spatial-control"
+        },
+        {
+          "rect": [
+            534.0,
+            138.09,
+            583.99043,
+            154.89
+          ],
+          "text": "§8.1 末尾未编号 F_c≥N²/4\n由旧约束消元、原阈值推出系数界、实际可积密度 Young 估计与零迹 Poincaré 吸收，证明 N²/4≤F_c。\n待完成：具体矩形 Poincaré；非任意独立点态矩阵正定。\n\nLeanPML.PML.fieldEnergy_bounds_Conditional\n\n当前证据：\nlogs/v0.3.3/20261013T100156_159842_lake_build.log\nlogs/v0.3.3/20261013T100321_602582_axioms_audit.log",
+          "id": "LeanPML.v0.3.3.lower-bound"
+        },
+        {
+          "rect": [
+            67.0,
+            820.69,
+            286.708398,
+            830.89
+          ],
+          "text": "v0.3.2–3：(7.8) 右式现已条件性证明；右侧旧注保留为历史，不包含耗散非负。",
+          "id": "LeanPML.v0.3.3.scope-12"
+        },
+        {
+          "rect": [
+            67.0,
+            788.89,
+            351.348633,
+            798.89
+          ],
+          "text": "v0.3.4–5 更新：耗散闭合、有限区间单调性与积分平衡已在分析接口下证明；既有待完成旁注保留为历史。",
+          "id": "LeanPML.v0.3.5.history12"
+        },
+        {
+          "rect": [
+            67.0,
+            774.89,
+            283.344727,
+            788.89
+          ],
+          "text": "(7.6)–(7.8)能量律的具体总装\n同一原场的历史与导数层，通过已经实例化的G/path/regular和原层演化调用两层真实HasDerivAt。κ非零来自正材料；不是把目标能量恒等式当输入。此范围为所选强正则类，CP仍保守；完整弱解传播未完成。\nLeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.energy_law_and_closure\nLeanPML.PML.hasDerivAt_energy7_Conditional\n证据：\nlogs/v0.5.3/20261014T011533_485975_lake_build.log\nlogs/v0.5.3/20261014T011752_801259_axioms_audit.log",
+          "id": "LeanPML.v0.5.concrete-energy-law"
+        }
+      ]
+    },
+    {
+      "page": 13,
+      "width": 595.28,
+      "height": 841.89,
+      "text": "v0.3.3：重构控制依赖约束与 Poincaré；完整模型等价、最终单调性仍待完成。\nV7：Maxwell–Debye PML 全域能量 2026-09-24\nv0.3.4–5：抽象分析接口下已闭合耗散与单调性；上方旧“待完成”文字为历史状态，非具体 PDE 完成。\n8.2 上界\n电交叉项使用相同估计，极化交叉项改用\nj2µc((1(cid:0)aτ (cid:0)bτ2)v,R)j (cid:20) 1µκ −1kRk2+2µκc2kvk2.\n2\n由式 (8.2)，\n2F [U] (cid:20) 2µϵkv k2+2µκ −1kRk2+B +3µ(ϵ+κ)c2kvk2.\nc t sp\n最后一项不超过 6µ(ϵ+κ)c2C P 2B sp (cid:20) 3(ϵ+κ)B sp /(4A) < B sp ，故 F c [U] (cid:20) N(U)2。分别用于两 条件性上界\nPoincaré 接口\n层即证式 (6.7)。\n§8.2：B_sp=0 时严格号不成立；Lean 使用所需非严格估计，保留零状态与原常数。\n8.3 原八变量的具体控制\nλ = (µH ,(cid:0)µH ) 和 N2 (cid:20) 4E 立即给出式 (6.10)。其余变量并未遗失：\ny x 0 7\nkuk2 (cid:20) 8C P 2E 7 , kϕk2 (cid:20) 4E 7 , (8.4) 兼容重构下\n(cid:18) (cid:19) L² 控制\n8κτ2\nkqk2 (cid:20) 16κ2C P 2 + µ E 7 , (8.5) 兼 L² 容 控 重 制 构下\nkZ k2 (cid:20) 8ϵ2S4C2E , (8.6) 兼容重构下\n1 P 7\n(cid:18) (cid:19) L² 控制\n8κτ2\nkZ 2 k2 (cid:20) S4 16κ2C P 2 + µ E 7 , (8.7) 兼 L² 容 控 重 制 构下\nkQ x k2+kQ y k2 (cid:20) 4S2E 7 . (8.8) 兼容重构下\nL² 控制\n这些由 q = κu(cid:0)τP、b (cid:20) S2 及式 (2.5) 逐项推出。不存在能量漏掉一个实际增长的原状态分量\n的情形。相反的裸八变量 L2 上界没有在本文证明，也不被声称成立；能量定义确实要求历史/图\n范数正则性。\n9 关键闭合：用导数层和 Debye 耗散控制边层\n9.1 单层耗散的可用下界\n由 R = κv (cid:0)τR 、ac(cid:0)b (cid:21) 0，\nt t\nµτ µc\nD [U] (cid:21) S[U]+ kR k2(cid:0)µcϵkv k2(cid:0) kRk2\nc t t\nκ κ\nµτ\n(cid:21) S[U]+ (1(cid:0)2cτ)kR k2(cid:0)µc(ϵ+2κ)kv k2\nt t\nκ\nµτ\n(cid:21) S[U]+ kR k2(cid:0)µcAkv k2.\nt t\n2κ\n这里使用 cτ (cid:20) 1/4。于是由式 (7.8)，\nµτ\nD (cid:21) S +KS + (kP k2+KkP k2)(cid:0)µcAkEk2(cid:0)µcAKkE k2. (9.1) 条件性\n7 0 1 2κ t tt t 耗散下界\n同源两层\n剩余两个负项必须真正处理，不能列为附加的未证假设。\n13",
+      "annotations": [
+        {
+          "rect": [
+            97.573,
+            674.085,
+            114.922,
+            686.783
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            119.392,
+            614.767,
+            136.741,
+            627.466
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            302.853,
+            546.147,
+            327.142,
+            558.846
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            240.142,
+            384.156,
+            257.491,
+            396.854
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            219.039,
+            136.98,
+            236.388,
+            149.679
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            534.0,
+            627.09,
+            583.99043,
+            643.89
+          ],
+          "text": "§8.2 末尾未编号 F_c≤N²\n同一能量/图平方的精确上界；使用原材料与阈值，保留零状态。原文末尾严格 <B_sp 在 B_sp=0 不成立，正式证明采用足够的非严格估计。\n待完成：具体矩形 Poincaré。原文严格号未改动，疑点已记账。\n\nLeanPML.PML.fieldEnergy_bounds_Conditional\n\n当前证据：\nlogs/v0.3.3/20261013T100156_159842_lake_build.log\nlogs/v0.3.3/20261013T100321_602582_axioms_audit.log",
+          "id": "LeanPML.v0.3.3.upper-bound"
+        },
+        {
+          "rect": [
+            534.0,
+            513.29,
+            579.5,
+            530.89
+          ],
+          "text": "(8.4)\nPhysicalControlBounds.displacement、auxiliary：u 平方≤8CP²E7、物理φ平方和≤4E7。 从原材料阈值、受约束同源图界及实际L²有界乘子推得。\n待完成：给定兼容提升的重构控制；完整原 PDE 等价及提升规范唯一性仍待完成。\n\nLeanPML.PML.physicalControl_Conditional\n\n当前证据：\nlogs/v0.3.3/20261013T100156_159842_lake_build.log\nlogs/v0.3.3/20261013T100321_602582_axioms_audit.log",
+          "id": "LeanPML.v0.3.3.aux-u-phi"
+        },
+        {
+          "rect": [
+            534.0,
+            487.29,
+            579.5,
+            504.89
+          ],
+          "text": "(8.5)\nPhysicalControlBounds.primitivePolar：实际 q=κu−τP，精确系数16κ²CP²+8κτ²/μ。 从原材料阈值、受约束同源图界及实际L²有界乘子推得。\n待完成：给定兼容提升的重构控制；完整原 PDE 等价及提升规范唯一性仍待完成。\n\nLeanPML.PML.physicalControl_Conditional\n\n当前证据：\nlogs/v0.3.3/20261013T100156_159842_lake_build.log\nlogs/v0.3.3/20261013T100321_602582_axioms_audit.log",
+          "id": "LeanPML.v0.3.3.aux-q"
+        },
+        {
+          "rect": [
+            534.0,
+            461.29,
+            579.5,
+            478.89
+          ],
+          "text": "(8.6)\nPhysicalControlBounds.electricMemory：实际 Z1=−εbu，精确8ε²S⁴CP²E7。 从原材料阈值、受约束同源图界及实际L²有界乘子推得。\n待完成：给定兼容提升的重构控制；完整原 PDE 等价及提升规范唯一性仍待完成。\n\nLeanPML.PML.physicalControl_Conditional\n\n当前证据：\nlogs/v0.3.3/20261013T100156_159842_lake_build.log\nlogs/v0.3.3/20261013T100321_602582_axioms_audit.log",
+          "id": "LeanPML.v0.3.3.aux-z1"
+        },
+        {
+          "rect": [
+            534.0,
+            435.29,
+            579.5,
+            452.89
+          ],
+          "text": "(8.7)\nPhysicalControlBounds.polarMemory：实际 Z2=−bq，精确S⁴(16κ²CP²+8κτ²/μ)E7。 从原材料阈值、受约束同源图界及实际L²有界乘子推得。\n待完成：给定兼容提升的重构控制；完整原 PDE 等价及提升规范唯一性仍待完成。\n\nLeanPML.PML.physicalControl_Conditional\n\n当前证据：\nlogs/v0.3.3/20261013T100156_159842_lake_build.log\nlogs/v0.3.3/20261013T100321_602582_axioms_audit.log",
+          "id": "LeanPML.v0.3.3.aux-z2"
+        },
+        {
+          "rect": [
+            534.0,
+            408.29,
+            579.5,
+            425.89
+          ],
+          "text": "(8.8)\nPhysicalControlBounds.magneticAuxiliary：Qx=pφy、Qy=−rφx，平方和≤4S²E7，方向与缩放正确。 从原材料阈值、受约束同源图界及实际L²有界乘子推得。\n待完成：给定兼容提升的重构控制；完整原 PDE 等价及提升规范唯一性仍待完成。\n\nLeanPML.PML.physicalControl_Conditional\n\n当前证据：\nlogs/v0.3.3/20261013T100156_159842_lake_build.log\nlogs/v0.3.3/20261013T100321_602582_axioms_audit.log",
+          "id": "LeanPML.v0.3.3.aux-qxy"
+        },
+        {
+          "rect": [
+            67.0,
+            820.69,
+            285.682129,
+            830.89
+          ],
+          "text": "v0.3.3：重构控制依赖约束与 Poincaré；完整模型等价、最终单调性仍待完成。",
+          "id": "LeanPML.v0.3.3.scope-13"
+        },
+        {
+          "rect": [
+            67.0,
+            598.69,
+            298.957031,
+            608.89
+          ],
+          "text": "§8.2：B_sp=0 时严格号不成立；Lean 使用所需非严格估计，保留零状态与原常数。",
+          "id": "LeanPML.v0.3.3.zero-state-correction"
+        },
+        {
+          "rect": [
+            534.0,
+            99.49,
+            575.0,
+            125.89
+          ],
+          "text": "(9.1)\n由实际场单层余项积分与真实兼容求导，得到 (9.1)，保留两项负项；未把单层耗散非负作为输入。\n待完成：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。\n\nLeanPML.PML.fieldDissipation_lower\nLeanPML.PML.debye_relations_Conditional\nLeanPML.PML.dissipation7_preliminary_Conditional\n\n当前证据：\nlogs/v0.3.5/20261013T214810_766115_lake_build.log\nlogs/v0.3.5/20261013T214845_382134_axioms_audit.log",
+          "id": "LeanPML.v0.3.5.preliminary"
+        },
+        {
+          "rect": [
+            67.0,
+            788.89,
+            339.348633,
+            798.89
+          ],
+          "text": "v0.3.4–5：抽象分析接口下已闭合耗散与单调性；上方旧“待完成”文字为历史状态，非具体 PDE 完成。",
+          "id": "LeanPML.v0.3.5.legend13"
+        }
+      ]
+    },
+    {
+      "page": 14,
+      "width": 595.28,
+      "height": 841.89,
+      "text": "V7：Maxwell–Debye PML 全域能量 2026-09-24\n条件性：Lean 已证明列明接口下的结论；不表示具体矩形接口或解存在唯一性已证明。旧系数标记保留。\nv0.5：(9.5)–(9.7) 的空间/路径接口由具体总装填入；保守 C_P=2Lx，旧勾保留。\n9.2 PDE 相容关系提供跨边层的全域空间估计\n在 Ω 上设 θ = σ /a；在 Z 上设 θ = θ = 1/2。注意此处是用于证明的另一组分配权重， 仅θ性质\n+ i i x y 含零分支\n与 V6 的零延拓约定没有冲突。定义\nZ\nX\nJ可积、非负 J(U) = [θ Λ2+θ (∂ v)2]dxdy, j 6= i. (9.2) J定义已录入\n实际L²积分 i i j i 另证可积非负\nΩ\ni\n在 Z 上 Λ = rv，故该密度正好为 jrvj2。由式 (7.2)，\n3c\nS[U] (cid:21) (c(cid:0)S)J(U) (cid:21) J(U). (9.3) 空间约束下\n4 积分估计\n含零吸收区\n原辅助演化给出精确的关系\n∂ E = λ (cid:0)σ ∂ u+σ λ . (9.4) 原辅助演化\ni i,t j i i i 推出；需时间\n空间交换接口\n将 j∂ Ej2 分成 θ 与 θ 两部分，对前者使用式 (9.4) 和平方和不等式，得\ni i j\nZ Z Z Z\nθ j∂ Ej2 (cid:20) 3 θ jλ j2+3 θ σ2j∂ uj2+3 θ σ2jλ j2.\ni i i i,t i j i i i i\nR\n在 Ω 上 θ σ2 = σ σ θ (cid:20) S2θ ，θ σ2 (cid:20) S2θ ；在 Z 上两个吸收项为零。第二部分 θ j∂ Ej2 本\n+ i j i j j j i i i j i\n身包含在 J(U ) 中。逐分量相加得到关键不等式\n1\nkrEk2 (cid:20) 3J(U )+3S2J(U ). (9.5) 同源路径下\n1 0 梯度估计\n空间算子接口\n它利用的是整个 PDE 的状态关系，不要求一个点态矩阵控制全部互相独立的 (u,λ)。\n结合 PEC 的 Poincaré 及式 (9.3)，\nµcAkEk2 (cid:20) 3µcAC2[J(U )+S2J(U )] Poincaré\nP 1 0 接口下的\nK (9.6) 吸收估计\n(cid:20) 4µAC2(S +S2S ) = (S +S2S ).\nP 1 0 2 1 0\nKS2 (cid:20) Kc2/16 (cid:20) 1/16 (cid:20) 1，因此这一项至多消耗 S 的一半以及 KS 的一半。 仅KS²界\n0 1 系数代数\n9.3 Debye 耗散吸收最高时间项\nDebye 方程的时间导数为 κE = P +τP ，从而\nt t tt\n2µcAK 2µcAKτ2\nµcAKkE k2 (cid:20) kP k2+ kP k2.\nt κ2 t κ2 tt\n式 (5.2) 中的两个材料条件逐一给出\nκτ 2µcAK µτ\nc (cid:20) =) (cid:20) ,\n8AK κ2 4κ\nκ 2µcAKτ2 Kµτ\nc (cid:20) =) (cid:20) .\n8Aτ κ2 4κ\n故\nµτ 真实Debye\nµcAKkE t k2 (cid:20) (kP t k2+KkP tt k2). (9.7) 导数关系下\n4κ\n吸收估计\n将式 (9.6)、(9.7) 代回式 (9.1)，便得到\nD (cid:21) 1(S +KS )+ µτ (kP k2+KkP k2) (cid:21) 0. 条件性\n7 2 0 1 4κ t tt 耗散闭合\n两类预算保留\n连同第 8 节的正定性和式 (7.8)，定理 6.1 得证。积分得到任意两个时刻的式 (6.9)；没有人为\n乘以 e −Ct，也没有假定未来积分收敛。\n14\n红勾仅覆盖旁注所列范围。完整来源及 Lean 定理名可点击红勾区域查看批注。",
+      "annotations": [
+        {
+          "rect": [
+            302.126,
+            660.178,
+            319.475,
+            672.877
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            295.942,
+            564.0,
+            313.291,
+            576.699
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            237.905,
+            429.193,
+            255.254,
+            441.892
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            86.664,
+            244.12,
+            104.013,
+            256.819
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            97.573,
+            129.667,
+            114.922,
+            142.366
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            134.344,
+            129.667,
+            151.693,
+            142.366
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            199.867,
+            129.667,
+            217.217,
+            142.366
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            104.529,
+            83.073,
+            111.469,
+            95.772
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            199.706,
+            83.073,
+            217.056,
+            95.772
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            257.809,
+            83.073,
+            275.158,
+            95.772
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            450.939,
+            83.073,
+            468.288,
+            95.772
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            532.0,
+            724.89,
+            594.0,
+            748.89
+          ],
+          "text": "(9.2)前的θ分支定义、0≤θ≤1及θx+θy=1；零区各取1/2。J的空间积分、(9.3)、(9.5)未形式化。\n\n模块：LeanPML/PML/Weights.lean\n定理命名空间：LeanPML.PML\n声明：thetaX; thetaY; theta_partition\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。",
+          "id": ""
+        },
+        {
+          "rect": [
+            532.0,
+            354.89,
+            594.0,
+            378.89
+          ],
+          "text": "本句中KS²≤1/16的系数代数已证；(9.6)完整空间估计及耗散分配未证明。\n\n模块：LeanPML/PML/Coefficients.lean\n定理命名空间：LeanPML.PML\n声明：scale_mul_amplitude_sq_le_sixteenth\n证据：Lean_PML/logs/v0.2.2/ 的实际构建和公理审计。",
+          "id": ""
+        },
+        {
+          "rect": [
+            3.0,
+            690.69,
+            53.0,
+            708.89
+          ],
+          "text": "(9.2) 的可积性、非负性子结论\n实际 L² 与有界 θ 系数下，J 密度可积、内积/积分相等且非负；零区密度为两个梯度表达分量平方和。红勾不表示定义本身是证明。\n待完成：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。\n\nLeanPML.PML.fieldJ_integrable\nLeanPML.PML.fieldJ_eq_integral\nLeanPML.PML.fieldJ_nonneg\nLeanPML.PML.fieldJDensity_zero_region\n\n当前证据：\nlogs/v0.3.4/20261013T214336_169080_lake_build.log\nlogs/v0.3.4/20261013T214424_960799_axioms_audit.log",
+          "id": "LeanPML.v0.3.5.j-analysis"
+        },
+        {
+          "rect": [
+            534.0,
+            626.49,
+            581.0,
+            652.89
+          ],
+          "text": "(9.3)\n(9.3) 的两个实际积分下界；非负吸收和幅度限制，空间表达 h=Λ−ψ，零区恢复 ψ=0。\n待完成：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。\n\nLeanPML.PML.fieldSpatialDissipation_ge_J\n\n当前证据：\nlogs/v0.3.4/20261013T214336_169080_lake_build.log\nlogs/v0.3.4/20261013T214424_960799_axioms_audit.log",
+          "id": "LeanPML.v0.3.5.spatial-j"
+        },
+        {
+          "rect": [
+            534.0,
+            577.49,
+            587.0,
+            603.89
+          ],
+          "text": "(9.4)\n(9.4) 从原层辅助演化和同源真实导数推出；依赖受限梯度域、空间约束及沿路径时间交换接口。\n待完成：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。\n\nLeanPML.PML.gradient_evolution_Conditional\n\n当前证据：\nlogs/v0.3.4/20261013T214336_169080_lake_build.log\nlogs/v0.3.4/20261013T214424_960799_axioms_audit.log",
+          "id": "LeanPML.v0.3.5.gradient-evolution"
+        },
+        {
+          "rect": [
+            534.0,
+            465.49,
+            587.0,
+            491.89
+          ],
+          "text": "(9.5)\n(9.5) 从 (9.4)、θ 的两种系数估计和三项平方估计，经合法实际 L² 积分得到；覆盖零区、双边层和角层。\n待完成：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。\n\nLeanPML.PML.field_gradient_control\nLeanPML.PML.gradient_control_Conditional\n\n当前证据：\nlogs/v0.3.4/20261013T214336_169080_lake_build.log\nlogs/v0.3.4/20261013T214424_960799_axioms_audit.log",
+          "id": "LeanPML.v0.3.5.gradient-control"
+        },
+        {
+          "rect": [
+            534.0,
+            397.49,
+            575.0,
+            423.89
+          ],
+          "text": "(9.6)\n(9.6) 由共同迹核的 Poincaré、(9.3)、(9.5) 与原阈值推出；非空空间载体仅用于从0≤p≤S取得S≥0。\n待完成：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。\n\nLeanPML.PML.scale_amplitude_chain\nLeanPML.PML.spatial_absorption_Conditional\nLeanPML.PML.spatial_absorption_half_Conditional\n\n当前证据：\nlogs/v0.3.5/20261013T214810_766115_lake_build.log\nlogs/v0.3.5/20261013T214845_382134_axioms_audit.log",
+          "id": "LeanPML.v0.3.5.spatial-absorption"
+        },
+        {
+          "rect": [
+            534.0,
+            144.49,
+            581.0,
+            170.89
+          ],
+          "text": "(9.7)\n(9.7) 由邻域兼容的两次真实求导得到 κ E_t=P_t+τP_tt，再从原阈值的两条材料条件分别吸收。\n待完成：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。\n\nLeanPML.PML.debye_relations_Conditional\nLeanPML.PML.debye_absorption_split\nLeanPML.PML.debye_absorption_Conditional\n\n当前证据：\nlogs/v0.3.5/20261013T214810_766115_lake_build.log\nlogs/v0.3.5/20261013T214845_382134_axioms_audit.log",
+          "id": "LeanPML.v0.3.5.debye-absorption"
+        },
+        {
+          "rect": [
+            534.0,
+            99.49,
+            587.0,
+            125.89
+          ],
+          "text": "(9.7) 后未编号剩余耗散下界\n同时扣除不同负项，保留空间耗散1/2与 μτ/(4κ) 的 Debye 平方预算；不是重复使用同一正项。\n待完成：具体矩形 Green、迹、精确 Poincaré 与时间/空间交换；完整原八变量 PDE 对应、提升唯一性与解存在唯一性。\n\nLeanPML.PML.dissipation7_lower_Conditional\nLeanPML.PML.dissipation7_nonneg_Conditional\n\n当前证据：\nlogs/v0.3.5/20261013T214810_766115_lake_build.log\nlogs/v0.3.5/20261013T214845_382134_axioms_audit.log",
+          "id": "LeanPML.v0.3.5.remainder-budget"
+        },
+        {
+          "rect": [
+            67.0,
+            788.89,
+            348.014648,
+            798.89
+          ],
+          "text": "条件性：Lean 已证明列明接口下的结论；不表示具体矩形接口或解存在唯一性已证明。旧系数标记保留。",
+          "id": "LeanPML.v0.3.5.legend14"
+        },
+        {
+          "rect": [
+            535.0,
+            687.69,
+            573.0,
+            705.89
+          ],
+          "text": "J定义已录入\n另证可积非负",
+          "id": "LeanPML.v0.3.5.j-definition"
+        },
+        {
+          "rect": [
+            67.0,
+            777.89,
+            281.52832,
+            787.89
+          ],
+          "text": "(9.5)–(9.7)既有估计的具体实例化\n逐段核对调用链：energy_law_and_closure→dissipation7_lower→spatial_absorption_half→spatial_absorption→gradient_control，并调用debye_absorption。G是真Green，estimate是真保守Poincare，path/regular由历史与混合求导产生，hbase由原八式和初值产生。只追加具体范围说明，不重复批量打勾；弱空间仍未扩展。\nLeanPML.PML.gradient_control_Conditional\nLeanPML.PML.spatial_absorption_Conditional\nLeanPML.PML.debye_absorption_Conditional\nLeanPML.PML.SmoothRectangle.SmoothCompatibleSolution.energy_law_and_closure\n证据：\nlogs/v0.5.3/20261014T011533_485975_lake_build.log\nlogs/v0.5.3/20261014T011752_801259_axioms_audit.log",
+          "id": "LeanPML.v0.5.concrete-cross-layer-use"
+        }
+      ]
+    },
+    {
+      "page": 15,
+      "width": 595.28,
+      "height": 841.89,
+      "text": "V7：Maxwell–Debye PML 全域能量 2026-09-24\nv0.5 替代实例：C∞完整剖面与四边四角已核验；新参数、C_P=4，非原(10.2)。\n10 满足全部条件的二维 PML 配置\n取无量纲参数 ϵ = µ = κ = τ = 1，整个域及物理区为\nΩ = ((cid:0)1,1)2, Ω = ((cid:0)1/2,1/2)2.\nphys\n于是 C2 = 2/π2、A = 3、K = 48/π2，而\nP\n(cid:26) (cid:27)\nπ π2 1 π2\nc∗ = min p , , = (cid:25) 0.00856736.\n48 1152 24 1152\n选择\nc = 1/128 = 0.0078125, 0 < η ,η (cid:20) 1/512 = c/4. (10.1)\nx y\n对任意整数 m (cid:21) 2，令\np(x) = η [2(jxj(cid:0)1/2) ]m, r(y) = η [2(jyj(cid:0)1/2) ]m. (10.2)\nx + y +\n在所给计算域内方括号值在 [0,1]，所以幅度正好不超过 1/512。物理区 p = r = 0；四个边条只\n有一个系数为正；四个角方块两个系数都为正。它们在内界面从零连续起步，属于 W1,∞；m = 2\n是常用的二次型起步。正吸收区的最大斜率为 2mη ，但主定理并不使用这个斜率上界的大小。\ni\n严格的参数检查为\n3 3\nKc2 = < 1, KS2 (cid:20) < 1,\n1024π2 16384π2\n8cAK 9 8cAτ 3\n= < 1, = < 1.\nκτ π2 κ 16\n因此本配置确实满足全部闭合条件，不是只给出一个无法实现的抽象吸收假设。原文量纲下应取\nσold = ϵ p、σold = ϵ r。\nx 0 y 0\n更一般地，层厚 ℓ > 0 的剖面可取 η (dist(x ,I )/ℓ )m，截断外边界对应距离 ℓ 。取\ni i i i,phys i i\n0 < η\ni\n(cid:20) c/4 即可，梯度为至多 mη\ni\n/ℓ\ni\n。改变整个域的长度时必须重新计算 C\nP\n,K,c∗ 。这一充分\n条件相当保守；小幅度保证的是本定理的数学耗散，不自动保证给定层厚下高效吸收或很小的外\n边界反射。\n对齐证书：C_P=4，K=384；c=1/16384，S=1/65536（保守 C_P=2Lx）。\n原(10.1)未沿用：在 K=384 下，旧 c=1/128 使 8cAK=72>1；这不否定原精确π常数例。\n11 主要候选的失败原因与静态模态\n11.1 仅把 a 换成常数 c 仍然不够\n单层精确导数已在式 (7.7) 给出，其两个 a(cid:0)c 系数在物理区为负。这不是纯粹的自由代数 导数关系见\n(7.6)；(7.7)\n方向：取第 5 节的实际兼容初值 是耗散表达式\nu = 0, H = 0, ϕ = 0, E = f, P = κf, q = (cid:0)τκf, 初始兼容\n0 0 0 0 0 0 已核验\n仅点态数值\n其中非零 f 2 C ∞ (Ω )，原 PML 辅助变量全部为零。原 PDE 决定 P = E = 0，故\nc phys t0 t0\n初值积分计算 D [U ](0) = (cid:0)µc(ϵ+κ)kfk2 < 0. 点态初值代数\n须平方可积 c 0 材料正性\n严格负须正积分\n因此任何通过该初值的足够正则解均有F [U ] ′ (0) > 0。另一方面λ (0) = rf，导数层产生S (0) =\nc 0 t 1\nckrfk2，正是 Poincaré 可以利用的缺失控制。这说明 V7 的增益来自导数层耦合和 Debye 耗 分量及其积分\n梯度接口\n散，而不是单个乘子巧合。 待完成\n15\nv0.2.4：红勾仅指初值代数、实际初值积分及分量版；完整 PDE 能量律与解存在性待完成。\n真实局部时间求导已有证明；正文的完整空间能量初始增长仍是条件性解释。",
+      "annotations": [
+        {
+          "rect": [
+            196.426,
+            211.514,
+            213.775,
+            224.213
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            126.045,
+            193.9,
+            132.985,
+            206.599
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            534.0,
+            163.49,
+            581.0,
+            189.89
+          ],
+          "text": "§11.1 未编号初值行：仅对应初始兼容关系\nu₀=0、P₀=κξ、q₀=−τκξ、原辅助量与φ₀为零，ξ非零处p=r=0时，五个初始不变量的数值为零。只标兼容的代数核验，初值选择本身不算证明。\n待完成：磁不变量的时间保持、真实梯度/提升、完整兼容函数空间成员资格仍待完成。\n\nLeanPML.PML.Obstructions.initial_compatibility\n\n当前证据：\nlogs/v0.2.4/20261011T231924_138774_lake_build.log\nlogs/v0.2.4/20261011T231954_467990_axioms_audit.log",
+          "id": "LeanPML.v0.2.4.initial-compatibility"
+        },
+        {
+          "rect": [
+            534.0,
+            122.69,
+            587.0,
+            140.89
+          ],
+          "text": "§11.1 未编号负耗散公式：点态初值密度\n三个旧块直接组合，κ≠0及ξ≠0处p=r=0推出D_initial(ξ)=−μc(ε+κ)ξ²；材料及c正性推出非正，ξ≠0时严格负。\n待完成：不是一条已存在的完整PDE解；完整空间能量律、初始解存在性未完成。\n\nLeanPML.PML.Obstructions.initialDissipation_eq\nLeanPML.PML.Obstructions.initialDissipation_nonpos\nLeanPML.PML.Obstructions.initialDissipation_neg\n\n当前证据：\nlogs/v0.2.4/20261011T231924_138774_lake_build.log\nlogs/v0.2.4/20261011T231954_467990_axioms_audit.log",
+          "id": "LeanPML.v0.2.4.initial-density"
+        },
+        {
+          "rect": [
+            7.0,
+            114.49,
+            66.0,
+            140.89
+          ],
+          "text": "§11.1 未编号负耗散公式：实际特殊初值积分\n实际测度m和函数f,p,r，平方可积与几乎处处支撑条件推出密度可积及∫D_initial=−μc(ε+κ)∫f²；包含全开矩形的二维Lebesgue限制测度入口。严格负额外要求∫f²>0。\n待完成：尚未形式化非零光滑紧支撑函数的正L²范数、Lp等价类范数接口；不是一般时间积分求导、PDE能量律或解存在。\n\nLeanPML.PML.Obstructions.initialDissipation_integral\nLeanPML.PML.Obstructions.initialDissipation_integral_neg\nLeanPML.PML.Obstructions.initialDissipation_rectangle_integral\n\n当前证据：\nlogs/v0.2.4/20261011T231924_138774_lake_build.log\nlogs/v0.2.4/20261011T231954_467990_axioms_audit.log",
+          "id": "LeanPML.v0.2.4.initial-integral"
+        },
+        {
+          "rect": [
+            534.0,
+            72.49,
+            587.0,
+            98.89
+          ],
+          "text": "§11.1 λ_t(0)=∇f 和 S₁(0)=c‖∇f‖²：仅分量接口与其积分\n真实HasDerivAt辅助演化在h₀=l₀=0时给l′(0)=V；复用零吸收空间耗散得c(gx²+gy²)。分量的独立支撑条件与平方可积性给实际分量积分c(∫gx²+∫gy²)。\n待完成：V、gx、gy与真实∂ᵢf的梯度对应、混合微分交换、梯度支撑性质、Poincaré和两层闭合未完成。\n\nLeanPML.PML.Obstructions.hasDerivAt_initial_flux\nLeanPML.PML.Obstructions.secondLayerSpatialInitial_zero\nLeanPML.PML.Obstructions.secondLayerSpatialInitial_eq\nLeanPML.PML.Obstructions.secondLayerSpatialInitial_integral\n\n当前证据：\nlogs/v0.2.4/20261011T231924_138774_lake_build.log\nlogs/v0.2.4/20261011T231954_467990_axioms_audit.log",
+          "id": "LeanPML.v0.2.4.second-layer-components"
+        },
+        {
+          "rect": [
+            534.0,
+            199.49,
+            572.0,
+            225.89
+          ],
+          "text": "导数关系见\n(7.6)；(7.7)\n是耗散表达式",
+          "id": "LeanPML.v0.2.4.cross-reference"
+        },
+        {
+          "rect": [
+            67.0,
+            13.69,
+            351.351562,
+            33.89
+          ],
+          "text": "v0.2.4：红勾仅指初值代数、实际初值积分及分量版；完整 PDE 能量律与解存在性待完成。\n真实局部时间求导已有证明；正文的完整空间能量初始增长仍是条件性解释。",
+          "id": "LeanPML.v0.2.4.scope"
+        },
+        {
+          "rect": [
+            67.0,
+            306.89,
+            314.135254,
+            317.89
+          ],
+          "text": "§10参数例旁的本轮替代证书（原文未单列）\n只对本轮实际(-1,1)^2及ε=κ=τ=μ=1参数证书打勾：CP4、A3、K384；三条显式界依次3/2097152、9/16、3/2048≤1，并调用阈值等价。不是原(10.1)/(10.2)配置完成勾，不含二维剖面、初值族或解存在。\nLeanPML.Rectangle.ParameterCertificate.unitSquare_parameter_certificate\nLeanPML.Rectangle.ParameterCertificate.unitSquare_explicit_smallness\nLeanPML.Rectangle.ParameterCertificate.unitSquare_le_threshold\n证据：\nlogs/v0.4_alignment/20261014T000055_917026_lake_build.log\nlogs/v0.4_alignment/20261014T000341_178705_axioms_audit.log",
+          "id": "LeanPML.v0.4_alignment.conservative-parameter-certificate"
+        },
+        {
+          "rect": [
+            67.0,
+            295.39,
+            318.678711,
+            305.89
+          ],
+          "text": "(10.1)旧例与保守常数的区别\n正式反证说明旧c不能迁移至本轮保守CP。保留原论文配置与全部原批注；原(5.1)精确π常数仍未证明。\nLeanPML.Rectangle.ParameterCertificate.oldC_material_condition_value\nLeanPML.Rectangle.ParameterCertificate.oldC_not_le_threshold\n证据：\nlogs/v0.4_alignment/20261014T000055_917026_lake_build.log\nlogs/v0.4_alignment/20261014T000341_178705_axioms_audit.log",
+          "id": "LeanPML.v0.4_alignment.old-example-not-transferable"
+        },
+        {
+          "rect": [
+            67.0,
+            781.89,
+            312.023682,
+            795.89
+          ],
+          "text": "§10原(10.1)/(10.2)旁的C∞替代实例\nprofile=S*smoothTransition(4x²−1)：物理坐标零、外侧正、幅度≤S、真正C∞；actualRegional使用CP4/A3/K384/c1/16384/S1/65536证书。明确不是原正部幂函数逐字验证，不给原10.1/10.2或精确π常数无限定勾。\nLeanPML.Examples.FullDomain.profile_contDiff\nLeanPML.Examples.FullDomain.profile_zero_iff\nLeanPML.Examples.FullDomain.profile_bounds\nLeanPML.Examples.FullDomain.regional_threshold\nLeanPML.Examples.FullDomain.four_sides_nonempty\nLeanPML.Examples.FullDomain.four_corners_nonempty\n证据：\nlogs/v0.5.3/20261014T011533_485975_lake_build.log\nlogs/v0.5.3/20261014T011752_801259_axioms_audit.log",
+          "id": "LeanPML.v0.5.smooth-alternative-profile"
+        }
+      ]
+    },
+    {
+      "page": 16,
+      "width": 595.28,
+      "height": 841.89,
+      "text": "V7：Maxwell–Debye PML 全域能量 2026-09-24\nv0.5：§11.3 实际非零静态解已核验；正的常值能量、零耗散，单向吸收。\n11.2 V6 椭圆修正的完整导数仍不直接抵消\n为核对一个主要非局部候选，设 L : H1(Ω) ! H −1(Ω) 由固定的有界强椭圆双线性型\n0\nZ\nB(z,v) = Crz(cid:1)rv+dzv, C = CT (cid:21) c I, d (cid:21) 0\n0\nΩ\nR\n定义。令 z = L−1div(ura)，即 B(z,v) = (cid:0) ura(cid:1)rv，从而 z = L−1div(Era)。对候选\nt\nη\nF = η(λ,rz)+ B(z,z)\n2\n完整求导得\n(cid:2) (cid:3)\nF ′ = η (λ ,rz)+(λ(cid:0)ura,rz ) . (11.1)\nt t\n因此 E +F 的导数仍含 (cid:0)(ura,λ)，并新增 λ ,z 两项，不能声称直接抵消。该公式不排除另加\nB t t\n结构或不等式后此类修正可能成功；本文不据此作不存在性断言。本次采用已经闭合的局部时间\n导数层路线，不使用未证半群稳定性或未来 Gramian。\n11.3 静态方向没有通过零能量被掩盖\n式 (6.10) 不要求耗散对全部状态严格正定。若本初值类中存在静态解，它仍具有真实的正能\n量，单调是允许能量保持常数的。例如在定理允许的单轴退化情形 r (cid:17) 0，取 F 2 C ∞ (fx : p(x) >\nc\n0g)，支集远离 p = 0，并令\nu = E = P = q = 0, λ = (0,F(x)), ϕ = λ, H = (cid:0)F(x)/µ, H = 0, Q = pF,\nx y x\n其余辅助变量为零。这是满足原方程与本兼容类的非零静态状态，且\nZ\n1 c\nE = F(x)2dxdy > 0, D = 0.\n7 7\n2 p(x)\nΩ\n所以证明没有借用必然指数衰减或某个可能发散的 Gramian，也没有把该静态磁场当作规范零\n方向。本兼容类之外的磁静态背景没有被本定理覆盖，不能未经另证就加入原场并宣称同一定理\n成立。\n12 与外部文献的模型和定理范围核对\n本稿主定理的全部闭合估计均在上文证明，不调用外部 PML 稳定性定理。以下仅定位方法\n来源和避免模型错配；不将题名中的 “stability” 自动解释为本题要求的全域单调能量。\nBaffet–Grote–Imperiale–Kachanovska (2019). 核对上传包所含原论文的 HAL v2\n（2019-11-15）。其正文第 4 页明确为能量分析假设阻尼在整个所分析域中为常数；外边界条件\n见 (2.2)，为 u = 0 或 ∂ u + ϕ (cid:1) ν = 0。二维方程是 (2.3)，无 Debye 变量；正文第 5–6 页\nν\nTheorem2.1与(2.4)–(2.9)给出常阻尼单调能量。PDF多一页HAL封面，所以这些对应PDF\n第 5–7 页。不能将这个定理直接作为本题物理区–边层–角层连续变剖面的定理。出版社摘要也明\n确限定 constant damping coefficients[1]。\n16",
+      "annotations": [
+        {
+          "rect": [
+            108.071,
+            472.775,
+            132.361,
+            485.474
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            274.766,
+            65.459,
+            281.707,
+            78.158
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            67.0,
+            781.89,
+            296.357666,
+            795.89
+          ],
+          "text": "§11.3非零静态模态未编号公式\nr0，F(x)真正C∞紧支于p=S平台，λ=φ=(0,F)、Hx=-F、Qx=pF；8式、真实导数、PEC、五初始兼容、零区和加权/普通正则性证明。实际调用主定理得图下界、真实能量律与FTC，E>0恒定/D0，T0也合法。支撑上的p正下界不是一般主定理的全域条件。\nLeanPML.Examples.StaticMode.concreteSolution\nLeanPML.Examples.StaticMode.sideField_weighted\nLeanPML.Examples.StaticMode.concrete_integral_balance\nLeanPML.Examples.StaticMode.nonzero_static_regression\n证据：\nlogs/v0.5.3/20261014T011533_485975_lake_build.log\nlogs/v0.5.3/20261014T011752_801259_axioms_audit.log",
+          "id": "LeanPML.v0.5.nonzero-static-mode"
+        }
+      ]
+    },
+    {
+      "page": 17,
+      "width": 595.28,
+      "height": 841.89,
+      "text": "V7：Maxwell–Debye PML 全域能量 2026-09-24\nBécache–Kachanovska–Wess(2023). 核对上传的正式发表PDF，ESAIM:M2AN57,\n2451–2491。第 2456–2458 页 (7)–(15) 是半无限波导的单轴 x 向 PML，σ 2 L ∞ 且物理区为\n零，拉伸含材料相关函数ζ(s)；电场为二维向量、磁场为标量，PEC写为切向电场零，标量消元后\n为 Neumann 条件。Assumptions 2.9–2.10 指定初值支集和可容许材料/拉伸函数；第 2459\n页 Theorem 2.11 是物理波导区的截断误差收敛估计，并非本八变量双轴角层系统的显式瞬时\n单调能量 [2]。作者网页还列有该文与 2021 波导论文的勘误链接；本次访问该勘误 PDF 失败，\n因此不引用原文定理中的精细指数常数作为已核准结论，更不依赖它闭合本证明。\nLudvigsson–Duru–Kreiss (arXiv:2206.08507v1, 2022). 原文 (1)–(6) 是三维二阶\n声波方程及反射系数型边界条件，不含 Debye 极化。第 9 页 Theorem 1 在 Laplace 空间对\np\n变系数 PML 给出估计，明确要求 <s > β，其中 β 含 max κ/ρjd ′ /d j。第 11 页正文也指出其\ni i\n直接时域转换给出指数增长型界，不能由此证明相应渐近稳定性。因此该结果既不能替代本题的\nE′ (cid:20) 0，也不能未经处理就覆盖 d 从零起步时可能无界的对数梯度 [3]。本稿没有声称这些文献\ni\n否定了其他全域能量结构。\n13 V6 到 V7 的准确进展及未完成范围\nV6 的有效起点是式 (4.3)；其正角域小梯度定理可保留，但内部角域边界通量非正不是外部\nPEC 自动保证的。V7 首先补齐原八变量、归一化、磁场滤波关系及非零初值，再将主问题从点\n态吸收 ura(cid:1)λ 改写为式 (9.1) 中的两个时间负项。式 (9.5) 与式 (9.7) 分别解决它们。这条证\n明在 a = b = 0、b = 0 < a、b > 0 上同时有效；没有用人工拼接代替全域估计。\n已完成的最强结果：对明确兼容、加权图范数有限的足够正则解，在式 (5.3) 的实际可行\n小幅度剖面条件下，完成原模型的全域单调能量先验定理、双边范数界和原八变量控制，并给出\n式 (10.2) 的二维配置。\n尚未完成的范围：任意幅度的一般非负分离变系数下，全域单调能量尚未证明。这不是对所\n有能量形式的不存在性结论。现有证明的具体限制在于，(cid:0)µcAKkE k2 必须由 Debye 耗散吸收，\nt\n导致式 (5.2) 的两个材料小量条件；同时 S (cid:20) c/4 用于辅助权重正性与式 (9.3)。κ ! 0 时本条\n件退化，故不能将主定理无条件取极限成无极化 Maxwell 的结果。没有在本稿证明分数阶、空\n间变材料、一般二维依赖系数的严格坐标变换、数值离散或完整适定性。\n最值得下一步检验的一条具体路线是：保留常数移位与两层能量，不先用R2 (cid:20) 2κ2v2+2τ2R2\nt t\n丢失关联，而在 (E,E ,P ,P ) 的 Debye 约束子空间上联合优化 c,K 和 Young 参数，求出更\nt t tt\n大的显式幅度容许区间；同时保留式 (9.5) 的空间 PDE 约束。这会首先检验当前幅度限制有多\n少属于保守估计，而不是预设任意幅度结论必然成立。\nA 计算验证的内容与边界\n交付的verify_v7.py已实际运行，使用SymPy精确化简验证：常数移位空间恒等式(7.1)、\n电块 (7.3)、Debye 块 (7.4)、约束消元二次型 (8.1)、V6 极化行列式、两个磁辅助初值不变量，\n17",
+      "annotations": [
+        {
+          "rect": [
+            119.637,
+            672.257,
+            126.578,
+            684.955
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            395.759,
+            545.182,
+            402.699,
+            557.88
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            191.801,
+            447.822,
+            209.15,
+            460.521
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            195.268,
+            412.594,
+            212.617,
+            425.293
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            337.714,
+            412.594,
+            355.063,
+            425.293
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            392.688,
+            412.594,
+            410.037,
+            425.293
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            444.894,
+            374.377,
+            462.243,
+            387.076
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            86.664,
+            339.149,
+            110.954,
+            351.848
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            108.809,
+            283.319,
+            126.158,
+            296.017
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            428.65,
+            283.319,
+            445.999,
+            296.017
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            251.288,
+            192.26,
+            268.637,
+            204.959
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            502.475,
+            94.9,
+            519.824,
+            107.599
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            97.436,
+            77.286,
+            114.785,
+            89.985
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            185.709,
+            77.286,
+            203.058,
+            89.985
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            301.302,
+            77.286,
+            318.651,
+            89.985
+          ],
+          "text": "",
+          "id": ""
+        }
+      ]
+    },
+    {
+      "page": 18,
+      "width": 595.28,
+      "height": 841.89,
+      "text": "V7：Maxwell–Debye PML 全域能量 2026-09-24\n以及二维示例的参数不等式。结果记录在 verification_output.txt。这些是代数和参数核验，\n不是 PDE 能量定理的机器形式化。全域 Green 公式、Poincaré、加权空间解释、式 (9.5)、耗\n散闭合及时间积分均由本文人工证明。本次未运行 Lean，也没有把 “假设 E′ (cid:20) 0 再形式化单调\n性” 当作核心证明。\n参考文献\n[1] D. H. Baffet, M. J. Grote, S. Imperiale, M. Kachanovska. Energy Decay and Sta-\nbility of a Perfectly Matched Layer For the Wave Equation. Journal of Scientific\nComputing,81(2019),2237–2270.DOI:10.1007/s10915-019-01089-9.核对版本：\nHAL hal-01865484v2，正文 §2.1, Theorem 2.1。\n[2] É. Bécache, M. Kachanovska, M. Wess. Convergence analysis of time-domain\nPMLs for 2D electromagnetic wave propagation in dispersive waveguides.\nESAIM: M2AN, 57 (2023), 2451–2491. DOI: 10.1051/m2an/2023060. 核对范围：\n§§2.2–2.3, (7)–(15), Assumptions 2.9–2.10, Theorem 2.11。\n[3] G. Ludvigsson, K. Duru, G. Kreiss. On energy-stable and high order finite el-\nement methods for the wave equation in heterogeneous media with perfectly\nmatched layers. arXiv:2206.08507v1 (2022). 核对范围：§2, §4, Theorem 1（第 9\n页）、其后讨论（第 11 页）。\n18",
+      "annotations": [
+        {
+          "rect": [
+            484.96,
+            742.713,
+            502.309,
+            755.411
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            311.528,
+            592.511,
+            474.142,
+            605.21
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            340.306,
+            513.089,
+            472.169,
+            525.788
+          ],
+          "text": "",
+          "id": ""
+        },
+        {
+          "rect": [
+            181.23,
+            433.667,
+            293.081,
+            446.365
+          ],
+          "text": "",
+          "id": ""
+        }
+      ]
+    }
+  ]
+}

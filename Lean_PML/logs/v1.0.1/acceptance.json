@@ -1,0 +1,402 @@
+{
+  "stage": "v1.0.1",
+  "time": "2026-10-14T10:13:14.584044+08:00",
+  "status": "partial",
+  "verified_construction_subtasks": "passed",
+  "reason_not_whole_stage_complete": "一般旧光滑零迹函数进入新 H₀¹ 图范数闭包的逼近连接尚未完成；不声称完整弱 PDE 范围。",
+  "completed": [
+    "fixed mathlib API/type/source audit",
+    "true weak partial/divergence test identities and uniqueness",
+    "closed complete H1/Hdiv graphs and graph norm equivalence",
+    "H01 closure construction and nonzero compact smooth member",
+    "smooth H1/Hdiv and restricted operator bridges",
+    "reuse of degenerate WeightedL2 embedding/completeness/zero-region/AE facts",
+    "exact physical image and bounded coefficient multiplication"
+  ],
+  "not_implemented": [
+    "all smooth zero-trace fields into H01 closure",
+    "weak trace kernel identification",
+    "weak Green/Poincare",
+    "W1-infinity weak coefficient product/slice theory",
+    "weighted regularity propagation",
+    "lift gauge uniqueness",
+    "weak PDE main theorem"
+  ],
+  "commands": [
+    {
+      "kind": "lake_build",
+      "metadata": "logs/v1.0.1/20261014T100512_464143_lake_build.json",
+      "output": "logs/v1.0.1/20261014T100512_464143_lake_build.log",
+      "output_sha256": "8996ef37347de906bfc0626081ac381449fc26d9ed789204a2ae86539eb7e4b7",
+      "exit_code": 0,
+      "command": [
+        "lake",
+        "build"
+      ],
+      "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML"
+    },
+    {
+      "kind": "axioms_audit",
+      "metadata": "logs/v1.0.1/20261014T100755_820431_axioms_audit.json",
+      "output": "logs/v1.0.1/20261014T100755_820431_axioms_audit.log",
+      "output_sha256": "52b83154da1e8d12caf32876ade5cd3c94c47e943542c090ed01becadd55fcae",
+      "exit_code": 0,
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "Audit.lean"
+      ],
+      "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML"
+    },
+    {
+      "kind": "declaration_types",
+      "metadata": "logs/v1.0.1/20261014T100755_820429_declaration_types.json",
+      "output": "logs/v1.0.1/20261014T100755_820429_declaration_types.log",
+      "output_sha256": "8f4f6a3da4fddb686a2466636a4321b476b3a7d69e01551dd216a7c52f7aa7f3",
+      "exit_code": 0,
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "logs/v1.0.1/DeclarationTypes.lean"
+      ],
+      "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML"
+    },
+    {
+      "kind": "api_probe",
+      "metadata": "logs/v1.0.1/20261014T095724_725213_api_probe.json",
+      "output": "logs/v1.0.1/20261014T095724_725213_api_probe.log",
+      "output_sha256": "7e84a77b174de5e0645ea59709e5b914e62a2698782871debd8d8a1289461b91",
+      "exit_code": 0,
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "logs/v1.0.1/ApiProbe.lean"
+      ],
+      "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML"
+    },
+    {
+      "kind": "mathlib_sobolev_types",
+      "metadata": "logs/v1.0.1/20261014T100511_354519_mathlib_sobolev_types.json",
+      "output": "logs/v1.0.1/20261014T100511_354519_mathlib_sobolev_types.log",
+      "output_sha256": "20f6e673a0c2dfa798cb154d0a6c55c99897c805dd32151c790a91b1694a8f29",
+      "exit_code": 0,
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "logs/v1.0.1/MathlibSobolevProbe.lean"
+      ],
+      "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML"
+    },
+    {
+      "kind": "lean_version",
+      "metadata": "logs/v1.0.1/20261014T101139_224626_lean_version.json",
+      "output": "logs/v1.0.1/20261014T101139_224626_lean_version.log",
+      "output_sha256": "3736756da8bde35bd0454e07bb977d28449cd4128a9c1b7aed35f45fc8bfe602",
+      "exit_code": 0,
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "--version"
+      ],
+      "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML"
+    }
+  ],
+  "checks": {
+    "all_commands_exit_zero": true,
+    "all_new_audit_queries_present": true,
+    "standard_axioms_only": true,
+    "no_sorryAx": true,
+    "no_formal_placeholder_tokens": true,
+    "previous_proof_files_unchanged": true,
+    "protected_files_unchanged": true,
+    "historical_build_audit_logs_intact": true,
+    "all_new_modules_reachable": true,
+    "git_diff_check": true,
+    "smooth_report_unchanged": true
+  },
+  "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "axiom_output_count": 778,
+  "new_and_reused_audit_queries": {
+    "LeanPML.Analysis.physicalL2_range_iff": true,
+    "LeanPML.Analysis.weightedMul_norm_le": true,
+    "LeanPML.Analysis.physicalL2_weightedMul": true,
+    "LeanPML.Analysis.physicalL2_injective": true,
+    "LeanPML.Analysis.physicalL2_zero_on_zero": true,
+    "LeanPML.Analysis.physicalL2_norm_sq_le": true,
+    "LeanPML.Analysis.weighted_completeSpace": true,
+    "LeanPML.Analysis.weighted_eq_zero_of_weight_zero": true,
+    "LeanPML.Analysis.physicalL2_weightedOfFunction": true,
+    "LeanPML.Analysis.weightedOfFunction_congr": true,
+    "LeanPML.Analysis.weighted_norm_sq_eq_integral": true,
+    "LeanPML.Rectangle.TestFunction.zero_outside": true,
+    "LeanPML.Rectangle.TestFunction.zeroBoundary": true,
+    "LeanPML.Rectangle.eq_zero_of_test_inner": true,
+    "LeanPML.Rectangle.HasWeakPartial.unique": true,
+    "LeanPML.Rectangle.HasWeakDivergence.unique": true,
+    "LeanPML.Rectangle.hasWeakDivergence_smooth": true,
+    "LeanPML.Rectangle.hasWeakPartial_smooth": true,
+    "LeanPML.Rectangle.weakH1Graph_isClosed": true,
+    "LeanPML.Rectangle.weakH1Graph_completeSpace": true,
+    "LeanPML.Rectangle.weakHDivGraph_isClosed": true,
+    "LeanPML.Rectangle.weakHDivGraph_completeSpace": true,
+    "LeanPML.Rectangle.zeroBoundaryGraph_completeSpace": true,
+    "LeanPML.Rectangle.test_mem_zeroBoundaryGraph": true,
+    "LeanPML.Rectangle.weakValue_injective": true,
+    "LeanPML.Rectangle.weakLift_smooth": true,
+    "LeanPML.Rectangle.weakSpatialDomain_smooth": true,
+    "LeanPML.Rectangle.weakFlux_injective": true,
+    "LeanPML.Rectangle.weakH1_coordinate_norm_le": true,
+    "LeanPML.Rectangle.weakHDiv_coordinate_norm_le": true,
+    "LeanPML.Rectangle.weakDivergence_spec": true,
+    "LeanPML.Rectangle.weakZeroFieldDomain_le": true,
+    "LeanPML.Rectangle.graph_norm_sq_equivalence": true,
+    "LeanPML.Examples.WeakSpaces.physicalTest_nonzero_member": true,
+    "LeanPML.Examples.WeakSpaces.physicalTest_gradient_bridge": true,
+    "LeanPML.Examples.WeakSpaces.absorption_weighted_range": true,
+    "LeanPML.Examples.WeakSpaces.absorption_weighted_multiplication": true,
+    "LeanPML.Rectangle.smoothFieldDomain_le_weak": true
+  },
+  "formal_sources": {
+    "LeanPML/Analysis/EnergyCalculus.lean": "8f43f309fda52d0f6214489701683e5002441a4f401fd30b6c4a82a9a2b3cb22",
+    "LeanPML/Analysis/WeightedL2.lean": "6be3ed7daca127d0a07aa79fe7dcc3ff0a65d43599f3229ee8a6549a280fab08",
+    "LeanPML/Analysis/WeightedL2Operators.lean": "d036e8ab2f3fd4ac94dcf0f2bfbb58812484da7aec2315f7976d0db6788d81fe",
+    "LeanPML/Debye/ScalarEnergy.lean": "7ebb842dc8e7109802bb0db414b25947248dca52c77dbc01b4f01bc110c08741",
+    "LeanPML/Examples/CompatibleData.lean": "333f581dd831cb6a6a71f3ea9f429db21d4d5e6eba736cfd44f528d636694740",
+    "LeanPML/Examples/DegenerateBranches.lean": "fb5f65160d05a1bd276196c05730538245b358145794c6a35415eab52b3bf50e",
+    "LeanPML/Examples/FullDomainProfile.lean": "d50463bd0cbcf67fabe5404be526b0876e6e98be0ced6ba9ebfd8eefc5168e53",
+    "LeanPML/Examples/PathHelpers.lean": "226901138399542777cbcd74d15f28922b46411d1bcfc941065faa89b39d44b0",
+    "LeanPML/Examples/SmoothBump.lean": "6688bd55f66b5e7daca2bd78886d8ad72874fb7d131ce658a4b0ffa3ac395e73",
+    "LeanPML/Examples/StaticMode.lean": "308e5fd57dda70b4546b57cd668e72992dc4b4f917bf9aa92b7cebe6d32ea9dc",
+    "LeanPML/Examples/WeakSpaces.lean": "18aba69bf85734b238d87b3cd664216e34a290943c973855cc4e4ab1d6e22205",
+    "LeanPML/PML/BalanceAbstract.lean": "8adb3558e5e487befcb337791da05c8e16947fb10700a7c0ae126a7bbe099d3f",
+    "LeanPML/PML/BalanceBlocks.lean": "d8b208a38858bf04b067cea7e97f4728fa191afe34130078990b0b398c572843",
+    "LeanPML/PML/BalanceInterfaces.lean": "ce888afcf6a7f81e03c1f478199d9b388f914171480cbd866b5c2cbd71921e9a",
+    "LeanPML/PML/ClassicalSystem.lean": "63ea7a2dae932b24c15bf71f10711bdcd8c0754177b43e917d503f8305125d8a",
+    "LeanPML/PML/Coefficients.lean": "7a2d94389601e7fee33054d0b4cbcaba4a7ea31837dce8af9e9c19dec6dc68a6",
+    "LeanPML/PML/Coercivity.lean": "0f7102688b3921fea128f8978874e4feea34cd3082b228c732f6019471d87e04",
+    "LeanPML/PML/DissipationClosure.lean": "d2e5333aed6a733c28396a95fdd52e53b483f5fc011f9485c3a6d4112188aa7d",
+    "LeanPML/PML/Energy.lean": "b5b806f793284bc5bd64f5d8e6c5d9f17e19f78d84ffe7932a4e74d5aab3d042",
+    "LeanPML/PML/EnergyIntegrals.lean": "85370f6dcf41408132e79f4eb8ccbba2e1dc0f4a1f2b842601237026517dc540",
+    "LeanPML/PML/Equivalence.lean": "7f2b492a0f843dce1eda7521d9ca06f4c5c12fa02371e27a81082f3146965010",
+    "LeanPML/PML/GradientControl.lean": "63d6cbb810c2e23f77039120ca28f454f44f54b0aeb30e201cae25b94d7fe81a",
+    "LeanPML/PML/LocalDebye.lean": "12ad851667c4434f7542f9402fa395017e54ea083442558d76445e343399bb10",
+    "LeanPML/PML/LocalElectric.lean": "d5eb935b44f2cb3f372d3a527f3dca0858908423d719d3203f583f8c8de60f1d",
+    "LeanPML/PML/LocalSpatial.lean": "4830378ceb947d7e0c5f349cb06963cf2cfe9e9d265e6dee93448b84719917b4",
+    "LeanPML/PML/MainAbstract.lean": "47b278c96a5d67d6bec24a2214830ae9094284e2b06840394b5cabf95e6a71d4",
+    "LeanPML/PML/MainSmoothRectangle.lean": "62f7a7d7826d916d2283a3a84a62c92dceb9f65bc445f6d2815cb927d7a1538e",
+    "LeanPML/PML/Obstructions/SingleLayer.lean": "8e9b79481591141e797f72e522bb334d851eb6a1b8bc45046c2a77d38bb232e7",
+    "LeanPML/PML/Obstructions/UnrestrictedData.lean": "99df8bbe693c4f4aee92e333491bf67aafe4c8d2f575eb5f0571cd1921d152d4",
+    "LeanPML/PML/OriginalAssembly.lean": "e4bb5214237490b05b608fc289f67aa84e550e8cb9ac2266a94ed4bce674572e",
+    "LeanPML/PML/OriginalSystem.lean": "91425cb5798bee29a4d648f8780de9aa5fb50e1081c1f8ea5f9dc3919d37c29f",
+    "LeanPML/PML/PhysicalControl.lean": "e20d6fd889b662f824c048a05f2408180b679b570efd788a27df8f19c49a4595",
+    "LeanPML/PML/PrimitiveEvolution.lean": "0b2f6aee29bfd30a505e1e8881348eeb378cf7775c5e8e4fee2f2f6ba36bf6a9",
+    "LeanPML/PML/PrimitiveSystem.lean": "fac68de9b55138f66ad9cc2d8017385881e79c4b90eff76e8760abd23083c120",
+    "LeanPML/PML/SpatialBalance.lean": "0ea0dfdf07fa6e3f4c3bb838280b9a6b030d997f7e7c69c49a780f02e172906e",
+    "LeanPML/PML/SpatialCoefficients.lean": "07223cf17bdbf48daff2078f543070d760d1dc5464f47a8c2b8d0d0438e84392",
+    "LeanPML/PML/State.lean": "3949faa23565d376c62fe4b24bfabffe723cf8c7359ebf4a126f0191d18c18b2",
+    "LeanPML/PML/TimeInvariants.lean": "ad23ffe0b5fc1188cce91203989e7587d31a11aad3f1b77665f57f6b91efbba1",
+    "LeanPML/PML/WeightedCalculus.lean": "694ea664c32a5ad236836b7241f991e6ca751587af93f1fba3154726b8f3e87d",
+    "LeanPML/PML/Weights.lean": "25778077d06b427ee870843481c7d0d5614637063c0f49a8b21540617f8883ef",
+    "LeanPML/Rectangle/Boundary.lean": "c2dc823a7d1a76a1f8be7d502a16e29f79e26a902d63aee4a2d807bd443268b0",
+    "LeanPML/Rectangle/BoundaryTime.lean": "b7a45cd50d8a2c710619ef5db4dd9b8dff240e90d290c6c737bc695954bb7edb",
+    "LeanPML/Rectangle/Domain.lean": "6961af4f6b9e5d47ff3d773557d59778f6ab630d70e096c023685e3a563bc9d0",
+    "LeanPML/Rectangle/Fields.lean": "282409219402b5e0c415b4487bc76925389382cbf27b0e4cb6e50a7452947fd7",
+    "LeanPML/Rectangle/Green.lean": "2ad892998bbb1903480743fdc8bf6663b266c5bc723b92c33a514ea4d08c1289",
+    "LeanPML/Rectangle/HistoryL2.lean": "172431b85ca66fe6aa35782e828ad22f6506d7f35fb57d82ef3a77387183ebf3",
+    "LeanPML/Rectangle/InterfaceAssembly.lean": "05bcf055d2c20172f718870455b740ebf07060ad5ed0c0fb300cfb75fc8940f8",
+    "LeanPML/Rectangle/L2Paths.lean": "90e2417b51bc2d3d50d435b4c1e8f38d93b2b70eaf5b842b1263e65900e3a616",
+    "LeanPML/Rectangle/ParameterCertificate.lean": "afbcb8afbe20c9042ca9726e7c7849d42e257c28eb60462a5646d24e225223d4",
+    "LeanPML/Rectangle/Poincare.lean": "d81389ea5445a9acd8b683b36119da56662dd9df8eb1df6e0787c02412bead9d",
+    "LeanPML/Rectangle/RegionalCoefficients.lean": "f7a5bf667a9dc9d5914f63c9747b95372227922de41912fcf6a8a44ff0277623",
+    "LeanPML/Rectangle/SmoothPaths.lean": "aa905c50a6618435f1c021c3473ddc0777f9d140c6aabd07c0fb899b0e9a2288",
+    "LeanPML/Rectangle/StatePaths.lean": "915c8204230cbb954cfe4403be3b3ce7c7ac9cc24ba78ca824b9066f906c9850",
+    "LeanPML/Rectangle/TimeSpace.lean": "777c35c9e4d84874baa8d92b93048b81019799741bd4430c669b3cde5447d19f",
+    "LeanPML/Rectangle/WeakSpaces.lean": "bcb9d6a3c79678fab18b65e9df6e8e1e45a64aec973bcda6492b900555bb8bc5",
+    "LeanPML/Time/Constancy.lean": "47680bb78e15e5fa05b9350ddb19117f2a7ae4ba5a132e9cd5ea422e6ac57437",
+    "LeanPML/Time/Monotonicity.lean": "70c9bad3378adfb332cc4b10e6e475a41352178899797eef07a203fb8e68aa25",
+    "LeanPML/Tutorial/LocalEnergy.lean": "810e8ef42c005661cb0eca9e6ba4527914cd782af7e30677b45e4bd772cac112",
+    "LeanPML/Tutorial/ScalarEnergy.lean": "465c567aa91d06d5e32c32b84d6082cb71834027177f8a390b8c9df9f59aaa41",
+    "LeanPML.lean": "22874726bb4b97dab2f8355d9434c68f934011abc3ae247921742b25b03398fb",
+    "Audit.lean": "98ce4d19304bedcd37d88a0279f77d1710e5a073f219b4b7b46eba02f0129a81"
+  },
+  "formal_source_count": 61,
+  "previous_proof_files": {
+    "LeanPML/Tutorial/LocalEnergy.lean": true,
+    "LeanPML/Tutorial/ScalarEnergy.lean": true,
+    "LeanPML/Analysis/EnergyCalculus.lean": true,
+    "LeanPML/Analysis/WeightedL2.lean": true,
+    "LeanPML/Time/Constancy.lean": true,
+    "LeanPML/Time/Monotonicity.lean": true,
+    "LeanPML/Rectangle/BoundaryTime.lean": true,
+    "LeanPML/Rectangle/L2Paths.lean": true,
+    "LeanPML/Rectangle/Poincare.lean": true,
+    "LeanPML/Rectangle/Boundary.lean": true,
+    "LeanPML/Rectangle/HistoryL2.lean": true,
+    "LeanPML/Rectangle/StatePaths.lean": true,
+    "LeanPML/Rectangle/TimeSpace.lean": true,
+    "LeanPML/Rectangle/InterfaceAssembly.lean": true,
+    "LeanPML/Rectangle/SmoothPaths.lean": true,
+    "LeanPML/Rectangle/ParameterCertificate.lean": true,
+    "LeanPML/Rectangle/Domain.lean": true,
+    "LeanPML/Rectangle/RegionalCoefficients.lean": true,
+    "LeanPML/Rectangle/Green.lean": true,
+    "LeanPML/Rectangle/Fields.lean": true,
+    "LeanPML/Examples/CompatibleData.lean": true,
+    "LeanPML/Examples/PathHelpers.lean": true,
+    "LeanPML/Examples/SmoothBump.lean": true,
+    "LeanPML/Examples/StaticMode.lean": true,
+    "LeanPML/Examples/DegenerateBranches.lean": true,
+    "LeanPML/Examples/FullDomainProfile.lean": true,
+    "LeanPML/PML/Energy.lean": true,
+    "LeanPML/PML/EnergyIntegrals.lean": true,
+    "LeanPML/PML/BalanceAbstract.lean": true,
+    "LeanPML/PML/MainAbstract.lean": true,
+    "LeanPML/PML/SpatialBalance.lean": true,
+    "LeanPML/PML/ClassicalSystem.lean": true,
+    "LeanPML/PML/Coefficients.lean": true,
+    "LeanPML/PML/OriginalAssembly.lean": true,
+    "LeanPML/PML/LocalSpatial.lean": true,
+    "LeanPML/PML/TimeInvariants.lean": true,
+    "LeanPML/PML/PrimitiveEvolution.lean": true,
+    "LeanPML/PML/GradientControl.lean": true,
+    "LeanPML/PML/SpatialCoefficients.lean": true,
+    "LeanPML/PML/OriginalSystem.lean": true,
+    "LeanPML/PML/LocalDebye.lean": true,
+    "LeanPML/PML/LocalElectric.lean": true,
+    "LeanPML/PML/MainSmoothRectangle.lean": true,
+    "LeanPML/PML/State.lean": true,
+    "LeanPML/PML/PhysicalControl.lean": true,
+    "LeanPML/PML/Coercivity.lean": true,
+    "LeanPML/PML/DissipationClosure.lean": true,
+    "LeanPML/PML/BalanceBlocks.lean": true,
+    "LeanPML/PML/Equivalence.lean": true,
+    "LeanPML/PML/WeightedCalculus.lean": true,
+    "LeanPML/PML/BalanceInterfaces.lean": true,
+    "LeanPML/PML/Weights.lean": true,
+    "LeanPML/PML/PrimitiveSystem.lean": true,
+    "LeanPML/PML/Obstructions/UnrestrictedData.lean": true,
+    "LeanPML/PML/Obstructions/SingleLayer.lean": true,
+    "LeanPML/Debye/ScalarEnergy.lean": true
+  },
+  "protected": {
+    "lean-toolchain": {
+      "before": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee",
+      "after": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee",
+      "unchanged": true
+    },
+    "lakefile.toml": {
+      "before": "3a3ab926f99cfeb3ae9fa6309696858b0aabb7ce62469de72405a74dd64fab9e",
+      "after": "3a3ab926f99cfeb3ae9fa6309696858b0aabb7ce62469de72405a74dd64fab9e",
+      "unchanged": true
+    },
+    "lake-manifest.json": {
+      "before": "6bd522ed18f94813b2e6fb5e7b9ea39d95a5098df2465acc0d815a09bb5dbf33",
+      "after": "6bd522ed18f94813b2e6fb5e7b9ea39d95a5098df2465acc0d815a09bb5dbf33",
+      "unchanged": true
+    },
+    "ROADMAP_lean_PML_revised.md": {
+      "before": "9a6438549e4d49714b915bd9632d13eab7f1b5164df1741d190dc97640be3659",
+      "after": "9a6438549e4d49714b915bd9632d13eab7f1b5164df1741d190dc97640be3659",
+      "unchanged": true
+    },
+    "docs/model_contract.md": {
+      "before": "27fdc413425e2b65f0b31a4c4a533d5f52eb24a4af30f18f5fae080a1846fc23",
+      "after": "27fdc413425e2b65f0b31a4c4a533d5f52eb24a4af30f18f5fae080a1846fc23",
+      "unchanged": true
+    },
+    "docs/scope.md": {
+      "before": "dff8fc9bf26935a12927a2c05950b44431020d5eb8e022f7c8565a9ec054b539",
+      "after": "dff8fc9bf26935a12927a2c05950b44431020d5eb8e022f7c8565a9ec054b539",
+      "unchanged": true
+    },
+    "../results/V7_Maxwell_Debye_PML/V7_global_energy.md": {
+      "before": "0a7f73a25cb119eeb75b3e7b3c3f2fbb3b319250f3354ed4dcad0ecff8eff4fb",
+      "after": "0a7f73a25cb119eeb75b3e7b3c3f2fbb3b319250f3354ed4dcad0ecff8eff4fb",
+      "unchanged": true
+    },
+    "../results/V7_Maxwell_Debye_PML/V7_global_energy.tex": {
+      "before": "7345e2f2b8558df5f68252985d119465085b01aa8005b0f7c861f0831ab6387a",
+      "after": "7345e2f2b8558df5f68252985d119465085b01aa8005b0f7c861f0831ab6387a",
+      "unchanged": true
+    },
+    "../results/V7_Maxwell_Debye_PML/V7_global_energy.pdf": {
+      "before": "c6c9978af6d3fbc54ef76b02a5d509e6dda169795c6181d64c7c56ccbe4e3aaa",
+      "after": "c6c9978af6d3fbc54ef76b02a5d509e6dda169795c6181d64c7c56ccbe4e3aaa",
+      "unchanged": true
+    },
+    "../results/V7_Maxwell_Debye_PML/V7_global_energy_副本.pdf": {
+      "before": "730b9d79a305e563791d49cbc5edc0e790895168f171f359af2d4f395eba79ce",
+      "after": "730b9d79a305e563791d49cbc5edc0e790895168f171f359af2d4f395eba79ce",
+      "unchanged": true
+    }
+  },
+  "historical_logs": [
+    {
+      "path": "logs/v0.5.1/20261014T005346_311276_lake_build.log",
+      "hash_matches": true
+    },
+    {
+      "path": "logs/v0.5.1/20261014T005434_779198_axioms_audit.log",
+      "hash_matches": true
+    },
+    {
+      "path": "logs/v0.5.2/20261014T011030_802569_lake_build.log",
+      "hash_matches": true
+    },
+    {
+      "path": "logs/v0.5.2/20261014T011311_263210_axioms_audit.log",
+      "hash_matches": true
+    },
+    {
+      "path": "logs/v0.5.3/20261014T011533_485975_lake_build.log",
+      "hash_matches": true
+    },
+    {
+      "path": "logs/v0.5.3/20261014T011752_801259_axioms_audit.log",
+      "hash_matches": true
+    }
+  ],
+  "new_modules": [
+    "LeanPML.Analysis.WeightedL2Operators",
+    "LeanPML.Rectangle.WeakSpaces",
+    "LeanPML.Examples.WeakSpaces"
+  ],
+  "formal_placeholder_tokens": {},
+  "mathlib_commit": "fabf563a7c95a166b8d7b6efca11c8b4dc9d911f",
+  "documents": {
+    "README.md": "f73ac9de3c4ef178fd5825d953b96988cbe4e00e074dd8cee70f03d5c0a42932",
+    "PROGRESS.md": "0e3d5f306226fa1e095fb8fb1896a32db476f8710f936eec1c1976660d5c151f",
+    "docs/theorem_inventory.md": "4d450a3113d1b42f61ed757cdaf94ed886bc54b32a48cb8ff1fa4d9b1066e149",
+    "docs/claim_ledger.md": "506cfc10cd83d0c65aa6cd17f4ffa390585cb370a9d463c642fd02a51571687c",
+    "logs/v1.0.1/stage_record.md": "50a89fa3aee83a75385cc6d1f7e045ee6d71a1fef2d5bc3e0d061904c345ec03"
+  },
+  "type_review": {
+    "TestFunction": "actual smooth field, compact support, support inside full rectangle only",
+    "weak_graphs": "L2 coordinates constrained by all C_c-infinity test identities; no general Green/trace/energy assumptions",
+    "zeroBoundaryGraph": "closure of span of actual compact smooth graphs; no claimed weak trace kernel theorem",
+    "weightedMul": "measurability and uniform bound on multiplier m, not on energy weight w",
+    "v05": "all prior proof bodies and strong regularity hypotheses unchanged"
+  },
+  "failure_logs": [
+    "logs/v1.0.1/20261014T095320_235626_weighted_check.json",
+    "logs/v1.0.1/20261014T095606_486555_weak_check.json",
+    "logs/v1.0.1/20261014T095506_573152_api_probe.json",
+    "logs/v1.0.1/20261014T095545_602640_weak_check.json",
+    "logs/v1.0.1/20261014T101259_967697_delivery_check.json",
+    "logs/v1.0.1/20261014T095635_117475_weak_check.json",
+    "logs/v1.0.1/20261014T100152_284608_lake_build.json",
+    "logs/v1.0.1/20261014T095222_972485_api_probe.json",
+    "logs/v1.0.1/20261014T095507_662555_weak_check.json",
+    "logs/v1.0.1/20261014T095816_093383_weak_check.json",
+    "logs/v1.0.1/20261014T095909_571085_weak_check.json"
+  ]
+}

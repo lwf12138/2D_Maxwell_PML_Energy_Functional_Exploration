@@ -1,0 +1,93 @@
+LeanPML/Rectangle/WeakSpaces.lean:75:2: error: Type mismatch: After simplification, term
+  hgreen
+ has type
+  ⟪(SmoothField.toL2 D) φ.field, (SmoothField.toL2 D) X.derivativeX + (SmoothField.toL2 D) Y.derivativeY⟫_ℝ =
+    -⟪(SmoothField.toL2 D) X, (spatialDomain D).componentX ((SmoothField.toL2 D).rangeRestrict φ.field)⟫_ℝ -
+      ⟪(SmoothField.toL2 D) Y, (spatialDomain D).componentY ((SmoothField.toL2 D).rangeRestrict φ.field)⟫_ℝ
+but is expected to have type
+  ⟪(SmoothField.toL2 D) φ.field, (SmoothField.toL2 D) X.derivativeX + (SmoothField.toL2 D) Y.derivativeY⟫_ℝ =
+    -⟪(SmoothField.toL2 D) X, (SmoothField.toL2 D) φ.field.derivativeX⟫_ℝ -
+      ⟪(SmoothField.toL2 D) Y, (SmoothField.toL2 D) φ.field.derivativeY⟫_ℝ
+LeanPML/Rectangle/WeakSpaces.lean:86:4: error: Type mismatch: After simplification, term
+  hweak
+ has type
+  ⟪(SmoothField.toL2 D) f.derivativeX + (SmoothField.toL2 D) ⟨dy 0, ⋯⟩, (SmoothField.toL2 D) φ.field⟫_ℝ =
+    -⟪(SmoothField.toL2 D) f, (SmoothField.toL2 D) φ.field.derivativeX⟫_ℝ
+but is expected to have type
+  ⟪(SmoothField.toL2 D) f.derivativeX, (SmoothField.toL2 D) φ.field⟫_ℝ =
+    -⟪(SmoothField.toL2 D) f, (SmoothField.toL2 D) φ.field.derivativeX⟫_ℝ
+LeanPML/Rectangle/WeakSpaces.lean:88:4: error: Type mismatch: After simplification, term
+  hweak
+ has type
+  ⟪(SmoothField.toL2 D) ⟨dx 0, ⋯⟩ + (SmoothField.toL2 D) f.derivativeY, (SmoothField.toL2 D) φ.field⟫_ℝ =
+    -⟪(SmoothField.toL2 D) f, (SmoothField.toL2 D) φ.field.derivativeY⟫_ℝ
+but is expected to have type
+  ⟪(SmoothField.toL2 D) f.derivativeY, (SmoothField.toL2 D) φ.field⟫_ℝ =
+    -⟪(SmoothField.toL2 D) f, (SmoothField.toL2 D) φ.field.derivativeY⟫_ℝ
+LeanPML/Rectangle/WeakSpaces.lean:99:6: error: Type mismatch: After simplification, term
+  congrArg₂ (fun x1 x2 => x1 + x2) (hU.left φ) (hV.left φ)
+ has type
+  ⟪U 1, (SmoothField.toL2 D) φ.field⟫_ℝ + ⟪V 1, (SmoothField.toL2 D) φ.field⟫_ℝ =
+    -⟪U 0, (SmoothField.toL2 D) (smoothPartial 0 φ.field)⟫_ℝ + -⟪V 0, (SmoothField.toL2 D) (smoothPartial 0 φ.field)⟫_ℝ
+but is expected to have type
+  ⟪U 1, (SmoothField.toL2 D) φ.field⟫_ℝ + ⟪V 1, (SmoothField.toL2 D) φ.field⟫_ℝ =
+    -⟪V 0, (SmoothField.toL2 D) (smoothPartial 0 φ.field)⟫_ℝ + -⟪U 0, (SmoothField.toL2 D) (smoothPartial 0 φ.field)⟫_ℝ
+LeanPML/Rectangle/WeakSpaces.lean:101:6: error: Type mismatch: After simplification, term
+  congrArg₂ (fun x1 x2 => x1 + x2) (hU.right φ) (hV.right φ)
+ has type
+  ⟪U 2, (SmoothField.toL2 D) φ.field⟫_ℝ + ⟪V 2, (SmoothField.toL2 D) φ.field⟫_ℝ =
+    -⟪U 0, (SmoothField.toL2 D) (smoothPartial 1 φ.field)⟫_ℝ + -⟪V 0, (SmoothField.toL2 D) (smoothPartial 1 φ.field)⟫_ℝ
+but is expected to have type
+  ⟪U 2, (SmoothField.toL2 D) φ.field⟫_ℝ + ⟪V 2, (SmoothField.toL2 D) φ.field⟫_ℝ =
+    -⟪V 0, (SmoothField.toL2 D) (smoothPartial 1 φ.field)⟫_ℝ + -⟪U 0, (SmoothField.toL2 D) (smoothPartial 1 φ.field)⟫_ℝ
+LeanPML/Rectangle/WeakSpaces.lean:115:4: error: Tactic `apply` failed: could not unify the conclusion of `@isClosed_iInter`
+  IsClosed[?inst✝] (⋂ i, ?f i)
+with the goal
+  IsClosed fun U =>
+    ∀ (φ : TestFunction D),
+      ⟪U 1, (SmoothField.toL2 D) φ.field⟫_ℝ = -⟪U 0, (SmoothField.toL2 D) (smoothPartial 0 φ.field)⟫_ℝ
+
+Note: The full type of `@isClosed_iInter` is
+  ∀ {X : Type ?u.27} {ι : Sort ?u.26} [inst : TopologicalSpace X] {f : ι → Set X},
+    (∀ (i : ι), IsClosed (f i)) → IsClosed (⋂ i, f i)
+
+case h₁
+D : Rect
+⊢ IsClosed fun U =>
+    ∀ (φ : TestFunction D),
+      ⟪U 1, (SmoothField.toL2 D) φ.field⟫_ℝ = -⟪U 0, (SmoothField.toL2 D) (smoothPartial 0 φ.field)⟫_ℝ
+LeanPML/Rectangle/WeakSpaces.lean:115:4: error: Tactic `apply` failed: could not unify the conclusion of `@isClosed_iInter`
+  IsClosed[?inst✝] (⋂ i, ?f i)
+with the goal
+  IsClosed fun U =>
+    ∀ (φ : TestFunction D),
+      ⟪U 2, (SmoothField.toL2 D) φ.field⟫_ℝ = -⟪U 0, (SmoothField.toL2 D) (smoothPartial 1 φ.field)⟫_ℝ
+
+Note: The full type of `@isClosed_iInter` is
+  ∀ {X : Type ?u.27} {ι : Sort ?u.26} [inst : TopologicalSpace X] {f : ι → Set X},
+    (∀ (i : ι), IsClosed (f i)) → IsClosed (⋂ i, f i)
+
+case h₂
+D : Rect
+⊢ IsClosed fun U =>
+    ∀ (φ : TestFunction D),
+      ⟪U 2, (SmoothField.toL2 D) φ.field⟫_ℝ = -⟪U 0, (SmoothField.toL2 D) (smoothPartial 1 φ.field)⟫_ℝ
+LeanPML/Rectangle/WeakSpaces.lean:143:2: error: Tactic `apply` failed: could not unify the conclusion of `@isClosed_iInter`
+  IsClosed[?inst✝] (⋂ i, ?f i)
+with the goal
+  IsClosed
+    {U |
+      ∀ (φ : TestFunction D),
+        ⟪U 2, (SmoothField.toL2 D) φ.field⟫_ℝ =
+          -⟪U 0, (SmoothField.toL2 D) φ.field.derivativeX⟫_ℝ - ⟪U 1, (SmoothField.toL2 D) φ.field.derivativeY⟫_ℝ}
+
+Note: The full type of `@isClosed_iInter` is
+  ∀ {X : Type ?u.21} {ι : Sort ?u.20} [inst : TopologicalSpace X] {f : ι → Set X},
+    (∀ (i : ι), IsClosed (f i)) → IsClosed (⋂ i, f i)
+
+D : Rect
+⊢ IsClosed
+    {U |
+      ∀ (φ : TestFunction D),
+        ⟪U 2, (SmoothField.toL2 D) φ.field⟫_ℝ =
+          -⟪U 0, (SmoothField.toL2 D) φ.field.derivativeX⟫_ℝ - ⟪U 1, (SmoothField.toL2 D) φ.field.derivativeY⟫_ℝ}

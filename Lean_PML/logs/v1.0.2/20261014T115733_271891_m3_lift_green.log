@@ -1,0 +1,52 @@
+✖ [2997/2997] Building LeanPML.PML.LiftUniqueness (6.7s)
+trace: .> LEAN_PATH=/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Cli/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/batteries/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Qq/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/aesop/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/proofwidgets/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/importGraph/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/plausible/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/mathlib/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean /Users/wcli/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/LeanPML/PML/LiftUniqueness.lean -o /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/LiftUniqueness.olean -i /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/LiftUniqueness.ilean -c /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/LiftUniqueness.c --setup /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/LiftUniqueness.setup.json --json
+error: LeanPML/PML/LiftUniqueness.lean:70:26: Application type mismatch: The argument
+  contDiff_fst
+has type
+  ContDiff ?m.13 ?m.21 Prod.fst
+but is expected to have type
+  Prod.fst ∈ smoothFields
+in the application
+  ⟨Prod.fst, ⋯⟩
+error: LeanPML/PML/LiftUniqueness.lean:70:55: Application type mismatch: The argument
+  contDiff_snd
+has type
+  ContDiff ?m.26 ?m.34 Prod.snd
+but is expected to have type
+  Prod.snd ∈ smoothFields
+in the application
+  ⟨Prod.snd, ⋯⟩
+warning: LeanPML/PML/LiftUniqueness.lean:77:38: declaration uses `sorry`
+warning: LeanPML/PML/LiftUniqueness.lean:73:8: declaration uses `sorry`
+error: LeanPML/PML/LiftUniqueness.lean:92:28: Invalid field `mul_smooth`: The environment does not contain `Function.mul_smooth`, so it is not possible to project the field `mul_smooth` from an expression
+  hpartial
+of type
+  ∀ (φ : TestFunction D), ⟪0, (SmoothField.toL2 D) φ.field⟫_ℝ = -⟪f, (SmoothField.toL2 D) (smoothPartial i φ.field)⟫_ℝ
+error: LeanPML/PML/LiftUniqueness.lean:91:89: unsolved goals
+D : Rect
+i : Fin 2
+f : ↥(ScalarL2 D.measure)
+hpartial : HasWeakPartial D i f 0
+⊢ HasWeakPartial D i ((regionalBoundedOfSmooth D (coordinateField i)).operator f) f
+error: LeanPML/PML/LiftUniqueness.lean:146:4: linarith failed to find a contradiction
+D : Rect
+m : RegionalBounded D
+u : ↥(zeroBoundaryGraph D)
+i : Fin 2
+hm_nonneg : ∀ x ∈ D.openSet, 0 ≤ m.value x
+hpartial : HasWeakPartial D i (m.operator (↑↑u 0)) 0
+htransverse : m.operator (↑↑u (if i = 0 then 1 else 2)) = 0
+f : ↥(ScalarL2 D.measure) := m.operator (↑↑u 0)
+χ : RegionalBounded D := regionalBoundedOfSmooth D (coordinateField i)
+hcoordinate : HasWeakPartial D i (χ.operator f) f
+hpair : ⟪↑↑u 0, f⟫_ℝ = 0
+x : ℝ × ℝ
+hf : ↑↑(m.operator (↑↑u 0)) x = m.value x * ↑↑(↑↑u 0) x
+hx : x ∈ rectangleDomain D.xlo D.xhi D.ylo D.yhi
+a✝ : ↑↑(↑↑u 0) x * (m.value x * ↑↑(↑↑u 0) x) < 0 x
+⊢ False
+failed
+error: Lean exited with code 1
+Some required targets logged failures:
+- LeanPML.PML.LiftUniqueness
+error: build failed

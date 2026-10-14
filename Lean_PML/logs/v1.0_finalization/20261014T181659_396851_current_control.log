@@ -1,0 +1,12 @@
+LeanPML/PML/MainGeneralWeak.lean:120:85: error: Application type mismatch: The argument
+  ht
+has type
+  OriginalJet (V7ClosedCkCore.canonicalInterval hT)
+of sort `Type` but is expected to have type
+  ?m.293 ∈ Icc 0 T
+of sort `Prop` in the application
+  sharp_original_auxiliary_control O' J (A.initialX X) (A.initialY Y)
+    { ε_pos := hε, κ_pos := hκ, τ_pos := hτ, μ_pos := hμ, CP_pos := sharpPoincareConstant_pos D,
+      c_le_threshold := hsmall }
+    (Eq.trans (RawWeakRegionalAbsorption.initial_physical A X Y).left hX)
+    (Eq.trans (RawWeakRegionalAbsorption.initial_physical A X Y).right hY) hdeg ht

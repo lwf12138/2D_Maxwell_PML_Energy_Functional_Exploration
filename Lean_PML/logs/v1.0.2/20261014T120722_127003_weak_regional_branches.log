@@ -1,0 +1,27 @@
+LeanPML/PML/WeakRegionalAbsorption.lean:113:23: error(lean.invalidField): Invalid field `coe_operator`: The environment does not contain `LeanPML.Analysis.BoundedCoefficient.coe_operator`, so it is not possible to project the field `coe_operator` from an expression
+  A.spatial.pCoeff
+of type `BoundedCoefficient (ℝ × ℝ)`
+LeanPML/PML/WeakRegionalAbsorption.lean:115:11: error: Invalid rewrite argument: Expected an equality or iff proof or definition name, but `hk` is a proof of
+  x ∈ ?m.74
+LeanPML/PML/WeakRegionalAbsorption.lean:119:23: error(lean.invalidField): Invalid field `coe_operator`: The environment does not contain `LeanPML.Analysis.BoundedCoefficient.coe_operator`, so it is not possible to project the field `coe_operator` from an expression
+  A.spatial.rCoeff
+of type `BoundedCoefficient (ℝ × ℝ)`
+LeanPML/PML/WeakRegionalAbsorption.lean:121:11: error: Invalid rewrite argument: Expected an equality or iff proof or definition name, but `hk` is a proof of
+  x ∈ ?m.152
+LeanPML/PML/WeakRegionalAbsorption.lean:166:50: error: Application type mismatch: The argument
+  contDiff_const
+has type
+  ContDiff ?m.34 ?m.42 fun x => ?m.43
+but is expected to have type
+  (fun x => p) ∈ smoothFields
+in the application
+  ⟨fun x => p, ⋯⟩
+LeanPML/PML/WeakRegionalAbsorption.lean:167:50: error: Application type mismatch: The argument
+  contDiff_const
+has type
+  ContDiff ?m.47 ?m.55 fun x => ?m.56
+but is expected to have type
+  (fun x => r) ∈ smoothFields
+in the application
+  ⟨fun x => r, ⋯⟩
+LeanPML/PML/WeakRegionalAbsorption.lean:219:45: error(lean.unknownIdentifier): Unknown constant `Bool.true_eq_true`

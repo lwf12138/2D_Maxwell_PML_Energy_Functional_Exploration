@@ -1,0 +1,7 @@
+LocallyIntegrable.ae_hasDerivAt_integral {f : ℝ → ℝ} (hf : MeasureTheory.LocallyIntegrable f MeasureTheory.volume) :
+  ∀ᵐ (x : ℝ), ∀ (c : ℝ), HasDerivAt (fun x => ∫ (t : ℝ) in c..x, f t) (f x) x
+logs/v1.0_finalization/CheckAPI.lean:3:7: error(lean.unknownIdentifier): Unknown constant `MeasureTheory.LocallyIntegrable.ae_hasDerivAt_integral`
+logs/v1.0_finalization/CheckAPI.lean:4:7: error(lean.unknownIdentifier): Unknown constant `intervalIntegral.continuous_primitive`
+add_sub_add_left_eq_sub.{u_3} {G : Type u_3} [AddCommGroup G] (a b c : G) : c + a - (c + b) = a - b
+closure_Ioo.{u_1} {α : Type u_1} [TopologicalSpace α] [LinearOrder α] [OrderTopology α] [DenselyOrdered α] {a b : α}
+  (hab : a ≠ b) : closure (Set.Ioo a b) = Set.Icc a b

@@ -1,0 +1,10 @@
+{
+  "time": "2026-10-14T12:29:21.098418+08:00",
+  "status": "complete_in_declared_graph_closure_scope",
+  "reused_general_smooth_bridge": "LeanPML.Rectangle.smoothToWeakH1_mem_zeroBoundaryGraph",
+  "new_rough_product_bridge": "LeanPML.PML.weakCoefficientMul_mem_zeroBoundaryGraph",
+  "proof": "同一闭包；实际光滑卷积，函数及两偏导同时L2收敛；非输入逼近序列。",
+  "source_snapshot": "logs/v1.0.3/completion_20261014T122020/source_snapshot.json",
+  "verification": "logs/v1.0.3/completion_20261014T122020/verification_before_pdf.json",
+  "no_full_trace_kernel_characterization_claim": true
+}

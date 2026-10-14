@@ -1,0 +1,39 @@
+structure LeanPML.PML.SeparatedRegionalWeakCoefficients (D : LeanPML.Rectangle.Rect) : Type
+number of parameters: 1
+fields:
+  LeanPML.PML.SeparatedRegionalWeakCoefficients.p : LeanPML.PML.RegionalWeakCoefficient D
+  LeanPML.PML.SeparatedRegionalWeakCoefficients.r : LeanPML.PML.RegionalWeakCoefficient D
+  LeanPML.PML.SeparatedRegionalWeakCoefficients.profileX : ℝ → ℝ
+  LeanPML.PML.SeparatedRegionalWeakCoefficients.profileY : ℝ → ℝ
+  LeanPML.PML.SeparatedRegionalWeakCoefficients.p_separated : ∀ z ∈ D.openSet, self.p.value.value z = self.profileX z.1
+  LeanPML.PML.SeparatedRegionalWeakCoefficients.r_separated : ∀ z ∈ D.openSet, self.r.value.value z = self.profileY z.2
+constructor:
+  LeanPML.PML.SeparatedRegionalWeakCoefficients.mk {D : LeanPML.Rectangle.Rect}
+    (p r : LeanPML.PML.RegionalWeakCoefficient D) (profileX profileY : ℝ → ℝ)
+    (p_separated : ∀ z ∈ D.openSet, p.value.value z = profileX z.1)
+    (r_separated : ∀ z ∈ D.openSet, r.value.value z = profileY z.2) : LeanPML.PML.SeparatedRegionalWeakCoefficients D
+LeanPML.PML.weak_lift_difference_zero (D : LeanPML.Rectangle.Rect) (m : LeanPML.PML.SeparatedRegionalWeakCoefficients D)
+  (g : ↥(LeanPML.Rectangle.zeroBoundaryGraph D)) (hp_continuous : ContinuousOn m.p.value.value D.openSet)
+  (hr_continuous : ContinuousOn m.r.value.value D.openSet) (hp_nonneg : ∀ x ∈ D.openSet, 0 ≤ m.p.value.value x)
+  (hr_nonneg : ∀ x ∈ D.openSet, 0 ≤ m.r.value.value x) (hp_dy : m.p.value.operator (↑↑g 2) = 0)
+  (hr_dx : m.r.value.operator (↑↑g 1) = 0)
+  (hzero_zone :
+    ∀ᵐ (x : ℝ × ℝ) ∂D.measure, m.p.value.value x + m.r.value.value x = 0 → ↑↑(↑↑g 1) x = 0 ∧ ↑↑(↑↑g 2) x = 0) :
+  g = 0
+'LeanPML.Rectangle.HasWeakPartial.zero_on_open' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.Rectangle.weakGradient_zero_on_open' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.Rectangle.weak_zero_of_open_value_and_complement_gradient' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'LeanPML.PML.hasWeakPartial_y_of_separated_x' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.hasWeakPartial_x_of_separated_y' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.SeparatedRegionalWeakCoefficients.transverse_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'LeanPML.PML.separatedWeakOneZero_transverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.weak_zero_of_coefficient_products' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.HasWeakPartial.mul_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.coordinate_mul_partial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.coefficient_product_zero_of_transverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.regional_operator_zero_of_toL2_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanPML.PML.weak_lift_difference_zero' depends on axioms: [propext, Classical.choice, Quot.sound]

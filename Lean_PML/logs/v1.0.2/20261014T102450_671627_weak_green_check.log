@@ -1,0 +1,24 @@
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+LeanPML/Rectangle/WeakGreen.lean:23:19: error: unsolved goals
+D : Rect
+L : ↥(weakHDivGraph D)
+c : ℝ
+U : ↥(weakH1Graph D)
+⊢ c * ⟪↑U 1, ↑L 0⟫_ℝ + c * ⟪↑U 2, ↑L 1⟫_ℝ + c * ⟪↑U 0, ↑L 2⟫_ℝ =
+    ⟪↑U 1, ↑L 0⟫_ℝ * (RingHom.id ℝ) c + ⟪↑U 2, ↑L 1⟫_ℝ * (RingHom.id ℝ) c + ⟪↑U 0, ↑L 2⟫_ℝ * (RingHom.id ℝ) c
+LeanPML/Rectangle/WeakGreen.lean:67:68: error: Application type mismatch: The argument
+  Eq.symm hU
+has type
+  ↑v = (weakValue D ∘ₗ (zeroBoundaryGraph D).subtype) U
+but is expected to have type
+  (Submodule.inclusion ⋯) v = ?m.84
+in the application
+  Eq.trans
+    (LinearEquiv.apply_symm_apply (LinearEquiv.ofInjective (weakValue D) (weakValue_injective D))
+      ((Submodule.inclusion (weakZeroFieldDomain_le D)) v))
+    (Eq.symm hU)

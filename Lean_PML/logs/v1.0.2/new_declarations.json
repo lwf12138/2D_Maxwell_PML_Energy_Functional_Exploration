@@ -1,0 +1,20 @@
+[
+  "LeanPML.Rectangle.weakGreenFunctional_continuous",
+  "LeanPML.Rectangle.weak_green",
+  "LeanPML.Rectangle.weakZeroLift_value",
+  "LeanPML.Rectangle.weak_green_domain",
+  "LeanPML.Rectangle.weakGreenDomain",
+  "LeanPML.Rectangle.span_test_has_smooth_zeroBoundary",
+  "LeanPML.Rectangle.weak_poincare",
+  "LeanPML.Rectangle.weak_zero_of_gradient_zero",
+  "LeanPML.Rectangle.weak_poincare_domain",
+  "LeanPML.Rectangle.weakPoincareDomain",
+  "LeanPML.Rectangle.hasDerivAt_weakH1_coordinate",
+  "LeanPML.Rectangle.hasDerivAt_weakHDiv_coordinate",
+  "LeanPML.PML.auxiliary_memory_formula",
+  "LeanPML.PML.auxiliary_zero_absorption_preserved",
+  "LeanPML.Examples.WeakAnalysis.nonzero_green",
+  "LeanPML.Examples.WeakAnalysis.nonzero_poincare",
+  "LeanPML.Examples.WeakAnalysis.nonzero_graph_path_derivative",
+  "LeanPML.Examples.WeakAnalysis.exponential_memory"
+]

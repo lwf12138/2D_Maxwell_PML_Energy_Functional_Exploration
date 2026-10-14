@@ -1,0 +1,11 @@
+import LeanPML.Rectangle.SmoothWeakClosure
+
+#print LeanPML.Rectangle.smoothToWeakH1_mem_zeroBoundaryGraph
+#check LeanPML.Rectangle.cutoffSequence_toL2_convergence
+#check LeanPML.Rectangle.rectangleBubble_weakH01
+#check LeanPML.Rectangle.smooth_trace_zero_mem_weakZeroFieldDomain
+#print axioms LeanPML.Rectangle.cutoffSequence_toL2_convergence
+#print axioms LeanPML.Rectangle.smoothToWeakH1_mem_zeroBoundaryGraph
+#print axioms LeanPML.Rectangle.rectangleBubble_weakH01
+#print axioms LeanPML.Rectangle.smooth_zero_mem_weakZeroFieldDomain
+#print axioms LeanPML.Rectangle.smooth_trace_zero_mem_weakZeroFieldDomain

@@ -1,0 +1,81 @@
+LeanPML/PML/WeightedForcing.lean:63:54: error: don't know how to synthesize placeholder for argument `hbound`
+context:
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+w m : α → ℝ
+hw : Measurable w
+hm : Measurable m
+hw_nonneg : ∀ (x : α), 0 ≤ w x
+B : ℝ
+hB_nonneg : 0 ≤ B
+hbound : ∀ (x : α), w x * m x ^ 2 ≤ B
+g : ↥(ScalarL2 ν)
+⊢ ∀ (x : α), |√(w x) * m x| ≤ √B
+LeanPML/PML/WeightedForcing.lean:63:50: error: don't know how to synthesize placeholder for argument `hm`
+context:
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+w m : α → ℝ
+hw : Measurable w
+hm : Measurable m
+hw_nonneg : ∀ (x : α), 0 ≤ w x
+B : ℝ
+hB_nonneg : 0 ≤ B
+hbound : ∀ (x : α), w x * m x ^ 2 ≤ B
+g : ↥(ScalarL2 ν)
+⊢ Measurable fun x => √(w x) * m x
+LeanPML/PML/WeightedForcing.lean:61:21: error: unsolved goals
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+w m : α → ℝ
+hw : Measurable w
+hm : Measurable m
+hw_nonneg : ∀ (x : α), 0 ≤ w x
+B : ℝ
+hB_nonneg : 0 ≤ B
+hbound : ∀ (x : α), w x * m x ^ 2 ≤ B
+g : ↥(ScalarL2 ν)
+⊢ ‖(weightedForcing ν w m hw hm hw_nonneg B hB_nonneg hbound) g‖ ^ 2 ≤ B * ‖g‖ ^ 2
+LeanPML/PML/WeightedForcing.lean:110:36: error: Application type mismatch: The argument
+  p
+has type
+  ℝ
+of sort `Type` but is expected to have type
+  0 ≤ ?m.146
+of sort `Prop` in the application
+  mul_nonneg ?m.153 p
+LeanPML/PML/WeightedForcing.lean:112:36: error: Application type mismatch: The argument
+  r
+has type
+  ℝ
+of sort `Type` but is expected to have type
+  0 ≤ ?m.182
+of sort `Prop` in the application
+  mul_nonneg ?m.189 r
+LeanPML/PML/WeightedForcing.lean:119:28: error: Application type mismatch: The argument
+  r
+has type
+  ℝ
+of sort `Type` but is expected to have type
+  0 ≤ ?m.239
+of sort `Prop` in the application
+  mul_nonneg r
+LeanPML/PML/WeightedForcing.lean:124:28: error: Application type mismatch: The argument
+  r
+has type
+  ℝ
+of sort `Type` but is expected to have type
+  0 ≤ ?m.284
+of sort `Prop` in the application
+  mul_nonneg r
+LeanPML/PML/WeightedForcing.lean:140:28: error: Application type mismatch: The argument
+  r
+has type
+  ℝ
+of sort `Type` but is expected to have type
+  0 ≤ ?m.163
+of sort `Prop` in the application
+  mul_nonneg ?m.166 r

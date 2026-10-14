@@ -1,0 +1,19 @@
+{
+  "stage": "v1.0_completion",
+  "command": [
+    "lake",
+    "build",
+    "LeanPML.Rectangle.SharpParameterCertificate",
+    "LeanPML.PML.MainSharpWeakRectangle"
+  ],
+  "command_display": "lake build LeanPML.Rectangle.SharpParameterCertificate LeanPML.PML.MainSharpWeakRectangle",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-14T16:54:56.579168+08:00",
+  "output_file": "20261014T165456_579168_sharp_parameter_build.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 1,
+  "status": "finished",
+  "ended_at": "2026-10-14T16:55:07.188102+08:00",
+  "elapsed_seconds": 10.608
+}

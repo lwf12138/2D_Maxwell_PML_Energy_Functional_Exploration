@@ -1,0 +1,30 @@
+LeanPML/Analysis/MultiplierExponential.lean:69:14: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ↑↑(↑((weightedFunctional ν w C m hm F) X) + ↑((weightedFunctional ν w C m hm G) X)) x
+in the target expression
+  (F + G) (m x) * ↑↑↑X x = ↑↑(↑(↑(weightedFunctional ν w C m hm F) X) + ↑(↑(weightedFunctional ν w C m hm G) X)) x
+
+α : Type u_1
+inst✝ : MeasurableSpace α
+ν : Measure α
+w : α → ℝ
+C : ℝ
+m : α → ↑(Set.Icc (-C) C)
+hm : Measurable m
+F G : C(↑(Set.Icc (-C) C), ℝ)
+X : ↥(WeightedL2 ν w)
+x : α
+hsum : ↑↑↑((weightedFunctional ν w C m hm (F + G)) X) x = (F + G) (m x) * ↑↑↑X x
+hF : ↑↑↑((weightedFunctional ν w C m hm F) X) x = F (m x) * ↑↑↑X x
+hG : ↑↑↑((weightedFunctional ν w C m hm G) X) x = G (m x) * ↑↑↑X x
+hadd :
+  ↑↑(↑((weightedFunctional ν w C m hm F) X) + ↑((weightedFunctional ν w C m hm G) X)) x =
+    (↑↑↑((weightedFunctional ν w C m hm F) X) + ↑↑↑((weightedFunctional ν w C m hm G) X)) x
+⊢ (F + G) (m x) * ↑↑↑X x = ↑↑(↑(↑(weightedFunctional ν w C m hm F) X) + ↑(↑(weightedFunctional ν w C m hm G) X)) x
+LeanPML/Analysis/MultiplierExponential.lean:105:63: error: Application type mismatch: The argument
+  hbound
+has type
+  ∀ (F : C(↑(Set.Icc (-C) C), ℝ)), ‖representation F‖ ≤ 1 * ‖F‖
+but is expected to have type
+  ∀ (x : ?m.125), ‖?m.115 x‖ ≤ 1 * ‖x‖
+in the application
+  LinearMap.mkContinuous ?m.115 1 hbound

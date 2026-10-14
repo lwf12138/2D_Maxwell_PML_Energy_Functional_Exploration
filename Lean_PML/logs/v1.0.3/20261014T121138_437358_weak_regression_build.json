@@ -1,0 +1,18 @@
+{
+  "stage": "v1.0.3",
+  "command": [
+    "lake",
+    "build",
+    "LeanPML.Examples.WeakObstructionRegression"
+  ],
+  "command_display": "lake build LeanPML.Examples.WeakObstructionRegression",
+  "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+  "executable": "/Users/wcli/.elan/bin/lake",
+  "started_at": "2026-10-14T12:11:38.437358+08:00",
+  "output_file": "20261014T121138_437358_weak_regression_build.log",
+  "output_mode": "stdout and stderr merged, raw bytes",
+  "exit_code": 1,
+  "status": "finished",
+  "ended_at": "2026-10-14T12:11:50.465177+08:00",
+  "elapsed_seconds": 12.027
+}

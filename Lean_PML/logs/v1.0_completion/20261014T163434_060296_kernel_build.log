@@ -1,0 +1,118 @@
+⚠ [2854/2962] Replayed LeanPML.Analysis.OperatorMemory
+warning: LeanPML/Analysis/OperatorMemory.lean:45:15: `ContinuousLinearMap.mul_apply` has been deprecated: Use `mul_apply_eq_comp` instead
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.mul_apply` to `mul_apply_eq_comp x`).
+ℹ [3003/3014] Replayed LeanPML.PML.WeakOriginalSystem
+info: LeanPML/PML/WeakOriginalSystem.lean:187:4: Try this:
+  [apply] abel_nf
+⚠ [3004/3014] Replayed LeanPML.PML.WeakPrimitiveSystem
+warning: LeanPML/PML/WeakPrimitiveSystem.lean:94:23: This simp argument is unused:
+  smul_sub
+
+Hint: Omit it from the simp argument list.
+  simp only [smul_add, s̵m̵u̵l̵_̵s̵u̵b̵,̵ ̵neg_smul, sub_neg_eq_add] at hmain ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/WeakPrimitiveSystem.lean:112:34: This simp argument is unused:
+  map_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [map_sub, map_smul, m̵a̵p̵_̵n̵e̵g̵,̵ ̵smul_sub, neg_smul, neg_neg]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/WeakPrimitiveSystem.lean:112:63: This simp argument is unused:
+  neg_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [map_sub, map_smul, map_neg, smul_sub, neg_smul,̵ ̵n̵e̵g̵_̵n̵e̵g̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanPML/PML/WeakPrimitiveSystem.lean:120:63: This simp argument is unused:
+  neg_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [map_sub, map_smul, map_neg, smul_sub, neg_smul,̵ ̵n̵e̵g̵_̵n̵e̵g̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [3011/3014] Replayed LeanPML.PML.WeakPathAssembly
+warning: LeanPML/PML/WeakPathAssembly.lean:183:13: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/WeakPathAssembly.lean:184:14: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/WeakPathAssembly.lean:185:11: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanPML/PML/WeakPathAssembly.lean:186:17: Variable name `t` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [3013/3014] Built LeanPML.Analysis.MultiplierExponential (22s)
+✖ [3014/3014] Building LeanPML.PML.AuxiliaryScalarMemory (8.9s)
+trace: .> LEAN_PATH=/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Cli/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/batteries/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/Qq/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/aesop/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/proofwidgets/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/importGraph/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/plausible/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/packages/mathlib/.lake/build/lib/lean:/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean /Users/wcli/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/LeanPML/PML/AuxiliaryScalarMemory.lean -o /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/AuxiliaryScalarMemory.olean -i /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/lib/lean/LeanPML/PML/AuxiliaryScalarMemory.ilean -c /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/AuxiliaryScalarMemory.c --setup /Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML/.lake/build/ir/LeanPML/PML/AuxiliaryScalarMemory.setup.json --json
+warning: LeanPML/PML/AuxiliaryScalarMemory.lean:25:0: automatically included section variable(s) unused in theorem `LeanPML.PML.SpatialAbsorption.dampingKernel_eq_scalarKernel`:
+  [Nonempty α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Nonempty α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: LeanPML/PML/AuxiliaryScalarMemory.lean:63:0: automatically included section variable(s) unused in theorem `LeanPML.PML.SpatialAbsorption.scalarKernel_physical_ae`:
+  [Nonempty α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Nonempty α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: LeanPML/PML/AuxiliaryScalarMemory.lean:78:0: automatically included section variable(s) unused in theorem `LeanPML.PML.SpatialAbsorption.physical_scalarKernel`:
+  [Nonempty α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Nonempty α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: LeanPML/PML/AuxiliaryScalarMemory.lean:109:25: Invalid field `continuousLinearMap`: The environment does not contain `And.continuousLinearMap`, so it is not possible to project the field `continuousLinearMap` from an expression
+  hmemory.left
+of type
+  IntegrableOn (fun s => (scalarKernel ν C (s - t)) ((differenceLift ν C) (h s))) (Ioc 0 t) volume ∧
+    IntegrableOn (fun s => (scalarKernel ν C (s - t)) ((differenceLift ν C) (h s))) (Ioc t 0) volume
+error: LeanPML/PML/AuxiliaryScalarMemory.lean:102:67: unsolved goals
+α : Type u_1
+inst✝¹ : MeasurableSpace α
+inst✝ : Nonempty α
+ν : Measure α
+C : SpatialAbsorption α
+W₀ : ↥(WeightedL2 ν C.wx)
+φ h l : ℝ → ↥(ScalarL2 ν)
+T : ℝ
+hφ : ContinuousOn φ (Icc 0 T)
+hh : ContinuousOn h (Icc 0 T)
+hl : ContinuousOn l (Icc 0 T)
+hinitial : (physicalL2 ν C.wx ⋯ ⋯) W₀ = φ 0
+hODE : ∀ s ∈ Ioo 0 T, HasDerivAt φ ((C.rCoeff.operator ν) (h s) - (C.pCoeff.operator ν) (l s)) s
+hspace : ∀ s ∈ Icc 0 T, l s = h s + φ s
+t : ℝ
+ht : t ∈ Icc 0 T
+this : CompleteSpace ↥(WeightedL2 ν C.wx) := weighted_completeSpace ν C.wx (wx_measurable C)
+recovery : ↥(WeightedL2 ν C.wx) →L[ℝ] ↥(ScalarL2 ν) := physicalL2 ν C.wx ⋯ ⋯
+hmemory :
+  IntervalIntegrable (fun s => (scalarKernel ν C (s - t)) ((differenceLift ν C) (h s))) volume 0 t ∧
+    auxiliaryWeightedHistory ν C W₀ h l t = scalarMemory ν C W₀ h t
+hphysical : (physicalL2 ν C.wx ⋯ ⋯) (auxiliaryWeightedHistory ν C W₀ h l t) = φ t
+hcommute :
+  ∫ (x : ℝ) in 0..t, recovery ((scalarKernel ν C (x - t)) ((differenceLift ν C) (h x))) =
+    recovery (∫ (x : ℝ) in 0..t, (scalarKernel ν C (x - t)) ((differenceLift ν C) (h x)))
+⊢ IntervalIntegrable (fun s => (scalarKernelL2 ν C (s - t)) ((C.rCoeff.operator ν) (h s) - (C.pCoeff.operator ν) (h s)))
+      volume 0 t ∧
+    φ t =
+      (scalarKernelL2 ν C (-t)) (φ 0) +
+        ∫ (s : ℝ) in 0..t, (scalarKernelL2 ν C (s - t)) ((C.rCoeff.operator ν) (h s) - (C.pCoeff.operator ν) (h s))
+error: Lean exited with code 1
+Some required targets logged failures:
+- LeanPML.PML.AuxiliaryScalarMemory
+error: build failed

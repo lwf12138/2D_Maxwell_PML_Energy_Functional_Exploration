@@ -1,0 +1,600 @@
+{
+  "pages": 18,
+  "modified_pages": [
+    4,
+    9,
+    10,
+    11,
+    14,
+    16
+  ],
+  "before_sha256": "d37a6939f5235a6d1d3becd6a88230d28e515dc511348da676588f70c0acf487",
+  "after_sha256": "667d475bbc8bd4912f8d04f54d0c0288a7dac95f3671d68114641cecadd0c4dd",
+  "old_annotations": 215,
+  "new_annotations": 221,
+  "added_ticks": 4,
+  "added_notes": 2,
+  "original_text_preserved": true,
+  "old_annotations_preserved": true,
+  "overlap_check": "passed",
+  "visual_review": "passed: all 6 modified pages inspected",
+  "entries": [
+    {
+      "id": "weak-history-invariants",
+      "page": 4,
+      "printed_page": "4",
+      "x": 42,
+      "top": 758,
+      "font_size": 7.3,
+      "formula": "(2.3)–(2.6) 原→primitive 部分",
+      "lines": [
+        "v1.0 (2.3)–(2.6)：弱原八式的实际历史、五不变量及兼容保持。",
+        "图空间时间导数；内部 PDE；含 T=0。此勾覆盖原系统 → primitive。"
+      ],
+      "modules": [
+        "LeanPML/PML/WeakOriginalSystem.lean",
+        "LeanPML/PML/WeakPrimitiveSystem.lean"
+      ],
+      "theorems": [
+        "LeanPML.PML.Weak.historyU_hasDerivAt",
+        "LeanPML.PML.Weak.all_invariants_eq_initial",
+        "LeanPML.PML.Weak.OriginalInterval.reconstruction",
+        "LeanPML.PML.Weak.OriginalInterval.primitive_main"
+      ],
+      "scope": "实际Bochner历史、五个L²不变量及初始零兼容保持；不以此宣称任意低正则双向等价。",
+      "tick": true,
+      "type": "实际弱空间原系统结论",
+      "conditions": "真实 H₀¹/H(div) 图路径、原八式与初始兼容、区域弱系数连续代表、明确时间 jet；保守 C_P=2Lx。",
+      "remaining": "最优π常数、最低正则性与一般存在唯一性未证明；旧光滑批注保留。",
+      "rect_top": [
+        41,
+        756,
+        279.584228515625,
+        776.8
+      ],
+      "build_audit": {
+        "build": {
+          "metadata": "logs/v1.0.3/20261014T121921_205678_lake_build.json",
+          "log": "logs/v1.0.3/20261014T121921_205678_lake_build.log",
+          "exit_code": 0,
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "command": [
+            "lake",
+            "build"
+          ]
+        },
+        "audit": {
+          "metadata": "logs/v1.0.3/20261014T122038_234964_axioms_audit.json",
+          "log": "logs/v1.0.3/20261014T122038_234964_axioms_audit.log",
+          "exit_code": 0,
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "command": [
+            "lake",
+            "env",
+            "lean",
+            "Audit.lean"
+          ]
+        },
+        "v102_build": {
+          "metadata": "logs/v1.0.2/20261014T122020_722023_lake_build.json",
+          "log": "logs/v1.0.2/20261014T122020_722023_lake_build.log",
+          "exit_code": 0,
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "command": [
+            "lake",
+            "build"
+          ]
+        },
+        "v102_audit": {
+          "metadata": "logs/v1.0.2/20261014T122024_703113_axioms_audit.json",
+          "log": "logs/v1.0.2/20261014T122024_703113_axioms_audit.log",
+          "exit_code": 0,
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "command": [
+            "lake",
+            "env",
+            "lean",
+            "Audit.lean"
+          ]
+        },
+        "types": {
+          "metadata": "logs/v1.0.3/20261014T122040_030951_final_type_review.json",
+          "log": "logs/v1.0.3/20261014T122040_030951_final_type_review.log",
+          "exit_code": 0,
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "command": [
+            "lake",
+            "env",
+            "lean",
+            "logs/v1.0.3/completion_20261014T122020/TypeReview.lean"
+          ]
+        }
+      },
+      "source_hashes": {
+        "LeanPML/PML/WeakOriginalSystem.lean": "4c826376875bcef033d80dd7bda714461f2468643ab0d549990e9573bb90819d",
+        "LeanPML/PML/WeakPrimitiveSystem.lean": "04cfb59b99dffc073c0ea73326b4a9edaac81f014558091a48b37f90126f2150"
+      }
+    },
+    {
+      "id": "weak-lift-unique",
+      "page": 9,
+      "printed_page": "9",
+      "x": 42,
+      "top": 282,
+      "font_size": 7.3,
+      "formula": "§5.3 原函数规范唯一性（未编号）",
+      "lines": [
+        "v1.0 §5.3：同一原状态的弱提升唯一，能量选择无关。",
+        "分离区域 W¹,∞ 连续代表；H₀¹ 图闭包；L² 等价类意义。"
+      ],
+      "modules": [
+        "LeanPML/PML/LiftUniqueness.lean",
+        "LeanPML/PML/WeakLiftCompatibility.lean",
+        "LeanPML/PML/WeakCanonicalEnergy.lean"
+      ],
+      "theorems": [
+        "LeanPML.PML.weak_lift_difference_zero",
+        "LeanPML.PML.Weak.CompatibleLift.u_unique",
+        "LeanPML.PML.Weak.CompatibleLift.energy_independent",
+        "LeanPML.PML.Weak.CompatibleLift.twoLayerEnergy_independent",
+        "LeanPML.PML.Weak.OriginalInterval.historical_energy_independent"
+      ],
+      "scope": "两份合法提升对应同一原状态；从重构推出横向差值与零区条件，弱Green/局部性/Poincaré消去；不读取商类任意点值。",
+      "tick": true,
+      "type": "实际弱空间原系统结论",
+      "conditions": "真实 H₀¹/H(div) 图路径、原八式与初始兼容、区域弱系数连续代表、明确时间 jet；保守 C_P=2Lx。",
+      "remaining": "最优π常数、最低正则性与一般存在唯一性未证明；旧光滑批注保留。",
+      "rect_top": [
+        41,
+        280,
+        236.79296875,
+        300.8
+      ],
+      "build_audit": {
+        "build": {
+          "metadata": "logs/v1.0.3/20261014T121921_205678_lake_build.json",
+          "log": "logs/v1.0.3/20261014T121921_205678_lake_build.log",
+          "exit_code": 0,
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "command": [
+            "lake",
+            "build"
+          ]
+        },
+        "audit": {
+          "metadata": "logs/v1.0.3/20261014T122038_234964_axioms_audit.json",
+          "log": "logs/v1.0.3/20261014T122038_234964_axioms_audit.log",
+          "exit_code": 0,
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "command": [
+            "lake",
+            "env",
+            "lean",
+            "Audit.lean"
+          ]
+        },
+        "v102_build": {
+          "metadata": "logs/v1.0.2/20261014T122020_722023_lake_build.json",
+          "log": "logs/v1.0.2/20261014T122020_722023_lake_build.log",
+          "exit_code": 0,
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "command": [
+            "lake",
+            "build"
+          ]
+        },
+        "v102_audit": {
+          "metadata": "logs/v1.0.2/20261014T122024_703113_axioms_audit.json",
+          "log": "logs/v1.0.2/20261014T122024_703113_axioms_audit.log",
+          "exit_code": 0,
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "command": [
+            "lake",
+            "env",
+            "lean",
+            "Audit.lean"
+          ]
+        },
+        "types": {
+          "metadata": "logs/v1.0.3/20261014T122040_030951_final_type_review.json",
+          "log": "logs/v1.0.3/20261014T122040_030951_final_type_review.log",
+          "exit_code": 0,
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "command": [
+            "lake",
+            "env",
+            "lean",
+            "logs/v1.0.3/completion_20261014T122020/TypeReview.lean"
+          ]
+        }
+      },
+      "source_hashes": {
+        "LeanPML/PML/LiftUniqueness.lean": "0aa92314b0301de74880e00bb1cc5a93b5b63f8881dbcdb23386b7005106f831",
+        "LeanPML/PML/WeakLiftCompatibility.lean": "e98e0f565dce6fe3d2a06d9480b91a3a834d91815789572156a357912bc4970c",
+        "LeanPML/PML/WeakCanonicalEnergy.lean": "9bd093a427d161bbc90084f8ebbfa179071224a4c422253043866f10b0010c72"
+      }
+    },
+    {
+      "id": "weak-main",
+      "page": 10,
+      "printed_page": "10",
+      "x": 42,
+      "top": 502,
+      "font_size": 7.3,
+      "formula": "定理6.1与(6.7)–(6.10)",
+      "lines": [
+        "v1.0 (6.7)–(6.10)：弱原八式 → 图范数界、耗散闭合、单调与积分平衡。",
+        "保守 C_P=2Lx；区域连续代表及时间 jet 正则性；非适定性或最低正则性。"
+      ],
+      "modules": [
+        "LeanPML/PML/MainWeakRectangle.lean",
+        "LeanPML/PML/WeakFiniteProblem.lean",
+        "LeanPML/PML/WeakCanonicalEnergy.lean"
+      ],
+      "theorems": [
+        "LeanPML.PML.Weak.OriginalInterval.main_energy_estimate_WeakOriginal",
+        "LeanPML.PML.Weak.main_energy_estimate_RegionalWeak",
+        "LeanPML.PML.Weak.OriginalInterval.magnetic_reconstruction",
+        "LeanPML.PML.Weak.RegionalIntegrals.energy_integrable_and_eq",
+        "LeanPML.PML.Weak.RegionalIntegrals.dissipation_integrable_and_eq"
+      ],
+      "scope": "真实原八式→内部HasDerivAt及精确剩余耗散；闭区间图界、非负、单调、可积性/FTC、原EHP界。不是一般弱解或精确π常数版本。",
+      "tick": true,
+      "type": "实际弱空间原系统结论",
+      "conditions": "真实 H₀¹/H(div) 图路径、原八式与初始兼容、区域弱系数连续代表、明确时间 jet；保守 C_P=2Lx。",
+      "remaining": "最优π常数、最低正则性与一般存在唯一性未证明；旧光滑批注保留。",
+      "rect_top": [
+        41,
+        500,
+        298.718212890625,
+        520.8
+      ],
+      "build_audit": {
+        "build": {
+          "metadata": "logs/v1.0.3/20261014T121921_205678_lake_build.json",
+          "log": "logs/v1.0.3/20261014T121921_205678_lake_build.log",
+          "exit_code": 0,
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "command": [
+            "lake",
+            "build"
+          ]
+        },
+        "audit": {
+          "metadata": "logs/v1.0.3/20261014T122038_234964_axioms_audit.json",
+          "log": "logs/v1.0.3/20261014T122038_234964_axioms_audit.log",
+          "exit_code": 0,
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "command": [
+            "lake",
+            "env",
+            "lean",
+            "Audit.lean"
+          ]
+        },
+        "v102_build": {
+          "metadata": "logs/v1.0.2/20261014T122020_722023_lake_build.json",
+          "log": "logs/v1.0.2/20261014T122020_722023_lake_build.log",
+          "exit_code": 0,
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "command": [
+            "lake",
+            "build"
+          ]
+        },
+        "v102_audit": {
+          "metadata": "logs/v1.0.2/20261014T122024_703113_axioms_audit.json",
+          "log": "logs/v1.0.2/20261014T122024_703113_axioms_audit.log",
+          "exit_code": 0,
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "command": [
+            "lake",
+            "env",
+            "lean",
+            "Audit.lean"
+          ]
+        },
+        "types": {
+          "metadata": "logs/v1.0.3/20261014T122040_030951_final_type_review.json",
+          "log": "logs/v1.0.3/20261014T122040_030951_final_type_review.log",
+          "exit_code": 0,
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "command": [
+            "lake",
+            "env",
+            "lean",
+            "logs/v1.0.3/completion_20261014T122020/TypeReview.lean"
+          ]
+        }
+      },
+      "source_hashes": {
+        "LeanPML/PML/MainWeakRectangle.lean": "3a6eb1c9647783030b310691dce4c075e9376d9d4647d0dcafd93850f67acab1",
+        "LeanPML/PML/WeakFiniteProblem.lean": "240d03114ea5e42fcb1ef100d5bb727c8b1748e7e492b83d57ca89045c1d5a4f",
+        "LeanPML/PML/WeakCanonicalEnergy.lean": "9bd093a427d161bbc90084f8ebbfa179071224a4c422253043866f10b0010c72"
+      }
+    },
+    {
+      "id": "weak-balance-connection",
+      "page": 11,
+      "printed_page": "11",
+      "x": 42,
+      "top": 202,
+      "font_size": 7.3,
+      "formula": "(7.5)–(7.8) 弱接口接入说明",
+      "lines": [
+        "v1.0：弱 Green 与同源图路径已接入 (7.6)–(7.8)，见第10页范围。",
+        "旧“弱主定理未完成”为历史；新红勾仅指旁注所列的已证版本。"
+      ],
+      "modules": [
+        "LeanPML/PML/WeakPathAssembly.lean",
+        "LeanPML/PML/WeakFiniteProblem.lean"
+      ],
+      "theorems": [
+        "LeanPML.PML.Weak.OriginalInterval.base_evolution",
+        "LeanPML.PML.Weak.OriginalInterval.first_evolution",
+        "LeanPML.PML.Weak.OriginalInterval.main_energy_estimate_WeakOriginal"
+      ],
+      "scope": "旧弱Green已证明；本轮同源路径和原层演化填入实际空间能量链。无额外弱法向迹构造声明。",
+      "tick": false,
+      "type": "接口接入范围说明",
+      "conditions": "真实 H₀¹/H(div) 图路径、原八式与初始兼容、区域弱系数连续代表、明确时间 jet；保守 C_P=2Lx。",
+      "remaining": "最优π常数、最低正则性与一般存在唯一性未证明；旧光滑批注保留。",
+      "rect_top": [
+        41,
+        200,
+        256.36103515625,
+        220.8
+      ],
+      "build_audit": {
+        "build": {
+          "metadata": "logs/v1.0.3/20261014T121921_205678_lake_build.json",
+          "log": "logs/v1.0.3/20261014T121921_205678_lake_build.log",
+          "exit_code": 0,
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "command": [
+            "lake",
+            "build"
+          ]
+        },
+        "audit": {
+          "metadata": "logs/v1.0.3/20261014T122038_234964_axioms_audit.json",
+          "log": "logs/v1.0.3/20261014T122038_234964_axioms_audit.log",
+          "exit_code": 0,
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "command": [
+            "lake",
+            "env",
+            "lean",
+            "Audit.lean"
+          ]
+        },
+        "v102_build": {
+          "metadata": "logs/v1.0.2/20261014T122020_722023_lake_build.json",
+          "log": "logs/v1.0.2/20261014T122020_722023_lake_build.log",
+          "exit_code": 0,
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "command": [
+            "lake",
+            "build"
+          ]
+        },
+        "v102_audit": {
+          "metadata": "logs/v1.0.2/20261014T122024_703113_axioms_audit.json",
+          "log": "logs/v1.0.2/20261014T122024_703113_axioms_audit.log",
+          "exit_code": 0,
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "command": [
+            "lake",
+            "env",
+            "lean",
+            "Audit.lean"
+          ]
+        },
+        "types": {
+          "metadata": "logs/v1.0.3/20261014T122040_030951_final_type_review.json",
+          "log": "logs/v1.0.3/20261014T122040_030951_final_type_review.log",
+          "exit_code": 0,
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "command": [
+            "lake",
+            "env",
+            "lean",
+            "logs/v1.0.3/completion_20261014T122020/TypeReview.lean"
+          ]
+        }
+      },
+      "source_hashes": {
+        "LeanPML/PML/WeakPathAssembly.lean": "823972071840411316866ddbddc1d3c5b9c1ce6ba93a82091b275ea6f04b7de7",
+        "LeanPML/PML/WeakFiniteProblem.lean": "240d03114ea5e42fcb1ef100d5bb727c8b1748e7e492b83d57ca89045c1d5a4f"
+      }
+    },
+    {
+      "id": "weak-gradient-closure-connection",
+      "page": 14,
+      "printed_page": "14",
+      "x": 42,
+      "top": 486,
+      "font_size": 7.3,
+      "formula": "(9.5)–(9.7) 原系统实例化说明",
+      "lines": [
+        "v1.0：(9.5)–(9.7) 已由弱原系统同源路径调用，未外加 Green/Poincaré。",
+        "常数仍用 C_P=2Lx；时间正则性为明确输入，旧接口说明保留为历史。"
+      ],
+      "modules": [
+        "LeanPML/PML/WeakFiniteProblem.lean",
+        "LeanPML/PML/MainWeakRectangle.lean"
+      ],
+      "theorems": [
+        "LeanPML.PML.Weak.OriginalInterval.main_energy_estimate_WeakOriginal",
+        "LeanPML.PML.Weak.OriginalInterval.first_evolution"
+      ],
+      "scope": "通过具体弱图有限问题调用既有梯度与两类吸收预算；不是新增未证接口或一般弱解结论。",
+      "tick": false,
+      "type": "接口接入范围说明",
+      "conditions": "真实 H₀¹/H(div) 图路径、原八式与初始兼容、区域弱系数连续代表、明确时间 jet；保守 C_P=2Lx。",
+      "remaining": "最优π常数、最低正则性与一般存在唯一性未证明；旧光滑批注保留。",
+      "rect_top": [
+        41,
+        484,
+        277.052685546875,
+        504.8
+      ],
+      "build_audit": {
+        "build": {
+          "metadata": "logs/v1.0.3/20261014T121921_205678_lake_build.json",
+          "log": "logs/v1.0.3/20261014T121921_205678_lake_build.log",
+          "exit_code": 0,
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "command": [
+            "lake",
+            "build"
+          ]
+        },
+        "audit": {
+          "metadata": "logs/v1.0.3/20261014T122038_234964_axioms_audit.json",
+          "log": "logs/v1.0.3/20261014T122038_234964_axioms_audit.log",
+          "exit_code": 0,
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "command": [
+            "lake",
+            "env",
+            "lean",
+            "Audit.lean"
+          ]
+        },
+        "v102_build": {
+          "metadata": "logs/v1.0.2/20261014T122020_722023_lake_build.json",
+          "log": "logs/v1.0.2/20261014T122020_722023_lake_build.log",
+          "exit_code": 0,
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "command": [
+            "lake",
+            "build"
+          ]
+        },
+        "v102_audit": {
+          "metadata": "logs/v1.0.2/20261014T122024_703113_axioms_audit.json",
+          "log": "logs/v1.0.2/20261014T122024_703113_axioms_audit.log",
+          "exit_code": 0,
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "command": [
+            "lake",
+            "env",
+            "lean",
+            "Audit.lean"
+          ]
+        },
+        "types": {
+          "metadata": "logs/v1.0.3/20261014T122040_030951_final_type_review.json",
+          "log": "logs/v1.0.3/20261014T122040_030951_final_type_review.log",
+          "exit_code": 0,
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "command": [
+            "lake",
+            "env",
+            "lean",
+            "logs/v1.0.3/completion_20261014T122020/TypeReview.lean"
+          ]
+        }
+      },
+      "source_hashes": {
+        "LeanPML/PML/WeakFiniteProblem.lean": "240d03114ea5e42fcb1ef100d5bb727c8b1748e7e492b83d57ca89045c1d5a4f",
+        "LeanPML/PML/MainWeakRectangle.lean": "3a6eb1c9647783030b310691dce4c075e9376d9d4647d0dcafd93850f67acab1"
+      }
+    },
+    {
+      "id": "weak-static-main-call",
+      "page": 16,
+      "printed_page": "16",
+      "x": 42,
+      "top": 558,
+      "font_size": 7.3,
+      "formula": "§11.3 静态状态：本轮允许变体",
+      "lines": [
+        "v1.0：非零静态解实际调用弱主定理；能量正且恒定，内部耗散为零。",
+        "本轮为 p=S、r=0、F=1 的允许变体；不是原紧支 F 配置原样核验。"
+      ],
+      "modules": [
+        "LeanPML/Examples/WeakStaticMode.lean"
+      ],
+      "theorems": [
+        "LeanPML.Examples.WeakStaticMode.originalAt",
+        "LeanPML.Examples.WeakStaticMode.main_call",
+        "LeanPML.Examples.WeakStaticMode.nonzero_static_regression"
+      ],
+      "scope": "实际单位矩形非零八变量原解与真实时间导数/加权成员；CP4 K384；不是只有初值可容许性。",
+      "tick": true,
+      "type": "实际弱空间原系统结论",
+      "conditions": "真实 H₀¹/H(div) 图路径、原八式与初始兼容、区域弱系数连续代表、明确时间 jet；保守 C_P=2Lx。",
+      "remaining": "最优π常数、最低正则性与一般存在唯一性未证明；旧光滑批注保留。",
+      "rect_top": [
+        41,
+        556,
+        283.497998046875,
+        576.8
+      ],
+      "build_audit": {
+        "build": {
+          "metadata": "logs/v1.0.3/20261014T121921_205678_lake_build.json",
+          "log": "logs/v1.0.3/20261014T121921_205678_lake_build.log",
+          "exit_code": 0,
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "command": [
+            "lake",
+            "build"
+          ]
+        },
+        "audit": {
+          "metadata": "logs/v1.0.3/20261014T122038_234964_axioms_audit.json",
+          "log": "logs/v1.0.3/20261014T122038_234964_axioms_audit.log",
+          "exit_code": 0,
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "command": [
+            "lake",
+            "env",
+            "lean",
+            "Audit.lean"
+          ]
+        },
+        "v102_build": {
+          "metadata": "logs/v1.0.2/20261014T122020_722023_lake_build.json",
+          "log": "logs/v1.0.2/20261014T122020_722023_lake_build.log",
+          "exit_code": 0,
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "command": [
+            "lake",
+            "build"
+          ]
+        },
+        "v102_audit": {
+          "metadata": "logs/v1.0.2/20261014T122024_703113_axioms_audit.json",
+          "log": "logs/v1.0.2/20261014T122024_703113_axioms_audit.log",
+          "exit_code": 0,
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "command": [
+            "lake",
+            "env",
+            "lean",
+            "Audit.lean"
+          ]
+        },
+        "types": {
+          "metadata": "logs/v1.0.3/20261014T122040_030951_final_type_review.json",
+          "log": "logs/v1.0.3/20261014T122040_030951_final_type_review.log",
+          "exit_code": 0,
+          "cwd": "/Users/wcli/Desktop/资料/graduate_student/博五/further_PML/2D_Maxwell_PML_Energy_Functional_Exploration/Lean_PML",
+          "command": [
+            "lake",
+            "env",
+            "lean",
+            "logs/v1.0.3/completion_20261014T122020/TypeReview.lean"
+          ]
+        }
+      },
+      "source_hashes": {
+        "LeanPML/Examples/WeakStaticMode.lean": "778ceb39c0f1ebc745c1b369b83e85867f60be9699d1c16160e8ec221c9f09b0"
+      }
+    }
+  ],
+  "visual_review_record": "visual_review.json"
+}

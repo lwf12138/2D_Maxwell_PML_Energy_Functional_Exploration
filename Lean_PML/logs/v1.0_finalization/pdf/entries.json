@@ -1,0 +1,140 @@
+[
+  {
+    "id": "weak_representative",
+    "page": 3,
+    "printed_page": 3,
+    "formula": "§1 一般分离 W¹,∞ 系数的代表（辅助结论，原文未单列）",
+    "tick": true,
+    "x": 55,
+    "top": 11,
+    "font_size": 6.3,
+    "lines": [
+      "v1.0最终：区域分离 W¹,∞ 已构造 Lipschitz 代表；原乘子、权重及积分 a.e. 不变。",
+      "连续性不再独立输入；幅度仅要求计算域，保留全零、单向及角层。"
+    ],
+    "scope": "真实二维弱测试→一维分布原函数→闭区间Lipschitz代表；构造原区域系数入口，原8式及加权空间按a.e.识别。",
+    "modules": [
+      "LeanPML/Analysis/WeakIntervalRepresentative.lean",
+      "LeanPML/PML/WeakAbsorptionRepresentative.lean",
+      "LeanPML/PML/WeakCoefficientTransport.lean",
+      "LeanPML/PML/MainRepresentedWeak.lean"
+    ],
+    "theorems": [
+      "LeanPML.Analysis.exists_regional_lipschitz_representative",
+      "LeanPML.PML.RawWeakRegionalAbsorption.representatives",
+      "LeanPML.PML.RawWeakRegionalAbsorption.weighted_spaces_eq",
+      "LeanPML.PML.Weak.OriginalInterval.changeCoefficients"
+    ]
+  },
+  {
+    "id": "general_lift",
+    "page": 9,
+    "printed_page": 9,
+    "formula": "§5.3 / (6.4) 合法提升选择无关",
+    "tick": true,
+    "x": 55,
+    "top": 11,
+    "font_size": 6.3,
+    "lines": [
+      "v1.0最终 §5.3：一般分离弱系数的合法提升及两层能量选择无关；商类意义。",
+      "连续代表在证明内构造；不把两个任意状态当成同源时间层。"
+    ],
+    "scope": "复用弱乘积零迹保持、方向Poincare及弱梯度局部性；新代表构造消去旧规范唯一性调用的独立连续性输入。",
+    "modules": [
+      "LeanPML/PML/MainGeneralWeak.lean"
+    ],
+    "theorems": [
+      "LeanPML.PML.Weak.OriginalInterval.historical_energy_independent_GeneralWeak",
+      "LeanPML.PML.Weak.twoLayerEnergy_independent_GeneralWeak"
+    ]
+  },
+  {
+    "id": "general_main",
+    "page": 10,
+    "printed_page": 10,
+    "formula": "(6.6)接口及 (6.7)–(6.10) 原系统先验定理",
+    "tick": true,
+    "x": 55,
+    "top": 813,
+    "font_size": 6.3,
+    "lines": [
+      "v1.0最终：(6.7)–(6.10) 一般分离弱系数；原 π 常数；连续代表已由弱导数构造。",
+      "真实 C^k/初始加权成员；T>0 规范入口，T=0 合法初始 jet。不是适定性。"
+    ],
+    "scope": "当前原八式主入口；不再独立输入p/r连续性。Ck正长度，零长度使用明确初始jet兼容，闭区间输出及内部导数分开。勾是能量结论，不给(6.6)假设本身打勾。",
+    "modules": [
+      "LeanPML/PML/MainGeneralWeak.lean",
+      "LeanPML/Examples/GeneralWeakRegression.lean"
+    ],
+    "theorems": [
+      "LeanPML.PML.Weak.OriginalInterval.main_energy_GeneralWeakCk",
+      "LeanPML.PML.Weak.OriginalInterval.main_energy_GeneralWeakJet",
+      "LeanPML.Examples.GeneralWeak.static_ck_call"
+    ]
+  },
+  {
+    "id": "threshold_min",
+    "page": 15,
+    "printed_page": 15,
+    "formula": "第10节未编号 c_* 最小分支等式",
+    "tick": true,
+    "x": 55,
+    "top": 90,
+    "font_size": 6.3,
+    "lines": [
+      "v1.0最终：原 c*=min{π/√48,π²/1152,1/24}=π²/1152 已严格核验。"
+    ],
+    "scope": "真实sharpPoincareConstant/threshold定义，严格π界；保留c=1/128,S=1/512及三条已证小量证书。",
+    "modules": [
+      "LeanPML/Rectangle/OriginalParameterThreshold.lean"
+    ],
+    "theorems": [
+      "LeanPML.Rectangle.ParameterCertificate.original_threshold_min",
+      "LeanPML.Rectangle.ParameterCertificate.original_threshold_exact"
+    ]
+  },
+  {
+    "id": "original_profile",
+    "page": 15,
+    "printed_page": 15,
+    "formula": "(10.2) 原幂次剖面全族",
+    "tick": true,
+    "x": 55,
+    "top": 576,
+    "font_size": 6.3,
+    "lines": [
+      "v1.0最终 (10.2)：m≥2、0<ηx,ηy≤1/512 的原剖面全族，真实区域弱导数/幅度已证。"
+    ],
+    "scope": "物理区、四边四角分支，技术Lipschitz截断在域内等于原式；非恒定代表经构造接入新主定理。并非C∞替代剖面。",
+    "modules": [
+      "LeanPML/Examples/OriginalPowerProfile.lean",
+      "LeanPML/Examples/GeneralWeakRegression.lean"
+    ],
+    "theorems": [
+      "LeanPML.Examples.OriginalPower.extension_eq_profile",
+      "LeanPML.Examples.OriginalPower.absorption_branches",
+      "LeanPML.Examples.OriginalPower.representative_nonconstant",
+      "LeanPML.Examples.GeneralWeak.original_profile_main"
+    ]
+  },
+  {
+    "id": "original_profile_scope",
+    "page": 15,
+    "printed_page": 15,
+    "formula": "(10.2) 本轮范围说明",
+    "tick": false,
+    "x": 55,
+    "top": 781,
+    "font_size": 6.3,
+    "lines": [
+      "本轮已接入一般弱系数主入口；原参数有效。剖面/数据证书不表示一般演化解存在。"
+    ],
+    "scope": "更新本页旧“全族待证/C∞替代”旁注的历史范围；不删除旧批注。",
+    "modules": [
+      "LeanPML/Examples/GeneralWeakRegression.lean"
+    ],
+    "theorems": [
+      "LeanPML.Examples.GeneralWeak.original_profile_main"
+    ]
+  }
+]
